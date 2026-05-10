@@ -1,16 +1,16 @@
 ---
 title: MSMQ native integration
 summary: Sample code and scripts to facilitate native integration scenarios with MSMQ.
-reviewed: 2024-08-06
+reviewed: 2026-05-10
 component: MsmqTransport
 ---
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via MSMQ in integration scenarios.
 
-These examples use the [System.Messaging](https://docs.microsoft.com/en-us/dotnet/api/system.messaging?view=netframework-4.8) and [System.Transactions](https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=netframework-4.8) assemblies.
+These examples use the [System.Messaging](https://learn.microsoft.com/en-us/dotnet/api/system.messaging?view=netframework-4.8) and [System.Transactions](https://learn.microsoft.com/en-us/dotnet/api/system.transactions?view=netframework-4.8) assemblies.
 
 > [!WARNING]
-> The `Systems.Messaging` namespace is unavailable in .NET Core.
+> The `System.Messaging` namespace is unavailable on .NET Core.
 
 > [!NOTE]
 > When using the C# code samples, add the proper includes for the `System.Messaging` and `System.Transactions` assemblies in the program using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script.
