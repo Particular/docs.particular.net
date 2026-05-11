@@ -1,7 +1,7 @@
 ---
 title: NLog
 summary: Logging to NLog
-reviewed: 2024-08-20
+reviewed: 2026-05-11
 component: NLog
 ---
 
