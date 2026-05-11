@@ -196,7 +196,7 @@
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.3.0)| **Current** | 2026-05-04     | Active            | Active |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.2)| Mainstream Support | 2026-03-18     | 2026-08-04        | Ineligible |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.1)| Mainstream Support | 2026-02-09     | 2026-06-18        | Ineligible |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.1)| Mainstream Support | 2026-01-29     | 2026-05-09        | Ineligible |
+| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.1)| ~~Unsupported~~ | ~~2026-01-29~~ | ~~2026-05-09~~    | ~~Ineligible~~ |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.3)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.4)| ~~Unsupported~~ | ~~2025-02-26~~ | ~~2025-12-26~~    | ~~Ineligible~~ |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.5)| ~~Unsupported~~ | ~~2024-09-24~~ | ~~2026-02-26~~    | ~~Ineligible~~ |
@@ -514,9 +514,9 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/7.0.1)| **Current** | 2026-01-30     | Active            | Active |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/6.0.2)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.1)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/7.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/6.0.3)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.2)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.2.1)| Mainstream Support | 2025-06-03     | 2026-06-07        | Ineligible |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.1.1)| ~~Unsupported~~ | ~~2024-09-17~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-12-17~~    | ~~Ineligible~~ |
@@ -530,9 +530,9 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/7.0.1)| **Current** | 2026-01-30     | Active            | Active |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/6.0.2)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.1)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/7.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/6.0.3)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.2)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.2.1)| Mainstream Support | 2025-06-03     | 2026-06-07        | Ineligible |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.1.1)| ~~Unsupported~~ | ~~2024-09-17~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-12-17~~    | ~~Ineligible~~ |
@@ -851,7 +851,7 @@ No versions released.
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.1.1)| **Current** | 2026-02-10     | Active            | Active |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.1)| Mainstream Support | 2026-01-30     | 2026-05-10        | Ineligible |
+| [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.1)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-05-10~~    | ~~Ineligible~~ |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.2)| Mainstream Support | 2025-03-17     | 2028-01-29        | 2030-01-29 |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.4)| ~~Unsupported~~ | ~~2024-06-26~~ | ~~2026-03-17~~    | ~~Ineligible~~ |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.1.0)| ~~Unsupported~~ | ~~2024-06-12~~ | ~~2024-09-26~~    | ~~Ineligible~~ |
@@ -936,7 +936,7 @@ No versions released.
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.CustomChecks/6.0.1)| **Current** | 2026-01-30     | Active            | Active |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.CustomChecks/5.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.CustomChecks/5.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.CustomChecks/4.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.CustomChecks/3.0.1)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.CustomChecks/2.0.1)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
@@ -947,7 +947,7 @@ No versions released.
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/6.0.2)| **Current** | 2026-01-30     | Active            | Active |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/5.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/5.0.3)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/4.0.3)| Extended Support | 2023-03-08     | 2026-04-16        | 2028-04-16 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1)| ~~Unsupported~~ | ~~2023-03-08~~ | ~~2024-03-08~~    | ~~Ineligible~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.0.0)| ~~Unsupported~~ | ~~2022-11-17~~ | ~~2023-06-08~~    | ~~Ineligible~~ |
@@ -1002,7 +1002,7 @@ No versions released.
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/6.0.1)| **Current** | 2026-01-29     | Active            | Active |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/5.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/5.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/4.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/3.0.1)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Heartbeat/2.0.1)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
@@ -1075,9 +1075,9 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/6.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/5.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/4.0.1)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/6.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/5.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/4.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/3.0.6)| Extended Support | 2018-06-07     | 2024-11-17        | 2026-11-17 |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/2.1.3)| ~~Unsupported~~ | ~~2018-05-23~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/2.0.1)| ~~Unsupported~~ | ~~2017-12-12~~ | ~~2018-08-23~~    | ~~Ineligible~~ |
@@ -1099,9 +1099,9 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/6.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/5.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/4.0.1)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/6.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/5.0.3)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/4.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/3.0.1)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.SagaAudit/2.0.1)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.SagaAudit/1.0.0)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2018-10-11~~    | ~~2020-10-11~~ |
