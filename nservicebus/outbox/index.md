@@ -191,6 +191,8 @@ The outbox uses the incoming [message identifier](/nservicebus/messaging/message
 
 Since message identifiers are [unique only within the scope of a logical endpoint from a processing perspective](/nservicebus/messaging/message-identity.md) it is the responsibility of the persister to ensure that message identities are scoped to the [logical endpoint](/nservicebus/endpoints/#logical-endpoints) that is processing the message to allow multiple endpoints to use the same database.
 
+Some message queue systems possess a native message id concept, but this is not the same as the message id used by the Outbox. It is not safe to assume that the native message id will match the NServiceBus message id, nor that the native message id will be consistent between duplicate dispatches of the NServiceBus message.
+
 ## Outbox expiration duration
 
 To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained varies depending on the persistence chosen for the outbox. The default duration and frequency of data removal can be overridden for all outbox persisters.
