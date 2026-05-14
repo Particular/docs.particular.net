@@ -37,7 +37,7 @@ jobs:
           key: docstool-${{ hashFiles('docstool-versions.json') }}
       - name: Install docstool
         if: steps.cache-docstool.outputs.cache-hit != 'true'
-        run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+        run: dotnet tool install Particular.DocsTool --global
       - name: Run docstool
         run: docstool test --no-version-check --zipfiles --out ~/build-output
       - name: Azure Login

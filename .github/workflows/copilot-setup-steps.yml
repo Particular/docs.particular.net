@@ -43,7 +43,7 @@ jobs:
 
       - name: Install docstool
         if: steps.cache-docstool.outputs.cache-hit != 'true'
-        run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+        run: dotnet tool install Particular.DocsTool --global
 
       - name: Verify docstool is available
         run: docstool --version

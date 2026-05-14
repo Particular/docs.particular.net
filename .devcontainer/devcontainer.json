@@ -11,7 +11,7 @@
 	"forwardPorts": [
 		55666
 	],
-	"postCreateCommand": "dotnet tool install -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json",
+	"postCreateCommand": "dotnet tool install -g Particular.DocsTool",
 	"postStartCommand": "docstool update",
 	"postAttachCommand": "docstool serve --port 55666",
 	"remoteEnv": {
