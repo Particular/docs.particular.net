@@ -19,8 +19,7 @@ NServiceBus can write a significant amount of information to the log. To limit t
 
 For example, to limit log output to a specific namespace.
 
-The following code example adds a [filter](https://logging.apache.org/log4net/release/manual/configuration.html#filters).
-
+The following code example adds a [filter](https://logging.apache.org/log4net/manual/configuration.html#filters).
 
 ### The Filter
 
