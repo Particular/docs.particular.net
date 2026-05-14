@@ -164,12 +164,12 @@ public class Configuration
     {
         #region custom-transport-name
 
-        var azureServiceBus1 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamepace1))
+        var azureServiceBus1 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamespace1))
         {
             Name = "asb-namespace-1"
         };
 
-        var azureServiceBus2 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamepace2))
+        var azureServiceBus2 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamespace2))
         {
             Name = "asb-namespace-2"
         };
@@ -254,6 +254,6 @@ public class Configuration
     }
 
     string connectionString = string.Empty;
-    string connectionStringNamepace1 = string.Empty;
-    string connectionStringNamepace2 = string.Empty;
+    string connectionStringNamespace1 = string.Empty;
+    string connectionStringNamespace2 = string.Empty;
 }
