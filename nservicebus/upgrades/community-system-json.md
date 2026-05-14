@@ -8,7 +8,7 @@ related:
 isUpgradeGuide: true
 ---
 
-Message serialization with System.Text.Json is bundled into NServiceBus version 8.1 and above. The built-in serializer is fully compatible with the community-created [NServiceBus.Json](https://github.com/NServiceBusExtensions/NServiceBus.Json) package.
+Message serialization with System.Text.Json is bundled into NServiceBus version 8.1 and above.
 
 ## Conversion from community package
 
