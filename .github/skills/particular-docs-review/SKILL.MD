@@ -169,7 +169,17 @@ To locate snippet code for a given `snippet: KEY` directive:
 1. Note the key name after `snippet:`
 2. Find the component from the document's `component:` frontmatter field
 3. Component keys are defined in `components/components.yaml`
-4. Search `Snippets/{ComponentKey}/` for files containing `#region KEY` (C#) or `// startcode KEY`
+4. Search `Snippets/{ComponentKey}/` for files containing the snippet key using the appropriate marker for the file type:
+
+   | File type | Open marker | Close marker |
+   |-----------|-------------|--------------|
+   | C# (region) | `#region KEY` | `#endregion` |
+   | C# (comment) | `// startcode KEY` | `// endcode` |
+   | XML-based | `<!-- startcode KEY -->` | `<!-- endcode -->` |
+   | PowerShell | `# startcode KEY` | `# endcode` |
+   | SQL | `-- startcode KEY` | `-- endcode` |
+   | Plain text | `startcode KEY` | `endcode` |
+   | Dockerfile / YAML | `# startcode KEY` | `# endcode` |
 5. Snippet files live in versioned subdirectories, e.g. `Snippets/Core_7/` or `Snippets/MsmqTransport_1/`
 
 ---
