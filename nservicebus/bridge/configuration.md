@@ -2,16 +2,16 @@
 title: Bridge configuration options
 summary: Configuration options for the messaging bridge.
 component: Bridge
-reviewed: 2024-09-05
+reviewed: 2026-05-14
 ---
 
 ## Hosting
 
-NServiceBus Messaging Bridge is hosted using the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes care of life cycle management, configuration, logging, and other concerns.
+NServiceBus Messaging Bridge is hosted using the [.NET Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host), which takes care of lifecycle management, configuration, logging, and other concerns.
 
 snippet: generic-host
 
-The overload that accepts a [`HostBuilderContext`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostbuildercontext) provides access to the [`IConfiguration` type](https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration) and other host related details.
+The overload that accepts a [`HostBuilderContext`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostbuildercontext) provides access to the [`IConfiguration` type](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration) and other host-related details.
 
 snippet: generic-host-builder-context
 
@@ -24,13 +24,13 @@ snippet: endpoint-registration
 > [!NOTE]
 > Having the same logical endpoint running on both transports is not supported. The bridge will throw an exception if an endpoint is registered on more than one transport.
 >
-> If a duplicate endpoint it is not registered with the bridge, any messages it sends that need to be forwarded across the bridge will fail and get sent to the [bridge error queue](#recoverability-error-queue).
+> If a duplicate endpoint is not registered with the bridge, any messages it sends that need to be forwarded across the bridge will fail and get sent to the [bridge error queue](#recoverability-error-queue).
 
 ## Registering publishers
 
 When NServiceBus discovers a message handler in an endpoint for an event, it automatically subscribes to this event on the transport. The publisher itself is not aware of this, since it does not receive a notification when a subscriber subscribes to an event. This represents a challenge for the bridge.
 
-If an endpoint subscribes to an event, the bridge must be made aware of this subscription since it must register the same subscription on the transports it's bridging. As the bridge is unaware of any subscriptions, the bridge must be configured to mimic the behavior of the endpoints.
+If an endpoint subscribes to an event, the bridge must be made aware of this subscription since it must register the same subscription on the transports it bridges. As the bridge is unaware of any subscriptions, the bridge must be configured to mimic the behavior of the endpoints.
 
 The result is duplicate subscriptions for any endpoint that subscribes to an event. The endpoint that publishes the event must be configured as well.
 
@@ -39,7 +39,7 @@ snippet: register-publisher
 > [!WARNING]
 > The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
-Legacy transport versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed -- only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
+Legacy transport versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed. Only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub feature.
 
 snippet: register-publisher-legacy
 
@@ -98,11 +98,11 @@ When automatic queue creation is enabled a "Sales" proxy endpoint is created on 
 | Sales | _False_ | Sales | _True_ |
 | Billing | _True_ | Billing | _False_ |
 
-The "Sales" queue on the MSMQ transport and the "Billing" queue on the AzureServiceBus transport are assumed to be created by the endpoints connected on those transport and therefore are not owned by the bridge queue creation.
+The "Sales" queue on the MSMQ transport and the "Billing" queue on the AzureServiceBus transport are assumed to be created by the endpoints connected to those transports and are not created by the bridge.
 
 ## Custom queue address
 
-The bridge provides the ability to change the address of the queue of incoming messages.
+The bridge provides the ability to change the address of the incoming message queue.
 
 > [!NOTE]
 > When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
@@ -118,7 +118,7 @@ If a message fails while it is being forwarded to the target transport, the foll
 
 ### Error queue
 
-The error queue used by the bridge is named `bridge.error` by default. Note that the default `error` queue used by other platform components can not be used to enable bridging of the system-wide error queue since a bridged queue may not be used as the error queue. See the documentation around [bridging platform queues](#bridging-platform-queues) for more details.
+The error queue used by the bridge is named `bridge.error` by default. Note that the default `error` queue used by other platform components cannot be used to enable bridging of the system-wide error queue since a bridged queue may not be used as the error queue. See the documentation around [bridging platform queues](#bridging-platform-queues) for more details.
 
 A different error queue may be configured as follows:
 
@@ -128,7 +128,7 @@ Messages moved to the error queue have the [`NServiceBus.FailedQ`](/nservicebus/
 
 ## Auditing
 
-The bridge add a `NServiceBus.Bridge.Transfer` header to a message while that message is transferred between transports.
+The bridge adds a `NServiceBus.Bridge.Transfer` header to a message while that message is transferred between transports.
 
 The value of the header is `{source-transport-name}->{target-transport-name}`. For example: `msmq->sqlserver`. This header provides traceability for a message as it moves through the bridge.
 
