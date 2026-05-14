@@ -1,16 +1,11 @@
 // Simulates busy (almost no delay) / quite time in a sine wave
-class LoadSimulator
+class LoadSimulator(IMessageSession messageSession, TimeSpan minimumDelay, TimeSpan idleDuration)
 {
-    public LoadSimulator(IEndpointInstance endpointInstance, TimeSpan minimumDelay, TimeSpan idleDuration)
-    {
-        this.endpointInstance = endpointInstance;
-        this.minimumDelay = minimumDelay;
-        this.idleDuration = TimeSpan.FromTicks(idleDuration.Ticks / 2);
-    }
 
-    public void Start(CancellationToken cancellationToken)
+    public void Start()
     {
-        _ = Task.Run(() => Loop(cancellationToken), cancellationToken);
+        cancellation = new CancellationTokenSource();
+        _ = Task.Run(() => Loop(cancellation.Token));
     }
 
     async Task Loop(CancellationToken cancellationToken)
@@ -54,16 +49,12 @@ class LoadSimulator
             sendOptions.SetHeader("simulate-failure", bool.TrueString);
         }
 
-        return endpointInstance.Send(new SomeMessage(), sendOptions, cancellationToken);
+        return messageSession.Send(new SomeMessage(), sendOptions, cancellationToken);
     }
 
-    public Task Stop(CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
-    }
+    public void Stop() => cancellation.Cancel();
 
-    IEndpointInstance endpointInstance;
-    TimeSpan minimumDelay;
-    TimeSpan idleDuration;
+
+    CancellationTokenSource cancellation;
     int index;
 }

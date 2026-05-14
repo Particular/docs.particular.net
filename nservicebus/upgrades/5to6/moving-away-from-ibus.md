@@ -65,7 +65,7 @@ using (var bus = startableBus.Start())
 
 Starting the endpoint provides access to `IMessageSession` or `IEndpointInstance` respectively which can be used to send messages during endpoint startup instead of using the `IBus` interface.
 
-["Send-only" endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting) were created by calling the `CreateSendOnly` method on the `Bus` class in previous versions. In version 6 there is no longer a separate method to create or start "Send-Only" endpoints. Configure the endpoint to be "Send-Only" with the `SendOnly` method on `EndpointConfiguration` and create/start it with the `Endpoint` class.
+["Send-only" endpoints](/nservicebus/hosting/#send-only-hosting) were created by calling the `CreateSendOnly` method on the `Bus` class in previous versions. In version 6 there is no longer a separate method to create or start "Send-Only" endpoints. Configure the endpoint to be "Send-Only" with the `SendOnly` method on `EndpointConfiguration` and create/start it with the `Endpoint` class.
 
 ### Accessing the CurrentMessageContext
 

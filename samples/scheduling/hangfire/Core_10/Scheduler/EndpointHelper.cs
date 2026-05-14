@@ -4,7 +4,7 @@
 
 public static class EndpointHelper
 {
-    public static IEndpointInstance Instance { get; set; }
+    public static IMessageSession MessageSession { get; set; }
 }
 
 #endregion

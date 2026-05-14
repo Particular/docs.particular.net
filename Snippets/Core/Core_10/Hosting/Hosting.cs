@@ -6,18 +6,17 @@ using NServiceBus;
 
 class Hosting
 {
-    async Task SendOnly()
+    void SendOnly()
     {
         #region Hosting-SendOnly
 
         var endpointConfiguration = new EndpointConfiguration("EndpointName");
         endpointConfiguration.SendOnly();
-        // Apply other necessary endpoint configuration, e.g. transport
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #endregion
     }
 
+#pragma warning disable CS0618 // Type or member is obsolete
     async Task Startup()
     {
         #region Hosting-Startup
@@ -33,23 +32,10 @@ class Hosting
 
     async Task Shutdown(IEndpointInstance endpointInstance)
     {
+
         #region Hosting-Shutdown
         await endpointInstance.Stop();
         #endregion
     }
-
-    #region Hosting-Static
-    public static class EndpointInstance
-    {
-        public static IEndpointInstance Endpoint { get; private set; }
-        public static void SetInstance(IEndpointInstance endpoint)
-        {
-            if (Endpoint != null)
-            {
-                throw new Exception("Endpoint already set.");
-            }
-            Endpoint = endpoint;
-        }
-    }
-    #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 }

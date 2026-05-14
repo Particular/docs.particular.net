@@ -1,4 +1,7 @@
-﻿namespace Core.Headers.Writers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.Headers.Writers;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,9 +34,15 @@ public class HeaderWriterReply
         endpointConfiguration.RegisterMessageMutator(new Mutator());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await endpointInstance.SendLocal(new MessageToSend());
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+        await messageSession.SendLocal(new MessageToSend());
         ManualResetEvent.WaitOne();
+        await host.StopAsync();
     }
 
     class MessageToSend :

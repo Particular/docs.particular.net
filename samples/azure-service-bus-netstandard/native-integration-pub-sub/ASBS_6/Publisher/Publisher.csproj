@@ -11,6 +11,6 @@
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.*" />
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
-    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="10.*-*" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,6 @@ isLearningPath: true
 related:
  - nservicebus/dotnet-templates
  - nservicebus/lifecycle
- - samples/startup-shutdown-sequence
  - samples/hosting/generic-host
 ---
 

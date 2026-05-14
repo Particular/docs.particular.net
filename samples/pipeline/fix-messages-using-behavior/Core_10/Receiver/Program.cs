@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 Console.Title = "Receiver";
 
 var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
@@ -33,9 +36,12 @@ pipeline.Register(
 
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+await host.StartAsync();
 
 Console.WriteLine("Press 'Enter' to finish.");
 Console.ReadLine();
 
-await endpointInstance.Stop();
+await host.StopAsync();

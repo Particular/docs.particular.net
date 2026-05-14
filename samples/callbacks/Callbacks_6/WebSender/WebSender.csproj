@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.Callbacks" Version="6.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
   </ItemGroup>
 
 </Project>

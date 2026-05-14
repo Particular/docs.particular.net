@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 Console.Title = "SimpleSender";
 
 #region ConfigureEndpoint
@@ -17,11 +20,15 @@ var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyCommand), "Samples.Sqs.SimpleReceiver");
 endpointConfiguration.EnableInstallers();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
-await SendMessages(endpointInstance);
+await SendMessages(messageSession);
 
-await endpointInstance.Stop();
+await host.StopAsync();
 
 static async Task SendMessages(IMessageSession messageSession)
 {

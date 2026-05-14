@@ -1,23 +1,20 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "OriginalDestination";
 
 #region forward-messages-after-processing
 
-var config = new EndpointConfiguration("OriginalDestination");
-config.UseTransport(new LearningTransport());
+var endpointConfiguration = new EndpointConfiguration("OriginalDestination");
+endpointConfiguration.UseTransport(new LearningTransport());
 
-config.ForwardMessagesAfterProcessingTo("UpgradedDestination");
+endpointConfiguration.ForwardMessagesAfterProcessingTo("UpgradedDestination");
 
 #endregion
 
-config.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpoint = await Endpoint.Start(config);
-
-Console.WriteLine("Endpoint Started. Press any key to exit");
-
-Console.ReadKey();
-
-await endpoint.Stop();
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+await builder.Build().StartAsync();

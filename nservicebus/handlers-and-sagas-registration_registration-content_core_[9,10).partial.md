@@ -1,0 +1,3 @@
+In NServiceBus version 9 and earlier, handlers and sagas are registered automatically via [assembly scanning](/nservicebus/hosting/assembly-scanning.md). No explicit registration is required — the endpoint discovers handler and saga types by scanning assemblies at startup.
+
+See [assembly scanning](/nservicebus/hosting/assembly-scanning.md) for configuration options including how to exclude assemblies or disable scanning entirely.

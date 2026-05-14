@@ -5,13 +5,12 @@ using NServiceBus;
 
 class BasicUsageOfIBus
 {
-    async Task Send(EndpointConfiguration endpointConfiguration)
+    async Task Send(IMessageSession messageSession)
     {
         #region BasicSend
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var message = new MyMessage();
-        await endpointInstance.Send(message);
+        await messageSession.Send(message);
 
         #endregion
     }
@@ -30,86 +29,86 @@ class BasicUsageOfIBus
 
     #endregion
 
-    async Task SetDestination(IEndpointInstance endpoint)
+    async Task SetDestination(IMessageSession messageSession)
     {
         #region BasicSendSetDestination
 
         var options = new SendOptions();
         options.SetDestination("MyDestination");
-        await endpoint.Send(new MyMessage(), options);
+        await messageSession.Send(new MyMessage(), options);
 
         #endregion
     }
 
-    async Task SpecificInstance(IEndpointInstance endpoint)
+    async Task SpecificInstance(IMessageSession messageSession)
     {
         #region BasicSendSpecificInstance
 
         var options = new SendOptions();
         options.RouteToSpecificInstance("MyInstance");
         var message = new MyMessage();
-        await endpoint.Send(message, options);
+        await messageSession.Send(message, options);
 
         #endregion
     }
 
-    async Task ThisEndpoint(IEndpointInstance endpoint)
+    async Task ThisEndpoint(IMessageSession messageSession)
     {
         #region BasicSendToAnyInstance
 
         var options = new SendOptions();
         options.RouteToThisEndpoint();
-        await endpoint.Send(new MyMessage(), options);
+        await messageSession.Send(new MyMessage(), options);
         // or
-        await endpoint.SendLocal(new MyMessage());
+        await messageSession.SendLocal(new MyMessage());
 
         #endregion
     }
 
-    async Task ThisInstance(IEndpointInstance endpoint)
+    async Task ThisInstance(IMessageSession messageSession)
     {
         #region BasicSendToThisInstance
 
         var options = new SendOptions();
         options.RouteToThisInstance();
         var message = new MyMessage();
-        await endpoint.Send(message, options);
+        await messageSession.Send(message, options);
 
         #endregion
     }
 
-    async Task SendReplyToThisInstance(IEndpointInstance endpoint)
+    async Task SendReplyToThisInstance(IMessageSession messageSession)
     {
         #region BasicSendReplyToThisInstance
 
         var options = new SendOptions();
         options.RouteReplyToThisInstance();
         var message = new MyMessage();
-        await endpoint.Send(message, options);
+        await messageSession.Send(message, options);
 
         #endregion
     }
 
-    async Task SendReplyToAnyInstance(IEndpointInstance endpoint)
+    async Task SendReplyToAnyInstance(IMessageSession messageSession)
     {
         #region BasicSendReplyToAnyInstance
 
         var options = new SendOptions();
         options.RouteReplyToAnyInstance();
         var message = new MyMessage();
-        await endpoint.Send(message, options);
+        await messageSession.Send(message, options);
 
         #endregion
     }
 
-    async Task SendReplyTo(IEndpointInstance endpoint)
+    async Task SendReplyTo(IMessageSession messageSession)
     {
         #region BasicSendReplyToDestination
 
         var options = new SendOptions();
         options.RouteReplyTo("MyDestination");
         var message = new MyMessage();
-        await endpoint.Send(message, options);
+        await messageSession.Send(message, options);
 
         #endregion
     }

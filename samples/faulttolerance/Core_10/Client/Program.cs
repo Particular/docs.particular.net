@@ -1,5 +1,6 @@
 using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Client";
@@ -9,7 +10,11 @@ endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
@@ -28,8 +33,8 @@ while (true)
         Id = id
     };
 
-    await endpointInstance.Send("Samples.FaultTolerance.Server", myMessage);
+    await messageSession.Send("Samples.FaultTolerance.Server", myMessage);
     Console.WriteLine($"Sent a message with id: {id:N}");
 }
 
-await endpointInstance.Stop();
+await host.StopAsync();

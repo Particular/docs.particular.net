@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -21,7 +23,11 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
 
         var key = default(ConsoleKeyInfo);
 
@@ -31,9 +37,9 @@ class Program
             key = Console.ReadKey();
 
             var message = new MyMessage { Contents = Guid.NewGuid().ToString() };
-            await endpointInstance.Send(message);
+            await messageSession.Send(message);
         }
 
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 }

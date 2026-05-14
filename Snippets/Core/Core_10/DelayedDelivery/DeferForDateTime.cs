@@ -6,7 +6,7 @@ using NServiceBus;
 
 class DeferForDateTime
 {
-    async Task SendDelayedMessage(IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
+    async Task SendDelayedMessage(IMessageSession messageSession, IMessageHandlerContext handlerContext)
     {
         #region delayed-delivery-datetime
         var options = new SendOptions();
@@ -14,7 +14,7 @@ class DeferForDateTime
 
         await handlerContext.Send(new MessageToBeSentLater(), options);
         // OR
-        await endpoint.Send(new MessageToBeSentLater(), options, handlerContext.CancellationToken);
+        await messageSession.Send(new MessageToBeSentLater(), options, handlerContext.CancellationToken);
         #endregion
     }
 

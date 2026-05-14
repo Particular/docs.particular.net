@@ -1,4 +1,7 @@
-﻿namespace Core.Headers.Writers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.Headers.Writers;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,13 +35,17 @@ public class HeaderWriterPublish
         endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
         // give time for the subscription to happen
         await Task.Delay(3000);
-        await endpointInstance.Publish(new MessageToPublish());
+        await messageSession.Publish(new MessageToPublish());
         ManualResetEvent.WaitOne();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 
     class MessageToPublish :

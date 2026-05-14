@@ -17,10 +17,7 @@ var routing = cfg.UseTransport(transport);
 
 routing.RouteToEndpoint(typeof(FollowUp), "Samples.KafkaTrigger.ConsoleEndpoint");
 
-var endpoint = await Endpoint.Start(cfg);
-
-// Inject the endpoint in the DI container
-builder.Services.AddSingleton<IMessageSession>(endpoint);
+builder.Services.AddNServiceBusEndpoint(cfg);
 
 var host = builder.Build();
 
