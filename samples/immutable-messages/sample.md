@@ -1,7 +1,7 @@
 ---
 title: Immutable Messages samples
 summary: Demonstrate how to use immutable messages when exchanging messages between endpoints.
-reviewed: 2026-05-13
+reviewed: 2026-05-14
 component: Core
 related:
 - nservicebus/messaging/immutable-messages
@@ -13,7 +13,7 @@ This sample shows how to define and exchange immutable messages between endpoint
 
 snippet: immutable-messages-as-interface
 
-Or as classes with only getters and a non-default constructor:
+Or as classes with only getters and a non-default parameterless constructor:
 
 snippet: immutable-messages-as-class
 
@@ -32,7 +32,7 @@ snippet: immutable-messages-as-interface-sending
 
 ### Receiving messages
 
-To receive an immutable message defined using one of the two presented techniques, no special configuration is needed. The only requirement is a serializer capable of deserializing objects using private setters and/or non-public constructors. The receiver endpoint defines regular message handlers:
+To receive an immutable message defined using one of the two presented techniques, no special configuration is needed. The only requirement is a serializer capable of deserializing objects using private setters and/or non-public parameterless constructors. The receiver endpoint defines regular message handlers:
 
 snippet: immutable-messages-as-interface-handling
 
