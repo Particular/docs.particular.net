@@ -1,29 +1,30 @@
 ---
 title: Use a shim to expose NServiceBus.Metrics via OpenTelemetry
 summary: How to set up a shim to expose NServiceBus.Metrics via OpenTelemetry
-reviewed: 2024-08-22
+reviewed: 2026-05-13
 component: Core
 related:
   - nservicebus/operations/opentelemetry
 ---
 
 The Particular Service Platform has built-in support for [metrics](/monitoring/metrics), which are captured by the NServiceBus.Metrics package. These metrics can be exposed to an observability backend using OpenTelemetry.
-In versions of NServiceBus prior to 9.1, there was no native OpenTelemetry-support for the following [metrics](/monitoring/metrics/definitions.md):
+In NServiceBus versions prior to 9.1, there is no native OpenTelemetry support for the following [metrics](/monitoring/metrics/definitions.md):
+
 - Critical time
 - Processing time
 - Handler time
 - Retries
 
 > [!NOTE]
-> Starting from version 9.1, NServiceBus natively exposes these metrics via OpenTelemetry.
+> Starting with version 9.1, NServiceBus natively exposes these metrics via OpenTelemetry.
 
-It is possible to expose these metrics via OpenTelemetry by using a shim.
+These metrics can be exposed via OpenTelemetry by using a shim.
 
-This sample shows how to set up a shim that exposes NServiceBus.Metrics in an OpenTelemetry format, and exports them to App Insights.
+This sample shows how to set up a shim that exposes NServiceBus.Metrics in an OpenTelemetry format and exports them to Azure Application Insights.
 
 ## Prerequisites
 
-This sample requires an App Insights connection string.
+This sample requires an Azure Application Insights connection string.
 
 > [!NOTE]
 > Although the sample uses Azure Application Insights, the solution itself does not require an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
@@ -37,10 +38,10 @@ This sample requires an App Insights connection string.
 
 ### Reviewing meters
 
-Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the configured Application Insight instance to start creating graphs.
+Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the configured Application Insights instance to start creating graphs.
 
 > [!NOTE]
-> It may take a few minutes for the meter data to populate to Azure. Meters will only appear on the dashboard once they have reported at least one value.
+> It may take a few minutes for the meter data to populate in Azure. Meters will only appear on the dashboard once they have reported at least one value.
 
 ## Code walk-through
 
@@ -57,5 +58,4 @@ The shim is responsible for converting NServiceBus.Metrics to OpenTelemetry metr
 snippet: metrics-shim
 
 > [!NOTE]
-> The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Azure Monitor documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.
-
+> The shim passes `QueueName` as a custom dimension, which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Azure Monitor documentation](https://learn.microsoft.com/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.
