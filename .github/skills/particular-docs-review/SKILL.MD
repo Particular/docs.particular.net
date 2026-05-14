@@ -158,7 +158,7 @@ Snippets are code samples referenced in a document using:
 snippet: KEY
 ```
 
-Reviewing a document includes checking all of its referenced snippets. Snippets are excerpts from larger code files, so the focus is narrow: verify that the snippet content is relevant to the surrounding documentation and that it illustrates what the text claims it does.
+Reviewing a document includes checking all of its referenced snippets. Snippets are excerpts from larger code files, so the focus is narrow: verify that the snippet content is relevant to the surrounding documentation and that it illustrates what the text claims it does. If a snippet is changed during the review, apply the full [Code Review Checklist](#code-review-checklist) to the changed snippet.
 
 ## Finding snippets
 
