@@ -11,9 +11,7 @@ endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
 endpointConfiguration.ApplyCustomConventions();
-Console.WriteLine("Samples.ImmutableMessages.UsingInterfaces.Receiver started. Press any key to exit.");
-Console.ReadKey();
-
 builder.UseNServiceBus(endpointConfiguration);
 
+Console.WriteLine("Samples.ImmutableMessages.UsingInterfaces.Receiver started. Press Ctrl+C to exit.");
 await builder.Build().RunAsync();
