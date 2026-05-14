@@ -42,7 +42,7 @@ namespace Core8.Conventions
                 || typeof(IDataBusProperty).IsAssignableFrom(property.PropertyType) && typeof(IDataBusProperty) != property.PropertyType
             );
             conventions.DefiningTimeToBeReceivedAs(type =>
-            type.Name.EndsWith("Expires")
+                type.Name.EndsWith("Expires")
                     ? TimeSpan.FromSeconds(30)
                     : type.GetCustomAttribute<TimeToBeReceivedAttribute>(false)?.TimeToBeReceived ?? TimeSpan.MaxValue
             );
