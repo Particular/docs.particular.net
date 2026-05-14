@@ -1110,9 +1110,9 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/4.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.3)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/4.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.3)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.4)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.1)| Extended Support | 2021-11-29     | 2024-11-17        | 2026-11-17 |
 
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
