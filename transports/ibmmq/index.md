@@ -54,3 +54,5 @@ By default, all messages are sent as persistent, meaning they are  written to di
 
 > [!CAUTION]
 > Non-persistent messages are lost if the queue manager restarts before they are consumed.
+
+partial: nonpersistent
