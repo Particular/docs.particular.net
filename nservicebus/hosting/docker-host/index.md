@@ -8,7 +8,7 @@ related:
 component: Templates
 isLearningPath: true
 versions: '[2,]'
-reviewed: 2025-05-19
+reviewed: 2026-05-05
 ---
 
 Hosting endpoints in Docker containers provides self-contained artifacts that can be deployed to multiple environments or managed by orchestration technologies such as [Kubernetes](https://kubernetes.io/docs/home/). To create and host an endpoint in a Docker container, use the `dotnet new` template from the [ParticularTemplates package](/nservicebus/dotnet-templates/). The generated project includes all required endpoint setup infrastructure, along with a `Dockerfile` needed to build and deploy a container hosting one endpoint.
@@ -49,3 +49,15 @@ ENTRYPOINT ["dotnet", "MyEndpoint.dll"]
 ```
 
 partial: program
+
+## Configuration
+
+Endpoints hosted in Docker use the same [.NET configuration system](/nservicebus/hosting/extensions-hosting.md#reading-application-settings) as any other host. Connection strings and other settings can be placed in `appsettings.json` and overridden at runtime using environment variables.
+
+Environment variable names use `__` (double underscore) as the section separator. For example, to override `ConnectionStrings:Transport` from `appsettings.json`, set:
+
+```
+ConnectionStrings__Transport=host=rabbitmq
+```
+
+This is the standard approach for injecting environment-specific configuration into Docker containers and Kubernetes pods, without modifying the image.
