@@ -24,7 +24,7 @@ Errors will be written with `ConsoleColor.Red`. Warnings will be written with `C
 
 ### Trace
 
-All `Warn` (and above) messages are written to `Trace.WriteLine` and therefore can be forwarded to any [trace listener](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners).
+All `Warn` (and above) messages are written to `Trace.WriteLine` and therefore can be forwarded to any [trace listener](https://learn.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners).
 
 ### Rolling file
 

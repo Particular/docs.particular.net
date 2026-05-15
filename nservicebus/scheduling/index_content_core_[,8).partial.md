@@ -42,7 +42,7 @@ Consider alternatives if:
 - Scheduled tasks cannot be canceled or modified after creation.
 - The scheduler supports specifying a repeat interval, but not a specific execution time.
 - Tasks are executed as part of the incoming message pipeline, with a maximum duration limited by [the receive transaction timeout](/transports/transactions.md).
-- If a task's execution time exceeds the configured interval, the same action may run concurrently. Non-thread-safe actions must handle synchronization, for example, using a [semaphore](https://docs.microsoft.com/en-us/dotnet/api/system.threading.semaphore).
+- If a task's execution time exceeds the configured interval, the same action may run concurrently. Non-thread-safe actions must handle synchronization, for example, using a [semaphore](https://learn.microsoft.com/en-us/dotnet/api/system.threading.semaphore).
 - The scheduler's reliance on the queuing mechanism means there can be slight delays in task execution, especially in high-load systems or when using transports without native delayed delivery.
 - The Scheduler API does not support scaling out the endpoint or side-by-side deployments. In scenarios with multiple endpoint instances (e.g., on the same machine with MSMQ or RabbitMQ), all instances share the same input queue. Since each endpoint maintains its own tasks in memory, a message dequeued by an endpoint instance that did not create the task will result in the task not being found.
 

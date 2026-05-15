@@ -16,7 +16,7 @@ redirects:
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
 
 > [!NOTE]
-> It's recommended to use [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) to manage application and dependency injection container lifecycle. Use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package to host an NServiceBus endpoint with the generic host.
+> It's recommended to use [Microsoft Generic Host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) to manage application and dependency injection container lifecycle. Use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package to host an NServiceBus endpoint with the generic host.
 
 
 ## Usage with ServiceCollection
@@ -68,13 +68,13 @@ snippet: settings-configurecontainer
 
 ## DependencyLifecycle mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [ServiceLifetime](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [ServiceLifetime](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) as follows:
 
 | `DependencyLifecycle`                                                                                             | Service Lifetime                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/) | [ServiceLifetime.Transient](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [ServiceLifetime.Scoped](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) |
-| [SingleInstance](/nservicebus/dependency-injection/)                                  | [ServiceLifetime.Singleton](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/) | [ServiceLifetime.Transient](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [ServiceLifetime.Scoped](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [ServiceLifetime.Singleton](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)                          |
 
 ## Property injection
 

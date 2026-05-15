@@ -24,7 +24,7 @@ snippet: SqlPersistenceUsageMySql
 > The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-6-10-connection-options.html).
 >
 > * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
-> * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms681205(v=vs.85)) which the MySql .NET connector does not currently support.
+> * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ms681205(v=vs.85)) which the MySql .NET connector does not currently support.
 
 
 ## Unicode support

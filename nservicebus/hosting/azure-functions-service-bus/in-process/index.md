@@ -11,7 +11,7 @@ reviewed: 2025-06-05
 
 include: azurefunctions-inprocess-sunset
 
-Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
+Host NServiceBus endpoints with [Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
 
 ## Basic usage
 
@@ -63,7 +63,7 @@ snippet: asb-dispatching-outside-message-handler
 
 The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all options will be applicable for execution within Azure Functions (for more details, see [analysers](./analyzers.md)).
 
-Concurrency-related settings are controlled via the Azure Function `host.json` configuration file. See [Concurrency in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus) for details.
+Concurrency-related settings are controlled via the Azure Function `host.json` configuration file. See [Concurrency in Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus) for details.
 
 partial: no-use-transport
 

@@ -231,4 +231,4 @@ Because the [RavenDB.Client 4.2.0 NuGet package](https://www.nuget.org/packages/
 
 * .NET Core 2.0 and above
 * .NET Framework 4.7.2 and above
-* .NET Framework 4.6.1, although [there are several issues with consuming .NET Standard libraries from .NET 4.6.1](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and Microsoft recommends upgrading to .NET Framework 4.7.2 or higher.
+* .NET Framework 4.6.1, although [there are several issues with consuming .NET Standard libraries from .NET 4.6.1](https://learn.microsoft.com/en-us/dotnet/standard/net-standard) and Microsoft recommends upgrading to .NET Framework 4.7.2 or higher.

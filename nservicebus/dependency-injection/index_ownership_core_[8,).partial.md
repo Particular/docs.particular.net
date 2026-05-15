@@ -13,7 +13,7 @@ NServiceBus supports two modes for dependency injection:
 - **Internally managed:** NServiceBus manages the container lifecycle as part of the endpoint lifecycle.
 - **Externally managed:** The application or host provides and controls the container lifecycle.
 
-Understanding the different modes is only required in custom hosting scenarios or when using third-party container integrations. Applications using the [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) or the [web application builder](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/webapplication) should leverage [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) which takes care of the necessary plumbing automatically.
+Understanding the different modes is only required in custom hosting scenarios or when using third-party container integrations. Applications using the [generic host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) or the [web application builder](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/webapplication) should leverage [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) which takes care of the necessary plumbing automatically.
 
 ### Internally managed mode
 

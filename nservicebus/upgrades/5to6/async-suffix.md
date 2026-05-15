@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-Starting with NServiceBus version 6, all APIs that contain potentially I/O-bound code are [asynchronous](https://docs.microsoft.com/en-us/dotnet/csharp/async). Some examples include:
+Starting with NServiceBus version 6, all APIs that contain potentially I/O-bound code are [asynchronous](https://learn.microsoft.com/en-us/dotnet/csharp/async). Some examples include:
 
  * Endpoint messaging methods such as [Send and Publish](/nservicebus/upgrades/5to6/handlers-and-sagas.md#api-changes-bus-send-and-receive)
  * [Sagas and message handlers](/nservicebus/upgrades/5to6/handlers-and-sagas.md)
@@ -19,7 +19,7 @@ Starting with NServiceBus version 6, all APIs that contain potentially I/O-bound
  * [Endpoint Start and Stop](/nservicebus/upgrades/5to6/endpoint.md#interface-changes-self-hosting).
  * [Message mutators](/nservicebus/pipeline/message-mutators.md).
 
-None of the above APIs have an *Async* suffix as recommended by the [Microsoft convention](https://docs.microsoft.com/en-us/dotnet/csharp/async), which states:
+None of the above APIs have an *Async* suffix as recommended by the [Microsoft convention](https://learn.microsoft.com/en-us/dotnet/csharp/async), which states:
 
 > The name of an async method, by convention, ends with an *Async* suffix.
 
@@ -46,7 +46,7 @@ No other NServiceBus APIs follow [Hungarian notation](https://en.wikipedia.org/w
 
  * Methods are not suffixed with the name of the type they return.
  * Classes are not suffixed with "Instance" or "Static".
- * Members are not suffixed [access modifier names](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) such as "Protected" or "Public".
+ * Members are not suffixed [access modifier names](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers) such as "Protected" or "Public".
 
 All these things can be inferred by the [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (e.g. Visual Studio) and the compiler, and appropriate IntelliSense and compiler messages are provided to the developer.
 
@@ -72,7 +72,7 @@ public static Task TaskMethodMissingAwait()
 }
 ```
 
-Results in [Compiler Error CS0161](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0161)
+Results in [Compiler Error CS0161](https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs0161)
 
 
 #### Async method with missing await
@@ -87,7 +87,7 @@ public static async Task AsyncMethodMissingAwait()
 }
 ```
 
-Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
+Results in [Compiler Warning CS4014](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
 
 
 #### Missing a single await
@@ -103,7 +103,7 @@ public static async Task AsyncMethodMissingOneAwait()
 }
 ```
 
-Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
+Results in [Compiler Warning CS4014](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
 
 
 #### Treat warnings as errors

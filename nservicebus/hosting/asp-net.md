@@ -12,7 +12,7 @@ NServiceBus easily integrates with [ASP.NET Core](https://asp.net) applications.
 
 ## Minimal APIs
 
-ASP.NET 6 introduced a new hosting API with the [ASP.NET minimal APIs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0). The [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md) is fully compatible with the minimal API's `WebApplication` host:
+ASP.NET 6 introduced a new hosting API with the [ASP.NET minimal APIs](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0). The [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md) is fully compatible with the minimal API's `WebApplication` host:
 
 snippet: asp-net-minimal-host-endpoint
 

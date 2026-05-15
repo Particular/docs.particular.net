@@ -145,7 +145,7 @@ snippet: mutator
 
 For reply messages, the mutator should not be removed for at least [message discard time](/nservicebus/messaging/discard-old-messages.md) - if specified for those messages. Note that [messages in the error queue](/nservicebus/recoverability/configure-error-handling.md) might be stored by messaging infrastructure for even longer. If no discard period is specified, it is recommended to leave the mutator until it is reasonable to assume there are no more messages that need to be mutated.
 
-For timeouts, the safe period of time to leave the mutator in place is dependent on the lifetime of the given saga. The business rules of a given saga, how long it is expected to exist before it is [marked as complete](/nservicebus/sagas/#ending-a-saga), define its lifetime. Alternatively, the `TimeoutData` table can be queried, using [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql), to check if there are any pending timeouts that target the old saga:
+For timeouts, the safe period of time to leave the mutator in place is dependent on the lifetime of the given saga. The business rules of a given saga, how long it is expected to exist before it is [marked as complete](/nservicebus/sagas/#ending-a-saga), define its lifetime. Alternatively, the `TimeoutData` table can be queried, using [json_value](https://learn.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql), to check if there are any pending timeouts that target the old saga:
 
 ```sql
 select Id
@@ -154,7 +154,7 @@ where json_value(Headers,'$."NServiceBus.OriginatingSagaType"')
     like 'EndpointVersion1.MyTimeoutSagaVersion1%'
 ```
 
-If a saga is extremely long running then the data can be migrated programmatically in SQL using [json_modify](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-modify-transact-sql) and [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql). For example:
+If a saga is extremely long running then the data can be migrated programmatically in SQL using [json_modify](https://learn.microsoft.com/en-us/sql/t-sql/functions/json-modify-transact-sql) and [json_value](https://learn.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql). For example:
 
 ```sql
 update Samples_RenameSaga_TimeoutData

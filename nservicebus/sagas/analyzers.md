@@ -6,7 +6,7 @@ versions: '[7.7,)'
 reviewed: 2024-11-05
 ---
 
-Starting in NServiceBus version 7.7, [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the code in sagas and make suggestions for improvements directly in the editor, are packaged with the NServiceBus package.
+Starting in NServiceBus version 7.7, [Roslyn analyzers](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the code in sagas and make suggestions for improvements directly in the editor, are packaged with the NServiceBus package.
 
 ## Non-mapping expression used in ConfigureHowToFindSaga method
 
@@ -120,7 +120,7 @@ More often, a reply in a saga should instead use `.ReplyToOriginator(…)`. In t
 
 Sagas should not use a base class (i.e. `MySaga : MyAbstractSaga<TSagaData>`) to provide shared functionality to multiple saga types. While this may work for sagas using [Learning Persistence](/persistence/learning/), some persistence libraries such as [SQL Persistence](/persistence/sql/) are unable to generate database scripts when sagas are constructed in this way.
 
-A better way to provide shared functionality to multiple saga types and reduce code duplication is to use [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
+A better way to provide shared functionality to multiple saga types and reduce code duplication is to use [extension methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ## Saga should not implement saga not found handler
 
@@ -140,7 +140,7 @@ When the correlation value can be expressed in different ways, it's best to repr
 
 snippet: SagaAnalyzerToMessageStringExpressions
 
-When using [nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references), the nullability of the values also matters. A saga data class containing a nullable `string?` can accept a non-nullable `string` from a message, because the `string?` is more permissive than non-nullable `string`. However, the reverse is not true and will trigger the diagnostic.
+When using [nullable reference types](https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references), the nullability of the values also matters. A saga data class containing a nullable `string?` can accept a non-nullable `string` from a message, because the `string?` is more permissive than non-nullable `string`. However, the reverse is not true and will trigger the diagnostic.
 
 ## ToSaga mapping must point to a property
 

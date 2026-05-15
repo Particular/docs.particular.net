@@ -20,7 +20,7 @@ If all endpoints share the same target framework (e.g., .NET Core 3.1), the mess
 
 ## Multi-targeting
 
-If endpoints sharing a common contracts assembly target different platforms and frameworks (e.g. both .NET Framework 4.8 and .NET Core 6.0), the target assembly can use [multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) by replacing the `TargetFramwork` element with the `TargetFrameworks` (note the plural) element in the `.csproj` settings:
+If endpoints sharing a common contracts assembly target different platforms and frameworks (e.g. both .NET Framework 4.8 and .NET Core 6.0), the target assembly can use [multi-targeting](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) by replacing the `TargetFramwork` element with the `TargetFrameworks` (note the plural) element in the `.csproj` settings:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">

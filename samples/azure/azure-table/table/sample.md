@@ -11,7 +11,7 @@ This sample shows a client/server scenario using a dynamic table configuration f
 
 ## Prerequisites
 
-Ensure that an instance of the latest [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator) or [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) is running.
+Ensure that an instance of the latest [Azure Storage Emulator](https://learn.microsoft.com/en-us/azure/storage/storage-use-emulator) or [Azure Cosmos DB Emulator](https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator) is running.
 
 ## Projects
 

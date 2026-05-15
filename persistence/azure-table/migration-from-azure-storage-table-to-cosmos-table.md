@@ -92,4 +92,4 @@ The tool will automatically read the `migrationsettings.json` file from the curr
 
 ## Data inspection
 
-Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Table persister](/persistence/azure-table) as serialized JSON strings. The data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
+Due to the [limited types](https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Table persister](/persistence/azure-table) as serialized JSON strings. The data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.

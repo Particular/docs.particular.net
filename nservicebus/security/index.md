@@ -21,14 +21,14 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
 ### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
 
- * [Security Guide](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide)
- * [Azure Storage Service Encryption for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)
+ * [Security Guide](https://learn.microsoft.com/en-us/azure/storage/storage-security-guide)
+ * [Azure Storage Service Encryption for Data at Rest](https://learn.microsoft.com/en-us/azure/storage/storage-service-encryption)
 
 
 ### [SQL Server Transport](/transports/sql/)
 
- * [Overview of SQL Server Security](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/overview-of-sql-server-security)
- * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
+ * [Overview of SQL Server Security](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql/overview-of-sql-server-security)
+ * [SQL Server Encryption](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
 ### [MSMQ Transport](/transports/msmq/)
@@ -55,14 +55,14 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
 ### [SQL Persistence](/persistence/sql/)
 
- * [Overview of SQL Server Security](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/overview-of-sql-server-security)
- * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
+ * [Overview of SQL Server Security](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql/overview-of-sql-server-security)
+ * [SQL Server Encryption](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
 ### [Azure Table Persistence](/persistence/azure-table/)
 
- * [Security Guide](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide)
- * [Azure Storage Service Encryption for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)
+ * [Security Guide](https://learn.microsoft.com/en-us/azure/storage/storage-security-guide)
+ * [Azure Storage Service Encryption for Data at Rest](https://learn.microsoft.com/en-us/azure/storage/storage-service-encryption)
 
 
 ### [RavenDB Persistence](/persistence/ravendb/)
@@ -73,8 +73,8 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
 ### [NHibernate Persistence](/persistence/nhibernate/)
 
- * [Overview of SQL Server Security](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/overview-of-sql-server-security)
- * [SQL Server Encryption](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
+ * [Overview of SQL Server Security](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql/overview-of-sql-server-security)
+ * [SQL Server Encryption](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/sql-server-encryption)
 
 
 ## [Service Control](/servicecontrol/)

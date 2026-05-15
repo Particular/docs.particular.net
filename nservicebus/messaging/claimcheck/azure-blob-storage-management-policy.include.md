@@ -4,7 +4,7 @@ Review the [Azure Blob Storage Data Bus cleanup with Azure Functions sample](/sa
 
 ### Using the Blob Lifecycle Management policy
 
-Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all data bus-related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 storage accounts, not on GPv1 accounts.
+Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all data bus-related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 storage accounts, not on GPv1 accounts.
 
 > [!NOTE]
 > The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.

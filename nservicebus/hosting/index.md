@@ -16,7 +16,7 @@ There are several approaches to hosting.
 
 ## Microsoft Generic Host
 
-The [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core. NServiceBus can be integrated with the generic host using the [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md).
+The [Microsoft Generic Host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core. NServiceBus can be integrated with the generic host using the [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md).
 
 ## Self-hosting
 
@@ -45,7 +45,7 @@ snippet: Hosting-Shutdown
 
 ### Windows Service hosting
 
-A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is a common way to host NServiceBus in Windows.
+A [Windows Service](https://learn.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is a common way to host NServiceBus in Windows.
 
 Related:
  * [Generic host as Windows Service](/samples/hosting/generic-host)

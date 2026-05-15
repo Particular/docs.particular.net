@@ -10,7 +10,7 @@ related:
 Azure Table Persistence supports two underlying storage services, each with a distinct pricing model:
 
 - [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/): Billed per storage transaction. Each read, write, or delete counts as one transaction at a flat rate, billed per 10,000 operations.
-- [Azure Cosmos DB for Table](https://docs.microsoft.com/en-us/azure/cosmos-db/table-support/): Billed based on [Request Units](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units) (RUs). Read and write operations are priced differently, and actual RU consumption depends on the size of the stored entity. See the [rate limiting documentation](/persistence/azure-table/#provisioned-throughput-rate-limiting-with-azure-cosmos-db) and the [Microsoft Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) for Azure Cosmos DB Table API sizing guidance.
+- [Azure Cosmos DB for Table](https://learn.microsoft.com/en-us/azure/cosmos-db/table-support/): Billed based on [Request Units](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units) (RUs). Read and write operations are priced differently, and actual RU consumption depends on the size of the stored entity. See the [rate limiting documentation](/persistence/azure-table/#provisioned-throughput-rate-limiting-with-azure-cosmos-db) and the [Microsoft Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) for Azure Cosmos DB Table API sizing guidance.
 
 ## Operations per message
 

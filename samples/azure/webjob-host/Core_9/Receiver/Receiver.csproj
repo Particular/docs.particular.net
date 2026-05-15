@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.Identity.Client" Version="4.*" />
   </ItemGroup>
 
-  <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
+  <ItemGroup Label="To disable Dashboard logging (https://learn.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.*" />
   </ItemGroup>
 

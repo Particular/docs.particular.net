@@ -13,7 +13,7 @@ related:
 The `NServiceBus.Extensions.Logging` package provides support for writing NServiceBus log entries via the  [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) abstractions. With this common logging abstraction, it is possible to log to different logging providers. Some third-party frameworks can perform semantic logging, also known as structured logging.
 
 > [!NOTE]
-> This package should only be used when configuring logging in a self-host model. If hosting with the [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) use [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package instead.
+> This package should only be used when configuring logging in a self-host model. If hosting with the [.NET Generic Host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) use [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package instead.
 
 ## Compatibility
 
@@ -38,7 +38,7 @@ NServiceBus supports the following logging frameworks via Microsoft.Extensions.L
 - Serilog
 - Stackdriver
 
-For an up-to-date list, see the Microsoft.Extensions.Logging fundamentals documentation, specifically the [built-in](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#built-in-logging-providers) and [third-party](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers) providers sections.
+For an up-to-date list, see the Microsoft.Extensions.Logging fundamentals documentation, specifically the [built-in](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/#built-in-logging-providers) and [third-party](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers) providers sections.
 
 ## Support for ILogger<TCategoryName>
 

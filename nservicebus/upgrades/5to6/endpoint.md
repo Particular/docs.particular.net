@@ -65,7 +65,7 @@ using (var bus = startableBus.Start())
 // Custom code after stop
 ```
 
-While the [Dispose Pattern](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/dispose-pattern) can no longer be used (since `IEndpointInstance` does not implement [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx)) this is not a common use case since in most [hosting scenarios](/nservicebus/hosting/), the startup code is not in the same method as the shutdown code. For example
+While the [Dispose Pattern](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/dispose-pattern) can no longer be used (since `IEndpointInstance` does not implement [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx)) this is not a common use case since in most [hosting scenarios](/nservicebus/hosting/), the startup code is not in the same method as the shutdown code. For example
 
  * [Windows Service Hosting](/nservicebus/hosting/windows-service.md) where startup is usually done in [ServiceBase.OnStart](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.onstart.aspx) and shutdown is usually done in [ServiceBase.OnStop](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.onstop.aspx).
  * [Web Site or Web Service Hosting](/nservicebus/hosting/web-application.md) where startup is usually done in [HttpApplication.Application_Start](https://msdn.microsoft.com/en-us/library/ms178473.aspx) and shutdown is usually done in [HttpApplication.Dispose](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.dispose.aspx).

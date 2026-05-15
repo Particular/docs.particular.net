@@ -23,7 +23,7 @@ This registers the endpoint with the hosting infrastructure and starts/stops it 
 
 ## Logging integration
 
-NServiceBus logging is automatically wired to the host's logging pipeline. No NServiceBus-specific logging configuration is required. See [.NET logging](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging) and the [Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host).
+NServiceBus logging is automatically wired to the host's logging pipeline. No NServiceBus-specific logging configuration is required. See [.NET logging](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging) and the [Generic Host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host).
 
 > [!WARNING]
 > Do **not** use [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging.md) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) with `NServiceBus.Extensions.Hosting`.
