@@ -1,16 +1,16 @@
 ---
 title: Using Outbox with RabbitMQ
 summary: Demonstrates how the Outbox handles duplicate messages using RabbitMQ and SQL Server hosted in Docker containers.
-reviewed: 2024-09-10
+reviewed: 2026-05-14
 component: Core
 related:
-- transports/rabbitmq
-- persistence/sql
+  - transports/rabbitmq
+  - persistence/sql
 ---
 
-This sample demonstrates how the Outbox feature works to ensure the atomic processing of a message in RabbitMQ, ensuring that messages sent and received are kept consistent with any modifications made to business data in a database.
+This sample demonstrates how the Outbox feature ensures atomic message processing in RabbitMQ. Sent and received messages stay consistent with modifications to business data in a database.
 
-This sample uses [Docker Compose](https://docs.docker.com/compose/) to provide dependencies. It is not necessary to have installed instances of RabbitMQ or SQL Server.
+This sample uses [Docker Compose](https://docs.docker.com/compose/) to provide dependencies. Installed RabbitMQ or SQL Server instances are not required.
 
 downloadbutton
 
@@ -22,17 +22,17 @@ downloadbutton
 4. In the sample directory, execute the following to set up the RabbitMQ and SQL Server instances:
 
 ```shell
-> docker compose up --detach
+docker compose up --detach
 ```
 
 Once complete, the RabbitMQ administration can be reached via [http://localhost:15672/](http://localhost:15672/) with username `rabbitmq` and password `rabbitmq`.
 
-A connection to the SQL Server instance can be made using Server name `localhost,11433`, login `sa`, and password `NServiceBus!`. If connecting with [SQL Server Management Studio](https://www.hanselman.com/blog/DownloadSQLServerExpress.aspx), adjust the Connection Properties either by unchecking the **Encrypt connection** checkbox, or checking the **Trust server certificate** box.
+A connection to the SQL Server instance can be made using Server name `localhost,11433`, login `sa`, and password `NServiceBus!`. If connecting with [SQL Server Management Studio](https://learn.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms), adjust the Connection Properties either by unchecking the **Encrypt connection** checkbox, or checking the **Trust server certificate** box.
 
 
 ## Running the project
 
-The code consists of a single NServiceBus endpoint project, which simulates receiving duplicated messages (normally received due to at-least-once delivery guarantees of the message broker) and processing them under three different circumstances.
+The code consists of a single NServiceBus endpoint project, which simulates receiving duplicate messages (normally received due to at-least-once delivery guarantees of the message broker) and processing them under three different circumstances.
 
 1. Without protection, resulting in duplicated processing of messages.
 2. Using the Outbox but with a maximum message concurrency of `1`.
@@ -47,7 +47,7 @@ snippet: SampleSteps
 
 First, run the sample as-is. It's easy to see from the console output that each MessageId is processed twice. The endpoint has no way to know that it's handling duplicated messages.
 
-```
+```text
 Endpoint started. Press Enter to send 5 sets of duplicate messages...
 
 Processing MessageId f4589be7-efaa-4d7b-8fc7-414ac6e5ddfa
@@ -78,8 +78,8 @@ The message handler also writes the received MessageId to the **BusinessObject**
 | 9 | 1333e38d-b076-41e1-92d6-a2b7a699f62f |
 | 10 | 1333e38d-b076-41e1-92d6-a2b7a699f62f |
 
-> [!NOTE]
-> **TIP:** Between runs, it's helpful to execute `delete from BusinessObject` to clear out the table.
+> [!TIP]
+> Between runs, execute `delete from BusinessObject` to clear the table.
 
 
 ### Step 2: Outbox, 1 message at a time
@@ -88,7 +88,7 @@ Next, uncomment the line in **Program.cs** commented as Step 2, which enables th
 
 It's clear from the console output that each MessageId is only processed a single time, and the message handler does not execute for the duplicate messages:
 
-```
+```text
 Endpoint started. Press Enter to send 5 sets of duplicate messages...
 
 Processing MessageId 4d9b207b-f7e3-48f3-a8a9-8bf00afe0bd5
@@ -113,9 +113,9 @@ The same is true in the database:
 
 Lastly, comment out the line in **Program.cs** commented as Step 3, so that the endpoint is no longer limited to concurrently processing only one message at a time. The default concurrency level (2 * the number of logical processors) will now be used.
 
-The resulting console output will likely be difficult to follow, as different threads competing to commit transactions involving the same MessageId in the `Samples_RabbitMQ_Outbox_OutboxData` table will result in SqlExceptions being thrown:
+The resulting console output will likely be difficult to follow, as different threads competing to commit transactions involving the same MessageId in the `Samples_RabbitMQ_Outbox_OutboxData` table will result in SQL exceptions being thrown:
 
-```
+```text
 NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '01dc0013-6954-4289-9351-073b2008a17c' because of an exception:
 System.Exception: Failed to ExecuteNonQuery. CommandText:
 
@@ -134,7 +134,7 @@ values
 The statement has been terminated.
 ```
 
-After hitting one of these errors, the message is retried, and as the Outbox lookup in the `Samples_RabbitMQ_Outbox_OutboxData` reveals that the message was already processed successfully, it will skip executing the message handler again.
+After hitting one of these errors, the message is retried. The Outbox lookup in `Samples_RabbitMQ_Outbox_OutboxData` reveals that the message was already processed successfully, so the endpoint skips executing the message handler again.
 
 The database output in the `BusinessObject` table will be the same.
 
@@ -144,7 +144,7 @@ In **Program.cs**, an NServiceBus endpoint is created and configured to use the 
 
 snippet: ConfigureTransport
 
-Next, [SQL Persistence](/persistence/sql/) is configured to connect to the Microsoft SQL Server instance hosted in Docker. SQL Server will store the storage for the Outbox feature in the `Samples_RabbitMQ_Outbox_OutboxData` table, as well as simulated business data in the `BusinessObject` table.
+Next, [SQL Persistence](/persistence/sql/) is configured to connect to the Microsoft SQL Server instance hosted in Docker. SQL Server stores Outbox data in the `Samples_RabbitMQ_Outbox_OutboxData` table, as well as simulated business data in the `BusinessObject` table.
 
 A non-standard port `11433` is used in case another SQL Server instance is already running on the machine:
 
@@ -169,5 +169,5 @@ The message handler:
 Once finished with the sample, the RabbitMQ and SQL Server instances can be cleaned up using:
 
 ```shell
-> docker compose down
+docker compose down
 ```

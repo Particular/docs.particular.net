@@ -1,40 +1,39 @@
 ---
 title: Log4Net
 summary: Logging to Log4Net
-reviewed: 2024-08-20
+reviewed: 2026-05-13
 component: Log4Net
 ---
 
 > [!WARNING]
-> NServiceBus.Log4Net is obsolete. NServiceBus is now providing support for logging libraries through the Microsoft.Extensions.Logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
+> NServiceBus.Log4Net is obsolete. NServiceBus now supports logging libraries through Microsoft.Extensions.Logging. See [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for details.
 
 ## Usage
 
-snippet: Log4netInCode
+snippet: Log4NetInCode
 
 
 ## Filtering
 
-NServiceBus can write a significant amount of information to the log. To limit this information use the filtering features of the underlying logging framework.
+NServiceBus can write a significant amount of information to the log. To limit this information, use the filtering features of the underlying logging framework.
 
-For example to limit log output to a specific namespace.
+For example, to limit log output to a specific namespace.
 
-Here is a code configuration example for adding a [Filter](https://logging.apache.org/log4net/release/manual/configuration.html#filters).
-
+The following code example adds a [filter](https://logging.apache.org/log4net/manual/configuration.html#filters).
 
 ### The Filter
 
-snippet: Log4netFilter
+snippet: Log4NetFilter
 
 
 ### Using the Filter
 
-snippet: Log4netFilterUsage
+snippet: Log4NetFilterUsage
 
 
 ## Additional exception data
 
-Starting from NServiceBus version 7.2, exceptions from failing message handlers might contain additional error information in the `Exception.Data` property. Log4Net does not log this information by default, but can be configured to do so using a custom `PatternLayoutConverter`:
+Starting with NServiceBus version 7.2, exceptions from failing message handlers might contain additional error information in the `Exception.Data` property. Log4Net does not log this information by default, but it can be configured to do so using a custom `PatternLayoutConverter`:
 
 snippet: ExceptionDataConverter
 
