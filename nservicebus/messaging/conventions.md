@@ -10,6 +10,9 @@ related:
 
 *Conventions* can be used to identify which types are messages, commands, and events, instead of using [marker interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages-marker-interfaces). This can be done to avoid references to the NServiceBus assembly, referred to as *[unobtrusive mode](unobtrusive-mode.md)*. This is ideal for use in cross-platform environments.
 
+> [!NOTE]
+> It's also possible to use the [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces) to build message assemblies targeting `netstandard2.0` that can be shared between different major versions of NServiceBus and different versions of .NET. See the details in the [sharing message assemblies sample](/samples/message-assembly-sharing/).
+
 Currently, *conventions* exist to identify:
 
 - [Commands](/nservicebus/messaging/messages-events-commands.md)
