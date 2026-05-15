@@ -7,7 +7,7 @@ using UsingClasses.Messages;
 public class MyMessageAsClassHandler(ILogger<MyMessageAsClassHandler> logger) :
     IHandleMessages<MyMessage>
 {
-     public Task Handle(MyMessage message, IMessageHandlerContext context)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         logger.LogInformation("MyMessage (as class) received from server with data: {Data}", message.Data);
         return Task.CompletedTask;

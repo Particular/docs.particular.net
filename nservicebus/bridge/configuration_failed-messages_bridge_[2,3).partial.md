@@ -10,7 +10,7 @@ snippet: translate-reply-to-address-for-failed-messages
 
 > [!WARNING]
 > Since any endpoint can generate a failed message, enabling translation of the `NServiceBus.ReplyToAddress` header requires that all endpoints are registered with the bridge.
-> Message that fail during bridge address translation due to unknown endpoints will be moved to the `bridge.error` queue.
+> Messages that fail during bridge address translation due to unknown endpoints will be moved to the `bridge.error` queue.
 
 > [!NOTE]
 > Translating the `NServiceBus.ReplyToAddress` message header for failed messages will become the default behavior in a future major version of the bridge.
