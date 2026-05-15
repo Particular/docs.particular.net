@@ -6,7 +6,7 @@ related:
  - nservicebus/dependency-injection
 ---
 
-[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) has an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, sharing components registered for DI between ASP.NET components and NServiceBus message handlers may be necessary. Use the [NServiceBus.Extensions.Hosting package](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting) to host an endpoint as part of an ASP.NET Core application.
+[ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/) has an integrated [dependency injection (DI) feature](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, sharing components registered for DI between ASP.NET components and NServiceBus message handlers may be necessary. Use the [NServiceBus.Extensions.Hosting package](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting) to host an endpoint as part of an ASP.NET Core application.
 
 ### Configuring an endpoint to use built-in DI
 
@@ -35,4 +35,4 @@ Then, `Startup` can use Autofac natively to configure services:
 
 snippet: ContainerConfigurationAutofac
 
-The [`ConfigureServices` method](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup#the-configureservices-method) is called by .NET Core at [application startup time](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) to register additional services. The `ConfigureContainer` method registers the components in the container using the container's native APIs.
+The [`ConfigureServices` method](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/startup#the-configureservices-method) is called by .NET Core at [application startup time](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/startup) to register additional services. The `ConfigureContainer` method registers the components in the container using the container's native APIs.

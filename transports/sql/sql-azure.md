@@ -11,7 +11,7 @@ versions: '[6.0.1,)'
 
 Using SQL Server with Azure SQL allows building messaging systems that provide exactly-once message processing guarantees. The same instance of Azure SQL is used both as an application data store and as messaging infrastructure.
 
-This article discusses throughput characteristics of the SQL Server transport in Azure SQL. Numbers presented here are *rough estimates* of what can be expected when running on Azure SQL. All measurements were made on a [Mananaged Instance](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-managed-instance) database running in [vCore General Purpose](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-service-tiers-vcore?tabs=azure-portal) service tier.
+This article discusses throughput characteristics of the SQL Server transport in Azure SQL. Numbers presented here are *rough estimates* of what can be expected when running on Azure SQL. All measurements were made on a [Mananaged Instance](https://learn.microsoft.com/en-us/azure/sql-database/sql-database-managed-instance) database running in [vCore General Purpose](https://learn.microsoft.com/en-us/azure/sql-database/sql-database-service-tiers-vcore?tabs=azure-portal) service tier.
 
 ### Testing methodology
 
@@ -93,4 +93,4 @@ In these scenarios the database is used both as a transport and as a data store 
 
 When designing Software-as-a-Service systems, it is recommended to use separate databases and endpoint sets for groups of tenants rather than for vertical slices of a business flow. With this approach each database would support relatively high number (whole business flow end-to-end) of low-throughput endpoints (a portion of customer base) as opposed to low number of high-throughput endpoints.
 
-When using multiple instances of SQL Azure consider connecting them with [the NServiceBus Bridge](/nservicebus/bridge/). In order to ensure exactly-once message processing semantics, consider [elastic transactions](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-transactions-overview) in the message router.
+When using multiple instances of SQL Azure consider connecting them with [the NServiceBus Bridge](/nservicebus/bridge/). In order to ensure exactly-once message processing semantics, consider [elastic transactions](https://learn.microsoft.com/en-us/azure/sql-database/sql-database-elastic-transactions-overview) in the message router.

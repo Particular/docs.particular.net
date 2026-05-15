@@ -148,7 +148,7 @@ Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) su
 
 ## [NServiceBus Validation](https://github.com/NServiceBusExtensions/NServiceBus.Validation)
 
-Allows validating message contents with options to use [DataAnnotations](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
+Allows validating message contents with options to use [DataAnnotations](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 

@@ -67,7 +67,7 @@ For customers that require a certain degree of customization, the .NET tool code
 
 ## Import data
 
-The exported saga data JSON files can be imported into Cosmos DB using the [Data migration tool](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#Install) provided by Microsoft. The import tool provides both [a UI and a command line](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#AzureTableSource) option.
+The exported saga data JSON files can be imported into Cosmos DB using the [Data migration tool](https://learn.microsoft.com/en-us/azure/cosmos-db/import-data#Install) provided by Microsoft. The import tool provides both [a UI and a command line](https://learn.microsoft.com/en-us/azure/cosmos-db/import-data#AzureTableSource) option.
 
 For example, to import a single saga data table called `OrderSagaData` originally exported to the location `C:\path\to\OrderSagaData`, the following command is required:
 
@@ -82,7 +82,7 @@ where the following parameters must be adjusted:
 
 ## Data inspection
 
-Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Storage persister](/persistence/azure-table) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
+Due to the [limited types](https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Storage persister](/persistence/azure-table) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
 
 > [!WARNING]
 > Dates stored using `DateTimeOffset` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate conversion.

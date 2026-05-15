@@ -16,7 +16,7 @@ redirects:
 
 Certain features of NServiceBus require persistence to permanently store data. Among them are subscription storage, sagas, and outbox. Various storage options are available including Azure Table and Azure Cosmos DB Table API.
 
-Azure Table Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/) or [Azure Cosmos DB using the Table API](https://docs.microsoft.com/en-us/azure/cosmos-db/table-support/).
+Azure Table Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/) or [Azure Cosmos DB using the Table API](https://learn.microsoft.com/en-us/azure/cosmos-db/table-support/).
 
 ## Persistence at a glance
 
@@ -51,7 +51,7 @@ partial: saga-property-types
 Saga correlation property values are subject to the underlying Azure Storage table `PartitionKey` and `RowKey` restrictions:
 
 * Up to 1KB in size
-* Cannot contain [invalid characters](https://docs.microsoft.com/en-us/rest/api/storageservices/Understanding-the-Table-Service-Data-Model#tables-entities-and-properties)
+* Cannot contain [invalid characters](https://learn.microsoft.com/en-us/rest/api/storageservices/Understanding-the-Table-Service-Data-Model#tables-entities-and-properties)
 
 ## Outbox
 

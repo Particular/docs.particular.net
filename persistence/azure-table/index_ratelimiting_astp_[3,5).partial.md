@@ -6,10 +6,10 @@ When using the provisioned throughput feature, it is possible for the CosmosDB s
 > When using the Azure Table persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
 > [!NOTE]
-> Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/monitor-request-unit-usage) on how to monitor request rate usage.
+> Microsoft provides [guidance](https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-request-unit-usage) on how to monitor request rate usage.
 
 The Cosmos DB SDK provides a mechanism to automatically retry collection operations when rate-limiting occurs. Besides changing the provisioned RUs or switching to the serverless tier, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
 
-These settings may be set when initializing the `CloudTableClient` via the `TableClientConfiguration.CosmosExecutorConfiguration` [`MaxRetryAttemptsOnThrottledRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.cosmosexecutorconfiguration.maxretryattemptsonthrottledrequests?view=azure-dotnet) and [`MaxRetryWaitTimeOnThrottledRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.cosmosexecutorconfiguration.maxretrywaittimeonthrottledrequests?view=azure-dotnet) properties:
+These settings may be set when initializing the `CloudTableClient` via the `TableClientConfiguration.CosmosExecutorConfiguration` [`MaxRetryAttemptsOnThrottledRequests`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.cosmosexecutorconfiguration.maxretryattemptsonthrottledrequests?view=azure-dotnet) and [`MaxRetryWaitTimeOnThrottledRequests`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.cosmosexecutorconfiguration.maxretrywaittimeonthrottledrequests?view=azure-dotnet) properties:
 
 snippet: StorageTableClientConfigureThrottlingWithClientOptions

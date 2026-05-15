@@ -82,7 +82,7 @@ The tool can collect data using various methods depending on the system's config
 
 Collecting metrics from Azure Service Bus relies upon an existing set of Azure credentials set using the Azure Command Line Interface (CLI), which must be installed first:
 
-1. Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+1. Install the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 2. From a command line, execute `az login`, which will open a browser to complete the authentication to Azure. The built-in role [Monitoring Reader](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
 3. Execute `az account set --subscription {SubscriptionId}`, where `{SubscriptionId}` is a Guid matching the subscription id that contains the Azure Service Bus namespace.
 

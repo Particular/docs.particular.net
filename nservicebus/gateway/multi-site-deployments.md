@@ -94,7 +94,7 @@ NServiceBus automatically sets the required headers to enable sending messages b
 
 To provide data encryption for messages transmitted between sites, configure SSL on the machines in each site where the gateway is running.
 
-Follow the steps for [configuring SSL](https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/configuring-http-and-https) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
+Follow the steps for [configuring SSL](https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/configuring-http-and-https) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
 
 
 ## Automatic de-duplication

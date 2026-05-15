@@ -14,7 +14,7 @@ redirects:
 The Azure Cosmos DB persister uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
 
 > [!WARNING]
-> It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
+> It is important to [read and understand](https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
 
 ## Persistence at a glance
 
@@ -95,22 +95,22 @@ The tables below indicate what Cosmos DB operations occur for each processed mes
 
 | Incoming message Scenario | Point Reads | Creates | Updates | Deletes | Queries | Persistence Requirements* |
 |---------------------------|-------------|---------|---------|---------|---------|---------------------------|
-| **No Saga**               | 0           | 0       | 0       | 0       | 0       | 0 bytes             |  
+| **No Saga**               | 0           | 0       | 0       | 0       | 0       | 0 bytes             |
 | **Saga (new)**            | 1           | 1       | 0       | 0       | 0       | 300 bytes           |
 | **Saga (new) + [Migration Mode](/persistence/cosmosdb/migration-from-azure-table.md)**            | 1           | 1       | 0       | 0       | 1       | 300 bytes           |
-| **Saga (update)**         | 1           | 0       | 1       | 0       | 0       | 300 bytes           |  
+| **Saga (update)**         | 1           | 0       | 1       | 0       | 0       | 300 bytes           |
 | **Saga (complete)**       | 1           | 0       | 0       | 1       | 0       | 300 bytes           |
 
 #### With Outbox
 
-| Incoming message scenario          | Point Reads | Creates | Updates | Deletes       | Queries | Persister Requirements*    |  
-|------------------------------------|-------------|---------|---------|---------------|---------|------------------------|  
+| Incoming message scenario          | Point Reads | Creates | Updates | Deletes       | Queries | Persister Requirements*    |
+|------------------------------------|-------------|---------|---------|---------------|---------|------------------------|
 | **No Saga**                        | 1           | 1       | 1       | 1 (delayed)   | 0       | 630 bytes (1 msg sent) |
-| **No Saga + [Partition Key Fallback Read](#outbox-storage-format)**                        | 2           | 1       | 1       | 1 (delayed)   | 0       | 630 bytes (1 msg sent) |  
-| **Saga (new)**                     | 2           | 2       | 1       | 1 (delayed)   | 0       | 630 + 300 = 930 bytes  |  
-| **Saga (update)**                  | 2           | 1       | 2       | 1 (delayed)   | 0       | 630 + 300 = 930 bytes  |  
-| **Saga (complete)**                | 2           | 1       | 1       | 2 (delayed)   | 0       | 630 + 300 = 930 bytes  |  
-| **Saga + [Pessimistic Locking](/persistence/cosmosdb/saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals) (no contention)** | 1           | 1-2     | 3-4     | 1-2 (delayed) | 0       | 630 + 360 = 990 bytes  |  
+| **No Saga + [Partition Key Fallback Read](#outbox-storage-format)**                        | 2           | 1       | 1       | 1 (delayed)   | 0       | 630 bytes (1 msg sent) |
+| **Saga (new)**                     | 2           | 2       | 1       | 1 (delayed)   | 0       | 630 + 300 = 930 bytes  |
+| **Saga (update)**                  | 2           | 1       | 2       | 1 (delayed)   | 0       | 630 + 300 = 930 bytes  |
+| **Saga (complete)**                | 2           | 1       | 1       | 2 (delayed)   | 0       | 630 + 300 = 930 bytes  |
+| **Saga + [Pessimistic Locking](/persistence/cosmosdb/saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals) (no contention)** | 1           | 1-2     | 3-4     | 1-2 (delayed) | 0       | 630 + 360 = 990 bytes  |
 | **Saga + Pessimistic Locking (3 retries)**     | 1           | 1-2     | 9-10    | 1-2 (delayed) | 0       | 630 + 360 = 990 bytes  |
 
 *Persister requirements exclude message bodies and saga data and assume one handler sends one outgoing message.
@@ -137,7 +137,7 @@ The tables below indicate what Cosmos DB operations occur for each processed mes
 | Updates | 500 msg/sec × 2 updates (saga + outbox) = | **1,000/sec** |
 | Deletes | 500 msg/sec avg over 24h (steady state) = | **500/sec** |
 | Queries | 0 | **0/sec** |
-| OutboxRecord size | 200 bytes + (2 × 1000 bytes) = | **2.2 KB** |  
+| OutboxRecord size | 200 bytes + (2 × 1000 bytes) = | **2.2 KB** |
 | Saga size | 3000 bytes + 300 bytes metadata = | **3.3 KB** |
 
 ### Using Code
@@ -191,15 +191,15 @@ When using provisioned throughput, it is possible for the CosmosDB service to ra
 > When using the Cosmos DB persister with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
 > [!NOTE]
-> Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
+> Microsoft provides [guidance](https://learn.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
 
 The Cosmos DB SDK provides a mechanism to automatically retry collection operations when rate-limiting occurs. Besides changing the provisioned RUs or switching to the serverless tier, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
 
-These settings may be set when initializing the `CosmosClient` via the `CosmosClientOptions` [`MaxRetryAttemptsOnRateLimitedRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretryattemptsonratelimitedrequests?view=azure-dotnet) and [`MaxRetryWaitTimeOnRateLimitedRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretrywaittimeonratelimitedrequests?view=azure-dotnet) properties:
+These settings may be set when initializing the `CosmosClient` via the `CosmosClientOptions` [`MaxRetryAttemptsOnRateLimitedRequests`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretryattemptsonratelimitedrequests?view=azure-dotnet) and [`MaxRetryWaitTimeOnRateLimitedRequests`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretrywaittimeonratelimitedrequests?view=azure-dotnet) properties:
 
 snippet: CosmosDBConfigureThrottlingWithClientOptions
 
-They may also be set when using a `CosmosClientBuilder` via the [`WithThrottlingRetryOptions`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.withthrottlingretryoptions?view=azure-dotnet) method:
+They may also be set when using a `CosmosClientBuilder` via the [`WithThrottlingRetryOptions`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.withthrottlingretryoptions?view=azure-dotnet) method:
 
 snippet: CosmosDBConfigureThrottlingWithBuilder
 
@@ -221,4 +221,4 @@ When the outbox is enabled, the deduplication data is kept for seven days by def
 
 snippet: CosmosDBOutboxCleanup
 
-Outbox cleanup depends on the Cosmos DB time-to-live feature. Failure to remove the expired outbox records is caused by a misconfigured collection that has time-to-live disabled. Refer to the [Cosmos DB documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/time-to-live) to configure the collection correctly.
+Outbox cleanup depends on the Cosmos DB time-to-live feature. Failure to remove the expired outbox records is caused by a misconfigured collection that has time-to-live disabled. Refer to the [Cosmos DB documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/time-to-live) to configure the collection correctly.

@@ -30,7 +30,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 ## Supported database engines
 
- * [Microsoft SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above).
+ * [Microsoft SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://learn.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above).
  * [Oracle Database](https://www.oracle.com/database/index.html) ([Version 11g Release 2](https://docs.oracle.com/cd/E11882_01/readmes.112/e41331/chapter11204.htm) and above).
 
 > [!NOTE]

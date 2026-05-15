@@ -19,7 +19,7 @@ As shown in the diagram, you will add a new messaging endpoint to the solution c
 ![Completed Solution](after.svg "width=680")
 
 > [!NOTE]
-> In this tutorial, you will use terminal commands like [`dotnet new`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in your IDE if you prefer.
+> In this tutorial, you will use terminal commands like [`dotnet new`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in your IDE if you prefer.
 
 ### Create a new endpoint
 On this step, you will create the **Shipping** project and set up its dependencies.
@@ -53,7 +53,7 @@ Take special note of the inline comments, which provide more context to each of 
 
 snippet: ShippingProgram
 
-You want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
+You want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
 > [!NOTE]
 >  To launch the Shipping endpoint with the rest of the solution when using Visual Studio Code, navigate to the _Run and Debug_ tab and select the _Debug All + Shipping_ launch configuration from the dropdown list.

@@ -7,4 +7,4 @@ related:
 - transports/azure-service-bus
 ---
 
-The companion code for [this article](https://docs.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus) on using NServiceBus with Azure Service Bus. Refer to the linked article for a full walkthrough of the code.
+The companion code for [this article](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus) on using NServiceBus with Azure Service Bus. Refer to the linked article for a full walkthrough of the code.

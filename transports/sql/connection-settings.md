@@ -10,9 +10,9 @@ redirects:
 
 ## Using connection pooling
 
-The SQL Server transport is built on top of [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in the connection pool being shared by the transport, as well as other parts of the endpoint process and the business logic.
+The SQL Server transport is built on top of [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in the connection pool being shared by the transport, as well as other parts of the endpoint process and the business logic.
 
-In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes mentioned above, change the connection pool size to ensure it will not be exhausted. See [SQL Server Connection Pooling and Configuration](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling) for more details.
+In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes mentioned above, change the connection pool size to ensure it will not be exhausted. See [SQL Server Connection Pooling and Configuration](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling) for more details.
 
 > [!NOTE]
 > If the maximum pool size is not explicitly set on the connection string a warning message will be logged. See also [Tuning endpoint message processing](/nservicebus/operations/tuning.md).

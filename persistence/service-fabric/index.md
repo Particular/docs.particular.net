@@ -6,7 +6,7 @@ component: ServiceFabricPersistence
 
 include: servicefabric-sunset
 
-A persister built on top of [Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
+A persister built on top of [Service Fabric Reliable Collections](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 
 ## Persistence at a glance
@@ -17,7 +17,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |:---                       |---
 |Supported storage types    |Sagas, Outbox
 |Transactions               |Yes
-|Concurrency control        |Pessimistic concurrency via [exclusive locks](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks)
+|Concurrency control        |Pessimistic concurrency via [exclusive locks](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks)
 |Scripted deployment        |Not supported
 |Installers                 |None
 
@@ -42,4 +42,4 @@ Currently saga and outbox storage types are supported. For timeouts, subscriptio
 
 Currently, Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programmatically accessed and exposed over customized infrastructure.
 
-Data should be backed up and restored to avoid data loss. See Service Fabric [backup and restore APIs](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore) for additional information.
+Data should be backed up and restored to avoid data loss. See Service Fabric [backup and restore APIs](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore) for additional information.

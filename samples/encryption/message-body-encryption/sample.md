@@ -52,6 +52,6 @@ snippet: MessageEncryptorExtension
 The mutator is in `Shared/MessageEncryptor.cs`:
 
 > [!WARNING]
-> This is for demonstration purposes and is not true encryption. It is only doing a byte array reversal to illustrate the API. In a production system, encryption should be performed used the [.NET Framework Cryptography Model](https://docs.microsoft.com/en-us/dotnet/standard/security/cryptography-model) or some other secure mechanism.
+> This is for demonstration purposes and is not true encryption. It is only doing a byte array reversal to illustrate the API. In a production system, encryption should be performed used the [.NET Framework Cryptography Model](https://learn.microsoft.com/en-us/dotnet/standard/security/cryptography-model) or some other secure mechanism.
 
 snippet: Mutator

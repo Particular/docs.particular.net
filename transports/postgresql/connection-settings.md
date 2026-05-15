@@ -7,7 +7,7 @@ component: PostgreSqlTransport
 
 ## Connection pooling
 
-The PostgreSQL transport is built on top of [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in sharing of the connection pool by the transport, as well as other parts of the endpoint process and the business logic.
+The PostgreSQL transport is built on top of [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in sharing of the connection pool by the transport, as well as other parts of the endpoint process and the business logic.
 
 If increasing the concurrent message processing limit, or if the database connection is used for other purposes mentioned above, increase the connection pool size to ensure it is not exhausted.
 

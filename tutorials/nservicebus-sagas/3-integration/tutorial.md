@@ -246,7 +246,7 @@ In software, timeframes between business decisions can scale down to the millise
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>), it should open the four console applications, one window for each messaging endpoint.
+The solution is configured to have [multiple startup projects](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>), it should open the four console applications, one window for each messaging endpoint.
 
 In the **ClientUI** application, press <kbd>P</kbd> to place an order. To see what our saga does, we want to watch the **Shipping** endpoint and don't care too much about what happens in **Sales** or **Billing**, but we do need them running to do their part.
 

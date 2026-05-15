@@ -24,7 +24,7 @@ Azure’s main observability solution is [Azure Monitor](https://azure.microsoft
 - There’s a learning curve due to the amount of features and capabilities
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/monitor/) is based on the amount and the type of telemetry collected.
 - Alerts and notifications may incur additional costs, as well as data archiving and restore operations.
-- There is no free tier, the default pricing model is pay-as-you-go. Some data types, including [Azure Activity Logs](https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log?tabs=powershell), are [free from data ingestion charges](https://docs.microsoft.com/en-us/azure/azure-monitor/logs/log-standard-columns#_isbillable).
+- There is no free tier, the default pricing model is pay-as-you-go. Some data types, including [Azure Activity Logs](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log?tabs=powershell), are [free from data ingestion charges](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-standard-columns#_isbillable).
 - Extending the data retention period is subject to additional costs
 
 The Particular Service Platform collects metrics in two forms:

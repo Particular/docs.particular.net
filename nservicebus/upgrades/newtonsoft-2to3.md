@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 
 ## NewtonsoftSerializer obsolete
 
-The `NewtonsoftSerializer` is obsolete in NServiceBus version 8. It uses `TypeNameHandling.Auto` as its default value which can be a security risk as it allows the message payload to control the deserialization target type. See [CA2326: Do not use TypeNameHandling values other than None](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326) for further details on this vulnerability.
+The `NewtonsoftSerializer` is obsolete in NServiceBus version 8. It uses `TypeNameHandling.Auto` as its default value which can be a security risk as it allows the message payload to control the deserialization target type. See [CA2326: Do not use TypeNameHandling values other than None](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326) for further details on this vulnerability.
 
 A new serializer `NewtonsoftJsonSerializer` has been introduced which uses `TypeNameHandling.None` as its default value.
 

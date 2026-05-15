@@ -76,7 +76,7 @@ end
 
 ## Cleaning up old records
 
-After a certain amount of time, duplicates are no longer likely and deduplication data should be cleaned up. However, the SQL gateway storage component provides no built-in mechanism to do this. Duplication data should be cleaned by an outside process like [SQL Agent](https://docs.microsoft.com/en-us/sql/ssms/agent/sql-server-agent?).
+After a certain amount of time, duplicates are no longer likely and deduplication data should be cleaned up. However, the SQL gateway storage component provides no built-in mechanism to do this. Duplication data should be cleaned by an outside process like [SQL Agent](https://learn.microsoft.com/en-us/sql/ssms/agent/sql-server-agent?).
 
 A script similar to the following will delete records in batches to prevent excessive database locking:
 

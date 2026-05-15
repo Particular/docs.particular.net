@@ -11,7 +11,7 @@ related:
 
 This article contains code and scripts to facilitate deployment and operational actions with MSMQ.
 
-These examples use the [System.Messaging](https://docs.microsoft.com/en-us/dotnet/api/system.messaging?view=netframework-4.8) and [System.Transactions](https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=netframework-4.8) assemblies.
+These examples use the [System.Messaging](https://learn.microsoft.com/en-us/dotnet/api/system.messaging?view=netframework-4.8) and [System.Transactions](https://learn.microsoft.com/en-us/dotnet/api/system.transactions?view=netframework-4.8) assemblies.
 
 > [!WARNING]
 > The `Systems.Messaging` namespace is not available in .NET Core.

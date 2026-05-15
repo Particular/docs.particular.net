@@ -10,16 +10,16 @@ related:
  - transports/upgrades
 ---
 
-Every codebase is different and will have unique challenges when upgrading a major dependency like NServiceBus. It's important to have an upgrade plan and proceed in well-defined steps while taking sufficient time to perform regression tests after each stage. 
+Every codebase is different and will have unique challenges when upgrading a major dependency like NServiceBus. It's important to have an upgrade plan and proceed in well-defined steps while taking sufficient time to perform regression tests after each stage.
 
-The process of upgrading endpoints consists of a common sequence of steps. Being able to apply those steps consistently is the key to a successful upgrade. 
+The process of upgrading endpoints consists of a common sequence of steps. Being able to apply those steps consistently is the key to a successful upgrade.
 
 
 ## Choosing an endpoint for upgrade
 
-The recommended approach is to upgrade one endpoint at a time. Start with simple, low-risk endpoints to ensure that the process is well understood, before tackling the more complex and critical endpoints. For example, endpoints that send emails or generate documents tend to be easy to upgrade. 
+The recommended approach is to upgrade one endpoint at a time. Start with simple, low-risk endpoints to ensure that the process is well understood, before tackling the more complex and critical endpoints. For example, endpoints that send emails or generate documents tend to be easy to upgrade.
 
-It is not necessary for every endpoint in the solution to use the same version of NServiceBus. This means that a single endpoint can be upgraded, tested, and deployed to production before upgrading another one. This keeps the scope of changes to a minimum, reducing risk and isolating potential problems. In the same way, a new endpoint can be added and deployed with a newer version of NServiceBus, while endpoints in production remain on an older version. 
+It is not necessary for every endpoint in the solution to use the same version of NServiceBus. This means that a single endpoint can be upgraded, tested, and deployed to production before upgrading another one. This keeps the scope of changes to a minimum, reducing risk and isolating potential problems. In the same way, a new endpoint can be added and deployed with a newer version of NServiceBus, while endpoints in production remain on an older version.
 
 Note however that there may be some limitations with the chosen persistence and it might be necessary to transform stored data as part of the upgrade. Verify the detailed upgrade recommendations for the selected persistence.
 
@@ -37,7 +37,7 @@ Ensure that any new features are adequately researched with regard to their impa
 
 While upgrading one endpoint at a time is recommended whenever possible, if multiple endpoints share a common library the process will be slightly different. For example, upgrading the endpoint might involve changes in the common library, which will impact all other endpoints that rely on that library. The recommended approach in this situation is to create a copy of the common library for the new endpoint and keep the old version until all endpoints have been upgraded. When the time comes to upgrade the second endpoint, update it to point to the new version of the common library.
 
-Other changes to the common library, for example related to new business requirements, should be minimized before all endpoints are upgraded, as they will need to be duplicated in both places.   
+Other changes to the common library, for example related to new business requirements, should be minimized before all endpoints are upgraded, as they will need to be duplicated in both places.
 
 
 ## Updating dependencies
@@ -48,8 +48,8 @@ It is strongly recommended to upgrade by one major version at a time, e.g. from 
 
 See also:
 
- * [NuGet Package Manager Dialog - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
- * [NuGet Package Manager Console - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)
+ * [NuGet Package Manager Dialog - Updating a Package](https://learn.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
+ * [NuGet Package Manager Console - Updating a Package](https://learn.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)
 
 ## Public API Deprecation
 
