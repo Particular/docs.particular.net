@@ -2,7 +2,7 @@
 title: Migrating Azure Functions (Isolated Worker) with Service Bus to the new Azure Functions package
 summary: How to migrate from NServiceBus.AzureFunctions.Worker.ServiceBus to NServiceBus.AzureFunctions.AzureServiceBus
 component: AzureFunctions
-reviewed: 2026-04-28
+reviewed: 2026-05-15
 related:
   - nservicebus/hosting/azure/functions
   - nservicebus/hosting/azure-functions-service-bus
@@ -31,18 +31,42 @@ Before changing code, identify:
 - any use of `IFunctionEndpoint`
 - any custom trigger setup
 - any transport, routing, recoverability, audit, or diagnostics customizations
+- whether the endpoint relied on default serializer behavior
 
 ## Update the project file
 
-Remove the old package reference and add the new package:
+Replace old package references with the new package:
 
 ```xml
 <ItemGroup>
+    <!-- before -->
+    <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="<old-version>" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="<old-version>" />
+
+    <!-- after -->
+    <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="<version>" />
+</ItemGroup>
+```
+
+If preferred, model this as a remove/add change:
+
+```xml
+<ItemGroup>
+    <PackageReference Remove="NServiceBus.AzureFunctions.Worker.ServiceBus" />
+    <PackageReference Remove="NServiceBus.Transport.AzureServiceBus" />
   <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="<version>" />
 </ItemGroup>
 ```
 
+In practice:
+
+- Remove `NServiceBus.AzureFunctions.Worker.ServiceBus`.
+- Remove `NServiceBus.Transport.AzureServiceBus` if it is still referenced explicitly from the old setup.
+- Add `NServiceBus.AzureFunctions.AzureServiceBus`.
+
 Do not add `NServiceBus.AzureFunctions.Common` directly. The Azure Service Bus package is the user-facing package for this migration.
+
+A direct `NServiceBus` package reference is optional. Keep it only when intentionally pinning the NServiceBus Core version separately.
 
 ## Update host startup
 
@@ -71,6 +95,9 @@ With the old package, a project maps to a single endpoint, and the queue-trigger
 
 With the new package, the receiving endpoint is declared explicitly in code. A minimal one-to-one migration looks like this:
 
+Serialization must now be configured explicitly in endpoint configuration.
+For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the old default serializer behavior.
+
 ```csharp
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
@@ -92,6 +119,8 @@ public partial class SalesEndpoint
     {
         // Azure Functions endpoints must use AzureServiceBusServerlessTransport.
         configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
+
+        // Serializer must be set explicitly
         configuration.UseSerialization<SystemJsonSerializer>();
 
         // Handlers must be added explicitly because assembly scanning is not available.
@@ -101,6 +130,30 @@ public partial class SalesEndpoint
 ```
 
 The endpoint method, and any containing class, must be declared `partial` so the source generator can emit the trigger body.
+
+For larger codebases, there are two common handler registration patterns:
+
+- Register individual handlers explicitly with `configuration.AddHandler<THandler>()`.
+- Register all handlers from one assembly using a generated helper and `[Handler]` attributes.
+
+Example of assembly-level registration:
+
+```csharp
+public static void ConfigureSales(EndpointConfiguration configuration)
+{
+    configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
+    configuration.UseSerialization<SystemJsonSerializer>();
+
+    configuration.Handlers.SalesAssembly.AddAll();
+}
+
+[Handler]
+class SubmitOrderHandler : IHandleMessages<SubmitOrder>
+{
+    public Task Handle(SubmitOrder message, IMessageHandlerContext context)
+        => Task.CompletedTask;
+}
+```
 
 ## Move endpoint configuration next to the endpoint
 
@@ -135,8 +188,31 @@ public static void ConfigureSales(EndpointConfiguration configuration, IServiceC
 
 With the old worker package, Azure Functions that send messages outside handlers typically inject `IFunctionEndpoint`.
 
-With the new package, configure an explicit send-only endpoint and inject `IMessageSession` from that endpoint.
-This uses [.NET keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) to select the correct send-only endpoint from dependency injection.
+With the new package, inject `IMessageSession` via [.NET keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services).
+
+There are two valid migration patterns.
+
+### Pattern 1: Reuse the receiving endpoint session
+
+For one-to-one migrations, it is often simplest to inject the keyed session of the receiving endpoint:
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
+
+class SalesApi([FromKeyedServices("Sales")] IMessageSession session)
+{
+    [Function("SalesApi")]
+    public async Task Run()
+    {
+        await session.Send(new SubmitOrder());
+    }
+}
+```
+
+### Pattern 2: Add an explicit send-only endpoint
+
+Use this pattern when send-only traffic should be isolated from the receiving endpoint's configuration, queue identity, or routing policy.
 
 First, register the send-only endpoint in `Program.cs`:
 
@@ -181,6 +257,8 @@ class SalesApi([FromKeyedServices("client")] IMessageSession session)
 
 The key used in `[FromKeyedServices("client")]` must match the name passed to `AddSendOnlyNServiceBusEndpoint("client", ...)`.
 
+For pattern 1, the key used in `[FromKeyedServices("Sales")]` must match the receiving endpoint name.
+
 ## Migrate custom trigger scenarios
 
 The migration depends on what "custom trigger" means in the existing app.
@@ -222,8 +300,9 @@ If needed, use the guidance in [Overriding the host identifier](/nservicebus/hos
 3. Remove `NServiceBusTriggerFunction`.
 4. Migrate the existing receiving endpoint to an explicit `[NServiceBusFunction]` endpoint method.
 5. Move endpoint configuration to `Configure<FunctionName>` methods.
-6. Replace any `IFunctionEndpoint` usage with a send-only endpoint and keyed `IMessageSession`.
-7. Verify queue names, routing, recoverability, and diagnostics behavior.
+6. Replace any `IFunctionEndpoint` usage with keyed `IMessageSession` (either from the receiving endpoint or from an explicit send-only endpoint).
+7. Configure serialization explicitly (typically `UseSerialization<SystemJsonSerializer>()` for worker-package parity).
+8. Verify queue names, routing, recoverability, and diagnostics behavior.
 
 ## Multiple endpoints in one function app
 
