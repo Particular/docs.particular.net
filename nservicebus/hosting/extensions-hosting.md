@@ -23,17 +23,34 @@ This registers the endpoint with the hosting infrastructure and starts/stops it 
 
 ## Reading application settings
 
-NServiceBus uses code-based configuration. To use values from `appsettings.json` or other sources, read them via `IConfiguration` and pass them to the NServiceBus configuration API.
+NServiceBus is configured in code. Values such as endpoint names, connection strings, and feature flags can be sourced from `appsettings.json` or any other configuration provider by reading them via `IConfiguration` and passing them to the NServiceBus configuration API.
 
 snippet: extensions-host-appsettings
 
 The Generic Host automatically loads configuration from:
 
 - `appsettings.json`
-- `appsettings.{Environment}.json` (e.g., `appsettings.Development.json`)
+- `appsettings.{Environment}.json` (for example, `appsettings.Development.json`)
 - Environment variables
 
 No additional setup is required to enable these sources.
+
+### Connection strings
+
+Connection strings can be read from the `ConnectionStrings` section of `appsettings.json` using `IConfiguration.GetConnectionString("Transport")` and passed to the transport configuration API.
+
+### Strongly-typed settings
+
+For more complex configuration, bind a settings class to a configuration section using the [.NET options pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/options) and use the bound values during endpoint configuration.
+
+### Other configuration sources
+
+Because the entry point is `IConfiguration`, any configuration provider works without additional integration, including [User Secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets), [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview), and AWS Systems Manager Parameter Store. See the [.NET configuration providers documentation](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration-providers) for the full list.
+
+> [!NOTE]
+> Endpoint configuration values are read once at startup. The reload-on-change behavior provided by `IOptionsMonitor<T>` does not apply to endpoint configuration after the endpoint has started.
+
+When hosting in Azure Functions, NServiceBus accesses the same `IConfiguration` instance provided by the Functions runtime. See [Azure Functions hosting](/nservicebus/hosting/azure-functions-service-bus/) for details.
 
 ## Logging integration
 
