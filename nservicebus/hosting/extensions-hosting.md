@@ -37,11 +37,36 @@ No additional setup is required to enable these sources.
 
 ### Connection strings
 
-Connection strings can be read from the `ConnectionStrings` section of `appsettings.json` using `IConfiguration.GetConnectionString("Transport")` and passed to the transport configuration API.
+Transport and persistence connection strings are typically stored in the `ConnectionStrings` section of `appsettings.json`:
+
+```json
+{
+  "ConnectionStrings": {
+    "Transport": "host=localhost;username=guest;password=guest"
+  }
+}
+```
+
+Read them with `IConfiguration.GetConnectionString("Transport")` and pass the result to the transport configuration:
+
+snippet: extensions-host-connection-string
+
+The exact transport API depends on the transport package in use; see the documentation for the [transport](/transports/) being configured.
 
 ### Strongly-typed settings
 
-For more complex configuration, bind a settings class to a configuration section using the [.NET options pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/options) and use the bound values during endpoint configuration.
+For more complex configuration, bind a settings class to a configuration section using the [.NET options pattern](https://learn.microsoft.com/en-us/dotnet/core/extensions/options) and use the bound values during endpoint setup:
+
+```json
+{
+  "NServiceBus": {
+    "EndpointName": "Sales",
+    "MaxConcurrency": 8
+  }
+}
+```
+
+snippet: extensions-host-options-pattern
 
 ### Other configuration sources
 
@@ -50,7 +75,11 @@ Because the entry point is `IConfiguration`, any configuration provider works wi
 > [!NOTE]
 > Endpoint configuration values are read once at startup. The reload-on-change behavior provided by `IOptionsMonitor<T>` does not apply to endpoint configuration after the endpoint has started.
 
-When hosting in Azure Functions, NServiceBus accesses the same `IConfiguration` instance provided by the Functions runtime. See [Azure Functions hosting](/nservicebus/hosting/azure-functions-service-bus/) for details.
+### Azure Functions and other hosts
+
+The same `IConfiguration`-based pattern applies when hosting in [Azure Functions](/nservicebus/hosting/azure-functions-service-bus/). `ServiceBusTriggeredEndpointConfiguration` reads values from the Functions host's `IConfiguration` (and falls back to environment variables), so settings flow through `local.settings.json` in development and through Function app settings in Azure. See the [Azure Functions configuration reference](/nservicebus/hosting/azure-functions-service-bus/#configuration) for the keys recognized by the Azure Service Bus integration, including connection-string and identity-based connection options.
+
+When connecting endpoints across transports using the [NServiceBus.Transport.Bridge](/nservicebus/bridge/), the same `HostBuilderContext.Configuration` access is available during bridge setup; see [Bridge configuration](/nservicebus/bridge/configuration.md).
 
 ## Logging integration
 
