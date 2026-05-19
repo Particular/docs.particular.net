@@ -50,7 +50,7 @@ ENTRYPOINT ["dotnet", "MyEndpoint.dll"]
 
 partial: program
 
-## Configuration
+## Reading application settings
 
 Endpoints hosted in Docker use the same [.NET configuration system](/nservicebus/hosting/extensions-hosting.md#reading-application-settings) as any other host. Connection strings and other settings can be placed in `appsettings.json` and overridden at runtime using environment variables.
 
@@ -60,4 +60,4 @@ Environment variable names use `__` (double underscore) as the section separator
 ConnectionStrings__Transport=host=rabbitmq
 ```
 
-This is the standard approach for injecting environment-specific configuration into Docker containers and Kubernetes pods, without modifying the image.
+This is the standard approach for injecting environment-specific configuration into Docker containers and Kubernetes pods, without modifying the image. See the [.NET environment variable configuration provider documentation](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration-providers#environment-variable-configuration-provider) for details on the naming convention.
