@@ -1,7 +1,7 @@
 ---
 title: NServiceBus in ASP.NET
 summary: Hosting NServiceBus in ASP.NET Core applications
-reviewed: 2025-01-13
+reviewed: 2026-05-05
 component: Extensions.Hosting
 related:
  - nservicebus/hosting/web-application
@@ -21,6 +21,26 @@ snippet: asp-net-minimal-host-endpoint
 Starting with ASP.NET 3, the [NServiceBus Generic Host support](/nservicebus/hosting/extensions-hosting.md) provides integration with ASP.NET Core applications:
 
 snippet: asp-net-generic-host-endpoint
+
+## Reading application settings
+
+NServiceBus is configured in code. Values such as endpoint names, connection strings, and feature flags can be sourced from `appsettings.json` or any other configuration provider by reading them via `IConfiguration` and passing them to the NServiceBus configuration API.
+
+When using the Minimal API host, read configuration via `builder.Configuration`:
+
+snippet: asp-net-minimal-host-appsettings
+
+When using the Generic Host, read configuration via the `HostBuilderContext` (or `hostBuilder.Configuration`):
+
+snippet: extensions-host-appsettings
+
+Both `WebApplication.CreateBuilder()` and `Host.CreateApplicationBuilder()` automatically load configuration from:
+
+- `appsettings.json`
+- `appsettings.{Environment}.json` (for example, `appsettings.Development.json`)
+- Environment variables
+
+No additional setup is required to enable these sources. See [Reading application settings](/nservicebus/hosting/extensions-hosting.md#reading-application-settings) for guidance on connection strings, the options pattern, and other configuration providers.
 
 ## Dependency injection
 
