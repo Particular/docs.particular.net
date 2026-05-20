@@ -4,7 +4,7 @@ Starting in version 10.2, NServiceBus uses a non-cryptographic hash algorithm (X
 
 ### Migrating from MD5 to XxHash128 host identifiers
 
-The new XxHash128-based algorithm produces different host identifiers than the legacy MD5-based algorithm. To avoid duplicate endpoint entries in [ServicePulse](/servicepulse/) after upgrading, the legacy MD5 algorithm remains the default in version 10.2.
+The XxHash128-based algorithm produces different host identifiers than the legacy MD5-based algorithm. In version 10.2, the legacy MD5 algorithm remains the default, in order to avoid duplicate endpoint entries in [the ServicePulse Heartbeats view](/monitoring/heartbeats/in-servicepulse.md) after upgrading.
 
 To opt into the new XxHash128-based host identifier, set the following AppContext switch before endpoint startup:
 
