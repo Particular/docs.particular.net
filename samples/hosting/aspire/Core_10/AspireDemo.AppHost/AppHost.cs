@@ -1,4 +1,7 @@
 #region app-host
+
+using Particular.Aspire.Hosting.ServicePlatform.Transport;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transportUserName = builder.AddParameter("transportUserName", "guest", secret: true);
@@ -21,68 +24,25 @@ database.WithPgAdmin(resource =>
 
 var shippingDB = database.AddDatabase("shipping-db");
 
-var ravenDB = builder.AddContainer("ServiceControl-RavenDB", "particular/servicecontrol-ravendb")
-    .WithHttpEndpoint(8080, 8080)
-    .WithUrlForEndpoint("http", url => url.DisplayText = "Management Studio");
-
-var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecontrol-audit")
-    .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
-    .WithArgs("--setup-and-run")
-    .WithHttpEndpoint(44444, 44444)
-    .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
-    .WithHttpHealthCheck("api/configuration")
-    .WaitFor(transport)
-    .WaitFor(ravenDB);
-
-var serviceControl = builder.AddContainer("ServiceControl", "particular/servicecontrol")
-    .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
-    .WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]")
-    .WithArgs("--setup-and-run")
-    .WithHttpEndpoint(33333, 33333)
-    .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
-    .WithHttpHealthCheck("api/configuration")
-    .WaitFor(transport)
-    .WaitFor(ravenDB);
-
-var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/servicecontrol-monitoring")
-    .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithArgs("--setup-and-run")
-    .WithHttpEndpoint(33633, 33633)
-    .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
-    .WithHttpHealthCheck("connection")
-    .WaitFor(transport);
-
-var servicePulse = builder.AddContainer("ServicePulse", "particular/servicepulse")
-    .WithEnvironment("ENABLE_REVERSE_PROXY", "false")
-    .WithHttpEndpoint(9090, 9090)
-    .WithUrlForEndpoint("http", url => url.DisplayText = "ServicePulse")
-    .WaitFor(serviceControl)
-    .WaitFor(audit)
-    .WaitFor(monitoring);
+var platform = builder
+    .AddParticularPlatform("particular")
+    .WithTransportRabbitMq(RabbitMqRouting.QuorumConventionalRouting, transport)
+    .AddDefaultComponents();
 
 builder.AddProject<Projects.Billing>("Billing")
-    .WithReference(transport)
-    .WaitFor(servicePulse);
+    .WithParticularPlatform(platform);
 
 var sales = builder.AddProject<Projects.Sales>("Sales")
-    .WithReference(transport)
-    .WaitFor(servicePulse);
+    .WithParticularPlatform(platform);
 
 builder.AddProject<Projects.ClientUI>("ClientUI")
-    .WithReference(transport)
     .WaitFor(sales)
-    .WaitFor(servicePulse);
+    .WithParticularPlatform(platform);
 
 builder.AddProject<Projects.Shipping>("Shipping")
-    .WithReference(transport)
     .WithReference(shippingDB)
     .WaitFor(shippingDB)
-    .WaitFor(servicePulse);
+    .WithParticularPlatform(platform);
 
 builder.Build().Run();
 #endregion
