@@ -193,3 +193,36 @@ The following APIs are deprecated:
 | `DefaultFactory.Directory(string)` | `RollingLoggerProviderOptions.Directory` |
 | `DefaultFactory.Level(LogLevel)` | `RollingLoggerProviderOptions.LogLevel` |
 | `LoggingFactoryDefinition` | Implement `ILoggerProvider` and register via `services.AddSingleton<ILoggerProvider, YourProvider>()` |
+
+## Host identifier algorithm change
+
+In version 11, the default algorithm for generating deterministic host identifiers changes from MD5 to XxHash128 (RFC 9562 version 8 GUIDs). This produces different host identifiers, which affects how endpoints are identified in [ServicePulse](/servicepulse/) and [ServiceControl](/servicecontrol/).
+
+### Impact
+
+After upgrading, endpoints will receive new host identifiers. This causes endpoints to appear as new entries in ServicePulse, while the previous instances become stale and must be [removed from the monitoring view](/monitoring/metrics/in-servicepulse.md#disconnected-endpoints-removing-disconnected-endpoints).
+
+### Preserving the legacy host identifier
+
+To preserve the existing MD5-based host identifier after upgrading, set the following AppContext switch before endpoint startup:
+
+```csharp
+AppContext.SetSwitch("NServiceBus.Core.Hosting.UseV2DeterministicGuid", false);
+```
+
+Or via environment variable (.NET 9+):
+
+```text
+DOTNET_NServiceBus_Core_Hosting_UseV2DeterministicGuid=false
+```
+
+Or via MSBuild in the project file:
+
+```xml
+<ItemGroup>
+  <RuntimeHostConfigurationOption Include="NServiceBus.Core.Hosting.UseV2DeterministicGuid" Value="false" />
+</ItemGroup>
+```
+
+> [!NOTE]
+> The legacy MD5-based host identifier algorithm and the `UseV2DeterministicGuid` AppContext switch will be removed in version 12.
