@@ -21,8 +21,7 @@ public class EnableExternalBodyStorageBehavior : Behavior<IRecoverabilityContext
     {
         if (context.RecoverabilityAction is MoveToError errorAction)
         {
-            var message = context.FailedMessage;
-            var bodyUrl = await storage.StoreBody(message.MessageId, message.Body);
+            var bodyUrl = await storage.StoreBody(context.MessageId, context.Body);
 
             context.Metadata["body-url"] = bodyUrl;
 
