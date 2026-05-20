@@ -3,6 +3,10 @@ title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
 reviewed: 2026-05-06
+related:
+  - transports/azure-service-bus
+  - nservicebus/hosting/startup-diagnostics
+  - nservicebus/hosting/override-hostid
 ---
 
 NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package:
@@ -45,7 +49,7 @@ The Functions host is bootstrapped in `Program.cs`. Calling `AddNServiceBusFunct
 snippet: azure-functions-program-builder
 
 > [!NOTE]
-> `AddNServiceBusFunctions` is a source-generated extension on `FunctionsApplicationBuilder` declared in the project's default namespace. Ensure `Program.cs` imports that namespace.
+> `AddNServiceBusFunctions` is a source-generated extension on `FunctionsApplicationBuilder` declared in the project's default namespace. Ensure `Program.cs` imports that namespace. At least one function needs to be defined for the namespace to be available.
 
 ## Hosting multiple endpoints
 
@@ -57,7 +61,7 @@ Each endpoint has its own `Configure{FunctionName}` method; the source generator
 
 ## Send-only endpoints
 
-A send-only endpoint can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
+A [Send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
 
 snippet: azure-functions-sendonly-registration
 
@@ -69,18 +73,39 @@ The key passed to `[FromKeyedServices(...)]` must match the name passed to `AddS
 
 ## Connection configuration
 
-The connection string for Azure Service Bus is read from the Functions configuration. The same setting name is referenced in two places:
+The [connection string](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues#connection-string) for Azure Service Bus is read from the Functions configuration. The same setting name is referenced in two places:
 
 - The `Connection` parameter on the `[ServiceBusTrigger]` attribute.
 - The `ConnectionName` property on `AzureServiceBusServerlessTransport` when registering a send-only endpoint.
 
 Any setting name can be used; the examples on this page use `ServiceBusConnection`.
 
+## Transactions
+
+Azure Functions endpoints use [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only). [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive) is not supported in this hosting model.
+
+## Recoverability
+
+Failed messages are sent to the Azure Service Bus dead-letter queue. The package automatically enables [DLQ forwarding to the error queue](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue), so dead-lettered messages can be managed alongside other failed messages by tools such as ServicePulse.
+
+For details on the dead-letter behavior and configuration options, see [dead-lettering](/transports/azure-service-bus/configuration.md#dead-lettering) in the Azure Service Bus transport documentation.
+
+## Provisioning the namespace
+
+Provision queues and other entities in the Azure Service Bus namespace using the [`asb-transport` command-line tool](/transports/azure-service-bus/operational-scripting.md).
+
+> [!WARNING]
+> The transport defaults `MaxDeliveryCount` to 100. When provisioning entities with the `asb-transport` tool or by hand, set `MaxDeliveryCount` to match (for example, pass `--maximum-delivery-count 100` to the CLI tool) so the namespace and the transport agree.
+
 ## Logging and diagnostics
 
 NServiceBus log output is forwarded to the Azure Functions logging pipeline automatically. Configure log levels and providers through the standard Functions logging configuration; no additional NServiceBus log setup is required.
 
-Startup diagnostics are written when the host starts. In Azure they appear in the Functions host log stream and in any configured destination such as Application Insights.
+Startup diagnostics are not written by default in this hosting model. When opted in, they appear in the Functions host log stream and in any configured destination such as Application Insights.
+
+### Custom diagnostics writer
+
+For full control over the diagnostic output (for example, to persist diagnostics beyond the function's execution lifetime or to aggregate diagnostic data from multiple function instances), configure a [custom diagnostics writer](/nservicebus/hosting/startup-diagnostics.md) on the endpoint configuration.
 
 ## Analyzers
 
