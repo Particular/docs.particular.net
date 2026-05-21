@@ -1,8 +1,8 @@
 ---
-title: Hosting endpoints in Aspire
-summary: Hosting multiple NServiceBus endpoints in an Aspire application host
+title: Particular Platform with RabbitMQ in Aspire
+summary: Orchestrating the Particular Platform with RabbitMQ transport via Aspire
 component: Core
-reviewed: 2026-05-07
+reviewed: 2026-05-20
 ---
 
 partial: hosting-package

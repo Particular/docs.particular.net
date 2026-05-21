@@ -1,6 +1,6 @@
 ---
 title: Particular Platform in Aspire
-summary: Hosting the necessary components of the Particular Service Platform in an Aspire AppHost
+summary: Minimal orchestrating the Particular Platform via Aspire
 component: Core
 reviewed: 2026-05-07
 ---
