@@ -7,7 +7,7 @@
 
     class Usage
     {
-        async Task Simple(IEndpointInstance endpoint)
+        async Task Simple(IMessageSession messageSession)
         {
             #region CancelCallback
 
@@ -16,7 +16,7 @@
             var message = new Message();
             try
             {
-                var response = await endpoint.Request<int>(message, cancellationTokenSource.Token);
+                var response = await messageSession.Request<int>(message, cancellationTokenSource.Token);
             }
             catch (OperationCanceledException)
             {

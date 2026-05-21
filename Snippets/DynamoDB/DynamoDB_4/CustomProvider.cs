@@ -1,4 +1,6 @@
-﻿namespace DynamoDB_4;
+﻿using Microsoft.Extensions.Hosting;
+
+namespace DynamoDB_4;
 
 using Amazon.DynamoDBv2;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,11 +23,11 @@ class CustomDynamoClientProvider
 
 class DynamoDBCustomClientProviderRegistration
 {
-    public DynamoDBCustomClientProviderRegistration(EndpointConfiguration endpointConfiguration)
+    public DynamoDBCustomClientProviderRegistration(IHostApplicationBuilder builder)
     {
         #region DynamoDBCustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.AddTransient<IDynamoClientProvider, CustomDynamoClientProvider>());
+        builder.Services.AddTransient<IDynamoClientProvider, CustomDynamoClientProvider>();
 
         #endregion
     }
