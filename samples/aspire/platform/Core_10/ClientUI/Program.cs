@@ -2,50 +2,52 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-Console.Title = "Client UI";
+Console.Title = "ClientUI";
 
-var builder = Host.CreateApplicationBuilder();
+var builder = Host.CreateApplicationBuilder(args);
 
-builder.AddServiceDefaults();
 builder.AddNServiceBusEndpoint("ClientUI", (_, routing) =>
 {
     routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 });
 
+var app = builder.Build();
 
-var host = builder.Build();
+await app.StartAsync();
 
-await host.StartAsync();
+var messageSession = app.Services.GetRequiredService<IMessageSession>();
+await RunLoop(messageSession);
 
-var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await app.StopAsync();
 
-Console.WriteLine("Sending messages on an increasing interval. Press [CTRL] + [C] to exit");
-
-using (var cts = new CancellationTokenSource())
+static async Task RunLoop(IMessageSession messageSession)
 {
-    Console.CancelKeyPress += (s, e) =>
-    {
-        Console.WriteLine("Cancellation Requested...");
-        cts.Cancel();
-        e.Cancel = true;
-    };
+    Console.WriteLine("Sending messages on an increasing interval. Press [CTRL] + [C] to exit");
 
-    try
+    using (var cts = new CancellationTokenSource())
     {
-        var i = 1;
-
-        while (true)
+        Console.CancelKeyPress += (s, e) =>
         {
-            await messageSession.Send(new PlaceOrder { OrderId = Guid.NewGuid().ToString() }, cts.Token);
-            Console.WriteLine("Sent a message");
+            Console.WriteLine("Cancellation Requested...");
+            cts.Cancel();
+            e.Cancel = true;
+        };
 
-            await Task.Delay(i++ * 500, cts.Token);
+        try
+        {
+            var i = 1;
+
+            while (true)
+            {
+                await messageSession.Send(new PlaceOrder { OrderId = Guid.NewGuid().ToString() }, cts.Token);
+                Console.WriteLine("Sent a message");
+
+                await Task.Delay(i++ * 500, cts.Token);
+            }
+        }
+        catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
+        {
+            // graceful shutdown
         }
     }
-    catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
-    {
-        // graceful shutdown
-    }
 }
-
-await host.StopAsync();

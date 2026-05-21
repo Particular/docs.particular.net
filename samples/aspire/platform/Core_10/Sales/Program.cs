@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-var builder = Host.CreateApplicationBuilder();
+Console.Title = "Sales";
 
-builder.AddServiceDefaults();
+var builder = Host.CreateApplicationBuilder(args);
+
 builder.AddNServiceBusEndpoint("Sales");
 
 await builder.Build().RunAsync();
