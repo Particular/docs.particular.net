@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence.CosmosDB;
 
@@ -36,11 +37,11 @@ class Transactions
         #endregion
     }
 
-    void ExtractPartitionKeyFromHeadersRegistration(EndpointConfiguration endpointConfiguration)
+    void ExtractPartitionKeyFromHeadersRegistration(IHostApplicationBuilder builder)
     {
         #region ExtractPartitionKeyFromHeadersRegistration
 
-        endpointConfiguration.RegisterComponents(s => s.AddSingleton<CustomPartitionKeyFromHeadersExtractor>());
+        builder.Services.AddSingleton<CustomPartitionKeyFromHeadersExtractor>();
 
         #endregion
     }
@@ -84,11 +85,11 @@ class Transactions
         #endregion
     }
 
-    void ExtractContainerInfoFromHeadersRegistration(EndpointConfiguration endpointConfiguration)
+    void ExtractContainerInfoFromHeadersRegistration(IHostApplicationBuilder builder)
     {
         #region ExtractContainerInfoFromHeadersRegistration
 
-        endpointConfiguration.RegisterComponents(s => s.AddSingleton<CustomContainerInformationFromHeadersExtractor>());
+        builder.Services.AddSingleton<CustomContainerInformationFromHeadersExtractor>();
 
         #endregion
     }
@@ -113,11 +114,11 @@ class Transactions
         #endregion
     }
 
-    void ExtractPartitionKeyFromMessageRegistration(EndpointConfiguration endpointConfiguration)
+    void ExtractPartitionKeyFromMessageRegistration(IHostApplicationBuilder builder)
     {
         #region ExtractPartitionKeyFromMessageRegistration
 
-        endpointConfiguration.RegisterComponents(s => s.AddSingleton<CustomPartitionKeyFromMessageExtractor>());
+        builder.Services.AddSingleton<CustomPartitionKeyFromMessageExtractor>();
 
         #endregion
     }
@@ -152,11 +153,11 @@ class Transactions
         #endregion
     }
 
-    void ExtractContainerInfoFromMessageRegistration(EndpointConfiguration endpointConfiguration)
+    void ExtractContainerInfoFromMessageRegistration(IHostApplicationBuilder builder)
     {
         #region ExtractContainerInfoFromMessageRegistration
 
-        endpointConfiguration.RegisterComponents(s => s.AddSingleton<CustomContainerInformationFromMessagesExtractor>());
+        builder.Services.AddSingleton<CustomContainerInformationFromMessagesExtractor>();
 
         #endregion
     }

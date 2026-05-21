@@ -9,7 +9,7 @@ using NServiceBus.ClaimCheck.AzureBlobStorage;
 
 class Usage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    Usage(EndpointConfiguration endpointConfiguration, IHostApplicationBuilder builder)
     {
         #region AzureDataBus
 
@@ -28,7 +28,8 @@ class Usage
         #region AzureDataBusInjectServiceClient
 
         endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>();
-        endpointConfiguration.RegisterComponents(services => services.AddSingleton<IProvideBlobServiceClient, CustomProvider>());
+
+        builder.Services.AddSingleton<IProvideBlobServiceClient, CustomProvider>();
 
         #endregion
 

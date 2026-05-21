@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence.CosmosDB;
 
@@ -19,11 +20,11 @@ class CustomCosmosClientProvider
 
 class CosmosDBCustomClientProviderRegistration
 {
-    public CosmosDBCustomClientProviderRegistration(EndpointConfiguration endpointConfiguration)
+    public CosmosDBCustomClientProviderRegistration(IHostApplicationBuilder builder)
     {
         #region CosmosDBCustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.AddTransient<IProvideCosmosClient, CustomCosmosClientProvider>());
+        builder.Services.AddTransient<IProvideCosmosClient, CustomCosmosClientProvider>();
 
         #endregion
     }

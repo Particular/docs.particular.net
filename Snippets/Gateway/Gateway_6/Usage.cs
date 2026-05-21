@@ -71,11 +71,11 @@ class Usage
         #endregion
     }
 
-    async Task SendToSites(IEndpointInstance endpoint)
+    async Task SendToSites(IMessageSession messageSession)
     {
         #region SendToSites
 
-        await endpoint.SendToSites(new[]
+        await messageSession.SendToSites(new[]
             {
                 "SiteA",
                 "SiteB"
