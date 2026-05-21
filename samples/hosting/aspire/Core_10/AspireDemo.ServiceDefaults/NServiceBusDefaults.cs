@@ -11,13 +11,11 @@ public static class NServiceBusDefaults
         public IHostApplicationBuilder AddNServiceBusEndpoint(string name,
             Action<EndpointConfiguration, RoutingSettings>? configureEndpoint = null)
         {
-            #region always-config
             var endpointConfiguration = new EndpointConfiguration(name);
-            #endregion
 
             #region transport-config
             var connectionString = builder.Configuration.GetConnectionString("transport")
-                    ?? throw new InvalidOperationException($"Endpoint '{name}' has no transport configured. Provide a 'ConnectionStrings:transport' connection string or set 'LEARNING_TRANSPORT_PATH'.");
+                    ?? throw new InvalidOperationException($"Endpoint '{name}' has no transport configured. Provide a 'ConnectionStrings:transport' connection string.");
             var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
             var routing = endpointConfiguration.UseTransport(transport);
             #endregion

@@ -24,17 +24,13 @@ This sample shows an Aspire AppHost project that orchestrates multiple NServiceB
 
 The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang=csharp) defines multiple resources and the relationships between them:
 
-- A RabbitMQ instance named `transport`
-- A PostgreSQL server named `database`
-  - A database named `shipping-db`
-  - An instance of [pgweb](https://sosedoff.github.io/pgweb/) to access the database
-- Four projects, each of which is an NServiceBus endpoint. All of these projects reference the `transport` resource.
-  - `clientui`
+- A Particular platform resource named `particular`, which includes:
+  - Default ServiceControl error, audit and monitoring instances
+  - ServicePulse
+  - Learning transport
+- Two projects, each of which is an NServiceBus endpoint. All of these projects reference the `particular` resource to access the transport connection string.
   - `billing`
   - `sales`
-  - `shipping` - also has a reference to the `shipping-db` resource
-- ServiceControl error, audit and monitoring instances
-- ServicePulse
 
 snippet: app-host
 
@@ -46,22 +42,18 @@ The OpenTelemetry configuration has been updated to include NServiceBus metrics 
 
 snippet: add-nsb-otel
 
-### Endpoint projects
-
-Each of the endpoint projects contain the same code to create an application host, apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
-
-snippet: always-config
-
-Each endpoint project retrieves the connection string for the RabbitMQ broker and configures NServiceBus to use it as a transport:
+The endpoints are configured to use the learning transport, by using the path provided by the `particular` resource:
 
 snippet: transport-config
 
-The Shipping endpoint additionally retrieves the connection string for the PostgreSQL database and configures NServiceBus to use it as a persistence:
-
-snippet: persistence-config
-
-Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
+Additionally, the shared config enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
+
+### Endpoint projects
+
+Each of the endpoint projects contain the same code to create an application host to apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
+
+snippet: endpoint-config
 
 If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).

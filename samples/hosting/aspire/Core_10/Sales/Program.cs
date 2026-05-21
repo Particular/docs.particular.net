@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Extensions.Hosting;
 
+#region endpoint-config
 var builder = Host.CreateApplicationBuilder();
 
 builder
@@ -8,3 +9,4 @@ builder
     .AddNServiceBusEndpoint("Sales");
 
 await builder.Build().RunAsync();
+#endregion

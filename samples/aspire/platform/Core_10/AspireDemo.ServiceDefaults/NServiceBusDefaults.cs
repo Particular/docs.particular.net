@@ -10,7 +10,8 @@ public static class NServiceBusExtensions
         var endpointConfiguration = new EndpointConfiguration(endpointName);
 
         #region transport-config
-        var transportConnection = builder.Configuration.GetConnectionString("learning-transport");
+        var transportConnection = builder.Configuration.GetConnectionString("learning-transport")
+                    ?? throw new InvalidOperationException($"Endpoint '{endpointName}' has no transport configured. Provide a 'ConnectionStrings:learning-transport' connection string.");
         var routing = endpointConfiguration.UseTransport(new LearningTransport()
         {
             StorageDirectory = transportConnection
