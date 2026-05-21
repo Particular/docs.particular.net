@@ -1,4 +1,7 @@
-﻿namespace Core.Headers.Writers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.Headers.Writers;
 
 using System;
 using System.Threading;
@@ -34,13 +37,17 @@ public class HeaderWriterDefer
         routing.RouteToEndpoint(GetType().Assembly, EndpointName);
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
         var options = new SendOptions();
         options.DelayDeliveryWith(TimeSpan.FromMilliseconds(10));
-        await endpointInstance.Send(new MessageToSend(), options);
+        await messageSession.Send(new MessageToSend(), options);
         ManualResetEvent.WaitOne();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 
     class MessageToSend :

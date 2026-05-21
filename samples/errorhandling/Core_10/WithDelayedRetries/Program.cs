@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "WithDelayedRetries";
@@ -9,7 +11,11 @@ endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Press enter to send a message that will throw an exception.");
 Console.WriteLine("Press any key to exit");
@@ -27,7 +33,7 @@ while (true)
         Id = Guid.NewGuid()
     };
 
-    await endpointInstance.SendLocal(myMessage);
+    await messageSession.SendLocal(myMessage);
 }
 
-await endpointInstance.Stop();
+await host.StopAsync();

@@ -1,4 +1,5 @@
-﻿using NHibernate.Dialect;
+﻿using Microsoft.Extensions.Hosting;
+using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NServiceBus.NHibernate;
@@ -50,8 +51,6 @@ class Program
         pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
         pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-        var startableEndpoint = await Endpoint.Create(endpointConfiguration);
-
         #region CreateSchema
 
         var outboxScript = ScriptGenerator<MsSql2012Dialect>.GenerateOutboxScript();
@@ -80,14 +79,9 @@ create synonym OutboxRecord FOR [NHibernateMultiTenantReceiver].[dbo].[OutboxRec
 
         #endregion
 
-        var endpointInstance = await startableEndpoint.Start();
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        if (endpointInstance != null)
-        {
-            await endpointInstance.Stop();
-        }
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        await builder.Build().RunAsync();
     }
 
     static Configuration CreateNHibernateConfig()

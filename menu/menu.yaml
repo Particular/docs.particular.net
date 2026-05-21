@@ -472,15 +472,19 @@
     Articles:
     - Url: nservicebus/handlers-and-sagas
       Title: About handlers and sagas
-    - Url: nservicebus/handlers/async-handlers
-      Title: Asynchronous Handlers
+    - Url: nservicebus/handlers-and-sagas-registration
+      Title: Registration
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
       - Url: nservicebus/handlers/accessing-data
         Title: Accessing data
+      - Url: nservicebus/handlers/convention-based
+        Title: Convention-based handlers
       - Url: nservicebus/handlers/handler-ordering
         Title: Handler Order
+      - Url: nservicebus/handlers/async-handlers
+        Title: Asynchronous Handlers
     - Url: nservicebus/sagas
       Title: Sagas
       Articles:
@@ -1368,8 +1372,10 @@
 
   - Title: Standard Hosting
     Articles:
+    - Url: nservicebus/hosting/core-hosting
+      Title: Microsoft.Extensions.Hosting
     - Url: nservicebus/hosting/extensions-hosting
-      Title: Microsoft Generic Host
+      Title: NServiceBus.Extensions.Hosting
     - Url: nservicebus/hosting/web-application
       Title: Web Applications
       Articles:

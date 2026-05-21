@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="6.*" />
@@ -23,6 +23,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="5.*" />
     <PackageReference Include="OpenTelemetry" Version="1.*" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.*" />
+    <PackageReference Include="System.IO.Hashing" Version="10.*" />
   </ItemGroup>
 
 </Project>

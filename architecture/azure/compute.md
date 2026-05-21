@@ -51,7 +51,7 @@ NServiceBus applications can easily be hosted on virtual machines. Popular techn
 * [Integrating NServiceBus with the Microsoft Generic Host](/nservicebus/hosting/extensions-hosting.md)
 * [Custom hosted web applications](/nservicebus/hosting/web-application.md)
 * [Installing NServiceBus endpoints as Windows Services](/nservicebus/hosting/windows-service.md)
-* [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](/nservicebus/hosting/#self-hosting)
+* [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](/nservicebus/hosting/)
 * [Custom-managed Kubernetes clusters hosting container applications](/nservicebus/hosting/docker-host)
 
 ## Choosing a hosting model

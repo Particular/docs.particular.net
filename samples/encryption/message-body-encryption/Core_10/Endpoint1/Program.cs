@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -17,15 +19,20 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
+
         var completeOrder = new CompleteOrder
         {
             CreditCard = "123-456-789"
         };
-        await endpointInstance.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
+        await messageSession.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
         Console.WriteLine("Message sent");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 }

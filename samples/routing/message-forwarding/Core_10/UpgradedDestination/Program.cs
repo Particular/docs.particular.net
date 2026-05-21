@@ -1,15 +1,12 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "UpgradedDestination";
-var config = new EndpointConfiguration("UpgradedDestination");
-config.UseSerialization<SystemJsonSerializer>();
-config.UseTransport(new LearningTransport());
+var endpointConfiguration = new EndpointConfiguration("UpgradedDestination");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-var endpoint = await Endpoint.Start(config);
-
-Console.WriteLine("Endpoint Started. Press any key to exit");
-
-Console.ReadKey();
-
-await endpoint.Stop();
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+await builder.Build().StartAsync();

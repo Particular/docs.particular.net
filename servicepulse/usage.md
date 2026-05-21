@@ -79,7 +79,7 @@ An [endpoint that is only processing transactional session dispatch messages](/n
 
 #### Send-Only Endpoint
 
-An endpoint that [only sends](/nservicebus/hosting/#self-hosting-send-only-hosting) messages and does not process any messages. These endpoints have different licensing considerations since they don't process incoming messages.
+An endpoint that [only sends](/nservicebus/hosting/#send-only-hosting) messages and does not process any messages. These endpoints have different licensing considerations since they don't process incoming messages.
 
 #### Planned to be decommissioned
 

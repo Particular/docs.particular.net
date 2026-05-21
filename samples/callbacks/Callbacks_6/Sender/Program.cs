@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -14,7 +16,12 @@ class Program
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.EnableCallbacks();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
+
         Console.WriteLine("Press 'E' to send a message with an enum return");
         Console.WriteLine("Press 'I' to send a message with an int return");
         Console.WriteLine("Press 'O' to send a message with an object return");
@@ -27,26 +34,26 @@ class Program
 
             if (key.Key == ConsoleKey.E)
             {
-                await SendEnumMessage(endpointInstance);
+                await SendEnumMessage(messageSession);
                 continue;
             }
             if (key.Key == ConsoleKey.I)
             {
-                await SendIntMessage(endpointInstance);
+                await SendIntMessage(messageSession);
                 continue;
             }
             if (key.Key == ConsoleKey.O)
             {
-                await SendObjectMessage(endpointInstance);
+                await SendObjectMessage(messageSession);
                 continue;
             }
             break;
         }
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 
 
-    static async Task SendEnumMessage(IEndpointInstance endpointInstance)
+    static async Task SendEnumMessage(IMessageSession messageSession)
     {
         Console.WriteLine("Message sent");
 
@@ -55,13 +62,13 @@ class Program
         var message = new EnumMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var status = await endpointInstance.Request<Status>(message, sendOptions);
+        var status = await messageSession.Request<Status>(message, sendOptions);
         Console.WriteLine($"Callback received with status:{status}");
 
         #endregion
     }
 
-    static async Task SendIntMessage(IEndpointInstance endpointInstance)
+    static async Task SendIntMessage(IMessageSession messageSession)
     {
         Console.WriteLine("Message sent");
 
@@ -70,13 +77,13 @@ class Program
         var message = new IntMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var response = await endpointInstance.Request<int>(message, sendOptions);
+        var response = await messageSession.Request<int>(message, sendOptions);
         Console.WriteLine($"Callback received with response:{response}");
 
         #endregion
     }
 
-    static async Task SendObjectMessage(IEndpointInstance endpointInstance)
+    static async Task SendObjectMessage(IMessageSession messageSession)
     {
         Console.WriteLine("Message sent");
 
@@ -85,7 +92,7 @@ class Program
         var message = new ObjectMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions);
+        var response = await messageSession.Request<ObjectResponseMessage>(message, sendOptions);
         Console.WriteLine($"Callback received with response property value:{response.Property}");
 
         #endregion

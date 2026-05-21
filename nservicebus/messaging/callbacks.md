@@ -29,7 +29,7 @@ When sending a message, a callback can be registered that will be invoked when a
 > [!CAUTION]
 > If the server process returns multiple responses, NServiceBus does not know which response message will be last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (e.g. a crash or an [IIS recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx)) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
-To handle responses from the processing endpoint, the sending endpoint must have its own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
+To handle responses from the processing endpoint, the sending endpoint must have its own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
 
 snippet: EmptyHandler
 

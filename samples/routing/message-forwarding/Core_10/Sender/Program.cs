@@ -1,21 +1,27 @@
 using System;
 using Messages;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Sender";
 
 #region route-message-to-original-destination
 
-var config = new EndpointConfiguration("Sender");
-var routing = config.UseTransport(new LearningTransport());
+var endpointConfiguration = new EndpointConfiguration("Sender");
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
 routing.RouteToEndpoint(typeof(ImportantMessage), "OriginalDestination");
 
 #endregion
 
-config.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpoint = await Endpoint.Start(config);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Endpoint Started. Press s to send a very important message. Any other key to exit");
 
@@ -27,8 +33,8 @@ while (Console.ReadKey(true).Key == ConsoleKey.S)
     {
         Text = $"Hello there: {i++}"
     };
-    await endpoint.Send(message);
+    await messageSession.Send(message);
     Console.WriteLine("Message sent");
 }
 
-await endpoint.Stop();
+await host.StopAsync();

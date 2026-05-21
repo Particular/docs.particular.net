@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 Console.Title = "Sender";
 
 var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Sender");
@@ -8,7 +11,11 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(SimpleMessage), "FixMalformedMessages.Receiver");
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
 while (true)
@@ -26,11 +33,11 @@ while (true)
     {
         Id = guid.ToString().ToLowerInvariant()
     };
-    await endpointInstance.Send(simpleMessage);
+    await messageSession.Send(simpleMessage);
 
     Console.WriteLine($"Sent a new message with Id = {guid}.");
 
     Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
 }
 
-await endpointInstance.Stop();
+await host.StopAsync();

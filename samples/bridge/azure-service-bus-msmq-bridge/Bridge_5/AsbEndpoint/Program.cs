@@ -27,7 +27,7 @@ endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString
 
 var builder = Host.CreateApplicationBuilder(args);
 //builder.Logging.SetMinimumLevel(LogLevel.Debug);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var sendOptions = new SendOptions();
 sendOptions.SetDestination("Samples.MessagingBridge.MsmqEndpoint");
@@ -60,4 +60,4 @@ while (!ct.IsCancellationRequested)
     }
 }
 
-await host.StopAsync(); 
+await host.StopAsync();

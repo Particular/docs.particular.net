@@ -1,51 +1,49 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Npgsql;
 using NpgsqlTypes;
 using NServiceBus;
 
-partial class Program
-{
-    static async Task Main()
+Console.Title = "EndpointPostgreSql";
+
+var endpointConfiguration = new EndpointConfiguration("EndpointPostgreSql");
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
+
+var connection = "Host=localhost;Username=postgres;Password=yourStrong(!)Password;Database=NsbSamplesSqlPersistenceTransition";
+
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+
+var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+
+dialect.JsonBParameterModifier(
+    modifier: parameter =>
     {
-        Console.Title = "EndpointPostgreSql";
+        var npgsqlParameter = (NpgsqlParameter)parameter;
+        npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+    });
 
-        var endpointConfiguration = new EndpointConfiguration("EndpointPostgreSql");
+persistence.ConnectionBuilder(
+    () => new NpgsqlConnection(connection));
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
+var subscriptions = persistence.SubscriptionSettings();
+subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
-        var connection = "Host=localhost;Username=postgres;Password=yourStrong(!)Password;Database=NsbSamplesSqlPersistenceTransition";
+SqlHelper.EnsureDatabaseExists(connection);
 
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+await SendMessage(messageSession);
 
-        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+Console.WriteLine("StartOrder Message sent");
 
-        dialect.JsonBParameterModifier(
-            modifier: parameter =>
-            {
-                var npgsqlParameter = (NpgsqlParameter)parameter;
-                npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
-            });
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-        persistence.ConnectionBuilder(
-            () => new NpgsqlConnection(connection));
-
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
-
-        SqlHelper.EnsureDatabaseExists(connection);
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        await SendMessage(endpointInstance);
-
-        Console.WriteLine("StartOrder Message sent");
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+await host.StopAsync();

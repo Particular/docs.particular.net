@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Quartz;
 using Quartz.Impl;
@@ -16,7 +18,11 @@ class Program
 
         #region Configuration
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
 
         LogProvider.SetCurrentLogProvider(new QuartzConsoleLogProvider());
 
@@ -24,8 +30,8 @@ class Program
 
         var scheduler = await schedulerFactory.GetScheduler();
 
-        // inject the endpointInstance into the scheduler context
-        scheduler.SetEndpointInstance(endpointInstance);
+        // inject the messageSession into the scheduler context
+        scheduler.SetMessageSession(messageSession);
 
         await scheduler.Start();
         #endregion
@@ -61,7 +67,7 @@ class Program
         #region shutdown
 
         await scheduler.Shutdown();
-        await endpointInstance.Stop();
+        await host.StopAsync();
 
         #endregion
     }

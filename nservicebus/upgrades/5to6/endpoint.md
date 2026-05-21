@@ -31,7 +31,7 @@ The `IWantToRunWhenBusStartsAndStops` interface is now obsolete.
 
 If the extensibility provided by `IWantToRunWhenBusStartsAndStops` is still required, it can be achieved via other means in the [NServiceBus endpoint lifecycle](/nservicebus/lifecycle/).
 
-### [Self-hosting](/nservicebus/hosting/#self-hosting)
+### [Self-hosting](/nservicebus/hosting/)
 
 When self-hosting, call any startup code after `Endpoint.Start` and cleanup code after `Endpoint.Stop`.
 

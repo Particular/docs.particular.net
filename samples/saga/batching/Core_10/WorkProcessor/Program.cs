@@ -1,38 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-public static class Program
-{
-    public static async Task Main()
-    {
-        var config = new EndpointConfiguration(EndpointNames.WorkProcessor);
+var config = new EndpointConfiguration(EndpointNames.WorkProcessor);
 
-        config.UsePersistence<LearningPersistence>();
-        config.UseTransport<LearningTransport>();
-        //config.UseSerialization<NewtonsoftJsonSerializer>();
-        config.UseSerialization<SystemJsonSerializer>();
-        config.AuditProcessedMessagesTo("audit");
-        config.SendFailedMessagesTo("error");
-        config.LimitMessageProcessingConcurrencyTo(64);
+config.UsePersistence<LearningPersistence>();
+config.UseTransport<LearningTransport>();
+config.UseSerialization<SystemJsonSerializer>();
+config.AuditProcessedMessagesTo("audit");
+config.SendFailedMessagesTo("error");
+config.LimitMessageProcessingConcurrencyTo(64);
 
-        var transport = config.UseTransport<LearningTransport>();
-        var routing = transport.Routing();
-        var _ = await config.StartWithDefaultRoutes(routing);
+var transport = config.UseTransport<LearningTransport>();
+var routing = transport.Routing();
+RoutingHelper.ApplyDefaultRouting(routing);
 
-        Console.WriteLine("Started.");
-        Console.WriteLine("Press [Enter] to exit.");
-
-        while (true)
-        {
-            var pressedKey = Console.ReadKey();
-            switch (pressedKey.Key)
-            {
-                case ConsoleKey.Enter:
-                    {
-                        return;
-                    }
-            }
-        }
-    }
-}
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(config);
+await builder.Build().RunAsync();

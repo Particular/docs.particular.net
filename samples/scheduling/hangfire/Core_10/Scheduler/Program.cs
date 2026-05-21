@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.MemoryStorage;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -15,10 +17,14 @@ class Program
 
         #region Configuration
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
 
         // store the endpointInstance in a static helper class
-        EndpointHelper.Instance = endpointInstance;
+        EndpointHelper.MessageSession = messageSession;
 
         // use in memory storage. Production should use more robust alternatives:
         // SqlServer, Redis etc
@@ -44,7 +50,7 @@ class Program
         #region shutdown
 
         scheduler.Dispose();
-        await endpointInstance.Stop();
+        await host.StopAsync();
 
         #endregion
     }
