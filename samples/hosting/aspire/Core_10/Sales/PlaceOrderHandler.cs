@@ -12,7 +12,8 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> log) : IHandleMessages
         // This is normally where some business logic would occur
 
         // Force a transient exception to demonstrate failures in telemetry data
-        if (Random.Shared.Next(0, 5) == 0)
+        var ran = Random.Shared.Next(0, 5) ;
+        if (ran == 0 || ran == 1 || ran == 5)
         {
             throw new Exception("Oops");
         }

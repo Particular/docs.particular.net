@@ -42,7 +42,8 @@ builder.AddProject<Projects.ClientUI>("ClientUI")
 builder.AddProject<Projects.Shipping>("Shipping")
     .WithReference(shippingDB)
     .WaitFor(shippingDB)
-    .WithParticularPlatform(platform);
+    .WithParticularPlatform(platform)
+    .WaitFor(platform);
 
 builder.Build().Run();
 #endregion

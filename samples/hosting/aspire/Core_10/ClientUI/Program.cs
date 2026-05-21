@@ -1,5 +1,4 @@
 ﻿using Messages;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -7,25 +6,12 @@ Console.Title = "Client UI";
 
 var builder = Host.CreateApplicationBuilder();
 
-builder.AddServiceDefaults();
-
-var endpointConfiguration = new EndpointConfiguration("ClientUI");
-
-var connectionString = builder.Configuration.GetConnectionString("transport") ?? throw new Exception("No connection string for transport");
-var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
-var routing = endpointConfiguration.UseTransport(transport);
-routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
-
-endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
-endpointConfiguration.AuditProcessedMessagesTo("audit");
-
-var metrics = endpointConfiguration.EnableMetrics();
-metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
-
-endpointConfiguration.EnableInstallers();
-
-builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+builder
+    .AddServiceDefaults()
+    .AddNServiceBusEndpoint("ClientUI", (endpoint, routing) =>
+    {
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+    });
 
 using var host = builder.Build();
 
