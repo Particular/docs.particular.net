@@ -6,6 +6,8 @@ using NServiceBus.Logging;
 using NServiceBus.Testing;
 using NUnit.Framework;
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 [Explicit]
 #region LoggerTestingAmbient
 [TestFixture]
@@ -42,3 +44,4 @@ public class LoggingTestsAmbient
 
 #endregion
 
+#pragma warning restore CS0618 // Type or member is obsolete
