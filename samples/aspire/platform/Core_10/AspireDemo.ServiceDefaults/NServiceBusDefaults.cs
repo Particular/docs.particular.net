@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Microsoft.Extensions.Hosting;
 
 public static class NServiceBusExtensions
@@ -8,7 +10,11 @@ public static class NServiceBusExtensions
         var endpointConfiguration = new EndpointConfiguration(endpointName);
 
         #region transport-config
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
+        var transportConnection = builder.Configuration.GetConnectionString("learning-transport");
+        var routing = endpointConfiguration.UseTransport(new LearningTransport()
+        {
+            StorageDirectory = transportConnection
+        });
         #endregion
 
         configure?.Invoke(endpointConfiguration, routing);
