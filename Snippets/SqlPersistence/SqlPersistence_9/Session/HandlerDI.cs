@@ -1,6 +1,7 @@
 using System.Data.Common;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.Sql;
@@ -28,24 +29,21 @@ public class HandlerThatUsesSessionViaDI :
 
 public class EndpointWithConnectionInjected
 {
-    public void Configure(EndpointConfiguration config)
+    public void Configure(IHostApplicationBuilder builder)
     {
         #region sqlPersistenceSession-DI-register
 
-        config.RegisterComponents(c =>
+        builder.Services.AddScoped(serviceProvider =>
         {
-            c.AddScoped(b =>
-            {
-                var session = b.GetService<ISqlStorageSession>();
-                var repository = new MyRepository(
-                    session.Connection,
-                    session.Transaction);
+            var session = serviceProvider.GetService<ISqlStorageSession>();
+            var repository = new MyRepository(
+                session.Connection,
+                session.Transaction);
 
-                //Ensure changes are saved before the transaction is committed
-                session.OnSaveChanges((s, ctx) => repository.SaveChangesAsync());
+            //Ensure changes are saved before the transaction is committed
+            session.OnSaveChanges((s, ctx) => repository.SaveChangesAsync());
 
-                return repository;
-            });
+            return repository;
         });
 
         #endregion
