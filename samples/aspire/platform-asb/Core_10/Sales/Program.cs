@@ -1,5 +1,6 @@
-﻿
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
+
+Console.Title = "Sales";
 
 var builder = Host.CreateApplicationBuilder();
 
