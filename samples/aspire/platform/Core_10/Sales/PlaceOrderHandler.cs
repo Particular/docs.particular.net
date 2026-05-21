@@ -7,13 +7,12 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessa
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
-
         if (Random.Shared.Next(0, 5) == 0)
         {
             throw new Exception("Oops");
         }
 
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }

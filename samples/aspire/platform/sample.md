@@ -14,6 +14,7 @@ This sample shows an Aspire AppHost project that orchestrates multiple NServiceB
 1. Run the AspireDemo.AppHost project
 2. Open the Aspire dashboard
 3. Review the metrics, traces, and structured log entries of each of the resources
+4. Open ServicePulse from the link in the Aspire dashboard to see the audit and health of the running endpoints
 
 > [!NOTE]
 > This sample requires [Docker](https://www.docker.com/) to run. Ensure the predefined container ports are free and available.
@@ -29,8 +30,8 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
   - ServicePulse
   - Learning transport
 - Two projects, each of which is an NServiceBus endpoint. Both of these projects reference the `particular` resource to access the transport connection string.
-  - `clientUi`
-  - `sales`
+  - `clientUi`: simulates a client application sending messages to the system periodically
+  - `sales`: processes messages and simulates transient failures
 
 snippet: app-host
 
