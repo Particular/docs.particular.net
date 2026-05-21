@@ -28,8 +28,8 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
   - Default ServiceControl error, audit and monitoring instances
   - ServicePulse
   - Learning transport
-- Two projects, each of which is an NServiceBus endpoint. All of these projects reference the `particular` resource to access the transport connection string.
-  - `billing`
+- Two projects, each of which is an NServiceBus endpoint. Both of these projects reference the `particular` resource to access the transport connection string.
+  - `clientUi`
   - `sales`
 
 snippet: app-host
