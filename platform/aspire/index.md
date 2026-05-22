@@ -530,19 +530,11 @@ The Learning transport is blocked in publish mode by design. Calling `WithTransp
 
 For production deployments, supply the `<platform-name>-license` parameter through the standard Aspire parameter input mechanisms (user secrets, environment variables, command-line arguments, or a secret-store integration) so the value never lives in the published manifest. The in-code defaults remain useful for local development.
 
-### Fixed host ports
+### Configuring host ports
 
-Each managed container binds a fixed host port that matches the fixed target port inside the container:
+Each managed container exposes an endpoint allowing Aspire to manage the exposed endpoint to avoid conflicts with ports already in use by other processes. As these ports are selected randomly by Aspire at startup you can refer to the dashboard for the url to access each component.
 
-| Component                   | Endpoint name  | Port  |
-| --------------------------- | -------------- | ----- |
-| ServicePulse                | `servicepulse` | 9090  |
-| ServiceControl Error        | `error`        | 33333 |
-| ServiceControl Audit        | `audit`        | 44444 |
-| ServiceControl Monitoring   | `monitoring`   | 33633 |
-| Managed RavenDB persistence | `http`         | 8080  |
-
-These bindings give each component a stable URL (for example `http://localhost:9090` for ServicePulse) without having to inspect the Aspire dashboard. The trade-off is that two AppHost instances cannot run side by side on the same machine, and any pre-existing local service on these ports blocks startup.
+In some cases it may be desirable to have a fixed port exposed by these components to provide a stable url (for example `http://localhost:9090` for ServicePulse) without having to inspect the Aspire dashboard.
 
 Override a port with the standard Aspire `WithEndpoint(endpointName, callback)` API:
 
@@ -552,9 +544,20 @@ Override a port with the standard Aspire `WithEndpoint(endpointName, callback)` 
 //     .WithEndpoint("servicepulse", e =>
 //     {
 //         e.Port = 9091;
-//         e.TargetPort = 9091;
+//         e.TargetPort = 9090;
 //     });
 ```
+
+Refer to the following table for the default endpoint names and ports exposed by each component:
+
+| Component                   | Endpoint name  | Internal Port  |
+| --------------------------- | -------------- | -------------- |
+| ServicePulse                | `servicepulse` | 9090           |
+| ServiceControl Error        | `error`        | 33333          |
+| ServiceControl Audit        | `audit`        | 44444          |
+| ServiceControl Monitoring   | `monitoring`   | 33633          |
+| Managed RavenDB persistence | `http`         | 8080           |
+
 
 ### Pinning container image versions
 
