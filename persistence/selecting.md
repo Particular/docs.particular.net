@@ -1,7 +1,7 @@
 ---
 title: Selecting a persister
 summary: A guide for selecting an NServicebus persister.
-reviewed: 2024-09-13
+reviewed: 2026-05-22
 isLearningPath: true
 ---
 
