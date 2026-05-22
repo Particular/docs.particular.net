@@ -600,10 +600,6 @@ Two integration-specific points to keep in mind for any publish target:
 
 If `AddParticularPlatform` is called but no platform components are added, the integration marks the platform as `RuntimeUnhealthy` at startup and logs a warning that no child resources were added. Add components individually (see [Adding platform components individually](#adding-platform-components-individually)) or call `AddDefaultComponents()` to wire the standard topology.
 
-### Port already in use
-
-The integration binds fixed host ports for every component (see [Fixed host ports](#production-considerations-fixed-host-ports)). If another process or AppHost instance is already using one of those ports, the container fails to start. Stop the conflicting process, or override the port with `WithEndpoint(name, callback)`.
-
 ### ServicePulse shows the monitoring panel as unavailable
 
 `AddServicePulse` accepts an optional monitoring instance. When the monitoring argument is omitted, or `WithMonitoringInstance(null)` is called on the ServicePulse builder, ServicePulse runs without the monitoring panel. Pass an `IResourceBuilder<ServiceControlMonitoringInstanceResource>` to `AddServicePulse`, or call `WithMonitoringInstance(monitoring)` on the ServicePulse builder, to enable it. (`AddDefaultComponents()` always wires monitoring in automatically.)
