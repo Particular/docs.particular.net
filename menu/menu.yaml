@@ -1361,6 +1361,10 @@
         Title: Version 6 to 7
       - Url: nservicebus/upgrades/host-4to5
         Title: Version 4 to 5
+    - Title: Extensions.Hosting
+      Articles:
+      - Url: nservicebus/upgrades/extensions-hosting-4to5
+        Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
     - Title: Azure Cloud Services Host
