@@ -2,6 +2,7 @@
 title: Aspire
 summary: Describes how to orchestrate the Particular Platform via the Aspire AppHost
 reviewed: 2026-05-21
+component: Aspire.Hosting
 related:
 - samples/hosting/aspire
 - samples/aspire/platform
@@ -24,24 +25,7 @@ A single `AddParticularPlatform(...)` call registers a platform resource that ow
 
 Transport, persistence, and licensing are configured once on the platform resource and propagated to every component, so the containers start in the correct order. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire illustrating the topology:
-//
-// var builder = DistributedApplication.CreateBuilder(args);
-//
-// var platform = builder
-//     .AddParticularPlatform("particular")
-//     .AddDefaultComponents();
-//
-// var sales = builder.AddProject<Projects.Sales>("Sales")
-//     .WithParticularPlatform(platform);
-//
-// builder.AddProject<Projects.ClientUI>("ClientUI")
-//     .WaitFor(sales)
-//     .WithParticularPlatform(platform);
-//
-// builder.Build().Run();
-```
+snippet: aspire-apphost
 
 ## Supported components
 
@@ -101,24 +85,11 @@ Only the AppHost project needs this reference. NServiceBus endpoint projects pic
 
 `AddDefaultComponents()` wires up the Learning transport, a managed RavenDB persistence instance, the ServiceControl error, audit, and monitoring instances, and ServicePulse with sensible defaults:
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var builder = DistributedApplication.CreateBuilder(args);
-//
-// var platform = builder
-//     .AddParticularPlatform("particular")
-//     .AddDefaultComponents();
-//
-// builder.Build().Run();
-```
+snippet: aspire-quick-start-1
 
 To attach an [NServiceBus endpoint](/nservicebus/endpoints/) so it picks up the platform's license and transport connection string, chain `WithParticularPlatform(platform)` on the endpoint's project resource:
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// builder.AddProject<Projects.MyEndpoint>("my-endpoint")
-//     .WithParticularPlatform(platform);
-```
+snippet: aspire-quick-start-2
 
 These defaults are intended for local development. For deployment scenarios, configure an explicit transport, persistence, and license as described in [Configuring the transport](#configuring-the-transport), [Configuring persistence](#configuring-persistence), and [Configuring the license](#configuring-the-license).
 
@@ -146,12 +117,7 @@ The platform uses whichever transport is configured via a `WithTransport*` exten
 
 The [Learning transport](/transports/learning/) stores messages on the local file system. By default they are persisted to `.learningtransport` under the AppHost project directory. Pass a custom path to override.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// builder
-//     .AddParticularPlatform("particular")
-//     .WithTransportLearning();
-```
+snippet: aspire-transport-learning
 
 The Learning transport appears in the Aspire dashboard as a `learning-transport` connection-string resource nested under the platform, holding the resolved storage path.
 
@@ -168,14 +134,7 @@ The Learning transport is intended for development only. The AppHost throws at s
 
 The platform treats Azure Service Bus as an external resource, so the AppHost only needs a connection string to reach the namespace. Other ways to model the resource in the AppHost (such as `AddAzureServiceBus` with Aspire provisioning, or `AsExisting`) are described in [Set up Azure Service Bus in the AppHost](https://aspire.dev/integrations/cloud/azure/azure-service-bus/azure-service-bus-host/) in the Aspire documentation.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var asb = builder.AddConnectionString("asb");
-//
-// builder
-//     .AddParticularPlatform("particular")
-//     .WithTransportAzureServiceBus(asb);
-```
+snippet: aspire-transport-asb
 
 #### Options
 
@@ -191,14 +150,7 @@ The platform treats RabbitMQ as an external resource, so the AppHost only needs 
 
 Pass the resource to `WithTransportRabbitMQ` along with a [routing topology](/transports/rabbitmq/routing-topology.md).
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var rabbit = builder.AddConnectionString("rabbit");
-//
-// builder
-//     .AddParticularPlatform("particular")
-//     .WithTransportRabbitMQ(RabbitMqRouting.QuorumConventionalRouting, rabbit);
-```
+snippet: aspire-transport-rabbitmq
 
 #### Options
 
