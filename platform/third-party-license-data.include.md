@@ -2,8 +2,8 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection" target="_blank">Microsoft.Extensions.DependencyInjection</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics" target="_blank">Microsoft.Extensions.Diagnostics</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting" target="_blank">Microsoft.Extensions.Hosting</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.IO.Hashing" target="_blank">System.IO.Hashing</a> | <a href="https://www.nuget.org/packages/System.IO.Hashing/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.AmazonSQS
 
@@ -279,7 +279,7 @@
 | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter" target="_blank">System.Diagnostics.PerformanceCounter</a> | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.DirectoryServices.AccountManagement" target="_blank">System.DirectoryServices.AccountManagement</a> | <a href="https://www.nuget.org/packages/System.DirectoryServices.AccountManagement/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Management" target="_blank">System.Management</a> | <a href="https://www.nuget.org/packages/System.Management/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Management.Automation" target="_blank">System.Management.Automation</a> | <a href="https://www.nuget.org/packages/System.Management.Automation/7.6.1/license" target="_blank">MIT</a> | <a href="https://github.com/PowerShell/PowerShell" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Management.Automation" target="_blank">System.Management.Automation</a> | <a href="https://www.nuget.org/packages/System.Management.Automation/7.6.2/license" target="_blank">MIT</a> | <a href="https://github.com/PowerShell/PowerShell" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Reactive" target="_blank">System.Reactive</a> | <a href="https://www.nuget.org/packages/System.Reactive/6.1.0/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.ServiceProcess.ServiceController" target="_blank">System.ServiceProcess.ServiceController</a> | <a href="https://www.nuget.org/packages/System.ServiceProcess.ServiceController/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy" target="_blank">Yarp.ReverseProxy</a> | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy/2.3.0/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/yarp" target="_blank">Project Site</a> |
