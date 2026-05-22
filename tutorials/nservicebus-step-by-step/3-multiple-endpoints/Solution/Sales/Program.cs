@@ -8,7 +8,7 @@ var endpointConfiguration = new EndpointConfiguration("Sales");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-builder.Services.AddNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var app = builder.Build();
 
