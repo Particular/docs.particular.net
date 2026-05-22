@@ -12,7 +12,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
 

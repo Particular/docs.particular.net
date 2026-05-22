@@ -25,7 +25,7 @@ class StepByStep
         #endregion
 
         #region Startup
-        builder.UseNServiceBus(endpointConfiguration);
+        builder.Services.AddNServiceBus(endpointConfiguration);
 
         var app = builder.Build();
 

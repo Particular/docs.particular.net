@@ -9,7 +9,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
 #region AddRunLoop
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
 

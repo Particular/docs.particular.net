@@ -90,7 +90,7 @@ class Snippets
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        builder.UseNServiceBus(endpointConfiguration);
+        builder.Services.AddNServiceBus(endpointConfiguration);
 
         var app = builder.Build();
 

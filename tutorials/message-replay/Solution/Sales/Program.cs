@@ -13,7 +13,7 @@ var recoverability = endpointConfiguration.Recoverability();
 recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
 
