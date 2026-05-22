@@ -16,6 +16,6 @@ endpointConfiguration.AuditProcessedMessagesTo("audit");
 var recoverability = endpointConfiguration.Recoverability();
 recoverability.Delayed(delayed => delayed.TimeIncrease(TimeSpan.FromSeconds(2)));
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

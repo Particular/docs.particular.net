@@ -17,7 +17,7 @@ endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 var metrics = endpointConfiguration.EnableMetrics();
 metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 builder.Services.AddControllers();
 builder.Services.AddMvc();
@@ -29,4 +29,4 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
