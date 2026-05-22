@@ -3,7 +3,9 @@ using Particular.Aspire.Hosting.ServicePlatform.Transport;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+#region transport
 var transport = builder.AddConnectionString("transport", "AzureServiceBus_ConnectionString");
+#endregion
 
 #region platform-config
 var platform = builder

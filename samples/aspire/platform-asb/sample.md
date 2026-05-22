@@ -17,6 +17,7 @@ This sample shows an Aspire AppHost project that orchestrates the Particular Pla
 
 > [!NOTE]
 > This sample requires [Docker](https://www.docker.com/) to run. Ensure the predefined container ports are free and available.
+> It also assumes an Azure ServiceBus instance has been setup.
 
 ## Code walkthrough
 
@@ -36,6 +37,25 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 `AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `WithTransportAzureServiceBus` extension points the platform at the `transport` connection string resource defined earlier, so that the ServiceControl instances connect to the same Azure Service Bus broker as the endpoints.
 
 snippet: platform-config
+
+#### Transport
+
+This sample assumes that an Azure Service Bus instance has already been provisioned. It is referenced through a connection string resource named `transport`, which is then passed to `WithTransportAzureServiceBus`:
+
+snippet: transport
+
+Alternatively, the broker can be defined as an [Azure Service Bus resource](https://learn.microsoft.com/dotnet/aspire/messaging/azure-service-bus-integration) managed by Aspire (from the `Aspire.Hosting.Azure.ServiceBus` package), which Aspire provisions as a real namespace in Azure. Because `WithTransportAzureServiceBus` accepts any resource that exposes a connection string, the resulting resource can be passed in directly:
+
+```csharp
+var transport = builder.AddAzureServiceBus("transport");
+
+builder
+    .AddParticularPlatform("particular")
+    .WithTransportAzureServiceBus(transport);
+```
+
+> [!NOTE]
+> Aspire can also run the Azure Service Bus emulator locally (`RunAsEmulator`), but it is not suitable for this sample. The emulator only serves a limited number of queues, topics, and subscriptions that must be declared up front in its configuration; it does not create entities on demand. NServiceBus instead relies on [installers](/nservicebus/operations/installers.md) to create its topology at runtime, and this sample's topology exceeds the emulator's entity limits. For these reasons the sample uses a real Azure Service Bus namespace.
 
 #### Persistence
 
