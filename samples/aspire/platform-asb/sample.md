@@ -2,7 +2,7 @@
 title: Particular Platform with ASB in Aspire
 summary: Orchestrating the Particular Platform with Azure ServiceBus transport via Aspire
 component: Core
-reviewed: 2026-05-21
+reviewed: 2026-05-22
 ---
 
 [Aspire](https://aspire.dev/) is a stack for developing distributed applications provided by Microsoft.
@@ -24,7 +24,7 @@ This sample shows an Aspire AppHost project that orchestrates the Particular Pla
 
 The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang=csharp) defines multiple resources and the relationships between them:
 
-- An Azure ServiceBus instance named `transport`
+- An Azure ServiceBus connection named `transport`
 - Two projects, each of which is an NServiceBus endpoint. All of these projects reference the `transport` resource.
   - `clientui`
   - `sales`
@@ -33,13 +33,35 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 
 #### Platform configuration
 
+`AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `WithTransportAzureServiceBus` extension points the platform at the `transport` connection string resource defined earlier, so that the ServiceControl instances connect to the same Azure Service Bus broker as the endpoints.
+
+snippet: platform-config
+
 #### Persistence
+
+The platform requires a persistence to store the data managed by its ServiceControl instances. `AddPersistenceRavenDb` adds a [RavenDB](/persistence/ravendb/) resource named `particular-persistence` for this purpose.
+
+snippet: persistence
 
 #### Usage reporting
 
+The ServiceControl error instance can collect endpoint usage data, which powers the [usage report](/servicepulse/usage.md) in ServicePulse. When using Azure Service Bus, collecting this data requires Azure credentials with the **Monitoring Reader** role. These values are supplied as Aspire parameters:
+
+snippet: throughput-reporting-params
+
+The parameters are passed to `WithThroughputReporting` when the error instance is registered. See [usage reporting setup](/servicepulse/usage-config.md#connection-setup-azure-service-bus) for details on how to obtain them. If usage reporting is not required, omit these parameters and the `WithThroughputReporting` call.
+
 #### Default components
 
+`AddDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl audit and monitoring instances and ServicePulse. The error instance is added explicitly above so that usage reporting can be configured on it.
+
+snippet: default-components
+
 #### Endpoints
+
+Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. This wires the endpoint to the platform's transport connection string. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
+
+snippet: endpoints
 
 ### AspireDemo.ServiceDefaults
 
@@ -61,6 +83,12 @@ snippet: enable-installers
 
 Each of the endpoint projects contain the same code to create an application host, apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
 
-snippet:endpoint-config
+snippet: endpoint-config
+
+To demonstrate the platform's error handling, the `Sales` endpoint's handler throws an exception for a random subset of the messages it receives:
+
+snippet: random-error
+
+Failed messages are moved to the error queue, where they can be inspected and retried from ServicePulse.
 
 If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
