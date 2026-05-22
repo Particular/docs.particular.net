@@ -43,7 +43,6 @@ Now, add references to the **Messages** project, as well as the NuGet packages y
 > dotnet add Shipping reference Messages
 
 > dotnet add Shipping package NServiceBus
-> dotnet add Shipping package NServiceBus.Extensions.Hosting
 > dotnet add Shipping package NServiceBus.Heartbeat
 > dotnet add Shipping package NServiceBus.Metrics.ServiceControl
 ```
