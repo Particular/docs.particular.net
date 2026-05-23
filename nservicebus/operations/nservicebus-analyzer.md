@@ -14,7 +14,6 @@ The analyzer points out missing `await` operators when using asynchronous method
 * `IMessageHandlerContext`
 * `IMessageSession`
 * `Saga`
-* `IEndpointInstance`
 * `Endpoint`
 * `IUniformSession` (from the [UniformSession package](/nservicebus/messaging/uniformsession.md))
 
