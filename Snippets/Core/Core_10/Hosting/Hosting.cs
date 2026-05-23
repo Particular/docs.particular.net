@@ -6,16 +6,6 @@ using NServiceBus;
 
 class Hosting
 {
-    void SendOnly()
-    {
-        #region Hosting-SendOnly
-
-        var endpointConfiguration = new EndpointConfiguration("EndpointName");
-        endpointConfiguration.SendOnly();
-
-        #endregion
-    }
-
 #pragma warning disable CS0618 // Type or member is obsolete
     async Task Startup()
     {

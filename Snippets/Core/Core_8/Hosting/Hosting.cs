@@ -6,18 +6,6 @@
 
     class Hosting
     {
-        async Task SendOnly()
-        {
-            #region Hosting-SendOnly
-
-            var endpointConfiguration = new EndpointConfiguration("EndpointName");
-            endpointConfiguration.SendOnly();
-            // Apply other necessary endpoint configuration, e.g. transport
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-            #endregion
-        }
-
         async Task Startup()
         {
             #region Hosting-Startup

@@ -2,11 +2,10 @@
 title: Hosting
 summary: Describes the various approaches to endpoint hosting
 component: Core
-reviewed: 2026-05-05
+reviewed: 2026-05-23
 redirects:
 - nservicebus/hosting/self-hosting
 - nservicebus/hosting/self-hosting-v4.x
-- nservicebus/hosting/send-only-endpoints
 - nservicebus/hosting/service-fabric-hosting
 ---
 
@@ -37,14 +36,6 @@ Related:
  * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
  * [Generic host](/samples/hosting/generic-host)
 
-## Send-only hosting
-
-A "Send-only endpoint" is used when the only purpose is sending messages, and no message processing is required. Common use cases include websites, console applications, and Windows applications. This is the code for starting an endpoint in send-only mode.
-
-snippet: Hosting-SendOnly
-
-The only configuration required when running in this mode is the destination when [sending a message](/nservicebus/messaging/send-a-message.md).
-
 ## Hosting technologies
 
 ### Web hosting
@@ -66,3 +57,7 @@ NServiceBus endpoints have certain requirements for the hosting environment:
 * The endpoint process needs write access to write log files. See the [logging documentation](/nservicebus/logging) for more details about the default log file location and how to configure logging.
 * The endpoint process needs write access to write the startup diagnostics file. See the [startup diagnostics documentation](/nservicebus/hosting/startup-diagnostics.md) for more details about the diagnostic file.
 * Since NServiceBus makes assumptions on aspects like assembly names, ILMerging any of the NServiceBus* assemblies is not supported.
+
+## Send-only hosting
+
+Send-only is documented as an [endpoint concept](/nservicebus/endpoints/#send-only), rather than a hosting approach.

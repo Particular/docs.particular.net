@@ -4,7 +4,7 @@ summary: Guidelines for publishing messages from within web applications
 component: core
 related:
 - samples/web
-reviewed: 2024-11-05
+reviewed: 2026-05-23
 ---
 
 Publishing events from a web application is possible with NServiceBus, but it should be carefully considered before implementation. This article will describe the guidelines for publishing messages from within web applications under different circumstances.
@@ -55,7 +55,7 @@ Although this speaks specifically to web applications, it's worth noting that th
 
 ## Storage-driven transport topology
 
-For storage-driven transports, it is not recommended to have one of the web applications receive subscription requests. Instead, each web application instance can be implemented as a [send-only endpoint](/nservicebus/hosting/#send-only-hosting), and a back-end service endpoint can be responsible for receiving the subscription request messages and updating the subscription storage.
+For storage-driven transports, it is not recommended to have one of the web applications receive subscription requests. Instead, each web application instance can be implemented as a [send-only endpoint](/nservicebus/endpoints/#send-only), and a back-end service endpoint can be responsible for receiving the subscription request messages and updating the subscription storage.
 
 ![Storage-driven transport publishing topology](storage-based-publish-topology.png "width=400")
 

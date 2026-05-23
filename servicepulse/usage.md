@@ -1,7 +1,7 @@
 ---
 title: Measuring system usage
 summary: Use ServicePulse to track NServiceBus endpoints, throughput, and queues, creating usage reports for licensing
-reviewed: 2025-01-10
+reviewed: 2026-05-23
 redirects:
 - nservicebus/usage
 ---
@@ -79,7 +79,7 @@ An [endpoint that is only processing transactional session dispatch messages](/n
 
 #### Send-Only Endpoint
 
-An endpoint that [only sends](/nservicebus/hosting/#send-only-hosting) messages and does not process any messages. These endpoints have different licensing considerations since they don't process incoming messages.
+An endpoint that [only sends](/nservicebus/endpoints/#send-only) messages and does not process any messages. These endpoints have different licensing considerations since they don't process incoming messages.
 
 #### Planned to be decommissioned
 

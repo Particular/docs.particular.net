@@ -2,7 +2,7 @@
 title: Using TransactionalSession with Entity Framework and ASP.NET Core
 summary: Transactional Session sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
 component: TransactionalSession.SqlPersistence
-reviewed: 2025-06-04
+reviewed: 2026-05-23
 related:
 - nservicebus/transactional-session
 - nservicebus/transactional-session/persistences/sql-persistence
@@ -11,7 +11,7 @@ related:
 
 include: webhost-warning
 
-This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The ASP.NET Core application hosts a [send-only endpoint](/nservicebus/hosting/#send-only-hosting). The operations are triggered by an incoming HTTP request to ASP.NET Core that will manage the `ITransactionalSession` lifetime using a request middleware.
+This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The ASP.NET Core application hosts a [send-only endpoint](/nservicebus/endpoints/#send-only). The operations are triggered by an incoming HTTP request to ASP.NET Core that will manage the `ITransactionalSession` lifetime using a request middleware.
 
 > [!NOTE]
 > Starting in version 8.2.0, `NServiceBus.Persistence.Sql.TransactionalSession` is supported in send-only endpoints. Refer to the [documentation](/nservicebus/transactional-session/#remote-processor) for more details.
