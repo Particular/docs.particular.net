@@ -9,7 +9,7 @@ related:
 - samples/aspire/platform-asb
 ---
 
-<!-- TODO: short intro paragraph describing what `Particular.Aspire.Hosting.ServicePlatform` does and who it is for (tech leads and developers running the Particular Platform locally or in publish-mode deployments via an Aspire AppHost). -->
+The `Particular.Aspire.Hosting.ServicePlatform` package is an [Aspire](https://aspire.dev/) hosting integration that runs the Particular Platform — the ServiceControl instances, ServicePulse, persistence, and message transport — as part of an Aspire AppHost. It is intended for developers and technical leads who run the platform locally during development and want the same AppHost to carry through to publish-mode deployments, without maintaining a separate set of infrastructure scripts.
 
 ## Overview
 
@@ -31,7 +31,7 @@ snippet: aspire-apphost
 
 The integration is being built out across the Particular Platform in stages. The tables below show what is currently wired through the AppHost.
 
-If you are using the Particular Service Platform with Aspire today and would like to see more Aspire support, [reach out](https://github.com/Particular/NServiceBus/issues/6941).
+If you are using the Particular Service Platform with Aspire today and would like to see more Aspire support, [tell us what's missing](https://github.com/Particular/NServiceBus/issues/6941).
 
 ### Transport
 
