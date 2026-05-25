@@ -1,8 +1,8 @@
 ---
-title: Migrating Azure Functions (Isolated Worker) with Service Bus to the new Azure Functions package
+title: Migrate Azure Functions (Isolated Worker) to new package NServiceBus.AzureFunctions.AzureServiceBus package
 summary: How to migrate from NServiceBus.AzureFunctions.Worker.ServiceBus to NServiceBus.AzureFunctions.AzureServiceBus
 component: AzureFunctions
-reviewed: 2026-05-15
+reviewed: 2026-05-25
 related:
   - nservicebus/hosting/azure/functions
   - nservicebus/hosting/azure-functions-service-bus
@@ -94,6 +94,12 @@ Remove the `[assembly: NServiceBusTriggerFunction(...)]` attribute. The new pack
 With the old package, a project maps to a single endpoint, and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example, `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 With the new package, the receiving endpoint is declared explicitly in code. A minimal one-to-one migration looks like this:
+
+### Select the transport topology explicitly
+
+In the old worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
+
+When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For details, see [Topology configuration](/nservicebus/hosting/azure-functions-service-bus/#preparing-the-azure-service-bus-namespace-topology-configuration).
 
 Serialization must now be configured explicitly in endpoint configuration.
 For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the old default serializer behavior.
@@ -287,7 +293,7 @@ In the new package, use the [explicit dead-letter support](/transports/azure-ser
 The old package used the `WEBSITE_SITE_NAME` environment variable as the NServiceBus Host ID. This resulted in instances not being visible in ServicePulse as the function was scaled up or down. In the new package, [`WEBSITE_INSTANCE_ID`](https://learn.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#scaling) is used to ensure that all instances are identifiable.
 
 > [!NOTE]
-> It's recommended to [configure ServicePulse not to track heartbeats for these instances](https://docs.particular.net/monitoring/heartbeats/in-servicepulse#configuration-do-not-track-instances) to avoid false negatives.
+> It's recommended to [configure ServicePulse not to track heartbeats for these instances](/monitoring/heartbeats/in-servicepulse.md#configuration-do-not-track-instances) to avoid false negatives.
 
 The logic falls back to [`CONTAINER_NAME` when running in Azure container apps](https://learn.microsoft.com/en-us/azure/container-apps/environment-variables?tabs=portal#apps) and `Environment.MachineName` for local development.
 
