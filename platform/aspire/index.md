@@ -431,7 +431,7 @@ To enable it on the ServiceControl Error instance, chain `WithThroughputReportin
 //         clientSecret: clientSecret));
 ```
 
-See [Usage reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport) for what each value is used for in ServiceControl.
+See [Usage reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration#usage-reporting-when-using-the-azure-service-bus-transport) for what each value is used for in ServiceControl.
 
 #### Options
 
@@ -458,7 +458,7 @@ See [Usage reporting when using the Azure Service Bus transport](/servicecontrol
 //     .WithThroughputReporting(new ThroughputReportingRabbitMq(apiUrl, username, password));
 ```
 
-See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) for what each value is used for in ServiceControl.
+See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration#usage-reporting-when-using-the-rabbitmq-transport) for what each value is used for in ServiceControl.
 
 #### Options
 
