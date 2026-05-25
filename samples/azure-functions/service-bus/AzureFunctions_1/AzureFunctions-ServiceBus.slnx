@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="AzureFunctions.Messages/AzureFunctions.Messages.csproj" />
-  <Project Path="AzureFunctions.ServiceBus/AzureFunctions.ServiceBus.csproj" />
-</Solution>
