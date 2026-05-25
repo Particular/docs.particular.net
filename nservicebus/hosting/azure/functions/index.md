@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-05-06
+reviewed: 2026-05-25
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
@@ -62,7 +62,7 @@ Each endpoint has its own `Configure{FunctionName}` method; the source generator
 
 ## Send-only endpoints
 
-A [Send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
+A [send-only endpoint](/nservicebus/endpoints/#send-only) can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
 
 snippet: azure-functions-sendonly-registration
 
