@@ -31,7 +31,7 @@ snippet: aspire-apphost
 
 The integration is being built out across the Particular Platform in stages. The tables below show what is currently wired through the AppHost.
 
-If you are using the Particular Service Platform with Aspire today and would like to see more Aspire support, [tell us what's missing](https://github.com/Particular/NServiceBus/issues/6941).
+If you are using the Particular Service Platform with Aspire today and would like to see more Aspire support, [reach out](https://github.com/Particular/NServiceBus/issues/6941).
 
 ### Transport
 
