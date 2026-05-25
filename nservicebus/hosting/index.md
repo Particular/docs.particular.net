@@ -2,11 +2,10 @@
 title: Hosting
 summary: Describes the various approaches to endpoint hosting
 component: Core
-reviewed: 2026-05-05
+reviewed: 2026-05-23
 redirects:
 - nservicebus/hosting/self-hosting
 - nservicebus/hosting/self-hosting-v4.x
-- nservicebus/hosting/send-only-endpoints
 - nservicebus/hosting/service-fabric-hosting
 ---
 
@@ -36,14 +35,6 @@ Related:
  * [Generate a Docker-hosted endpoint project with `dotnet new`](/nservicebus/dotnet-templates/)
  * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
  * [Generic host](/samples/hosting/generic-host)
-
-## Send-only hosting
-
-A "Send-only endpoint" is used when the only purpose is sending messages, and no message processing is required. Common use cases include websites, console applications, and Windows applications. This is the code for starting an endpoint in send-only mode.
-
-snippet: Hosting-SendOnly
-
-The only configuration required when running in this mode is the destination when [sending a message](/nservicebus/messaging/send-a-message.md).
 
 ## Hosting technologies
 
