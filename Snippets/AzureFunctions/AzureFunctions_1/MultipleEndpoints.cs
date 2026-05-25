@@ -15,7 +15,7 @@ public partial class BillingFunctions
     [Function("BillingApi")]
     [NServiceBusFunction]
     public partial Task BillingApi(
-        [ServiceBusTrigger("billing-api", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("%BillingPrefix%-api", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
@@ -31,7 +31,7 @@ public partial class BillingFunctions
     [Function("BillingBackend")]
     [NServiceBusFunction]
     public partial Task BillingBackend(
-        [ServiceBusTrigger("billing-backend", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("%BillingPrefix%-backend", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,

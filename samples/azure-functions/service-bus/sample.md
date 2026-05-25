@@ -15,7 +15,7 @@ downloadbutton
 
 ### Configure connection string
 
-To use the sample, provide a valid Azure Service Bus connection string in the `local.settings.json` file.
+To use the sample, provide a valid Azure Service Bus connection in the `local.settings.json` file using the default setting name `AzureWebJobsServiceBus`.
 
 ## Sample structure
 

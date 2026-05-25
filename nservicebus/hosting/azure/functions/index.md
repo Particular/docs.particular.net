@@ -67,7 +67,9 @@ A [send-only endpoint](/nservicebus/endpoints/#send-only) can be registered for 
 
 snippet: azure-functions-sendonly-registration
 
-To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` keyed by the same name used at registration:
+`AddSendOnlyNServiceBusEndpoint(...)` has overloads for endpoint-only configuration and for configuration plus endpoint-scoped service registration.
+
+To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` keyed by the same name used at registration. Any endpoint-scoped services registered in the send-only endpoint can be resolved the same way:
 
 snippet: azure-functions-sendonly-usage
 
@@ -75,12 +77,14 @@ The key passed to `[FromKeyedServices(...)]` must match the name passed to `AddS
 
 ## Connection configuration
 
-The [connection string](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues#connection-string) for Azure Service Bus is read from the Functions configuration. The same setting name is referenced in two places:
+The Azure Service Bus connection is read from the Functions configuration. The named setting can be either a [connection string](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues#connection-string) or a configuration section containing `fullyQualifiedNamespace` for token-credential authentication. The same setting name is referenced in two places:
 
 - The `Connection` parameter on the `[ServiceBusTrigger]` attribute.
 - The `ConnectionName` property on `AzureServiceBusServerlessTransport` when registering a send-only endpoint.
 
-Any setting name can be used; the examples on this page use `ServiceBusConnection`.
+If the default setting name `AzureWebJobsServiceBus` is used, the `Connection` parameter can be omitted on `[ServiceBusTrigger]`, and `ConnectionName` does not need to be set on `AzureServiceBusServerlessTransport`.
+
+Queue names and setting names in `[ServiceBusTrigger]` can use Azure Functions binding expressions such as `%BillingPrefix%-api`.
 
 ## Transactions
 

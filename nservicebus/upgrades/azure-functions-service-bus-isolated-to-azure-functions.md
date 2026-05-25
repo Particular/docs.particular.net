@@ -101,6 +101,8 @@ In the old worker package, the effective Azure Service Bus topology could be con
 
 When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For details, see [Topology configuration](/nservicebus/hosting/azure-functions-service-bus/#preparing-the-azure-service-bus-namespace-topology-configuration).
 
+Trigger queue names and connection setting names can continue to use [Azure Functions binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns) such as `%BillingPrefix%-api`.
+
 Serialization must now be configured explicitly in endpoint configuration.
 For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the old default serializer behavior.
 
@@ -237,6 +239,8 @@ builder.AddSendOnlyNServiceBusEndpoint("client", configuration =>
 });
 ```
 
+Use the `AddSendOnlyNServiceBusEndpoint` overload that also takes `IServiceCollection` when endpoint-specific services need to be registered and later resolved via keyed services.
+
 Then inject the message session into the sending function:
 
 ```csharp
@@ -284,6 +288,11 @@ The new package no longer relies on `NServiceBusTriggerFunction` for this scenar
 The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to stop forwarding failed messages to the error queue and let Azure Service Bus dead-lettering handle them instead. See the [old error queue documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-error-queue).
 
 In the new package, use the [explicit dead-letter support](/transports/azure-service-bus/configuration.md#dead-lettering).
+
+```csharp
+configuration.Recoverability()
+    .MoveErrorsToAzureServiceBusDeadLetterQueue();
+```
 
 > [!NOTE]
 > The new package automatically enables [DLQ forwarding](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) to allow dead-lettered messages to be managed by the platform.

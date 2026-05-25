@@ -14,7 +14,7 @@ public partial class ShippingEndpoint
 {
     [Function("Shipping")]
     public partial Task Shipping(
-        [ServiceBusTrigger("shipping", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("shipping", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,

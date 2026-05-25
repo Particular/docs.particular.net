@@ -16,10 +16,9 @@ class SendOnlyRegistration
     {
         builder.AddSendOnlyNServiceBusEndpoint("client", (configuration, services) =>
         {
-            var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default)
-            {
-                ConnectionName = "ServiceBusConnection"
-            };
+            services.AddSingleton(new MyComponent("client"));
+
+            var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default);
             var routing = configuration.UseTransport(transport);
             routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
             configuration.UseSerialization<SystemJsonSerializer>();
@@ -29,16 +28,20 @@ class SendOnlyRegistration
 }
 
 #region azure-functions-sendonly-usage
-class SalesApi([FromKeyedServices("client")] IMessageSession session)
+class SalesApi([FromKeyedServices("client")] IMessageSession session, [FromKeyedServices("client")] MyComponent component)
 {
     [Function("SalesApi")]
     public async Task<HttpResponseData> Run(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request)
     {
         await session.Send(new SubmitOrder());
-        return request.CreateResponse(HttpStatusCode.OK);
+        var response = request.CreateResponse(HttpStatusCode.OK);
+        await response.WriteStringAsync(component.EndpointName);
+        return response;
     }
 }
 #endregion
 
 class SubmitOrder : ICommand;
+
+record MyComponent(string EndpointName);

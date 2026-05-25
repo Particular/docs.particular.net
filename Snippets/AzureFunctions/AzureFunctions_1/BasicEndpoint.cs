@@ -13,7 +13,7 @@ public partial class OrdersEndpoint
 {
     [Function(nameof(Orders))]
     public partial Task Orders(
-        [ServiceBusTrigger("orders", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("orders", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
