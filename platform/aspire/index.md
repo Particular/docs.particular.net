@@ -175,25 +175,13 @@ RavenDB can be modelled as either a managed child of the platform (the integrati
 
 `AddPersistenceRavenDb(name)` adds the [`particular/servicecontrol-ravendb` container](/servicecontrol/ravendb/containers.md) as a child of the platform. This is the path used by `AddDefaultComponents()`.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var platform = builder.AddParticularPlatform("particular");
-//
-// var persistence = platform.AddPersistenceRavenDb("ravendb");
-```
+snippet: aspire-persistence-ravendb-managed
 
 #### External RavenDB instance
 
 Use `WithPersistenceRavenDb(existing)` to attach a RavenDB resource declared elsewhere in the AppHost, for example via the [Aspire RavenDB integration](https://aspire.dev/integrations/databases/ravendb/ravendb-host/) or `AddConnectionString`.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var ravenDb = builder.AddRavenDB("ravendb");
-//
-// builder
-//     .AddParticularPlatform("particular")
-//     .WithPersistenceRavenDb(ravenDb);
-```
+snippet: aspire-persistence-ravendb-external
 
 External RavenDB instances are not nested under the platform in the dashboard, since the platform does not own their lifecycle.
 
@@ -225,25 +213,13 @@ This makes local development work without explicit configuration on machines whe
 
 Use `WithLicenseFromFile(file)` to read the license from a specific file path.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// builder
-//     .AddParticularPlatform("particular")
-//     .WithLicenseFromFile("license.xml");
-```
+snippet: aspire-license-file
 
 ### From inline text
 
 Use `WithLicenseFromText(licenseText)` to inline the license XML directly. This is useful in tests or when reading the license through `IConfiguration`.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var licenseXml = builder.Configuration["ParticularLicense"];
-//
-// builder
-//     .AddParticularPlatform("particular")
-//     .WithLicenseFromText(licenseXml);
-```
+snippet: aspire-license-text
 
 ### Options
 
@@ -258,16 +234,7 @@ Use `WithLicenseFromText(licenseText)` to inline the license XML directly. This 
 
 Each `Add*` method below is an extension on the platform resource builder. Every component automatically receives the platform license and transport configuration. Error and Audit additionally receive the persistence resource.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire showing explicit composition
-// var platform = builder.AddParticularPlatform("particular");
-// var persistence = platform.AddPersistenceRavenDb("ravendb");
-//
-// var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence);
-// var monitoring = platform.AddServiceControlMonitoringInstance("monitoring");
-// var audit = platform.AddServiceControlAuditInstance("audit", error, persistence);
-// platform.AddServicePulse("servicepulse", error, monitoring);
-```
+snippet: aspire-components-explicit
 
 ### ServiceControl Error instance
 
@@ -275,12 +242,7 @@ Each `Add*` method below is an extension on the platform resource builder. Every
 
 The error queue name defaults to `error`. Override it with `WithErrorQueueName(queueName)`. Use `WithThroughputQueue(queueName)` to override the queue on which throughput data is received from the monitoring instance. This is independent of [throughput reporting](#throughput-reporting), which separately configures broker-statistics querying.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
-//     .WithErrorQueueName("error")
-//     .WithThroughputQueue("particular.throughput");
-```
+snippet: aspire-components-error
 
 #### Options
 
@@ -297,11 +259,7 @@ The error queue name defaults to `error`. Override it with `WithErrorQueueName(q
 
 The audit queue name defaults to `audit`. Override it with `WithAuditQueueName(queueName)`.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var audit = platform.AddServiceControlAuditInstance("audit", error, persistence)
-//     .WithAuditQueueName("audit");
-```
+snippet: aspire-components-audit
 
 #### Options
 
@@ -318,12 +276,7 @@ The audit queue name defaults to `audit`. Override it with `WithAuditQueueName(q
 
 The monitoring queue name defaults to `Particular.Monitoring`. Override it with `WithMonitoringQueueName(queueName)`. Use `WithThroughputQueueFrom(error)` to copy the throughput queue name from the error instance and keep the two aligned without repeating the name; `WithThroughputQueue(queueName)` sets it explicitly when the queue address needs to differ from the error instance.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var monitoring = platform.AddServiceControlMonitoringInstance("monitoring")
-//     .WithMonitoringQueueName("Particular.Monitoring")
-//     .WithThroughputQueueFrom(error);
-```
+snippet: aspire-components-monitoring
 
 #### Options
 
@@ -338,10 +291,7 @@ The monitoring queue name defaults to `Particular.Monitoring`. Override it with 
 
 `AddServicePulse(name, servicecontrol, monitoring?)` adds [ServicePulse](/servicepulse/), running the [`particular/servicepulse`](https://hub.docker.com/r/particular/servicepulse) image, as a child of the platform. The error instance is wired in as the ServiceControl API endpoint. The optional monitoring argument exposes real-time monitoring data in the UI; if omitted, the monitoring panel is unavailable.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// platform.AddServicePulse("servicepulse", error, monitoring);
-```
+snippet: aspire-components-servicepulse
 
 #### Options
 
@@ -368,11 +318,7 @@ See the Aspire documentation on [resources](https://aspire.dev/get-started/resou
 
 `WithParticularPlatform(platform)` is an extension on any Aspire resource that exposes environment variables (typically a project resource added with `AddProject<T>(...)`). It injects the platform license and the transport connection string into the resource's environment, so an [NServiceBus endpoint](/nservicebus/endpoints/) reading those values picks up the same license and transport that the platform components use, without further wiring in the AppHost.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// builder.AddProject<Projects.MyEndpoint>("my-endpoint")
-//     .WithParticularPlatform(platform);
-```
+snippet: aspire-endpoint-connect
 
 The endpoint project still configures NServiceBus itself: choosing the transport package (`NServiceBus.Transport.AzureServiceBus`, `NServiceBus.Transport.RabbitMQ`, and so on), reading the connection string from `IConfiguration` or environment, and setting up routing, persistence, and serialization as usual. `WithParticularPlatform` only delivers the platform-side configuration; it does not replace NServiceBus configuration code in the endpoint.
 
@@ -393,12 +339,7 @@ The `<transport-name>` portion of the connection-string variable matches the nam
 
 `WithParticularPlatform` does not add a startup-order dependency on the platform. To delay the endpoint's startup until the platform reports `Running`, chain `WaitFor(platform)`:
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// builder.AddProject<Projects.MyEndpoint>("my-endpoint")
-//     .WithParticularPlatform(platform)
-//     .WaitFor(platform);
-```
+snippet: aspire-endpoint-waitfor
 
 ### Options
 
@@ -416,20 +357,7 @@ To enable it on the ServiceControl Error instance, chain `WithThroughputReportin
 
 `ThroughputReportingAzureServiceBus` supplies Azure AD credentials so the Error instance can query Service Bus management APIs. Pass each value as an Aspire parameter; mark the client secret as a secret parameter.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var tenantId = builder.AddParameter("asb-tenant-id");
-// var subscriptionId = builder.AddParameter("asb-subscription-id");
-// var clientId = builder.AddParameter("asb-client-id");
-// var clientSecret = builder.AddParameter("asb-client-secret", secret: true);
-//
-// var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
-//     .WithThroughputReporting(new ThroughputReportingAzureServiceBus(
-//         tenantId: tenantId,
-//         subscriptionId: subscriptionId,
-//         clientId: clientId,
-//         clientSecret: clientSecret));
-```
+snippet: aspire-throughput-asb
 
 See [Usage reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration#usage-reporting-when-using-the-azure-service-bus-transport) for what each value is used for in ServiceControl.
 
@@ -448,15 +376,7 @@ See [Usage reporting when using the Azure Service Bus transport](/servicecontrol
 
 `ThroughputReportingRabbitMq` supplies RabbitMQ management API credentials so the Error instance can query broker statistics. All parameters are optional; ServiceControl falls back to the broker connection string for any value not supplied.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// var apiUrl = builder.AddParameter("rabbit-api-url");
-// var username = builder.AddParameter("rabbit-username");
-// var password = builder.AddParameter("rabbit-password", secret: true);
-//
-// var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
-//     .WithThroughputReporting(new ThroughputReportingRabbitMq(apiUrl, username, password));
-```
+snippet: aspire-throughput-rabbitmq
 
 See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration#usage-reporting-when-using-the-rabbitmq-transport) for what each value is used for in ServiceControl.
 
@@ -490,15 +410,7 @@ In some cases it may be desirable to have a fixed port exposed by these componen
 
 Override a port with the standard Aspire `WithEndpoint(endpointName, callback)` API:
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire
-// platform.AddServicePulse("servicepulse", error, monitoring)
-//     .WithEndpoint("servicepulse", e =>
-//     {
-//         e.Port = 9091;
-//         e.TargetPort = 9090;
-//     });
-```
+snippet: aspire-host-ports
 
 Refer to the following table for the default endpoint names and ports exposed by each component:
 
@@ -517,19 +429,7 @@ The integration uses the `latest` tag for every managed container image (`partic
 
 The ServiceControl Error, Audit, Monitoring, and RavenDB versions must align. See [Managing ServiceControl RavenDB instances via Containers](/servicecontrol/ravendb/containers.md) for the version-pairing rules.
 
-```csharp
-// TODO: replace with a real snippet from snippets/aspire showing version pinning across components
-// var serviceControlVersion = "x.y.z";
-//
-// var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
-//     .WithImageTag(serviceControlVersion);
-//
-// platform.AddServiceControlAuditInstance("audit", error, persistence)
-//     .WithImageTag(serviceControlVersion);
-//
-// platform.AddServiceControlMonitoringInstance("monitoring")
-//     .WithImageTag(serviceControlVersion);
-```
+snippet: aspire-image-pinning
 
 ## Publishing and deploying
 
