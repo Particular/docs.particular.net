@@ -53,16 +53,6 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | ------------------------------------ | --------- |
 | [RavenDB](/servicecontrol/ravendb/)  | Supported |
 
-### Throughput reporting
-
-| Transport                                                                                                                                  | Status            |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| [Azure Service Bus](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport)  | Supported         |
-| [RabbitMQ](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport)                    | Supported         |
-| [Amazon SQS](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-amazon-sqs-transport)                | Not yet supported |
-| [Microsoft SQL Server](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-sqlserver-transport)       | Not yet supported |
-| [PostgreSQL](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-postgresql-transport)                | Not yet supported |
-
 ## Prerequisites
 
 - The [Aspire CLI](https://aspire.dev/get-started/install-cli/) and the .NET 10 SDK, used to build and run the AppHost project.
@@ -240,7 +230,7 @@ snippet: aspire-components-explicit
 
 `AddServiceControlErrorInstance(name, persistence)` adds a [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/), running the [`particular/servicecontrol`](https://hub.docker.com/r/particular/servicecontrol) image, as a child of the platform. The supplied persistence must have been registered on the platform via a `WithPersistence*` or `AddPersistence*` extension.
 
-The error queue name defaults to `error`. Override it with `WithErrorQueueName(queueName)`. Use `WithThroughputQueue(queueName)` to override the queue on which throughput data is received from the monitoring instance. This is independent of [throughput reporting](#throughput-reporting), which separately configures broker-statistics querying.
+The error queue name defaults to `error`. Override it with `WithErrorQueueName(queueName)`. Use `WithThroughputQueue(queueName)` to override the queue on which throughput data is received from the monitoring instance. This is independent of throughput reporting, which separately configures broker-statistics querying.
 
 snippet: aspire-components-error
 
@@ -421,7 +411,6 @@ Refer to the following table for the default endpoint names and ports exposed by
 | ServiceControl Audit        | `audit`        | 44444          |
 | ServiceControl Monitoring   | `monitoring`   | 33633          |
 | Managed RavenDB persistence | `http`         | 8080           |
-
 
 ### Pinning container image versions
 
