@@ -11,9 +11,9 @@ using NServiceBus.Transport.AzureServiceBus;
 
 class SendOnlyRegistration
 {
-    #region azure-functions-sendonly-registration
     static void ConfigureSendOnly(FunctionsApplicationBuilder builder)
     {
+        #region azure-functions-sendonly-registration
         builder.AddSendOnlyNServiceBusEndpoint("client", (configuration, services) =>
         {
             services.AddSingleton(new MyComponent("client"));
@@ -23,8 +23,8 @@ class SendOnlyRegistration
             routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
             configuration.UseSerialization<SystemJsonSerializer>();
         });
+        #endregion
     }
-    #endregion
 
     record MyComponent(string EndpointName);
 }
