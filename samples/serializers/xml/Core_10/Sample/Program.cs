@@ -32,7 +32,7 @@ Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 var host = builder.Build();
 
 await host.StartAsync();

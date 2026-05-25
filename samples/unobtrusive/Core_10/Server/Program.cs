@@ -12,7 +12,7 @@ endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSer
 
 endpointConfiguration.ApplyCustomConventions();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

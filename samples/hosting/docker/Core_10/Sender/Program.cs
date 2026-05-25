@@ -19,7 +19,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 builder.Services.AddHostedService<MessageSender>();
 
 await builder.Build()

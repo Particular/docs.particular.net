@@ -38,7 +38,7 @@ endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 // https://docs.net/nservicebus/operations/installers
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

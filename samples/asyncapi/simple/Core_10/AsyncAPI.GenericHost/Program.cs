@@ -18,7 +18,7 @@ endpointConfiguration.EnableInstallers();
 endpointConfiguration.EnableAsyncApiSupport();
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 #region GenericHostAddSchemaWriter
 builder.Services.AddHostedService<AsyncAPISchemaWriter>();

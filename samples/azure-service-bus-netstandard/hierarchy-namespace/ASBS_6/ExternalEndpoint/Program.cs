@@ -21,7 +21,7 @@ var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Def
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var app = builder.Build();
 

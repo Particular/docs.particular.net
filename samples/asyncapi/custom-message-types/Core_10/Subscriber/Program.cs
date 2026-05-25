@@ -14,7 +14,7 @@ endpointConfiguration.EnableInstallers();
 endpointConfiguration.EnableAsyncApiSupport();
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var app = builder.Build();
 await app.RunAsync();

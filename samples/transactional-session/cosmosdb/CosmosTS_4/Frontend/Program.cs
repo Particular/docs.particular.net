@@ -26,7 +26,7 @@ persistence.EnableTransactionalSession();
 
 endpointConfiguration.PurgeOnStartup(true);
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 builder.Services.AddHostedService<Worker>();
 

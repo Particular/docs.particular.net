@@ -13,6 +13,6 @@ var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

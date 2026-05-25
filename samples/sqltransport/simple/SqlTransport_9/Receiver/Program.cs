@@ -31,7 +31,7 @@ await SqlHelper.EnsureDatabaseExists(connectionString);
 
 // Set up the generic host and register NServiceBus
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

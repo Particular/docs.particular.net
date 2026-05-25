@@ -20,6 +20,6 @@ var routingSettings = endpointConfiguration.UseTransport(transport);
 routingSettings.DisablePublishing();
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

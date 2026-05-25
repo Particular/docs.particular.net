@@ -19,6 +19,6 @@ persistence.DefaultContainer("Orders", "/CustomerId");
 persistence.TransactionInformation().ExtractPartitionKeyFromMessage<OrderReceived>(message => new PartitionKey(message.CustomerId));
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

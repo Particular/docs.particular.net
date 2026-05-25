@@ -9,6 +9,6 @@
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
   </ItemGroup>
 </Project>

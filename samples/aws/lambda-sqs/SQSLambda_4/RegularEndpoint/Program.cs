@@ -12,7 +12,7 @@ Console.WriteLine("Starting...");
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

@@ -26,7 +26,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSeria
 
 endpointConfiguration.UseTransport<LearningTransport>();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

@@ -20,7 +20,7 @@ endpointConfiguration.RegisterMessageMutator(new EndpointVersion2.ReplyMutator()
 #endregion
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

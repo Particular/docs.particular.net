@@ -18,8 +18,7 @@ class Program
      Host.CreateDefaultBuilder(args)
          .ConfigureServices((hostContext, services) =>
          {
-         }).UseNServiceBus(x =>
-         {
+         }).ConfigureServices((_, services) => {
              Console.Title = "ContentManagement";
              var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
              endpointConfiguration.ApplyCommonConfiguration(routing =>
@@ -27,6 +26,6 @@ class Program
                  routing.RouteToEndpoint(typeof(Store.Messages.RequestResponse.ProvisionDownloadRequest), "Store.Operations");
              });
 
-             return endpointConfiguration;
+             services.AddNServiceBusEndpoint(endpointConfiguration);
          });
 }

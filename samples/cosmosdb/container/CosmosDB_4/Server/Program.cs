@@ -71,7 +71,7 @@ class Program
         var database = cosmosClient.GetDatabase("Samples.CosmosDB.Container");
         database.CreateContainerIfNotExistsAsync("ShipOrderSagaData", "/id").Wait();
 
-        builder.UseNServiceBus(endpointConfiguration);
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
         var host = builder.Build();
         await host.StartAsync();

@@ -18,6 +18,6 @@ endpointConfiguration.UseTransport(new PostgreSqlTransport(connectionString)
 endpointConfiguration.EnableInstallers();
 
 Console.WriteLine("Waiting for message from the Sender");
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

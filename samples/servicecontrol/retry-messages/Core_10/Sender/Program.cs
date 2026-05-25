@@ -17,7 +17,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
 routing.RouteToEndpoint(typeof(SimpleMessage), "RetryFailedMessages.Receiver");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

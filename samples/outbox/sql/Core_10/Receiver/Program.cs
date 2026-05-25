@@ -7,8 +7,7 @@ using NServiceBus.Transport.SqlServer;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) => { Console.Title = "Server"; })
-    .UseNServiceBus(x =>
-    {
+    .ConfigureServices((_, services) => {
         Console.Title = "Receiver";
 
         //for local instance or SqlExpress
@@ -55,7 +54,7 @@ var host = Host.CreateDefaultBuilder(args)
         SqlHelper.CreateSchema(connectionString, "receiver");
 
         SqlHelper.ExecuteSql(connectionString, File.ReadAllText("Startup.sql"));
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build();
 

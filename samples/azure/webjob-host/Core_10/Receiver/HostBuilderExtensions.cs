@@ -23,7 +23,7 @@ public static class HostBuilderExtensions
         });
 
         #region WebJobHost_Start
-        hostBuilder.UseNServiceBus(ctx =>
+        hostBuilder.ConfigureServices((hostBuilderContext, services) =>
         {
             var endpointConfiguration = new EndpointConfiguration("receiver");
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
@@ -31,10 +31,10 @@ public static class HostBuilderExtensions
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.EnableInstallers();
 
-            var transportConnectionString = ctx.Configuration.GetConnectionString("TransportConnectionString");
+            var transportConnectionString = hostBuilderContext.Configuration.GetConnectionString("TransportConnectionString");
             endpointConfiguration.UseTransport(new AzureStorageQueueTransport(transportConnectionString));
 
-            return endpointConfiguration;
+            services.AddNServiceBusEndpoint(endpointConfiguration);
         });
         #endregion
 

@@ -45,7 +45,7 @@ namespace NServiceBusSubscriber
 
             endpointConfiguration.EnableInstallers();
 
-            builder.UseNServiceBus(endpointConfiguration);
+            builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
             builder.Build().Run();
         }

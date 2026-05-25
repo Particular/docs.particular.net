@@ -13,7 +13,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
 Console.WriteLine("Press 'enter' to send a StartOrder messages");
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 await host.StartAsync();

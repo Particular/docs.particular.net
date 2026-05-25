@@ -22,7 +22,7 @@ routing.RouteToEndpoint(
     "Receiver"
 );
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

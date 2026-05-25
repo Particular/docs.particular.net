@@ -11,7 +11,7 @@ routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Aurora.Lambda.Sales");
 Console.WriteLine("Starting...");
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();

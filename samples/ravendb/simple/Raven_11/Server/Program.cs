@@ -42,7 +42,7 @@ await EnsureDatabaseExists(documentStore);
 
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();
 
 static async Task EnsureDatabaseExists(DocumentStore documentStore)

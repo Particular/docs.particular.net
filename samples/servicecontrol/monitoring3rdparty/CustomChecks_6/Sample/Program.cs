@@ -9,15 +9,14 @@ await Host.CreateDefaultBuilder(args)
     {
         // Add any services here if needed
     })
-    .UseNServiceBus(context =>
-    {
+    .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomChecks.Monitor3rdParty");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         endpointConfiguration.ReportCustomChecksTo("Particular.ServiceControl");
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build()
     .RunAsync();
