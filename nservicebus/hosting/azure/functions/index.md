@@ -7,6 +7,7 @@ related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
   - nservicebus/hosting/override-hostid
+  - samples/azure-functions/service-bus
 ---
 
 NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package:
