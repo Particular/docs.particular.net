@@ -48,16 +48,6 @@ Replace old package references with the new package:
 </ItemGroup>
 ```
 
-If preferred, model this as a remove/add change:
-
-```xml
-<ItemGroup>
-    <PackageReference Remove="NServiceBus.AzureFunctions.Worker.ServiceBus" />
-    <PackageReference Remove="NServiceBus.Transport.AzureServiceBus" />
-  <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="<version>" />
-</ItemGroup>
-```
-
 In practice:
 
 - Remove `NServiceBus.AzureFunctions.Worker.ServiceBus`.
@@ -65,8 +55,6 @@ In practice:
 - Add `NServiceBus.AzureFunctions.AzureServiceBus`.
 
 Do not add `NServiceBus.AzureFunctions.Common` directly. The Azure Service Bus package is the user-facing package for this migration.
-
-A direct `NServiceBus` package reference is optional. Keep it only when intentionally pinning the NServiceBus Core version separately.
 
 ## Update host startup
 
@@ -95,29 +83,17 @@ With the old package, a project maps to a single endpoint, and the queue-trigger
 
 With the new package, the receiving endpoint is declared explicitly in code. A minimal one-to-one migration looks like this:
 
-### Select the transport topology explicitly
-
-In the old worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
-
-When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For details, see [Topology configuration](/nservicebus/hosting/azure-functions-service-bus/#preparing-the-azure-service-bus-namespace-topology-configuration).
-
-Trigger queue names and connection setting names can continue to use [Azure Functions binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns) such as `%BillingPrefix%-api`.
-
-Serialization must now be configured explicitly in endpoint configuration.
-For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the old default serializer behavior.
-
 ```csharp
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 [NServiceBusFunction]
 public partial class SalesEndpoint
 {
     [Function("Sales")]
     public partial Task Sales(
-        [ServiceBusTrigger("sales", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("sales", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
@@ -139,15 +115,32 @@ public partial class SalesEndpoint
 
 The endpoint method, and any containing class, must be declared `partial` so the source generator can emit the trigger body.
 
-For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions#explicit-handler-and-saga-registration).
+Trigger queue names and connection setting names can use [Azure Functions binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns) such as `%BillingPrefix%-api` if needed.
 
-## Move endpoint configuration next to the endpoint
+### Move endpoint configuration next to the endpoint
 
 The old worker package centralizes configuration in `builder.AddNServiceBus(configuration => { ... })`.
 
 The new package moves endpoint-specific configuration into a static `Configure<FunctionName>` method next to the endpoint. The method always takes `EndpointConfiguration` and can also take `IServiceCollection`, `IConfiguration`, and `IHostEnvironment` as needed.
 
 For the full configure-method model and parameter options, see [The configure method](/nservicebus/hosting/azure/functions#the-configure-method).
+
+### Handlers and sagas
+
+Due to assembly scanning not being available message handlers and sagas needs to be registered explicitly using `configuration.AddHandler` or `configuration.AddSaga`.
+
+For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions#explicit-handler-and-saga-registration).
+
+### Serialization
+
+Serialization must now be configured explicitly in endpoint configuration.
+For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the old default serializer behavior.
+
+### Select the transport topology explicitly
+
+In the old worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
+
+When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For details, see [Topology configuration](/nservicebus/hosting/azure-functions-service-bus/#preparing-the-azure-service-bus-namespace-topology-configuration).
 
 ## Migrate usages of IFunctionEndpoint
 
