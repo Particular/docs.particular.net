@@ -63,6 +63,6 @@ persistence.UseConfiguration(hibernateConfig);
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

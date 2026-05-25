@@ -36,5 +36,5 @@ endpointConfiguration.UseTransport(new LearningTransport
 });
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

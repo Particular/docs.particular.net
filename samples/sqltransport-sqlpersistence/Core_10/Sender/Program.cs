@@ -38,7 +38,7 @@ await SqlHelper.CreateSchema(connectionString, "sender");
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 await host.StartAsync();

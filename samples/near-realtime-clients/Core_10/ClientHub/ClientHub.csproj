@@ -8,6 +8,5 @@
   <ItemGroup>
     <ProjectReference Include="..\StockEvents\StockEvents.csproj" />
     <PackageReference Include="NServiceBus" Version="10.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
   </ItemGroup>
 </Project>

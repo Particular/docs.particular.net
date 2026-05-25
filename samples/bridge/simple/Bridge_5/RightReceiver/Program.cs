@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -26,5 +27,5 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 endpointConfiguration.SendFailedMessagesTo("error");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

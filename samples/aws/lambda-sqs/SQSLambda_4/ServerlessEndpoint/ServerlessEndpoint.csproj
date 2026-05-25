@@ -20,7 +20,7 @@
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="9.*" />
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="4.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
   </ItemGroup>
 
 </Project>

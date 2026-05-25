@@ -79,5 +79,5 @@ await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connect
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

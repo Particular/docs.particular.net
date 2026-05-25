@@ -21,7 +21,7 @@ toggles.AddToggle(ctx => ctx.MessageHandler.HandlerType == typeof(Handler2));
 
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 var host = builder.Build();
 await host.StartAsync();
 

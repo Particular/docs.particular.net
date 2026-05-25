@@ -22,7 +22,7 @@ endpointB.EnableInstallers();
 
 // Delayed retries must be disabled as the IBM MQ transport does not support them
 endpointB.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
-builder.UseNServiceBus(endpointB);
+builder.Services.AddNServiceBusEndpoint(endpointB);
 #endregion
 
 var host = builder.Build();

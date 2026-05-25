@@ -21,7 +21,7 @@ routing.RouteToEndpoint(
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 Console.WriteLine("Starting...");
 

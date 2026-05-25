@@ -9,7 +9,7 @@ using NServiceBus;
 Console.Title = "Endpoint";
 
 var host = Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(x =>
+    .ConfigureServices((_, services) =>
     {
         var endpointConfiguration = new EndpointConfiguration(
             "Samples.Bridge.Endpoint");
@@ -35,7 +35,7 @@ var host = Host.CreateDefaultBuilder(args)
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(typeof(MyMessage), "Samples.Bridge.Endpoint");
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build();
 

@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -17,5 +18,5 @@ endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceiv
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

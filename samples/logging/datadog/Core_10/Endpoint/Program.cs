@@ -9,8 +9,7 @@ Console.Title = EndpointName;
 
 var host = Host.CreateDefaultBuilder(args)
     .UseConsoleLifetime()
-    .UseNServiceBus(_ =>
-    {
+    .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -18,7 +17,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         DataDogMetrics.Setup(endpointConfiguration);
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build();
 

@@ -55,5 +55,5 @@ if (input.Key == ConsoleKey.C && (input.Modifiers & ConsoleModifiers.Control) !=
 }
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

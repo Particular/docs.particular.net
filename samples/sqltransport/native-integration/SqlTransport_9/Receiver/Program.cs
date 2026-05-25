@@ -40,7 +40,7 @@ endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 // Build and start the host
 var host = builder.Build();

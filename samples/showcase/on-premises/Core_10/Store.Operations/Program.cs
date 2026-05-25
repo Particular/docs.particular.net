@@ -19,13 +19,12 @@ class Program
          .ConfigureServices((hostContext, services) =>
          {
 
-         }).UseNServiceBus(x =>
-         {
+         }).ConfigureServices((_, services) => {
              Console.Title = "Operations";
              var endpointConfiguration = new EndpointConfiguration("Store.Operations");
              endpointConfiguration.ApplyCommonConfiguration();
 
-             return endpointConfiguration;
+             services.AddNServiceBusEndpoint(endpointConfiguration);
          });
 
 }

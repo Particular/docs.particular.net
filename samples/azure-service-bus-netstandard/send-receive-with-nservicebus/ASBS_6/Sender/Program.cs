@@ -25,7 +25,7 @@ routing.RouteToEndpoint(typeof(Ping), "Receiver");
 // Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

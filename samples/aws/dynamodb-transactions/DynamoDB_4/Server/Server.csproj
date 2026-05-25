@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.*" />
   </ItemGroup>
   <ItemGroup>

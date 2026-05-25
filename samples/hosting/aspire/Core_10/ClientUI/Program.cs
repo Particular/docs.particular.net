@@ -25,7 +25,7 @@ metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSec
 
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

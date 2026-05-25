@@ -23,7 +23,7 @@ endpointB.UseSerialization<SystemJsonSerializer>();
 // the Sender sends messages invoking SendOnly results and no receive infrastructure will be set up
 endpointB.SendOnly();
 
-builder.UseNServiceBus(endpointB);
+builder.Services.AddNServiceBusEndpoint(endpointB);
 #endregion
 
 var host = builder.Build();

@@ -15,7 +15,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 // Set up the generic host and register NServiceBus
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 // Configure logging
 builder.Logging.AddConsole();

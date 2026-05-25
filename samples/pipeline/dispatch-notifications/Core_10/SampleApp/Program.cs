@@ -13,7 +13,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.NotifyDispatch(new SampleDispatchNotifier());
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 var host = builder.Build();
 await host.StartAsync();
 

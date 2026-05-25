@@ -14,7 +14,7 @@ endpointConfiguration.SendFailedMessagesTo("error");
 var conventions = endpointConfiguration.Conventions();
 conventions.DefiningEventsAs(type => type == typeof(StockTick));
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 builder.Services.AddSignalR();
 

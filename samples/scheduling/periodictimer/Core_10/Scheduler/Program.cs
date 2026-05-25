@@ -13,7 +13,7 @@ var endpointConfig = new EndpointConfiguration("Scheduler");
 endpointConfig.UseTransport(new LearningTransport());
 endpointConfig.UseSerialization<SystemJsonSerializer>();
 
-builder.UseNServiceBus(endpointConfig);
+builder.Services.AddNServiceBusEndpoint(endpointConfig);
 
 builder.Services.AddHostedService<SendMessageJob>();
 

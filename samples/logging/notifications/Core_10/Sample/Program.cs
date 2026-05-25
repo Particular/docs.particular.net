@@ -17,8 +17,7 @@ var host = Host.CreateDefaultBuilder(args)
 
     })
     .UseConsoleLifetime()
-    .UseNServiceBus(context =>
-    {
+    .ConfigureServices((_, services) => {
         #region endpointConfig
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
@@ -40,7 +39,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         #endregion
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     }).Build();
 
 

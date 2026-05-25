@@ -20,7 +20,7 @@ routingConfiguration.RouteToEndpoint(typeof(MyMessage), "Samples.ImmutableMessag
 
 endpointConfiguration.ApplyCustomConventions();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 

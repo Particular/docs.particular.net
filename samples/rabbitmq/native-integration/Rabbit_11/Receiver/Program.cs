@@ -13,5 +13,5 @@ transport.ConnectionString("host=localhost");
 endpointConfiguration.UseSerialization<XmlSerializer>();
 endpointConfiguration.EnableInstallers();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

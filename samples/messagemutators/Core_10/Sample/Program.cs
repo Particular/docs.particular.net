@@ -21,7 +21,7 @@ builder.Services.AddSingleton<IMutateOutgoingTransportMessages, TransportMessage
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 await host.StartAsync();

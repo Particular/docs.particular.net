@@ -28,7 +28,7 @@ endpointConfiguration.RegisterMessageMutator(new FixedLengthEBCDICToJsonMutator(
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 await host.RunAsync();

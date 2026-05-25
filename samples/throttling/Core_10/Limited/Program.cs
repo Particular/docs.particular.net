@@ -14,8 +14,6 @@ class Program
      Host.CreateDefaultBuilder(args)
          .ConfigureServices((hostContext, services) =>
          {
-         }).UseNServiceBus(x =>
-         {
              Console.Title = "Limited";
 
              #region LimitConcurrency
@@ -37,7 +35,7 @@ class Program
 
              Console.WriteLine("Press any key");
              Console.ReadKey();
-             return endpointConfiguration;
+             services.AddNServiceBusEndpoint(endpointConfiguration);
          });
 
 

@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="7.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

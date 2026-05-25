@@ -15,14 +15,12 @@ class Program
             .ConfigureServices(services =>
             {
                 services.AddLogging(logging => logging.AddConsole());
-            })
-            .UseNServiceBus(context =>
-            {
+
                 var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Transactions.Client");
                 endpointConfiguration.UsePersistence<LearningPersistence>();
                 endpointConfiguration.UseTransport(new LearningTransport());
                 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                return endpointConfiguration;
+                services.AddNServiceBusEndpoint(endpointConfiguration);
             });
 
         var host = hostBuilder.Build();
