@@ -69,7 +69,8 @@ Samples must:
 - Use clear variable names
 - Explain non-obvious logic
 - Avoid hardcoded configuration values
-- Do not add `LangVersion` to sample or snippet projects
+- Samples should define `LangVersion` to match the default language version of the lowest .NET target framework used in the solution
+- Snippet projects should not define `LangVersion`
 - Use exact package versions for prerelease packages; do not use wildcard prerelease versions such as `1.*-*`
 - Add `prerelease.txt` to a versioned sample or snippet directory when its projects reference prerelease versions of that component's packages, and do not add it otherwise
 
