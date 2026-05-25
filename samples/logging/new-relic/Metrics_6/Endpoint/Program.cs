@@ -6,7 +6,7 @@ using NServiceBus;
 
 Console.Title = "TracingEndpoint";
 
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .UseConsoleLifetime()
     .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration("TracingEndpoint");

@@ -25,7 +25,7 @@ Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 

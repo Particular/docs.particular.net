@@ -24,7 +24,7 @@ subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
 var builder = Host.CreateApplicationBuilder();
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
-var host = builder.Build();
+using var host = builder.Build();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 await host.StartAsync();
 await SendMessage(messageSession);

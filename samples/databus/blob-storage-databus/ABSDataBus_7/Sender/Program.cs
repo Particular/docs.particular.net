@@ -31,7 +31,7 @@ Console.WriteLine("Starting...");
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var app = builder.Build();
+using var app = builder.Build();
 
 await app.StartAsync();
 

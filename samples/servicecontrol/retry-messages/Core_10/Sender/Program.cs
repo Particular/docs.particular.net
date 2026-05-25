@@ -19,7 +19,7 @@ routing.RouteToEndpoint(typeof(SimpleMessage), "RetryFailedMessages.Receiver");
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 

@@ -17,7 +17,7 @@ RoutingHelper.ApplyDefaultRouting(routing);
 
 var builder = Host.CreateApplicationBuilder();
 builder.Services.AddNServiceBusEndpoint(config);
-var host = builder.Build();
+using var host = builder.Build();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 await host.StartAsync();
 

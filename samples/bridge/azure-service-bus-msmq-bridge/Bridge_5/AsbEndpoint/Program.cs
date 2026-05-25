@@ -32,7 +32,7 @@ builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 var sendOptions = new SendOptions();
 sendOptions.SetDestination("Samples.MessagingBridge.MsmqEndpoint");
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();

@@ -7,7 +7,7 @@ const string EndpointName = "Samples.Metrics.Tracing.Endpoint";
 
 Console.Title = EndpointName;
 
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .UseConsoleLifetime()
     .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration(EndpointName);

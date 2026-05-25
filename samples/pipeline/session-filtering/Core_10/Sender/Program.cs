@@ -24,7 +24,7 @@ routing.RouteToEndpoint(
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 
@@ -65,59 +65,3 @@ static void PrintMenu(ISessionKeyProvider sessionKeyProvider)
     Console.WriteLine("Q) Close");
     Console.WriteLine("any other key to send a message");
 }
-
-// class Program
-// {
-//
-//     public static async Task Main(string[] args)
-//     {
-//         var host = CreateHostBuilder(args).Build();
-//
-//         await host.StartAsync();
-//
-//
-//
-//         await host.StopAsync();
-//     }
-//
-//     public static IHostBuilder CreateHostBuilder(string[] args)
-//     {
-//         var sessionKeyProvider = new RotatingSessionKeyProvider();
-//         var builder = Host.CreateDefaultBuilder(args)
-//             .ConfigureServices((hostContext, services) =>
-//             {
-//                 Console.Title = "Sender";
-//                 services.AddSingleton(sessionKeyProvider); // Register the service
-//
-//             }).UseNServiceBus(x =>
-//             {
-//                 var endpointConfiguration = new EndpointConfiguration("c");
-//
-//                 endpointConfiguration.UsePersistence<LearningPersistence>();
-//                 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-//                 var routing = endpointConfiguration.UseTransport(new LearningTransport());
-//
-//                 routing.RouteToEndpoint(
-//                     typeof(SomeMessage),
-//                     "Samples.SessionFilter.Receiver"
-//                 );
-//
-//                 #region add-filter-behavior
-//
-//                 var logger = new LoggerFactory().CreateLogger<FilterIncomingMessages>();
-//                 x.
-//                 endpointConfiguration.ApplySessionFilter(sessionKeyProvider, logger);
-//
-//                 #endregion
-//
-//                 return endpointConfiguration;
-//             });
-//
-//         return builder;
-//     }
-//
-//
-//
-//
-//
-// }

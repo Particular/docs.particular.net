@@ -23,7 +23,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var app = builder.Build();
+using var app = builder.Build();
 
 await app.StartAsync();
 

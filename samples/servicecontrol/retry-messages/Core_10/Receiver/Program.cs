@@ -33,7 +33,7 @@ recoverability.Immediate(
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 

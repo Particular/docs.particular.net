@@ -24,7 +24,7 @@ builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 builder.Services.AddHostedService<AsyncAPISchemaWriter>();
 #endregion
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 
