@@ -139,58 +139,15 @@ public partial class SalesEndpoint
 
 The endpoint method, and any containing class, must be declared `partial` so the source generator can emit the trigger body.
 
-For larger codebases, there are two common handler registration patterns:
-
-- Register individual handlers explicitly with `configuration.AddHandler<THandler>()`.
-- Register all handlers from one assembly using a generated helper and `[Handler]` attributes.
-
-Example of assembly-level registration:
-
-```csharp
-public static void ConfigureSales(EndpointConfiguration configuration)
-{
-    configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-    configuration.UseSerialization<SystemJsonSerializer>();
-
-    configuration.Handlers.SalesAssembly.AddAll();
-}
-
-[Handler]
-class SubmitOrderHandler : IHandleMessages<SubmitOrder>
-{
-    public Task Handle(SubmitOrder message, IMessageHandlerContext context)
-        => Task.CompletedTask;
-}
-```
+For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions#explicit-handler-and-saga-registration).
 
 ## Move endpoint configuration next to the endpoint
 
 The old worker package centralizes configuration in `builder.AddNServiceBus(configuration => { ... })`.
 
-The new package moves endpoint-specific configuration into a static `Configure<FunctionName>` method next to the endpoint. The configure method always takes `EndpointConfiguration` and can also take these optional parameters:
+The new package moves endpoint-specific configuration into a static `Configure<FunctionName>` method next to the endpoint. The method always takes `EndpointConfiguration` and can also take `IServiceCollection`, `IConfiguration`, and `IHostEnvironment` as needed.
 
-- `IServiceCollection`
-- `IConfiguration`
-- `IHostEnvironment`
-
-This makes it possible to keep shared settings in one place while still applying endpoint-specific behavior:
-
-```csharp
-using Microsoft.Extensions.DependencyInjection;
-
-public static void ConfigureSales(EndpointConfiguration configuration, IServiceCollection services)
-{
-    // Azure Functions endpoints must use AzureServiceBusServerlessTransport.
-    configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-    configuration.UseSerialization<SystemJsonSerializer>();
-
-    // Register services that should only be available to this endpoint.
-    services.AddSingleton(new MyComponent("Sales"));
-
-    // Handlers must be added explicitly because assembly scanning is not available.
-    configuration.AddHandler<SubmitOrderHandler>();
-}
-```
+For the full configure-method model and parameter options, see [The configure method](/nservicebus/hosting/azure/functions#the-configure-method).
 
 ## Migrate usages of IFunctionEndpoint
 
@@ -222,48 +179,9 @@ class SalesApi([FromKeyedServices("Sales")] IMessageSession session)
 
 Use this pattern when send-only traffic should be isolated from the receiving endpoint's configuration, queue identity, or routing policy.
 
-First, register the send-only endpoint in `Program.cs`:
+Register the send-only endpoint in `Program.cs`, then inject the keyed `IMessageSession` into the sending function. Use the `AddSendOnlyNServiceBusEndpoint` overload that also takes `IServiceCollection` when endpoint-specific services need to be registered and later resolved via keyed services.
 
-```csharp
-using NServiceBus.Transport.AzureServiceBus;
-
-builder.AddSendOnlyNServiceBusEndpoint("client", configuration =>
-{
-    // Send-only endpoints in Azure Functions also use AzureServiceBusServerlessTransport.
-    var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default);
-    var routing = configuration.UseTransport(transport);
-
-    // Route outgoing messages from this send-only endpoint to the migrated receiver.
-    routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
-    configuration.UseSerialization<SystemJsonSerializer>();
-});
-```
-
-Use the `AddSendOnlyNServiceBusEndpoint` overload that also takes `IServiceCollection` when endpoint-specific services need to be registered and later resolved via keyed services.
-
-Then inject the message session into the sending function:
-
-```csharp
-using System.Net;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
-
-// The key must match the send-only endpoint name registered in Program.cs.
-class SalesApi([FromKeyedServices("client")] IMessageSession session)
-{
-    [Function("SalesApi")]
-    public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post")]
-        HttpRequestData request)
-    {
-        await session.Send(new SubmitOrder());
-
-        return request.CreateResponse(HttpStatusCode.OK);
-    }
-}
-```
+For the send-only registration patterns and keyed-service examples, see [Send-only endpoints](/nservicebus/hosting/azure/functions#send-only-endpoints).
 
 The key used in `[FromKeyedServices("client")]` must match the name passed to `AddSendOnlyNServiceBusEndpoint("client", ...)`.
 
