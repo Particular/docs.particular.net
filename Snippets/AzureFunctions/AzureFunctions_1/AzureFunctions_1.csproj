@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
     <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="1.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.AzureFunctions.Common" Version="1.0.0-alpha.3" />
   </ItemGroup>
 
 </Project>
