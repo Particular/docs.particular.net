@@ -29,7 +29,7 @@ For each newly detected dependency vulnerability, a centralized internal trackin
 
 ### 3. Repository and branch impact assessment
 
-After initial recording, the affected repositories and branches are determined. For each affected repository/branch combination, the system creates a GitHub issue labeled as `Dependency CVE` that includes the advisory reference and branch context.
+After initial recording, the affected repositories and versions are determined. For each affected repository/version combination, the system creates a GitHub issue labeled as `Dependency CVE` that includes the advisory reference and necessary context.
 Customers can subscribe to these issues to receive updates on the vulnerability status and remediation progress.
 
 If customers cannot wait for a fix to be released, they can [pin transitive dependencies](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages#transitive-packages) until a fix is released.
@@ -51,7 +51,7 @@ Where customer-facing communication is needed, the following will be disclosed:
 
 - the affected product or repository scope
 - the relevant advisory or CVE identifier
-- affected versions or branches, where known
+- affected versions
 - remediation or mitigation guidance
 - fix availability status
 
