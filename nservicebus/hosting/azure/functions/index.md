@@ -39,9 +39,9 @@ Declare only the parameters needed:
 
 snippet: azure-functions-configure-with-services
 
-## Handler registration
+## Explicit handler and saga registration
 
-Handlers must be registered explicitly with `EndpointConfiguration.AddHandler<T>`. Assembly scanning is not available in this hosting model; handlers that are not registered will not be invoked.
+Assembly scanning is not available in this hosting model, so handlers and sagas must be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for the available registration approaches in NServiceBus 10.2, and [Disable assembly scanning](/nservicebus/hosting/assembly-scanning.md#disable-assembly-scanning) for the caveats and additional manual registration requirements. Handlers that are not registered will not be invoked.
 
 ## Wiring the host
 
