@@ -25,6 +25,8 @@ class SendOnlyRegistration
         });
     }
     #endregion
+
+    record MyComponent(string EndpointName);
 }
 
 #region azure-functions-sendonly-usage
@@ -43,5 +45,3 @@ class SalesApi([FromKeyedServices("client")] IMessageSession session, [FromKeyed
 #endregion
 
 class SubmitOrder : ICommand;
-
-record MyComponent(string EndpointName);
