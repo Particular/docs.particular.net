@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Shared;
 
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>
     {
         #region endpointName

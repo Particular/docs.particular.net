@@ -8,7 +8,7 @@ using NServiceBus;
 
 Console.Title = "Endpoint";
 
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>
     {
         var endpointConfiguration = new EndpointConfiguration(

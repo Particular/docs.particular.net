@@ -38,7 +38,7 @@ pipeline.Register(
 
 var builder = Host.CreateApplicationBuilder();
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 Console.WriteLine("Press 'Enter' to finish.");

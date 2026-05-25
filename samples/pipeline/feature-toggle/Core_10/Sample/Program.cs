@@ -22,7 +22,7 @@ toggles.AddToggle(ctx => ctx.MessageHandler.HandlerType == typeof(Handler2));
 Console.WriteLine("Starting...");
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 var messageSession = host.Services.GetService<IMessageSession>();

@@ -19,7 +19,7 @@ endpointConfiguration.EnableInstallers();
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var app = builder.Build();
+using var app = builder.Build();
 await app.StartAsync();
 
 var messageSession = app.Services.GetRequiredService<IMessageSession>();

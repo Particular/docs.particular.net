@@ -7,7 +7,7 @@ using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
 Console.Title = "Sender";
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
         endpointConfiguration.EnableInstallers();

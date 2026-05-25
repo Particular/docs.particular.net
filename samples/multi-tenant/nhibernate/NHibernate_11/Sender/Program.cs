@@ -12,7 +12,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 // Get the required services

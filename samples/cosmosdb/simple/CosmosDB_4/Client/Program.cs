@@ -8,7 +8,7 @@ class Program
 {
     public static async Task Main(string[] args)
     {
-        var host = CreateHostBuilder(args).Build();
+        using var host = CreateHostBuilder(args).Build();
 
         await host.StartAsync();
 

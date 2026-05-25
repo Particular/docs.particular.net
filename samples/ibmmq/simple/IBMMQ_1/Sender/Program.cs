@@ -26,7 +26,7 @@ endpointB.SendOnly();
 builder.Services.AddNServiceBusEndpoint(endpointB);
 #endregion
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 

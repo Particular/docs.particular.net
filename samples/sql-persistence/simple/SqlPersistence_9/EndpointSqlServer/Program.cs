@@ -40,7 +40,7 @@ builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 builder.Logging.AddConsole();
 
 // Build and start the host
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 // Get required services

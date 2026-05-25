@@ -15,7 +15,7 @@ endpointConfiguration.UseTransport(new LearningTransport());
 Console.WriteLine("Press 'enter' to send a StartOrder messages");
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();

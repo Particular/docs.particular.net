@@ -40,7 +40,7 @@ endpointConfiguration.RegisterMessageMutator(incomingMessageBodyWriter);
 endpointConfiguration.UseTransport(new LearningTransport());
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 Console.WriteLine("Press any key to exit");

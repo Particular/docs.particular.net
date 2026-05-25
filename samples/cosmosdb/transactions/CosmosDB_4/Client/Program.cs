@@ -23,7 +23,7 @@ class Program
                 services.AddNServiceBusEndpoint(endpointConfiguration);
             });
 
-        var host = hostBuilder.Build();
+        using var host = hostBuilder.Build();
         await host.StartAsync();
 
         var messageSession = host.Services.GetRequiredService<IMessageSession>();
