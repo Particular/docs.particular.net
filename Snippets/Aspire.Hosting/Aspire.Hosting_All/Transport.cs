@@ -18,6 +18,7 @@ public class Transport
         #region aspire-transport-asb
 
         var asb = builder.AddConnectionString("asb");
+        // var asb = builder.AddAzureServiceBus("asb");
 
         builder
             .AddParticularPlatform("particular")
@@ -28,6 +29,7 @@ public class Transport
         #region aspire-transport-rabbitmq
 
         var rabbit = builder.AddConnectionString("rabbit");
+        // var rabbit = builder.AddRabbitMQ("rabbit");
 
         builder
             .AddParticularPlatform("particular")
