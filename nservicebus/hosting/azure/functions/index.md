@@ -21,7 +21,8 @@ An endpoint is a partial class composed of three parts:
 
 The trigger must set `AutoCompleteMessages = false`. The NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
 
-A single Functions app can host one or more endpoints.
+> [!NOTE]
+> A single Functions app can host one or more endpoints.
 
 ## The configure method
 
@@ -86,7 +87,7 @@ Azure Functions endpoints use [`TransportTransactionMode.ReceiveOnly`](/transpor
 
 ## Recoverability
 
-Failed messages are sent to the Azure Service Bus dead-letter queue. The package automatically enables [DLQ forwarding to the error queue](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue), so dead-lettered messages can be managed alongside other failed messages by tools such as ServicePulse.
+In addition to the standard recoverability provided by NServiceBus the package also automatically enables [DLQ forwarding to the error queue](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue), so dead-lettered messages can be managed alongside other failed messages by tools such as ServicePulse.
 
 For details on the dead-letter behavior and configuration options, see [dead-lettering](/transports/azure-service-bus/configuration.md#dead-lettering) in the Azure Service Bus transport documentation.
 
@@ -95,7 +96,7 @@ For details on the dead-letter behavior and configuration options, see [dead-let
 Provision queues and other entities in the Azure Service Bus namespace using the [`asb-transport` command-line tool](/transports/azure-service-bus/operational-scripting.md).
 
 > [!WARNING]
-> The transport defaults `MaxDeliveryCount` to 100. When provisioning entities with the `asb-transport` tool or by hand, set `MaxDeliveryCount` to match (for example, pass `--maximum-delivery-count 100` to the CLI tool) so the namespace and the transport agree.
+> The transport defaults `MaxDeliveryCount` to 100. When provisioning entities with the `asb-transport` tool or by hand, set `MaxDeliveryCount` to match (for example, pass `--maximum-delivery-count 100` to the CLI tool) so the namespace and the transport agree. Also make sure to include dead-letter queue forwarding using `--forward-dlq-to error`
 
 ## Logging and diagnostics
 
