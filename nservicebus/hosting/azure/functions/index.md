@@ -98,11 +98,9 @@ Provision queues and other entities in the Azure Service Bus namespace using the
 > [!WARNING]
 > The transport defaults `MaxDeliveryCount` to 100. When provisioning entities with the `asb-transport` tool or by hand, set `MaxDeliveryCount` to match (for example, pass `--maximum-delivery-count 100` to the CLI tool) so the namespace and the transport agree. Also make sure to include dead-letter queue forwarding using `--forward-dlq-to error`
 
-## Logging and diagnostics
+## Startup diagnostics
 
-NServiceBus log output is forwarded to the Azure Functions logging pipeline automatically. Configure log levels and providers through the standard Functions logging configuration; no additional NServiceBus log setup is required.
-
-Startup diagnostics are not written by default in this hosting model. When opted in, they appear in the Functions host log stream and in any configured destination such as Application Insights.
+Startup diagnostics are not written by default in this hosting model. Use `LogDiagnostics()` to write them to the Functions host log stream and any configured destination such as Application Insights. For the available `LogDiagnostics()` behavior and options, see [Writing diagnostics to the log](/nservicebus/hosting/startup-diagnostics.md#writing-diagnostics-to-the-log).
 
 ### Custom diagnostics writer
 
