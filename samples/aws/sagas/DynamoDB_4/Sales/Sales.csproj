@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Amazon.Lambda.Core" Version="2.*" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="3.*" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.*" />
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="4.*" />
     <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.*" />
