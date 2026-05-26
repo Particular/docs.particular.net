@@ -97,7 +97,6 @@ Externally supplied resources are not nested under the platform. An Azure Servic
 
 The platform node tracks readiness as its children come up. It starts in `Starting`, transitions to `Running` once every child reports healthy, and moves to `RuntimeUnhealthy` if any child stops.
 
-
 ## Configuring the transport
 
 The platform uses whichever transport is configured via a `WithTransport*` extension on the platform resource. The same transport connection string is then propagated to every ServiceControl instance and to any NServiceBus endpoint attached via `WithParticularPlatform(...)`. See [Supported components](#supported-components) for the transports currently wired through the integration.
@@ -349,17 +348,6 @@ snippet: aspire-throughput-asb
 
 See [Usage reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport) for what each value is used for in ServiceControl.
 
-#### Options
-
-| Option | Default |
-| --- | --- |
-| `tenantId` (`IExpressionValue`) constructor parameter | Required |
-| `subscriptionId` (`IExpressionValue`) constructor parameter | Required |
-| `clientId` (`IExpressionValue`) constructor parameter | Required |
-| `clientSecret` (`IExpressionValue`) constructor parameter | Required, should be a secret parameter |
-| `serviceBusName` (`IExpressionValue?`) constructor parameter | Inferred from the transport configuration when omitted |
-| `managementUrl` (`IExpressionValue?`) constructor parameter | Public Azure management URL |
-
 ### RabbitMQ
 
 `ThroughputReportingRabbitMq` supplies RabbitMQ management API credentials so the Error instance can query broker statistics. All parameters are optional; ServiceControl falls back to the broker connection string for any value not supplied.
@@ -367,14 +355,6 @@ See [Usage reporting when using the Azure Service Bus transport](/servicecontrol
 snippet: aspire-throughput-rabbitmq
 
 See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) for what each value is used for in ServiceControl.
-
-#### Options
-
-| Option | Default |
-| --- | --- |
-| `apiUrl` (`IExpressionValue?`) constructor parameter | Falls back to the RabbitMQ transport connection string |
-| `userName` (`IExpressionValue?`) constructor parameter | Falls back to the RabbitMQ transport connection string |
-| `password` (`IExpressionValue?`) constructor parameter | Falls back to the RabbitMQ transport connection string, should be a secret parameter when supplied |
 
 ## Production considerations
 
@@ -399,8 +379,6 @@ In some cases it may be desirable to have a fixed port exposed by these componen
 Override a port with the standard Aspire `WithEndpoint(endpointName, callback)` API:
 
 snippet: aspire-host-ports
-
-
 
 ### Pinning container image versions
 
