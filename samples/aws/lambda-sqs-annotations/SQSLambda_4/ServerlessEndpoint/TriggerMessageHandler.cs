@@ -1,15 +1,13 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace LambdaFunctions;
 
 #region TriggerMessageHandler
-class TriggerMessageHandler : IHandleMessages<TriggerMessage>
+class TriggerMessageHandler(ILogger<TriggerMessageHandler> logger) : IHandleMessages<TriggerMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
-
     public async Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(TriggerMessage)} in ServerlessEndpoint.");
+        logger.LogInformation($"Handling {nameof(TriggerMessage)} in ServerlessEndpoint.");
         await context.Send(new ResponseMessage());
     }
 }
