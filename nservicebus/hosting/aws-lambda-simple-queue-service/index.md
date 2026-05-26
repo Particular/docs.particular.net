@@ -5,7 +5,7 @@ summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue
 related:
  - samples/aws/lambda-sqs
  - samples/aws/lambda-sqs-annotations
-reviewed: 2026-01-02
+reviewed: 2026-05-26
 redirects:
  - previews/aws-lambda-simple-queue-service
 ---
@@ -37,6 +37,8 @@ Transport installers are not supported. The creation of the required queues may 
 The configuration API exposes NServiceBus configuration options to allow customization; however, not all options will [apply to execution within AWS Lambda](./analyzers.md).
 
 partial: serializer
+
+partial: register-services
 
 ### Routing
 

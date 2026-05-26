@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in AWS Lambda with SQS
-reviewed: 2026-01-16
+reviewed: 2026-05-26
 component: SQSLambda
 related:
  - samples/aws/sqs-simple
@@ -63,6 +63,8 @@ To try the AWS Lambda
 The static NServiceBus endpoint must be configured using details that come from the AWS Lambda `ILambdaContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression such as:
 
 snippet: EndpointSetup
+
+If handlers, behaviors, or other endpoint components need custom dependencies, register them in the configuration factory with [`AwsLambdaSQSEndpointConfiguration.RegisterServices`](/nservicebus/hosting/aws-lambda-simple-queue-service/#configuration-registering-services).
 
 The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands-off processing of messages to NServiceBus:
 
