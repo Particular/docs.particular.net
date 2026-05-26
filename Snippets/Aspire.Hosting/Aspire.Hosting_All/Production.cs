@@ -12,10 +12,9 @@ public class Production
         #region aspire-host-ports
 
         platform.AddServicePulse("servicepulse", error, monitoring)
-            .WithEndpoint("servicepulse", e =>
+            .WithEndpoint("http", e =>
             {
                 e.Port = 9091;
-                e.TargetPort = 9090;
             });
 
         #endregion
