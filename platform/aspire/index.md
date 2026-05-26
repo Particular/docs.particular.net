@@ -35,17 +35,17 @@ If you are using the Particular Service Platform with Aspire today and would lik
 
 ### Transport
 
-| Transport                                                 | Status                      |
-| --------------------------------------------------------- | --------------------------- |
-| [Learning](/transports/learning/)                         | Supported                   |
-| [Azure Service Bus](/transports/azure-service-bus/)       | Supported                   |
-| [RabbitMQ](/transports/rabbitmq/)                         | Supported                   |
-| [Amazon SQS](/transports/sqs/)                            | Not yet supported           |
-| [Azure Storage Queues](/transports/azure-storage-queues/) | Not yet supported           |
-| [Microsoft SQL Server](/transports/sql/)                  | Not yet supported           |
-| [PostgreSQL](/transports/postgresql/)                     | Not yet supported           |
-| [IBM MQ](/transports/ibmmq/)                              | Not yet supported           |
-| [MSMQ](/transports/msmq/)                                 | Not available in containers |
+| Transport                                                 | Status                       |
+| --------------------------------------------------------- | ---------------------------- |
+| [Learning](/transports/learning/)                         | Supported (Development only) |
+| [Azure Service Bus](/transports/azure-service-bus/)       | Supported                    |
+| [RabbitMQ](/transports/rabbitmq/)                         | Supported                    |
+| [Amazon SQS](/transports/sqs/)                            | Not yet supported            |
+| [Azure Storage Queues](/transports/azure-storage-queues/) | Not yet supported            |
+| [Microsoft SQL Server](/transports/sql/)                  | Not yet supported            |
+| [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
+| [IBM MQ](/transports/ibmmq/)                              | Not yet supported            |
+| [MSMQ](/transports/msmq/)                                 | Not available in containers  |
 
 ### Persistence
 
@@ -110,14 +110,13 @@ snippet: aspire-transport-learning
 
 The Learning transport appears in the Aspire dashboard as a `learning-transport` connection-string resource nested under the platform, holding the resolved storage path.
 
-The Learning transport is intended for development only. The AppHost throws at startup in publish mode unless the `Particular:AllowLearningTransportPublish` configuration value is set to `true`.
+The Learning transport is intended for development only and the AppHost will error during publish flows when it is included.
 
 #### Options
 
 | Option | Default |
 | --- | --- |
 | `storagePath` (`string?`) parameter on `WithTransportLearning` | `.learningtransport` (relative to the AppHost project directory) |
-| `Particular:AllowLearningTransportPublish` (`bool`) AppHost config key | `false` |
 
 ### Azure Service Bus
 
@@ -383,7 +382,7 @@ The same AppHost code is intended to run locally and deploy to production. The n
 
 ### Learning transport in publish mode
 
-The Learning transport is blocked in publish mode by design. Calling `WithTransportLearning` from an AppHost run with `aspire publish` or `aspire deploy` throws at startup unless the AppHost configuration value `Particular:AllowLearningTransportPublish` is set to `true`. Configure a production-grade transport for non-development deployments. See [Configuring the transport](#configuring-the-transport) for the supported options.
+The Learning transport is blocked in publish mode by design. Calling `WithTransportLearning` from an AppHost run with `aspire publish` or `aspire deploy` throws at startup. Configure a production-grade transport for non-development deployments. See [Configuring the transport](#configuring-the-transport) for the supported options.
 
 ### Supplying the license in production
 
@@ -428,7 +427,7 @@ Aspire supports multiple deployment targets, including [Docker Compose](https://
 Two integration-specific points to keep in mind for any publish target:
 
 - The license parameter default is materialized into the manifest at publish time. Supply the license through Aspire parameter inputs in production so the value does not live in the published output. See [Supplying the license in production](#production-considerations-supplying-the-license-in-production).
-- The Learning transport is blocked in publish mode unless explicitly opted in. See [Learning transport in publish mode](#production-considerations-learning-transport-in-publish-mode).
+- The Learning transport is blocked in publish mode.
 
 ## Troubleshooting
 
