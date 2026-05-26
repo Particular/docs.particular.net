@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using NServiceBus;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 public class MinimalApi
 {
