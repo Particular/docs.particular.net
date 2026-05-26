@@ -97,7 +97,6 @@ Externally supplied resources are not nested under the platform. An Azure Servic
 
 The platform node tracks readiness as its children come up. It starts in `Starting`, transitions to `Running` once every child reports healthy, and moves to `RuntimeUnhealthy` if any child stops.
 
-<!-- TODO: add a screenshot of the running platform in the Aspire dashboard. -->
 
 ## Configuring the transport
 
