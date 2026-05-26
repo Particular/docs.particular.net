@@ -97,6 +97,18 @@ class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
         #endregion
     }
 
+    static void RegisterServices(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
+    {
+        #region aws-register-services
+
+        endpointConfiguration.RegisterServices(services =>
+        {
+            services.AddSingleton<MyDependency>();
+        });
+
+        #endregion
+    }
+
     static void RoutingConfiguration(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
         #region aws-configure-routing
@@ -107,5 +119,6 @@ class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
         #endregion
     }
 
+    class MyDependency;
     class ACommand;
 }
