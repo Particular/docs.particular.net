@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in AWS Lambda with annotations and SQS
-reviewed: 2026-01-05
+reviewed: 2026-05-26
 component: SQSLambda
 related:
  - samples/aws/sqs-simple
@@ -55,6 +55,8 @@ To try the AWS Lambda
 The NServiceBus endpoint is configured at Lambda startup time, and registered in the service collection as follows:
 
 snippet: EndpointSetup
+
+If handlers, behaviors, or other endpoint components need custom dependencies, register them inside the `AddAwsLambdaSQSEndpoint` callback with [`AwsLambdaSQSEndpointConfiguration.RegisterServices`](/nservicebus/hosting/aws-lambda-simple-queue-service/#configuration-registering-services).
 
 The `FunctionHandler` method hands-off processing of messages to NServiceBus:
 
