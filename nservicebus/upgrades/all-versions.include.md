@@ -1154,7 +1154,8 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/4.0.2)| **Current** | 2026-01-29     | Active            | Active |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/4.1.0)| **Current** | 2026-05-25     | Active            | Active |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/4.0.2)| Mainstream Support | 2026-01-29     | 2026-08-25        | Ineligible |
 | [3.4.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.4.2)| Mainstream Support | 2025-09-09     | 2028-01-29        | 2030-01-29 |
 | [~~3.3.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.3.0)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2025-12-09~~    | ~~Ineligible~~ |
 | [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.1)| ~~Unsupported~~ | ~~2024-09-02~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
