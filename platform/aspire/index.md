@@ -239,7 +239,7 @@ snippet: aspire-components-error
 | `name` (`string`) parameter on `AddServiceControlErrorInstance` | Required |
 | `persistence` (`IResourceBuilder<IResource>`) parameter on `AddServiceControlErrorInstance` | Required |
 | `queueName` (`string`) parameter on `WithErrorQueueName` | `error` |
-| `queueName` (`string`) parameter on `WithThroughputQueue` | Not set (throughput reporting off) |
+| `queueName` (`string`) parameter on `WithThroughputQueue` | `ServiceControl.ThroughputData` |
 
 ### ServiceControl Audit instance
 
@@ -273,7 +273,7 @@ snippet: aspire-components-monitoring
 | `name` (`string`) parameter on `AddServiceControlMonitoringInstance` | Required |
 | `queueName` (`string`) parameter on `WithMonitoringQueueName` | `Particular.Monitoring` |
 | `errorInstance` (`IResourceBuilder<ServiceControlErrorInstanceResource>`) parameter on `WithThroughputQueueFrom` | Required (when called) |
-| `queueName` (`string`) parameter on `WithThroughputQueue` | Not set |
+| `queueName` (`string`) parameter on `WithThroughputQueue` | `ServiceControl.ThroughputData` |
 
 ### ServicePulse
 
@@ -400,15 +400,7 @@ Override a port with the standard Aspire `WithEndpoint(endpointName, callback)` 
 
 snippet: aspire-host-ports
 
-Refer to the following table for the default endpoint names and ports exposed by each component:
 
-| Component                   | Endpoint name  | Internal Port  |
-| --------------------------- | -------------- | -------------- |
-| ServicePulse                | `servicepulse` | 9090           |
-| ServiceControl Error        | `error`        | 33333          |
-| ServiceControl Audit        | `audit`        | 44444          |
-| ServiceControl Monitoring   | `monitoring`   | 33633          |
-| Managed RavenDB persistence | `http`         | 8080           |
 
 ### Pinning container image versions
 
