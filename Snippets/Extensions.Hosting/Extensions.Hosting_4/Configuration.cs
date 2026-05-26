@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 class Configuration
 {
