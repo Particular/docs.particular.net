@@ -4,7 +4,7 @@ summary: Hosting an endpoint with the Microsoft Generic Host
 reviewed: 2026-05-26
 component: Core
 related:
-- nservicebus/hosting/
+- nservicebus/hosting/core-hosting
 ---
 
 ## Code walk-through
@@ -25,4 +25,4 @@ The `IMessageSession` is injected into the `Worker` constructor, and the `Worker
 
 snippet: generic-host-worker
 
-For more worker service options like installing as Windows Services, Linux Daemons, etc., [see the Microsoft documentation](https://learn.microsoft.com/en-us/dotnet/core/extensions/workers).
+This sample focuses on Generic Host integration. For platform-specific worker service options such as Windows Services and Linux daemons, [see the Microsoft documentation](https://learn.microsoft.com/en-us/dotnet/core/extensions/workers).
