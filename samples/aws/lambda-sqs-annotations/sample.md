@@ -56,8 +56,6 @@ The NServiceBus endpoint is configured at Lambda startup time, and registered in
 
 snippet: EndpointSetup
 
-If handlers, behaviors, or other endpoint components need custom dependencies, register them inside the `AddAwsLambdaSQSEndpoint` callback with [`AwsLambdaSQSEndpointConfiguration.RegisterServices`](/nservicebus/hosting/aws-lambda-simple-queue-service/#configuration-registering-services).
-
 The `FunctionHandler` method hands-off processing of messages to NServiceBus:
 
 snippet: SqsFunctionHandler
