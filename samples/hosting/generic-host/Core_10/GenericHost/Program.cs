@@ -2,8 +2,6 @@
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddWindowsService();
-
 #region generic-host-nservicebus
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
