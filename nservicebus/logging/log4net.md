@@ -1,12 +1,26 @@
 ---
 title: Log4Net
 summary: Logging to Log4Net
-reviewed: 2026-05-13
+reviewed: 2026-05-27
 component: Log4Net
 ---
 
 > [!WARNING]
 > NServiceBus.Log4Net is obsolete. NServiceBus now supports logging libraries through Microsoft.Extensions.Logging. See [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for details.
+
+## Logging integration into the host
+
+When using NServiceBus 10.2 or later with the [.NET Generic Host](/nservicebus/hosting/core-hosting.md), configure Log4Net directly on the host builder. The bridge package is not required:
+
+```csharp
+var builder = Host.CreateApplicationBuilder();
+
+builder.Logging.AddLog4Net();
+
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+```
+
+For more information, see [Hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md).
 
 ## Usage
 

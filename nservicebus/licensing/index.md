@@ -47,7 +47,7 @@ The license is only read once at startup. When the license expires the endpoint 
 
 ## Troubleshooting
 
-Diagnose license scanning issues by [enabling Debug logging](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) as all traversed locations and the scan result are logged.
+Diagnose license scanning issues by [enabling Debug logging](/nservicebus/logging/#built-in-logging-changing-the-defaults-changing-the-logging-level) as all traversed locations and the scan result are logged.
 
 ```txt
 2020-04-17 12:11:31.979 DEBUG Looking for license in the following locations:
