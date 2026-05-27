@@ -370,13 +370,13 @@ snippet: aspire-throughput-rabbitmq
 
 See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) for what each value is used for in ServiceControl.
 
-### RabbitMQ
+### Amazon SQS
 
 `ThroughputReportingAmazonSQS` supplies AmazonSQS overrides so the Error instance can query broker statistics. All parameters are optional; ServiceControl falls back to the values from the transport connectio if they are not provided.
 
 snippet: aspire-throughput-sqs
 
-See [Usage reporting when using the Amazon SQS transport](/servicecontrol/servicecontrol-instances/configuration#usage-reporting-when-using-the-amazon-sqs-transport) for what each value is used for in ServiceControl.
+See [Usage reporting when using the Amazon SQS transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-amazon-sqs-transport) for what each value is used for in ServiceControl.
 
 ## Production considerations
 
