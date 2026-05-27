@@ -372,7 +372,7 @@ See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicec
 
 ### Amazon SQS
 
-`ThroughputReportingAmazonSQS` supplies AmazonSQS overrides so the Error instance can query broker statistics. All parameters are optional; ServiceControl falls back to the values from the transport connectio if they are not provided.
+`ThroughputReportingAmazonSQS` supplies AmazonSQS overrides so the Error instance can query broker statistics. All parameters are optional; ServiceControl falls back to the values from the transport connection if they are not provided.
 
 snippet: aspire-throughput-sqs
 
