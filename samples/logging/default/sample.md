@@ -13,7 +13,7 @@ related:
 
 ## Introduction
 
-This sample shows the [default logging functionality](/nservicebus/logging/#default-logging) in NServiceBus.
+This sample shows the [built-in logging functionality](/nservicebus/logging/#built-in-logging) in NServiceBus.
 
 ### Enabling Logging
 

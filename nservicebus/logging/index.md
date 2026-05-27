@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: NServiceBus logging
-reviewed: 2026-05-19
+reviewed: 2026-05-27
 component: Core
 isLearningPath: true
 redirects:
@@ -14,9 +14,9 @@ related:
 
 partial: modern
 
-## Default logging
+## Built-in logging
 
-NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes. Regardless of whether the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for writing log messages in user code. By default NServiceBus has three log targets configured:
+When no external logging providers are configured, NServiceBus provides a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes. Regardless of whether the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for writing log messages in user code. By default NServiceBus has three log targets configured:
 
 ### Console
 
