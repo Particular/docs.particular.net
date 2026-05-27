@@ -48,7 +48,7 @@ snippet: platform-config
 
 #### Endpoints
 
-Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. This wires the endpoint to the platform's transport connection string. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
+Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
 
 The Aspire hosting component will automatically pass the transport authentication settings to the endpoints as [environment variables](/transports/sqs/#configuration), so that the NServiceBus transport can authenticate with AWS without additional configuration.
 
