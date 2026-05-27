@@ -36,5 +36,16 @@ public class Transport
             .WithTransportRabbitMQ(RabbitMqRouting.QuorumConventionalRouting, rabbit);
 
         #endregion
+
+        #region aspire-transport-sqs
+
+        var sqsAccessId = builder.AddParameter("sqs-access-id");
+        var sqsSecretKey = builder.AddParameter("sqs-secret-key");
+
+        builder
+            .AddParticularPlatform("particular")
+            .WithTransportAmazonSqs("us-west-1", sqsAccessId.Resource, sqsSecretKey.Resource);
+
+        #endregion
     }
 }

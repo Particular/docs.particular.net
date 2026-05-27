@@ -139,12 +139,24 @@ Pass the resource to `WithTransportRabbitMQ` along with a [routing topology](/tr
 
 snippet: aspire-transport-rabbitmq
 
+### Amazon SQS
+
+The platform requires a pre-configured access token to connect to AmazonSQS, and these values will be passed to endpoints [via Environment Variables](/transports/sqs/#configuration). It is recommended that parameter resources are used for this.
+
+snippet: aspire-transport-sqs
+
 #### Options
 
-| Option | Default |
-| --- | --- |
-| `routingType` (`RabbitMqRouting`) parameter on `WithTransportRabbitMQ` | Required |
-| `rabbitMQ` (`IResourceBuilder<IResourceWithConnectionString>`) parameter on `WithTransportRabbitMQ` | Required |
+| Option                     | Type                                | Location                                 | Default  |
+| -------------------------- | ----------------------------------- | ---------------------------------------- | -------- |
+| `region`                   | `string`                            | parameter on `WithTransportAmazonSQS`    | Required |
+| `accessKey`                | `IExpressionValue`                  | parameter on `WithTransportAmazonSQS`    | Required |
+| `secretAccessKey`          | `IExpressionValue`                  | parameter on `WithTransportAmazonSQS`    | Required |
+| `configure`                | `Action<AmazonSQSTransportSettings` | parameter on `WithTransportAmazonSQS`    | Optional |
+| `QueueNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
+| `TopicNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
+| `S3BucketForLargeMessages` | `IExpressionValue?`                 | property on `AmazonSQSTransportSettings` | Optional |
+| `QueueNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
 
 RabbitMQ tuning such as TLS, external authentication, management API endpoint, and delivery limit validation is configured on the connection string itself. See [RabbitMQ transport configuration](/servicecontrol/transports.md#rabbitmq) for the full list of connection-string options.
 
