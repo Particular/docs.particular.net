@@ -186,9 +186,21 @@ Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol
 
 User with monitoring tag and read permission.
 
-### MSMQ & Azure Storage Queues
+### MSMQ
 
-MSMQ and Azure Storage Queues do not support querying of metrics. To enable the automatic usage reporting functionality for these systems, auditing and/or monitoring must be set up:
+MSMQ does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
+### IBM MQ
+
+IBM MQ usage reporting uses [audit and monitoring data](#audit-and-monitoring-data).
+
+### Azure Storage Queues
+
+Azure Storage Queues does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
+## Audit and monitoring data
+
+For transports that do not support querying broker-side metrics, ServiceControl generates the usage report from data collected by the Audit and Monitoring instances. To enable this:
 
 - Auditing
   - install the [Audit](./../servicecontrol/audit-instances) instance
