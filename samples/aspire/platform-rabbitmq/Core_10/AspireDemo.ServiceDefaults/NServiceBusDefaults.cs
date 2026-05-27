@@ -33,7 +33,8 @@ public static class NServiceBusDefaults
 
             configureEndpoint?.Invoke(endpointConfiguration, routing);
 
-            return builder.UseNServiceBus(endpointConfiguration);
+            builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+            return builder;
         }
     }
 }
