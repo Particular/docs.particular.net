@@ -1,13 +1,15 @@
 ---
 title: Default Logging
 summary: The default logging capability of NServiceBus.
-reviewed: 2025-10-09
+reviewed: 2026-05-27
 component: Core
 versions: '[, 9)'
 related:
 - nservicebus/logging
 ---
 
+> [!NOTE]
+> Starting with NServiceBus 10.2, endpoints hosted with the [.NET Generic Host](/nservicebus/hosting/core-hosting.md) using `AddNServiceBusEndpoint` automatically use `Microsoft.Extensions.Logging` with rolling file and console defaults. The `DefaultFactory` API shown in this sample is deprecated. See [Logging](/nservicebus/logging/) for modern configuration options.
 
 ## Introduction
 
