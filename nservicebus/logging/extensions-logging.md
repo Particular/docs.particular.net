@@ -5,7 +5,7 @@ reviewed: 2026-05-27
 component: Extensions.Logging
 related:
 - samples/logging/extensions-logging
-- nservicebus/upgrades/extensions-logging-3to4
+- nservicebus/upgrades/extensions-logging-4to5
 ---
 
 > [!NOTE]
