@@ -1,6 +1,6 @@
 ---
-title: NServiceBus.Extensions.Logging Upgrade Version 3 to 4
-summary: How to upgrade NServiceBus.Extensions.Logging from version 3 to 4
+title: NServiceBus.Extensions.Logging Upgrade Version 4 to 5
+summary: How to upgrade NServiceBus.Extensions.Logging from version 4 to 5
 component: Extensions.Logging
 reviewed: 2026-05-27
 isUpgradeGuide: true

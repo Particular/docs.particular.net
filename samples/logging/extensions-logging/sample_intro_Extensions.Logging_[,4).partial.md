@@ -12,4 +12,4 @@ The following logging chain is created:
           - Console output
 
 > [!NOTE]
-> Starting with NServiceBus 10.2, endpoints hosted with the [.NET Generic Host](/nservicebus/hosting/core-hosting.md) using `AddNServiceBusEndpoint` automatically integrate with `Microsoft.Extensions.Logging` and the `NServiceBus.Extensions.Logging` bridge package is no longer required. See the [upgrade guide](/nservicebus/upgrades/extensions-logging-3to4.md) for migration details.
+> Starting with NServiceBus 10.2, endpoints hosted with the [.NET Generic Host](/nservicebus/hosting/core-hosting.md) using `AddNServiceBusEndpoint` automatically integrate with `Microsoft.Extensions.Logging` and the `NServiceBus.Extensions.Logging` bridge package is no longer required. See the [upgrade guide](/nservicebus/upgrades/extensions-logging-4to5.md) for migration details.
