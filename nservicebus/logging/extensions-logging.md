@@ -11,7 +11,7 @@ related:
 > [!NOTE]
 > It is recommended to directly use the [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) package to log entries as it also supports semantic logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
 
-> The `NServiceBus.Extensions.Logging` package's `ExtensionsLoggerFactory` is deprecated starting with NServiceBus 10.2.0. When hosting with the [.NET Generic Host](/nservicebus/hosting/core-hosting.md) using `AddNServiceBusEndpoint`, NServiceBus natively uses `Microsoft.Extensions.Logging` and the bridge package is no longer required. See the [upgrade guide](/nservicebus/upgrades/extensions-logging-3to4.md) for migration details.
+> The `NServiceBus.Extensions.Logging` package's `ExtensionsLoggerFactory` is deprecated starting with NServiceBus 10.2.0. When hosting with the [.NET Generic Host](/nservicebus/hosting/core-hosting.md) using `AddNServiceBusEndpoint`, NServiceBus natively uses `Microsoft.Extensions.Logging` and the bridge package is no longer required. See the [upgrade guide](/nservicebus/upgrades/extensions-logging-4to5.md) for migration details.
 
 The `NServiceBus.Extensions.Logging` package provides support for writing NServiceBus log entries via the [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) abstractions. With this common logging abstraction, it is possible to log to different logging providers. Some third-party frameworks can perform semantic logging, also known as structured logging.
 
