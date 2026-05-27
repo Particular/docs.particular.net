@@ -31,7 +31,7 @@ public static class NServiceBusExtensions
         endpointConfiguration.EnableInstallers();
         #endregion
 
-        builder.UseNServiceBus(endpointConfiguration);
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
         return builder;
     }
