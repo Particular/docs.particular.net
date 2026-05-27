@@ -158,7 +158,6 @@ snippet: aspire-transport-sqs
 | `S3BucketForLargeMessages` | `IExpressionValue?`                 | property on `AmazonSQSTransportSettings` | Optional |
 | `QueueNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
 
-RabbitMQ tuning such as TLS, external authentication, management API endpoint, and delivery limit validation is configured on the connection string itself. See [RabbitMQ transport configuration](/servicecontrol/transports.md#rabbitmq) for the full list of connection-string options.
 
 ## Configuring persistence
 
@@ -370,6 +369,14 @@ See [Usage reporting when using the Azure Service Bus transport](/servicecontrol
 snippet: aspire-throughput-rabbitmq
 
 See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) for what each value is used for in ServiceControl.
+
+### RabbitMQ
+
+`ThroughputReportingAmazonSQS` supplies AmazonSQS overrides so the Error instance can query broker statistics. All parameters are optional; ServiceControl falls back to the values from the transport connectio if they are not provided.
+
+snippet: aspire-throughput-sqs
+
+See [Usage reporting when using the Amazon SQS transport](/servicecontrol/servicecontrol-instances/configuration#usage-reporting-when-using-the-amazon-sqs-transport) for what each value is used for in ServiceControl.
 
 ## Production considerations
 

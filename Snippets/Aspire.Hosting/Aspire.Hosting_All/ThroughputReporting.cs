@@ -45,4 +45,25 @@ public class ThroughputReporting
 
         #endregion
     }
+
+    public void AmazonSQS(DistributedApplicationBuilder builder)
+    {
+        var platform = builder.AddParticularPlatform("particular");
+        var persistence = platform.AddPersistenceRavenDb("ravendb");
+
+        #region aspire-throughput-sqs
+
+        var accessKey = builder.AddParameter("access-key");
+        var secretKey = builder.AddParameter("secret-key", secret: true);
+
+        platform.AddServiceControlErrorInstance("servicecontrol", persistence)
+            .WithThroughputReporting(new ThroughputReportingAmazonSqs(
+                ReferenceExpression.Create($"{accessKey.Resource}"),
+                ReferenceExpression.Create($"{secretKey.Resource}"),
+                "profileName",
+                "region",
+                "prefix"));
+
+        #endregion
+    }
 }
