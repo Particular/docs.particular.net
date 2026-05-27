@@ -17,7 +17,6 @@ This sample shows an Aspire AppHost project that orchestrates multiple NServiceB
 
 > [!NOTE]
 > This sample requires [Docker](https://www.docker.com/) to run. Ensure the predefined container ports are free and available.
-> It also assumes an Azure ServiceBus instance has been setup.
 
 ## Code walkthrough
 
@@ -51,7 +50,9 @@ snippet: platform-config
 
 Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. This wires the endpoint to the platform's transport connection string. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
 
-In addition the queue prefix is passed to the endpoints using `QUEUE_NAME_PREFIX`
+The Aspire hosting component will automatically pass the transport authentication settings to the endpoints as [environment variables](/transports/sqs/#configuration), so that the NServiceBus transport can authenticate with AWS without additional configuration.
+
+The queue prefix is also passed as `QUEUE_NAME_PREFIX`, so that the endpoints can use it when configuring the transport and when sending messages to ensure they are using the correct queues. 
 
 snippet: endpoints
 
@@ -63,7 +64,7 @@ The OpenTelemetry configuration has been updated to include NServiceBus metrics 
 
 snippet: add-nsb-otel
 
-Each endpoint project retrieves the connection string for the Azure ServiceBus broker and configures NServiceBus to use it as a transport:
+Each endpoint project creates an Amazon SQS transport and sets the queue prefix to match the AppHost configuation, and configures NServiceBus to use it as a transport relying on the `AWS_*` environment variables added by `WithParticularPlatform` to authenticate with AWS:
 
 snippet: transport-config
 
