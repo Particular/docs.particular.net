@@ -239,6 +239,7 @@ snippet: aspire-components-error
 | `persistence` (`IResourceBuilder<IResource>`) parameter on `AddServiceControlErrorInstance` | Required |
 | `queueName` (`string`) parameter on `WithErrorQueueName` | `error` |
 | `queueName` (`string`) parameter on `WithThroughputQueue` | `ServiceControl.ThroughputData` |
+| `runMode` (`PlatformRunMode`) parameter on `WithRunMode` | `SetupAndRun` |
 
 ### ServiceControl Audit instance
 
@@ -256,6 +257,7 @@ snippet: aspire-components-audit
 | `serviceControl` (`IResourceBuilder<ServiceControlErrorInstanceResource>`) parameter on `AddServiceControlAuditInstance` | Required |
 | `persistence` (`IResourceBuilder<IResource>`) parameter on `AddServiceControlAuditInstance` | Required |
 | `queueName` (`string`) parameter on `WithAuditQueueName` | `audit` |
+| `runMode` (`PlatformRunMode`) parameter on `WithRunMode` | `SetupAndRun` |
 
 ### ServiceControl Monitoring instance
 
@@ -273,6 +275,7 @@ snippet: aspire-components-monitoring
 | `queueName` (`string`) parameter on `WithMonitoringQueueName` | `Particular.Monitoring` |
 | `errorInstance` (`IResourceBuilder<ServiceControlErrorInstanceResource>`) parameter on `WithThroughputQueueFrom` | Required (when called) |
 | `queueName` (`string`) parameter on `WithThroughputQueue` | `ServiceControl.ThroughputData` |
+| `runMode` (`PlatformRunMode`) parameter on `WithRunMode` | `SetupAndRun` |
 
 ### ServicePulse
 
@@ -387,6 +390,22 @@ The integration uses the `latest` tag for every managed container image (`partic
 The ServiceControl Error, Audit, Monitoring, and RavenDB versions must align. See [Managing ServiceControl RavenDB instances via Containers](/servicecontrol/ravendb/containers.md) for the version-pairing rules.
 
 snippet: aspire-image-pinning
+
+### Container run mode
+
+By default, each ServiceControl instance container runs in `SetupAndRun` mode: on startup it performs setup — creating the queues and database structures it needs — and then runs the instance. This keeps the local development experience working without any manual preparation.
+
+In production, setup is often performed as a separate, controlled step rather than on every container start, for example because the runtime account is not permitted to create queues, or to avoid setup running on each scaled-out replica. Use `WithRunMode(PlatformRunMode.Run)` to start an instance without performing setup, assuming the queues and database structures already exist:
+
+snippet: aspire-run-mode
+
+The available modes are:
+
+- `PlatformRunMode.SetupAndRun` (default): perform setup, then run the instance.
+- `PlatformRunMode.Run`: run the instance without performing setup.
+- `PlatformRunMode.Setup`: perform setup only, then exit. This is useful for running setup as a dedicated step before starting the instances in `Run` mode.
+
+`WithRunMode` is configured per ServiceControl instance, so the Error, Audit, and Monitoring instances can each use a different mode when required.
 
 ## Publishing and deploying
 

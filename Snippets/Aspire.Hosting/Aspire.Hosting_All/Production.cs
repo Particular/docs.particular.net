@@ -1,4 +1,5 @@
 using Aspire.Hosting;
+using Particular.Aspire.Hosting.ServicePlatform.Platform;
 
 public class Production
 {
@@ -37,6 +38,25 @@ public class Production
 
         platform.AddServiceControlMonitoringInstance("monitoring")
             .WithImageTag(serviceControlVersion);
+
+        #endregion
+    }
+
+    public void RunMode(DistributedApplicationBuilder builder)
+    {
+        var platform = builder.AddParticularPlatform("particular");
+        var persistence = platform.AddPersistenceRavenDb("ravendb");
+
+        #region aspire-run-mode
+
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
+            .WithRunMode(PlatformRunMode.Run);
+
+        platform.AddServiceControlAuditInstance("audit", error, persistence)
+            .WithRunMode(PlatformRunMode.Run);
+
+        platform.AddServiceControlMonitoringInstance("monitoring")
+            .WithRunMode(PlatformRunMode.Run);
 
         #endregion
     }
