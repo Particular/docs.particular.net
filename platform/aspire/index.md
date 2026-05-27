@@ -147,16 +147,16 @@ snippet: aspire-transport-sqs
 
 #### Options
 
-| Option                     | Type                                | Location                                 | Default  |
-| -------------------------- | ----------------------------------- | ---------------------------------------- | -------- |
-| `region`                   | `string`                            | parameter on `WithTransportAmazonSQS`    | Required |
-| `accessKey`                | `IExpressionValue`                  | parameter on `WithTransportAmazonSQS`    | Required |
-| `secretAccessKey`          | `IExpressionValue`                  | parameter on `WithTransportAmazonSQS`    | Required |
-| `configure`                | `Action<AmazonSQSTransportSettings` | parameter on `WithTransportAmazonSQS`    | Optional |
-| `QueueNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
-| `TopicNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
-| `S3BucketForLargeMessages` | `IExpressionValue?`                 | property on `AmazonSQSTransportSettings` | Optional |
-| `QueueNamePrefix`          | `string?`                           | property on `AmazonSQSTransportSettings` | Optional |
+| Option                                                                                                 | Default  |
+| ------------------------------------------------------------------------------------------------------ | -------- |
+| `region`                   (`string`) parameter on `WithTransportAmazonSQS`                            | Required |
+| `accessKey`                (`IExpressionValue`) parameter on `WithTransportAmazonSQS`                  | Required |
+| `secretAccessKey`          (`IExpressionValue`) parameter on `WithTransportAmazonSQS`                  | Required |
+| `configure`                (`Action<AmazonSQSTransportSettings`) parameter on `WithTransportAmazonSQS` | Optional |
+| `QueueNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
+| `TopicNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
+| `S3BucketForLargeMessages` (`IExpressionValue?`) property on `AmazonSQSTransportSettings`              | Optional |
+| `QueueNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
 
 
 ## Configuring persistence
