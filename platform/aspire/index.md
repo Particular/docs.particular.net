@@ -40,7 +40,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | [Learning](/transports/learning/)                         | Supported (Development only) |
 | [Azure Service Bus](/transports/azure-service-bus/)       | Supported                    |
 | [RabbitMQ](/transports/rabbitmq/)                         | Supported                    |
-| [Amazon SQS](/transports/sqs/)                            | Not yet supported            |
+| [Amazon SQS](/transports/sqs/)                            | Supported                    |
 | [Azure Storage Queues](/transports/azure-storage-queues/) | Not yet supported            |
 | [Microsoft SQL Server](/transports/sql/)                  | Not yet supported            |
 | [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
