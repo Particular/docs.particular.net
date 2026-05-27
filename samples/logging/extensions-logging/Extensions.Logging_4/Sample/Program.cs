@@ -3,7 +3,6 @@ using Microsoft.Extensions.Hosting;
 using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
-using NServiceBus.Extensions.Logging;
 
 Console.Title = "ExtensionsLogging";
 
