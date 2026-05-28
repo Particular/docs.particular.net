@@ -109,7 +109,8 @@ snippet: aspire-transport-learning
 
 The Learning transport appears in the Aspire dashboard as a `learning-transport` connection-string resource nested under the platform, holding the resolved storage path.
 
-The Learning transport is intended for development only and the AppHost will error during publish flows when it is included.
+> [!WARNING]
+> The Learning transport is intended for development only and the AppHost will error during publish flows when it is included.
 
 #### Options
 
@@ -412,7 +413,7 @@ snippet: aspire-image-pinning
 
 ### Container run mode
 
-By default, each ServiceControl instance container runs in `SetupAndRun` mode: on startup it performs setup — creating the queues and database structures it needs — and then runs the instance. This keeps the local development experience working without any manual preparation.
+By default, each ServiceControl instance container runs in `SetupAndRun` mode: on startup it performs setup, creating the queues and database structures it needs, and then runs the instance. This keeps the local development experience working without any manual preparation.
 
 In production, setup is often performed as a separate, controlled step rather than on every container start, for example because the runtime account is not permitted to create queues, or to avoid setup running on each scaled-out replica. Use `WithRunMode(PlatformRunMode.Run)` to start an instance without performing setup, assuming the queues and database structures already exist:
 
