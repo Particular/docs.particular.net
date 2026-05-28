@@ -11,6 +11,8 @@ partial: hosting-package
 
 This sample shows an Aspire AppHost project that orchestrates multiple NServiceBus endpoints, wiring up the required infrastructure pieces including a RabbitMQ broker and PostgreSQL database.
 
+If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
+
 ## Running the sample
 
 1. Run the AspireDemo.AppHost project

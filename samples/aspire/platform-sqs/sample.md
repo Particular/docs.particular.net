@@ -11,6 +11,8 @@ This sample shows an Aspire AppHost project that orchestrates multiple NServiceB
 
 This sample does not include any AWS resource deployments as it is not required to demonstrate the Particular Platform running within aspire. When this sample is run the Platform and Endpoints will generate the required queues and topics in SQS. Refer to the [Integrating AWS with .NET Aspire in the AWS SDK for .NET documentation](https://docs.aws.amazon.com/sdk-for-net/v4/developer-guide/aspire-integrations.html) page for more information on AWS resources within Aspire.
 
+If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
+
 ## Running the sample
 
 1. Run the AspireDemo.AppHost project
@@ -86,4 +88,3 @@ snippet: random-error
 
 Failed messages are moved to the error queue, where they can be inspected and retried from ServicePulse.
 
-If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).

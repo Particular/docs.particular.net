@@ -9,6 +9,8 @@ reviewed: 2026-05-22
 
 This sample shows an Aspire AppHost project that orchestrates the Particular Platform, multiple NServiceBus endpoints, wiring up the required infrastructure pieces when using the [Azure ServiceBus](/transports/azure-service-bus/) transport.
 
+If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
+
 ## Running the sample
 
 1. Run the AspireDemo.AppHost project
@@ -111,4 +113,3 @@ snippet: random-error
 
 Failed messages are moved to the error queue, where they can be inspected and retried from ServicePulse.
 
-If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
