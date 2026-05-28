@@ -40,7 +40,7 @@ public class Transport
         #region aspire-transport-sqs
 
         var sqsAccessId = builder.AddParameter("sqs-access-id");
-        var sqsSecretKey = builder.AddParameter("sqs-secret-key");
+        var sqsSecretKey = builder.AddParameter("sqs-secret-key", secret: true);
 
         builder
             .AddParticularPlatform("particular")
