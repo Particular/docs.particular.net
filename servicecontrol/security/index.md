@@ -1,119 +1,110 @@
 ---
-title: ServiceControl Security Overview
-summary: Secure ServiceControl with authentication, TLS, and other security features
-reviewed: 2026-01-14
+title: Securing ServiceControl and ServicePulse
+summary: Enable authentication and HTTPS to protect access to ServiceControl and ServicePulse
+reviewed: 2026-05-27
 component: ServiceControl
 related:
 - servicepulse/security
 ---
 
-This section covers security features for ServiceControl, including authentication, transport layer security (TLS), and reverse proxy configuration.
-
-## In this section
-
-- Security Configuration - Configuration reference for authentication, TLS, and forward headers
-- [Hosting Guide](hosting-guide.md) - Deployment scenarios with complete configuration examples
-- [Microsoft Entra ID](entra-id-authentication.md) - Step-by-step guide for configuring authentication with Microsoft Entra ID
-
-## [Authentication](configuration/authentication.md)
-
-ServiceControl and [ServicePulse](/servicepulse/) support standards-based authentication using [OAuth 2.0](https://oauth.net/2/) with [JSON Web Tokens (JWT)](https://en.wikipedia.org/wiki/JSON_Web_Token), and [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). When enabled, users must sign in through the configured identity provider before accessing ServicePulse.
+ServiceControl and ServicePulse support standards-based authentication using [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). When enabled, users must sign in through an identity provider before accessing ServicePulse, and all API calls to ServiceControl require a valid [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) token.
 
 > [!WARNING]
-> Authentication is disabled by default to maintain backward compatibility with existing deployments. Until authentication is enabled, ServicePulse and ServiceControl are accessible without credentials.
+> Authentication is disabled by default. ServiceControl and ServicePulse are accessible without credentials until authentication is enabled.
 
-Any OIDC-compliant identity provider can be used, including Microsoft Entra ID, Okta, Auth0, Keycloak, AWS IAM Identity Center, and others.
+Authentication requires HTTPS. Without TLS, tokens are transmitted in plain text and can be intercepted.
 
-When authentication is enabled:
+## How it works
 
-1. ServicePulse retrieves authentication configuration from an anonymous endpoint
-2. Users sign in through the configured identity provider
-3. API requests include a JWT bearer token in the `Authorization` header
-4. ServiceControl validates the token against the configured authority
-5. For scatter-gather requests, the Primary instance forwards the client token to Audit and Monitoring instances
+Authentication is configured once on ServiceControl. ServicePulse retrieves the OIDC settings from ServiceControl at startup and handles the sign-in flow automatically. Users sign in once through ServicePulse, and the resulting token is used for all API calls, including calls that the primary ServiceControl instance forwards to Audit and Monitoring instances.
 
 ```mermaid
 sequenceDiagram
     participant User
     participant ServicePulse
     participant Primary as ServiceControl Primary
-    participant Audit as Audit Instance
     participant IdP as Identity Provider
 
     User->>ServicePulse: Open ServicePulse
-    Note over ServicePulse,Primary: Anonymous endpoint (no auth required)
     ServicePulse->>Primary: GET /api/authentication/configuration
     Primary-->>ServicePulse: Auth settings (authority, clientId, scopes)
     ServicePulse->>IdP: Redirect to sign-in
     User->>IdP: Enter credentials
     IdP-->>ServicePulse: Access token (JWT)
-    Note over ServicePulse,Primary: Authenticated request
     ServicePulse->>Primary: API request + Authorization: Bearer {token}
-    Primary->>IdP: Validate token (via OIDC metadata)
+    Primary->>IdP: Validate token
     IdP-->>Primary: Token valid
-    Note over Primary,Audit: Scatter-gather (token forwarded)
-    Primary->>Audit: Forward request + Bearer {token}
-    Audit-->>Primary: Response data
-    Primary-->>ServicePulse: Aggregated API response
+    Primary-->>ServicePulse: API response
     ServicePulse-->>User: Display data
 ```
 
-### Anonymous endpoints
+## What's involved
 
-The following endpoints remain anonymous to support API Discovery, health checks, service-to-service requests between ServiceControl instances, and authentication bootstrapping:
+Securing the platform requires changes in three places: the identity provider, ServiceControl, and ServicePulse.
 
-| Endpoint                            | Method  | Instance       | Purpose                                                            |
-|-------------------------------------|---------|----------------|--------------------------------------------------------------------|
-| `/api`                              | GET     | Primary, Audit | API root/discovery - returns available endpoints                   |
-| `/api/instance-info`                | GET     | Primary, Audit | Returns instance configuration information                         |
-| `/api/configuration`                | GET     | Primary, Audit | Returns instance configuration information (alias)                 |
-| `/api/configuration/remotes`        | GET     | Primary        | Returns remote instance configurations                             |
-| `/api/authentication/configuration` | GET     | Primary        | Returns authentication configuration for clients like ServicePulse |
-| `/`                                 | GET     | Monitoring     | API root/discovery - returns instance information                  |
-| `/`                                 | OPTIONS | Monitoring     | CORS support - returns supported operations                        |
-| `/endpoints`                        | OPTIONS | Monitoring     | CORS support - returns supported operations                        |
-| `/endpoints/{endpoint}/audit-count` | GET     | Audit          | Service-to-service request                                         |
+**Identity provider**: Both ServiceControl and ServicePulse need an app registration. The ServiceControl registration represents the API being protected. The ServicePulse registration is what users sign into, and it needs permission to call the ServiceControl API on their behalf.
 
-### Token Forwarding Security Considerations
+**ServiceControl**: HTTPS must be enabled so tokens are never sent over a plain HTTP connection. Authentication settings tell ServiceControl which identity provider to trust, what audience to expect in tokens, and how ServicePulse should initiate the sign-in flow. All instances (Primary, Audit, and Monitoring) need authentication configured with the same values.
 
-- Client tokens are forwarded to remote instances in their entirety
-- Remote instances see the same token as the primary instance
-- Token scope/claims are not modified during forwarding
+**ServicePulse**: HTTPS must be enabled here too, since ServicePulse is where users interact and where tokens are held in the browser session. ServicePulse does not have its own authentication configuration; it reads those settings from ServiceControl automatically.
 
-## [TLS](configuration/tls.md)
+## Step 1: Register your applications with an identity provider
 
-When authentication is enabled, access tokens are exchanged between ServicePulse and ServiceControl. To protect these tokens, TLS must be enabled.
+Authentication requires two app registrations:
 
-> [!IMPORTANT]
-> Without TLS, tokens are transmitted in clear text, exposing the system to interception and unauthorized access. Always use HTTPS in production environments.
+1. **ServiceControl API** - represents the backend API that ServicePulse calls
+2. **ServicePulse** - the single-page application that users sign into
 
-ServiceControl supports two approaches for HTTPS:
+See the [Microsoft Entra ID guide](entra-id-authentication.md) for a step-by-step walkthrough. For other OIDC-compliant providers (Auth0, Okta, Keycloak, AWS IAM Identity Center, and others), follow your provider's documentation and use the [Entra ID guide](entra-id-authentication.md) as a reference for the values you need.
 
-- **Direct HTTPS**: Configure Kestrel to handle TLS with a certificate
-- **Reverse proxy**: Terminate TLS at a reverse proxy (NGINX, IIS, Azure App Gateway, etc.) and forward requests to ServiceControl over HTTP
+## Step 2: Enable HTTPS on ServiceControl
 
-## [Reverse proxy support](configuration/forward-headers.md)
+Configure a TLS certificate so ServiceControl serves HTTPS directly. This protects tokens in transit between ServicePulse and ServiceControl.
 
-When ServiceControl runs behind a reverse proxy, forwarded headers ensure ServiceControl correctly interprets client requests. This is important for:
+See [TLS configuration](configuration/tls.md) for certificate options and configuration examples.
 
-- Determining the original client IP address
-- Understanding whether the original request used HTTPS
-- Generating correct redirect URLs
+## Step 3: Configure authentication settings on ServiceControl
 
-## [Deployment scenarios](hosting-guide.md)
+Add authentication settings to all ServiceControl instances (Primary, Audit, and Monitoring). All instances must use the same authority and audience.
 
-The Hosting Guide provides complete configuration examples for common deployment patterns:
+The ServicePulse-specific settings (`ServicePulse.ClientId`, `ServicePulse.Authority`, `ServicePulse.ApiScopes`) are only required on the **primary** instance.
 
-- **Default configuration**: No authentication, HTTP only (backward compatible)
-- **Reverse proxy with authentication**: TLS termination at proxy, JWT authentication
-- **Direct HTTPS with authentication**: Kestrel handles TLS directly
-- **End-to-end encryption**: TLS at both proxy and Kestrel for internal traffic encryption
+See [authentication configuration](configuration/authentication.md) for all settings and configuration examples for common identity providers.
+
+## Step 4: Enable HTTPS on ServicePulse
+
+ServicePulse also needs HTTPS. See [ServicePulse security](/servicepulse/security) for TLS configuration.
+
+## Step 5: Configure CORS
+
+When ServicePulse is hosted on a different domain or port than ServiceControl, configure [CORS](configuration/cors.md) to allow requests from the ServicePulse origin.
+
+## Step 6: Restart and verify
+
+Restart all ServiceControl instances after updating the configuration.
+
+Open ServicePulse in a browser. You should be redirected to your identity provider's sign-in page. After signing in, ServicePulse should load and display data from ServiceControl.
+
+If authentication fails, check the ServiceControl logs for token validation errors. See [authentication configuration](configuration/authentication.md#troubleshooting) for common error messages and solutions.
+
+## Advanced deployment patterns
+
+For deployments that use a reverse proxy for TLS termination, or require end-to-end encryption between a proxy and ServiceControl, see the [hosting guide](hosting-guide.md).
+
+## Reference
+
+- [Authentication configuration](configuration/authentication.md)
+- [TLS configuration](configuration/tls.md)
+- [CORS configuration](configuration/cors.md)
+- [Hosting guide](hosting-guide.md)
+- [Microsoft Entra ID guide](entra-id-authentication.md)
+- [ServicePulse security](/servicepulse/security)
 
 ## ServiceInsight compatibility
 
 [ServiceInsight has been sunset](/serviceinsight/) and does not support OAuth 2.0 or OpenID Connect authentication. If authentication is enabled on a ServiceControl instance, ServiceInsight cannot connect.
 
-Users relying on ServiceInsight can:
+Alternatives:
 
-1. **[Use ServicePulse](/servicepulse/installation.md)** instead. This is the recommended approach, since functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
-2. **Leave authentication disabled** on the relevant ServiceControl instance
+1. **[Use ServicePulse](/servicepulse/installation.md)** - the recommended path; functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
+2. **Leave authentication disabled** on the relevant ServiceControl instance.

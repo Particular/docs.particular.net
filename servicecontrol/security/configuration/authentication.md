@@ -1,14 +1,14 @@
 ---
 title: ServiceControl Authentication Configuration
 summary: How to enable and configure authentication for ServiceControl
-reviewed: 2026-01-12
+reviewed: 2026-05-27
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide
 - servicepulse/security/configuration/authentication
 ---
 
-ServiceControl instances can be configured to require [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) authentication using [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). This enables integration with identity providers like Microsoft Entra ID (Azure AD), Okta, Auth0, and other OIDC-compliant providers. This guide explains how to configure ServiceControl to enable authentication for both ServiceControl and ServicePulse.
+ServiceControl instances can be configured to require [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) authentication using [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). This enables integration with identity providers like Microsoft Entra ID (Azure AD), Okta, Auth0, and other OIDC-compliant providers.
 
 > [!NOTE]
 > Authentication is disabled by default. To enable it, follow the configuration instructions for each instance type below.
@@ -148,10 +148,26 @@ JWT tokens are time-sensitive. If server clocks are not synchronized:
 
 **Solution:** Ensure all servers are using NTP to synchronize their clocks.
 
-## Matching Authentication Configuration Required
+## Scatter-gather and token forwarding
 
 When using scatter-gather with authentication enabled:
 
 - All instances (Primary, Audit, Monitoring) must use the **same** Authority and Audience
 - Client tokens must be valid for all instances
 - There is no service-to-service authentication mechanism; client tokens are forwarded directly
+
+## Anonymous endpoints
+
+The following endpoints remain accessible without authentication to support API discovery, health checks, service-to-service requests between ServiceControl instances, and authentication bootstrapping:
+
+| Endpoint | Method | Instance | Purpose |
+|---|---|---|---|
+| `/api` | GET | Primary, Audit | API root/discovery - returns available endpoints |
+| `/api/instance-info` | GET | Primary, Audit | Returns instance configuration information |
+| `/api/configuration` | GET | Primary, Audit | Returns instance configuration information (alias) |
+| `/api/configuration/remotes` | GET | Primary | Returns remote instance configurations |
+| `/api/authentication/configuration` | GET | Primary | Returns authentication configuration for clients like ServicePulse |
+| `/` | GET | Monitoring | API root/discovery - returns instance information |
+| `/` | OPTIONS | Monitoring | CORS support - returns supported operations |
+| `/endpoints` | OPTIONS | Monitoring | CORS support - returns supported operations |
+| `/endpoints/{endpoint}/audit-count` | GET | Audit | Service-to-service request |
