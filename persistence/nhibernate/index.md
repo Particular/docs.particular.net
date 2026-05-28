@@ -2,7 +2,7 @@
 title: NHibernate Persistence
 summary: NHibernate-based persistence for NServiceBus
 component: NHibernate
-reviewed: 2024-10-22
+reviewed: 2026-05-28
 redirects:
  - nservicebus/relational-persistence-using-nhibernate
  - nservicebus/nhibernate/configuration
