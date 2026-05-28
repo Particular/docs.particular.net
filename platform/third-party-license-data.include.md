@@ -25,8 +25,9 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/2.8.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents/2.2.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/3.1.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.Logging.AspNetCore" target="_blank">Amazon.Lambda.Logging.AspNetCore</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Logging.AspNetCore/5.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents/3.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 
 ### NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
@@ -72,12 +73,6 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting" target="_blank">Microsoft.Extensions.Hosting</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-
-### NServiceBus.Extensions.Logging
-
-| Dependency | License | Project Site |
-|:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions" target="_blank">Microsoft.Extensions.Logging.Abstractions</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/10.0.8/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Gateway.RavenDB
 
@@ -191,7 +186,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.8.1/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.9.0/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.48.1/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Snappier" target="_blank">Snappier</a> | <a href="https://www.nuget.org/packages/Snappier/1.3.1/license" target="_blank">BSD-3-Clause</a> | <a href="https://brantburnett.github.io/Snappier/" target="_blank">Project Site</a> |
 
@@ -233,7 +228,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Npgsql" target="_blank">Npgsql</a> | <a href="https://www.nuget.org/packages/Npgsql/10.0.2/license" target="_blank">PostgreSQL</a> | <a href="https://github.com/npgsql/npgsql" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Npgsql" target="_blank">Npgsql</a> | <a href="https://www.nuget.org/packages/Npgsql/10.0.3/license" target="_blank">PostgreSQL</a> | <a href="https://github.com/npgsql/npgsql" target="_blank">Project Site</a> |
 
 ### NServiceBus.Transport.SqlServer
 
