@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Microsoft.Extensions.Hosting;
 
 public static class NServiceBusExtensions
@@ -8,23 +10,23 @@ public static class NServiceBusExtensions
         var endpointConfiguration = new EndpointConfiguration(endpointName);
 
         #region transport-config
-        var queuePrefix = builder.Configuration["QUEUE_NAME_PREFIX"] ?? "";
+        var resourceNamePrefix = builder.Configuration["RESOURCE_NAME_PREFIX"] ?? "";
 
         var routing = endpointConfiguration.UseTransport(new SqsTransport()
         {
-            QueueNamePrefix = queuePrefix,
-            TopicNamePrefix = queuePrefix,
+            QueueNamePrefix = resourceNamePrefix,
+            TopicNamePrefix = resourceNamePrefix,
         });
         #endregion
 
         configure?.Invoke(endpointConfiguration, routing);
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.SendHeartbeatTo($"{queuePrefix}Particular.ServiceControl");
-        endpointConfiguration.AuditProcessedMessagesTo($"{queuePrefix}audit");
+        endpointConfiguration.SendHeartbeatTo($"{resourceNamePrefix}Particular.ServiceControl");
+        endpointConfiguration.AuditProcessedMessagesTo($"{resourceNamePrefix}audit");
 
         var metrics = endpointConfiguration.EnableMetrics();
-        metrics.SendMetricDataToServiceControl($"{queuePrefix}Particular.Monitoring", TimeSpan.FromSeconds(1));
+        metrics.SendMetricDataToServiceControl($"{resourceNamePrefix}Particular.Monitoring", TimeSpan.FromSeconds(1));
 
         #region enable-installers
         endpointConfiguration.EnableInstallers();

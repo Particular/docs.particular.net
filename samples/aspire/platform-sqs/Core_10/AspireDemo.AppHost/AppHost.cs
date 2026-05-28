@@ -2,7 +2,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 #region platform-config
 var region = Amazon.RegionEndpoint.USWest1;
-string? queueNamePrefix = null;
+
+//optional: prefix to avoid conflicts with existing queues in the AWS account.
+var resourceNamePrefix = "particular-aspire-demo-";
 
 var accessKey = builder.AddParameter("accessKey");
 var accessSecret = builder.AddParameter("secretKey", secret:true);
@@ -15,8 +17,8 @@ var platform = builder
         accessSecret.Resource,
         conf =>
         {
-            conf.QueueNamePrefix = queueNamePrefix;
-            conf.TopicNamePrefix = queueNamePrefix;
+            conf.QueueNamePrefix = resourceNamePrefix;
+            conf.TopicNamePrefix = resourceNamePrefix;
         }
     )
     .AddDefaultComponents();
@@ -25,12 +27,12 @@ var platform = builder
 #region endpoints
 var sales = builder.AddProject<Projects.Sales>("Sales")
     .WaitFor(platform)
-    .WithEnvironment("QUEUE_PREFIX", queueNamePrefix)
+    .WithEnvironment("RESOURCE_NAME_PREFIX", resourceNamePrefix)
     .WithParticularPlatform(platform);
 
 builder.AddProject<Projects.ClientUI>("ClientUI")
     .WaitFor(sales)
-    .WithEnvironment("QUEUE_PREFIX", queueNamePrefix)
+    .WithEnvironment("RESOURCE_NAME_PREFIX", resourceNamePrefix)
     .WithParticularPlatform(platform);
 #endregion
 

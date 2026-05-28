@@ -9,6 +9,8 @@ reviewed: 2026-05-07
 
 This sample shows an Aspire AppHost project that orchestrates multiple NServiceBus endpoints,  wiring up the required infrastructure pieces when using the [Amazon SQS](/transports/sqs/) transport.
 
+This sample does not include any AWS resource deployments as it is not required to demonstrate the Particualr Platform running within aspire. When this sample is run the Platform and Endpoints will generate the required queues and topics in SQS. Please refer to the [Integrating AWS with .NET Aspire in the AWS SDK for .NET documentation](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/aspire-integrations.html) page for more information on AWS resources within Aspire.
+
 ## Running the sample
 
 1. Run the AspireDemo.AppHost project
@@ -36,7 +38,7 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 #### Platform configuration
 
 - `region`
-- `queueNamePrefix` - change this to avoid queue conflicts in your region
+- `resourceNamePrefix` - change this to avoid resource conflicts in your region
 - `accessKey` - configurable after startup
 - `accessSecret` - configurable after startup
 
@@ -52,7 +54,7 @@ Each NServiceBus endpoint is added as an Aspire project and linked to the platfo
 
 The Aspire hosting component will automatically pass the transport authentication settings to the endpoints as [environment variables](/transports/sqs/#configuration), so that the NServiceBus transport can authenticate with AWS without additional configuration.
 
-The queue prefix is also passed as `QUEUE_NAME_PREFIX`, so that the endpoints can use it when configuring the transport and when sending messages to ensure they are using the correct queues. 
+The `resourceNamePrefix` is also passed as `RESOURCE_NAME_PREFIX`, so that the endpoints can use it when configuring the transport and when sending messages to ensure they are using the correct queues. 
 
 snippet: endpoints
 
