@@ -4,7 +4,7 @@ using NServiceBus.Persistence.NHibernate;
 
 class DisableSchemaUpdates
 {
-    void DisableSchemaUpdate(EndpointConfiguration endpointConfiguration)
+    static void DisableSchemaUpdate(EndpointConfiguration endpointConfiguration)
     {
         #region DisableSchemaUpdate
 
@@ -14,7 +14,7 @@ class DisableSchemaUpdates
         #endregion
     }
 
-    void DisableSubscriptionSchemaUpdate(EndpointConfiguration endpointConfiguration)
+    static void DisableSubscriptionSchemaUpdate(EndpointConfiguration endpointConfiguration)
     {
         #region DisableSubscriptionSchemaUpdate
 

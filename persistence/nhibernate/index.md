@@ -120,4 +120,26 @@ partial: timeout
 
 ## Generating scripts for deployment
 
-To create scripts for execution in production without using the [installers](/nservicebus/operations/installers.md), run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+There are some options for generating scripts for deployment without using the [installers](/nservicebus/operations/installers.md) in a production environment.
+
+### Run installers in non-production environments
+
+Run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+
+### Use `ScriptGenerator<T>` API
+
+The NHibernate persistence provides a `ScriptGenerator<T>` API that can be used to generate the required SQL scripts for supported database engines.
+
+#### Outbox script
+
+To generate the SQL script for the Outbox, use the following code:
+
+snippet: GenerateOutboxScript
+
+#### Saga storage script
+
+To generate the SQL script for a saga, use the following code:
+
+snippet: GenerateSagaScript
+
+partial: scriptgen

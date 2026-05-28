@@ -1,4 +1,4 @@
-﻿namespace NHibernate_7
+﻿namespace NHibernate_9
 {
     using System;
     using System.Data;
