@@ -9,7 +9,7 @@ reviewed: 2026-05-07
 
 This sample shows an Aspire AppHost project that orchestrates multiple NServiceBus endpoints,  wiring up the required infrastructure pieces when using the [Amazon SQS](/transports/sqs/) transport.
 
-This sample does not include any AWS resource deployments as it is not required to demonstrate the Particular Platform running within aspire. When this sample is run the Platform and Endpoints will generate the required queues and topics in SQS. Please refer to the [Integrating AWS with .NET Aspire in the AWS SDK for .NET documentation](https://docs.aws.amazon.com/sdk-for-net/v4/developer-guide/aspire-integrations.html) page for more information on AWS resources within Aspire.
+This sample does not include any AWS resource deployments as it is not required to demonstrate the Particular Platform running within aspire. When this sample is run the Platform and Endpoints will generate the required queues and topics in SQS. Refer to the [Integrating AWS with .NET Aspire in the AWS SDK for .NET documentation](https://docs.aws.amazon.com/sdk-for-net/v4/developer-guide/aspire-integrations.html) page for more information on AWS resources within Aspire.
 
 ## Running the sample
 
