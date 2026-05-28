@@ -2,7 +2,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.0)| **Current** | 2026-05-21     | Active            | Active |
+| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.2)| **Current** | 2026-05-21     | Active            | Active |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.4)| Mainstream Support | 2026-02-06     | 2026-11-21        | Ineligible |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.3)| Mainstream Support | 2026-01-29     | 2026-08-06        | Ineligible |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.11)| Mainstream Support | 2024-09-10     | 2028-01-29        | 2030-01-29 |
@@ -748,7 +748,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/4.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/4.1.0)| **Current** | 2026-05-27     | Active            | Active |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/4.0.1)| Mainstream Support | 2026-01-30     | 2026-08-27        | Ineligible |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/3.0.2)| Mainstream Support | 2024-04-18     | 2028-01-29        | 2030-01-29 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/2.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/1.0.0)| Extended Support | 2020-03-12     | 2024-11-17        | 2026-11-17 |
@@ -812,7 +813,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.0.1)| **Current** | 2026-01-29     | Active            | Active |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.1.0)| **Current** | 2026-05-27     | Active            | Active |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.0.1)| Mainstream Support | 2026-01-29     | 2026-08-27        | Ineligible |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.1.1)| Mainstream Support | 2026-01-15     | 2028-01-29        | 2030-01-29 |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.0.2)| ~~Unsupported~~ | ~~2025-06-06~~ | ~~2026-04-15~~    | ~~Ineligible~~ |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.1)| Mainstream Support | 2025-04-11     | 2026-06-06        | Ineligible |
