@@ -45,7 +45,6 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | [Microsoft SQL Server](/transports/sql/)                  | Not yet supported            |
 | [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
 | [IBM MQ](/transports/ibmmq/)                              | Not yet supported            |
-| [MSMQ](/transports/msmq/)                                 | Not available in containers  |
 
 ### Persistence
 
