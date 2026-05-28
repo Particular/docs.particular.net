@@ -2,9 +2,11 @@
 
 Console.Title = "Sales";
 #region endpoint-config
-var builder = Host.CreateApplicationBuilder(args);
+var builder = Host.CreateApplicationBuilder();
 
-builder.AddNServiceBusEndpoint("Sales");
+builder
+     .AddServiceDefaults()
+    .AddNServiceBusEndpoint("Sales");
 
 await builder.Build().RunAsync();
 #endregion

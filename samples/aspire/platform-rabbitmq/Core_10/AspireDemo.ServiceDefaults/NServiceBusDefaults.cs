@@ -14,10 +14,15 @@ public static class NServiceBusDefaults
             var endpointConfiguration = new EndpointConfiguration(name);
 
             #region transport-config
-            var connectionString = builder.Configuration.GetConnectionString("transport")
-                    ?? throw new InvalidOperationException($"Endpoint '{name}' has no transport configured. Provide a 'ConnectionStrings:transport' connection string.");
-            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
-            var routing = endpointConfiguration.UseTransport(transport);
+            var connectionString = builder.Configuration.GetConnectionString("transport");
+            if (connectionString is null)
+            {
+                throw new InvalidOperationException
+                    ($"No transport configured. Provide a 'ConnectionStrings:transport'.");
+            }
+
+            var routing = endpointConfiguration.UseTransport
+                (new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString));
             #endregion
 
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();

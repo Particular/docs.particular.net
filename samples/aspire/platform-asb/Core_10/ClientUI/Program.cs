@@ -6,7 +6,9 @@ Console.Title = "ClientUI";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.AddNServiceBusEndpoint("ClientUI", (_, routing) =>
+builder    
+    .AddServiceDefaults()
+    .AddNServiceBusEndpoint("ClientUI", (_, routing) =>
 {
     routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 });

@@ -2,37 +2,44 @@ using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.Hosting;
 
-public static class NServiceBusExtensions
+public static class NServiceBusDefaults
 {
-    public static TBuilder AddNServiceBusEndpoint<TBuilder>(this TBuilder builder, string endpointName, Action<EndpointConfiguration, RoutingSettings>? configure = null)
-        where TBuilder : IHostApplicationBuilder
+    extension(IHostApplicationBuilder builder)
     {
-        var endpointConfiguration = new EndpointConfiguration(endpointName);
-
-        #region transport-config
-        var transportConnection = builder.Configuration.GetConnectionString("learning-transport")
-                    ?? throw new InvalidOperationException($"Endpoint '{endpointName}' has no transport configured. Provide a 'ConnectionStrings:learning-transport' connection string.");
-        var routing = endpointConfiguration.UseTransport(new LearningTransport()
+        public IHostApplicationBuilder AddNServiceBusEndpoint(string name,
+            Action<EndpointConfiguration, RoutingSettings>? configureEndpoint = null)
         {
-            StorageDirectory = transportConnection
-        });
-        #endregion
+            var endpointConfiguration = new EndpointConfiguration(name);
 
-        configure?.Invoke(endpointConfiguration, routing);
+            #region transport-config
+            var connectionString = builder.Configuration.GetConnectionString("learning-transport");
+            if (connectionString is null)
+            {
+                throw new InvalidOperationException
+                    ($"No transport configured. Provide a 'ConnectionStrings:learning-transport'.");
+            }
+            var routing = endpointConfiguration.UseTransport(new LearningTransport()
+            {
+                StorageDirectory = connectionString
+            });
+            #endregion
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+            endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+            endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        var metrics = endpointConfiguration.EnableMetrics();
-        metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
+            var metrics = endpointConfiguration.EnableMetrics();
+            metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
-        #region enable-installers
-        endpointConfiguration.EnableInstallers();
-        #endregion
+            #region enable-installers
+            endpointConfiguration.EnableInstallers();
+            #endregion
 
-        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+            configureEndpoint?.Invoke(endpointConfiguration, routing);
 
-        return builder;
+            builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+
+            return builder;
+        }
     }
 }
