@@ -54,7 +54,7 @@ class Program
         #region CreateSchema
 
         var outboxScript = ScriptGenerator<MsSql2012Dialect>.GenerateOutboxScript();
-        var entityScript = ScriptGenerator<MsSql2012Dialect>.GenerateOutboxScript(typeof(OrderMap));
+        var entityScript = ScriptGenerator<MsSql2012Dialect>.GenerateScript(typeof(OrderMap));
         var sagaScript = ScriptGenerator<MsSql2012Dialect>.GenerateSagaScript<OrderLifecycleSaga>();
 
         SqlHelper.ExecuteSql(Connections.TenantA, sagaScript);

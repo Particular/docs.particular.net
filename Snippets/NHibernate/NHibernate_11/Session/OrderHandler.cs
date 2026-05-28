@@ -7,16 +7,10 @@ namespace NHibernate.Session;
 
 #region NHibernateAccessingDataViaDI
 
-public class OrderHandler :
+[Handler]
+public class OrderHandler(INHibernateStorageSession synchronizedStorageSession) :
     IHandleMessages<OrderMessage>
 {
-    INHibernateStorageSession synchronizedStorageSession;
-
-    public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
-    {
-        this.synchronizedStorageSession = synchronizedStorageSession;
-    }
-
     public Task Handle(OrderMessage message, IMessageHandlerContext context)
     {
         synchronizedStorageSession.Session.Save(new Order());
@@ -28,7 +22,7 @@ public class OrderHandler :
 
 public class EndpointWithSessionRegistered
 {
-    public void Configure(IHostApplicationBuilder builder)
+    public static void Configure(IHostApplicationBuilder builder)
     {
         #region AccessingDataConfigureISessionDI
 
