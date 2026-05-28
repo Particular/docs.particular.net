@@ -44,7 +44,7 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 
 `AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `WithTransportAmazonSqs` extension points the platform at the SQS configuration defined earlier, so that the ServiceControl instances connect to the same AWS region as the endpoints.
 
-`AddDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl audit and monitoring instances and ServicePulse. The error instance is added explicitly above so that usage reporting can be configured on it.
+The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse and RavenDB for persistence.
 
 snippet: platform-config
 
@@ -52,9 +52,9 @@ snippet: platform-config
 
 Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
 
-The Aspire hosting component will automatically pass the transport authentication settings to the endpoints as [environment variables](/transports/sqs/#configuration), so that the NServiceBus transport can authenticate with AWS without additional configuration.
+The Aspire hosting component will automatically pass the transport authentication settings to the endpoints as [environment variables](/transports/sqs/#configuration), so that the NServiceBus endpoint's transport can authenticate with AWS without additional configuration.
 
-The `resourceNamePrefix` is also passed as `RESOURCE_NAME_PREFIX`, so that the endpoints can use it when configuring the transport and when sending messages to ensure they are using the correct queues. 
+The `resourceNamePrefix` is also passed as `RESOURCE_NAME_PREFIX`, so that the endpoints can use it when configuring the transport and when sending messages to ensure they are using the correct queues.
 
 snippet: endpoints
 

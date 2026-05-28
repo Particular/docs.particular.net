@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-
 namespace Microsoft.Extensions.Hosting;
 
 public static class NServiceBusDefaults

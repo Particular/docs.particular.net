@@ -1,5 +1,4 @@
 using Particular.Aspire.Hosting.ServicePlatform.ThroughputReporting;
-using Particular.Aspire.Hosting.ServicePlatform.Transport;
 
 var builder = DistributedApplication.CreateBuilder(args);
 

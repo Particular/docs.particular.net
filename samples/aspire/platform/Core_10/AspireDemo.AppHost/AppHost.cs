@@ -1,25 +1,18 @@
-#region app-host
-
 var builder = DistributedApplication.CreateBuilder(args);
 
-var database = builder.AddPostgres("database");
-
-database.WithPgAdmin(resource =>
-{
-    resource.WithParentRelationship(database);
-    resource.WithUrlForEndpoint("http", url => url.DisplayText = "pgAdmin");
-});
-
+#region platform-config
 var platform = builder
     .AddParticularPlatform("particular")
     .AddDefaultComponents();
+#endregion
 
+#region endpoints
 var sales = builder.AddProject<Projects.Sales>("Sales")
     .WithParticularPlatform(platform);
 
 builder.AddProject<Projects.ClientUI>("ClientUI")
     .WaitFor(sales)
     .WithParticularPlatform(platform);
+#endregion
 
 builder.Build().Run();
-#endregion

@@ -33,7 +33,17 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
   - `clientUi`: simulates a client application sending messages to the system periodically
   - `sales`: processes messages and simulates transient failures
 
-snippet: app-host
+#### Platform configuration
+
+`AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse, Learning transport and RavenDB for persistence.
+
+snippet: platform-config
+
+#### Endpoints
+
+Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. This wires the endpoint to the platform's transport connection string. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
+
+snippet: endpoints
 
 ### AspireDemo.ServiceDefaults
 
@@ -43,18 +53,24 @@ The OpenTelemetry configuration has been updated to include NServiceBus metrics 
 
 snippet: add-nsb-otel
 
-The endpoints are configured to use the learning transport, by using the path provided by the `particular` resource:
+Each endpoint project retrieves the transport path provided by the `particular` resource:
 
 snippet: transport-config
 
-Additionally, the shared config enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
+Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
 
 ### Endpoint projects
 
-Each of the endpoint projects contain the same code to create an application host to apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
+Each of the endpoint projects contain the same code to create an application host, apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
 
 snippet: endpoint-config
+
+To demonstrate the platform's error handling, the `Sales` endpoint's handler throws an exception for a random subset of the messages it receives:
+
+snippet: random-error
+
+Failed messages are moved to the error queue, where they can be inspected and retried from ServicePulse.
 
 If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
