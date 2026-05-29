@@ -1,8 +1,5 @@
-To get full control over the `Conversation ID`, a custom convention can be registered:
+To get full control over the `ConversationId`, a custom convention can be registered:
 
 snippet: custom-conversation-id-convention
 
-This is useful to avoid setting the `Conversation ID` when sending individual messages but rather apply a convention using a custom attribute, inheriting from an interface, using reflection based on message types, or some other method.
-
-> [!NOTE]
-> This is invoked for each message being send. This is not invoked for incoming messages that do not have the header set.
+This will automatically be invoked for all sent messages so they use the custom `ConversationId`, and it no longer needs to be manually set for each individual message. This approach is useful when a given rule or custom attribute should be applied to all sent messages.
