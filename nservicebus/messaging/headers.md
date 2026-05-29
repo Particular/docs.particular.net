@@ -108,7 +108,7 @@ The identifier of the conversation that this message is part of. It enables the 
 
 The first message **sent** in a new flow is automatically assigned a unique `ConversationId` that gets propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
 
-The `ConversationId` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message must be part of an existing order conversation, the Order ID can be used as the Conversation ID. Manually assigning a `ConversationId` for the message that is being send can be achieved by overriding the header with a custom value:
+The `ConversationId` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message must be part of an existing order conversation, the `OrderId` can be used as the `ConversationId`. Manually assigning a `ConversationId` to the message being sent can be achieved by overriding the header with a custom value:
 
 snippet: override-conversation-id
 
