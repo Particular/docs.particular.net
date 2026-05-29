@@ -163,7 +163,9 @@ namespace IntegrityTests
             { "net9.0", 13 },
             { "net9.0-windows", 13 },
             { "net10.0", 14 },
-            { "net10.0-windows", 14 }
+            { "net10.0-windows", 14 },
+            { "net11.0", 15 },
+            { "net11.0-windows", 15 }
         };
 
         // This needs to be kept up to date with the latest released version of C#
