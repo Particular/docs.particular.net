@@ -616,8 +616,8 @@
       Title: About
     - Url: security-advisories/published-advisories
       Title: Published Advisories
-    - Url: security-advisories/transitive-cves
-      Title: Transitive CVEs
+    - Url: security-advisories/dependency-vulnerabilities
+      Title: Dependency Vulnerabilities
   - Title: Operations
     Articles:
     - Url: nservicebus/hosting/startup-diagnostics

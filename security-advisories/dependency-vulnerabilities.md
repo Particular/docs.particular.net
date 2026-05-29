@@ -1,5 +1,5 @@
 ---
-title: Transitive CVEs
+title: Dependency Vulnerabilities
 reviewed: 2026-05-29
 suppressRelated: true
 ---

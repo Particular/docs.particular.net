@@ -4,7 +4,34 @@ reviewed: 2026-05-29
 suppressRelated: true
 ---
 
-## CVE Handling Process
+## Security Vulnerabilities
+
+Particular Software investigates, assesses, remediates, and discloses security vulnerabilities identified in its own code in a coordinated manner aligned with standard industry disclosure practices.
+
+When a security vulnerability is confirmed, its scope, severity, exploitability, and potential customer impact are evaluated. This assessment may include code review, testing, security analysis tools, and industry-standard severity frameworks such as CVSS.
+
+Depending on the nature of the issue, remediation may include one or more of the following actions:
+
+- releasing a patch that removes the vulnerability
+- applying mitigations that reduce the likelihood or impact of exploitation
+- removing or disabling affected functionality
+- making architectural or design changes where necessary
+
+For vulnerabilities that require confidentiality prior to release, investigation and remediation may be performed in a private repository or other non-public development environment until a fix is ready. This helps reduce the risk of premature disclosure before customers can apply an update.
+
+Where appropriate, temporary protective measures may also be taken, such as unlisting packages or removing releases, to limit further exposure while a remediation is being prepared.
+
+Security fixes and related communications are coordinated so that remediation is available before or at the time of public disclosure.
+Advisories are listed on the [Published Advisories](published-advisories.md) page and may be accompanied by additional customer communication when warranted.
+
+Public disclosures will typically include:
+
+- the affected product or repository scope
+- affected versions
+- remediation or mitigation guidance
+- fix availability status
+
+## Dependency Vulnerabilities Process
 
 Particular Software maintains an automated process to identify, assess, track, and remediate vulnerabilities affecting both direct and transitive software dependencies used in its repositories.
 
@@ -38,9 +65,7 @@ Dependency vulnerabilities are remediated by one or more of the following action
 
 For dependency vulnerabilities discovered through public advisories, the upstream advisory and CVE record are treated as the authoritative public source for the vulnerability.
 
-CVEs affecting Particular Software's software are disclosed on the [Security Advisories](published-advisories.md) page.
-
-CVEs that exist only in referenced dependencies and are not exploitable through the software are disclosed on the [Transitive CVEs](transitive-cves.md) page.
+Dependency vulnerabilities that have been addressed in the platform are listed on the [Dependency Vulnerabilities](dependency-vulnerabilities.md) page.
 
 The following will be disclosed:
 
