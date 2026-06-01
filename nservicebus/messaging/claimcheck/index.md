@@ -84,7 +84,6 @@ Automatically removing these attachments can cause problems in many situations. 
   - The [message mutator sample](/samples/messagemutators/) demonstrates message body compression.
 - Use a more efficient serializer, such as a binary serializer.
   - A custom serializer can usually be implemented in only a few lines of code.
-  - Some binary [serializers are maintained by the community](/nservicebus/community/#serializers).
 - Use [NServiceBus.Attachments](/nservicebus/community/#nservicebus-attachments) for unbounded binary payloads. The package is similar to the `DataBus`, but has some differences:
   - Read on demand: Attachments are only retrieved when read by a consumer.
   - Async enumeration: The package supports processing all data items using an `IAsyncEnumerable`.

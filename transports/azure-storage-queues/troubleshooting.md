@@ -17,5 +17,5 @@ Reduce the message body with one or more of the following techniques:
 
 - use the [`DataBus` feature](/nservicebus/messaging/claimcheck/)
 - apply [message compression](https://www.nuget.org/packages/NServiceBus.Compression/)
-- use a [compact binary serializer](/nservicebus/community/#serializers)
+- use a custom binary serializer
 - include less data in the message.

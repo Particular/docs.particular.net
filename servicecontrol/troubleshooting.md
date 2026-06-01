@@ -390,7 +390,7 @@ To mitigate growth or not having enough storage:
 
 5. Use an audit filter to filter the messages to be sent to the audit queue:
 
-   - [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
+   - [NServiceBus.AuditFilter](https://github.com/NServiceBusCommunity/NServiceBus.AuditFilter)
 
 6. Setup multiple audit instances with different retention periods if retention requirements can vary between endpoints:
 
