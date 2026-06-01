@@ -8,10 +8,10 @@ using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
 #region azure-functions-basic-endpoint
-[NServiceBusFunction]
 public partial class OrdersEndpoint
 {
     [Function(nameof(Orders))]
+    [NServiceBusFunction]
     public partial Task Orders(
         [ServiceBusTrigger("orders", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,

@@ -2,7 +2,7 @@
 title: Migrate Azure Functions (Isolated Worker) to new package
 summary: How to migrate from NServiceBus.AzureFunctions.Worker.ServiceBus to NServiceBus.AzureFunctions.AzureServiceBus
 component: AzureFunctions
-reviewed: 2026-05-25
+ reviewed: 2026-06-01
 related:
   - nservicebus/hosting/azure/functions
   - nservicebus/hosting/azure-functions-service-bus
@@ -88,10 +88,10 @@ using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using NServiceBus;
 
-[NServiceBusFunction]
 public partial class SalesEndpoint
 {
     [Function("Sales")]
+    [NServiceBusFunction]
     public partial Task Sales(
         [ServiceBusTrigger("sales", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
@@ -113,7 +113,7 @@ public partial class SalesEndpoint
 }
 ```
 
-The endpoint method, and any containing class, must be declared `partial` so the source generator can emit the trigger body.
+The endpoint method must be marked with `[NServiceBusFunction]`, and both the method and its containing class must be declared `partial` so the source generator can emit the trigger body.
 
 Trigger queue names and connection setting names can use [Azure Functions binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns) such as `%BillingPrefix%-api` if needed.
 
@@ -190,7 +190,7 @@ If the app has HTTP, timer, or other Azure Functions that send messages, keep th
 
 ### Manually declared Service Bus trigger functions
 
-If the app manually declares the Service Bus trigger instead of using the generated trigger, move that code to an explicit endpoint method marked with `[NServiceBusFunction]`.
+If the app manually declares the Service Bus trigger instead of using the generated trigger, move that code to an explicit endpoint method with `[NServiceBusFunction]` on the method.
 
 The new package no longer relies on `NServiceBusTriggerFunction` for this scenario. The `ServiceBusTrigger(...)` definition is part of the endpoint method itself.
 

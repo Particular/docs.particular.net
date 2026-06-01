@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-05-25
+ reviewed: 2026-06-01
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
@@ -14,9 +14,9 @@ NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServi
 
 snippet: azure-functions-basic-endpoint
 
-An endpoint is a partial class composed of three parts:
+An endpoint is declared as a partial method inside a partial class and composed of three parts:
 
-- The class is decorated with `[NServiceBusFunction]`.
+- The endpoint method is decorated with `[NServiceBusFunction]`.
 - A partial method declares the Azure Service Bus trigger. The source generator emits the body, which forwards each incoming message to the NServiceBus pipeline.
 - A static `Configure{FunctionName}` method registers handlers and configures the endpoint.
 
@@ -55,7 +55,7 @@ snippet: azure-functions-program-builder
 
 ## Hosting multiple endpoints
 
-Multiple `[NServiceBusFunction]`-decorated members can co-exist in one Functions app. Each is registered as an independent NServiceBus endpoint with its own queue, handlers, and configure method. Two functions hosted from the same partial class:
+Multiple methods decorated with `[NServiceBusFunction]` can co-exist in one Functions app. Each is registered as an independent NServiceBus endpoint with its own queue, handlers, and configure method. Two functions hosted from the same partial class:
 
 snippet: azure-functions-multiple-endpoints
 
@@ -117,7 +117,7 @@ The package includes Roslyn analyzers that enforce required patterns:
 
 | ID | Severity | Rule |
 |---|---|---|
-| `NSBFUNC001` | Error | A class with `[NServiceBusFunction]` must be `partial`. |
+| `NSBFUNC001` | Error | A class containing a method with `[NServiceBusFunction]` must be `partial`. |
 | `NSBFUNC002` | Warning | A function class should not implement `IHandleMessages<T>`. |
 | `NSBFUNC003` | Error | A method with `[NServiceBusFunction]` must be `partial`. |
 | `NSBFUNC004` | Warning | The application must call `builder.AddNServiceBusFunctions()`. |

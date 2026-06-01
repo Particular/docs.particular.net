@@ -9,10 +9,10 @@ using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
 #region azure-functions-configure-with-services
-[NServiceBusFunction]
 public partial class ShippingEndpoint
 {
     [Function("Shipping")]
+    [NServiceBusFunction]
     public partial Task Shipping(
         [ServiceBusTrigger("shipping", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
