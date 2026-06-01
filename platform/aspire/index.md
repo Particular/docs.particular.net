@@ -158,7 +158,6 @@ snippet: aspire-transport-sqs
 | `S3BucketForLargeMessages` (`IExpressionValue?`) property on `AmazonSQSTransportSettings`              | Optional |
 | `QueueNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
 
-
 ## Configuring persistence
 
 ServiceControl uses a persistence backend to store error and audit data, retry state, and saga history. See [Supported components](#supported-components) for the persisters currently wired through the integration.
