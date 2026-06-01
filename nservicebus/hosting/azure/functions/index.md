@@ -18,7 +18,7 @@ An endpoint is declared as a partial method inside a partial class and composed 
 
 - The endpoint method is decorated with `[NServiceBusFunction]`.
 - A partial method declares the Azure Service Bus trigger. The source generator emits the body, which forwards each incoming message to the NServiceBus pipeline.
-- A static `Configure{FunctionName}` method registers handlers and configures the endpoint.
+- A static `Configure{FunctionName}` method configures the endpoint.
 
 The trigger must set `AutoCompleteMessages = false`. The NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
 
@@ -46,7 +46,7 @@ Assembly scanning is not available in this hosting model, so handlers and sagas 
 
 ## Wiring the host
 
-The Functions host is bootstrapped in `Program.cs`. Calling `AddNServiceBusFunctions` discovers every `[NServiceBusFunction]` in the application and registers each endpoint with the Functions runtime:
+The Functions host is bootstrapped in `Program.cs`. Calling `AddNServiceBusFunctions` registers and configures each `[NServiceBusFunction]` with the Functions runtime:
 
 snippet: azure-functions-program-builder
 
