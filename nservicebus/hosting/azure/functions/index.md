@@ -84,7 +84,8 @@ The Azure Service Bus connection is read from the Functions configuration. The n
 
 If the default setting name `AzureWebJobsServiceBus` is used, the `Connection` parameter can be omitted on `[ServiceBusTrigger]`, and `ConnectionName` does not need to be set on `AzureServiceBusServerlessTransport`.
 
-Queue names and setting names in `[ServiceBusTrigger]` can use Azure Functions binding expressions such as `%BillingPrefix%-api`.
+> [!NOTE]
+> Connection name and queue name in the `[ServiceBusTrigger]` can use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
 
 ## Transactions
 
