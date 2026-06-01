@@ -14,7 +14,7 @@ Message encryption leverages the pipeline to encrypt the entire serialized messa
 > [!NOTE]
 > Data in the message headers is not encrypted.
 
-One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators).
+One way of achieving this is by using a [transport message mutator](/nservicebus/pipeline/message-mutators.md#transport-message-mutators).
 
 snippet: MessageBodyEncryptor
 

@@ -130,7 +130,7 @@ snippet: renameTables
 
 #### Mutator
 
-The mutator is an [incoming transport mutator](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators-imutateincomingtransportmessages) that translates [saga reply headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) on incoming messages to the new saga names.
+The mutator is an [incoming transport mutator](/nservicebus/pipeline/message-mutators.md#transport-message-mutators-imutateincomingtransportmessages) that translates [saga reply headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) on incoming messages to the new saga names.
 
 This is required to handle the following scenario
 

@@ -2,7 +2,7 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2024-09-22
+reviewed: 2026-06-01
 redirects:
  - nservicebus/pipeline-management-using-message-mutators
 related:
@@ -32,7 +32,7 @@ snippet: IMutateIncomingMessages
 snippet: IMutateOutgoingMessages
 
 
-## Transport messages mutators
+## Transport message mutators
 
 Transport message mutators work on the serialized transport message and are useful for compression, header manipulation, etc.
 Create transport message mutators by implementing the `IMutateIncomingTransportMessages` or `IMutateOutgoingTransportMessages` interfaces.
