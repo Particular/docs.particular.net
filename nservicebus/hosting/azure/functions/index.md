@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
- reviewed: 2026-06-01
+reviewed: 2026-06-01
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics

@@ -4,7 +4,7 @@ summary: Using NServiceBus with Azure Service Bus triggers and Azure Functions h
 component: AzureFunctions
 related:
   - nservicebus/hosting/azure/functions
- reviewed: 2026-06-01
+reviewed: 2026-06-01
 ---
 
 This sample shows how to host NServiceBus in an Azure Functions app using the `NServiceBus.AzureFunctions.AzureServiceBus` package. A Service Bus-triggered function receives messages and dispatches them through the NServiceBus pipeline, while an HTTP-triggered function uses a send-only endpoint to start the conversation.

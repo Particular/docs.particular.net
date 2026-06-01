@@ -2,7 +2,7 @@
 title: Migrate Azure Functions (Isolated Worker) to new package
 summary: How to migrate from NServiceBus.AzureFunctions.Worker.ServiceBus to NServiceBus.AzureFunctions.AzureServiceBus
 component: AzureFunctions
- reviewed: 2026-06-01
+reviewed: 2026-06-01
 related:
   - nservicebus/hosting/azure/functions
   - nservicebus/hosting/azure-functions-service-bus
