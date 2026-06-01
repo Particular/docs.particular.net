@@ -2,7 +2,7 @@
 title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
-reviewed: 2026-01-19
+reviewed: 2026-04-27
 redirects:
 - nservicebus/how-do-i-handle-a-message
 ---
@@ -62,7 +62,7 @@ If the original message is not published as an event, but rather [sent](/nservic
   - Send a copy of the original message to each endpoint.
   - This provides the greatest degree of isolation and provides more granularity for retry policy customization and scaling, greater visibility, better monitoring, and other benefits.
 
-partial: manual-registration
+By default, message handlers are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for all registration options.
 
 ## Unit testing
 

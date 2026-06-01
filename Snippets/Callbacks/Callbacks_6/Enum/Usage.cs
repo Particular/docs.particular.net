@@ -6,12 +6,12 @@
 
     class Usage
     {
-        async Task Simple(IEndpointInstance endpoint, ILog log)
+        async Task Simple(IMessageSession messageSession, ILog log)
         {
             #region EnumCallback
 
             var message = new Message();
-            var response = await endpoint.Request<Status>(message);
+            var response = await messageSession.Request<Status>(message);
             log.Info($"Callback received with response:{response}");
 
             #endregion

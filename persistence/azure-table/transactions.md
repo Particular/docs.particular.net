@@ -11,7 +11,7 @@ By default, the persistence does not attempt to atomically commit saga data and/
 
 #if-version [3,5)
 
-For more information refer to the Microsoft [TableBatchOperation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet) API documentation.
+For more information refer to the Microsoft [TableBatchOperation](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet) API documentation.
 
 #end-if
 

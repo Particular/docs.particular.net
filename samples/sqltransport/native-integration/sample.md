@@ -10,7 +10,7 @@ related:
 
 This sample demonstrates how to send messages to an endpoint running on the [SqlServer Transport](/transports/sql) directly from the database using T-SQL statements. This enables integrating event-driven messaging endpoints within a legacy SQL application where most application logic is embedded within stored procedures, even allowing messages to be sent as a result of database triggers.
 
-The sample also shows how to natively send messages using [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview), such as from a utility application or batch job.
+The sample also shows how to natively send messages using [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview), such as from a utility application or batch job.
 
 downloadbutton
 

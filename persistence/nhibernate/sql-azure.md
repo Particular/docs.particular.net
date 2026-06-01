@@ -19,7 +19,7 @@ When using a relational database as a service for persisting NServiceBus data, i
  * The data store is potentially located in a remote location and is thus subject to a broad range of potential networking issues.
  * 'As a service' environments such as SQL Azure are typically shared environments, so performance of the database can be impacted by the behavior of other databases on the server.
 
-The combination of these characteristics means that any transaction executed against the database may show intermittent exceptions. Usually these exceptions are transient in nature and can be resolved by retrying the transaction. A good place to start is the [Transient Fault Handling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults) documentation from Microsoft.
+The combination of these characteristics means that any transaction executed against the database may show intermittent exceptions. Usually these exceptions are transient in nature and can be resolved by retrying the transaction. A good place to start is the [Transient Fault Handling](https://learn.microsoft.com/en-us/azure/architecture/best-practices/transient-faults) documentation from Microsoft.
 
 ### NHibernate specifics
 

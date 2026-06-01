@@ -26,7 +26,7 @@ include: scheduler-drawbacks
 
 ### Endpoint Helper
 
-This is a helper class used to make the NServiceBus `IEndpointInstance` available inside Hangfire jobs. In this sample it is implemented as a static property.
+This is a helper class used to make the NServiceBus `IMessageSession` available inside Hangfire jobs. In this sample it is implemented as a static property.
 
 snippet: EndpointInstance
 
@@ -35,7 +35,7 @@ Hangfire also supports Dependency Injection (DI) via the [JobActivator API](http
 
 ### Configure and start the scheduler
 
-The endpoint is started, and the `IEndpointInstance` is stored in the static endpoint helper.
+The endpoint is started, and the `IMessageSession` is stored in the static endpoint helper.
 
 This sample uses in-memory storage for the jobs. Production scenarios should use more robust alternatives: e.g. SQL Server or Redis.
 
@@ -50,7 +50,7 @@ This sample passes in an expression pointing to the static `Run` method in `Send
 
 snippet: SendMessageJob
 
-Note that the `EndpointHelper` is used by the job to get access to the `IEndpointInstance` .
+Note that the `EndpointHelper` is used by the job to get access to the `IMessageSession` .
 
 
 ### Schedule a job

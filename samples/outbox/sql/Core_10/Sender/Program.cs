@@ -7,9 +7,8 @@ using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
 Console.Title = "Sender";
-var host = Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(x =>
-    {
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -52,7 +51,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         SqlHelper.CreateSchema(connectionString, "sender");
         Console.WriteLine("Press enter to send a message");
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build();
 

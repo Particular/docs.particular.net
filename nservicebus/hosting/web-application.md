@@ -1,12 +1,12 @@
 ---
 title: Web application hosting
 summary: Hosting NServiceBus in a website or web service
-reviewed: 2025-01-14
+component: Core
+reviewed: 2026-04-27
 isLearningPath: true
 related:
  - samples/web
  - nservicebus/lifecycle
- - samples/startup-shutdown-sequence
  - nservicebus/messaging/callbacks
  - nservicebus/hosting/publishing-from-web-applications
 ---
@@ -17,9 +17,7 @@ As most web technologies operate in a scale-out manner, NServiceBus can be hoste
 
 ## Dependency injection integration
 
-### Using the Generic Host
-
-NServiceBus can be integrated into any web host that supports the [Microsoft Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) using the [NServiceBus Generic Host integration](/nservicebus/hosting/extensions-hosting.md). The Generic Host integration automatically registers `IMessageSession` with the dependency injection container.
+partial: generic-host
 
 ### Self-hosting
 
@@ -36,4 +34,4 @@ The recommended approach to handle this scenario is to have two dependency injec
 
 ## Endpoint lifecycle
 
-In a web-hosted scenario, [recycling an IIS process](https://docs.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525803(v=vs.90)) causes the hosted NServiceBus endpoint to shutdown and restart.
+In a web-hosted scenario, [recycling an IIS process](https://learn.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525803(v=vs.90)) causes the hosted NServiceBus endpoint to shutdown and restart.

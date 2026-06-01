@@ -6,10 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StackExchange.Redis" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="10.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <PackageReference Include="NServiceBus.ClaimCheck" Version="2.*" />
+    <PackageReference Include="StackExchange.Redis" Version="2.*" />
   </ItemGroup>
 
 </Project>

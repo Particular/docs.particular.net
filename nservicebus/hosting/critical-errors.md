@@ -72,7 +72,7 @@ snippet: CustomHostErrorHandlingAction
 
 When implementing a custom critical error callback:
 
-* Decide if the process can be exited/terminated and use the [Environment.FailFast](https://docs.microsoft.com/en-us/dotnet/api/system.environment.failfast) method to exit the process. If the environment has threads running that should be completed before shutdown (e.g. non transactional operations), the [Environment.Exit](https://docs.microsoft.com/en-us/dotnet/api/system.environment.exit) method can also be used.
+* Decide if the process can be exited/terminated and use the [Environment.FailFast](https://learn.microsoft.com/en-us/dotnet/api/system.environment.failfast) method to exit the process. If the environment has threads running that should be completed before shutdown (e.g. non transactional operations), the [Environment.Exit](https://learn.microsoft.com/en-us/dotnet/api/system.environment.exit) method can also be used.
 * The code should be wrapped in a `try...finally` clause. In the `try` block, perform any custom operations; in the `finally` block, call the method that exits the process.
 * The custom operations should include flushing any in-memory state and cached data, if normally it is persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous logging for [Serilog](https://github.com/serilog/serilog/wiki/Lifecycle-of-Loggers) via `Log.CloseAndFlush();`, or [NLog](https://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) and [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) by calling `LogManager.Shutdown();`.
 

@@ -26,6 +26,6 @@ persistence.EnableTransactionalSession();
 endpointConfiguration.EnableOutbox();
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

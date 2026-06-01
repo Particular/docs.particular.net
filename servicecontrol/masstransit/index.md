@@ -1,7 +1,7 @@
 ---
 title: MassTransit Connector for ServiceControl
 summary: Introduction to the MassTransit Connector for ServiceControl
-reviewed: 2024-09-04
+reviewed: 2026-05-14
 component: ServiceControl
 ---
 

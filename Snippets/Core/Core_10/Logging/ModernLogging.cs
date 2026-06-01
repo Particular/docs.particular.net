@@ -1,10 +1,14 @@
 namespace Core.Logging;
 
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
+using NServiceBus.Logging;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 public class MyMessage : IMessage { }
 
@@ -49,3 +53,20 @@ class Startup
     }
     #endregion
 }
+
+#region UsingEndpointLoggingScope
+public class MyBackgroundService(
+    ILogger<MyBackgroundService> logger,
+    EndpointLoggingScope endpointScope) : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        using (logger.BeginEndpointScope(endpointScope))
+        {
+            logger.LogInformation("Doing background work");
+        }
+
+        await Task.CompletedTask;
+    }
+}
+#endregion

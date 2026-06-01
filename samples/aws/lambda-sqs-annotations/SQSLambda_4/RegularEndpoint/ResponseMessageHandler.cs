@@ -1,12 +1,10 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-public class ResponseMessageHandler : IHandleMessages<ResponseMessage>
+public class ResponseMessageHandler(ILogger<ResponseMessageHandler> logger) : IHandleMessages<ResponseMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<ResponseMessageHandler>();
-
     public Task Handle(ResponseMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(ResponseMessage)} in RegularEndpoint");
+        logger.LogInformation($"Handling {nameof(ResponseMessage)} in RegularEndpoint");
         return Task.CompletedTask;
     }
 }

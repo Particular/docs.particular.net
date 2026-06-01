@@ -7,7 +7,7 @@ The `nsbendpoint` template creates a C# project for an NServiceBus endpoint. By 
 *  [Persistence](/persistence/)
 *  [Hosting model](/nservicebus/hosting/), which can be one of:
    * Console Application
-   * [Windows service hosting](/nservicebus/hosting/#self-hosting-windows-service-hosting)
+   * [Windows service hosting](/nservicebus/hosting/windows-service.md)
    * [Docker container hosing](/nservicebus/hosting/docker-host)
 
 Once the package is installed, the template can be found in the Visual Studio **New Project** dialog:
@@ -24,7 +24,7 @@ The default usage will create a Console Application using [Learning Transport](/
 
 snippet: endpointdefault
 
-Parameters allow the selection of message transport, persistence, and hosting model, including [Windows Service](/nservicebus/hosting/#self-hosting-windows-service-hosting) or [Docker container](/nservicebus/hosting/docker-host/) hosting.
+Parameters allow the selection of message transport, persistence, and hosting model, including [Windows Service](/nservicebus/hosting/windows-service.md) or [Docker container](/nservicebus/hosting/docker-host/) hosting.
 
 ### Options
 

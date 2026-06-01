@@ -1,23 +1,16 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-namespace NHibernate_9.Session
+namespace NHibernate_10.Session
 {
     using Microsoft.Extensions.DependencyInjection;
     using NHibernate;
 
     #region NHibernateAccessingDataViaDI
 
-    public class OrderHandler :
-        IHandleMessages<OrderMessage>
+    public class OrderHandler(INHibernateStorageSession synchronizedStorageSession)
+        : IHandleMessages<OrderMessage>
     {
-        INHibernateStorageSession synchronizedStorageSession;
-
-        public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
-        {
-            this.synchronizedStorageSession = synchronizedStorageSession;
-        }
-
         public Task Handle(OrderMessage message, IMessageHandlerContext context)
         {
             synchronizedStorageSession.Session.Save(new Order());
@@ -29,7 +22,7 @@ namespace NHibernate_9.Session
 
     public class EndpointWithSessionRegistered
     {
-        public void Configure(EndpointConfiguration config)
+        public static void Configure(EndpointConfiguration config)
         {
             #region AccessingDataConfigureISessionDI
 

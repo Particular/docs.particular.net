@@ -11,6 +11,6 @@ redirects:
 
 ## General guidelines
 
-Microsoft's [Azure Storage Performance Checklist](https://docs.microsoft.com/en-us/azure/storage/storage-performance-checklist) should be considered for performance tips and design guidelines.
+Microsoft's [Azure Storage Performance Checklist](https://learn.microsoft.com/en-us/azure/storage/storage-performance-checklist) should be considered for performance tips and design guidelines.
 
 partial: table-scanning

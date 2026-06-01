@@ -31,11 +31,11 @@ endpointConfiguration.EnableInstallers();
 SqlHelper.EnsureDatabaseExists(connection);
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 builder.Logging.AddConsole();
 
 // Build and start the host
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 // Get required services

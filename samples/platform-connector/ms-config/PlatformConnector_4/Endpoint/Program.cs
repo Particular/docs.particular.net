@@ -26,9 +26,9 @@ var platformConnection = hostBuilder.Configuration
 endpointConfiguration.ConnectToServicePlatform(platformConnection);
 #endregion
 
-hostBuilder.UseNServiceBus(endpointConfiguration);
+hostBuilder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = hostBuilder.Build();
+using var host = hostBuilder.Build();
 
 await host.StartAsync();
 

@@ -6,7 +6,7 @@ using NServiceBus.Persistence.NHibernate;
 
 class Usage
 {
-    void Simple(EndpointConfiguration endpointConfiguration)
+    static void Simple(EndpointConfiguration endpointConfiguration)
     {
         #region ConfiguringNHibernate
 
@@ -21,7 +21,7 @@ class Usage
         #endregion
     }
 
-    void ConnectionString(EndpointConfiguration endpointConfiguration)
+    static void ConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region ConnectionStringAPI
 
@@ -31,7 +31,7 @@ class Usage
         #endregion
     }
 
-    void NHibernateSubscriptionCaching(EndpointConfiguration endpointConfiguration)
+    static void NHibernateSubscriptionCaching(EndpointConfiguration endpointConfiguration)
     {
         #region NHibernateSubscriptionCaching
 
@@ -42,7 +42,7 @@ class Usage
     }
 
 
-    void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
+    static void CustomCommonConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region CommonNHibernateConfiguration
         var nhConfiguration = new Configuration
@@ -61,7 +61,7 @@ class Usage
         #endregion
     }
 
-    void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
+    static void SpecificNHibernateConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region SpecificNHibernateConfiguration
 
@@ -80,7 +80,7 @@ class Usage
     }
 
 
-    void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
+    static void CustomCommonConfigurationWarning(EndpointConfiguration endpointConfiguration)
     {
         #region CustomCommonNhibernateConfigurationWarning
 

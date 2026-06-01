@@ -19,7 +19,7 @@ class Program
         endpointConfig.UseClaimCheck(_ => new RedisClaimCheck("localhost"), new SystemJsonClaimCheckSerializer());
         endpointConfig.Conventions().DefiningClaimCheckPropertiesAs(prop => prop.Name.StartsWith("Large"));
 
-        builder.UseNServiceBus(endpointConfig);
+        builder.Services.AddNServiceBusEndpoint(endpointConfig);
 
         var host = builder.Build();
 

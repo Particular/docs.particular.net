@@ -27,7 +27,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
 
 endpointConfiguration.EnableInstallers();
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 await host.RunAsync();

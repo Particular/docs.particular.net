@@ -28,7 +28,7 @@ In all projects where the NServiceBus.Metrics.PerformanceCounters.MsBuild packag
 
 Along with the MsBuild package deprecation, the `PerformanceCounterSettingsAttribute` which controlled the MsBuild package's generation capabilities is also deprecated.
 
-The `ScriptPromotionPath` property is no longer supported. The new package will no longer promote the script(s) outside of the build directory. If this is required, a [post-build event](https://docs.microsoft.com/en-us/cpp/build/how-to-use-build-events-in-msbuild-projects) can be used to copy the output outside the build directory.
+The `ScriptPromotionPath` property is no longer supported. The new package will no longer promote the script(s) outside of the build directory. If this is required, a [post-build event](https://learn.microsoft.com/en-us/cpp/build/how-to-use-build-events-in-msbuild-projects) can be used to copy the output outside the build directory.
 
 ## Counter descriptions changed
 

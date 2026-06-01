@@ -5,11 +5,11 @@ using NServiceBus;
 
 class BasicOperations
 {
-    async Task InterfaceSend(IEndpointInstance endpoint)
+    async Task InterfaceSend(IMessageSession messageSession)
     {
         #region InterfaceSend
 
-        await endpoint.Send<IMyMessage>(message =>
+        await messageSession.Send<IMyMessage>(message =>
         {
             message.SomeProperty = "Hello world";
         });
@@ -67,13 +67,13 @@ class BasicOperations
         #endregion
     }
 
-    async Task Subscribe(IEndpointInstance endpoint)
+    async Task Subscribe(IMessageSession messageSession)
     {
         #region ExplicitSubscribe
 
-        await endpoint.Subscribe<MyEvent>();
+        await messageSession.Subscribe<MyEvent>();
 
-        await endpoint.Unsubscribe<MyEvent>();
+        await messageSession.Unsubscribe<MyEvent>();
 
         #endregion
     }

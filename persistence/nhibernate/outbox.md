@@ -45,7 +45,7 @@ If custom mapping is required, the following characteristics of the original map
 
 By default, the NHibernate implementation keeps deduplication records for seven days and checks for purgeable records every minute.
 
-Specify different values in the config file using [timestamp strings](https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings):
+Specify different values in the config file using [timestamp strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings):
 
 snippet: OutboxNHibernateTimeToKeep
 

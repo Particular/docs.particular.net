@@ -2,7 +2,7 @@
 title: Sagas
 summary: Master NServiceBus sagas to coordinate distributed workflows and ensure reliable long-running processes.
 component: Core
-reviewed: 2026-01-23
+reviewed: 2026-04-27
 redirects:
 - nservicebus/sagas-in-nservicebus
 related:
@@ -48,7 +48,10 @@ NServiceBus will perform a check at startup to ensure that saga data types are n
 partial: disable-shared-state-check
 
 > [!NOTE]
-> If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
+> If a saga property is a [record type](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
+
+> [!NOTE]
+> By default, sagas are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for all registration options.
 
 ## Adding behavior
 
@@ -97,7 +100,7 @@ Correlation is needed in order to find existing saga instances based on data in 
 
 ## Discarding messages when saga is not found
 
-If a saga handles a message but no related saga instance is found, the message is discarded by default. Typically, this happens when the saga has already been completed by the time a message arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md). 
+If a saga handles a message but no related saga instance is found, the message is discarded by default. Typically, this happens when the saga has already been completed by the time a message arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
 
 ## Ending a saga
 
@@ -129,7 +132,7 @@ This issue can be avoided by:
 
 ## Notifying callers of status
 
-Messages can be published from a saga at any time. Using `Reply()` or `Return()` will send a message to the current messages' caller. The saga data also contains the original client's return address and the message ID of the original request so that the caller can correlate status messages on its end. 
+Messages can be published from a saga at any time. Using `Reply()` or `Return()` will send a message to the current messages' caller. The saga data also contains the original client's return address and the message ID of the original request so that the caller can correlate status messages on its end.
 
 To communicate to the original caller (e.g. to notify the original caller of some interim state that isn't relevant to other subscribers):
 
@@ -212,5 +215,3 @@ Saga state is read immediately before a message processing method is invoked, an
 - Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
 If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
-
-partial: manual-registration

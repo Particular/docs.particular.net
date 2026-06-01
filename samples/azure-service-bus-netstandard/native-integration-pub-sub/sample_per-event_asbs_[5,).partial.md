@@ -13,7 +13,7 @@ snippet: SubscriptionCreation
 
 ### Subscription filters
 
-Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB`. `NativeSubscriberA` subscribes to the `EventOne` events by adding a subscription with the default [`TrueFilter`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.truefilter?view=azure-dotnet) and forwarding to its input queue:
+Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB`. `NativeSubscriberA` subscribes to the `EventOne` events by adding a subscription with the default [`TrueFilter`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.truefilter?view=azure-dotnet) and forwarding to its input queue:
 
 snippet: EventOneSubscription
 

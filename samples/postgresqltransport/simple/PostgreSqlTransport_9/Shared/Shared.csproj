@@ -1,9 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <LangVersion>14.0</LangVersion>
     <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="9.*" />
+    <PackageReference Include="NServiceBus.MessageInterfaces" Version="1.*" />
   </ItemGroup>
+
 </Project>

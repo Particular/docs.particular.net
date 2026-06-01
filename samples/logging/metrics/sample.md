@@ -11,7 +11,7 @@ redirects:
 
 This sample demonstrates how to write [metrics](/monitoring/metrics) information to the trace log.
 
-There are many ways to look at the trace log. One way is to use the [DbgView utility provided by Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/debugview).
+There are many ways to look at the trace log. One way is to use the [DbgView utility provided by Sysinternals](https://learn.microsoft.com/en-us/sysinternals/downloads/debugview).
 
 ![DbgView by Sysinternals](dbgview.png)
 

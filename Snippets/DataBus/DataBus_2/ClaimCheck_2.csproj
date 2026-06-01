@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.ClaimCheck" Version="2.*" />
   </ItemGroup>
 

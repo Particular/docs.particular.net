@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NuGet.PackageManagement" Version="7.3.0" />
-    <PackageReference Include="YamlDotNet" Version="17.0.0" />
+    <PackageReference Include="NuGet.PackageManagement" Version="7.6.0" />
+    <PackageReference Include="YamlDotNet" Version="18.0.0" />
   </ItemGroup>
 
 </Project>

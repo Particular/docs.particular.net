@@ -32,10 +32,10 @@ Versions of the host prior to 5.0 were aligned with NServiceBus core. Since vers
 
 ## Application Domains
 
-The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/application-domains) to run NServiceBus and the user code. The new domain is assigned a configuration file named after the dll that contains the class implementing `IConfigureThisEndpoint`. All the configuration should be done in that file (rather than `NServiceBus.Host.exe.config`). In most cases, that means just adding the `app.config` file to the project and letting MSBuild rename it when moving it to the `bin` directory.
+The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](https://learn.microsoft.com/en-us/dotnet/framework/app-domains/application-domains) to run NServiceBus and the user code. The new domain is assigned a configuration file named after the dll that contains the class implementing `IConfigureThisEndpoint`. All the configuration should be done in that file (rather than `NServiceBus.Host.exe.config`). In most cases, that means just adding the `app.config` file to the project and letting MSBuild rename it when moving it to the `bin` directory.
 
 > [!NOTE]
-> When the type that implements `IConfigureThisEndpoint` is not specified explicitly via an `EndpointConfigurationType` application setting key in the `NServiceBus.Host.exe.config`, the host scans all assemblies to locate this type. Scanning is done in the context of the *host* application domain, not the new *service* domain. Because of that, when [redirecting assembly versions](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`. Also see [Assembly Scanning](#endpoint-configuration-assembly-scanning).
+> When the type that implements `IConfigureThisEndpoint` is not specified explicitly via an `EndpointConfigurationType` application setting key in the `NServiceBus.Host.exe.config`, the host scans all assemblies to locate this type. Scanning is done in the context of the *host* application domain, not the new *service* domain. Because of that, when [redirecting assembly versions](https://learn.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`. Also see [Assembly Scanning](#endpoint-configuration-assembly-scanning).
 
 ## Endpoint configuration
 
@@ -124,7 +124,7 @@ snippet: HostStartAndStop
 
 ## Support for TLS 1.2 and higher
 
-The NServiceBus.Host is compiled against .NET Framework 4.5.2. The [Transport Layer Security (TLS) best practices](https://docs.microsoft.com/en-us/dotnet/framework/network-programming/tls) from Microsoft state that an application should not hardcode the TLS version but let the operating system choose a sensible default. Unfortunately, being compiled against .NET 4.5.2 means TLS 1.1 and not TLS 1.2 or 1.3 will be used. To enable TLS 1.2 or higher compatibility on the Host, add the following runtime configuration to the NServiceBus.Host.exe.config:
+The NServiceBus.Host is compiled against .NET Framework 4.5.2. The [Transport Layer Security (TLS) best practices](https://learn.microsoft.com/en-us/dotnet/framework/network-programming/tls) from Microsoft state that an application should not hardcode the TLS version but let the operating system choose a sensible default. Unfortunately, being compiled against .NET 4.5.2 means TLS 1.1 and not TLS 1.2 or 1.3 will be used. To enable TLS 1.2 or higher compatibility on the Host, add the following runtime configuration to the NServiceBus.Host.exe.config:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

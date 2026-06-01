@@ -56,7 +56,7 @@ snippet: RawXmlNoWrapPayload
 
 ### XML attributes
 
-The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML attributes](https://docs.microsoft.com/en-us/dotnet/framework/serialization/controlling-xml-serialization-using-attributes).
+The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML attributes](https://learn.microsoft.com/en-us/dotnet/framework/serialization/controlling-xml-serialization-using-attributes).
 
 ### Unsupported types
 

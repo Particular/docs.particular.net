@@ -10,6 +10,7 @@ public class ExternallyManaged
 {
     async Task Usage(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region ExternalPrepare
 
         IServiceCollection serviceCollection = new ServiceCollection();
@@ -25,5 +26,6 @@ public class ExternallyManaged
         var startedEndpoint = await startableEndpoint.Start(builder);
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

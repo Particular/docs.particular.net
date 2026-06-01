@@ -2,9 +2,9 @@
 
 ### Heartbeats
 
-Version 2.2 of the NServiceBus Messaging Bridge adds support for the heartbeats feature. This feature sends regular heartbeat messages from each messaging bridge transport to a ServiceControl instance. The ServiceControl instance keeps track of which endpoint instances are sending heartbeats and which ones are not.  See the [Hearbeats plugin documentation](/monitoring/heartbeats/) for more information.
+Version 2.2 of the NServiceBus Messaging Bridge adds support for the heartbeats feature. This feature sends regular heartbeat messages from each messaging bridge transport to a ServiceControl instance. The ServiceControl instance keeps track of which endpoint instances are sending heartbeats and which ones are not. See the [Heartbeats plugin documentation](/monitoring/heartbeats/) for more information.
 
-Heartbeats can be configured on a per bridge transport basis.  For each bridge transport that should send hearbeats, use the `.SendHeartbeatTo` as follows:
+Heartbeats can be configured on a per bridge transport basis. For each bridge transport that should send heartbeats, use `.SendHeartbeatTo` as follows:
 
 snippet: configure-heartbeats
 
@@ -24,13 +24,13 @@ Heartbeat messages are sent with a default TTL of four times the frequency. As s
 
 #### Identifying scaled-out endpoints
 
-When heartbeats are being used in a [scaled-out Messaging Bridge that is using competing consumers](/nservicebus/bridge/performance.md#scaling-out-competing-consumers), each bridge transport must be configured with a unique name (see [Configuring transports](#auditing-configuring-transports)). The bridge transport name is used in the heartbeat messages so ServiceControl can track of all instances and identify which instance sent a given heartbeat message.
+When heartbeats are being used in a [scaled-out Messaging Bridge that is using competing consumers](/nservicebus/bridge/performance.md#scaling-out-competing-consumers), each bridge transport must be configured with a unique name (see [Configuring transports](#auditing-configuring-transports)). The bridge transport name is used in the heartbeat messages so ServiceControl can track all instances and identify which instance sent a given heartbeat message.
 
 ### Custom checks
 
-Version 2.2 of the Messaging Bridge adds support for custom checks.  The custom checks feature enables Messaging Bridge health monitoring by running custom code and reporting status (success or failure) to a ServiceControl instance. See the [custom checks plugin documentation](/monitoring/custom-checks/) for more information.  For documentation on how to write custom checks, see the [Writing Custom Checks document](/monitoring/custom-checks/writing-custom-checks.md)
+Version 2.2 of the Messaging Bridge adds support for custom checks. The custom checks feature enables Messaging Bridge health monitoring by running custom code and reporting status (success or failure) to a ServiceControl instance. See the [custom checks plugin documentation](/monitoring/custom-checks/) for more information. For documentation on how to write custom checks, see [Writing custom checks](/monitoring/custom-checks/writing-custom-checks.md).
 
-The custom checks feature can be enabled per bridge transport by using `ReportCustomChecksTo` as follow:
+The custom checks feature can be enabled per bridge transport by using `ReportCustomChecksTo` as follows:
 
 snippet: configure-custom-checks
 

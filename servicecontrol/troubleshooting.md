@@ -33,7 +33,7 @@ During a ServiceControl instance upgrade, the ServiceControl Management Utility 
 
 > Error while making new version active and unsuccessful in restoring previous version. Manually restore `<InstallPath>.old` to `<InstallPath>` to repair instance.
 
-> [!NOTE] 
+> [!NOTE]
 > This error is commonly caused by antivirus or anti-malware software scanning the installation folder which should be [excluded from such checks](servicecontrol-in-practice.md#anti-virus-checks).
 
 The previous version's files are stored in a folder with an `.old` suffix. To restore the instance manually:
@@ -105,7 +105,7 @@ System.Data.SqlClient.SqlException
 
 When encryption is enabled, SQL Server uses a certificate to encrypt communication between itself and ServiceControl. Version 4 of the `Microsoft.Data.SqlClient` package includes a [breaking change](https://github.com/dotnet/SqlClient/pull/1210) to set `Encrypt=true` by default (the previous default was `false`) which causes this exception.
 
-To fix this error, [update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) or add `Encrypt=False` to the connection string if encryption is truly not necessary.
+To fix this error, [update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) or add `Encrypt=False` to the connection string if encryption is truly not necessary.
 
 ## Unable to connect to ServiceControl from ServicePulse
 

@@ -117,10 +117,10 @@ The SQL Server transport uses relational database tables for queues. Each row of
 ### Advantages
 
 - SQL Server is already present in many organizations. This could result in lower licensing and training costs, as well as reduced operational risk, since the skills and knowledge required to run SQL Server are already in place.
-- Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
+- Mature tooling, such as [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
 - Free to start with the [SQL Server Express or Developer editions](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - Easy scale-out through competing consumers. Multiple instances of the same endpoint consume messages from a single queue.
-- Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))
+- Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))
 - Can store both queues and business data in a single backup, making it easier to restore a system to a consistent state
 
 ### Disadvantages
@@ -228,7 +228,7 @@ This is a popular transport for systems hosted in AWS, the Amazon Cloud offering
 
 - Can be expensive in a high-throughput scenario
 - Less adoption on the .NET platform; it can be more difficult to find relevant resources
-- SQS does not have native publish/subscribe capability; it requires Amazon Simple Notification Service(SNS), another Amazon Cloud service, to support publish/subscribe. See the [SQS transport documentation](/transports/sqs/) for more details. 
+- SQS does not have native publish/subscribe capability; it requires Amazon Simple Notification Service(SNS), another Amazon Cloud service, to support publish/subscribe. See the [SQS transport documentation](/transports/sqs/) for more details.
 
 ### When to select this transport
 
@@ -247,7 +247,7 @@ The MSMQ transport uses the native Windows queueing technology, MSMQ, to send an
 ### Advantages
 
 - Built-in component of the Windows operating system (though not installed by default)
-- Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))
+- Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))
 - Uses a store-and-forward mechanism that allows sending messages even when the destination machine is unavailable due to network issues or other problems
 
 ### Disadvantages

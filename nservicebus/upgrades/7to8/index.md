@@ -142,7 +142,7 @@ The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are 
 
 Usage of `DateTime` can result in numerous issues caused by misalignment of time zone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any time zone information, only an offset, which is sufficient to get the time calculations right.
 
-[> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
+[> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://learn.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
 In NServiceBus version 8, all APIs have been migrated from `DateTime` to `DateTimeOffset`.
 
@@ -205,7 +205,7 @@ endpointConfiguration.EnableOutbox();
 
 ## AbortReceiveOperation
 
-`ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception). This will preserve the NServiceBus version 7 behavior of immediately retrying the message without invoking [recoverability](/nservicebus/recoverability).
+`ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCanceledException`](https://learn.microsoft.com/en-us/dotnet/api/system.operationcanceledexception). This will preserve the NServiceBus version 7 behavior of immediately retrying the message without invoking [recoverability](/nservicebus/recoverability).
 
 ## Header manipulation for failed messages
 
@@ -234,7 +234,7 @@ Memory allocations for incoming and outgoing messages bodies are reduced by usin
 
 ## Implicit global using directives
 
-NServiceBus 8 supports the [implicit global using directives](https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview#implicit-using-directives) feature introduced in the .NET 6 SDK. When `<ImplicitUsings>enable</ImplicitUsings>` has been set in the project file, all files in the project will have an implicit `using NServiceBus;` added to them. In the event that this introduces a conflict between two identically named types in referenced namespaces, the ambiguity must be resolved manually.
+NServiceBus 8 supports the [implicit global using directives](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/overview#implicit-using-directives) feature introduced in the .NET 6 SDK. When `<ImplicitUsings>enable</ImplicitUsings>` has been set in the project file, all files in the project will have an implicit `using NServiceBus;` added to them. In the event that this introduces a conflict between two identically named types in referenced namespaces, the ambiguity must be resolved manually.
 
 To disable the feature of implicitly adding the `NServiceBus` namespace while still keeping `ImplicitUsings` enabled, add the following to the project file:
 
@@ -250,7 +250,7 @@ The Roslyn analyzers included with NServiceBus 8 no longer provide support for p
 
 ## Saga analyzers
 
-NServiceBus version 8 elevates several [saga-related Roslyn analyzers](/nservicebus/sagas/analyzers.md) introduced in NServiceBus version 7.7 from Warning to Error, which will prevent a successful build when using default analyzer settings. These diagnostics indicate a serious issue that should be fixed. However, all Roslyn analyzer diagnostics [can be suppressed](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers) if necessary.
+NServiceBus version 8 elevates several [saga-related Roslyn analyzers](/nservicebus/sagas/analyzers.md) introduced in NServiceBus version 7.7 from Warning to Error, which will prevent a successful build when using default analyzer settings. These diagnostics indicate a serious issue that should be fixed. However, all Roslyn analyzer diagnostics [can be suppressed](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers) if necessary.
 
 * **NSB0003 Non-mapping expression used in ConfigureHowToFindSaga method**: No other statements besides mapping expressions using the provided `mapper` argument are allowed.
 * **NSB0006 Message that starts the saga does not have a message mapping**: Without a mapping expression, the correct saga data cannot be found for an incoming message. A code fix is available that will add a new mapping to the `ConfigureHowToFindSaga` method. If using a [custom saga finder](/nservicebus/sagas/saga-finding.md), the error can be suppressed.

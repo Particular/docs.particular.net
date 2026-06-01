@@ -7,7 +7,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.AzureFunctions.InProcess.ServiceBus" Version="5.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.*" />
   </ItemGroup>
 
 </Project>

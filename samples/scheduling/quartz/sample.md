@@ -27,7 +27,7 @@ include: scheduler-drawbacks
 
 ### Context Helper
 
-A helper to inject and extract the `IEndpointInstance` from the Quartz scheduler context.
+A helper to inject and extract the `IMessageSession` from the Quartz scheduler context.
 
 snippet: QuartzContextExtensions
 
@@ -36,7 +36,7 @@ Quartz also support Dependency Injection (DI) via the [JobFactory API](https://w
 
 ### Configure and start the scheduler
 
-The endpoint is started, and the `IEndpointInstance` is injected into the Quartz scheduler context.
+The endpoint is started, and the `IMessageSession` is injected into the Quartz scheduler context.
 
 snippet: Configuration
 
@@ -47,7 +47,7 @@ A Quartz `IJob` that sends a message to Receiver.
 
 snippet: SendMessageJob
 
-Note `QuartzContextExtensions` is used to get access to the `IEndpointInstance`.
+Note `QuartzContextExtensions` is used to get access to the `IMessageSession`.
 
 
 ### Schedule a job

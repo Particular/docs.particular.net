@@ -10,7 +10,7 @@ var endpointConfig = new EndpointConfiguration("Receiver");
 endpointConfig.UseTransport(new LearningTransport());
 endpointConfig.UseSerialization<SystemJsonSerializer>();
 
-builder.UseNServiceBus(endpointConfig);
+builder.Services.AddNServiceBusEndpoint(endpointConfig);
 
 var host = builder.Build();
 await host.RunAsync();

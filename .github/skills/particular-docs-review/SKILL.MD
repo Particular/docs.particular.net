@@ -1,6 +1,6 @@
 ---
 name: particular-docs-review
-description: Review Particular Platform documentation for en-US language standards, style consistency, technical accuracy, and quality.
+description: Reviews Particular Platform documentation for en-US language standards, style consistency, technical accuracy, and quality. Use when reviewing or editing Particular Platform documentation.
 invocable: false
 ---
 
@@ -83,6 +83,18 @@ Write for experienced software developers.
 - Use lists for 3+ items
 - Use clear heading hierarchy
 
+## Versioned Product Documentation
+
+Review version-specific documentation from the perspective of a reader using that version after it is released, not from the perspective of the transition that created the change.
+
+- Present the recommended API or pattern as the way to use the product for that version
+- Avoid framing the recommended path as one more choice unless there are supported alternatives for new work
+- Move migration details, obsolete APIs, and compatibility notes to upgrade guides when they primarily help existing users move forward
+- Use versioned partials or callout boxes for temporary notes that apply only to older supported versions
+- Consider support windows: content that is useful only while an older minor version is supported should not dominate pages for a newer major version
+- Prefer direct guidance over historical explanation; include history only when it helps the reader make a current decision
+- For multi-version pages, make it clear which guidance applies to each version without forcing new users through legacy options
+
 ---
 
 # Code Samples
@@ -104,6 +116,71 @@ Code samples should:
 - Use clear variable names
 - Explain non‑obvious logic
 - Avoid hardcoded configuration values
+
+---
+
+# Partials
+
+Partials are version-specific markdown files included in a document using:
+
+```markdown
+partial: KEY
+```
+
+Reviewing a document includes reviewing all of its referenced partials. Partials are rendered inline — the reader sees them as part of the page. Review each partial as if it were content in the parent document: consider how it reads in context, whether it flows with the surrounding content, and apply the full review process (language, style, technical accuracy, content quality, and link validation).
+
+## Finding partials
+
+Partial files are stored in the same directory as the document that references them.
+
+Convention: `{filePrefix}_{key}_{nugetAlias}_{version}.partial.md`
+
+Where `{filePrefix}` is the filename of the referencing document without the `.md` extension.
+
+To locate partials for a given `partial: KEY` directive:
+
+1. Note the key name after `partial:`
+2. Note the filename of the document being reviewed (without `.md`) — this is the file prefix
+3. Search the same directory for files matching `{filePrefix}_{key}_*.partial.md`
+4. Review every matching file — one may exist per supported version
+
+Example: `partial: endpointname` in `nservicebus/messaging/index.md` matches:
+- `index_endpointname_Core_7.partial.md`
+- `index_endpointname_Core_8.partial.md`
+
+---
+
+# Snippets
+
+Snippets are code samples referenced in a document using:
+
+```markdown
+snippet: KEY
+```
+
+Reviewing a document includes checking all of its referenced snippets. Snippets are excerpts from larger code files, so the focus is narrow: verify that the snippet content is relevant to the surrounding documentation and that it illustrates what the text claims it does. If a snippet is changed during the review, apply the full [Code Review Checklist](#code-review-checklist) to the changed snippet.
+
+## Finding snippets
+
+Snippet code lives in versioned directories under `Snippets/`.
+
+To locate snippet code for a given `snippet: KEY` directive:
+
+1. Note the key name after `snippet:`
+2. Find the component from the document's `component:` frontmatter field
+3. Component keys are defined in `components/components.yaml`
+4. Search `Snippets/{ComponentKey}/` for files containing the snippet key using the appropriate marker for the file type:
+
+   | File type | Open marker | Close marker |
+   |-----------|-------------|--------------|
+   | C# (region) | `#region KEY` | `#endregion` |
+   | C# (comment) | `// startcode KEY` | `// endcode` |
+   | XML-based | `<!-- startcode KEY -->` | `<!-- endcode -->` |
+   | PowerShell | `# startcode KEY` | `# endcode` |
+   | SQL | `-- startcode KEY` | `-- endcode` |
+   | Plain text | `startcode KEY` | `endcode` |
+   | Dockerfile / YAML | `# startcode KEY` | `# endcode` |
+5. Snippet files live in versioned subdirectories, e.g. `Snippets/Core_7/` or `Snippets/MsmqTransport_1/`
 
 ---
 

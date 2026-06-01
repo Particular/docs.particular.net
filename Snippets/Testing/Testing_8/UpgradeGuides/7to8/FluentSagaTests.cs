@@ -22,7 +22,7 @@
             var message = new StartsSaga { MyId = "some-id" };
             var startResult = await testableSaga.Handle(message);
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 // Assert
                 Assert.That(startResult.FindPublishedMessage<MyEvent>(), Is.Not.Null,
@@ -30,7 +30,7 @@
 
                 Assert.That(startResult.FindSentMessage<MyCommand>(), Is.Not.Null,
                     "MyCommand should be sent");
-            });
+            }
 
             // Instead of asserting on timeouts placed, virtually advance time
             // and then assert on the results

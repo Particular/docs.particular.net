@@ -136,7 +136,7 @@ Outgoing messages are sent to the messaging infrastructure, and the outbox stora
 The performance of the outbox feature depends on the scope of the transactions used to update business data and outbox data. Transactions may be scoped to a single database, multiple databases on a single server, or multiple databases on multiple servers.
 
 * All persisters support transactions scoped to a single database, and these typically offer the best performance. Therefore, it is generally recommended to store outbox data in the same database as business data.
-* Transactions scoped to multiple databases on a single server, also known as cross-database transactions, are supported by some persisters, such as those that use SQL Server. These transactions may have reasonably good performance, but they may introduce other concerns. For example, [cross-database transactions are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
+* Transactions scoped to multiple databases on a single server, also known as cross-database transactions, are supported by some persisters, such as those that use SQL Server. These transactions may have reasonably good performance, but they may introduce other concerns. For example, [cross-database transactions are not supported by all types of tables in SQL Server](https://learn.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
 * Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
 
 ### Errors when dispatching the outbox messages
@@ -190,6 +190,8 @@ To gradually convert an entire system from the DTC to the outbox:
 The outbox uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. When sending messages with a [custom message id](/nservicebus/messaging/message-identity.md#specifying-message-identity), the sender should ensure that the message identifier value is consistent if the message is sent multiple times.
 
 Since message identifiers are [unique only within the scope of a logical endpoint from a processing perspective](/nservicebus/messaging/message-identity.md) it is the responsibility of the persister to ensure that message identities are scoped to the [logical endpoint](/nservicebus/endpoints/#logical-endpoints) that is processing the message to allow multiple endpoints to use the same database.
+
+Some message queue systems possess a native message id concept, but this is not the same as the message id used by the Outbox. It is not safe to assume that the native message id will match the NServiceBus message id, nor that the native message id will be consistent between duplicate dispatches of the NServiceBus message.
 
 ## Outbox expiration duration
 

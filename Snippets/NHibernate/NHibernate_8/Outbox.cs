@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace NHibernate_7
+namespace NHibernate_8
 {
     using System;
     using NHibernate;

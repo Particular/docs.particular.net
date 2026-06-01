@@ -8,7 +8,7 @@ class Program
 {
     public static async Task Main(string[] args)
     {
-        var host = CreateHostBuilder(args).Build();
+        using var host = CreateHostBuilder(args).Build();
 
         await host.StartAsync();
 
@@ -41,16 +41,15 @@ class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
      Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-             Console.Title = "Client";
-         }).UseNServiceBus(x =>
-         {
-             var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Client");
-             endpointConfiguration.UsePersistence<LearningPersistence>();
-             endpointConfiguration.UseTransport(new LearningTransport());
-             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+          .ConfigureServices((hostContext, services) =>
+          {
+              Console.Title = "Client";
 
-             return endpointConfiguration;
-         });
+              var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Client");
+              endpointConfiguration.UsePersistence<LearningPersistence>();
+              endpointConfiguration.UseTransport(new LearningTransport());
+              endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+              services.AddNServiceBusEndpoint(endpointConfiguration);
+          });
 }

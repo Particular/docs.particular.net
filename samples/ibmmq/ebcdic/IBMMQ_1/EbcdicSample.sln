@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11723.231 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{8D819584-4EC2-52ED-CD78-AA7BA4C26214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacySender", "LegacySender\LegacySender.csproj", "{E9EAC3FD-27BD-D7C7-D616-CED5E7489ABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{43871D24-348A-5E92-F953-E85E8EB60830}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D819584-4EC2-52ED-CD78-AA7BA4C26214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D819584-4EC2-52ED-CD78-AA7BA4C26214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D819584-4EC2-52ED-CD78-AA7BA4C26214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D819584-4EC2-52ED-CD78-AA7BA4C26214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9EAC3FD-27BD-D7C7-D616-CED5E7489ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9EAC3FD-27BD-D7C7-D616-CED5E7489ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9EAC3FD-27BD-D7C7-D616-CED5E7489ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9EAC3FD-27BD-D7C7-D616-CED5E7489ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43871D24-348A-5E92-F953-E85E8EB60830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43871D24-348A-5E92-F953-E85E8EB60830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43871D24-348A-5E92-F953-E85E8EB60830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43871D24-348A-5E92-F953-E85E8EB60830}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

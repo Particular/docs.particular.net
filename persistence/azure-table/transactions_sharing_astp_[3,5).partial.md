@@ -1,6 +1,6 @@
 ## Sharing the transaction
 
-Once a behavior is introduced to identify the partition key for a given message, it is possible to share an Azure Table [TableBatchOperation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet) between both the Saga persistence and business data. The shared `TableBatchOperation` can then be used to persist document updates for both concerns atomically.
+Once a behavior is introduced to identify the partition key for a given message, it is possible to share an Azure Table [TableBatchOperation](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet) between both the Saga persistence and business data. The shared `TableBatchOperation` can then be used to persist document updates for both concerns atomically.
 
 ### Within a handler method using `IMessageHandlerContext`
 

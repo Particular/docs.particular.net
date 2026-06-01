@@ -8,7 +8,7 @@ related:
  - samples/azure-service-bus-netstandard/options
  - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
  - samples/azure-service-bus-netstandard/topology-migration
-reviewed: 2026-02-23
+reviewed: 2026-05-05
 ---
 
 The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Azure.Messaging.ServiceBus/) client library for .NET.
@@ -19,7 +19,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 
 |Feature                    |   |
 |:---                       |---
-|Transactions |None, ReceiveOnly, SendsWithAtomicReceive
+|Transactions |None, ReceiveOnly, SendsAtomicWithReceive
 |Pub/Sub                    |Native
 |Timeouts                   |Native
 |Large message bodies       | with Premium tier or data bus

@@ -33,11 +33,11 @@ public class SagaTests
 
         // assert
         var processMessage = (ProcessOrder)context.SentMessages[0].Message;
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(processMessage.TotalAmount, Is.EqualTo(900));
             Assert.That(saga.Completed, Is.False);
-        });
+        }
     }
     #endregion
 }

@@ -4,6 +4,7 @@
     <Configurations>Debug</Configurations>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="5.*" />
   </ItemGroup>
 </Project>

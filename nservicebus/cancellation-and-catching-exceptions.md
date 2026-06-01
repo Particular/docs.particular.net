@@ -8,13 +8,13 @@ related:
 
 When catching exceptions from cancellable operations, a distinction should be made between exceptions thrown due to cancellation of the operation, and exceptions thrown for other reasons.
 
-A cancellable operation is one that is passed a [`CancellationToken`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) as an argument. For example:
+A cancellable operation is one that is passed a [`CancellationToken`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) as an argument. For example:
 
 ```csharp
 await foo.Bar(cancellationToken);
 ```
 
-An exception thrown by this operation represents _cancellation_ only when its type inherits from [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception) and when the [`CancellationToken.IsCancellationRequested`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.iscancellationrequested) property is `true`.  Conversely, the exception does _not_ represent cancellation when its type does not inherit from `OperationCanceledException` or when the `CancellationToken.IsCancellationRequested` property is `false`.
+An exception thrown by this operation represents _cancellation_ only when its type inherits from [`OperationCanceledException`](https://learn.microsoft.com/en-us/dotnet/api/system.operationcanceledexception) and when the [`CancellationToken.IsCancellationRequested`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.iscancellationrequested) property is `true`.  Conversely, the exception does _not_ represent cancellation when its type does not inherit from `OperationCanceledException` or when the `CancellationToken.IsCancellationRequested` property is `false`.
 
 Note that an `OperationCanceledException` thrown when `CancellationToken.IsCancellationRequested` is `false`, does _not_ represent cancellation. All this means is that `foo.Bar` threw an `OperationCanceledException` for some reason other than cancellation, and the operation should be treated as a failure.
 

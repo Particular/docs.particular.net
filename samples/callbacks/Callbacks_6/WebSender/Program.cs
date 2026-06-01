@@ -8,7 +8,7 @@ endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.MakeInstanceUniquelyAddressable("1");
 endpointConfiguration.EnableCallbacks();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 builder.Services.AddControllersWithViews();
 

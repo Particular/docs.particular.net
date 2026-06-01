@@ -3,6 +3,9 @@
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="4.*" />
     <PackageReference Include="NServiceBus.Callbacks.Testing" Version="4.*" />
+    <PackageReference Include="NServiceBus.Testing" Version="8.*" />
   </ItemGroup>
 </Project>

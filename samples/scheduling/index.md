@@ -1,6 +1,6 @@
 ---
 title: Scheduling Samples
-reviewed: 2024-08-05
+reviewed: 2026-05-07
 related:
  - nservicebus/scheduling
  - nservicebus/messaging/timeout-manager

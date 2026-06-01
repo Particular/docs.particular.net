@@ -1,9 +1,0 @@
-<Solution>
-  <Configurations>
-    <BuildType Name="Debug" />
-  </Configurations>
-  <Project Path="ExternalEndpoint\ExternalEndpoint.csproj" />
-  <Project Path="HierarchyClient\HierarchyClient.csproj" />
-  <Project Path="HierarchyEndpoint\HierarchyEndpoint.csproj" />
-  <Project Path="Shared/Shared.csproj" />
-</Solution>

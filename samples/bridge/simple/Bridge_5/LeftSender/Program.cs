@@ -19,9 +19,9 @@ routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Bridge.RightReceiver");
 endpointConfiguration.SendFailedMessagesTo("error");
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 Console.WriteLine("Press '1' to send the PlaceOrder command");

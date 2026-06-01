@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Testing" Version="8.*" />
+    <PackageReference Include="NServiceBus.UniformSession" Version="3.*" />
     <PackageReference Include="NServiceBus.UniformSession.Testing" Version="3.*" />
   </ItemGroup>
 

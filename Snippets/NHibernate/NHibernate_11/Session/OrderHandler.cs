@@ -1,21 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace NHibernate.Session;
 
 #region NHibernateAccessingDataViaDI
 
-public class OrderHandler :
+[Handler]
+public class OrderHandler(INHibernateStorageSession synchronizedStorageSession) :
     IHandleMessages<OrderMessage>
 {
-    INHibernateStorageSession synchronizedStorageSession;
-
-    public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
-    {
-        this.synchronizedStorageSession = synchronizedStorageSession;
-    }
-
     public Task Handle(OrderMessage message, IMessageHandlerContext context)
     {
         synchronizedStorageSession.Session.Save(new Order());
@@ -27,18 +22,15 @@ public class OrderHandler :
 
 public class EndpointWithSessionRegistered
 {
-    public void Configure(EndpointConfiguration config)
+    public static void Configure(IHostApplicationBuilder builder)
     {
         #region AccessingDataConfigureISessionDI
 
-        config.RegisterComponents(c =>
+        builder.Services.AddScoped<MyRepository, MyRepository>(svc =>
         {
-            c.AddScoped<MyRepository, MyRepository>(svc =>
-            {
-                var session = svc.GetService<INHibernateStorageSession>();
-                var repository = new MyRepository(session.Session);
-                return repository;
-            });
+            var session = svc.GetService<INHibernateStorageSession>();
+            var repository = new MyRepository(session.Session);
+            return repository;
         });
 
         #endregion

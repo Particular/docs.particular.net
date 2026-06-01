@@ -1,6 +1,6 @@
 
 ## TimeoutManager satellite queues
 
-Depending on the chosen transport, additional queues (satellite queues) may be used to handle deferred messages like delayed retries or timeouts. Satellite queues use the default concurrency configuration. This concurrency setting can be configured using:
+Depending on the chosen transport, additional queues (satellite queues) might handle deferred messages such as delayed retries or timeouts. Satellite queues use the default concurrency configuration. You can configure this setting using:
 
 snippet: TuningTimeoutManagerConcurrency

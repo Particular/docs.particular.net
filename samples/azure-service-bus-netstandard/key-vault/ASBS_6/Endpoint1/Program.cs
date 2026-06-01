@@ -32,8 +32,8 @@ if (input.Key == ConsoleKey.C && (input.Modifiers & ConsoleModifiers.Control) !=
 }
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
-var host = builder.Build();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+using var host = builder.Build();
 
 await host.StartAsync();
 

@@ -13,4 +13,4 @@ snippet: custom-topology-hierarchy
 > [!NOTE]
 > Carefully read the [topology limitation guidelines](/transports/azure-service-bus/topology.md#quotas-and-limitations) before using topology hierarchies.
 
-Topic names must adhere to the limits outlined in [the Microsoft documentation on topic creation](https://docs.microsoft.com/en-us/rest/api/servicebus/create-topic).
+Topic names must adhere to the limits outlined in [the Microsoft documentation on topic creation](https://learn.microsoft.com/en-us/rest/api/servicebus/create-topic).

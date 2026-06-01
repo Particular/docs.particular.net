@@ -1,7 +1,7 @@
 ---
 title: Moving Handlers
-summary: Guidelines on how to move handlers between the endpoints
-reviewed: 2024-08-05
+summary: Guidelines on how to move handlers between endpoints
+reviewed: 2026-05-10
 component: Core
 isLearningPath: true
 ---
@@ -10,7 +10,7 @@ As distributed systems evolve, the need may arise to change which endpoint handl
 
 ## How to move handlers between endpoints
 
-To move a handler from `SourceEndpoint` to a `DestinationEndpoint`, take the following steps:
+To move a handler from `SourceEndpoint` to `DestinationEndpoint`, take the following steps:
 
 - Copy the handler into `DestinationEndpoint` and deploy that endpoint. Now, both endpoints handle the same message type.
 - Make sure that `DestinationEndpoint` receives the messages that it should be handling. From now on, all newly sent messages should only go to the `DestinationEndpoint`.
@@ -26,7 +26,7 @@ When the handler processes commands, every piece of code that sends the command 
 
 ### How to handle error messages that were discovered after removing the handler
 
-When a set of messages is found that was sent to a `SourceEndpoint` and a handler was already removed, a [retry redirect](/servicepulse/redirect.md) can be set up to redirect every failed message to the `DestinationEndpoint` queue. After retrying those messages, the redirect retry should be removed.
+When a set of messages is found that was sent to `SourceEndpoint` after the handler was already removed, a [retry redirect](/servicepulse/redirect.md) can be set up to redirect every failed message to the `DestinationEndpoint` queue. After retrying those messages, the retry redirect should be removed.
 
 ## Reasons to move handlers between endpoints
 

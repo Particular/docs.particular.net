@@ -2,10 +2,10 @@
 title:  Fixing malformed messages
 summary: Describes the concept of fixing and retrying malformed messages in ServicePulse
 component: ServicePulse
-reviewed: 2024-07-26
+reviewed: 2026-04-30
 ---
 
-If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message.
+If a message cannot be successfully retried, it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message.
 
 ![Edit Malformed Messages](images/edit-message-details.png 'width=500')
 
@@ -58,20 +58,17 @@ Message bodies can be edited before they are retried. This is only possible for 
 > [!WARNING]
 > Retrying messages after editing the message headers can cause message processing failures and/or visualization issues in ServicePulse.
 
-When retrying an edited message it is possible that the original failed message will have been resolved by another user, retried successfully by another user, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md). In those scenarios, the new message will not be dispatched and the retry of the edited message will fail.
+When retrying an edited message, it is possible that the original failed message will have been resolved by another user, retried successfully by another user, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md). In those scenarios, the new message will not be dispatched and the retry of the edited message will fail.
 
-As soon as a message has been dispatched for retrying the originally failing message will be marked as resolved. If the retry message subsequently fails it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
+As soon as a message has been dispatched for retrying, the originally failing message will be marked as resolved. If the retry message subsequently fails, it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
 
-Retrying a message, regardless whether it is processed correctly or not, dispatches also a [`MessageEditedAndRetried` event](/servicecontrol/contracts.md#other-events). That event includes an ID of the original message.
+Retrying a message, regardless whether it is processed correctly or not, dispatches a [`MessageEditedAndRetried` event](/servicecontrol/contracts.md#other-events) also. That event includes an ID of the original message.
 
 The copy of the failed message receives a new [message ID](/nservicebus/messaging/message-identity.md). The copied message is related to the original failed message through the [`NServiceBus.CorrelationId`](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-correlationid) header that is set to the ID of the original message. The copy carries also the same [`NServiceBus.ConversationId`](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid) as the original.
 
 ## Limitations and restrictions
 
-A failed message must not have been resolved by a user, successfully retried, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md) for edit and retry to function.
-
-The bodies of messages with encrypted properties cannot be edited.
-
-The edited message will be assigned a new message ID before dispatching. The new message ID is automatically generated and is a GUID stored as a string in the edited message's headers.
-
-Resolving a failed message doesn't publish any [ServiceControl events](/servicecontrol/contracts.md#other-events).
+- A failed message must not have been resolved by a user, successfully retried, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md) for edit and retry to function.
+- The bodies of messages with encrypted properties cannot be edited.
+- The edited message will be assigned a new message ID before dispatching. The new message ID is automatically generated and is a GUID stored as a string in the edited message's headers.
+- Resolving a failed message doesn't publish any [ServiceControl events](/servicecontrol/contracts.md#other-events).

@@ -101,7 +101,7 @@ See the [recoverability documentation](/nservicebus/recoverability/configure-err
 
 ## Public queues
 
-Although MSMQ has the concept of both [public and private queues](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753440(v=ws.10)), public queues require Active Directory as a prerequisite and are not available in a workgroup environment. Therefore, NServiceBus supports only private queues and uses the path name addressing scheme for its routing. Installing MSMQ with Active Directory may interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
+Although MSMQ has the concept of both [public and private queues](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753440(v=ws.10)), public queues require Active Directory as a prerequisite and are not available in a workgroup environment. Therefore, NServiceBus supports only private queues and uses the path name addressing scheme for its routing. Installing MSMQ with Active Directory may interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
 
 ## Permissions
 
@@ -129,9 +129,9 @@ If the machine is connected to a workgroup, Windows grants the `Send` permission
 
 ### Well-known group names and queue access rights
 
-The [WellKnownSidType](https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.wellknownsidtype?view=netframework-4.8) enumeration is used to retrieve the group names.
+The [WellKnownSidType](https://learn.microsoft.com/en-us/dotnet/api/system.security.principal.wellknownsidtype?view=netframework-4.8) enumeration is used to retrieve the group names.
 
-MSMQ permissions are defined in the [MessageQueueAccessRights](https://docs.microsoft.com/en-us/dotnet/api/system.messaging.messagequeueaccessrights?view=netframework-4.8) enumeration.
+MSMQ permissions are defined in the [MessageQueueAccessRights](https://learn.microsoft.com/en-us/dotnet/api/system.messaging.messagequeueaccessrights?view=netframework-4.8) enumeration.
 
 > [!NOTE]
 > To increase security and further lock down MSMQ send/receive permissions, remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
@@ -143,7 +143,7 @@ An example of the warning that is logged:
 
 > WARN NServiceBus.QueuePermissions - Queue [private$\xxxx] is running with [Everyone] with AccessRights set to [GenericWrite]. Consider setting appropriate permissions if required by the organization. For more information, consult the documentation.
 
-See also [Message Queuing Security Overview](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771268(v=ws.10)).
+See also [Message Queuing Security Overview](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771268(v=ws.10)).
 
 ## Distributed Transaction Coordinator
 

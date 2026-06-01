@@ -21,7 +21,7 @@ include: sql-prereq
 
 This sample uses the `NsbSamplesSqlOutbox` database.
 
-The [outbox](/nservicebus/outbox) feature ensures *exactly-once* delivery guarantees without requiring the [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)). To prevent warnings in the console, disable the DTC service. If not disabled, a `DtcRunningWarning` will appear when starting the sample.
+The [outbox](/nservicebus/outbox) feature ensures *exactly-once* delivery guarantees without requiring the [Distributed Transaction Coordinator (DTC)](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)). To prevent warnings in the console, disable the DTC service. If not disabled, a `DtcRunningWarning` will appear when starting the sample.
 
 ## Running the project
 
@@ -60,7 +60,7 @@ snippet: SenderConfiguration
 
 ### Receiver project
 
-The Receiver simulates a back-end system and is also configured with SQL Server transport, SQL persistence, and the outbox. It uses [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) to store business data (orders).
+The Receiver simulates a back-end system and is also configured with SQL Server transport, SQL persistence, and the outbox. It uses [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) to store business data (orders).
 
 snippet: ReceiverConfiguration
 

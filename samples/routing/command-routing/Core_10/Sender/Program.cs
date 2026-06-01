@@ -21,11 +21,11 @@ routing.RouteToEndpoint(
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 Console.WriteLine("Starting...");
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 

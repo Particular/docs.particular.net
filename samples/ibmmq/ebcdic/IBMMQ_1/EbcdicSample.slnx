@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="Contracts/Contracts.csproj" />
-  <Project Path="LegacySender/LegacySender.csproj" />
-  <Project Path="Sales/Receiver.csproj" />
-</Solution>

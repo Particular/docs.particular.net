@@ -4,6 +4,7 @@
     <RootNamespace>NHibernate</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="11.*" />
   </ItemGroup>
 </Project>

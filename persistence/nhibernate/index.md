@@ -2,7 +2,7 @@
 title: NHibernate Persistence
 summary: NHibernate-based persistence for NServiceBus
 component: NHibernate
-reviewed: 2024-10-22
+reviewed: 2026-05-28
 redirects:
  - nservicebus/relational-persistence-using-nhibernate
  - nservicebus/nhibernate/configuration
@@ -30,7 +30,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 ## Supported database engines
 
- * [Microsoft SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above).
+ * [Microsoft SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://learn.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above).
  * [Oracle Database](https://www.oracle.com/database/index.html) ([Version 11g Release 2](https://docs.oracle.com/cd/E11882_01/readmes.112/e41331/chapter11204.htm) and above).
 
 > [!NOTE]
@@ -120,4 +120,26 @@ partial: timeout
 
 ## Generating scripts for deployment
 
-To create scripts for execution in production without using the [installers](/nservicebus/operations/installers.md), run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+There are some options for generating scripts for deployment without using the [installers](/nservicebus/operations/installers.md) in a production environment.
+
+### Run installers in non-production environments
+
+Run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
+
+### Use `ScriptGenerator<T>` API
+
+The NHibernate persistence provides a `ScriptGenerator<T>` API that can be used to generate the required SQL scripts for supported database engines.
+
+#### Outbox script
+
+To generate the SQL script for the Outbox, use the following code:
+
+snippet: GenerateOutboxScript
+
+#### Saga storage script
+
+To generate the SQL script for a saga, use the following code:
+
+snippet: GenerateSagaScript
+
+partial: scriptgen

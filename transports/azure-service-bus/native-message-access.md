@@ -10,7 +10,7 @@ partial: supported-versions
 
 ## Access to the native Azure Service Bus incoming message
 
-It can sometimes be useful to access the native Service Bus incoming message from behaviors and handlers. When a message is received, the transport adds the native Service Bus [`Message`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.servicebus.message) to the message processing context. Use the code below to access the message details from a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md):
+It can sometimes be useful to access the native Service Bus incoming message from behaviors and handlers. When a message is received, the transport adds the native Service Bus [`Message`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.servicebus.message) to the message processing context. Use the code below to access the message details from a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md):
 
 snippet: access-native-incoming-message
 

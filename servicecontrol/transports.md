@@ -24,7 +24,6 @@ The value for the `TransportType` settings can be any of the following:
 | [IBM MQ](#ibm-mq) | `IBMMQ` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
-
 ## Azure Service Bus
 
 ### Topic-per-event topology for integration events
@@ -46,15 +45,15 @@ Furthermore, in addition to the [connection string options of the transport](/tr
 
 ### Enabling Managed Identity
 
-As of version 4.21.8 of ServiceControl, the following options can be used to enable [Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
+As of version 4.21.8 of ServiceControl, the following options can be used to enable [Managed Identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
-* Setting the connection string to a [fully-qualified namespace](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusclient.fullyqualifiednamespace) (eg. `my-namespace.servicebus.windows.net`)
-  * With this setting, a [`DefaultAzureCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) will be used.
+* Setting the connection string to a [fully-qualified namespace](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusclient.fullyqualifiednamespace) (eg. `my-namespace.servicebus.windows.net`)
+  * With this setting, a [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) will be used.
   * No connection string options can be used when using a fully-qualified namespace.
 * Specifying the connection string option `Authentication=Managed Identity`
   * The fully-qualified namespace will be parsed from the `Endpoint=sb://my-namespace.servicebus.windows.net/` connection string option
-  * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
-  * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
+  * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
+  * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
 
 ### Enabling Partitioned Entities
 
@@ -85,8 +84,10 @@ For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and
 - The [audit queue name](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) would need to be set to `my-hierarchy/audit`.
 - The [monitoring queue name](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringerrorqueue) would need to be set to `my-hierarchy/monitoring`.
 
-
 ### Example connection string
+
+> [!NOTE]
+> When using the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator), the default connection string points to `localhost` for the Endpoint value. That results in an error being logged during the startup of ServiceControl instances. The error can be safely ignored as it doesn't affect ServiceControl operations, instead it's related to the throughput and licensing portion of Servicecontrol, which will be anyway not available when using the Azure Service Bus emulator. It's possible to prevent the error from showing up in the logs by creating an alias for `localhost` containing a `.`, such as for example, `servicebus-emulator.local` or by specifying an IP address, such as `127.0.0.1` for the Endpoint value.
 
 ```text
 Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>;HierarchyNamespace=<hierarchyNamespacePrefix>

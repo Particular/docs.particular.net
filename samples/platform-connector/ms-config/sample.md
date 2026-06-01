@@ -22,9 +22,9 @@ This sample connects an NServiceBus endpoint hosted in the .NET Generic Host to 
 
 ### Endpoint
 
-A basic NServiceBus endpoint containing a saga, a handler, and a custom check. The endpoint is hosted in a [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host).
+A basic NServiceBus endpoint containing a saga, a handler, and a custom check. The endpoint is hosted in a [.NET Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host).
 
-The host is configured to include a JSON configuration file. The configuration can come from [any provider](https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration-providers) supported by the configuration framework.
+The host is configured to include a JSON configuration file. The configuration can come from [any provider](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration-providers) supported by the configuration framework.
 
 snippet: addConfigFile
 

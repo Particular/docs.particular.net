@@ -18,7 +18,7 @@ To minimize the amount of information and dependencies shared between endpoints,
 A sender and receiver of a given message must use the same message contract. Message contracts may be shared in various ways:
 
 * When all endpoints are located in a single solution, message contract assemblies may be directly referenced as project dependencies.
-* When endpoints are located in multiple solutions, message contracts may be shared as [NuGet packages](https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild). NuGet packages may be published on the file system or a NuGet server. A [custom NuGet config file](https://docs.microsoft.com/en-us/nuget/reference/nuget-config-file) may be used to configure additional NuGet package sources.
+* When endpoints are located in multiple solutions, message contracts may be shared as [NuGet packages](https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild). NuGet packages may be published on the file system or a NuGet server. A [custom NuGet config file](https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file) may be used to configure additional NuGet package sources.
 * Messages contracts may be shared as C# source files.
 
 ### NServiceBus dependency
@@ -26,11 +26,11 @@ A sender and receiver of a given message must use the same message contract. Mes
 When [marker interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages-marker-interfaces) are used to define messages, message contract projects have a dependency on the NServiceBus package. This may cause version conflicts when message contracts are updated in endpoints targeting older major versions of NServiceBus. This may be avoided by either:
 
 * Use the [`NServiceBus.MessageInterfaces` package](/samples/message-assembly-sharing/) available from Version 8.2 onwards.
-* Referencing the oldest used NServiceBus major version from message contracts projects. [NuGet dependency resolution](https://docs.microsoft.com/en-us/nuget/concepts/dependency-resolution) allows endpoints on newer major versions of NServiceBus to reference assemblies that target an older version of NServiceBus, but not vice versa.
+* Referencing the oldest used NServiceBus major version from message contracts projects. [NuGet dependency resolution](https://learn.microsoft.com/en-us/nuget/concepts/dependency-resolution) allows endpoints on newer major versions of NServiceBus to reference assemblies that target an older version of NServiceBus, but not vice versa.
 * Switching to [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md). Unobtrusive mode allows an assembly to define message contracts without a dependency on the NServiceBus package, making it easy to share message contracts with endpoints targeting multiple versions of NServiceBus and running on various frameworks and platforms.
 
 > [!NOTE]
-> Starting with version 8, NServiceBus no longer targets .NET Standard. [Multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) must be used to support multiple target frameworks.
+> Starting with version 8, NServiceBus no longer targets .NET Standard. [Multi-targeting](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) must be used to support multiple target frameworks.
 
 ## Versioning
 
@@ -41,7 +41,7 @@ After updating message contracts in an endpoint:
 * Other endpoints must be able to process messages sent or published by the updated endpoint.
 * The updated endpoint must be able to process messages sent or published by other endpoints.
 
-NServiceBus includes a message header containing the message type's fully qualified name, which includes the assembly name and version number. Therefore, for best compatibility, it is recommended to maintain a stable [*assembly version*](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/versioning#assembly-version). The version of the contracts may be stated in the [*assembly file version*](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/versioning#assembly-file-version), [*assembly informational version*](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/versioning#assembly-informational-version), or *NuGet package version*.
+NServiceBus includes a message header containing the message type's fully qualified name, which includes the assembly name and version number. Therefore, for best compatibility, it is recommended to maintain a stable [*assembly version*](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/versioning#assembly-version). The version of the contracts may be stated in the [*assembly file version*](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/versioning#assembly-file-version), [*assembly informational version*](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/versioning#assembly-informational-version), or *NuGet package version*.
 
 The [evolving message contracts guidance](/nservicebus/messaging/evolving-contracts.md) has more details on safely updating message contracts.
 

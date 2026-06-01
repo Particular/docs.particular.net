@@ -24,8 +24,8 @@ serializationV2.ContentTypeKey("jsonv2");
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
-var host = builder.Build();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+using var host = builder.Build();
 await host.StartAsync();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 

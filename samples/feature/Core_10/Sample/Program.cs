@@ -16,7 +16,7 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableFeature<SagaStateAuditFeature>();
 endpointConfiguration.EnableFeature<HandlerTimerFeature>();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var app = builder.Build();
 

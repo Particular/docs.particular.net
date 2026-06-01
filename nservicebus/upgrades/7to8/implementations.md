@@ -19,7 +19,7 @@ Deserialization is updated to use `ReadOnlyMemory<byte>` instead of `Stream`. Th
 object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null);
 ```
 
-Serializers that do not support `ReadOnlyMemory<byte>` as deserialization input should avoid `.ToArray` calls to prevent unnecessary memory allocations. Instead, it's recommended to implement a shim exposing read-only data as types supported by the serializer APIs or use existing implementations like `ReadOnlyMemoryExtensions.AsStream` from the [Microsoft.Toolkit.HighPerformance](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.highperformance.extensions.readonlymemoryextensions.asstream) package.
+Serializers that do not support `ReadOnlyMemory<byte>` as deserialization input should avoid `.ToArray` calls to prevent unnecessary memory allocations. Instead, it's recommended to implement a shim exposing read-only data as types supported by the serializer APIs or use existing implementations like `ReadOnlyMemoryExtensions.AsStream` from the [Microsoft.Toolkit.HighPerformance](https://learn.microsoft.com/en-us/dotnet/api/microsoft.toolkit.highperformance.extensions.readonlymemoryextensions.asstream) package.
 
 ## Transports
 
@@ -39,7 +39,7 @@ A message body passed by the transport to the core using `ReadOnlyMemory<byte>` 
 public MessageContext(string nativeMessageId, Dictionary<string, string> headers, ReadOnlyMemory<byte> body, TransportTransaction transportTransaction, ContextBag context)
 ```
 
-For transports that use low allocation types, this allows passing message body without additional memory allocations. Secondly, this ensures that the message body is immutable and cannot be changed by the code executing in the pipeline. 
+For transports that use low allocation types, this allows passing message body without additional memory allocations. Secondly, this ensures that the message body is immutable and cannot be changed by the code executing in the pipeline.
 
 ## Persisters
 

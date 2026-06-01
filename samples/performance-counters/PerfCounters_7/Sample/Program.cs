@@ -14,9 +14,9 @@ var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters
 performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromSeconds(100));
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();

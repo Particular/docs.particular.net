@@ -5,7 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="NServiceBus" Version="7.*" />
+		<PackageReference Include="NServiceBus.RavenDB" Version="7.*" />
 		<PackageReference Include="NServiceBus.RavenDB.TransactionalSession" Version="7.*" />
+		<PackageReference Include="NServiceBus.TransactionalSession" Version="1.*" />
 	</ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">

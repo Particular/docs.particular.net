@@ -4,8 +4,8 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Shared;
 
-var host = Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(x =>
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((_, services) =>
     {
         #region endpointName
 
@@ -35,7 +35,7 @@ var host = Host.CreateDefaultBuilder(args)
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     }).Build();
 
 await host.StartAsync();

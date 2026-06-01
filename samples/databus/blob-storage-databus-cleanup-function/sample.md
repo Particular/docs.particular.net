@@ -15,7 +15,7 @@ downloadbutton
 
 ## Prerequisites
 
-1. [Azure Functions Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites)
+1. [Azure Functions Tools for Visual Studio](https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites)
 1. [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
 
 ## Running the sample
@@ -43,7 +43,7 @@ This Azure Function is triggered when a blob is created or updated in the data b
 
 snippet: DataBusBlobCreatedFunction
 
-To prevent multiple timeouts from starting, the function uses the [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern, using the blob name, when starting the `DataBusCleanupOrchestrator` function.
+To prevent multiple timeouts from starting, the function uses the [singleton orchestration](https://learn.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern, using the blob name, when starting the `DataBusCleanupOrchestrator` function.
 
 The `GetValidUntil` method imitates the behavior of the `NServiceBus.DataBus.AzureBlobStorage` package.
 
@@ -57,7 +57,7 @@ The timeout value is passed to the `DataBusCleanupOrchestrator` function.
 
 snippet: DataBusCleanupOrchestratorFunction
 
-The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delete the blob from Azure Storage after the timeout period has elapsed.
+The function uses a [durable function timer](https://learn.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delete the blob from Azure Storage after the timeout period has elapsed.
 
 #### DeleteBlob
 
@@ -82,7 +82,7 @@ The `DataBusBlobCleanupFunctions` project requires access to the large binary ob
 }
 ```
 
-In production this is set using an [applications settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings#settings) value named `DataBusStorageAccount` in the [Azure portal](https://portal.azure.com).
+In production this is set using an [applications settings](https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings#settings) value named `DataBusStorageAccount` in the [Azure portal](https://portal.azure.com).
 
 #### Migrating existing projects
 
@@ -94,4 +94,4 @@ snippet: DataBusOrchestrateExistingBlobsFunction
 
 The function is very similar to the [`DataBusBlobCreated`](#code-walk-through-databusblobcleanupfunctions-databusblobcreated) function, but instead of working on a single blob, it iterates over every blob in the container.
 
-This function does not require downtime as the implemented [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern prevents existing timeouts from being duplicated.
+This function does not require downtime as the implemented [singleton orchestration](https://learn.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern prevents existing timeouts from being duplicated.

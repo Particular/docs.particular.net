@@ -3,7 +3,7 @@
 > [!NOTE]
 > This section applies only to .NET Framework as .NET Core does not support distributed transactions.
 
-In .NET, using the [TransactionScope](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope) makes a block of code transactional, i.e. any code that stores data will automatically enlist in the transaction.
+In .NET, using the [TransactionScope](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope) makes a block of code transactional, i.e. any code that stores data will automatically enlist in the transaction.
 
 This is configured on the transport and automatically includes any message handler.
 

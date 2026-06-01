@@ -32,7 +32,7 @@ The most common use case for NServiceBus endpoints is to process messages withou
 
 **Is it possible to change the default message lock duration for an endpoint?**
 
-Yes. The transport is no longer modifying existing queues (or other entities). Lock duration modification should be done directly on the queue using the [Azure portal](https://portal.azure.com/), [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update), or a third party tool.
+Yes. The transport is no longer modifying existing queues (or other entities). Lock duration modification should be done directly on the queue using the [Azure portal](https://portal.azure.com/), [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update), or a third party tool.
 
 **Would a lock duration set to the maximum time have a negative impact on a message that fails to process in less than 5 minutes?**
 
@@ -48,7 +48,7 @@ Yes. While the new transport has been built with reasonable defaults, if a handl
 
 ### Azure CLI options
 
-The following settings can be configured via the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a third party tool. These options were configured using the Endpoint Configuration API in the legacy Azure Service Bus transport.
+The following settings can be configured via the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a third party tool. These options were configured using the Endpoint Configuration API in the legacy Azure Service Bus transport.
 
 * Dead-lettered messages forwarding
 * Default message time to live. Alternatively, message time to live can be configured using one of the methods of [discarding old messages](/nservicebus/messaging/discard-old-messages.md).

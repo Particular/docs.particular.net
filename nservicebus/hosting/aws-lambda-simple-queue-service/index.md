@@ -5,7 +5,7 @@ summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue
 related:
  - samples/aws/lambda-sqs
  - samples/aws/lambda-sqs-annotations
-reviewed: 2026-01-02
+reviewed: 2026-05-26
 redirects:
  - previews/aws-lambda-simple-queue-service
 ---
@@ -38,6 +38,8 @@ The configuration API exposes NServiceBus configuration options to allow customi
 
 partial: serializer
 
+partial: register-services
+
 ### Routing
 
 Specifying [command routing](/nservicebus/messaging/routing.md#command-routing) for an AWS Lambda endpoint:
@@ -60,7 +62,7 @@ snippet: aws-configure-dont-move-to-error
 
 ### Licenses
 
-The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which can be set via the Function settings in the [Lambda console](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
+The license is provided via the `PARTICULARSOFTWARE_LICENSE` (with a fallback to `NSERVICEBUS_LICENSE` for backward compatibility reasons) environment variable, which can be set via the Function settings in the [Lambda console](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 
 ## Native integration
 

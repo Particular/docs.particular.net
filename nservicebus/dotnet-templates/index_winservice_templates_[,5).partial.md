@@ -1,6 +1,6 @@
 ## NServiceBus Windows Service
 
-This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint.
+This template makes it easier to create a [Windows Service](https://learn.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint.
 
 The template can be used via the following command:
 

@@ -146,6 +146,10 @@ class Usage
         // exclude all types that inherit an interface or base type
         transport.HierarchyNamespaceOptions.ExcludeMessageType<IAmExcludedFromTheHierarchy>();
         #endregion
+
+        #region enable-dlq-auto-forwarding
+        transport.AutoForwardDeadLetteredMessagesToErrorQueue = true;
+        #endregion
     }
 
 
@@ -155,7 +159,7 @@ class Usage
     public interface IAmExcludedFromTheHierarchy {}
 
     public class MyExcludedMessageByInterface : IAmExcludedFromTheHierarchy { }
-    
+
     public class MyOtherExcludedMessageByInterface : IAmExcludedFromTheHierarchy {}
     #endregion
     class MyEvent;

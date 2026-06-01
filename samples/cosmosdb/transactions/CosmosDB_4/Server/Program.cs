@@ -14,13 +14,11 @@ class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
      Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-             Console.Title = "Server";
+          .ConfigureServices((hostContext, services) =>
+          {
+              Console.Title = "Server";
 
-         }).UseNServiceBus(x =>
-         {
-             #region CosmosDBConfig
+              #region CosmosDBConfig
 
              var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Transactions.Server");
              endpointConfiguration.EnableOutbox();
@@ -62,8 +60,8 @@ class Program
 
              endpointConfiguration.EnableInstallers();
 
-             return endpointConfiguration;
-         });
+              services.AddNServiceBusEndpoint(endpointConfiguration);
+          });
 
 
     private static readonly ILogger<Program> logger =

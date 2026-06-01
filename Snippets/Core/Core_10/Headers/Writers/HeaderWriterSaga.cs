@@ -1,4 +1,7 @@
-﻿namespace Core.Headers.Writers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.Headers.Writers;
 
 using System;
 using System.Threading;
@@ -31,9 +34,15 @@ public class HeaderWriterSaga
         endpointConfiguration.RegisterMessageMutator(new Mutator());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() });
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+        await messageSession.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() });
         CountdownEvent.Wait();
+        await host.StopAsync();
     }
 
     class StartSaga1Message :

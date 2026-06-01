@@ -13,9 +13,9 @@ var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, System
 var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
 claimCheck.BasePath(storagePath);
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 Console.WriteLine("Press any key to exit");

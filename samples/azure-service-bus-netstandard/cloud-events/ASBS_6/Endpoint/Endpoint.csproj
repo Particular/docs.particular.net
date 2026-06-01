@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.EventGrid" Version="5.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.*" />
     <PackageReference Include="NServiceBus.Envelope.CloudEvents" Version="1.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
   </ItemGroup>
 </Project>

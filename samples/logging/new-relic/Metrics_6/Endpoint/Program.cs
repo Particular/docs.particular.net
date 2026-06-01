@@ -6,10 +6,9 @@ using NServiceBus;
 
 Console.Title = "TracingEndpoint";
 
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .UseConsoleLifetime()
-    .UseNServiceBus(_ =>
-    {
+    .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration("TracingEndpoint");
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -17,7 +16,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         NewRelicMetrics.Setup(endpointConfiguration);
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build();
 

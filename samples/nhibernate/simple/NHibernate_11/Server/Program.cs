@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
@@ -34,12 +36,9 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
-
-await endpointInstance.Stop();
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+await builder.Build().RunAsync();
 
 static void AddMappings(Configuration nhConfiguration)
 {

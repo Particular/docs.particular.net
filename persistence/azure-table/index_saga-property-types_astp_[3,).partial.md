@@ -1,4 +1,4 @@
-Azure Table Persistence supports the same set of types as [Azure Table Storage](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model) and additional types that can be serialized into JSON using [Json.NET](https://www.newtonsoft.com/json). When a saga containing a property of an unsupported type is persisted, an exception containing the following information is thrown: `The property type 'the_property_name' is not supported on Azure Table Storage and it cannot be serialized with JSON.NET`.
+Azure Table Persistence supports the same set of types as [Azure Table Storage](https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model) and additional types that can be serialized into JSON using [Json.NET](https://www.newtonsoft.com/json). When a saga containing a property of an unsupported type is persisted, an exception containing the following information is thrown: `The property type 'the_property_name' is not supported on Azure Table Storage and it cannot be serialized with JSON.NET`.
 
 #### Customization
 

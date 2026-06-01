@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
 using NServiceBus;
 using NServiceBus.Storage.MongoDB;
@@ -19,11 +20,11 @@ class CustomMongoClientProvider
 
 class CustomMongoClientProviderRegistration
 {
-    public CustomMongoClientProviderRegistration(EndpointConfiguration endpointConfiguration)
+    public CustomMongoClientProviderRegistration(IHostApplicationBuilder builder)
     {
         #region MongoDBCustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.AddTransient<IMongoClientProvider, CustomMongoClientProvider>());
+        builder.Services.AddTransient<IMongoClientProvider, CustomMongoClientProvider>();
 
         #endregion
     }

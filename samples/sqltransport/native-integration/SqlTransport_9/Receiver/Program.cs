@@ -40,10 +40,10 @@ endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 // Build and start the host
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 // Get the application stopping token to handle graceful shutdown

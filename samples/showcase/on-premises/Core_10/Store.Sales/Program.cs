@@ -18,13 +18,12 @@ class Program
      Host.CreateDefaultBuilder(args)
          .ConfigureServices((hostContext, services) =>
          {
-         }).UseNServiceBus(x =>
-         {
+         }).ConfigureServices((_, services) => {
              Console.Title = "Sales";
              var endpointConfiguration = new EndpointConfiguration("Store.Sales");
              endpointConfiguration.ApplyCommonConfiguration();
 
-             return endpointConfiguration;
+             services.AddNServiceBusEndpoint(endpointConfiguration);
          });
 
 }

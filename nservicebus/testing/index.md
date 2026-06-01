@@ -1,7 +1,7 @@
 ---
 title: Testing NServiceBus
 summary: Develop service layers and long-running processes using test-driven development.
-reviewed: 2025-06-20
+reviewed: 2026-05-21
 component: Testing
 related:
  - samples/unit-testing
@@ -108,21 +108,4 @@ The behavior can be tested similar to a message handler or a saga by using a tes
 
 snippet: BehaviorTest
 
-## Testing logging behavior
-
-To test that logging is performed correctly, use the `TestingLoggerFactory`. The factory writes to a `StringWriter` to allow unit tests to assert on log statements.
-
-### Example
-
-> [!NOTE]
-> Using `WriteTo` or `Level` set the provided parameters to the statically cached factory for the lifetime of the application domain. For isolation of logging in concurrent scenarios it is recommended to use `BeginScope` that was introduced in Version 7.2.
-
-The following code show how to verify that logging is performed by the message handler.
-
-snippet: LoggerTestingSetup
-
-The setup fixture above sets the testing logging factory once per assembly because the factory is statically cached during the lifetime of the application domain. Subsequent test executions then clear the logged statements before every test run as shown below.
-
-snippet: LoggerTesting
-
-partial: loggerscope
+partial: logging

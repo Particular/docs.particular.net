@@ -23,9 +23,9 @@ endpointConfig
     .DefiningClaimCheckPropertiesAs(prop => prop.Name.StartsWith("Large"));
 #endregion
 
-builder.UseNServiceBus(endpointConfig);
+builder.Services.AddNServiceBusEndpoint(endpointConfig);
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 

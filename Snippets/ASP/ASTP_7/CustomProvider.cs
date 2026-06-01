@@ -1,5 +1,6 @@
 ﻿using Azure.Data.Tables;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence.AzureTable;
 
@@ -29,14 +30,14 @@ class CustomSubscriptionTableClientProvider : IProvideTableServiceClientForSubsc
 
 class CustomClientProviderRegistration
 {
-    public CustomClientProviderRegistration(EndpointConfiguration endpointConfiguration)
+    public CustomClientProviderRegistration(IHostApplicationBuilder builder)
     {
         #region CustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(services => services.AddSingleton<CustomTableClientProvider>());
+        builder.Services.AddSingleton<CustomTableClientProvider>();
 
         // optionally when subscriptions used
-        endpointConfiguration.RegisterComponents(services => services.AddSingleton<CustomSubscriptionTableClientProvider>());
+        builder.Services.AddSingleton<CustomSubscriptionTableClientProvider>();
 
         #endregion
     }

@@ -8,7 +8,7 @@ transport.RouteToEndpoint(typeof(Command), "Samples.Web.Server");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 #endregion
 
 builder.Services.AddRazorPages();

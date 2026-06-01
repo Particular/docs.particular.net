@@ -17,7 +17,7 @@ gatewayConfig.AddReceiveChannel("http://localhost:25899/Headquarters/");
 gatewayConfig.AddSite("RemoteSite", "http://localhost:25900/RemoteSite/");
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 using var host = builder.Build();
 await host.StartAsync();
 

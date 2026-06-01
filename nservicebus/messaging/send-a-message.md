@@ -1,6 +1,6 @@
 ---
 title: Sending messages
-reviewed: 2025-05-13
+reviewed: 2026-05-23
 component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
@@ -14,27 +14,19 @@ NServiceBus supports sending different types of messages (see [Messages, Events,
 
 ## Message sending/publishing interface summary
 
-| Feature      | IMessageHandlerContext | IEndpointInstance | IMessageSession |
-|--------------|------------------------|-------------------|-----------------|
-| Can send/publish/reply to messages          | ✅  | ✅ | ✅ |
-| Use inside a handler          | ✅ |  |  |
-| Use outside of handler |  | ✅ | ✅ |
-| Takes part in message handler transaction   | ✅ |  |  |
-| Auto-injected into dependency injection container         |  |  | ✅ |
-| Access to endpoint lifecycle control          |  | ✅ |  |
-|||||
+| Feature      | IMessageHandlerContext | IMessageSession |
+|--------------|------------------------|-----------------|
+| Can send/publish/reply to messages | ✅ | ✅ |
+| Use inside a handler | ✅ |  |
+| Use outside of a handler |  | ✅ |
+| Takes part in the message handler transaction | ✅ |  |
+| Auto-injected into the dependency injection container |  | ✅ |
 
 ### IMessageHandlerContext
 
 - Used from inside of the message handling pipeline
 - Take part in the same transaction as that of the message handler (when using a transaction mode that supports it)
 - Provides access to the incoming message being processed.
-
-### IEndpointInstance
-
-- The full endpoint instance, including lifecycle control
-- Typically used in Program.cs or service startup for initializing and shutting down NServiceBus
-- Should not be used inside a message handler
 
 ### IMessageSession
 
@@ -74,9 +66,9 @@ To send a message from inside a message handler:
 snippet: SendFromHandler
 
 > [!WARNING]
-> Using `IMessageSession` or `IEndpointInstance` to send messages inside a handler instead of the provided `IMessageHandlerContext` should be avoided.
+> Using `IMessageSession` to send messages inside a handler instead of the provided `IMessageHandlerContext` should be avoided.
 >
-> Some of the dangers when using an `IMessageSession` or `IEndpointInstance` inside a message handler to send or publish messages are:
+> Some of the dangers when using an `IMessageSession` inside a message handler to send or publish messages are:
 >
 > * Those messages will not participate in the same transaction as that of the message handler. This could result in messages being dispatched or events published even if the message handler resulted in an exception and the operation was rolled back.
 > * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).

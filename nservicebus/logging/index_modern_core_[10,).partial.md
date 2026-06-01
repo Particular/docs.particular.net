@@ -37,3 +37,13 @@ snippet: UsingLoggerMessageSourceGenerator
 
 > [!WARNING]
 > The NServiceBus-specific logging APIs described in the next section below are still functional but produce obsolete warnings starting in version 10.2 and will be removed in version 12. Use the `Microsoft.Extensions.Logging` patterns shown earlier for new development.
+
+## Enriching logs outside the message pipeline
+
+Logs written from inside the message-processing pipeline automatically include the endpoint name and identifier as structured log properties. Logs written from code outside the pipeline, such as a hosted background task or a custom timer callback, do not include this context by default.
+
+To attach endpoint context to those logs, resolve the `EndpointLoggingScope` from the DI container and use the `BeginEndpointScope` extension method:
+
+snippet: UsingEndpointLoggingScope
+
+The `EndpointLoggingScope` instance is scoped to the endpoint and carries the endpoint name and identifier with it. The `BeginEndpointScope` extension method detects when the call occurs inside the message-processing pipeline and returns a no-op scope. This avoids duplicate scope entries when the pattern is used from message handlers.

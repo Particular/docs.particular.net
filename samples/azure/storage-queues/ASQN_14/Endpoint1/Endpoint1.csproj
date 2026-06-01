@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="10.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="14.*" />
   </ItemGroup>
 

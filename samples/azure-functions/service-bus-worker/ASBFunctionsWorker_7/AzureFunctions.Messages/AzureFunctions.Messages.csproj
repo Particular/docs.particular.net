@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.MessageInterfaces" Version="1.*" />
   </ItemGroup>
 
 </Project>

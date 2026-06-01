@@ -14,8 +14,8 @@ upgradeGuideCoreVersions:
 
 This version of Azure Service Bus Transport uses the [Azure.Messaging.ServiceBus client SDK](https://www.nuget.org/packages/Azure.Messaging.ServiceBus). As a result the following changes to the configuration API have been made:
 
-- `CustomRetryPolicy(...)` - accepts the new [`ServiceBusRetryOptions`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusretryoptions) SDK type
-- `CustomTokenProvider(...)` - renamed to `CustomTokenCredential` and accepts a [`TokenCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.core.tokencredential) object
+- `CustomRetryPolicy(...)` - accepts the new [`ServiceBusRetryOptions`](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusretryoptions) SDK type
+- `CustomTokenProvider(...)` - renamed to `CustomTokenCredential` and accepts a [`TokenCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.core.tokencredential) object
 
 ## Support for Azure.Identity
 
@@ -23,7 +23,7 @@ Passing a [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) `Toke
 
 ## Accessing the native incoming message
 
-The new SDK uses specific types for incoming and outgoing messages while the old SDK had a single `Message` to represent both. The incoming message type is [`ServiceBusReceivedMessage`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusreceivedmessage) and the outgoing type is [`ServiceBusMessage`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusmessage).
+The new SDK uses specific types for incoming and outgoing messages while the old SDK had a single `Message` to represent both. The incoming message type is [`ServiceBusReceivedMessage`](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusreceivedmessage) and the outgoing type is [`ServiceBusMessage`](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusmessage).
 
 See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
 

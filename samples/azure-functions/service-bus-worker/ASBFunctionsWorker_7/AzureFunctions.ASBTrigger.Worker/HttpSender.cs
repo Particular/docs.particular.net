@@ -7,7 +7,7 @@ class HttpSender(IFunctionEndpoint functionEndpoint)
 {
     [Function("HttpSender")]
     public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestData req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestData request,
         FunctionContext executionContext)
     {
         var logger = executionContext.GetLogger<HttpSender>();
@@ -18,8 +18,9 @@ class HttpSender(IFunctionEndpoint functionEndpoint)
 
         await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext);
 
-        var r = req.CreateResponse(HttpStatusCode.OK);
-        await r.WriteStringAsync($"{nameof(TriggerMessage)} sent.");
-        return r;
+        var response = request.CreateResponse(HttpStatusCode.OK);
+        await response.WriteStringAsync($"{nameof(TriggerMessage)} sent.");
+
+        return response;
     }
 }

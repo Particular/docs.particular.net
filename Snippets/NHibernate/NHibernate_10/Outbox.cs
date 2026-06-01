@@ -1,4 +1,4 @@
-﻿namespace NHibernate_7
+﻿namespace NHibernate_10
 {
     using System;
     using System.Data;
@@ -11,7 +11,7 @@
 
     public class Outbox
     {
-        public void TransactionIsolation(EndpointConfiguration endpointConfiguration)
+        public static void TransactionIsolation(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxTransactionIsolation
 
@@ -22,7 +22,7 @@
             #endregion
         }
 
-        public void CustomTableName(EndpointConfiguration endpointConfiguration)
+        public static void CustomTableName(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxNHibernateCustomTableNameConfig
 
@@ -34,7 +34,7 @@
             #endregion
         }
 
-        public void PessimisticMode(EndpointConfiguration endpointConfiguration)
+        public static void PessimisticMode(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxPessimisticMode
 
@@ -44,7 +44,7 @@
             #endregion
         }
 
-        public void TransactionScopeMode(EndpointConfiguration endpointConfiguration)
+        public static void TransactionScopeMode(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxTransactionScopeMode
 
@@ -54,7 +54,7 @@
             #endregion
         }
 
-        public void CustomMapping(EndpointConfiguration endpointConfiguration)
+        public static void CustomMapping(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxNHibernateCustomMappingConfig
 

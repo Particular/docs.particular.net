@@ -73,3 +73,5 @@ partial: lockrenewal
 >
 > - Optimise the message handlers to reduce their execution time.
 > - Reduce the prefetch count. All messages are locked on peek, so when they are prefetched, they remain locked until they are all processed.
+
+partial: dead-lettering

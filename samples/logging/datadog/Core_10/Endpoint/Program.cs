@@ -7,10 +7,9 @@ const string EndpointName = "Samples.Metrics.Tracing.Endpoint";
 
 Console.Title = EndpointName;
 
-var host = Host.CreateDefaultBuilder(args)
+using var host = Host.CreateDefaultBuilder(args)
     .UseConsoleLifetime()
-    .UseNServiceBus(_ =>
-    {
+    .ConfigureServices((_, services) => {
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -18,7 +17,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         DataDogMetrics.Setup(endpointConfiguration);
 
-        return endpointConfiguration;
+        services.AddNServiceBusEndpoint(endpointConfiguration);
     })
     .Build();
 

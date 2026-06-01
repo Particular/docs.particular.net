@@ -26,11 +26,11 @@ snippet: asb-function-isolated-identity-connection
 
 ### Other Configuration
 
-| Key                      | Value      | Notes     |
-|--------------------------|------------|-----------|
-| `NSERVICEBUS_LICENSE`    | The NServiceBus license | Can also be provided via `serviceBusTriggeredEndpointConfig.AdvancedConfiguration.License(...)`. |
-| `ENDPOINT_NAME`          | The name of the NServiceBus endpoint to host | Optional. By default, the endpoint name is derived from the `NServiceBusTriggerFunction` attribute. |
-| `WEBSITE_SITE_NAME`      | The name of the Azure Function app. Provided when hosting the function in Azure. | Optional. Used to set the NServiceBus [host identifier](/nservicebus/hosting/override-hostid.md). Local machine name is used if not set. |
+| Key                             | Value      | Notes     |
+|---------------------------------|------------|-----------|
+| `PARTICULARSOFTWARE_LICENSE`    | The NServiceBus license | Can also be provided via `serviceBusTriggeredEndpointConfig.AdvancedConfiguration.License(...)` or via `NSERVICEBUS_LICENSE` environment variable for backward compatibility reasons. |
+| `ENDPOINT_NAME`                 | The name of the NServiceBus endpoint to host | Optional. By default, the endpoint name is derived from the `NServiceBusTriggerFunction` attribute. |
+| `WEBSITE_SITE_NAME`             | The name of the Azure Function app. Provided when hosting the function in Azure. | Optional. Used to set the NServiceBus [host identifier](/nservicebus/hosting/override-hostid.md). Local machine name is used if not set. |
 
 For local development, use the `local.settings.json` file. In Azure, specify a Function setting using the environment variable as the key.
 

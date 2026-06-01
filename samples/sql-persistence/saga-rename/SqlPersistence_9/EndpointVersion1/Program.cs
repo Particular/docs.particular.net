@@ -14,10 +14,10 @@ SharedConfiguration.Apply(endpointConfiguration);
 endpointConfiguration.PurgeOnStartup(true);
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 // Build and start the host
-var host = builder.Build();
+using var host = builder.Build();
 await host.StartAsync();
 
 // Get required services

@@ -6,9 +6,9 @@ Methods used outside the message processing pipeline have an optional `Cancellat
 
 snippet: cancellation-token-in-asp-controller
 
-Enabling [.NET source code analysis](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) (enabled by default in projects targeting .NET 5 or later) is also recommended so that [CA2016: Forward the CancellationToken parameter to methods that take one](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2016) can identify locations where a `CancellationToken` should be forwarded, and offers a code fix which updates the analyzed code to forward the token.
+Enabling [.NET source code analysis](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) (enabled by default in projects targeting .NET 5 or later) is also recommended so that [CA2016: Forward the CancellationToken parameter to methods that take one](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2016) can identify locations where a `CancellationToken` should be forwarded, and offers a code fix which updates the analyzed code to forward the token.
 
-By default, violations of this rule are shown only as informational messages, but the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be upgraded to a warning using an [`.editorconfig` file](https://editorconfig.org/):
+By default, violations of this rule are shown only as informational messages, but the [analyzer severity](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be upgraded to a warning using an [`.editorconfig` file](https://editorconfig.org/):
 
 ```ini
 [*.cs]
@@ -29,7 +29,7 @@ snippet: cancellation-token-in-message-handler
 
 The analyzer also offers a code fix that will update the code to forward the token using the "light bulb" menu ( <kbd>Ctrl</kbd> + <kbd>.</kbd> ).
 
-If cancellation is not a major concern for a project, the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be downgraded using an [.`editorconfig` file](https://editorconfig.org/):
+If cancellation is not a major concern for a project, the [analyzer severity](https://learn.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be downgraded using an [.`editorconfig` file](https://editorconfig.org/):
 
 ```ini
 [*.cs]

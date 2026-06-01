@@ -11,7 +11,7 @@ The MSMQ transport can discard messages that exceed a configured [Time-To-Be-Rec
 
 ## Native
 
-When a message with a TTBR value is sent, NServiceBus maps that value to the [native `TimeToBeReceived` property](https://docs.microsoft.com/en-us/dotnet/api/system.messaging.message.timetobereceived) of the MSMQ message. MSMQ continuously checks the TTBR of queued messages. Once a message has expired, it is automatically removed from the queue and the corresponding disk space is reclaimed.
+When a message with a TTBR value is sent, NServiceBus maps that value to the [native `TimeToBeReceived` property](https://learn.microsoft.com/en-us/dotnet/api/system.messaging.message.timetobereceived) of the MSMQ message. MSMQ continuously checks the TTBR of queued messages. Once a message has expired, it is automatically removed from the queue and the corresponding disk space is reclaimed.
 
 > [!NOTE]
 > MSMQ enforces a single Time-To-Be-Received value for all messages within a transaction. If multiple messages participate in the same transaction, the TTBR from the **first** message is applied to all. This can lead to unintended expiration and message loss.

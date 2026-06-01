@@ -47,7 +47,7 @@ ServiceControl can be hosted in the cloud by:
 - Using a container hosting service.
 
 > [!WARNING]
-> Due to [RavenDB networked disk limitations](https://ravendb.net/docs/article-page/6.0/csharp/start/installation/running-in-docker-container#requirements) there may be [difficulties running the RavenDB container in the cloud with PaaS services](https://github.com/Particular/ServiceControl/issues/3340#issuecomment-2313694640) like [Azure Container Instances](https://azure.microsoft.com/en-us/products/container-instances) or [AWS Elastic Container Service](https://aws.amazon.com/ecs/). ServiceControl containers are compatible with [RavenDB Cloud](https://ravendb.net/cloud).
+> Due to [RavenDB networked disk limitations](https://docs.ravendb.net/6.2/start/installation/deployment-considerations#storage-considerations) there may be [difficulties running the RavenDB container in the cloud with PaaS services](https://github.com/Particular/ServiceControl/issues/3340#issuecomment-2313694640) like [Azure Container Instances](https://azure.microsoft.com/en-us/products/container-instances) or [AWS Elastic Container Service](https://aws.amazon.com/ecs/). ServiceControl containers are compatible with [RavenDB Cloud](https://ravendb.net/cloud).
 
 ## Improving performance
 

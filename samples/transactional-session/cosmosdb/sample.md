@@ -36,7 +36,7 @@ The database and transport operations are executed atomically when the session i
 
 ## Prerequisites
 
-The sample is intended to be used with the [CosmosDB emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21) to run locally. Alternatively, a connection string to an existing Azure CosmosDB instance can be provided.
+The sample is intended to be used with the [CosmosDB emulator](https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21) to run locally. Alternatively, a connection string to an existing Azure CosmosDB instance can be provided.
 
 ## Configuration
 

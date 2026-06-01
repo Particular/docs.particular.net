@@ -40,23 +40,21 @@ endpointConfiguration.Pipeline.Register(typeof(SqlConnectionBehavior),
 
 #endregion
 
-#region DependencyInjectionConfig
-
-endpointConfiguration.RegisterComponents(services =>
-{
-    services.AddScoped<ConnectionHolder>();
-    services.AddScoped<IDataService, DataService>();
-});
-
-#endregion
-
 // Ensure the database exists before starting the endpoint
 SqlHelper.EnsureDatabaseExists(connectionString);
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.UseNServiceBus(endpointConfiguration);
 
-var host = builder.Build();
+#region DependencyInjectionConfig
+
+builder.Services.AddScoped<ConnectionHolder>();
+builder.Services.AddScoped<IDataService, DataService>();
+
+#endregion
+
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+
+using var host = builder.Build();
 
 await host.StartAsync();
 

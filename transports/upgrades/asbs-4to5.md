@@ -212,7 +212,7 @@ For more advanced scenarios, mappings can be stored in configuration:
 }
 ```
 
-The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Subscription names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Subscription names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
 
 For example, if previously an MD5 hash was used as the sanitization function it might be required to preserve the same entity names.
 For queue names that crossed the threshold of 50 characters, it would be necessary to precalculate the MD5 hash and store that as the subscription name. Alternatively simply configure the subscription name already used in production as a hardcoded value. Below is the MD5 hash as a GUID for a queue name called `QueueNameThatIsLongerThanFiftyCharactersAndStillValid`:
@@ -261,7 +261,7 @@ Or via configuration:
 }
 ```
 
-The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Rules names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Rules names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
 
 For example, if previously an MD5 hash was used as the sanitization function it might be required to preserve the same entity names. For rule names that crossed the threshold of 50 characters, it would then be necessary to precalculate the MD5 hash and store that as the rule name. Alternatively simply configure the rule name already used in production as a hardcoded value. Below is the MD5 hash as a GUID for a rule name called `Namespace.Subnamespace.VeryLongEventName1`:
 

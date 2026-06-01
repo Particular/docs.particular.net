@@ -1,7 +1,7 @@
 ---
 title: Immutable Messages samples
 summary: Demonstrate how to use immutable messages when exchanging messages between endpoints.
-reviewed: 2024-08-13
+reviewed: 2026-05-14
 component: Core
 related:
 - nservicebus/messaging/immutable-messages
@@ -9,7 +9,7 @@ related:
 
 ## Code walk-through
 
-This sample shows how to define and exchange immutable messages between endpoints. Immutable messages can be defined as interfaces with only getters:
+This sample shows how to define and exchange immutable messages between endpoints. Immutable messages can be defined as interfaces that contain only getters:
 
 snippet: immutable-messages-as-interface
 
@@ -19,11 +19,11 @@ snippet: immutable-messages-as-class
 
 ### Sending messages
 
-The sender endpoint allows to send messages to the receiver using either an immutable message defined as a class or one defined as an interface. In this latter case the sender endpoint defines an internal message class that implements the public, shared, interface:
+The sender endpoint can send messages to the receiver using either an immutable message defined as a class or one defined as an interface. In the latter case, the sender endpoint defines an internal message class that implements the public, shared interface:
 
 snippet: immutable-messages-as-interface-implementation
 
-The internal class is then used by the sender endpoint at dispatch time
+The internal class is then used by the sender endpoint at dispatch time:
 
 snippet: immutable-messages-as-interface-sending
 

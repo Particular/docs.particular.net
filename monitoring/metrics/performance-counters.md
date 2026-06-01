@@ -1,7 +1,7 @@
 ---
 title: Windows Performance Counters
 summary: Monitor NServiceBus endpoint performance on Windows using Performance Counters for message flow, and queue length
-reviewed: 2025-10-22
+reviewed: 2026-05-23
 component: PerfCounters
 redirects:
  - nservicebus/monitoring-nservicebus-endpoints
@@ -28,4 +28,4 @@ partial: counters
 partial: installing
 
 > [!NOTE]
-> [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting) are currently not supported since they don't receive messages.
+> [Send-only endpoints](/nservicebus/endpoints/#send-only) are currently not supported since they don't receive messages.

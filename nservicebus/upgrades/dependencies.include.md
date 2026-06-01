@@ -7,5 +7,5 @@ Once packages have been updated the project will contain quite a few errors. Thi
 
 See also:
 
- * [NuGet Package Manager Dialog - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
- * [NuGet Package Manager Console - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)
+ * [NuGet Package Manager Dialog - Updating a Package](https://learn.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
+ * [NuGet Package Manager Console - Updating a Package](https://learn.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)

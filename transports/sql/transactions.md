@@ -30,7 +30,7 @@ In this mode, the ambient transaction is started before receiving the message. T
 If either the configured NServiceBus persistence mechanism or the user data access also supports transactions via `TransactionScope`, the ambient transaction could be promoted to a distributed transaction.
 
 > [!NOTE]
-> Distributed transactions require Microsoft Distributed Transaction Coordinator (MSDTC) or [Azure SQL Elastic Transactions](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-transactions-overview).
+> Distributed transactions require Microsoft Distributed Transaction Coordinator (MSDTC) or [Azure SQL Elastic Transactions](https://learn.microsoft.com/en-us/azure/sql-database/sql-database-elastic-transactions-overview).
 
 > [!NOTE]
 > If the persistence mechanisms use SQL Server 2008 or later as an underlying data store and the connection strings configured for the SQL Server transport and the persistence are exactly the same, there will be no DTC escalation as SQL Server can handle multiple sequentially opened and closed connections via a local transaction.

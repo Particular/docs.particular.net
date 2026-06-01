@@ -75,7 +75,7 @@ When persisting data to the same database, it is recommended to use the same [DB
 > [!NOTE]
 > The connection and transaction are managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection. Using the database state managed by NServiceBus ensures that database interactions, both in handlers and sagas, execute in the same connection and transaction context.
 
-#### Raw [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
+#### Raw [ADO.NET](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 
 ##### Persisting Data
 
@@ -91,7 +91,7 @@ snippet: SubmittedOrderDapper
 
 snippet: StoreDataDapper
 
-#### [EntityFramework](https://docs.microsoft.com/en-us/ef/core/)
+#### [EntityFramework](https://learn.microsoft.com/en-us/ef/core/)
 
 ##### Model
 
@@ -101,7 +101,7 @@ snippet: SubmittedOrderEF
 
 ##### DBContext
 
-Entity Framework requires an implementation of [DBContext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext) to persist data.
+Entity Framework requires an implementation of [DBContext](https://learn.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext) to persist data.
 
 snippet: SubmittedOrderDbContext
 

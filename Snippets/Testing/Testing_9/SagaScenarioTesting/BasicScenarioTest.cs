@@ -24,16 +24,16 @@ public class BasicScenarioTest
 
         // Process OrderPlaced and make assertions on the result
         var placeResult = await testableSaga.Handle(orderPlaced);
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(placeResult.Completed, Is.False);
             Assert.That(placeResult.FindPublishedMessage<OrderShipped>(), Is.Null);
             Assert.That(placeResult.FindTimeoutMessage<ShippingDelay>(), Is.Null);
-        });
+        }
 
         // Process OrderBilled and make assertions on the result
         var billResult = await testableSaga.Handle(orderBilled);
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(billResult.Completed, Is.False);
             Assert.That(billResult.FindPublishedMessage<OrderShipped>(), Is.Null);
@@ -44,7 +44,7 @@ public class BasicScenarioTest
             Assert.That(placeResult.SagaDataSnapshot.OrderId, Is.EqualTo(orderId));
             Assert.That(placeResult.SagaDataSnapshot.Placed, Is.True);
             Assert.That(placeResult.SagaDataSnapshot.Billed, Is.False);
-        });
+        }
 
         // Timeouts are stored and can be played by advancing time
         var noResults = await testableSaga.AdvanceTime(TimeSpan.FromMinutes(10));

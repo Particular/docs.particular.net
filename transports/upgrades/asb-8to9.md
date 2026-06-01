@@ -18,4 +18,4 @@ Azure Service Bus Transport version 9 depends on Azure Service Bus client versio
 
 ## Client-side batching (flush interval) aligned with Microsoft Azure Service Bus client default
 
-The default value for client-side batching configured using `BatchFlushInterval(TimeSpan)` API has changed from 0.5 sec to 20 ms to align better with the Azure Service Bus client [default value](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.messagesender.batchflushinterval).
+The default value for client-side batching configured using `BatchFlushInterval(TimeSpan)` API has changed from 0.5 sec to 20 ms to align better with the Azure Service Bus client [default value](https://learn.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.messagesender.batchflushinterval).

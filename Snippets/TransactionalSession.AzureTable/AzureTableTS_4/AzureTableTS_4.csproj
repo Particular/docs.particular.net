@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="4.*" />
     <PackageReference Include="NServiceBus.Persistence.AzureTable.TransactionalSession" Version="4.*" />
+    <PackageReference Include="NServiceBus.TransactionalSession" Version="2.*" />
   </ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">

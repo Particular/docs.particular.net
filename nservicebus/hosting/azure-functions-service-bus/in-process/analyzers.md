@@ -8,7 +8,7 @@ reviewed: 2025-08-18
 
 include: azurefunctions-inprocess-sunset
 
-Starting in version 4.3, [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) are packaged with the Azure Functions host package that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
+Starting in version 4.3, [Roslyn analyzers](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) are packaged with the Azure Functions host package that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
 
 ## Endpoint configuration API
 

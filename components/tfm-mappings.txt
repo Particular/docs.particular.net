@@ -20,3 +20,5 @@ net9.0: .NET 9
 net9.0-windows: .NET 9
 net10.0: .NET 10
 net10.0-windows: .NET 10
+net11.0: .NET 11
+net11.0-windows: .NET 11

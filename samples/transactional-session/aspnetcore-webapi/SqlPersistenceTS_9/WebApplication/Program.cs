@@ -40,7 +40,7 @@ persistence.EnableTransactionalSession(transactionalSessionOptions);
 endpointConfiguration.EnableOutbox();
 endpointConfiguration.SendOnly();
 
-hostBuilder.UseNServiceBus(endpointConfiguration);
+hostBuilder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 #endregion
 
 #region txsession-ef-configuration

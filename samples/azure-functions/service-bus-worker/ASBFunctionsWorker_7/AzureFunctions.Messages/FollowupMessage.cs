@@ -1,1 +1,3 @@
-﻿public class FollowupMessage : IMessage;
+﻿using NServiceBus;
+
+public class FollowupMessage : IMessage;

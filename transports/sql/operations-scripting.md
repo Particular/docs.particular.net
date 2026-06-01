@@ -109,7 +109,7 @@ snippet: sqlserver-return-to-source-queue-usage
 
 ### Archiving SqlTransport audit log to long-term storage
 
-There are several ways to achieve archiving of the audit log, including using techniques like [Table Partitioning](https://docs.microsoft.com/en-us/sql/relational-databases/partitions/create-partitioned-tables-and-indexes) and [Snapshot Replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/snapshot-replication). In this example, [BCP utility](https://docs.microsoft.com/en-us/sql/tools/bcp-utility) will be used.
+There are several ways to achieve archiving of the audit log, including using techniques like [Table Partitioning](https://learn.microsoft.com/en-us/sql/relational-databases/partitions/create-partitioned-tables-and-indexes) and [Snapshot Replication](https://learn.microsoft.com/en-us/sql/relational-databases/replication/snapshot-replication). In this example, [BCP utility](https://learn.microsoft.com/en-us/sql/tools/bcp-utility) will be used.
 
 #### Create helper "archive" table
 

@@ -7,7 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.*" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="5.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.*" />
   </ItemGroup>
 
 </Project>

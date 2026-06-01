@@ -1,7 +1,7 @@
 ---
 title: Consuming MassTransit messages with NServiceBus
 summary: Use the NServiceBus pipeline to consume messages sent by MassTransit.
-reviewed: 2024-09-22
+reviewed: 2026-05-29
 component: Core
 related:
  - nservicebus/pipeline
