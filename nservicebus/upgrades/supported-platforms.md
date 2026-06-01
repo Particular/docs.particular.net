@@ -13,7 +13,7 @@ Particular software provides technical support for production environments based
 Support policies for individual NServiceBus components can be found in the [NServiceBus Packages Supported Versions documentation](supported-versions.md).
 
 1. Not all packages support the available frameworks and versions, due to framework restrictions, obsolete APIs, or transitive dependencies.
-2. In this context, "supported" applies only to the framework runtime and doesn't necessarily indicate support for all languages features.
+2. In this context, "supported" applies only to the framework runtime and doesn't necessarily indicate support for all language features.
 
 ## NServiceBus major versions
 
@@ -30,10 +30,11 @@ Each major version of NServiceBus is built against a specific framework version.
 
 When a version of NServiceBus [is supported](supported-versions.md) according to the [support policy](support-policy.md), it can be run in production on any Windows or Linux platform specified by the links in the following table, until [Microsoft's end-of-support date](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) for that .NET version.
 
-macOS platforms are supported as development environments but not for production workloads. Other platforms like televisions and Android devices are not supported.
+macOS platforms are supported as development environments, but not for production workloads. Other platforms, like televisions and Android devices, are not supported.
 
 | .NET Version | Supported OS | .NET Support End Date |
 |--------------|--------------|:---------------------:|
+| .NET 11 | [.NET 11 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/11.0/supported-os.md)   | November 9, 2028 |
 | .NET 10 | [.NET 10 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/10.0/supported-os.md)   | November 14, 2028 |
 | .NET 9  | [.NET 9 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/9.0/supported-os.md)     | November 10, 2026 |
 | .NET 8  | [.NET 8 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md)     | November 10, 2026 |
