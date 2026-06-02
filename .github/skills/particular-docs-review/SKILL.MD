@@ -119,6 +119,33 @@ Code samples should:
 
 ---
 
+# Includes
+
+Includes are shared markdown files inserted into a document using:
+
+```markdown
+include: KEY
+```
+
+Reviewing a document includes reviewing all of its referenced includes. Includes are rendered inline — the reader sees them as part of the page. Apply the full review process (language, style, technical accuracy, content quality, and link validation) to each include, and be aware that includes are shared across many pages — changes affect every page that references them.
+
+## Finding includes
+
+Include files use the naming convention `{key}.include.md` and may live in the same directory as the referencing document or in a parent directory.
+
+To locate an include for a given `include: KEY` directive:
+
+1. Note the key name after `include:`
+2. Search from the document's directory upward for `{key}.include.md`
+
+Example: `include: non-null-task` in `nservicebus/pipeline/message-mutators.md` resolves to `nservicebus/non-null-task.include.md`.
+
+```bash
+find . -name "{key}.include.md"
+```
+
+---
+
 # Partials
 
 Partials are version-specific markdown files included in a document using:
@@ -354,7 +381,7 @@ Check:
 
 Evaluate:
 
-- Technical currency
+- Technical currency and accuracy
 - Opportunities to modernize
 - Removal of obsolete content
 - Deprecated features
