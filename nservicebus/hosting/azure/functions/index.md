@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-06-01
+reviewed: 2026-06-02
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
@@ -84,8 +84,15 @@ The Azure Service Bus connection is read from the Functions configuration. The n
 
 If the default setting name `AzureWebJobsServiceBus` is used, the `Connection` parameter can be omitted on `[ServiceBusTrigger]`, and `ConnectionName` does not need to be set on `AzureServiceBusServerlessTransport`.
 
-> [!NOTE]
-> Connection name and queue name in the `[ServiceBusTrigger]` can use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
+The connection name in `[ServiceBusTrigger]` can also use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
+
+## Queue name resolution
+
+The queue that the endpoint receives from is taken from the `queueName` passed to the `[ServiceBusTrigger]` attribute. No separate receive queue name is configured in `Configure{FunctionName}`.
+
+The function name remains the logical endpoint name, while the integration uses the resolved trigger queue name as the local transport address when those values differ.
+
+The queue name in `[ServiceBusTrigger]` can use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
 
 ## Transactions
 
