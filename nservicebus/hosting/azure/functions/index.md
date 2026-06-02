@@ -40,6 +40,24 @@ Declare only the parameters needed:
 
 snippet: azure-functions-configure-with-services
 
+### Transport configuration
+
+Azure Functions endpoints must use `AzureServiceBusServerlessTransport`. Other transport definitions are not supported in this hosting model.
+
+Supported options:
+
+| Option | Support | Notes |
+|---|---|---|
+| `ConnectionName` | Supported | Sets the connection setting name used by the transport, primarily for [send-only endpoints](#send-only-endpoints). For receiving endpoints, the queue and connection are declared on `[ServiceBusTrigger]`. |
+| [`HierarchyNamespaceOptions`](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace) | Supported | Applies hierarchy prefixes to transport addresses and entities created by the transport. |
+| [`EnablePartitioning`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Applies when the transport creates queues and topics. |
+| [`EntityMaximumSize`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Applies when the transport creates queues and topics. |
+| [`AutoForwardDeadLetteredMessagesToErrorQueue`](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) | Supported | Enabled by default. Applies to transport-created receive queues. |
+| [`MaxDeliveryCount`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Applies when the transport creates queues. |
+| [`ThrowOnMissingTopicWhenPublishing`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Controls whether publishing to a non-existent topic throws after logging a warning. |
+
+Other receive-side Azure Service Bus transport settings, such as [prefetch count](/transports/azure-service-bus/configuration.md#controlling-the-prefetch-count) and [lock renewal](/transports/azure-service-bus/configuration.md#lock-renewal), are controlled by Azure Functions rather than by `AzureServiceBusServerlessTransport` in this hosting model.
+
 ## Explicit handler and saga registration
 
 Assembly scanning is not available in this hosting model, so handlers and sagas must be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for the available registration approaches in NServiceBus 10.2, and [Disable assembly scanning](/nservicebus/hosting/assembly-scanning.md#disable-assembly-scanning) for the caveats and additional manual registration requirements. Handlers that are not registered will not be invoked.
