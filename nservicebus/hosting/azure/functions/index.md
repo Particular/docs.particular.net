@@ -46,15 +46,15 @@ Azure Functions endpoints must use `AzureServiceBusServerlessTransport`. Other t
 
 Supported options:
 
-| Option | Support | Notes |
-|---|---|---|
-| `ConnectionName` | Supported | Sets the connection setting name used by the transport, primarily for [send-only endpoints](#send-only-endpoints). For receiving endpoints, the queue and connection are declared on `[ServiceBusTrigger]`. |
-| [`HierarchyNamespaceOptions`](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace) | Supported | Applies hierarchy prefixes to transport addresses and entities created by the transport. |
-| [`EnablePartitioning`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Applies when the transport creates queues and topics. |
-| [`EntityMaximumSize`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Applies when the transport creates queues and topics. |
-| [`AutoForwardDeadLetteredMessagesToErrorQueue`](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) | Supported | Enabled by default. Applies to transport-created receive queues. |
-| [`MaxDeliveryCount`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Applies when the transport creates queues. |
-| [`ThrowOnMissingTopicWhenPublishing`](/transports/azure-service-bus/configuration.md#entity-creation) | Supported | Controls whether publishing to a non-existent topic throws after logging a warning. |
+| Option | Notes |
+|---|---|
+| `ConnectionName` | Sets the connection setting name used by the transport, only relevant for [send-only endpoints](#send-only-endpoints). For receiving endpoints, the queue and connection are declared on `[ServiceBusTrigger]`. |
+| [`HierarchyNamespaceOptions`](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace) | Applies hierarchy prefixes to transport addresses and entities created by the transport. |
+| [`EnablePartitioning`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues and topics. |
+| [`EntityMaximumSize`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues and topics. |
+| [`AutoForwardDeadLetteredMessagesToErrorQueue`](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) | Enabled by default. Applies to transport-created receive queues. |
+| [`MaxDeliveryCount`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues. |
+| [`ThrowOnMissingTopicWhenPublishing`](/transports/azure-service-bus/configuration.md#entity-creation) | Controls whether publishing to a non-existent topic throws after logging a warning. |
 
 Other receive-side Azure Service Bus transport settings, such as [prefetch count](/transports/azure-service-bus/configuration.md#controlling-the-prefetch-count) and [lock renewal](/transports/azure-service-bus/configuration.md#lock-renewal), are controlled by Azure Functions rather than by `AzureServiceBusServerlessTransport` in this hosting model.
 
