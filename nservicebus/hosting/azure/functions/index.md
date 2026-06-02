@@ -53,7 +53,7 @@ Supported options:
 | [`EnablePartitioning`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues and topics. |
 | [`EntityMaximumSize`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues and topics. |
 | [`AutoForwardDeadLetteredMessagesToErrorQueue`](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) | Enabled by default. Applies to transport-created receive queues. |
-| [`MaxDeliveryCount`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues. |
+| [`MaxDeliveryCount`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues. In this hosting model, `AzureServiceBusServerlessTransport` defaults `MaxDeliveryCount` to `100`, not `int.MaxValue` like `AzureServiceBusTransport`. |
 | [`ThrowOnMissingTopicWhenPublishing`](/transports/azure-service-bus/configuration.md#entity-creation) | Controls whether publishing to a non-existent topic throws after logging a warning. |
 
 Other receive-side Azure Service Bus transport settings, such as [prefetch count](/transports/azure-service-bus/configuration.md#controlling-the-prefetch-count) and [lock renewal](/transports/azure-service-bus/configuration.md#lock-renewal), are controlled by Azure Functions rather than by `AzureServiceBusServerlessTransport` in this hosting model.
