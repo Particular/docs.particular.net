@@ -1398,21 +1398,7 @@
   - Title: Azure Functions
     Articles:
     - Url: nservicebus/hosting/azure/functions
-      Title: Azure Functions
-    - Url: nservicebus/hosting/azure-functions-service-bus
-      Title: Isolated Worker, Single-Endpoint Model
-      Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
-        Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
-        Title: Roslyn analyzers
-    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
-      Title: In-Process hosting (Deprecated)
-      Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
-        Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
-        Title: Roslyn analyzers
+      Title: ServiceBusTrigger
   - Title: AWS Lambda
     Articles:
       - Url: nservicebus/hosting/aws-lambda-simple-queue-service
@@ -1421,6 +1407,20 @@
         Title: Roslyn analyzers
   - Title: Deprecated Hosting Options
     Articles:
+    - Url: nservicebus/hosting/azure-functions-service-bus
+      Title: Azure Functions Isolated Worker, Single-Endpoint Model (Sunset)
+      Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
+        Title: Custom triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
+        Title: Roslyn analyzers
+    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
+      Title: Azure Functions In-Process hosting
+      Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
+        Title: Custom triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
+        Title: Roslyn analyzers
     - Title: NServiceBus Host App
       Articles:
       - Url: nservicebus/hosting/nservicebus-host
