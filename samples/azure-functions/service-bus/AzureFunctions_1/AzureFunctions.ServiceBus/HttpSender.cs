@@ -9,14 +9,14 @@ using NServiceBus;
 #region service-bus-http-sender
 public class HttpSender([FromKeyedServices("client")] IMessageSession session)
 {
-    [Function(nameof(HttpSender))]
+    [Function("HttpSender")]
     public async Task<HttpResponseData> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData request)
     {
         await session.Send(new TriggerMessage());
 
         var response = request.CreateResponse(HttpStatusCode.OK);
-        await response.WriteStringAsync($"{nameof(TriggerMessage)} sent.");
+        await response.WriteStringAsync("TriggerMessage sent.");
         return response;
     }
 }

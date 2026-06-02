@@ -10,7 +10,7 @@ using NServiceBus.Transport.AzureServiceBus;
 #region azure-functions-basic-endpoint
 public partial class OrdersEndpoint
 {
-    [Function(nameof(Orders))]
+    [Function("Orders")]
     [NServiceBusFunction]
     public partial Task Orders(
         [ServiceBusTrigger("orders", AutoCompleteMessages = false)]
