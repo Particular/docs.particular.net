@@ -14,13 +14,12 @@ NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServi
 
 snippet: azure-functions-basic-endpoint
 
-An endpoint is declared as a partial method inside a partial class and composed of three parts:
+An endpoint is declared as a partial method inside a partial class and composed of two parts:
 
-- The endpoint method is decorated with `[NServiceBusFunction]`.
-- A partial method declares the Azure Service Bus trigger. The source generator emits the body, which forwards each incoming message to the NServiceBus pipeline.
-- A static `Configure{FunctionName}` method configures the endpoint.
-
-The trigger must set `AutoCompleteMessages = false`. The NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
+- A partial method is decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring a [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
+  - A source generator will emits the method body that forwards each incoming message to the NServiceBus pipeline.
+  - The trigger must set `AutoCompleteMessages = false` since NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
+- A static `Configure{FunctionName}` method that configures the NServiceBus endpoint for the function.
 
 > [!NOTE]
 > A single Functions app can host one or more endpoints.
