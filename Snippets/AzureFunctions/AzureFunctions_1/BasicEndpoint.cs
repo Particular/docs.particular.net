@@ -19,11 +19,11 @@ public partial class OrdersEndpoint
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureOrders(EndpointConfiguration endpoint)
+    public static void ConfigureOrders(EndpointConfiguration endpointConfiguration)
     {
-        endpoint.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        endpoint.UseSerialization<SystemJsonSerializer>();
-        endpoint.AddHandler<PlaceOrderHandler>();
+        endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.AddHandler<PlaceOrderHandler>();
     }
 }
 #endregion

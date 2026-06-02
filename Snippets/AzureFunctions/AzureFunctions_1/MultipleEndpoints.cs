@@ -4,8 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
@@ -21,11 +19,11 @@ public partial class BillingFunctions
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureBillingApi(EndpointConfiguration configuration)
+    public static void ConfigureBillingApi(EndpointConfiguration endpointConfiguration)
     {
-        configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        configuration.UseSerialization<SystemJsonSerializer>();
-        configuration.AddHandler<ProcessPaymentHandler>();
+        endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.AddHandler<ProcessPaymentHandler>();
     }
 
     [Function("BillingBackend")]
@@ -37,19 +35,11 @@ public partial class BillingFunctions
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureBillingBackend(
-        EndpointConfiguration endpointConfiguration,
-        IConfiguration configuration,
-        IHostEnvironment environment)
+    public static void ConfigureBillingBackend(EndpointConfiguration endpointConfiguration)
     {
         endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.AddHandler<PaymentChargedHandler>();
-
-        if (environment.IsProduction())
-        {
-            endpointConfiguration.AuditProcessedMessagesTo(configuration["audit-queue"] ?? "audit");
-        }
     }
 }
 #endregion

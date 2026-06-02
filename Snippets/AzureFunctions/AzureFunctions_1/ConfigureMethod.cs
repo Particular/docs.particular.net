@@ -4,7 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
@@ -20,12 +22,21 @@ public partial class ShippingEndpoint
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureShipping(EndpointConfiguration configuration, IServiceCollection services)
+    public static void ConfigureShipping(
+        EndpointConfiguration endpointConfiguration,
+        IServiceCollection services,
+        IConfiguration configuration,
+        IHostEnvironment environment)
     {
-        configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        configuration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         services.AddSingleton(new MyComponent("Shipping"));
-        configuration.AddHandler<ShipOrderHandler>();
+        endpointConfiguration.AddHandler<ShipOrderHandler>();
+
+        if (environment.IsProduction())
+        {
+            endpointConfiguration.AuditProcessedMessagesTo(configuration["audit-queue"] ?? "audit");
+        }
     }
 }
 #endregion
