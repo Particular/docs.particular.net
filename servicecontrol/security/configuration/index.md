@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Security Configuration
 summary: How to secure ServiceControl instances
-reviewed: 2026-01-12
+reviewed: 2026-05-27
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide
