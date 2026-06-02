@@ -13,7 +13,7 @@ There are two standard ways of executing code when a message is processed: [hand
 
 Handler instances are instantiated on a per-message basis, executed, and then disposed of. These are sometimes referred to as "stateless handlers".
 
-Saga instances are also instantiated on a per-message basis, executed, and then disposed of. However they differ from handlers in that, once instantiated, they are passed an instance of a "Data" class. The "Saga Data" is persistent state that is shared between a given saga type based on a key. These are sometimes referred to as "stateful handlers".
+Saga instances are also instantiated on a per-message basis, executed, and then disposed of. However they differ from handlers in that, once instantiated, they are passed an instance of a "Data" class. The "Saga Data" is the persisted state for an instance of a given saga type that is identified by a key. These are sometimes referred to as "stateful handlers".
 
 Other concepts that both handlers and sagas share:
 
