@@ -2,7 +2,7 @@
 title: Redis claim check
 summary: Implementing the claim check pattern with Redis
 component: Core
-reviewed: 2024-09-12
+reviewed: 2026-06-02
 related:
  - nservicebus/messaging/claimcheck
 ---
@@ -13,7 +13,7 @@ This sample shows how to implement the [Claim Check pattern](https://learn.micro
 
 This sample connects to a local Redis instance. See the [Redis guidance for installing a new instance](https://redis.io/docs/latest/get-started/).
 
-Alternatively with Docker installed locally, execute the following command in the solution directory:
+Alternatively, with Docker installed locally, execute the following command in the solution directory:
 
 ```bash
 docker compose up -d
