@@ -127,7 +127,7 @@ For the full configure-method model and parameter options, see [The configure me
 
 ### Handlers and sagas
 
-Due to assembly scanning not being available message handlers and sagas needs to be registered explicitly using `configuration.AddHandler` or `configuration.AddSaga`.
+Due to assembly scanning not being available message handlers and sagas needs to be registered explicitly using `configuration.AddHandler`, `configuration.AddSaga` or `configuration.Handlers`.
 
 For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions#explicit-handler-and-saga-registration).
 
