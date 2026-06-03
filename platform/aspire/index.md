@@ -450,12 +450,15 @@ If `AddParticularPlatform` is called but no platform components are added, the i
 
 `AddServicePulse` accepts an optional monitoring instance. When the monitoring argument is omitted, or `WithMonitoringInstance(null)` is called on the ServicePulse builder, ServicePulse runs without the monitoring panel. Pass an `IResourceBuilder<ServiceControlMonitoringInstanceResource>` to `AddServicePulse`, or call `WithMonitoringInstance(monitoring)` on the ServicePulse builder, to enable it. (`AddDefaultComponents()` always wires monitoring in automatically.)
 
-### "Platform [name] has container images not using the 'latest' tag" warning at startup
+### "Platform [name] has mismatched ServiceControl container image versions" in Aspire host console
 
-This warning appears when one or more ServiceControl or ServicePulse container images have been pinned to a specific version tag instead of using latest. For example:
+This warning appears when the ServiceControl container images (error, audit, and monitoring instances) are configured with different version tags. For example:
 
 snippet: aspire-components-version
 
-All platform container images default to the latest tag, which ensures the components are always compatible with each other and with this version of the hosting package. Pinning to a specific version risks version skew between components and may cause compatibility issues.
+ All ServiceControl components (error, audit, and monitoring) must run the same version to ensure compatibility. The warning lists each component with its configured image and tag so the mismatch is easy to identify.
 
-To resolve the warning, remove any explicit `.WithImage()` calls that override the tag, or set the tag back to `latest`.
+To resolve the warning, ensure all ServiceControl instances use the same image tag, or remove explicit `.WithImage()` calls to use the default latest tag, which always refers to a compatible set of images.
+
+ > [!NOTE]
+ > This check only applies to ServiceControl instances. The ServicePulse image follows its own versioning and is not included in this validation.

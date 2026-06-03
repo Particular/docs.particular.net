@@ -77,12 +77,15 @@ public class Components
     public void VersionOtherThanLatest(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
-        
+        var persistence = platform.AddPersistenceRavenDb("persistence");
+
         #region aspire-components-version
 
         platform.AddServiceControlErrorInstance("error", persistence)
-            .WithImage("particular/servicecontrol", "6.0.0"); // triggers warning
+            .WithImage("particular/servicecontrol", "6.0.0");
+
+        platform.AddServiceControlMonitoringInstance("monitoring")
+            .WithImage("particular/servicecontrol-monitoring", "5.0.0"); // mismatched
         #endregion
     }
 }
