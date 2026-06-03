@@ -44,14 +44,14 @@ Replace old package references with the new package:
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="<old-version>" />
 
     <!-- after -->
-    <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="<version>" />
+    <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="<latest-version>" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="<latest-version>" />
 </ItemGroup>
 ```
 
 In practice:
 
 - Remove `NServiceBus.AzureFunctions.Worker.ServiceBus`.
-- Remove `NServiceBus.Transport.AzureServiceBus` if it is still referenced explicitly from the old setup.
 - Add `NServiceBus.AzureFunctions.AzureServiceBus`.
 
 Do not add `NServiceBus.AzureFunctions.Common` directly. The Azure Service Bus package is the user-facing package for this migration.
