@@ -26,16 +26,16 @@ An endpoint is declared as a partial method inside a partial class and composed 
 
 ## The configure method
 
-The static `Configure{FunctionName}` method is discovered by the source generator and called once per endpoint at host startup. Parameters are matched by type, in any combination:
+The static `Configure{FunctionName}` method is discovered by the source generator and called once per endpoint at host startup. Parameters are matched by type:
 
 | Parameter | Use |
 |---|---|
-| `EndpointConfiguration` | Required. Configures handlers, recoverability, audit, and other endpoint settings. |
+| `EndpointConfiguration` | Required. Configures the endpoint. |
 | `IServiceCollection` | Optional. Registers endpoint-scoped services. |
 | `IConfiguration` | Optional. Reads application configuration. |
 | `IHostEnvironment` | Optional. Inspects the hosting environment, for example to differentiate development and production. |
 
-Declare only the parameters needed:
+Declare only the parameters needed, `EndpointConfiguration` must be first:
 
 snippet: azure-functions-configure-with-services
 
