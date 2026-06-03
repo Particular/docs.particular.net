@@ -449,3 +449,13 @@ If `AddParticularPlatform` is called but no platform components are added, the i
 ### ServicePulse shows the monitoring panel as unavailable
 
 `AddServicePulse` accepts an optional monitoring instance. When the monitoring argument is omitted, or `WithMonitoringInstance(null)` is called on the ServicePulse builder, ServicePulse runs without the monitoring panel. Pass an `IResourceBuilder<ServiceControlMonitoringInstanceResource>` to `AddServicePulse`, or call `WithMonitoringInstance(monitoring)` on the ServicePulse builder, to enable it. (`AddDefaultComponents()` always wires monitoring in automatically.)
+
+### "Platform [name] has container images not using the 'latest' tag" warning at startup
+
+This warning appears when one or more ServiceControl or ServicePulse container images have been pinned to a specific version tag instead of using latest. For example:
+
+snippet: aspire-components-version
+
+All platform container images default to the latest tag, which ensures the components are always compatible with each other and with this version of the hosting package. Pinning to a specific version risks version skew between components and may cause compatibility issues.
+
+To resolve the warning, remove any explicit `.WithImage()` calls that override the tag, or set the tag back to `latest`.

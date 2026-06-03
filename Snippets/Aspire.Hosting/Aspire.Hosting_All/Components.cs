@@ -73,4 +73,16 @@ public class Components
 
         #endregion
     }
+
+    public void VersionOtherThanLatest(DistributedApplicationBuilder builder)
+    {
+        var platform = builder.AddParticularPlatform("particular");
+        var persistence = platform.AddPersistenceRavenDb("ravendb");
+        
+        #region aspire-components-version
+
+        platform.AddServiceControlErrorInstance("error", persistence)
+            .WithImage("particular/servicecontrol", "6.0.0"); // triggers warning
+        #endregion
+    }
 }
