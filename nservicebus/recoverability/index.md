@@ -3,12 +3,13 @@ title: Recoverability
 summary: Explains how exceptions are handled, and actions retried, during message processing
 component: Core
 isLearningPath: true
-reviewed: 2025-08-13
+reviewed: 2026-06-03
 redirects:
  - nservicebus/how-do-i-handle-exceptions
  - nservicebus/errors
  - nservicebus/automatic-retries
  - nservicebus/errors/automatic-retries
+ - nservicebus/recoverability/lru-memory-consumption
 related:
  - nservicebus/operations/transactions-message-processing
 ---
@@ -188,4 +189,12 @@ snippet: RetryLogging
 
 ## Recoverability memory consumption
 
-MSMQ and SQL Server transports need to cache exceptions in memory for retries. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. NServiceBus can cache up to 1,000 exceptions, capping the potential memory consumption to 1,000 x `<exception size>`. Refer to [this guide](/nservicebus/recoverability/lru-memory-consumption.md) to resolve problems due to excessive memory consumption.
+MSMQ and SQL Server transports need to cache exceptions in memory to allow transactions to be cleared before executing recoverability policies. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. Furthermore, the cache may retain items for longer when the endpoint is scaled out. 
+
+An exception may be caught to explicitly dispose of resources before it is rethrown and cached.
+
+For example, disposing the response body contained in a `WebException` may significantly reduce the amount of memory required to cache the exception:
+
+snippet: dispose-large-exceptions
+
+See [pipeline customization documentation](/nservicebus/pipeline/manipulate-with-behaviors.md) for more details.
