@@ -104,8 +104,6 @@ The connection name in `[ServiceBusTrigger]` can also use Azure Functions [bindi
 
 The queue that the endpoint receives from is taken from the `queueName` passed to the `[ServiceBusTrigger]` attribute. No separate receive queue name is configured in `Configure{FunctionName}`.
 
-The function name remains the logical endpoint name, while the integration uses the resolved trigger queue name as the local transport address when those values differ.
-
 The queue name in `[ServiceBusTrigger]` can use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
 
 ## Transactions
