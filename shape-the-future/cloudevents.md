@@ -1,7 +1,7 @@
 ---
 title: NServiceBus and CloudEvents
 summary: Using NServiceBus with CloudEvents
-reviewed: 2024-09-16
+reviewed: 2026-06-03
 ---
 
 ![](cloudevents-horizontal-color.png)
