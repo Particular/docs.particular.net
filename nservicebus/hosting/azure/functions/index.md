@@ -67,9 +67,6 @@ The Functions host is bootstrapped in `Program.cs`. Calling `AddNServiceBusFunct
 
 snippet: azure-functions-program-builder
 
-> [!NOTE]
-> `AddNServiceBusFunctions` is a source-generated extension on `FunctionsApplicationBuilder` declared in the project's default namespace. Ensure `Program.cs` imports that namespace. At least one function needs to be defined for the namespace to be available.
-
 ## Hosting multiple endpoints
 
 Multiple methods decorated with `[NServiceBusFunction]` can co-exist in one Functions app. Each is registered as an independent NServiceBus endpoint with its own queue, handlers, and configure method. Two functions hosted from the same partial class:
