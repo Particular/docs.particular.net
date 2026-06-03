@@ -91,14 +91,7 @@ The key passed to `[FromKeyedServices(...)]` must match the name passed to `AddS
 
 ## Connection configuration
 
-The Azure Service Bus connection is read from the Functions configuration. The named setting can be either a [connection string](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues#connection-string) or a configuration section containing `fullyQualifiedNamespace` for token-credential authentication. The same setting name is referenced in two places:
-
-- The `Connection` parameter on the `[ServiceBusTrigger]` attribute.
-- The `ConnectionName` property on `AzureServiceBusServerlessTransport` when registering a send-only endpoint.
-
-If the default setting name `AzureWebJobsServiceBus` is used, the `Connection` parameter can be omitted on `[ServiceBusTrigger]`, and `ConnectionName` does not need to be set on `AzureServiceBusServerlessTransport`.
-
-The connection name in `[ServiceBusTrigger]` can also use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
+The Azure Service Bus [connection](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger#connections) will by default be read from an appSetting named `AzureWebJobsServiceBus` unless explicitly configured via the connection parameter on the `[ServiceBusTrigger]` or `NServiceBusSendOnlyFunction` attributes.
 
 ## Queue name resolution
 
