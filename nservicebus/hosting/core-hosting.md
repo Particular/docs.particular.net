@@ -21,7 +21,7 @@ The endpoint starts and stops with the host's lifecycle. `IMessageSession` is re
 
 snippet: AddNServiceBusEndpointGetSession
 
-Or injected into controllers, background services, or any other component that needs to send or publish from outside a message handler or other NServiceBus extension point:
+It can also be injected into controllers, background services, or any other component that needs to send or publish from outside a message handler or other NServiceBus extension point:
 
 snippet: AddNServiceBusEndpointInjectSession
 
@@ -43,7 +43,7 @@ Each endpoint is registered with its own `EndpointConfiguration`. The second arg
 
 snippet: AddNServiceBusEndpointMulti
 
-It is recommended to encapsulate endpoint specific configuration including the call to `builder.AddNServiceBusEndpoint`inside an extension method to keep the composition root lean and simple to understand.
+It is recommended to encapsulate endpoint specific configuration including the call to `builder.AddNServiceBusEndpoint` inside an extension method to keep the composition root lean and simple to understand.
 
 snippet: AddNServiceBusEndpointMultiLean
 
