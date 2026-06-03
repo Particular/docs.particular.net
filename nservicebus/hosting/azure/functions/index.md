@@ -77,17 +77,15 @@ Each endpoint has its own `Configure{FunctionName}` method; the source generator
 
 ## Send-only endpoints
 
-A [send-only endpoint](/nservicebus/endpoints/#send-only) can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
+A [send-only endpoint](/nservicebus/endpoints/#send-only) can be declared for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
 
 snippet: azure-functions-sendonly-registration
 
-`AddSendOnlyNServiceBusEndpoint(...)` has overloads for endpoint-only configuration and for configuration plus endpoint-scoped service registration.
+The attribute name becomes the [keyed-services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) key used to resolve `IMessageSession` and any endpoint-scoped services. Set the optional `Connection` property to override the default connection setting name.
 
-To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` [keyed by the same name](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used at registration. Any endpoint-scoped services registered in the send-only endpoint can be resolved the same way:
+Send-only endpoints are discovered and registered automatically by `builder.AddNServiceBusFunctions()`.
 
 snippet: azure-functions-sendonly-usage
-
-The key passed to `[FromKeyedServices(...)]` must match the name passed to `AddSendOnlyNServiceBusEndpoint(...)`.
 
 ## Connection configuration
 

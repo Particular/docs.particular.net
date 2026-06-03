@@ -3,7 +3,6 @@ namespace AzureFunctions_1;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -11,20 +10,18 @@ using NServiceBus.Transport.AzureServiceBus;
 
 class SendOnlyRegistration
 {
-    static void ConfigureSendOnly(FunctionsApplicationBuilder builder)
+    #region azure-functions-sendonly-registration
+    [NServiceBusSendOnlyFunction("client", Connection = "AzureWebJobsServiceBus")]
+    public static void ConfigureClient(EndpointConfiguration endpointConfiguration, IServiceCollection services)
     {
-        #region azure-functions-sendonly-registration
-        builder.AddSendOnlyNServiceBusEndpoint("client", (configuration, services) =>
-        {
-            services.AddSingleton(new MyComponent("client"));
+        services.AddSingleton(new MyComponent("client"));
 
-            var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default);
-            var routing = configuration.UseTransport(transport);
-            routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
-            configuration.UseSerialization<SystemJsonSerializer>();
-        });
-        #endregion
+        var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default);
+        var routing = endpointConfiguration.UseTransport(transport);
+        routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
     }
+    #endregion
 
     record MyComponent(string EndpointName);
 }

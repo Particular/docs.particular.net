@@ -51,7 +51,7 @@ The endpoint method is defined with `[NServiceBusFunction]` and configured in `C
 
 snippet: service-bus-endpoint
 
-The HTTP-triggered sender uses a keyed `IMessageSession` from the send-only endpoint registration:
+The HTTP-triggered sender uses a keyed `IMessageSession` from the generated send-only endpoint registration:
 
 snippet: service-bus-http-sender
 

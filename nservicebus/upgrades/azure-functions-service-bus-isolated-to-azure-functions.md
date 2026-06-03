@@ -172,11 +172,11 @@ class SalesApi([FromKeyedServices("Sales")] IMessageSession session)
 
 Use this pattern when send-only traffic should be isolated from the receiving endpoint's configuration, queue identity, or routing policy.
 
-Register the send-only endpoint in `Program.cs`, then inject the keyed `IMessageSession` into the sending function. Use the `AddSendOnlyNServiceBusEndpoint` overload that also takes `IServiceCollection` when endpoint-specific services need to be registered and later resolved via keyed services.
+Declare the send-only endpoint using a static `Configure{EndpointName}` method decorated with `[NServiceBusSendOnlyFunction("client")]`, then inject the keyed `IMessageSession` into the sending function. Add `IServiceCollection` to the configure method signature when endpoint-specific services need to be registered and later resolved via keyed services.
 
 For the send-only registration patterns and keyed-service examples, see [Send-only endpoints](/nservicebus/hosting/azure/functions#send-only-endpoints).
 
-The key used in `[FromKeyedServices("client")]` must match the name passed to `AddSendOnlyNServiceBusEndpoint("client", ...)`.
+The key used in `[FromKeyedServices("client")]` must match the name passed to `[NServiceBusSendOnlyFunction("client")]`.
 
 For pattern 1, the key used in `[FromKeyedServices("Sales")]` must match the receiving endpoint name.
 
