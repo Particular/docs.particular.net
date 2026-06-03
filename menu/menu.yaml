@@ -1408,7 +1408,7 @@
   - Title: Deprecated Hosting Options
     Articles:
     - Url: nservicebus/hosting/azure-functions-service-bus
-      Title: Azure Functions Isolated Worker, Single-Endpoint Model (Sunset)
+      Title: Azure Functions Isolated Worker, Single-Endpoint Model
       Articles:
       - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
         Title: Custom triggers
