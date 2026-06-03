@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-06-02
+reviewed: 2026-06-03
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
@@ -31,9 +31,9 @@ The static `Configure{FunctionName}` method is discovered by the source generato
 | Parameter | Use |
 |---|---|
 | `EndpointConfiguration` | Required. Configures the endpoint. |
-| `IServiceCollection` | Optional. Registers endpoint-scoped services. |
-| `IConfiguration` | Optional. Reads application configuration. |
-| `IHostEnvironment` | Optional. Inspects the hosting environment, for example to differentiate development and production. |
+| [`IServiceCollection`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) | Optional. Registers endpoint-scoped services. |
+| [`IConfiguration`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfiguration) | Optional. Reads application configuration. |
+| [`IHostEnvironment`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment) | Optional. Inspects the hosting environment, for example to differentiate development and production. |
 
 Declare only the parameters needed, `EndpointConfiguration` must be first:
 
