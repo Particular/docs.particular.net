@@ -108,7 +108,7 @@ The queue name in `[ServiceBusTrigger]` can use Azure Functions [binding express
 
 ## Transactions
 
-Azure Functions endpoints use [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only). [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive) is not supported in this hosting model.
+Azure Functions endpoints only supports [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only).
 
 ## Recoverability
 
