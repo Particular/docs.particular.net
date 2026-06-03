@@ -1,7 +1,7 @@
 ---
 title: NServiceBus and Redis
 summary: Using NServiceBus with Redis
-reviewed: 2024-09-23
+reviewed: 2026-06-03
 ---
 
 ![](redis-logo-red-rgb.svg)
