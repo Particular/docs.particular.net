@@ -83,7 +83,7 @@ snippet: azure-functions-sendonly-registration
 
 `AddSendOnlyNServiceBusEndpoint(...)` has overloads for endpoint-only configuration and for configuration plus endpoint-scoped service registration.
 
-To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` keyed by the same name used at registration. Any endpoint-scoped services registered in the send-only endpoint can be resolved the same way:
+To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` [keyed by the same name](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used at registration. Any endpoint-scoped services registered in the send-only endpoint can be resolved the same way:
 
 snippet: azure-functions-sendonly-usage
 
