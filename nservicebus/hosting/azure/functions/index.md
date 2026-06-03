@@ -17,8 +17,8 @@ snippet: azure-functions-basic-endpoint
 An endpoint is declared as a partial method inside a partial class and composed of two parts:
 
 - A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring a [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
-  - A source generator will emit the method body that forwards each incoming message to the NServiceBus pipeline.
   - The trigger must set `AutoCompleteMessages = false` since NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
+  - A source generator will emit the method body that forwards each incoming message to the NServiceBus pipeline.
 - A static `Configure{FunctionName}` method that configures the NServiceBus endpoint for the function.
 
 > [!NOTE]
