@@ -458,7 +458,7 @@ snippet: aspire-components-version
 
  All ServiceControl components (error, audit, and monitoring) must run the same version to ensure compatibility. The warning lists each component with its configured image and tag so the mismatch is easy to identify.
 
-To resolve the warning, ensure all ServiceControl instances use the same image tag, or remove explicit `.WithImage()` calls to use the default latest tag, which always refers to a compatible set of images.
+To resolve the warning, ensure all ServiceControl instances use the same image tag, or remove explicit `.WithImage()` calls to use the default `latest` tag, which always refers to a compatible set of images.
 
  > [!NOTE]
  > This check only applies to ServiceControl instances. The ServicePulse image follows its own versioning and is not included in this validation.
