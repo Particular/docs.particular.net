@@ -3,7 +3,7 @@ title: Saga Finder
 component: SqlPersistence
 related:
  - samples/saga/sql-sagafinder
-reviewed: 2024-09-13
+reviewed: 2026-06-02
 versions: '[2,)'
 ---
 
@@ -23,12 +23,14 @@ include: sql-saga-finder-warning
 snippet: SagaFinder-sqlServer
 
 
-### MySql
+### MySQL
 
 snippet: SagaFinder-MySql
 
 
-partial: postgresql
+### PostgreSQL
+
+snippet: SagaFinder-postgreSql
 
 
 ### Parameters
@@ -57,6 +59,6 @@ snippet: MsSqlServer_SagaSelectSql
 
 ## IContainSagaData Construction
 
-Converting the returned information into an `IContainSagaData` will then be performed by the SQL Persister. 
+Converting the returned information into an `IContainSagaData` will then be performed by the SQL Persister.
 
 See also [SQL Persistence Saga Finder Sample](/samples/saga/sql-sagafinder/).
