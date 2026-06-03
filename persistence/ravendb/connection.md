@@ -7,33 +7,51 @@ redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
  - nservicebus/ravendb/connection
-reviewed: 2024-09-26
+reviewed: 2026-06-03
 ---
-
-include: dtc-warning
-
-include: cluster-configuration-info
-
-The following sections outline various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the configuration of the DocumentStore is not obscured.
-
-include: raven-dispose-warning
-
-partial: externalatinitialization
-
-partial: shared
-
-
-## Default
-
-By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
-
-
-## Database used
-
-After connecting to a RavenDB server, decide which database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. This means that if the endpoint is named `MyServer`, the database name will be `MyServer`. Each endpoint has a separate database unless explicitly overridden via the connection string.
-
-See also [How to specify endpoint name](/nservicebus/endpoints/specify-endpoint-name.md).
 
 ## Database creation
 
-Prior to RavenDB version 4.0, RavenDB automatically creates the database if it doesn't already exist. This is no longer the case in RavenDB versions 4.0 and above.
+When using RavenDB as persistence, the RavenDB client won't create the database it if it doesn't already exist.
+This is why the database needs to be previously created or created when initializing the endpoint.
+
+The following sections outline various ways to connect to the RavenDB server.
+
+### Default
+
+By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
+
+### External shared store for all persisters
+
+This is the recommended method to connect to the database.
+The RavenDB `DocumentStore` instance can be provided directly to NServiceBus to use for all persisters. This enables sharing the same application database for NServiceBus data as well.
+
+snippet: ravendb-persistence-external-store
+
+### External store for a specific persister
+
+An externally created `DocumentStore` instance can be used for a specific persister (e.g. timeouts) by using the following code:
+
+snippet: ravendb-persistence-specific-external-store
+
+### External shared store at initialization
+
+To use an external `DocumentStore`, but defer its creation until NServiceBus initializes, a custom factory delegate can be provided which will allow the `DocumentStore` to be created with access to the settings and the dependency injection container. This gives the ability to configure the `DocumentStore` based on conventions derived from endpoint data present in the settings object. For example, the `DocumentStore` instance can be configured to use the [Endpoint Name](/nservicebus/endpoints/specify-endpoint-name.md) as its database name by accessing `readOnlySettings.EndpointName()`.
+
+snippet: ravendb-persistence-create-store-by-func
+
+include: raven-dispose-warning
+
+### External store at initialization for a specific persister
+
+A `DocumentStore` can be created at initialization time, with access to endpoint settings and the dependency injection container, for usage in a specific persister (e.g. timeouts) by using the following code:
+
+snippet: ravendb-persistence-specific-create-store-by-func
+
+include: raven-dispose-warning
+
+## Database used
+
+After connecting to a RavenDB server, NServiceBus decides which database to use. Unless it finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. This means that if the endpoint is named `MyServer`, the database name will be `MyServer`. Each endpoint will have a separate database unless explicitly overridden via the connection string.
+
+See also [How to specify endpoint name](/nservicebus/endpoints/specify-endpoint-name.md).
