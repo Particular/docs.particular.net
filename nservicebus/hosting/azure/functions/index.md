@@ -25,9 +25,6 @@ Endpoints are declared as a partial method inside a partial class and composed o
   - A source generator will emit the method body that forwards each incoming message to the NServiceBus pipeline.
 - A static `Configure{FunctionName}` method that configures the NServiceBus endpoint for the function.
 
-> [!NOTE]
-> A single Functions app can host one or more endpoints.
-
 For endpoint configuration, supported transport options, and explicit handler and saga registration, etc, see [Configuration](/nservicebus/hosting/azure/functions/configuration.md).
 
 ## Hosting multiple endpoints
