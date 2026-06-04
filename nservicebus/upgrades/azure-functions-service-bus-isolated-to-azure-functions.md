@@ -14,7 +14,7 @@ This guide explains how to migrate from `NServiceBus.AzureFunctions.Worker.Servi
 
 The most important change is the hosting model:
 
-- The old worker package supports a single NServiceBus endpoint per Azure Functions project.
+- The previous worker package supports a single NServiceBus endpoint per Azure Functions project.
 - The new package uses explicit endpoint declarations and can host multiple receiving and send-only endpoints in the same function app.
 
 For most migrations, the safest approach is to keep the current behavior first:
@@ -58,7 +58,7 @@ Do not add `NServiceBus.AzureFunctions.Common` directly. The Azure Service Bus p
 
 ## Update host startup
 
-The old package is configured with `builder.AddNServiceBus(...)` and an assembly-level `NServiceBusTriggerFunction` attribute, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
+The previous package is configured with `builder.AddNServiceBus(...)` and an assembly-level `NServiceBusTriggerFunction` attribute, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 The new package registers the Azure Functions integration once at startup:
 
@@ -75,11 +75,11 @@ var host = builder.Build();
 await host.RunAsync();
 ```
 
-Remove the `[assembly: NServiceBusTriggerFunction(...)]` attribute. The new package does not use the old single-endpoint trigger generation model.
+Remove the `[assembly: NServiceBusTriggerFunction(...)]` attribute. The new package does not use the previous single-endpoint trigger generation model.
 
 ## Migrate the receiving endpoint
 
-With the old package, a project maps to a single endpoint, and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example, `[assembly: NServiceBusTriggerFunction("Sales")]`.
+With the previous package, a project maps to a single endpoint, and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example, `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 With the new package, the receiving endpoint is declared explicitly in code. A minimal one-to-one migration looks like this:
 
@@ -119,7 +119,7 @@ For the new package's queue-name and connection-setting behavior, see [Connectio
 
 ### Move endpoint configuration to the configure method
 
-The old worker package centralizes configuration in `builder.AddNServiceBus(configuration => { ... })`.
+The previous worker package centralizes configuration in `builder.AddNServiceBus(configuration => { ... })`.
 
 The new package moves endpoint-specific configuration into a static `Configure<FunctionName>` method next to the endpoint. The method always takes `EndpointConfiguration` and can also take `IServiceCollection`, `IConfiguration`, and `IHostEnvironment` as needed.
 
@@ -134,17 +134,17 @@ For additional registration approaches, see [Explicit handler and saga registrat
 ### Serialization
 
 Serialization must now be configured explicitly in endpoint configuration.
-For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the old default serializer behavior.
+For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonSerializer` preserves the previous default serializer behavior.
 
 ### Select the transport topology explicitly
 
-In the old worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
+In the previous worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
 
 When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For the supported transport settings in this hosting model, see [Transport configuration](/nservicebus/hosting/azure/functions/configuration.md#transport-configuration). For topology details, see [Azure Service Bus topology](/transports/azure-service-bus/topology.md).
 
 ## Migrate usages of IFunctionEndpoint
 
-With the old worker package, Azure Functions that send messages outside handlers typically inject `IFunctionEndpoint`.
+With the previous worker package, Azure Functions that send messages outside handlers typically inject `IFunctionEndpoint`.
 
 With the new package, inject `IMessageSession` via [.NET keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services).
 
@@ -194,7 +194,7 @@ The new package no longer relies on `NServiceBusTriggerFunction` for this scenar
 
 ## Recoverability
 
-The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to stop forwarding failed messages to the error queue and let Azure Service Bus dead-lettering handle them instead. See the [old error queue documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-error-queue).
+The previous worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to stop forwarding failed messages to the error queue and let Azure Service Bus dead-lettering handle them instead. See the [previous error queue documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-error-queue).
 
 In the new package, use the [explicit dead-letter support](/transports/azure-service-bus/configuration.md#dead-lettering). For the hosting-model-specific defaults, see [Recoverability](/nservicebus/hosting/azure/functions/configuration.md#recoverability).
 
@@ -208,7 +208,7 @@ configuration.Recoverability()
 
 ## Host ID
 
-The old package used `WEBSITE_SITE_NAME` as the NServiceBus Host ID. The new package uses a different Host ID strategy that is better suited to scaled-out and containerized deployments.
+The previous package used `WEBSITE_SITE_NAME` as the NServiceBus Host ID. The new package uses a different Host ID strategy that is better suited to scaled-out and containerized deployments.
 
 For the new package behavior and override guidance, see [Host ID](/nservicebus/hosting/azure/functions/configuration.md#host-id).
 
