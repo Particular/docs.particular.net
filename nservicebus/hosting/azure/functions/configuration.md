@@ -54,7 +54,7 @@ The Azure Service Bus [connection](https://learn.microsoft.com/en-us/azure/azure
 
 The queue that the endpoint receives from is taken from the `queueName` passed to the `[ServiceBusTrigger]` attribute. No separate receive queue name is configured in `Configure{FunctionName}`.
 
-The queue name in `[ServiceBusTrigger]` can use Azure Functions [binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
+The queue name supports [functions binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns).
 
 ## Transactions
 
