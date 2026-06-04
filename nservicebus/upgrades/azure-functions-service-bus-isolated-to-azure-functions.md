@@ -208,14 +208,9 @@ configuration.Recoverability()
 
 ## Host ID
 
-The old package used the `WEBSITE_SITE_NAME` environment variable as the NServiceBus Host ID. This resulted in instances not being visible in ServicePulse as the function was scaled up or down. In the new package, [`WEBSITE_INSTANCE_ID`](https://learn.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#scaling) is used to ensure that all instances are identifiable.
+The old package used `WEBSITE_SITE_NAME` as the NServiceBus Host ID. The new package uses a different Host ID strategy that is better suited to scaled-out and containerized deployments.
 
-> [!NOTE]
-> It's recommended to [configure ServicePulse not to track heartbeats for these instances](/monitoring/heartbeats/in-servicepulse.md#configuration-do-not-track-instances) to avoid false negatives.
-
-The logic falls back to [`CONTAINER_NAME` when running in Azure container apps](https://learn.microsoft.com/en-us/azure/container-apps/environment-variables?tabs=portal#apps) and `Environment.MachineName` for local development.
-
-If needed, use the guidance in [Overriding the host identifier](/nservicebus/hosting/override-hostid.md) to take full control over the host ID and keep it stable across restarts and deployments.
+For the new package behavior and override guidance, see [Host ID](/nservicebus/hosting/azure/functions/configuration.md#host-id).
 
 ## Recommended migration sequence
 

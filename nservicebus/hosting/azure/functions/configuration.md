@@ -82,3 +82,18 @@ Startup diagnostics are not written by default in this hosting model. Use `LogDi
 ### Custom diagnostics writer
 
 For full control over the diagnostic output (for example, to persist diagnostics beyond the function's execution lifetime or to aggregate diagnostic data from multiple function instances), configure a [custom diagnostics writer](/nservicebus/hosting/startup-diagnostics.md) on the endpoint configuration.
+
+## Host ID
+
+The package derives the NServiceBus Host ID from the Azure Functions hosting environment so scaled-out instances can be identified consistently.
+
+The Host ID resolution order is:
+
+1. [`WEBSITE_INSTANCE_ID`](https://learn.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#scaling) when running in Azure Functions on App Service
+2. [`CONTAINER_NAME`](https://learn.microsoft.com/en-us/azure/container-apps/environment-variables?tabs=portal#apps) when running in Azure Container Apps
+3. `Environment.MachineName` for local development
+
+> [!NOTE]
+> When using `WEBSITE_INSTANCE_ID`, it is recommended to [configure ServicePulse not to track heartbeats for these instances](/monitoring/heartbeats/in-servicepulse.md#configuration-do-not-track-instances) to avoid false negatives.
+
+If needed, use the guidance in [Overriding the host identifier](/nservicebus/hosting/override-hostid.md) to take full control over the Host ID and keep it stable across restarts and deployments.
