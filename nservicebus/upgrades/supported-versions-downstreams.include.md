@@ -14,7 +14,6 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/9.0.1)| **Current** | 2026-01-29     | Active            | Active |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.1.1)| Mainstream Support | 2026-01-14     | 2028-01-29        | 2030-01-29 |
-| [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.1)| Mainstream Support | 2025-04-14     | 2026-06-04        | Ineligible |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.2)| Extended Support | 2023-11-20     | 2026-04-16        | 2028-04-16 |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3)| Extended Support | 2023-03-07     | 2024-11-17        | 2026-11-17 |
 
@@ -149,7 +148,6 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/4.0.2)| **Current** | 2026-01-30     | Active            | Active |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/3.0.2)| Mainstream Support | 2025-06-04     | 2028-01-29        | 2030-01-29 |
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.2)| Mainstream Support | 2025-06-03     | 2026-06-04        | Ineligible |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.3)| Extended Support | 2023-05-09     | 2026-04-16        | 2028-04-16 |
 
 #### [NServiceBus.Persistence.DynamoDB.TransactionalSession](/nuget/NServiceBus.Persistence.DynamoDB.TransactionalSession)
@@ -158,7 +156,6 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/4.0.2)| **Current** | 2026-01-30     | Active            | Active |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.2)| Mainstream Support | 2025-06-04     | 2028-01-29        | 2030-01-29 |
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.2)| Mainstream Support | 2025-06-03     | 2026-06-04        | Ineligible |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.3)| Extended Support | 2023-05-09     | 2026-04-16        | 2028-04-16 |
 
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
