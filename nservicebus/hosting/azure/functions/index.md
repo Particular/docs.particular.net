@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-06-03
+reviewed: 2026-06-04
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
@@ -122,18 +122,4 @@ Startup diagnostics are not written by default in this hosting model. Use `LogDi
 
 For full control over the diagnostic output (for example, to persist diagnostics beyond the function's execution lifetime or to aggregate diagnostic data from multiple function instances), configure a [custom diagnostics writer](/nservicebus/hosting/startup-diagnostics.md) on the endpoint configuration.
 
-## Analyzers
-
-The package includes Roslyn analyzers that enforce required patterns:
-
-| ID | Severity | Rule |
-|---|---|---|
-| `NSBFUNC001` | Error | A class containing a method with `[NServiceBusFunction]` must be `partial`. |
-| `NSBFUNC002` | Warning | A function class should not implement `IHandleMessages<T>`. |
-| `NSBFUNC003` | Error | A method with `[NServiceBusFunction]` must be `partial`. |
-| `NSBFUNC004` | Warning | The application must call `builder.AddNServiceBusFunctions()`. |
-| `NSBFUNC005` | Error | Only one `Configure{FunctionName}` method is allowed per function. |
-| `NSBFUNC006` | Error | A `ServiceBusTrigger` must set `AutoCompleteMessages = false`. |
-| `NSBFUNC007` | Error | The function method has an invalid signature or is missing its `Configure{FunctionName}` method. |
-
-A code fix is provided for `NSBFUNC007` to add missing trigger parameters and generate a `Configure{FunctionName}` method stub when one is not present.
+For the Roslyn analyzers included with this package, see [Roslyn analyzers](/nservicebus/hosting/azure/functions/analyzers.md).

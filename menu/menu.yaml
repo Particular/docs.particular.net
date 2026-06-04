@@ -1398,7 +1398,9 @@
   - Title: Azure Functions
     Articles:
     - Url: nservicebus/hosting/azure/functions
-      Title: ServiceBusTrigger
+      Title: Overview
+    - Url: nservicebus/hosting/azure/functions/analyzers
+      Title: Roslyn analyzers
   - Title: AWS Lambda
     Articles:
       - Url: nservicebus/hosting/aws-lambda-simple-queue-service
