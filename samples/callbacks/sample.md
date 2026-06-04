@@ -5,7 +5,8 @@ component: Callbacks
 reviewed: 2026-06-04
 ---
 
-include: callbacks-disclaimer
+> [!WARNING]
+> Callbacks should only be used in exceptional situations, for example, to introduce messaging behind a synchronous API in a legacy component that can't be changed. They allow gradually transitioning applications towards messaging. See the [when to use callbacks](/nservicebus/messaging/callbacks.md#when-to-use-callbacks) section for more information.
 
 Callbacks allow a sender to receive a response value directly from a message handler, turning a one-way send into a request/reply interaction. This sample demonstrates callbacks returning an enum, an integer, and an object.
 
