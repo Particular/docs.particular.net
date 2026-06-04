@@ -66,7 +66,7 @@ In addition to the standard recoverability provided by NServiceBus the package a
 
 For details on the dead-letter behavior and configuration options, see [dead-lettering](/transports/azure-service-bus/configuration.md#dead-lettering) in the Azure Service Bus transport documentation.
 
-## Provisioning the namespace
+## Provisioning
 
 Provision queues and other entities in the Azure Service Bus namespace using the [`asb-transport` command-line tool](/transports/azure-service-bus/operational-scripting.md).
 
