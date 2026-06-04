@@ -10,11 +10,15 @@ related:
   - samples/azure-functions/service-bus
 ---
 
-NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package:
+NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package. Endpoints are declared using the `[NServiceBusFunction]` attribute:
 
 snippet: azure-functions-basic-endpoint
 
-An endpoint is declared as a partial method inside a partial class and composed of two parts:
+And bootstrapped in `Program.cs` by calling `AddNServiceBusFunctions`:
+
+snippet: azure-functions-program-builder
+
+Endpoints are declared as a partial method inside a partial class and composed of two parts:
 
 - A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring a [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
   - The trigger must set `AutoCompleteMessages = false` since NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
@@ -24,13 +28,7 @@ An endpoint is declared as a partial method inside a partial class and composed 
 > [!NOTE]
 > A single Functions app can host one or more endpoints.
 
-For endpoint configuration, supported transport options, and explicit handler and saga registration, see [Configuration](/nservicebus/hosting/azure/functions/configuration.md).
-
-## Wiring the host
-
-The Functions host is bootstrapped in `Program.cs`. Calling `AddNServiceBusFunctions` registers and configures each `[NServiceBusFunction]` with the Functions runtime:
-
-snippet: azure-functions-program-builder
+For endpoint configuration, supported transport options, and explicit handler and saga registration, etc, see [Configuration](/nservicebus/hosting/azure/functions/configuration.md).
 
 ## Hosting multiple endpoints
 
@@ -51,7 +49,3 @@ The attribute name becomes the [keyed-services](https://learn.microsoft.com/en-u
 Send-only endpoints are discovered and registered automatically by `builder.AddNServiceBusFunctions()`.
 
 snippet: azure-functions-sendonly-usage
-
-For connection settings, queue-name resolution, transactions, recoverability, provisioning, and startup diagnostics, see [Configuration](/nservicebus/hosting/azure/functions/configuration.md).
-
-For the Roslyn analyzers included with this package, see [Roslyn analyzers](/nservicebus/hosting/azure/functions/analyzers.md).
