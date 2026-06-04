@@ -68,10 +68,12 @@ For details on the dead-letter behavior and configuration options, see [dead-let
 
 ## Provisioning
 
-Provision queues and other entities in the Azure Service Bus namespace using the [`asb-transport` command-line tool](/transports/azure-service-bus/operational-scripting.md).
+Queues and other entities in the Azure Service Bus namespace can be provisioned using [`EnableInstallers()`](/nservicebus/operations/installers.md).
 
-> [!WARNING]
-> The Azure Service Bus transport defaults `MaxDeliveryCount` to 100. When provisioning entities with the `asb-transport` tool or by hand, set `MaxDeliveryCount` to match (for example, pass `--maximum-delivery-count 100` to the CLI tool) so the namespace and the transport agree. Also make sure to include dead-letter queue forwarding using `--forward-dlq-to error`
+Alternatively, provision entities explicitly using the [`asb-transport` command-line tool](/transports/azure-service-bus/operational-scripting.md).
+
+> [!NOTE]
+> The Azure Service Bus transport defaults `MaxDeliveryCount` to 100. When provisioning entities with installers, the `asb-transport` tool, or by hand, set `MaxDeliveryCount` to match so the namespace and the transport agree. When using the CLI, pass `--maximum-delivery-count 100` and include dead-letter queue forwarding using `--forward-dlq-to error`.
 
 ## Startup diagnostics
 
