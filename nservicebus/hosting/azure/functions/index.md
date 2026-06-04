@@ -10,15 +10,17 @@ related:
   - samples/azure-functions/service-bus
 ---
 
-NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package. Endpoints are declared using the `[NServiceBusFunction]` attribute:
+NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package.
 
-snippet: azure-functions-basic-endpoint
-
-And bootstrapped in `Program.cs` by calling `AddNServiceBusFunctions`:
+Integration is enabled in `Program.cs` by calling `AddNServiceBusFunctions`:
 
 snippet: azure-functions-program-builder
 
-Endpoints are declared as a partial method inside a partial class and composed of two parts:
+Endpoints are declared using the `[NServiceBusFunction]` attribute:
+
+snippet: azure-functions-basic-endpoint
+
+NServiceBus enabled functions must be declared in a partial class and are composed of two parts:
 
 - A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring a [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
   - The trigger must set `AutoCompleteMessages = false` since NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
