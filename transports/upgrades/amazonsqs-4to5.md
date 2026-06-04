@@ -62,13 +62,29 @@ Once all endpoints in the system have been upgraded to version 5, the code that 
 
 #### Backwards compatibility configuration
 
-snippet: 4to5-enable-message-driven-pub-sub-compatibility-mode
+```csharp
+var transport = endpointConfiguration.UseTransport<SqsTransport>();
+var pubSubCompatibilityMode = transport.EnableMessageDrivenPubSubCompatibilityMode();
+```
 
 Message-driven publish-subscribe works by having the subscriber send control messages to the publisher to subscribe (or unsubscribe) from a type of event. When the publisher receives one of these subscription related control messages, it updates its private subscription persistence. When a publisher publishes an event, it checks its private subscription storage for a list of subscribers for that event type and sends a copy of the event to each subscriber.
 
 A subscriber endpoint running in backwards compatibility mode will send subscription related control messages when subscribing to or unsubscribing from event types. The feature must be configured to associate each event type with the endpoint that publishes it. The configuration APIs to do this have been moved from the routing component to the compatibility component.
 
-snippet: 4to5-configure-message-driven-pub-sub-routing
+```csharp
+pubSubCompatibilityMode.RegisterPublisher(
+    eventType: typeof(SomeEvent),
+    publisherEndpoint: "PublisherEndpoint");
+
+pubSubCompatibilityMode.RegisterPublisher(
+    assembly: typeof(SomeEvent).Assembly,
+    publisherEndpoint: "PublisherEndpoint");
+
+pubSubCompatibilityMode.RegisterPublisher(
+    assembly: typeof(SomeEvent).Assembly,
+    @namespace: "Namespace",
+    publisherEndpoint: "PublisherEndpoint");
+```
 
 > [!NOTE]
 > Once the publishing endpoint has been upgraded, this configuration can optionally be removed.
