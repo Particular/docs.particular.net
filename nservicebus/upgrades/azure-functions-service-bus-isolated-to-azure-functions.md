@@ -2,7 +2,7 @@
 title: Migrate Azure Functions (Isolated Worker) to new package
 summary: How to migrate from NServiceBus.AzureFunctions.Worker.ServiceBus to NServiceBus.AzureFunctions.AzureServiceBus
 component: AzureFunctions
-reviewed: 2026-06-01
+reviewed: 2026-06-04
 related:
   - nservicebus/hosting/azure/functions
   - nservicebus/hosting/azure-functions-service-bus
@@ -115,21 +115,21 @@ public partial class SalesEndpoint
 
 The endpoint method must be marked with `[NServiceBusFunction]`, and both the method and its containing class must be declared `partial` so the source generator can emit the trigger body.
 
-Trigger queue names and connection setting names can use [Azure Functions binding expressions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-expressions-patterns) such as `%BillingPrefix%-api` if needed.
+For the new package's queue-name and connection-setting behavior, see [Connection configuration](/nservicebus/hosting/azure/functions/configuration.md#connection-configuration) and [Queue name resolution](/nservicebus/hosting/azure/functions/configuration.md#queue-name-resolution).
 
-### Move endpoint configuration next to the endpoint
+### Move endpoint configuration to the configure method
 
 The old worker package centralizes configuration in `builder.AddNServiceBus(configuration => { ... })`.
 
 The new package moves endpoint-specific configuration into a static `Configure<FunctionName>` method next to the endpoint. The method always takes `EndpointConfiguration` and can also take `IServiceCollection`, `IConfiguration`, and `IHostEnvironment` as needed.
 
-For the full configure-method model and parameter options, see [The configure method](/nservicebus/hosting/azure/functions#the-configure-method).
+For the full configure-method model and parameter options, see [The configure method](/nservicebus/hosting/azure/functions/configuration.md#the-configure-method).
 
 ### Handlers and sagas
 
 Due to assembly scanning not being available message handlers and sagas needs to be registered explicitly using `configuration.AddHandler`, `configuration.AddSaga` or `configuration.Handlers`.
 
-For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions#explicit-handler-and-saga-registration).
+For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions/configuration.md#explicit-handler-and-saga-registration).
 
 ### Serialization
 
@@ -140,7 +140,7 @@ For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonS
 
 In the old worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
 
-When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For details, see [Topology configuration](/nservicebus/hosting/azure-functions-service-bus/#preparing-the-azure-service-bus-namespace-topology-configuration).
+When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For the supported transport settings in this hosting model, see [Transport configuration](/nservicebus/hosting/azure/functions/configuration.md#transport-configuration). For topology details, see [Azure Service Bus topology](/transports/azure-service-bus/topology.md).
 
 ## Migrate usages of IFunctionEndpoint
 
@@ -174,11 +174,9 @@ Use this pattern when send-only traffic should be isolated from the receiving en
 
 Declare the send-only endpoint using a static `Configure{EndpointName}` method decorated with `[NServiceBusSendOnlyFunction("client")]`, then inject the keyed `IMessageSession` into the sending function. Add `IServiceCollection` to the configure method signature when endpoint-specific services need to be registered and later resolved via keyed services.
 
-For the send-only registration patterns and keyed-service examples, see [Send-only endpoints](/nservicebus/hosting/azure/functions#send-only-endpoints).
+For the send-only declaration pattern and keyed-service examples, see [Send-only endpoints](/nservicebus/hosting/azure/functions#send-only-endpoints). For connection-setting behavior, see [Connection configuration](/nservicebus/hosting/azure/functions/configuration.md#connection-configuration).
 
 The key used in `[FromKeyedServices("client")]` must match the name passed to `[NServiceBusSendOnlyFunction("client")]`.
-
-For pattern 1, the key used in `[FromKeyedServices("Sales")]` must match the receiving endpoint name.
 
 ## Migrate custom trigger scenarios
 
@@ -198,7 +196,7 @@ The new package no longer relies on `NServiceBusTriggerFunction` for this scenar
 
 The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to stop forwarding failed messages to the error queue and let Azure Service Bus dead-lettering handle them instead. See the [old error queue documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-error-queue).
 
-In the new package, use the [explicit dead-letter support](/transports/azure-service-bus/configuration.md#dead-lettering).
+In the new package, use the [explicit dead-letter support](/transports/azure-service-bus/configuration.md#dead-lettering). For the hosting-model-specific defaults, see [Recoverability](/nservicebus/hosting/azure/functions/configuration.md#recoverability).
 
 ```csharp
 configuration.Recoverability()
