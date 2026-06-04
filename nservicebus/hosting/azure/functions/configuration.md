@@ -44,7 +44,7 @@ Other receive-side Azure Service Bus transport settings, such as [prefetch count
 
 ## Explicit handler and saga registration
 
-Assembly scanning is not available in this hosting model because a single Functions app can host [multiple endpoints](/nservicebus/hosting/core-hosting). As a secondary effect, avoiding assembly scanning also improves cold startup times.
+Assembly scanning is not available in this hosting model because a single Functions app can host [multiple endpoints](/nservicebus/hosting/core-hosting.md). As a secondary effect, avoiding assembly scanning also improves cold startup times.
 
 Handlers and sagas must therefore be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for the available registration approaches in NServiceBus 10.2, and [Disable assembly scanning](/nservicebus/hosting/assembly-scanning.md#disable-assembly-scanning) for the caveats and additional manual registration requirements. Handlers that are not registered will not be invoked.
 
