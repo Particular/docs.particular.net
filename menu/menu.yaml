@@ -1399,6 +1399,8 @@
     Articles:
     - Url: nservicebus/hosting/azure/functions
       Title: Overview
+    - Url: nservicebus/hosting/azure/functions/configuration
+      Title: Configuration
     - Url: nservicebus/hosting/azure/functions/analyzers
       Title: Roslyn analyzers
   - Title: AWS Lambda
