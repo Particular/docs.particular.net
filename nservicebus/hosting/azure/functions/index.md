@@ -29,7 +29,7 @@ For endpoint configuration, supported transport options, and explicit handler an
 
 ## Hosting multiple endpoints
 
-Multiple methods decorated with `[NServiceBusFunction]` can co-exist in one Functions app. Each is registered as an independent NServiceBus endpoint with its own queue, handlers, and configure method. Two functions hosted from the same partial class:
+Multiple methods decorated with `[NServiceBusFunction]` can co-exist in one Functions app. Each is registered as an independent NServiceBus endpoint with its own queue, handlers, and configure method:
 
 snippet: azure-functions-multiple-endpoints
 
