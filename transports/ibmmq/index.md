@@ -39,6 +39,7 @@ IBM MQ does not follow SemVer; it uses a four-segment `V.R.M.F` scheme with para
 |Queue and topic names  |Limited to 48 characters
 |Delayed delivery   |No. Requires an external timeout storage mechanism.
 |Native message grouping    |Not yet implemented
+|Aspire integration         |No
 
 ## Configuring the endpoint
 

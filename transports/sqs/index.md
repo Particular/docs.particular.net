@@ -26,6 +26,7 @@ redirects:
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |Yes
 |Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)
+|Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-amazon-sqs)
 
 ## Advantages
 

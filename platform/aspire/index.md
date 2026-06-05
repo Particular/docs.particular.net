@@ -20,7 +20,7 @@ A single `AddParticularPlatform(...)` call registers a platform resource that ow
 - [ServiceControl](/servicecontrol) error, audit, and monitoring instances
 - [ServicePulse](/servicepulse)
 - A managed RavenDB persistence instance, or one supplied by the AppHost
-- The configured message [transport](#transport)
+- The configured message [transport](#supported-components-transport)
 - The platform license
 
 Transport, persistence, and licensing are configured once on the platform resource and propagated to every component, so the containers start in the correct order. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring.
@@ -55,7 +55,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 ## Prerequisites
 
 - The [Aspire CLI](https://aspire.dev/get-started/install-cli/) and the .NET 10 SDK, used to build and run the AppHost project.
-- A [container runtime](/servicecontrol/hosting#containers). The platform components are pulled from Docker Hub as `particular/servicecontrol`, `particular/servicecontrol-audit`, `particular/servicecontrol-monitoring`, `particular/servicecontrol-ravendb`, and `particular/servicepulse`.
+- A [container runtime](/servicecontrol/hosting.md#containers). The platform components are pulled from Docker Hub as `particular/servicecontrol`, `particular/servicecontrol-audit`, `particular/servicecontrol-monitoring`, `particular/servicecontrol-ravendb`, and `particular/servicepulse`.
 - A Particular Platform license. See [Configuring the license](#configuring-the-license) for the license sources the integration accepts.
 
 ## Installation
@@ -74,11 +74,11 @@ Only the AppHost project needs this reference. NServiceBus endpoint projects pic
 
 `AddDefaultComponents()` wires up the Learning transport, a managed RavenDB persistence instance, the ServiceControl error, audit, and monitoring instances, and ServicePulse with sensible defaults:
 
-snippet: aspire-quick-start-1
+snippet: aspire-quick-start-platform
 
 To attach an [NServiceBus endpoint](/nservicebus/endpoints/) so it picks up the platform's license and transport connection string, chain `WithParticularPlatform(platform)` on the endpoint's project resource:
 
-snippet: aspire-quick-start-2
+snippet: aspire-quick-start-endpoint
 
 These defaults are intended for local development. For deployment scenarios, configure an explicit transport, persistence, and license as described in [Configuring the transport](#configuring-the-transport), [Configuring persistence](#configuring-persistence), and [Configuring the license](#configuring-the-license).
 
@@ -162,7 +162,7 @@ snippet: aspire-transport-sqs
 
 ServiceControl uses a persistence backend to store error and audit data, retry state, and saga history. See [Supported components](#supported-components) for the persisters currently wired through the integration.
 
-Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require persistence. Follow the [managing persistence guidance](/servicecontrol/ravendb/containers) when setting up for production use.
+Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require persistence. Follow the [managing persistence guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
 
 ### RavenDB
 
@@ -456,7 +456,7 @@ This warning appears when the ServiceControl container images (error, audit, and
 
 snippet: aspire-components-version
 
-All ServiceControl components (error, audit, and monitoring) should run the same [supported version](https://docs.particular.net/servicecontrol/upgrades/supported-versions) to ensure compatibility. The warning lists each component with its configured image and tag so the mismatch is easy to identify.
+All ServiceControl components (error, audit, and monitoring) should run the same [supported version](/servicecontrol/upgrades/supported-versions.md) to ensure compatibility. The warning lists each component with its configured image and tag so the mismatch is easy to identify.
 
 To resolve the warning, ensure all ServiceControl instances use the same image tag, or remove explicit `.WithImage()` calls to use the default `latest` tag, which always refers to a compatible set of images.
 

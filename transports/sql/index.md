@@ -33,6 +33,7 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |Depends on the collation
+|Aspire integration         |No
 
 partial: packages
 

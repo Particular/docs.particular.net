@@ -28,6 +28,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |No
+|Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-azure-service-bus)
 
 > [!NOTE]
 > The Azure Service Bus transport only supports the Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.

@@ -31,6 +31,7 @@ include: azure-transports
 |Installers                 |Mandatory
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |No
+|Aspire integration         |No
 
 ## Configuring the endpoint
 

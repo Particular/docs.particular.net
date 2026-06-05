@@ -32,6 +32,7 @@ include: learning-usages
 |Installers                 |Not supported, the transport always creates the required folder structure
 |Native integration         |Not supported
 |Case Sensitive             |Yes
+|Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-learning-transport)
 
 ### Publish and subscribe
 

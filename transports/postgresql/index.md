@@ -22,6 +22,7 @@ The PostgreSQL transport implements a message queuing mechanism on top of [Postg
 |Installers                 |Optional |
 |Native integration         |Supported, see [SQL statements used by the transport](https://github.com/Particular/NServiceBus.SqlServer/blob/master/src/NServiceBus.Transport.PostgreSql/PostgreSqlConstants.cs) |
 |Case Sensitive             |Depends on the collation
+|Aspire integration         |No
 
 ## Usage
 
