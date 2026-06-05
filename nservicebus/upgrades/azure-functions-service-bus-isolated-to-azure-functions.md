@@ -1,5 +1,5 @@
 ---
-title: Migrate Azure Functions (Isolated Worker) to new package
+title: Migrate Azure Functions (Isolated Worker) to multi-endpoint package
 summary: How to migrate from NServiceBus.AzureFunctions.Worker.ServiceBus to NServiceBus.AzureFunctions.AzureServiceBus
 component: AzureFunctions
 reviewed: 2026-06-04
