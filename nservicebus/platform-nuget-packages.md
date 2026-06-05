@@ -37,7 +37,6 @@ This page contains a curated list of NuGet packages commonly used to build a dis
 - [NServiceBus.AzureFunctions.InProcess.ServiceBus](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 - [NServiceBus.AzureFunctions.Worker.ServiceBus](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus)
 - [NServiceBus.AwsLambda.Sqs](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs)
-- [Particular.Aspire.Hosting.ServicePlatform](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform)
 
 ### Serialization
 
@@ -72,6 +71,7 @@ This page contains a curated list of NuGet packages commonly used to build a dis
 - [NServiceBus.DataBus.BinarySerializer](https://www.nuget.org/packages/NServiceBus.DataBus.BinarySerializer)
 - [NServiceBus.UniformSession](https://www.nuget.org/packages/NServiceBus.UniformSession)
 - [NServiceBus.Wcf](https://www.nuget.org/packages/NServiceBus.Wcf)
+- [Particular.Aspire.Hosting.ServicePlatform](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform)
 
 ### Tooling packages
 
