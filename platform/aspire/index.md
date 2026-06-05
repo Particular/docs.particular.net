@@ -82,6 +82,8 @@ snippet: aspire-quick-start-endpoint
 
 These defaults are intended for local development. For deployment scenarios, configure an explicit transport, persistence, and license as described in [Configuring the transport](#configuring-the-transport), [Configuring persistence](#configuring-persistence), and [Configuring the license](#configuring-the-license).
 
+snippet: aspire-quick-start-explicit
+
 ## Viewing the platform in the Aspire dashboard
 
 The platform appears in the [Aspire dashboard](https://aspire.dev/dashboard/) as a single `ParticularPlatform` parent resource. The components the integration creates are nested as children, each surfacing the URL exposed by its primary endpoint:
