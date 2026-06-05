@@ -20,7 +20,7 @@ The package includes [Roslyn analyzers](https://learn.microsoft.com/en-us/visual
 | `NSBFUNC007` | Error | The function method is invalid, for example because required trigger parameters are missing or the matching `Configure{FunctionName}` method is missing or invalid. |
 | `NSBFUNC008` | Error | Unsupported endpoint configuration API is used in a `Configure…` method for a receiving or send-only endpoint. |
 | `NSBFUNC009` | Error | Unsupported `SendOptions` or `ReplyOptions` API is used for Azure Functions endpoints. |
-| `NSBFUNC010` | Error | `EndpointConfiguration.UseTransport(...)` does not use `AzureServiceBusServerlessTransport`. |
+| `NSBFUNC010` | Error | `EndpointConfiguration.UseTransport(…)` does not use `AzureServiceBusServerlessTransport`. |
 | `NSBFUNC011` | Error | A method marked with `[NServiceBusSendOnlyFunction]` is not a valid send-only endpoint declaration. |
 
 ## Unsupported endpoint configuration APIs

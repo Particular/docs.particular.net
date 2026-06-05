@@ -58,7 +58,7 @@ Do not add `NServiceBus.AzureFunctions.Common` directly. The Azure Service Bus p
 
 ## Update host startup
 
-The previous package is configured with `builder.AddNServiceBus(...)` and an assembly-level `NServiceBusTriggerFunction` attribute, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
+The previous package is configured with `builder.AddNServiceBus(…)` and an assembly-level `NServiceBusTriggerFunction` attribute, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 The new package registers the Azure Functions integration once at startup:
 
@@ -75,7 +75,7 @@ var host = builder.Build();
 await host.RunAsync();
 ```
 
-Remove the `[assembly: NServiceBusTriggerFunction(...)]` attribute. The new package does not use the previous single-endpoint trigger generation model.
+Remove the `[assembly: NServiceBusTriggerFunction(…)]` attribute. The new package does not use the previous single-endpoint trigger generation model.
 
 ## Migrate the receiving endpoint
 
@@ -119,7 +119,7 @@ For the new package's queue-name and connection-setting behavior, see [Connectio
 
 ### Move endpoint configuration to the configure method
 
-The previous worker package centralizes configuration in `builder.AddNServiceBus(configuration => { ... })`.
+The previous worker package centralizes configuration in `builder.AddNServiceBus(configuration => { … })`.
 
 The new package moves endpoint-specific configuration into a static `Configure<FunctionName>` method next to the endpoint. The method always takes `EndpointConfiguration` and can also take `IServiceCollection`, `IConfiguration`, and `IHostEnvironment` as needed.
 
@@ -138,7 +138,7 @@ For migrations from `NServiceBus.AzureFunctions.Worker.ServiceBus`, `SystemJsonS
 
 ### Select the transport topology explicitly
 
-In the previous worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(...)`.
+In the previous worker package, the effective Azure Service Bus topology could be configured through the worker integration configuration. In the new package, topology selection is explicit in the transport instance passed to `UseTransport(…)`.
 
 When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For the supported transport settings in this hosting model, see [Transport configuration](/nservicebus/hosting/azure/functions/configuration.md#transport-configuration). For topology details, see [Azure Service Bus topology](/transports/azure-service-bus/topology.md).
 
@@ -190,7 +190,7 @@ If the app has HTTP, timer, or other Azure Functions that send messages, keep th
 
 If the app manually declares the Service Bus trigger instead of using the generated trigger, move that code to an explicit endpoint method with `[NServiceBusFunction]` on the method.
 
-The new package no longer relies on `NServiceBusTriggerFunction` for this scenario. The `ServiceBusTrigger(...)` definition is part of the endpoint method itself.
+The new package no longer relies on `NServiceBusTriggerFunction` for this scenario. The `ServiceBusTrigger(…)` definition is part of the endpoint method itself.
 
 ## Recoverability
 
@@ -215,7 +215,7 @@ For the new package behavior and override guidance, see [Host ID](/nservicebus/h
 ## Recommended migration sequence
 
 1. Remove `NServiceBus.AzureFunctions.Worker.ServiceBus` and add `NServiceBus.AzureFunctions.AzureServiceBus`.
-2. Replace `builder.AddNServiceBus(...)` with `builder.AddNServiceBusFunctions()`.
+2. Replace `builder.AddNServiceBus(…)` with `builder.AddNServiceBusFunctions()`.
 3. Remove `NServiceBusTriggerFunction`.
 4. Migrate the existing receiving endpoint to an explicit `[NServiceBusFunction]` endpoint method.
 5. Move endpoint configuration to `Configure<FunctionName>` methods.
