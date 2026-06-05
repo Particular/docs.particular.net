@@ -9,7 +9,7 @@ related:
 - samples/aspire/platform-asb
 ---
 
-The `Particular.Aspire.Hosting.ServicePlatform` package is an [Aspire](https://aspire.dev/) hosting integration that runs the Particular Platform — the ServiceControl instances, ServicePulse, persistence, and message transport — as part of an Aspire AppHost. It is intended for developers and technical leads who run the platform locally during development and want the same AppHost to carry through to publish-mode deployments, without maintaining a separate set of infrastructure scripts.
+The `Particular.Aspire.Hosting.ServicePlatform` package is an [Aspire](https://aspire.dev/) hosting integration that runs the Particular Service Platform — the ServiceControl instances, ServicePulse, persistence, and message transport — as part of an Aspire AppHost. It is intended for developers and technical leads who run the platform locally during development and want the same AppHost to carry through to publish-mode deployments, without maintaining a separate set of infrastructure scripts.
 
 ## Overview
 
