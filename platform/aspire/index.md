@@ -456,7 +456,7 @@ This warning appears when the ServiceControl container images (error, audit, and
 
 snippet: aspire-components-version
 
- All ServiceControl components (error, audit, and monitoring) must run the same version to ensure compatibility. The warning lists each component with its configured image and tag so the mismatch is easy to identify.
+All ServiceControl components (error, audit, and monitoring) should run the same [supported version](https://docs.particular.net/servicecontrol/upgrades/supported-versions) to ensure compatibility. The warning lists each component with its configured image and tag so the mismatch is easy to identify.
 
 To resolve the warning, ensure all ServiceControl instances use the same image tag, or remove explicit `.WithImage()` calls to use the default `latest` tag, which always refers to a compatible set of images.
 
