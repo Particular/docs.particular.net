@@ -22,8 +22,8 @@ snippet: azure-functions-basic-endpoint
 
 NServiceBus enabled functions must be declared in a partial class and are composed of two parts:
 
-- A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring a [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
-  - The trigger must set `AutoCompleteMessages = false` since NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
+- A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring an [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
+  - The trigger must set `AutoCompleteMessages = false` since the NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the [`NSBFUNC006` analyzer](analyzers.mc) enforces this requirement.
   - A source generator will emit the method body that forwards each incoming message to the NServiceBus pipeline.
 - A static `Configure{FunctionName}` method that configures the NServiceBus endpoint for the function.
 
@@ -39,7 +39,7 @@ Each endpoint has its own `Configure{FunctionName}` method; the source generator
 
 ## Send-only endpoints
 
-A [send-only endpoint](/nservicebus/endpoints/#send-only) can be declared for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
+A [send-only endpoint](/nservicebus/endpoints/#send-only) can be declared for components that need to dispatch messages without receiving incoming messages. Send-only endpoints can be used, for example, from a `TimerTrigger` or an `HttpTrigger` function serving as an HTTP API:
 
 snippet: azure-functions-sendonly-registration
 
