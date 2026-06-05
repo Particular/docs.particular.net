@@ -20,7 +20,7 @@ A single `AddParticularPlatform(...)` call registers a platform resource that ow
 - [ServiceControl](/servicecontrol) error, audit, and monitoring instances
 - [ServicePulse](/servicepulse)
 - A managed RavenDB persistence instance, or one supplied by the AppHost
-- The configured message transport (Learning, Azure Service Bus, or RabbitMQ)
+- The configured message [transport](#transport)
 - The platform license
 
 Transport, persistence, and licensing are configured once on the platform resource and propagated to every component, so the containers start in the correct order. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring.
