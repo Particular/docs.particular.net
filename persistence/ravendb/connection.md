@@ -10,13 +10,6 @@ redirects:
 reviewed: 2026-06-03
 ---
 
-## Database creation
-
-When using RavenDB as persistence, the RavenDB client won't create the database it if it doesn't already exist.
-This is why the database needs to be previously created or created when initializing the endpoint.
-
-The following sections outline various ways to connect to the RavenDB server.
-
 > [!NOTE]
 > The database must be created before using RavenDB persistence.
 
