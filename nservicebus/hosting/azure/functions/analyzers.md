@@ -18,16 +18,16 @@ The package includes [Roslyn analyzers](https://learn.microsoft.com/en-us/visual
 | `NSBFUNC005` | Error | Only one `Configure{FunctionName}` method is allowed for a function. |
 | `NSBFUNC006` | Error | The Service Bus trigger must explicitly set `AutoCompleteMessages = false`. |
 | `NSBFUNC007` | Error | The function method is invalid, for example because required trigger parameters are missing or the matching `Configure{FunctionName}` method is missing or invalid. |
-| `NSBFUNC008` | Error | Unsupported endpoint configuration API is used in a `Configure...` method for a receiving or send-only endpoint. |
+| `NSBFUNC008` | Error | Unsupported endpoint configuration API is used in a `Configure…` method for a receiving or send-only endpoint. |
 | `NSBFUNC009` | Error | Unsupported `SendOptions` or `ReplyOptions` API is used for Azure Functions endpoints. |
 | `NSBFUNC010` | Error | `EndpointConfiguration.UseTransport(...)` does not use `AzureServiceBusServerlessTransport`. |
 | `NSBFUNC011` | Error | A method marked with `[NServiceBusSendOnlyFunction]` is not a valid send-only endpoint declaration. |
 
 ## Unsupported endpoint configuration APIs
 
-`NSBFUNC008` is reported when a `Configure...` method uses endpoint configuration APIs that are not supported in this hosting model.
+Because the Azure Functions runtime is responsible for fetching messages from the broker, some endpoint configuration APIs are not supported in this hosting model. `NSBFUNC008` is reported when a `Configure…` method uses one of these unsupported APIs.
 
-Unsupported APIs:
+Unsupported APIs include:
 
 - `EndpointConfiguration.PurgeOnStartup`
 - `EndpointConfiguration.LimitMessageProcessingConcurrencyTo`
@@ -50,7 +50,7 @@ Unsupported APIs:
 
 ## Required transport
 
-`NSBFUNC010` ensures `EndpointConfiguration.UseTransport(...)` uses `AzureServiceBusServerlessTransport`.
+`NSBFUNC010` ensures `EndpointConfiguration.UseTransport(…)` uses `AzureServiceBusServerlessTransport`.
 
 For the supported transport configuration in this hosting model, see [Azure Functions configuration](/nservicebus/hosting/azure/functions/configuration.md#transport-configuration).
 

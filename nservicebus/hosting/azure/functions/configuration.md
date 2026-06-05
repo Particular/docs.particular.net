@@ -64,7 +64,7 @@ Azure Functions endpoints only supports [`TransportTransactionMode.ReceiveOnly`]
 
 ## Recoverability
 
-In addition to the standard recoverability provided by NServiceBus the package also automatically enables [DLQ forwarding to the error queue](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue), so dead-lettered messages can be managed alongside other failed messages by tools such as ServicePulse.
+In addition to the standard recoverability provided by NServiceBus the package also automatically enables [dead-letter queue forwarding to the error queue](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue), so dead-lettered messages can be managed alongside other failed messages by tools such as ServicePulse.
 
 For details on the dead-letter behavior and configuration options, see [dead-lettering](/transports/azure-service-bus/configuration.md#dead-lettering) in the Azure Service Bus transport documentation.
 
