@@ -2,7 +2,7 @@
 title: Roslyn analyzers for Azure Functions
 component: AzureFunctions
 summary: Details of the Roslyn analyzers included with Azure Functions hosting.
-reviewed: 2026-06-04
+reviewed: 2026-06-05
 ---
 
 The package includes [Roslyn analyzers](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that enforce required patterns for Azure Functions hosting.
@@ -14,18 +14,17 @@ The package includes [Roslyn analyzers](https://learn.microsoft.com/en-us/visual
 | `NSBFUNC001` | Error | A class containing a method with `[NServiceBusFunction]` must be `partial`. |
 | `NSBFUNC002` | Warning | A function class should not implement `IHandleMessages<T>`. Register handlers separately in endpoint configuration. |
 | `NSBFUNC003` | Error | A method with `[NServiceBusFunction]` must be `partial`. |
-| `NSBFUNC004` | Warning | The project contains generated NServiceBus registrations but does not call `builder.AddNServiceBusFunctions()`. |
-| `NSBFUNC005` | Error | Only one `Configure{FunctionName}` method is allowed for a function. |
-| `NSBFUNC006` | Error | The Service Bus trigger must explicitly set `AutoCompleteMessages = false`. |
-| `NSBFUNC007` | Error | The function method is invalid, for example because required trigger parameters are missing or the matching `Configure{FunctionName}` method is missing or invalid. |
-| `NSBFUNC008` | Error | Unsupported endpoint configuration API is used in a `Configure…` method for a receiving or send-only endpoint. |
-| `NSBFUNC009` | Error | Unsupported `SendOptions` or `ReplyOptions` API is used for Azure Functions endpoints. |
-| `NSBFUNC010` | Error | `EndpointConfiguration.UseTransport(…)` does not use `AzureServiceBusServerlessTransport`. |
-| `NSBFUNC011` | Error | A method marked with `[NServiceBusSendOnlyFunction]` is not a valid send-only endpoint declaration. |
+| `NSBFUNC004` | Error | Only one `Configure{FunctionName}` method is allowed for a function. |
+| `NSBFUNC005` | Error | The Service Bus trigger must explicitly set `AutoCompleteMessages = false`. |
+| `NSBFUNC006` | Error | The function method is invalid, for example because required trigger parameters are missing or the matching `Configure{FunctionName}` method is missing or invalid. |
+| `NSBFUNC007` | Error | Unsupported endpoint configuration API is used in a `Configure…` method for a receiving or send-only endpoint. |
+| `NSBFUNC008` | Error | Unsupported `SendOptions` or `ReplyOptions` API is used for Azure Functions endpoints. |
+| `NSBFUNC009` | Error | `EndpointConfiguration.UseTransport(…)` does not use `AzureServiceBusServerlessTransport`. |
+| `NSBFUNC010` | Error | A method marked with `[NServiceBusSendOnlyFunction]` is not a valid send-only endpoint declaration. |
 
 ## Unsupported endpoint configuration APIs
 
-Because the Azure Functions runtime is responsible for fetching messages from the broker, some endpoint configuration APIs are not supported in this hosting model. `NSBFUNC008` is reported when a `Configure…` method uses one of these unsupported APIs.
+Because the Azure Functions runtime is responsible for fetching messages from the broker, some endpoint configuration APIs are not supported in this hosting model. `NSBFUNC007` is reported when a `Configure…` method uses one of these unsupported APIs.
 
 Unsupported APIs include:
 
@@ -41,7 +40,7 @@ For send-only endpoints, some of these APIs are invalid because send-only endpoi
 
 ## Unsupported send and reply options APIs
 
-`NSBFUNC009` is reported when code uses APIs that try to route to a specific instance, which is not supported for Azure Functions because instances are ephemeral.
+`NSBFUNC008` is reported when code uses APIs that try to route to a specific instance, which is not supported for Azure Functions because instances are ephemeral.
 
 Unsupported APIs:
 
@@ -50,13 +49,13 @@ Unsupported APIs:
 
 ## Required transport
 
-`NSBFUNC010` ensures `EndpointConfiguration.UseTransport(…)` uses `AzureServiceBusServerlessTransport`.
+`NSBFUNC009` ensures `EndpointConfiguration.UseTransport(…)` uses `AzureServiceBusServerlessTransport`.
 
 For the supported transport configuration in this hosting model, see [Azure Functions configuration](/nservicebus/hosting/azure/functions/configuration.md#transport-configuration).
 
 ## Send-only endpoint validation
 
-`NSBFUNC011` is reported when a method marked with `[NServiceBusSendOnlyFunction]` does not match the required shape.
+`NSBFUNC010` is reported when a method marked with `[NServiceBusSendOnlyFunction]` does not match the required shape.
 
 The method must:
 
@@ -69,7 +68,7 @@ The method must:
 
 The package currently includes one code fix.
 
-### `NSBFUNC007`
+### `NSBFUNC006`
 
 The code fix can:
 

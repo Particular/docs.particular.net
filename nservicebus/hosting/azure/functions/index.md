@@ -2,7 +2,7 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-06-04
+reviewed: 2026-06-05
 related:
   - transports/azure-service-bus
   - nservicebus/hosting/startup-diagnostics
@@ -24,7 +24,7 @@ snippet: azure-functions-basic-endpoint
 NServiceBus enabled functions must be declared in a partial class and are composed of two parts:
 
 - A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring an [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
-  - The trigger must set `AutoCompleteMessages = false` since the NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the [`NSBFUNC006` analyzer](analyzers.mc) enforces this requirement.
+  - The trigger must set `AutoCompleteMessages = false` since the NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the [`NSBFUNC005` analyzer](analyzers.md) enforces this requirement.
   - A source generator will emit the method body that forwards each incoming message to the NServiceBus pipeline.
 - A static `Configure{FunctionName}` method that configures the NServiceBus endpoint for the function.
 
