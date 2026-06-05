@@ -17,6 +17,9 @@ This is why the database needs to be previously created or created when initiali
 
 The following sections outline various ways to connect to the RavenDB server.
 
+> [!NOTE]
+> The database must be created before using RavenDB persistence.
+
 ### Default
 
 By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
