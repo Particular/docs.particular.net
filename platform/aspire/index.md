@@ -162,7 +162,7 @@ snippet: aspire-transport-sqs
 
 ServiceControl uses a persistence backend to store error and audit data, retry state, and saga history. See [Supported components](#supported-components) for the persisters currently wired through the integration.
 
-Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require persistence.
+Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require persistence. Follow the [managing persistence guidance](/servicecontrol/ravendb/containers) when setting up for production use.
 
 ### RavenDB
 
