@@ -1325,6 +1325,8 @@
     Articles:
     - Title: Azure Functions (Isolated Worker) with Service Bus
       Articles:
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-to-azure-functions
+        Title: Migrate to multi-endpoint package
       - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-5to6
         Title: Version 5 to 6
       - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-4to5
