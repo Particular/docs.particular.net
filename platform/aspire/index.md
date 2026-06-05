@@ -55,7 +55,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 ## Prerequisites
 
 - The [Aspire CLI](https://aspire.dev/get-started/install-cli/) and the .NET 10 SDK, used to build and run the AppHost project.
-- A container runtime such as [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Podman](https://podman.io/). The platform components are pulled from Docker Hub as `particular/servicecontrol`, `particular/servicecontrol-audit`, `particular/servicecontrol-monitoring`, `particular/servicecontrol-ravendb`, and `particular/servicepulse`.
+- A [container runtime](/servicecontrol/hosting#containers). The platform components are pulled from Docker Hub as `particular/servicecontrol`, `particular/servicecontrol-audit`, `particular/servicecontrol-monitoring`, `particular/servicecontrol-ravendb`, and `particular/servicepulse`.
 - A Particular Platform license. See [Configuring the license](#configuring-the-license) for the license sources the integration accepts.
 
 ## Installation
