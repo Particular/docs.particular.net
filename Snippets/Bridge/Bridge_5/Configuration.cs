@@ -47,6 +47,32 @@ public class Configuration
         #endregion
     }
 
+    public void CriticalErrorAction()
+    {
+        var bridgeConfiguration = new BridgeConfiguration();
+
+        #region bridge-critical-error-action
+
+        bridgeConfiguration.DefineCriticalErrorAction(async (context, cancellationToken) =>
+        {
+            var fatalMessage =
+                $"The following critical error was encountered:{Environment.NewLine}" +
+                $"{context.Error}{Environment.NewLine}" +
+                "The bridge is shutting down.";
+
+            try
+            {
+                await context.Stop(cancellationToken);
+            }
+            finally
+            {
+                Environment.FailFast(fatalMessage, context.Exception);
+            }
+        });
+
+        #endregion
+    }
+
     public async Task EndpointRegistration()
     {
         #region endpoint-registration
