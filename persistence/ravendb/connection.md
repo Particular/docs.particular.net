@@ -10,12 +10,9 @@ redirects:
 reviewed: 2026-06-03
 ---
 
-> [!NOTE]
-> The database must be created before using RavenDB persistence.
+## Connection to the RavenDB server
 
-### Default
-
-By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
+The following sections outline various ways to connect to the RavenDB server.
 
 ### External shared store for all persisters
 
@@ -46,7 +43,14 @@ snippet: ravendb-persistence-specific-create-store-by-func
 
 include: raven-dispose-warning
 
+### Default
+
+If the connection is not specified by any other means, then a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
+
 ## Database used
+
+> [!NOTE]
+> The database must be created before using RavenDB persistence.
 
 After connecting to a RavenDB server, NServiceBus decides which database to use. Unless it finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. This means that if the endpoint is named `MyServer`, the database name will be `MyServer`. Each endpoint will have a separate database unless explicitly overridden via the connection string.
 
