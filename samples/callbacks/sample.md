@@ -5,10 +5,14 @@ component: Callbacks
 reviewed: 2026-06-04
 ---
 
+> [!WARNING]
+> Callbacks should only be used in exceptional situations, for example, to introduce messaging behind a synchronous API in a legacy component that can't be changed. They allow gradually transitioning applications towards messaging. See the [when to use callbacks](/nservicebus/messaging/callbacks.md#when-to-use-callbacks) section for more information.
+
+Callbacks allow a sender to receive a response value directly from a message handler, turning a one-way send into a request/reply interaction. This sample demonstrates callbacks returning an enum, an integer, and an object.
+
 ## Running the sample
 
- 1. Run the solution. Two console applications and a web application will start.
- 1. In the WebSender application, click links from the landing page to trigger each scenario.
+ 1. Run the solution. Two console applications will start.
  1. In the Sender console application, press various keys to trigger each scenario when prompted.
 
 
@@ -21,7 +25,7 @@ A class library containing the messages and shared code.
 
 This is used for the enum callback scenario.
 
-```
+```csharp
 public enum Status
 {
     OK,
@@ -29,30 +33,9 @@ public enum Status
 }
 ```
 
-include: callbacks-disclaimer
-
-## WebSender project
-
-A .NET Core MVC application responsible for sending messages and handling the web callback from the reply. A message session is passed into the controller constructor.
-
-### Send and callback for an enum
-
-snippet: Web_SendEnumMessage
-
-
-### Send and callback for an int
-
-snippet: Web_SendIntMessage
-
-
-### Send and callback for an object
-
-snippet: Web_SendObjectMessage
-
-
 ## Sender project
 
-A console application responsible for sending messages and handling the callback from the reply, as an alternative to a web application.
+A console application responsible for sending messages and handling the callback from the reply.
 
 
 ### Send and callback for an enum
@@ -72,7 +55,7 @@ snippet: SendObjectMessage
 
 ## Receiver project
 
-A console application responsible for replying to messages from either the web application or the console application.
+A console application responsible for replying to messages from the Sender.
 
 
 ### Return an enum
