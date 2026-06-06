@@ -10,7 +10,7 @@ namespace Raven_7
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
             persistence.SetMessageToDatabaseMappingConvention(headers =>
             {
-                //based on incoming message headers select the correct RavenDB Database
+                // based on incoming message headers select the correct RavenDB Database
                 return "selected-database-name";
             });
             #endregion

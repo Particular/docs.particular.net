@@ -5,7 +5,7 @@ versions: '[2,)'
 related:
  - samples/ravendb
  - samples/multi-tenant/ravendb
-reviewed: 2024-10-01
+reviewed: 2026-06-05
 redirects:
  - nservicebus/ravendb
  - persistence/ravendb/licensing
@@ -29,7 +29,7 @@ Specific versions of RavenDB Persistence are tied to a major version of NService
 
 See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-ravendb) to see the support details for each version of RavenDB Persistence.
 
-RavenDB client are compatible with their corresponding server version and newer versions:
+RavenDB clients are compatible with their corresponding server version and newer versions:
 
 - [FAQ: Backward Compatibility | RavenDB 6.2 Documentation](https://ravendb.net/docs/article-page/6.2/csharp/client-api/faq/backward-compatibility#ravendb-4.2-and-higher-compatibility)
 
@@ -49,22 +49,26 @@ To use the shared session in a message handler:
 
 snippet: ravendb-persistence-shared-session-for-handler
 
-Although additional database operations inside a saga handler are not recommended (see warning below) the shared session can also be accessed from a saga handler:
+Although additional database operations inside a saga handler are not recommended (see warning below), the shared session can also be accessed from a saga handler:
 
 include: saga-business-data-access
 
 snippet: ravendb-persistence-shared-session-for-saga
 
 
-## Customizing the IDocumentSession
+## Customizing the IAsyncDocumentSession
 
-The creation of the RavenDB `IDocumentSession` instance used by NServiceBus and made available as the [shared session](#shared-session) can be customized as shown in the following snippet. Despite the name of the method, this option *does not enable the shared session* but only affects the customization of that session.
+The creation of the RavenDB `IAsyncDocumentSession` instance used by NServiceBus and made available as the [shared session](#shared-session) can be customized as shown in the following snippet. Despite the name of the method, this option *does not enable the shared session* but only affects the customization of that session.
 
 snippet: ravendb-persistence-customize-document-session
 
 include: raven-dispose-warning
 
-partial: multitenant
+## Multi-tenant support
+
+It is possible to select the database used to store NServiceBus-related data, such as saga data and outbox records, based on information stored in the incoming message headers:
+
+snippet: multi-tenant-support
 
 
 ## Viewing the data
