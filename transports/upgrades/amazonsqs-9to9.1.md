@@ -6,9 +6,9 @@ reviewed: 2026-06-04
 isUpgradeGuide: true
 ---
 
-## Message-driven pubsub deprecation
+## Message-driven publish/subscribe deprecation
 
-Customers who are currently using message-driven pubsub compatibility should migrate to native pubsub instead. Compatibility functionality is marked as obsolete with a warning for this version and will be treated as an error starting in the next major release.
+Customers who are currently using message-driven publish/subscribe compatibility should migrate to native publish/subscribe instead. Compatibility functionality is marked as obsolete with a warning for this version and will be treated as an error starting in the next major release.
 
 ### Migration Steps
 
@@ -23,7 +23,7 @@ async Task Initialize()
     var transport = new SqsTransport();
     // ...
 
-    // Enable message-driven pubsub compatibility
+    // Enable message-driven publish/subscribe compatibility
     transport.EnableMessageDrivenPubSubCompatibilityMode();
 
     var routing = endpointConfiguration.UseTransport(transport);
@@ -36,15 +36,15 @@ async Task Initialize()
 The following steps need to be taken for all event types that require migration:
 
 - Disable auto-subscribe for each event type
-- Unsubscribe the message-driven pubsub for each event type
-- Remove usage of both `RegisterPublisher` and `EnableMessageDrivenPubSubCompatibilityMode`
+- Unsubscribe from each event type using the endpoint instance unsubscribe API
+- Remove usage of both `RegisterPublisher` and `EnableMessageDrivenPubSubCompatibilityMode`.
 
 An example of how this may be done is as follows:
 
 ```csharp
-async Task Initialize(bool migrate = false)
+async Task Initialize(bool migrateAwayFromMessageDrivenPubSub = false)
 {
-    if (migrate)
+    if (migrateAwayFromMessageDrivenPubSub)
     {
         await MigrateAwayFromMessageDrivenPubSub();
     }
