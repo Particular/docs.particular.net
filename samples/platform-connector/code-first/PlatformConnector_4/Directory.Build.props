@@ -1,0 +1,6 @@
+<Project>
+  <ItemGroup>
+    <!-- See https://docs.particular.net/nservicebus/upgrades/10to11/#host-identifier-algorithm-change -->
+    <RuntimeHostConfigurationOption Include="NServiceBus.Core.Hosting.UseV2DeterministicGuid" Value="true" />
+  </ItemGroup>
+</Project>
