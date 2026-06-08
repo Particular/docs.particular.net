@@ -13,9 +13,15 @@ upgradeGuideCoreVersions:
 
 Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
 
+> [!NOTE]
+> Version 5.1 introduces additional features such as the [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) and [built-in topic routing modes](/transports/azure-service-bus/topology.md#filtering-within-a-multiplexed-topic-using-built-in-routing-modes) that simplify polymorphic dispatch and selective consumption on multiplexed topics. These features are available when upgrading to the latest version of the transport.
+
 ## Polymorphic dispatch
 
 [Polymorphic dispatch using message type inheritance](/nservicebus/messaging/dynamic-dispatch-and-routing.md) no longer auto subscribes to all descendant types. Polymorphic dispatch is still supported but requires that each descendant type in the inheritance tree [is configured with an explicit type subscription on the topology object](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance).
+
+> [!NOTE]
+> Starting with version 5.1, the transport provides a [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) that simplifies polymorphic dispatch scenarios. When configured, unmapped events are automatically routed to a shared topic with built-in filtering, eliminating the need for explicit per-type subscriptions in many inheritance scenarios.
 
 
 ## Topologies
@@ -170,6 +176,21 @@ The second step is to mark the event as "migrated" in the publisher configuratio
 To reduce CPU and memory overhead, subscriber endpoints should disable the [AutoSubscribe feature for the specific event](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions-exclude-event-types-from-auto-subscribe) to prevent unnecessary old subscriptions or the deletion of no-longer-used filter rules.
 
 All endpoints using `TopicTopology.Default` can be considered fully migrated.
+
+## Version 5.1 enhancements
+
+When upgrading to version 5.1 or later of the transport, additional capabilities become available on the topic-per-event topology:
+
+### Fallback topic
+
+The [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) provides a catch-all destination for events that are not explicitly mapped. This simplifies polymorphic dispatch scenarios and reduces the number of explicit mappings required when subscribing through base contracts or interfaces.
+
+### Built-in filtering modes
+
+[Topic routing modes](/transports/azure-service-bus/topology.md#filtering-within-a-multiplexed-topic-using-built-in-routing-modes) provide built-in support for `CorrelationFilter` and `SqlFilter` on multiplexed topics, eliminating the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
+
+> [!NOTE]
+> These features require version 5.1 or later and are not available in version 5.0. Endpoints using the migration topology cannot use the fallback topic or topic routing modes until they have fully migrated to the topic-per-event topology.
 
 ### Cleanup of no longer used entities on Azure Service Bus
 
