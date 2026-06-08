@@ -12,16 +12,7 @@ public static class NServiceBusDefaults
             var endpointConfiguration = new EndpointConfiguration(name);
 
             #region transport-config
-            var connectionString = builder.Configuration.GetConnectionString("learning-transport");
-            if (connectionString is null)
-            {
-                throw new InvalidOperationException
-                    ($"No transport configured. Provide a 'ConnectionStrings:learning-transport'.");
-            }
-            var routing = endpointConfiguration.UseTransport(new LearningTransport()
-            {
-                StorageDirectory = connectionString
-            });
+            var routing = endpointConfiguration.UseTransport(new LearningTransport());
             #endregion
 
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();

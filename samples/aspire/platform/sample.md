@@ -55,7 +55,7 @@ The OpenTelemetry configuration has been updated to include NServiceBus metrics 
 
 snippet: add-nsb-otel
 
-Each endpoint project retrieves the transport path provided by the `particular` resource:
+Each endpoint project configures the learning transport:
 
 snippet: transport-config
 

@@ -104,7 +104,7 @@ The platform uses whichever transport is configured via a `WithTransport*` exten
 
 ### Learning transport
 
-The [Learning transport](/transports/learning/) stores messages on the local file system. By default they are persisted to `.learningtransport` under the AppHost project directory. Pass a custom path to override.
+The [Learning transport](/transports/learning/) stores messages on the local file system. The default [storage directory](/transports/learning/#storage-directory) is attached to the platform containers so that they share the transport with your endpoints.
 
 snippet: aspire-transport-learning
 
@@ -117,7 +117,7 @@ The Learning transport appears in the Aspire dashboard as a `learning-transport`
 
 | Option | Default |
 | --- | --- |
-| `storagePath` (`string?`) parameter on `WithTransportLearning` | `.learningtransport` (relative to the AppHost project directory) |
+| `storagePath` (`string?`) parameter on `WithTransportLearning` | `.learningtransport` (relative to the solution directory) |
 
 ### Azure Service Bus
 
