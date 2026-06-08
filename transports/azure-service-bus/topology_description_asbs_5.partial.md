@@ -232,9 +232,9 @@ topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged");
 
 In this case, the topic `Shipping.IOrderStatusChanged` serves as a common destination for multiple concrete event types. Subscribers will receive all messages sent to that topic and must handle the full range of possible types.
 
-###### Filtering Within a Multiplexed Topic (v5)
+###### Filtering Within a Multiplexed Topic
 
-For versions 5.0 and earlier, if selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
+When selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
 
 ```csharp
 transport.OutgoingNativeMessageCustomization = (operation, message) =>
@@ -265,6 +265,9 @@ resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2021
 ```
 
 This configuration enables selective routing while using a shared topic, though it reintroduces filtering overhead and should be applied judiciously.
+
+> [!NOTE]
+> Starting with version 5.1, the transport provides built-in support for filtering through the `TopicRoutingMode` enumeration, eliminating the need for manual customization. See [Filtering within a multiplexed topic using built-in routing modes](#filtering-within-a-multiplexed-topic-using-built-in-routing-modes) below.
 
 ###### Filtering Within a Multiplexed Topic (v5.1 and later)
 
