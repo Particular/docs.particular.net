@@ -1,7 +1,7 @@
 ---
 title: Upgrade Version 10 to 11
 summary: Instructions on how to upgrade NServiceBus from version 10 to version 11.
-reviewed: 2026-04-14
+reviewed: 2026-06-08
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -197,6 +197,14 @@ The following APIs are deprecated:
 ## Host identifier algorithm change
 
 In version 11, the default algorithm for generating deterministic host identifiers changes from MD5 to XxHash128 (RFC 9562 version 8 GUIDs). This produces different host identifiers, which affects how endpoints are identified in [ServicePulse](/servicepulse/) and [ServiceControl](/servicecontrol/).
+
+### Rationale
+
+This change provides a path for customers who require **FIPS-compliant** host identifiers (see [FIPS compliance](/nservicebus/compliance/fips.md)). The legacy MD5-based algorithm is not FIPS-compliant; by moving to the new `XxHash128` algorithm, the framework uses a compliant standard by default.
+
+To ensure a predictable transition, this is designed as a multi-phase migration. In version 11, the new algorithm becomes the default. By making this an explicit switch rather than an automatic change, there is a clear "escape hatch" to preserve legacy host IDs if correlation with older monitoring data (such as ServicePulse) must be maintained during the transition.
+
+This approach allows the framework to move toward a compliant default while providing the necessary flexibility to manage existing integrations before the legacy algorithm is removed in version 12.
 
 ### Impact
 
