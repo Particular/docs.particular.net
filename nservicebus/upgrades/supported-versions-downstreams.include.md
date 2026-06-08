@@ -218,7 +218,6 @@
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/7.0.3)| **Current** | 2026-01-30     | Active            | Active |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/6.0.4)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.3)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.2.2)| Mainstream Support | 2025-06-03     | 2026-06-07        | Ineligible |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.7)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.3.3)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17 |
 
@@ -229,7 +228,6 @@
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/7.0.3)| **Current** | 2026-01-30     | Active            | Active |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/6.0.4)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.3)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.2.2)| Mainstream Support | 2025-06-03     | 2026-06-07        | Ineligible |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.7)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/2.3.3)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17 |
 
@@ -369,7 +367,6 @@
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.1.0)| **Current** | 2026-05-27     | Active            | Active |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.0.1)| Mainstream Support | 2026-01-29     | 2026-08-27        | Ineligible |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.1.1)| Mainstream Support | 2026-01-15     | 2028-01-29        | 2030-01-29 |
-| [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.1)| Mainstream Support | 2025-04-11     | 2026-06-06        | Ineligible |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.3)| Extended Support | 2023-09-21     | 2026-04-16        | 2028-04-16 |
 | [0.6.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0)| Extended Support | 2023-04-27     | 2024-05-09        | 2026-05-09 |
 
