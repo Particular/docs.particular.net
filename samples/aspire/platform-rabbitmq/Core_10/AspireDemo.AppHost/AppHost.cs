@@ -26,7 +26,7 @@ var shippingDB = database.AddDatabase("shipping-db");
 
 var platform = builder
     .AddParticularPlatform("particular")
-    .WithTransportRabbitMq(RabbitMqRouting.QuorumConventionalRouting, transport)
+    .WithTransportRabbitMQ(RabbitMqRouting.QuorumConventionalRouting, transport)
     .AddDefaultComponents();
 
 builder.AddProject<Projects.Billing>("Billing")
