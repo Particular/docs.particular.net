@@ -9,8 +9,6 @@ redirects:
  - nservicebus/ravendb/operations-scripting
 ---
 
-include: dtc-warning
-
 include: cluster-configuration-info
 
 Example code and scripts to facilitate deployment and operational actions against RavenDB.
