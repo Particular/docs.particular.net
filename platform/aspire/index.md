@@ -104,7 +104,7 @@ The platform uses whichever transport is configured via a `WithTransport*` exten
 
 ### Learning transport
 
-The [Learning transport](/transports/learning/) stores messages on the local file system. The default [storage directory](/transports/learning/#storage-directory) is attached to the platform containers so that they share the transport with your endpoints.
+The [Learning transport](/transports/learning/) stores messages on the local file system. The default [storage directory](/transports/learning/#usage-storage-directory) is attached to the platform containers so that they share the transport with your endpoints.
 
 snippet: aspire-transport-learning
 
