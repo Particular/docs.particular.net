@@ -126,6 +126,8 @@ snippet: custom-error-queue
 
 Messages moved to the error queue have the [`NServiceBus.FailedQ`](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) header set to allow scripted retries. Refer to the documentation for the [various transports](/transports) for more details on how to perform retries.
 
+partial: critical-error
+
 ## Auditing
 
 The bridge adds a `NServiceBus.Bridge.Transfer` header to a message while that message is transferred between transports.
