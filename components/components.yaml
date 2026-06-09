@@ -837,3 +837,13 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents
   NugetOrder:
     - NServiceBus.Envelope.CloudEvents
+
+- Key: Aspire.Hosting
+  Name: Particular.Aspire.Hosting.ServicePlatform
+  DocsUrl: /platform/aspire
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/Particular.Aspire.Hosting.ServicePlatform/blob/main/LICENSE.md
+  ProjectUrl: https://github.com/Particular/Particular.Aspire.Hosting.ServicePlatform
+  NugetOrder:
+    - Particular.Aspire.Hosting.ServicePlatform

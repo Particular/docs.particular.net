@@ -40,6 +40,7 @@ The transport has been confirmed to work with the following hosting providers:
 |Installers                 |Mandatory
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |Yes
+|Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-rabbitmq)
 
 ## Configuring the endpoint
 
