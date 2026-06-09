@@ -1,6 +1,6 @@
 ## Critical error handling
 
-A bridge can encounter a [critical error](/nservicebus/hosting/critical-errors.md) when a transport cannot recover from an infrastructure failure. Use `DefineCriticalErrorAction` to stop the affected bridge endpoint and terminate the process:
+A bridge can encounter a [critical error](/nservicebus/hosting/critical-errors.md) when a transport cannot recover from an infrastructure failure. Starting with version 5.1, `DefineCriticalErrorAction` can be used to stop the affected bridge endpoint and terminate the process:
 
 snippet: bridge-critical-error-action
 
