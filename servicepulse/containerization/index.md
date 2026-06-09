@@ -1,6 +1,6 @@
 ---
 title: Running ServicePulse in containers
-reviewed: 2024-10-07
+reviewed: 2026-06-08
 component: ServicePulse
 ---
 
@@ -17,7 +17,7 @@ docker run -d --name servicepulse -p 9090:9090 \
 
 ## Reverse proxy
 
-The ServicePulse container image includes a reverse proxy feature that allows ServicePulse to act as a single ingress/egress point for a system containing ServiceControl containers. This allows existing container hosting infrastructure to layer additional features onto the ServicePulse ingress point, such as SSL or authentication. It is enabled by default, but [it can be disabled](#settings-enable-reverse-proxy).
+The ServicePulse container image includes a reverse proxy feature that allows ServicePulse to act as a single ingress/egress point for a system containing ServiceControl containers. This allows existing container hosting infrastructure to layer additional features onto the ServicePulse ingress point, such as SSL/TLS or authentication. It is enabled by default, but [it can be disabled](#settings-enable-reverse-proxy).
 
 ## Ports
 
@@ -62,7 +62,7 @@ A JSON array of URLs to monitoring instances.
 |-|-|
 | **Environment variable** | `MONITORING_URLS` |
 | **Type** | JSON Array of URLs |
-| **Default** | `['http://localhost:33633']` |
+| **Default** | `["http://localhost:33633"]` |
 
 ### Default route
 
@@ -125,7 +125,7 @@ Trust all proxies. Auto-disabled if known proxies/networks are set.
 | **Default** | `true` |
 
 > [!WARNING]
-> The default configuration (`TrustAllProxies = true`) is suitable for development and trusted container environments only. For production deployments accessible from untrusted networks, its recommended to configure `KnownProxies` or `KnownNetworks` to restrict which sources can set forwarded headers. Failing to do so can allow attackers to spoof client IP addresses.
+> The default configuration (`TrustAllProxies = true`) is suitable for development and trusted container environments only. For production deployments accessible from untrusted networks, it's recommended to configure `KnownProxies` or `KnownNetworks` to restrict which sources can set forwarded headers. Failing to do so can allow attackers to spoof client IP addresses.
 
 #### Known proxies
 
