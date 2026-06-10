@@ -2,7 +2,7 @@
 title: Bridge configuration options
 summary: Configuration options for the messaging bridge.
 component: Bridge
-reviewed: 2026-05-13
+reviewed: 2026-06-01
 ---
 
 ## Hosting
@@ -14,6 +14,8 @@ snippet: generic-host
 The overload that accepts a [`HostBuilderContext`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostbuildercontext) provides access to the [`IConfiguration` type](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration) and other host-related details.
 
 snippet: generic-host-builder-context
+
+partial: critical-error-action
 
 ## Registering endpoints
 
@@ -154,7 +156,6 @@ partial: failed-messages
 Special considerations are required for the audit queue due to potentially high message volume. For example, a [dedicated ServiceControl audit instance](/servicecontrol/audit-instances/) could be created for each bridged transport, to make audit ingestion more efficient.
 
 partial: monitoring
-
 
 
 
