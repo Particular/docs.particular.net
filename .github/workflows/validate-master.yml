@@ -23,7 +23,7 @@ jobs:
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
-           $curl-url = curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json
+           $curl-url = "curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json"
            echo "DOCSTOOL_VERSION=$curl-url" >> $GITHUB_ENV
       - name: Cache docstool
         id: cache-docstool
@@ -77,7 +77,7 @@ jobs:
           }
           $body = @{
             channel = 'docs'
-            text = "Integrity tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            text = "Integrity tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/validate-master.yml?query=branch%3Amaster"
             username = 'Integrity tests'
             icon_emoji = 'github_actions'
             unfurl_links = false
