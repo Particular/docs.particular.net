@@ -9,6 +9,9 @@ on:
 env:
   DOTNET_NOLOGO: true
   DOTNET_ROLL_FORWARD: Major
+defaults:
+  run:
+    shell: pwsh
 jobs:
   content-verification:
     name: Content verification
@@ -39,7 +42,6 @@ jobs:
         run: docstool test --no-version-check
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
@@ -69,7 +71,6 @@ jobs:
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
@@ -114,7 +115,6 @@ jobs:
           key: ${{ steps.nuget-cache-restore.outputs.cache-primary-key }}
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
