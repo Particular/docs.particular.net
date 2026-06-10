@@ -1,15 +1,13 @@
 ---
 title: RavenDB Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RavenDB.
-reviewed: 2024-10-01
+reviewed: 2026-06-09
 component: Raven
 related:
  - nservicebus/operations
 redirects:
  - nservicebus/ravendb/operations-scripting
 ---
-
-include: dtc-warning
 
 include: cluster-configuration-info
 
@@ -23,7 +21,7 @@ These examples use the [RavenDB.Client](https://www.nuget.org/packages/RavenDB.C
 
 The following code shows an example of how to grant a user access to a RavenDB database.
 
-This is helpful to ensure the user account, an endpoint is running under, has appropriate access to RavenDB.
+This is helpful to ensure the user account that an endpoint is running under has appropriate access to RavenDB.
 
 snippet: raven-add-user
 
