@@ -46,7 +46,7 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 
 `AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `WithTransportAmazonSqs` extension points the platform at the SQS configuration defined earlier, so that the ServiceControl instances connect to the same AWS region as the endpoints.
 
-The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse and RavenDB for persistence.
+The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse and RavenDB for ServiceControl persistence.
 
 snippet: platform-config
 
@@ -72,7 +72,7 @@ Each endpoint project creates an Amazon SQS transport and sets the queue prefix 
 
 snippet: transport-config
 
-Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
+Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and ServiceControl persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
 
