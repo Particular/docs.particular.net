@@ -598,6 +598,12 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Wcf/3.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Wcf/2.0.0)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 
+#### [Particular.Aspire.Hosting.ServicePlatform](/nuget/Particular.Aspire.Hosting.ServicePlatform)
+
+| Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
+|:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.0)| **Current** | 2026-06-09     | Active            | Ineligible |
+
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |

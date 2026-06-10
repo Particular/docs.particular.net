@@ -2,7 +2,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.4)| **Current** | 2026-05-21     | Active            | Active |
+| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.5)| **Current** | 2026-05-21     | Active            | Active |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.6)| Mainstream Support | 2026-02-06     | 2026-11-21        | Ineligible |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.4)| Mainstream Support | 2026-01-29     | 2026-08-06        | Ineligible |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.11)| Mainstream Support | 2024-09-10     | 2028-01-29        | 2030-01-29 |
@@ -1204,6 +1204,12 @@ No versions released.
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Wcf/3.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Wcf/2.0.0)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Wcf/1.0.0)| ~~Unsupported~~ | ~~2016-10-11~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
+
+#### [Particular.Aspire.Hosting.ServicePlatform](/nuget/Particular.Aspire.Hosting.ServicePlatform)
+
+| Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
+|:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.0)| **Current** | 2026-06-09     | Active            | Ineligible |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

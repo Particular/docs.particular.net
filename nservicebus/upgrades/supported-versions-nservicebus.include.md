@@ -2,7 +2,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.4)| **Current** | 2026-05-21     | Active            | Active |
+| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.5)| **Current** | 2026-05-21     | Active            | Active |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.6)| Mainstream Support | 2026-02-06     | 2026-11-21        | Ineligible |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.4)| Mainstream Support | 2026-01-29     | 2026-08-06        | Ineligible |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.11)| Mainstream Support | 2024-09-10     | 2028-01-29        | 2030-01-29 |

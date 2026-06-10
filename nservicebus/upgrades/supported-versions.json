@@ -1347,6 +1347,15 @@
       ]
     },
     {
+      "PackageId": "Particular.Aspire.Hosting.ServicePlatform",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
       "PackageId": "ServiceControl.Contracts",
       "Versions": [
         {
