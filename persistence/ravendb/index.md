@@ -1,7 +1,6 @@
 ---
 title: RavenDB Persistence
 component: raven
-versions: '[2,)'
 related:
  - samples/ravendb
  - samples/multi-tenant/ravendb
@@ -11,10 +10,6 @@ redirects:
  - persistence/ravendb/licensing
  - nservicebus/ravendb/licensing
 ---
-
-include: dtc-warning
-
-include: cluster-configuration-info
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
