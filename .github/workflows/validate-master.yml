@@ -2,7 +2,7 @@ name: VerifyMaster
 on:
   schedule:
     - cron: '0 2/4 * * 1-5' # Every 4 hours, Monday-Friday
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -47,7 +47,7 @@ jobs:
           }
           $body = @{
             channel = 'docs'
-            text = "Content verification has failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            text = "Content verification has failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/validate-master.yml?query=branch%3Amaster"
             username = 'Content verification'
             icon_emoji = 'github_actions'
             unfurl_links = false
@@ -86,7 +86,6 @@ jobs:
           $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
           Write-Output $result
           exit $(If ($result.ok) { 0 } Else { 1 })
-  
   build-samples-and-snippets:
     name: Build samples and snippets
     runs-on: ubuntu-latest
@@ -94,7 +93,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v5.2.0
+        uses: actions/setup-dotnet@v5.3.0
         with:
           global-json-file: global.json
       - name: Restore NuGet Cache
@@ -123,7 +122,7 @@ jobs:
           }
           $body = @{
             channel = 'docs'
-            text = "Failed to build samples and snippets on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml"
+            text = "Failed to build samples and snippets on master: https://github.com/Particular/docs.particular.net/actions/workflows/validate-master.yml?query=branch%3Amaster"
             username = 'Build samples and snippets'
             icon_emoji = 'github_actions'
             unfurl_links = false
@@ -132,6 +131,6 @@ jobs:
           $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
           Write-Output $result
           exit $(If ($result.ok) { 0 } Else { 1 })
-      - name: Output failed failed samples and snippets
+      - name: Output failed samples and snippets
         if: ${{ failure() }}
         run: cat .\failed-samples-and-snippets.log
