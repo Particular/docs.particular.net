@@ -1,7 +1,7 @@
 ---
 title: Header Manipulation
 summary: All extension points for mutating messages.
-reviewed: 2024-10-01
+reviewed: 2026-06-10
 component: Core
 related:
 - samples/messagemutators
@@ -80,7 +80,7 @@ snippet: incoming-header-behavior
 
 ## Globally for all outgoing messages
 
-A list of headers can be defined that are automatically appended to all messages sent though a given instance of the endpoint configuration.
+A list of headers can be defined that are automatically appended to all messages sent through a given instance of the endpoint configuration.
 
 snippet: global-all-outgoing
 
