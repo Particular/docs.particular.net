@@ -1,7 +1,7 @@
 ---
 title: Aspire
 summary: Describes how to orchestrate the Particular Platform via an Aspire AppHost
-reviewed: 2026-05-21
+reviewed: 2026-06-10
 component: Aspire.Hosting
 related:
 - samples/hosting/aspire
@@ -9,7 +9,7 @@ related:
 - samples/aspire/platform-asb
 ---
 
-The `Particular.Aspire.Hosting.ServicePlatform` package is an [Aspire](https://aspire.dev/) hosting integration that runs the Particular Service Platform — the ServiceControl instances, ServicePulse, persistence, and message transport — as part of an Aspire AppHost. It is intended for developers and technical leads who run the platform locally during development and want the same AppHost to carry through to publish-mode deployments, without maintaining a separate set of infrastructure scripts.
+The `Particular.Aspire.Hosting.ServicePlatform` package is an [Aspire](https://aspire.dev/) hosting integration that runs the Particular Service Platform (the ServiceControl instances, ServicePulse, the ServiceControl database, and message transport) as part of an Aspire AppHost. It is intended for developers and technical leads who run the platform locally during development and want the same AppHost to carry through to publish-mode deployments, without maintaining a separate set of infrastructure scripts.
 
 ## Overview
 
@@ -19,11 +19,11 @@ A single `AddParticularPlatform(...)` call registers a platform resource that ow
 
 - [ServiceControl](/servicecontrol) error, audit, and monitoring instances
 - [ServicePulse](/servicepulse)
-- A managed RavenDB persistence instance, or one supplied by the AppHost
+- A managed RavenDB database for ServiceControl, or one supplied by the AppHost
 - The configured message [transport](#supported-components-transport)
 - The platform license
 
-Transport, persistence, and licensing are configured once on the platform resource and propagated to every component, so the containers start in the correct order. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring.
+Transport and licensing are configured once on the platform resource and propagated to every component, so the containers start in the correct order. ServiceControl's persistence is configured on the same resource and shared by the Error and Audit instances that require it. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring, and configure their own persistence separately.
 
 snippet: aspire-apphost
 
@@ -46,7 +46,9 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
 | [IBM MQ](/transports/ibmmq/)                              | Not yet supported            |
 
-### Persistence
+### ServiceControl persistence
+
+This is the database that backs the ServiceControl instances. It is separate from the [persistence](/persistence/) an NServiceBus endpoint uses for sagas, outbox, and subscriptions, which the integration does not manage.
 
 | Persistence                          | Status    |
 | ------------------------------------ | --------- |
@@ -80,7 +82,7 @@ To attach an [NServiceBus endpoint](/nservicebus/endpoints/) so it picks up the 
 
 snippet: aspire-quick-start-endpoint
 
-These defaults are intended for local development. For deployment scenarios, configure an explicit transport, persistence, and license as described in [Configuring the transport](#configuring-the-transport), [Configuring persistence](#configuring-persistence), and [Configuring the license](#configuring-the-license).
+These defaults are intended for local development. For deployment scenarios, configure an explicit transport, ServiceControl persistence, and license as described in [Configuring the transport](#configuring-the-transport), [Configuring ServiceControl persistence](#configuring-servicecontrol-persistence), and [Configuring the license](#configuring-the-license).
 
 snippet: aspire-quick-start-explicit
 
@@ -160,9 +162,9 @@ snippet: aspire-transport-sqs
 | `S3BucketForLargeMessages` (`IExpressionValue?`) property on `AmazonSQSTransportSettings`              | Optional |
 | `QueueNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
 
-## Configuring persistence
+## Configuring ServiceControl persistence
 
-ServiceControl uses a persistence backend to store error and audit data, retry state, and saga history. See [Supported components](#supported-components) for the persisters currently wired through the integration.
+ServiceControl uses a persistence backend to store error and audit data, retry state, and saga audit history. This is ServiceControl's own database; it is separate from any persistence your NServiceBus endpoints use for sagas, outbox, or subscriptions, which you configure in each endpoint as usual. See [Supported components](#supported-components) for the persisters currently wired through the integration.
 
 Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require persistence. Follow the [managing persistence guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
 
