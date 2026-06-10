@@ -1,16 +1,12 @@
 ---
 title: RavenDB Persistence in multi-tenant systems
 summary: Configure RavenDB Persistence to support multi-tenant scenarios.
-reviewed: 2024-10-01
+reviewed: 2026-06-09
 component: Raven
 related:
 - persistence/ravendb
 - nservicebus/outbox
 ---
-
-include: dtc-warning
-
-include: cluster-configuration-info
 
 This sample demonstrates how to configure RavenDB Persistence to store tenant-specific data in separate databases. The tenant-specific information includes the saga state, the business documents that are accessed using [RavenDB-managed session](/persistence/ravendb/#shared-session), and the outbox records.
 
