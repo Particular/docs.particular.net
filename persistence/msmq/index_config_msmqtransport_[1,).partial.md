@@ -11,7 +11,7 @@ If the subscription storage is not specified, NServiceBus uses a queue called `[
 
 Versions 5.x and Versions 6.x of NServiceBus used a default queue called `NServiceBus.Subscriptions`. An exception is thrown on startup if this queue is detected. Either specify the subscription queue explicitly or [move the subscription messages to the new default queue](/nservicebus/upgrades/6to7/moving-msmq-subscriptions.md) to avoid message loss.
 
-In order to specify a different queue, use the code API or specify a configuration section.
+To specify a different queue, use the code API or specify a configuration section.
 
 
 ### Via code
