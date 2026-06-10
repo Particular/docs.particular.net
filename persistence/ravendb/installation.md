@@ -2,18 +2,13 @@
 title: Installing RavenDB
 summary: How to install RavenDB when using RavenDB persistence for various versions of NServiceBus.
 component: core
-versions: "[3,)"
-reviewed: 2024-10-01
+reviewed: 2026-06-09
 related:
  - nservicebus/operations
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-installing
  - nservicebus/ravendb/installation
 ---
-
-include: dtc-warning
-
-include: cluster-configuration-info
 
 To install RavenDB, [download the server](https://ravendb.net/download) and install as described in the [RavenDB documentation](https://ravendb.net/docs/) or use a hosted RavenDB provider such as [RavenHQ](https://www.ravenhq.com/).
 
