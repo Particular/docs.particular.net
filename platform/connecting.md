@@ -26,7 +26,7 @@ snippet: PlatformConnector-FromJson
 
 The JSON file looks like this:
 
-snippet: PlatformConnector-json
+snippet: PlatformConnector-Json
 
 A JSON file specific to a concrete deployment of the ServicePlatform is available via ServicePulse.
 
