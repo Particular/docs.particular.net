@@ -36,5 +36,3 @@ To deploy the custom message body viewer the artifacts needs to be deployed to o
 - The ServiceInsight installation directory
 - The user profile roaming folder, `%APPDATA%\Particular Software\ServiceInsight\MessageViewers`
 - The all users profile folder, `%ALLUSERSPROFILE%\Particular\ServiceInsight\MessageViewers`
-
-For more information, refer to the ServiceInsight custom message body viewer [sample](/samples/serviceinsight/messageviewer).
