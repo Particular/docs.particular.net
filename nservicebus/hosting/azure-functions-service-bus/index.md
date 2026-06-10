@@ -14,7 +14,7 @@ The isolated worker model is a newer hosting option for Azure Functions. Running
 >
 > We will continue to provide support and address critical fixes, but no new features will be added.
 > New projects should use the [NServiceBus.AzureFunctions.AzureServiceBus](/nservicebus/hosting/azure/functions/) instead. Follow [these instructions](/nservicebus/upgrades/azure-functions-service-bus-isolated-to-azure-functions.md) to migrate.
-> For information on the date when this component will stop receiving any update check our [support policy page](/nservicebus/upgrades/all-versions.md#host-packages-nservicebus-azurefunctions-inprocess-servicebus).
+> For information on the date when this component will stop receiving any update check our [support policy page](/nservicebus/upgrades/all-versions.md#host-packages-nservicebus-azurefunctions-worker-servicebus).
 
 ## Usage
 
