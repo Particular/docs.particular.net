@@ -1,4 +1,3 @@
-using AzureFunctions.ServiceBus;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
 
