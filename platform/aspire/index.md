@@ -50,7 +50,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 
 This is the database that backs the ServiceControl instances. It is separate from the [persistence](/persistence/) an NServiceBus endpoint uses for sagas, outbox, and subscriptions, which the integration does not manage.
 
-| Persistence                          | Status    |
+| Database                             | Status    |
 | ------------------------------------ | --------- |
 | [RavenDB](/servicecontrol/ravendb/)  | Supported |
 
@@ -74,7 +74,7 @@ Only the AppHost project needs this reference. NServiceBus endpoint projects pic
 
 ## Quick start
 
-`AddDefaultComponents()` wires up the Learning transport, a managed RavenDB persistence instance, the ServiceControl error, audit, and monitoring instances, and ServicePulse with sensible defaults:
+`AddDefaultComponents()` wires up the Learning transport, a managed RavenDB instance, the ServiceControl error, audit, and monitoring instances, and ServicePulse with sensible defaults:
 
 snippet: aspire-quick-start-platform
 
@@ -94,7 +94,7 @@ The platform appears in the [Aspire dashboard](https://aspire.dev/dashboard/) as
 - **ServiceControl Error**: the error instance API
 - **ServiceControl Audit**: the audit instance API
 - **ServiceControl Monitoring**: the monitoring instance API
-- **Management Studio**: the RavenDB management UI (when using the managed RavenDB persistence instance)
+- **Management Studio**: the RavenDB management UI (when using the managed RavenDB instance)
 
 Externally supplied resources are not nested under the platform. An Azure Service Bus or RabbitMQ broker passed in via `AddConnectionString("...")` (or any other `Add*` call), and an existing RavenDB instance attached via `WithPersistenceRavenDb(existingRaven)`, appear as separate top-level resources in the dashboard. The platform does not own their lifecycle, so it does not group them under itself.
 
@@ -166,7 +166,7 @@ snippet: aspire-transport-sqs
 
 ServiceControl uses a database to store error and audit data, retry state, and saga audit history. This is ServiceControl's own database; it is separate from any persistence your NServiceBus endpoints use for sagas, outbox, or subscriptions, which you configure in each endpoint as usual. See [Supported components](#supported-components) for the persisters currently wired through the integration.
 
-Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require persistence. Follow the [managing persistence guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
+Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require a database. Follow the [managing database instance guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
 
 ### RavenDB
 
@@ -275,7 +275,7 @@ snippet: aspire-components-audit
 
 ### ServiceControl Monitoring instance
 
-`AddServiceControlMonitoringInstance(name)` adds a [ServiceControl Monitoring instance](/servicecontrol/monitoring-instances/), running the [`particular/servicecontrol-monitoring`](https://hub.docker.com/r/particular/servicecontrol-monitoring) image, as a child of the platform. The monitoring instance does not require a persistence resource.
+`AddServiceControlMonitoringInstance(name)` adds a [ServiceControl Monitoring instance](/servicecontrol/monitoring-instances/), running the [`particular/servicecontrol-monitoring`](https://hub.docker.com/r/particular/servicecontrol-monitoring) image, as a child of the platform. The monitoring instance does not require a database.
 
 The monitoring queue name defaults to `Particular.Monitoring`. Override it with `WithMonitoringQueueName(queueName)`. Use `WithThroughputQueueFrom(error)` to copy the throughput queue name from the error instance and keep the two aligned without repeating the name; `WithThroughputQueue(queueName)` sets it explicitly when the queue address needs to differ from the error instance.
 
@@ -307,7 +307,7 @@ snippet: aspire-components-servicepulse
 
 ## Using standard Aspire extensions
 
-Each container the integration adds (the ServiceControl Error, Audit, and Monitoring instances, ServicePulse, and the managed RavenDB persistence instance) is a regular Aspire [container resource](https://aspire.dev/get-started/resources/), and `AddParticularPlatform` returns a standard resource builder. Any extension method that applies to those base types can be chained with the integration's own `Add*` and `With*` methods. Common examples include:
+Each container the integration adds (the ServiceControl Error, Audit, and Monitoring instances, ServicePulse, and the managed RavenDB instance) is a regular Aspire [container resource](https://aspire.dev/get-started/resources/), and `AddParticularPlatform` returns a standard resource builder. Any extension method that applies to those base types can be chained with the integration's own `Add*` and `With*` methods. Common examples include:
 
 - `WithImageTag(tag)` to pin a specific image version
 - `WithImageRegistry(registry)` to pull from a private registry mirror
@@ -431,7 +431,7 @@ The available modes are:
 
 ## Publishing and deploying
 
-The integration's components are standard Aspire resources, so they participate in `aspire publish` and `aspire deploy` like any other resource. The synthetic platform parent resource is excluded from the publish manifest, but every component it owns (the ServiceControl instances, ServicePulse, and the managed RavenDB persistence instance) is included as a normal container resource in the published output. Externally supplied resources, such as an Azure Service Bus broker passed in via `AddConnectionString`, appear as they would in any other Aspire AppHost.
+The integration's components are standard Aspire resources, so they participate in `aspire publish` and `aspire deploy` like any other resource. The synthetic platform parent resource is excluded from the publish manifest, but every component it owns (the ServiceControl instances, ServicePulse, and the managed RavenDB instance) is included as a normal container resource in the published output. Externally supplied resources, such as an Azure Service Bus broker passed in via `AddConnectionString`, appear as they would in any other Aspire AppHost.
 
 Aspire supports multiple deployment targets, including [Docker Compose](https://aspire.dev/deployment/docker-compose/), Kubernetes, and Azure Container Apps. See [Aspire pipelines](https://aspire.dev/deployment/pipelines/) for the deployment model and the supported targets.
 
