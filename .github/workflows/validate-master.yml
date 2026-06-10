@@ -1,5 +1,7 @@
 name: VerifyMaster
 on:
+  schedule:
+    - cron: '0 2/4 * * 1-5' # Every 4 hours, Monday-Friday
   workflow_dispatch: 
   push:
     branches:
@@ -84,4 +86,52 @@ jobs:
           $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
           Write-Output $result
           exit $(If ($result.ok) { 0 } Else { 1 })
-
+  
+  build-samples-and-snippets:
+    name: Build samples and snippets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5.2.0
+        with:
+          global-json-file: global.json
+      - name: Restore NuGet Cache
+        id: nuget-cache-restore
+        uses: actions/cache/restore@v5
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+      - name: Build affected samples and snippets
+        run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
+      - name: Save NuGet Cache
+        id: nuget-cache-save
+        if: always() && steps.nuget-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v5
+        with:
+          path: ~/.nuget/packages
+          key: ${{ steps.nuget-cache-restore.outputs.cache-primary-key }}
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        shell: pwsh
+        run: |
+          $headers = @{
+              'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
+          }
+          $body = @{
+            channel = 'docs'
+            text = "Failed to build samples and snippets on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml"
+            username = 'Build samples and snippets'
+            icon_emoji = 'github_actions'
+            unfurl_links = false
+            unfurl_media = false
+          } | ConvertTo-Json
+          $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
+          Write-Output $result
+          exit $(If ($result.ok) { 0 } Else { 1 })
+      - name: Output failed failed samples and snippets
+        if: ${{ failure() }}
+        run: cat .\failed-samples-and-snippets.log
