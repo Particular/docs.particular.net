@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 #region azure-functions-basic-endpoint
 public partial class OrdersEndpoint

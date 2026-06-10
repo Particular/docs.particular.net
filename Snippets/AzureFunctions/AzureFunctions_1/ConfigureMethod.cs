@@ -8,7 +8,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 #region azure-functions-configure-with-services
 public partial class ShippingEndpoint

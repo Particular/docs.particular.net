@@ -5,37 +5,36 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 #region azure-functions-multiple-endpoints
 public partial class BillingFunctions
 {
-    [Function("BillingApi")]
+    [Function("Invoicing")]
     [NServiceBusFunction]
-    public partial Task BillingApi(
-        [ServiceBusTrigger("billing-api", AutoCompleteMessages = false)]
+    public partial Task Invoicing(
+        [ServiceBusTrigger("billing-invoicing", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureBillingApi(EndpointConfiguration endpointConfiguration)
+    public static void ConfigureInvoicing(EndpointConfiguration endpointConfiguration)
     {
         endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.AddHandler<ProcessPaymentHandler>();
     }
 
-    [Function("BillingBackend")]
+    [Function("CardProcessing")]
     [NServiceBusFunction]
-    public partial Task BillingBackend(
-        [ServiceBusTrigger("billing-backend", AutoCompleteMessages = false)]
+    public partial Task CardProcessing(
+        [ServiceBusTrigger("billing-card-processing", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureBillingBackend(EndpointConfiguration endpointConfiguration)
+    public static void ConfigureCardProcessing(EndpointConfiguration endpointConfiguration)
     {
         endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
