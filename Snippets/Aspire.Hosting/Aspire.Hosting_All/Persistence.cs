@@ -8,7 +8,7 @@ public class Persistence
 
         var platform = builder.AddParticularPlatform("particular");
 
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
 
         #endregion
     }
