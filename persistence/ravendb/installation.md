@@ -18,4 +18,4 @@ RavenDB should only be used for NServiceBus persistence when the endpoint's busi
 
 To upgrade an existing RavenDB installation, refer to the [RavenDB upgrade process](https://ravendb.net/docs/search/latest/csharp?searchTerm=server-administration%20upgrade).
 
-It is strongly recommended to backup all databases before upgrading.
+Remember to back up all databases before upgrading.
