@@ -69,7 +69,7 @@ class Usage
     {
         #region SqsTransport
 
-        // S3 bucket only required for commands larger than 1MB 
+        // S3 bucket only required for commands larger than 1MB
         // and events larger than 256KB
         var transport = new SqsTransport
         {
@@ -392,6 +392,8 @@ class Usage
 
     void EnableMessageDrivenPubSubCompatibilityMode(EndpointConfiguration endpointConfiguration)
     {
+
+#pragma warning disable CS0618 // Type or member is obsolete
         #region EnableMessageDrivenPubSubCompatibilityMode
 
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
@@ -399,28 +401,33 @@ class Usage
         routing.EnableMessageDrivenPubSubCompatibilityMode();
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void SubscriptionCacheTtl(EndpointConfiguration endpointConfiguration)
     {
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
+#pragma warning disable CS0618 // Type or member is obsolete
         #region SubscriptionsCacheTTL
 
         var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
         migrationSettings.SubscriptionsCacheTTL(TimeSpan.FromSeconds(30));
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void TopicCacheTtl(EndpointConfiguration endpointConfiguration)
     {
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
+#pragma warning disable CS0618 // Type or member is obsolete
         #region TopicCacheTtl
 
         var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
         migrationSettings.TopicCacheTTL(TimeSpan.FromSeconds(30));
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
