@@ -166,7 +166,7 @@ snippet: aspire-transport-sqs
 
 ServiceControl uses a database to store error and audit data, retry state, and saga audit history. This is ServiceControl's own database; it is separate from any persistence your NServiceBus endpoints use for sagas, outbox, or subscriptions, which you configure in each endpoint as usual. See [Supported components](#supported-components) for the persisters currently wired through the integration.
 
-Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require a database. Follow the [managing database instance guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
+Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require a database. Follow the [managing database guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
 
 ### RavenDB
 
