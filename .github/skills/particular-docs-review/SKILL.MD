@@ -61,7 +61,18 @@ Review from the reader's perspective for that version, not the transition that c
 
 Prefer snippets from `Snippets/{ComponentKey}/` referenced via `snippet:` key over inline blocks. Component keys in `components/component.yaml`. Inline only for very small examples.
 
-Samples must: compile (or mark pseudo-code), use current APIs, include required imports, use clear names, explain non-obvious logic, avoid hardcoded values.
+Samples must:
+
+- Compile or clearly state pseudo-code
+- Use current APIs
+- Include required imports
+- Use clear variable names
+- Explain non-obvious logic
+- Avoid hardcoded configuration values
+- Samples should define `LangVersion` to match the default language version of the lowest .NET target framework used in the solution
+- Snippet projects should not define `LangVersion`
+- Use exact package versions for prerelease packages; do not use wildcard prerelease versions such as `1.*-*`
+- Add `prerelease.txt` to a versioned sample or snippet directory when its projects reference prerelease versions of that component's packages, and do not add it otherwise
 
 ---
 
