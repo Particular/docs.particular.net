@@ -24,7 +24,7 @@ public partial class ShippingEndpoint
     public static void ConfigureShipping(
         EndpointConfiguration endpointConfiguration,
         IServiceCollection services,
-        IConfiguration configuration,
+        IConfigurationManager configuration,
         IHostEnvironment environment)
     {
         endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
