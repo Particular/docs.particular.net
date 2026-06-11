@@ -6,7 +6,7 @@ The service defaults extension method retrieves the connection string for the Ra
 
 snippet: transport-config
 
-The Shipping endpoint additionally retrieves the connection string for the PostgreSQL database and configures NServiceBus to use it as a ServiceControl persistence:
+The Shipping endpoint additionally retrieves the connection string for the PostgreSQL database and configures NServiceBus to use it as a ServiceControl database:
 
 snippet: persistence-config
 

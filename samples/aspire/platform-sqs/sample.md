@@ -46,7 +46,7 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 
 `AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `WithTransportAmazonSqs` extension points the platform at the SQS configuration defined earlier, so that the ServiceControl instances connect to the same AWS region as the endpoints.
 
-The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse and RavenDB for ServiceControl persistence.
+The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse and RavenDB for the ServiceControl database.
 
 snippet: platform-config
 
