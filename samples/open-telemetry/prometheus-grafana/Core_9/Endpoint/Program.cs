@@ -29,7 +29,7 @@ public class Program
         #endregion
 
         #region enable-prometheus-http-listener
-        meterProviderBuilder.AddPrometheusHttpListener(options => options.UriPrefixes = new[] { "http://*:9464/" });
+        meterProviderBuilder.AddPrometheusHttpListener();
         #endregion
 
         var meterProvider = meterProviderBuilder.Build();
