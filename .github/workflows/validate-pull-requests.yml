@@ -5,7 +5,7 @@ env:
   DOTNET_ROLL_FORWARD: Major
 defaults:
   run:
-    shell: pwsh
+    shell: bash
 jobs:
   content-verification:
     name: Content verification
@@ -20,8 +20,7 @@ jobs:
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
-           $result = curl --connect-timeout 5 --max-time 15 --silent --show-error https://s3.amazonaws.com/particular.downloads/Particular.DocsTool/version.json | ConvertFrom-Json
-           echo "DOCSTOOL_VERSION=$result.version" >> $GITHUB_ENV
+           echo "DOCSTOOL_VERSION=$(curl --connect-timeout 5 --max-time 15 --silent --show-error https://s3.amazonaws.com/particular.downloads/Particular.DocsTool/version.json)" >> $GITHUB_ENV
       - name: Cache docstool
         id: cache-docstool
         uses: actions/cache@v5.0.5
@@ -29,7 +28,7 @@ jobs:
           path: |
              ~/.dotnet/tools/docstool
              ~/.dotnet/tools/.store/particular.docstool
-          key: docstool-${{ env.DOCSTOOL_VERSION }}
+          key: docstool-${{ FromJson(env.DOCSTOOL_VERSION).version }}
       - name: Install docstool
         if: steps.cache-docstool.outputs.cache-hit != 'true'
         run: dotnet tool install Particular.DocsTool --global
