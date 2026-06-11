@@ -4,7 +4,7 @@ summary: NServiceBus ensures consistency between saga state and messaging.
 component: Core
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
-reviewed: 2024-10-08
+reviewed: 2026-06-09
 related:
 - persistence/nhibernate/saga-concurrency
 - persistence/ravendb/saga-concurrency
@@ -27,7 +27,7 @@ Saga state is created when a saga is started by a message. It may be updated whe
 
 When simultaneous messages initiating the same saga instance are received, NServiceBus ensures that only one message starts the saga. Currently, saga creation uses optimistic concurrency.
 
-Optimistic concurrency only allows one message handler to succeed. The saga state is created and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the existing saga state is found. Handling the messages may involve changing the state or completing the saga.  It's important to note that enabling pessimistic concurrency for the persister does not impact the optimistic concurrency of saga creation. See below for how those scenarios are handled.
+Optimistic concurrency only allows one message handler to succeed. The saga state is created and outgoing messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the existing saga state is found. Handling the messages may involve changing the state or completing the saga.  It's important to note that enabling pessimistic concurrency for the persister does not impact the optimistic concurrency of saga creation. See below for how those scenarios are handled.
 
 ## Changes to saga state
 
@@ -39,9 +39,9 @@ See the [documentation for each persister](/persistence/) for details of which m
 
 ## Completing a saga
 
-When using some persisters, messages received simultaneously that correlate to the same existing saga instance are not handled simultaneously. The persister use pessimistic locking to ensure that message handlers are invoked one after another.
+When using some persisters, messages received simultaneously that correlate to the same existing saga instance are not handled simultaneously. The persister uses pessimistic locking to ensure that message handlers are invoked one after another.
 
-When using other persisters, and simultaneously receiving messages which cause changes to the state of the same existing saga instance, and at least one of those messages causes the saga to be completed, NServiceBus ensures that only one message either changes the state or completes the saga. Using optimistic concurrency, only one message handler is allowed to succeed. If the message changes the saga, the saga stated is updated, and sent messages are dispatched. If the message completes the saga, the saga state is deleted, and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/).
+When using other persisters, and simultaneously receiving messages which cause changes to the state of the same existing saga instance, and at least one of those messages causes the saga to be completed, NServiceBus ensures that only one message either changes the state or completes the saga. Using optimistic concurrency, only one message handler is allowed to succeed. If the message changes the saga, the saga state is updated, and sent messages are dispatched. If the message completes the saga, the saga state is deleted, and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/).
 
 In both cases, if a message completes the saga, when subsequent messages are received, the saga state is not found and those messages are [discarded](/nservicebus/sagas/saga-not-found.md).
 
@@ -49,7 +49,7 @@ See the [documentation for each persister](/persistence/) for details of which m
 
 ## High-load scenarios
 
-Under high load, simultaneous attempts to create, update, or delete the state of a saga instance may lead to decreased performance due to the data contention scenarios described above. In effect, the use of pessimistic locking or optimistic currency control may lead to [block contention](https://en.wikipedia.org/wiki/Block_contention).
+Under high load, simultaneous attempts to create, update, or delete the state of a saga instance may lead to decreased performance due to the data contention scenarios described above. In effect, the use of pessimistic locking or optimistic concurrency control may lead to [block contention](https://en.wikipedia.org/wiki/Block_contention).
 
 In these scenarios, the symptoms of high data contention differ depending on the persister being used. Potential symptoms include:
 
@@ -78,7 +78,7 @@ The following saga persisters support pessimistic locking:
 - [MongoDB](/persistence/mongodb/) (since version 2.2.0)
 - [SQL](/persistence/sql/) (since version 4.1.1)
 - [RavenDB](/persistence/ravendb/) (available since version 6.4.0, default since version 7.0.0)
-- [CosmosDB](/persistence/cosmosdb/)
+- [Azure Cosmos DB](/persistence/cosmosdb/)
 - [DynamoDB](/persistence/dynamodb/)
 
 #### Optimistic concurrency control
@@ -90,12 +90,11 @@ Due to recoverability, OCC conflicts in high data contention scenarios may resul
 The following saga persisters support OCC:
 
 - [Azure Table](/persistence/azure-table/)
-- [Azure Cosmos DB](/persistence/cosmosdb)
+- [Azure Cosmos DB](/persistence/cosmosdb/)
 - [Non-Durable](/persistence/non-durable/)
 - [MongoDB](/persistence/mongodb/) (prior to 2.2.0)
 - [RavenDB](/persistence/ravendb/) (prior to 7.0.0)
 - [SQL](/persistence/sql/) (prior to 4.1.1)
-- [CosmosDB](/persistence/cosmosdb/)
 - [DynamoDB](/persistence/dynamodb/)
 
 ### Use custom recoverability for OCC conflicts
@@ -114,7 +113,7 @@ To avoid impacting the processing of messages which are not related to the saga,
 The number of OCC conflicts can be reduced by [decreasing the concurrency limit](/nservicebus/operations/tuning.md). Message handling can even be made sequential by setting the concurrency limit to 1.
 
 > [!NOTE]
-> Sequential messaging handling when using OCC is only possible for a single endpoint instance. When an endpoint is [scaled out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes), message handling cannot be made sequential when all instances are running. An alternative is to have only one instance running at a time, in an active/passive configuration.
+> Sequential message handling when using OCC is only possible for a single endpoint instance. When an endpoint is [scaled out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes), message handling cannot be made sequential when all instances are running. An alternative is to have only one instance running at a time, in an active/passive configuration.
 
 The concurrency limit applies to an entire endpoint. If the endpoint hosts many handlers and sagas, they will all be subject to the concurrency limit. When decreasing the concurrency limit to reduce data contention for a given saga, consider hosting the saga in a dedicated endpoint.
 
@@ -140,6 +139,8 @@ Saga data storage, and endpoints hosting sagas, often have separate network loca
 
 ### Redesign the sagas
 
+When designing sagas, take these approaches into consideration to reduce data contention.
+
 #### Minimize saga data
 
 Saga state is retrieved from and submitted to storage for every message received. Saga state should only contain the minimum data required for the saga to make its decisions. Other data, especially large strings or [BLOBs](https://en.wikipedia.org/wiki/Binary_large_object) should not be contained in saga data. Instead this data could be forwarded to another handler for storage or processing, and the saga state could store only a reference to it.
@@ -156,7 +157,7 @@ For example, instead of a saga creating 1,000 requests, it could split the reque
 
 In the above example, the requests are split into two groups each time. Depending on the dynamics of the system, splitting them into more groups is also an option.
 
-A simpler approach is to split the request just once and have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating more multiple responses.
+A simpler approach is to split the request just once and have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating multiple responses.
 
 #### Sequential scatter/gather
 
@@ -164,7 +165,7 @@ When using a [scatter-gather](https://www.enterpriseintegrationpatterns.com/patt
 
 #### Create an append-only saga data model
 
-Currently, this is only possible with the NHibernate persister and a custom mapping. It requires advanced knowledge of NHibernate. Data added to a collection must be mapped to another entity so that the the master/parent row does not need to be updated. This way there is no data contention on the table row representing the saga instance data root.
+Currently, this is only possible with the NHibernate persister and a custom mapping. It requires advanced knowledge of NHibernate. Data added to a collection must be mapped to another entity so that the master/parent row does not need to be updated. This way there is no data contention on the table row representing the saga instance data root.
 
 #### Further reading
 
