@@ -11,7 +11,7 @@ env:
   DOTNET_ROLL_FORWARD: Major
 defaults:
   run:
-    shell: bash
+    shell: pwsh
 jobs:
   content-verification:
     name: Content verification
@@ -25,6 +25,7 @@ jobs:
           global-json-file: global.json
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
+        shell: bash
         run: |
            echo "DOCSTOOL_VERSION=$(curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json)" >> $GITHUB_ENV
       - name: Cache docstool
@@ -42,7 +43,6 @@ jobs:
         run: docstool test --no-version-check
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
@@ -72,7 +72,6 @@ jobs:
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
@@ -117,7 +116,6 @@ jobs:
           key: ${{ steps.nuget-cache-restore.outputs.cache-primary-key }}
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
