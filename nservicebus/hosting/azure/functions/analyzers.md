@@ -62,7 +62,7 @@ The method must:
 - be `static`
 - be named `Configure{EndpointName}` (case-insensitive)
 - take `EndpointConfiguration` as the first parameter
-- only use `IServiceCollection`, `IConfiguration`, and `IHostEnvironment` as additional optional parameters
+- only use `IServiceCollection`, `IConfigurationManager` (or any interface it implements, such as `IConfiguration` or `IConfigurationBuilder`), `IHostEnvironment`, and `IDictionary<object, object>` as additional optional parameters
 
 ## Code fixes
 
