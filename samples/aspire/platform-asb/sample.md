@@ -59,9 +59,9 @@ builder
 > [!NOTE]
 > Aspire can also run the Azure Service Bus emulator locally (`RunAsEmulator`), but it is not suitable for this sample. The emulator only serves a limited number of queues, topics, and subscriptions that must be declared up front in its configuration; it does not create entities on demand. NServiceBus instead relies on [installers](/nservicebus/operations/installers.md) to create its topology at runtime, and this sample's topology exceeds the emulator's entity limits. For these reasons the sample uses a real Azure Service Bus namespace.
 
-#### Persistence
+#### ServiceControl Database
 
-The platform requires a persistence to store the data managed by its ServiceControl instances. `AddPersistenceRavenDb` adds a [RavenDB](/persistence/ravendb/) resource named `particular-persistence` for this purpose.
+The platform requires a database to store the data managed by its ServiceControl instances. `AddPersistenceRavenDb` adds a [RavenDB](/persistence/ravendb/) resource named `particular-persistence` for this purpose.
 
 snippet: persistence
 

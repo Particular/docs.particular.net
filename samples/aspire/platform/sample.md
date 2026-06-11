@@ -37,7 +37,7 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 
 #### Platform configuration
 
-`AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse, Learning transport and RavenDB for persistence.
+`AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse, Learning transport and RavenDB for the database.
 
 snippet: platform-config
 
