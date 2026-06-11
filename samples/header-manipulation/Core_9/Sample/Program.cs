@@ -43,8 +43,12 @@ var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 #region sending
 
+var sendOptions = new SendOptions();
+sendOptions.SetHeader("MyCustomHeader", "MyCustomHeaderValue");
+sendOptions.RouteToThisEndpoint();
+
 var myMessage = new MyMessage();
-await messageSession.SendLocal(myMessage);
+await messageSession.Send(myMessage, sendOptions);
 
 #endregion
 
