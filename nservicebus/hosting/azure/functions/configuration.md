@@ -17,7 +17,7 @@ The static `Configure{FunctionName}` method is discovered by the source generato
 |---|---|
 | `EndpointConfiguration` | Required. Configures the endpoint. |
 | [`IServiceCollection`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) | Optional. Registers endpoint-scoped services. |
-| [`IConfiguration`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfiguration) | Optional. Reads application configuration. |
+| [`IConfigurationManager`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfigurationmanager) | Optional. Reads application configuration. |
 | [`IHostEnvironment`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment) | Optional. Inspects the hosting environment, for example to differentiate development and production. |
 
 Declare only the parameters needed, `EndpointConfiguration` must be first:
