@@ -11,16 +11,23 @@ related:
 
 ## The configure method
 
-The static `Configure{FunctionName}` method is discovered by the source generator and called once per endpoint at host startup. Parameters are matched by type:
+The static `Configure{FunctionName}` method is discovered by the source generator and called once per endpoint at host startup. Parameters are matched by type against the properties of [`IHostApplicationBuilder`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostapplicationbuilder). Any interface type implemented by those properties is accepted:
 
-| Parameter | Use |
-|---|---|
-| `EndpointConfiguration` | Required. Configures the endpoint. |
-| [`IServiceCollection`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) | Optional. Registers endpoint-scoped services. |
-| [`IConfigurationManager`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfigurationmanager) | Optional. Reads application configuration. |
-| [`IHostEnvironment`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment) | Optional. Inspects the hosting environment, for example to differentiate development and production. |
+| Parameter | Source | Use |
+|---|---|---|
+| `EndpointConfiguration` | — | Required. Configures the endpoint. |
+| [`IServiceCollection`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection) | Adapted from `builder.Services` | Optional. Registers services scoped to this endpoint only. |
+| [`IConfigurationManager`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.configuration.iconfigurationmanager) | `builder.Configuration` | Optional. Reads application configuration. |
+| [`IHostEnvironment`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment) | `builder.Environment` | Optional. Inspects the hosting environment, for example to differentiate development and production. |
+| [`IDictionary<object, object>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.idictionary-2) | `builder.Properties` | Optional. Shares state between host configuration and endpoint configuration. |
 
 Declare only the parameters needed, `EndpointConfiguration` must be first:
+
+> [!NOTE]
+> Because a single Functions app can host [multiple endpoints](#hosting-multiple-endpoints), the `IServiceCollection` passed to the configure method is an adapted collection that scopes registrations to that endpoint. Services registered this way are resolvable only within the endpoint's message-handling pipeline (handlers, sagas, features, and installers). To resolve such a dependency outside the endpoint (for example, in an HTTP-triggered function), use [keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) with the endpoint name (the function name) as the key, or register the service on the global `IServiceCollection` in `Program.cs` instead. For more details, see [Endpoint-scoped dependencies](/nservicebus/hosting/core-hosting.md#endpoint-scoped-dependencies).
+
+> [!NOTE]
+> Logging and metrics are host-level concerns. Configure them on the host builder in `Program.cs`, not in the per-endpoint `Configure{FunctionName}` method.
 
 snippet: azure-functions-configure-with-services
 
@@ -32,7 +39,6 @@ Supported options:
 
 | Option | Notes |
 |---|---|
-| `ConnectionName` | Sets the connection setting name used by the transport, only relevant for [send-only endpoints](/nservicebus/hosting/azure/functions/#send-only-endpoints). For receiving endpoints, the queue and connection are declared on `[ServiceBusTrigger]`. |
 | [`HierarchyNamespaceOptions`](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace) | Applies hierarchy prefixes to transport addresses and entities created by the transport. |
 | [`EnablePartitioning`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues and topics. |
 | [`EntityMaximumSize`](/transports/azure-service-bus/configuration.md#entity-creation) | Applies when the transport creates queues and topics. |
