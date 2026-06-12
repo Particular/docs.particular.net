@@ -9,7 +9,7 @@ var endpointConfiguration = new EndpointConfiguration("PostgreSql.SimpleSender")
 endpointConfiguration.EnableInstallers();
 
 #region TransportConfiguration
-var connectionString = "User ID=user;Password=admin;Host=localhost;Port=54320;Database=nservicebus;Pooling=true;Connection Lifetime=0;Include Error Detail=true";
+var connectionString = "User ID=postgres;Password=mysecretpassword;Host=localhost;Port=5432;Database=nservicebus;Pooling=true;Connection Lifetime=0;Include Error Detail=true";
 var routing = endpointConfiguration.UseTransport(new PostgreSqlTransport(connectionString)
 {
     TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive

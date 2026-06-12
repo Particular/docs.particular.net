@@ -7,7 +7,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("PostgreSql.SimpleReceiver");
 
-var connectionString = "User ID=user;Password=admin;Host=localhost;Port=54320;Database=nservicebus;Pooling=true;Connection Lifetime=0;Include Error Detail=true";
+var connectionString = "User ID=postgres;Password=mysecretpassword;Host=localhost;Port=5432;Database=nservicebus;Pooling=true;Connection Lifetime=0;Include Error Detail=true";
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new PostgreSqlTransport(connectionString)
