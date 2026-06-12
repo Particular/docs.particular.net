@@ -2,7 +2,7 @@
 title: NHibernate Persistence Scripts
 summary: A collection of scripts for managing NHibernate persistence
 component: NHibernate
-reviewed: 2024-10-09
+reviewed: 2026-06-09
 related:
  - nservicebus/operations
 redirects:
@@ -26,24 +26,24 @@ WHERE SubscriberEndpoint = '<subscriberAddress>'
 Where:
 
  * `<subscriberAddress>` is the address of the subscriber. E.g. `My.Endpoint@subscriber-machine`.
- * `<subscriptionTable>` is the configured subscription table for NHibernate Persistence. By default this is `dbo.Subscription`
+ * `<subscriptionTable>` is the configured subscription table for NHibernate Persistence. By default, this is `dbo.Subscription`.
 
 ## Fix TimeoutEntity_EndpointIdx index
 
-Older versions of NServiceBus had an issue which caused the `TimeoutEntity_EndpointIdx` index to be either missing or created incorrectly. Now there is a built-in check and log warnings in cases when
+Older, currently unsupported, versions of NServiceBus had an issue which caused the `TimeoutEntity_EndpointIdx` index to be either missing or created incorrectly. Now there is a built-in check that logs warnings in cases when:
  * the `TimeoutEntity_EndpointIdx` index has an incorrect column order
  * the system can not find `TimeoutEntity_EndpointIdx` index
 
 In cases where the index was created incorrectly, use the following script to drop the index:
 
-```
+```sql
 DROP INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity] WITH ( ONLINE = OFF )
 GO
 ```
 
-and the following script to create the correct one
+and the following script to create the correct one:
 
-```
+```sql
 CREATE CLUSTERED INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity]
 (
 	[Endpoint] ASC,
