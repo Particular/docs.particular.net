@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrityTests", "IntegrityTests\IntegrityTests.csproj", "{40D06B9E-4A74-48E4-89BA-74A765120802}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder1", "SolutionFolder1", "{BD583291-3269-4244-B4C3-395EB8F57540}"
+	ProjectSection(SolutionItems) = preProject
+		..\nservicebus\upgrades\upgrade-major.include.md = ..\nservicebus\upgrades\upgrade-major.include.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +23,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E49A126D-A249-4C73-9C47-D303F192961B}
+	EndGlobalSection
+	GlobalSection(RiderSharedRunConfigurations) = postSolution
+		File = ..\samples\azure-functions\service-bus-kafka\ASBS_3\.run\Everything.run.xml
+		File = ..\samples\azure-functions\service-bus-kafka\ASBS_5\.run\Everything.run.xml
+		File = ..\samples\azure-functions\service-bus-kafka\ASBS_4\.run\Everything.run.xml
 	EndGlobalSection
 EndGlobal
