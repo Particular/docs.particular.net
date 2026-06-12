@@ -1,5 +1,5 @@
 ---
-title: "GHSA-mr8r-92fq-pj8p: OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling"
+title: "GHSA-mr8r-92fq-pj8p"
 summary: "OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling"
 reviewed: "2026-05-14"
 ---
