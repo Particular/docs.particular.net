@@ -66,4 +66,23 @@ public class ThroughputReporting
 
         #endregion
     }
+
+    public void SQLServer(DistributedApplicationBuilder builder)
+    {
+        var platform = builder.AddParticularPlatform("particular");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
+
+        #region aspire-throughput-sqlserver
+
+        var connectionString = builder.AddParameter("usage-connectionstring", secret: true);
+        var additionalCatalogs = builder.AddParameter("usage-additionalcatalogs");
+
+        platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb)
+            .WithThroughputReporting(new ThroughputReportingSqlServer(
+                ReferenceExpression.Create($"{connectionString.Resource}"),
+                ReferenceExpression.Create($"{additionalCatalogs.Resource}")
+              ));
+
+        #endregion
+    }
 }

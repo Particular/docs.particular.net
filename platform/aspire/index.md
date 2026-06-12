@@ -7,6 +7,7 @@ related:
 - samples/hosting/aspire
 - samples/aspire/platform
 - samples/aspire/platform-asb
+- samples/aspire/platform-sqlserver
 ---
 
 The `Particular.Aspire.Hosting.ServicePlatform` package is an [Aspire](https://aspire.dev/) hosting integration that runs the Particular Service Platform (the ServiceControl instances, ServicePulse, the ServiceControl database, and message transport) as part of an Aspire AppHost. It is intended for developers and technical leads who run the platform locally during development and want the same AppHost to carry through to publish-mode deployments, without maintaining a separate set of infrastructure scripts.
@@ -41,8 +42,8 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | [Azure Service Bus](/transports/azure-service-bus/)       | Supported                    |
 | [RabbitMQ](/transports/rabbitmq/)                         | Supported                    |
 | [Amazon SQS](/transports/sqs/)                            | Supported                    |
+| [Microsoft SQL Server](/transports/sql/)                  | Supported                    |
 | [Azure Storage Queues](/transports/azure-storage-queues/) | Not yet supported            |
-| [Microsoft SQL Server](/transports/sql/)                  | Not yet supported            |
 | [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
 | [IBM MQ](/transports/ibmmq/)                              | Not yet supported            |
 
@@ -161,6 +162,20 @@ snippet: aspire-transport-sqs
 | `TopicNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
 | `S3BucketForLargeMessages` (`IExpressionValue?`) property on `AmazonSQSTransportSettings`              | Optional |
 | `QueueNamePrefix`          (`string?`) property on `AmazonSQSTransportSettings`                        | Optional |
+
+### SQL Server
+
+The platform treats SQL Server as an external resource, so the AppHost only needs a connection string to reach the database. Other ways to model the resource in the AppHost (such as `AddSqlServer` with Aspire provisioning) are described in [Set up SQL Server in the AppHost](https://aspire.dev/integrations/databases/sql-server/sql-server-host/) in the Aspire documentation.
+
+snippet: aspire-transport-sqlserver
+
+#### Options
+
+| Option                                                                                                 | Default  |
+| ------------------------------------------------------------------------------------------------------ | -------- |
+| `sqlServer` (`IResourceBuilder<IResourceWithConnectionString>`) parameter on `WithTransportSqlServer`  | Required |
+| `queueSchema`              (`string?`) parameter on `WithTransportSqlServer`                           | Optional |
+| `subscriptionsTable`       (`string?`) parameter on `WithTransportSqlServer`                           | Optional |
 
 ## Configuring ServiceControl database
 
@@ -380,6 +395,14 @@ See [Usage reporting when using the RabbitMQ transport](/servicecontrol/servicec
 snippet: aspire-throughput-sqs
 
 See [Usage reporting when using the Amazon SQS transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-amazon-sqs-transport) for what each value is used for in ServiceControl.
+
+### SQL Server
+
+`ThroughputReportingSqlServer` supplies SQL Server overrides so the Error instance can query database statistics. All parameters are optional; ServiceControl falls back to the values from the transport connection if they are not provided.
+
+snippet: aspire-throughput-sqlserver
+
+See [Usage reporting when using the SQL Server transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-sqlserver-transport) for what each value is used for in ServiceControl.
 
 ## Production considerations
 
