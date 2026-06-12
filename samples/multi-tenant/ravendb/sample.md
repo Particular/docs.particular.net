@@ -25,12 +25,9 @@ The databases created by this sample are:
  * `MultiTenantSamples-A`
  * `MultiTenantSamples-B`
 
-include: persistence-running
-
 include: persistence-code
 
-
-#### Outbox cleanup
+### Outbox cleanup
 
 The built-in periodic Outbox cleanup does not work in a multi-tenant environment because it’s executed in the context of the shared database, while Outbox documents are stored in the tenants’ database.
 
@@ -38,7 +35,7 @@ The simplest way to ensure that the dispatched Outbox documents are removed is t
 
 snippet: CreateDatabase
 
-#### Connecting to the tenant database
+### Connecting to the tenant database
 
 To allow for database isolation between the tenants the connection to the database needs to be created based on the message being processed. RavenDB persistence offers an extension point which allows for a customized database name to be used when opening a session.
 
@@ -47,3 +44,5 @@ snippet: DetermineDatabase
 The code above ensures that when the `tenant_id` header is present, the session will point to the tenant database.
 
 include: persistence-propagation
+
+include: persistence-running
