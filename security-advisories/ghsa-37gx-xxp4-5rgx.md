@@ -1,5 +1,5 @@
 ---
-title: "GHSA-37gx-xxp4-5rgx: Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability"
+title: "GHSA-37gx-xxp4-5rgx"
 summary: "Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability"
 reviewed: "2026-05-13"
 ---
