@@ -41,6 +41,12 @@
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/WindowsAzure.Storage" target="_blank">WindowsAzure.Storage</a> | <a href="https://github.com/Azure/azure-storage-net/blob/master/LICENSE.txt" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-storage-net" target="_blank">Project Site</a> |
 
+### NServiceBus.AzureFunctions.AzureServiceBus
+
+| Dependency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" target="_blank">Microsoft.Azure.Functions.Worker.Extensions.ServiceBus</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus/5.24.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
+
 ### NServiceBus.AzureFunctions.InProcess.ServiceBus
 
 | Dependency | License | Project Site |
@@ -141,7 +147,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.21.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.21.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
