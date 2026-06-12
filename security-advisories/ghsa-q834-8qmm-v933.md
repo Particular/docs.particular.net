@@ -1,5 +1,5 @@
 ---
-title: "GHSA-q834-8qmm-v933: OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies"
+title: "GHSA-q834-8qmm-v933"
 summary: "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies"
 reviewed: "2026-05-14"
 ---
