@@ -370,6 +370,12 @@
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.3)| Extended Support | 2023-09-21     | 2026-04-16        | 2028-04-16 |
 | [0.6.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0)| Extended Support | 2023-04-27     | 2024-05-09        | 2026-05-09 |
 
+#### [NServiceBus.AzureFunctions.AzureServiceBus](/nuget/NServiceBus.AzureFunctions.AzureServiceBus)
+
+| Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
+|:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus/1.0.0)| **Current** | 2026-06-11     | Active            | Active |
+
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
@@ -497,7 +503,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.1.0)| **Current** | 2026-06-11     | Active            | Active |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.2)| Mainstream Support | 2026-01-30     | 2026-09-11        | Ineligible |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.5)| Mainstream Support | 2024-09-15     | 2028-01-29        | 2030-01-29 |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.4)| Extended Support | 2024-09-05     | 2026-04-16        | 2028-04-16 |
 
