@@ -1,5 +1,5 @@
 ---
-title: "GHSA-g4vj-cjjj-v7hg: Defense in Depth update for NuGet Client"
+title: "GHSA-g4vj-cjjj-v7hg"
 summary: "Defense in Depth update for NuGet Client"
 reviewed: "2026-05-13"
 ---
