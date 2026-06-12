@@ -1,5 +1,5 @@
 ---
-title: "GHSA-9cvc-h2w8-phrp: AWS SDK for .NET V4 adopted defense in depth enhancement for region parameter value"
+title: "GHSA-9cvc-h2w8-phrp"
 summary: "AWS SDK for .NET V4 adopted defense in depth enhancement for region parameter value"
 reviewed: "2026-01-14"
 ---
