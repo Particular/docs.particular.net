@@ -1,5 +1,5 @@
 ---
-title: "GHSA-w3x6-4m5h-cxqf: Microsoft Security Advisory CVE-2026-26171 - .NET Denial of Service Vulnerability"
+title: "GHSA-w3x6-4m5h-cxqf"
 summary: "Microsoft Security Advisory CVE-2026-26171 - .NET Denial of Service Vulnerability"
 reviewed: "2026-05-13"
 ---
