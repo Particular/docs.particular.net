@@ -75,13 +75,12 @@ public class ThroughputReporting
         #region aspire-throughput-sqlserver
 
         var connectionString = builder.AddParameter("usage-connectionstring", secret: true);
-        var additionalCatalogs = builder.AddParameter("usage-additionalcatalogs");
 
         platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb)
             .WithThroughputReporting(new ThroughputReportingSqlServer(
                 ReferenceExpression.Create($"{connectionString.Resource}"),
-                ReferenceExpression.Create($"{additionalCatalogs.Resource}")
-              ));
+                "additional-catalogs")
+              );
 
         #endregion
     }
