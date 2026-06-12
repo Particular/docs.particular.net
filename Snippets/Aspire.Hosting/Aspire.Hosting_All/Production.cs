@@ -6,8 +6,8 @@ public class Production
     public void HostPorts(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence);
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb);
         var monitoring = platform.AddServiceControlMonitoringInstance("monitoring");
 
         #region aspire-host-ports
@@ -24,16 +24,16 @@ public class Production
     public void ImagePinning(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
 
         #region aspire-image-pinning
 
         var serviceControlVersion = "x.y.z";
 
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb)
             .WithImageTag(serviceControlVersion);
 
-        platform.AddServiceControlAuditInstance("audit", error, persistence)
+        platform.AddServiceControlAuditInstance("audit", error, serviceControlDb)
             .WithImageTag(serviceControlVersion);
 
         platform.AddServiceControlMonitoringInstance("monitoring")
@@ -45,14 +45,14 @@ public class Production
     public void RunMode(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
 
         #region aspire-run-mode
 
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb)
             .WithRunMode(PlatformRunMode.Run);
 
-        platform.AddServiceControlAuditInstance("audit", error, persistence)
+        platform.AddServiceControlAuditInstance("audit", error, serviceControlDb)
             .WithRunMode(PlatformRunMode.Run);
 
         platform.AddServiceControlMonitoringInstance("monitoring")

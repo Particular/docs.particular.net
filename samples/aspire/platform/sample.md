@@ -37,7 +37,7 @@ The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang
 
 #### Platform configuration
 
-`AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse, Learning transport and RavenDB for persistence.
+`AddParticularPlatform` registers the Particular Platform as a resource named `particular`. The `.WithDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl error, audit and monitoring instances, ServicePulse, Learning transport and RavenDB for the database.
 
 snippet: platform-config
 
@@ -59,7 +59,7 @@ Each endpoint project configures the learning transport:
 
 snippet: transport-config
 
-Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
+Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and ServiceControl database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
 

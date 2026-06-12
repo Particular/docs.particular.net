@@ -59,9 +59,9 @@ builder
 > [!NOTE]
 > Aspire can also run the Azure Service Bus emulator locally (`RunAsEmulator`), but it is not suitable for this sample. The emulator only serves a limited number of queues, topics, and subscriptions that must be declared up front in its configuration; it does not create entities on demand. NServiceBus instead relies on [installers](/nservicebus/operations/installers.md) to create its topology at runtime, and this sample's topology exceeds the emulator's entity limits. For these reasons the sample uses a real Azure Service Bus namespace.
 
-#### Persistence
+#### ServiceControl Database
 
-The platform requires a persistence to store the data managed by its ServiceControl instances. `AddPersistenceRavenDb` adds a [RavenDB](/persistence/ravendb/) resource named `particular-persistence` for this purpose.
+The platform requires a database to store the data managed by its ServiceControl instances. `AddPersistenceRavenDb` adds a [RavenDB](/persistence/ravendb/) resource named `particular-persistence` for this purpose.
 
 snippet: persistence
 
@@ -97,7 +97,7 @@ Each endpoint project retrieves the connection string for the Azure ServiceBus b
 
 snippet: transport-config
 
-Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
+Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and ServiceControl database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
 

@@ -7,11 +7,11 @@ public class Components
         #region aspire-components-explicit
 
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
 
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence);
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb);
         var monitoring = platform.AddServiceControlMonitoringInstance("monitoring");
-        var audit = platform.AddServiceControlAuditInstance("audit", error, persistence);
+        var audit = platform.AddServiceControlAuditInstance("audit", error, serviceControlDb);
         platform.AddServicePulse("servicepulse", error, monitoring);
 
         #endregion
@@ -20,11 +20,11 @@ public class Components
     public void Error(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
 
         #region aspire-components-error
 
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence)
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb)
             .WithErrorQueueName("error")
             .WithThroughputQueue("particular.throughput");
 
@@ -34,12 +34,12 @@ public class Components
     public void Audit(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence);
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb);
 
         #region aspire-components-audit
 
-        var audit = platform.AddServiceControlAuditInstance("audit", error, persistence)
+        var audit = platform.AddServiceControlAuditInstance("audit", error, serviceControlDb)
             .WithAuditQueueName("audit");
 
         #endregion
@@ -48,8 +48,8 @@ public class Components
     public void Monitoring(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence);
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb);
 
         #region aspire-components-monitoring
 
@@ -63,8 +63,8 @@ public class Components
     public void ServicePulse(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("ravendb");
-        var error = platform.AddServiceControlErrorInstance("servicecontrol", persistence);
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
+        var error = platform.AddServiceControlErrorInstance("servicecontrol", serviceControlDb);
         var monitoring = platform.AddServiceControlMonitoringInstance("monitoring");
 
         #region aspire-components-servicepulse
@@ -77,11 +77,11 @@ public class Components
     public void VersionOtherThanLatest(DistributedApplicationBuilder builder)
     {
         var platform = builder.AddParticularPlatform("particular");
-        var persistence = platform.AddPersistenceRavenDb("persistence");
+        var serviceControlDb = platform.AddPersistenceRavenDb("ravendb");
 
         #region aspire-components-version
 
-        platform.AddServiceControlErrorInstance("error", persistence)
+        platform.AddServiceControlErrorInstance("error", serviceControlDb)
             .WithImage("particular/servicecontrol", "6.0.0");
 
         platform.AddServiceControlMonitoringInstance("monitoring")

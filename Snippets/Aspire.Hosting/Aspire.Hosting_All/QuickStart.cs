@@ -9,18 +9,18 @@ public class QuickStart
     {
         {
             #region aspire-quick-start-platform
-        
+
             var builder = DistributedApplication.CreateBuilder(args);
 
             var platform = builder
                 .AddParticularPlatform("particular")
                 .AddDefaultComponents();
 
-            builder.Build().Run();                    
+            builder.Build().Run();
             #endregion
 
             #region aspire-quick-start-endpoint
-            
+
             builder.AddProject<Projects.MyEndpoint>("my-endpoint")
                    .WithParticularPlatform(platform);
             #endregion
@@ -39,16 +39,16 @@ public class QuickStart
                 .WithTransportAzureServiceBus(transport)
                 .WithLicenseFromFile("license.xml");
 
-            //persistence setup
-            var persistence = platform.AddPersistenceRavenDb("particular-persistence");
+            //ServiceControl database setup
+            var serviceControlDb = platform.AddPersistenceRavenDb("particular-persistence");
 
             //error instance setup
-            var servicecontrol = platform.AddServiceControlErrorInstance("particular-error", persistence)
+            var servicecontrol = platform.AddServiceControlErrorInstance("particular-error", serviceControlDb)
                 .WithErrorQueueName("error")
                 .WithThroughputQueue("particular.throughput");
 
             //audit instance setup
-            platform.AddServiceControlAuditInstance("particular-audit", servicecontrol, persistence)
+            platform.AddServiceControlAuditInstance("particular-audit", servicecontrol, serviceControlDb)
                 .WithAuditQueueName("audit");
 
             //monitoring instance setup
