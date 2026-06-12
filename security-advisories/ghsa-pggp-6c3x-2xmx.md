@@ -1,5 +1,5 @@
 ---
-title: "GHSA-pggp-6c3x-2xmx: Snappier has an infinite loop during SnappyStream decompression with malformed framed input"
+title: "GHSA-pggp-6c3x-2xmx"
 summary: "Snappier has an infinite loop during SnappyStream decompression with malformed framed input"
 reviewed: "2026-05-13"
 ---
