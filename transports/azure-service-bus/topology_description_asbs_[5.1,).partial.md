@@ -229,7 +229,7 @@ topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged");
 
 It is possible to use two types of filtering on a multiplex topic if selective consumption is required: SQL filters and correlation filters. This setting is controlled by the `Mode` property of subscribe and publish options and needs to match on subscriber and publisher sides.
 
-The `TopicRoutingMode.SqlFilter` mode instructs the transport to use [SQL rules added on the subscriber](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) side to match the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) to the fully qualified class name, including `%` at the beginning and `%` at the end. In this case, `%` follows standard SQL syntax and stands for [any string of zero or more characters](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-sql-filter#pattern).
+The `TopicRoutingMode.SqlLikeFilter` mode instructs the transport to use [SQL rules added on the subscriber](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) side to match the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) to the fully qualified class name, including `%` at the beginning and `%` at the end. In this case, `%` follows standard SQL syntax and stands for [any string of zero or more characters](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-sql-filter#pattern).
 
 For example, a subscriber interested in the event `Shipping.OrderAccepted` will add the following rule to the subscription:
 
@@ -238,8 +238,8 @@ For example, a subscriber interested in the event `Shipping.OrderAccepted` will 
 ```
 
 ```csharp
-topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlFilter);
-topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlFilter);
+topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlLikeFilter);
+topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlLikeFilter);
 ```
 
 The `TopicRoutingMode.CorrelationFilter` mode instructs the transport to include the type names found in the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) as individual application properties on the published messages. On the subscriber side it instructs the subscription logic to create [correlation rules](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) to filter only selected messages.
@@ -272,7 +272,9 @@ This approach preserves per-event topic isolation while grouping handler logic b
 
 The transport allows configuring of a fallback topic
 
-TODO: Add API
+```csharp
+topology.UseFallbackTopic("bundle-1", TopicRoutingMode.SqlLikeFilter);
+```
 
 that is used to publish and subscribe all events that are not explicitly mapped using `PublishTo` and `SubscribeTo` APIs. The fallback topic also allows configuring filtering using SQL or correlation filters are described above.
 
@@ -294,7 +296,7 @@ In the single-topic model, a high volume of messages in one event type can degra
 
 #### Observability
 
-Monitoring is often simpler because each event type’s topic can be tracked with distinct metrics (message count, size, etc.). You can see which event types are experiencing spikes without needing to filter a single large “bundle” topic.
+Monitoring is often simpler because each event type’s topic can be tracked with distinct metrics (message count, size, etc.). You can see which event types are experiencing spikes without needing to filter a single large "bundle" topic.
 
 #### Topology highlights
 
