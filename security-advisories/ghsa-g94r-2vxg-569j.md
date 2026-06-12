@@ -1,5 +1,5 @@
 ---
-title: "GHSA-g94r-2vxg-569j: OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers"
+title: "GHSA-g94r-2vxg-569j"
 summary: "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers"
 reviewed: "2026-05-14"
 ---
