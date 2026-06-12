@@ -89,7 +89,7 @@ jobs:
           exit $(If ($result.ok) { 0 } Else { 1 })
   build-samples-and-snippets:
     name: Build samples and snippets
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -105,8 +105,8 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-      - name: Build affected samples and snippets
-        run: pwsh.exe -NoLogo -NonInteractive -File ./tools/build-samples-and-snippets.ps1
+      - name: Build all samples and snippets
+        run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
       - name: Save NuGet Cache
         id: nuget-cache-save
         if: always() && steps.nuget-cache-restore.outputs.cache-hit != 'true'
