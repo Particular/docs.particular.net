@@ -26,7 +26,7 @@ NServiceBus enabled functions must be declared in a partial class and are compos
 - A partial method decorated with a `[NServiceBusFunction]` and a `[Function("MyFunction")]` attribute declaring an [Azure Service Bus trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger).
   - The trigger must set `AutoCompleteMessages = false` since the NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the [`NSBFUNC005` analyzer](analyzers.md) enforces this requirement.
   - A source generator will emit the method body that forwards each incoming message to the NServiceBus pipeline.
-- A static `Configure{FunctionName}` method that configures the NServiceBus endpoint for the function.
+- A static method named `Configure{FunctionName}` (flexible casing and punctuation) that configures the NServiceBus endpoint for the function.
 
 For endpoint configuration, supported transport options, and explicit handler and saga registration, etc, see [Configuration](/nservicebus/hosting/azure/functions/configuration.md).
 
@@ -36,7 +36,7 @@ Multiple methods decorated with `[NServiceBusFunction]` can co-exist in one Func
 
 snippet: azure-functions-multiple-endpoints
 
-Each endpoint has its own `Configure{FunctionName}` method; the source generator routes each function to its matching configure method. Endpoints share the host's service provider but maintain independent message-handling pipelines.
+Each endpoint has its own configure method; the source generator matches methods whose name follows the `Configure{FunctionName}` pattern, where non-alphanumeric characters in the function name are ignored. For example, `ConfigureMy_Endpoint` matches the function name `"my-endpoint"`. Endpoints share the host's service provider but maintain independent message-handling pipelines.
 
 ## Send-only endpoints
 
