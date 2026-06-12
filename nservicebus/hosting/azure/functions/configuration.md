@@ -11,7 +11,9 @@ related:
 
 ## The configure method
 
-The static `Configure{FunctionName}` method is discovered by the source generator and called once per endpoint at host startup. Parameters are matched by type against the properties of [`IHostApplicationBuilder`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostapplicationbuilder). Any interface type implemented by those properties is accepted:
+The static configure method is discovered by the source generator and called once per endpoint at host startup. The method must be named following the `Configure{FunctionName}` pattern, where the suffix after `Configure` is compared to the function name after stripping non-alphanumeric characters. Casing and additional punctuation in the method name are ignored. For example, `ConfigureMy_Endpoint`, `Configuremyendpoint`, and `configure_my_endpoint` all match a function named `"my-endpoint"`.
+
+Parameters are matched by type against the properties of [`IHostApplicationBuilder`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostapplicationbuilder). Any interface type implemented by those properties is accepted:
 
 | Parameter | Source | Use |
 |---|---|---|

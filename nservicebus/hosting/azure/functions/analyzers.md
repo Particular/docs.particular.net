@@ -14,9 +14,9 @@ The package includes [Roslyn analyzers](https://learn.microsoft.com/en-us/visual
 | `NSBFUNC001` | Error | A class containing a method with `[NServiceBusFunction]` must be `partial`. |
 | `NSBFUNC002` | Warning | A function class should not implement `IHandleMessages<T>`. Register handlers separately in endpoint configuration. |
 | `NSBFUNC003` | Error | A method with `[NServiceBusFunction]` must be `partial`. |
-| `NSBFUNC004` | Error | Only one `Configure{FunctionName}` method is allowed for a function. |
+| `NSBFUNC004` | Error | Multiple configure methods found that match the same function name. |
 | `NSBFUNC005` | Error | The Service Bus trigger must explicitly set `AutoCompleteMessages = false`. |
-| `NSBFUNC006` | Error | The function method is invalid, for example because required trigger parameters are missing or the matching `Configure{FunctionName}` method is missing or invalid. |
+| `NSBFUNC006` | Error | The function method is invalid, for example because required trigger parameters are missing or no matching configure method was found. |
 | `NSBFUNC007` | Error | Unsupported endpoint configuration API is used in a `Configure…` method for a receiving or send-only endpoint. |
 | `NSBFUNC008` | Error | Unsupported `SendOptions` or `ReplyOptions` API is used for Azure Functions endpoints. |
 | `NSBFUNC009` | Error | `EndpointConfiguration.UseTransport(…)` does not use `AzureServiceBusServerlessTransport`. |
@@ -60,7 +60,7 @@ For the supported transport configuration in this hosting model, see [Azure Func
 The method must:
 
 - be `static`
-- be named `Configure{EndpointName}` (case-insensitive)
+- follow the `Configure{EndpointName}` naming pattern, ignoring casing and non-alphanumeric characters
 - take `EndpointConfiguration` as the first parameter
 - only use `IServiceCollection`, `IConfigurationManager` (or any interface it implements, such as `IConfiguration` or `IConfigurationBuilder`), `IHostEnvironment`, and `IDictionary<object, object>` as additional optional parameters
 
@@ -74,4 +74,4 @@ The code fix can:
 
 - add missing trigger-related parameters such as `FunctionContext` and `CancellationToken`
 - add missing additional trigger parameters required by the function signature
-- generate a missing `Configure{FunctionName}` method stub
+- generate a missing configure method stub following the `Configure{FunctionName}` convention
