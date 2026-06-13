@@ -13,7 +13,7 @@ Patches for components to update their dependencies to avoid references that hav
 
 | Component | Version | Where to get it |
 | --------- | ------- | --------------- |
-|ServiceControl|6.14.2|[Our website](https://particular.net/downloads)|
+|ServiceControl|6.14.2|[The downloads page](https://particular.net/downloads)|
 |Particular.ServiceControl.Management|6.14.2|Update-Module -Name Particular.ServiceControl.Management -RequiredVersion 6.14.2|
 |servicecontrol|6.14.2|[Docker Hub](https://hub.docker.com/r/particular/servicecontrol) or `docker pull particular/servicecontrol:6.14.2`|
 |servicecontrol-audit|6.14.2|[Docker Hub](https://hub.docker.com/r/particular/servicecontrol-audit) or `docker pull particular/servicecontrol-audit:6.14.2`|
