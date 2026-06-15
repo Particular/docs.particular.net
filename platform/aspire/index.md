@@ -87,6 +87,10 @@ These defaults are intended for local development. For production deployments, c
 
 snippet: aspire-quick-start-explicit
 
+`AddDefaultComponents()` can be combined with explicit configuration - it will wire up defaults for non explicitly defined components.
+
+snippet: aspire-quick-start-explicit-with-defaults
+
 ## Viewing the platform in the Aspire dashboard
 
 The platform appears in the [Aspire dashboard](https://aspire.dev/dashboard/) as a single `ParticularPlatform` parent resource. The components the integration creates are nested as children, each surfacing the URL exposed by its primary endpoint:
