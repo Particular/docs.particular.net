@@ -374,7 +374,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus/1.0.0)| **Current** | 2026-06-11     | Active            | Active |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus/1.0.1)| **Current** | 2026-06-11     | Active            | Active |
 
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
