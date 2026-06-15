@@ -175,7 +175,7 @@ snippet: asb-versioning-publisher-customization
 which would allow adding either a Correlation filter (preferred) or a SQL filter based on the promoted full name.
 
 > [!NOTE]
-> Starting with version 5.1 of the transport, the [FallbackTopic](#fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
+> Starting with version 5.1 of the transport, the [FallbackTopic](#subscription-rule-matching-fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
 
 ##### Advanced multiplexing strategies
 
