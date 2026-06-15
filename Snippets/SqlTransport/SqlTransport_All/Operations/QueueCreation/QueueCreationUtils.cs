@@ -9,7 +9,7 @@ namespace SqlServer_All.Operations.QueueCreation
         public static void CreateQueue(SqlConnection connection, string schema, string queueName)
         {
             var sql = $@"
-            if not  exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
+            if not exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
             begin
                 create table [{schema}].[{queueName}](
                     [Id] [uniqueidentifier] not null,
@@ -45,7 +45,7 @@ namespace SqlServer_All.Operations.QueueCreation
         public static void CreateDelayedQueue(SqlConnection connection, string schema, string queueName)
         {
             var sql = $@"
-            if not  exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
+            if not exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U'))
             begin
                 create table [{schema}].[{queueName}](
                     [Headers] nvarchar(max) not null,
@@ -75,7 +75,7 @@ namespace SqlServer_All.Operations.QueueCreation
         public static void AddMessageBodyStringColumn(SqlConnection connection, string schema, string queueName)
         {
             var sql = $@"if not exists (select * from sys.objects where object_id = object_id(N'[{schema}].[{queueName}]') and type in (N'U')) return
-                         if NOT exists (select * from sys.columns where object_id = object_id(N'[{schema}].[{queueName}]') and name = 'BodyString')
+                         if not exists (select * from sys.columns where object_id = object_id(N'[{schema}].[{queueName}]') and name = 'BodyString')
 
                          alter table [{schema}].[{queueName}]
                          add BodyString as cast(Body as nvarchar(max));";
