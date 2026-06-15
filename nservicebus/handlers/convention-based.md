@@ -79,5 +79,5 @@ The following `.editorconfig` settings will upgrade both diagnostics to errors s
 # Ensure message handlers are decorated with [Handler] to enable source generation
 dotnet_diagnostic.NSB0034.severity = error
 # Ensure sagas are decorated with [Saga] to enable source generation
-dotnet_diagnostic.NSB0034.severity = error
+dotnet_diagnostic.NSB0025.severity = error
 ```
