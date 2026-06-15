@@ -235,43 +235,6 @@ topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged");
 
 ###### Filtering Within a Multiplexed Topic
 
-When selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
-
-```csharp
-transport.OutgoingNativeMessageCustomization = (operation, message) =>
-{
-    if (operation is MulticastTransportOperation multicast)
-    {
-        // Subject is used for demonstration purposes only, choose a property that fits your scenario
-        message.Subject = multicast.MessageType.FullName;
-    }
-};
-```
-
-This property can then be used to define a `CorrelationFilter` (sample here uses bicep):
-
-```bicep
-resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2021-06-01-preview' = {
-  name: '${topic.name}/subscriber'
-  properties: {
-    rule: {
-      name: 'CustomerUpdatedOnly'
-      filterType: 'CorrelationFilter'
-      correlationFilter: {
-        subject: 'MyNamespace.CustomerUpdated'
-      }
-    }
-  }
-}
-```
-
-This configuration enables selective routing while using a shared topic, though it reintroduces filtering overhead and should be applied judiciously.
-
-> [!NOTE]
-> Starting with version 5.1, the transport provides built-in support for filtering through the `TopicRoutingMode` enumeration, eliminating the need for manual customization. See [Filtering within a multiplexed topic using built-in routing modes](#filtering-within-a-multiplexed-topic-using-built-in-routing-modes) below.
-
-###### Filtering Within a Multiplexed Topic (v5.1 and later)
-
 Starting with version 5.1, the transport provides built-in support for filtering within multiplexed topics through the `TopicRoutingMode` enumeration. This eliminates the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
 
 The `TopicRoutingMode` enumeration supports the following modes:
@@ -311,6 +274,41 @@ It is essential to have a matching publisher configuration:
 topology.PublishTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.CorrelationFilter);
 topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.CorrelationFilter);
 ```
+
+###### Selective consumption using message customization
+
+In previous versions the similar goal can be achieved by using message customization. When selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
+
+```csharp
+transport.OutgoingNativeMessageCustomization = (operation, message) =>
+{
+    if (operation is MulticastTransportOperation multicast)
+    {
+        // Subject is used for demonstration purposes only, choose a property that fits your scenario
+        message.Subject = multicast.MessageType.FullName;
+    }
+};
+```
+
+This property can then be used to define a `CorrelationFilter` (sample here uses bicep):
+
+```bicep
+resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2021-06-01-preview' = {
+  name: '${topic.name}/subscriber'
+  properties: {
+    rule: {
+      name: 'CustomerUpdatedOnly'
+      filterType: 'CorrelationFilter'
+      correlationFilter: {
+        subject: 'MyNamespace.CustomerUpdated'
+      }
+    }
+  }
+}
+```
+
+This configuration enables selective routing while using a shared topic, though it reintroduces filtering overhead and should be applied judiciously.
+
 
 ##### Subscriber-side aggregation
 
