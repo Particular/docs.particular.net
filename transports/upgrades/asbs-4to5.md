@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
 
 > [!NOTE]
-> Version 5.1 introduces additional features such as the [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) and [built-in topic routing modes](/transports/azure-service-bus/topology.md#filtering-within-a-multiplexed-topic-using-built-in-routing-modes) that simplify polymorphic dispatch and selective consumption on multiplexed topics. These features are available when upgrading to the latest version of the transport.
+> Version 5.1 introduces additional features such as the [fallback topic](/transports/azure-service-bus/topology.md#subscription-rule-matching-fallback-topic) and [built-in topic routing modes](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic) that simplify polymorphic dispatch and selective consumption on multiplexed topics. These features are available when upgrading to the latest version of the transport.
 
 ## Polymorphic dispatch
 
