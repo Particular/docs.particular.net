@@ -10,27 +10,27 @@ For a guided introduction to essential NServiceBus concepts start with the [NSer
 
 The samples are designed to highlight how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
-[Skip to the list of samples](#related-samples)
+## Note about samples
 
-## Samples are not production ready
+### Samples are not production ready
 
 Samples are not meant to be production-ready code or to be used as-is with Particular Platform tools. They are meant to illustrate the use of an API or feature in the simplest way possible. For this reason, these samples make certain assumptions on transport, hosting, etc. See [Technology choices](#technology-choices) for more details.
 
-## Samples are not "endpoint drop in" projects
+### Samples are not "endpoint drop in" projects
 
 Since the endpoint in samples have to choose specific technologies (transport, serializer, persistence, etc.), before using this code in production ensure the code conforms with any specific [technology choices](./hosting/generic-host/).
 
-## Samples are downloadable and runnable
+### Samples are downloadable and runnable
 
 All samples have a download link that allows the sample solution to be downloaded as a zip file. Once opened in Visual Studio, the samples are then runnable. Note some samples may have certain infrastructure requirements, for example a database existing in a local SQL Server.
+
+### Samples targeting non-supported versions of the platform
+
+Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](https://customers.particular.net).
 
 ## The full GitHub Repository
 
 The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and both [issues](https://github.com/Particular/docs.particular.net/issues) and [pull requests](https://help.github.com/articles/using-pull-requests/) are accepted.
-
-## Samples targeting non-supported versions of the platform
-
-Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](https://customers.particular.net).
 
 ## Technology choices
 
