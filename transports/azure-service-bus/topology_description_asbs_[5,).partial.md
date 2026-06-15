@@ -177,7 +177,7 @@ which would allow adding either a Correlation filter (preferred) or a SQL filter
 > [!NOTE]
 > Starting with version 5.1 of the transport, the [FallbackTopic](#fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
 
-##### Advanced Multiplexing Strategies
+##### Advanced multiplexing strategies
 
 While the **topic-per-event** topology offers strong benefits for performance, observability, and isolation, certain scenarios may benefit from strategically multiplexing multiple events onto a shared topic. These scenarios include:
 
@@ -217,7 +217,7 @@ topology.SubscribeTo<CustomerUpdated>("Tenant.CustomerLifecycle");
 topology.SubscribeTo<CustomerDeleted>("Tenant.CustomerLifecycle");
 ```
 
-###### Multiplexing Derived Events
+###### Multiplexing derived events
 
 For inheritance scenarios, it is possible to map multiple derived events to a common topic:
 
@@ -233,7 +233,7 @@ topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged");
 topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged");
 ```
 
-###### Filtering Within a Multiplexed Topic
+###### Filtering within a multiplexed topic
 
 Starting with version 5.1, the transport provides built-in support for filtering within multiplexed topics through the `TopicRoutingMode` enumeration. This eliminates the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
 
@@ -322,7 +322,7 @@ topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerDeleted");
 
 This approach preserves per-event topic isolation while grouping handler logic by shared interfaces.
 
-##### Fallback Topic
+##### Fallback topic
 
 Starting with version 5.1, the transport supports configuring a fallback topic that acts as a catch-all destination for events that are not explicitly mapped using `PublishTo` and `SubscribeTo` APIs.
 
@@ -347,7 +347,7 @@ When a fallback topic is configured:
 > [!NOTE]
 > The fallback topic also applies to mapped events whose publish destination equals the fallback topic name. In this case, the event inherits the fallback topic's routing mode unless an explicit mode is configured on the publish or subscribe entry.
 
-##### Strategy Comparison
+##### Strategy comparison
 
 | Strategy                      | Topic Count | Filter Required | Configuration Complexity | Recommended Scenarios                     |
 |------------------------------|-------------|------------------|-----------------------------|--------------------------------------------|
