@@ -1,16 +1,30 @@
 ---
-title: Get started with NServiceBus and the Particular Service Platform 
+title: Getting Started
 summary: Get started with NServiceBus and the Particular Service Platform using these step-by-step tutorials, videos, and technical guides.
-reviewed: 2025-10-29
+reviewed: 2026-06-15
 suppressRelated: true
+redirects:
+- get-started/high-level-content
+related:
+- platform
 ---
 
-NServiceBus makes it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. All the low-level serialization, threading, and transaction management is handled out-of-the box. Monitoring and debugging are easy to set up thanks to ServicePulse.
+NServiceBus and the Particular Service Platform make it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. All the low-level serialization, threading, and transaction management is handled out-of-the box. Monitoring and debugging are easy to set up thanks to ServicePulse.
 
-### Start the journey with NServiceBus using these handy resources:
+### Resources
 
-* **[Quickstart tutorial](/tutorials/quickstart/)** - A hands-on tutorial that takes you through an NServiceBus solution covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
-* **[NServiceBus technical introduction](/nservicebus/)** - A more technical introduction to NServiceBus as well as the Service Platform.
+These hands-on tutorials and demos introduce NServiceBus and the Particular Service Platform:
+
+* **[Quickstart tutorial](/tutorials/quickstart/)** - The quickest way to try NServiceBus. In about 10 minutes, you'll send and process command messages, publish and subscribe to events, and see how messaging works without focusing on the underlying queuing technology. Start here if you're new to NServiceBus and want a quick hands-on introduction.
+* **[NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/)** - A deeper tutorial that builds a more realistic retail e-commerce backend. You'll learn how to split responsibilities across endpoints, send commands, publish events, and use reliable messaging to recover from failures.
+* **[NServiceBus Sagas](/tutorials/nservicebus-sagas/)** - A follow-on tutorial that introduces stateful message handling. You'll learn how to coordinate longer-running business processes, wait for multiple messages, delay work with timeouts, and manage workflows that unfold over time.
+* **[NServiceBus Monitoring demo](/tutorials/monitoring-demo/)** - A downloadable demo that shows the monitoring features of the Particular Service Platform in ServicePulse. It includes pre-configured platform components and sample endpoints so you can explore slow handlers, message backlogs, and struggling endpoints in a running system.
+
+
+### Learn more
+
+These additional resources provide a broader introduction to NServiceBus, the Particular Service Platform, and how they fit together.
+
 * **[(Video) - Live coding your first NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to sit back and watch an experienced developer build a messaging system with NServiceBus.
 * **[NServiceBus overview](https://particular.net/nservicebus)** - The most important benefits of NServiceBus at a glance.
 * **[The Particular Service Platform](/platform/)** - The wider benefits of the platform and where NServiceBus fits in.

@@ -1,6 +1,8 @@
 - Name: Getting Started
   Topics:
-  - Title: Quick Start Tutorial
+  - Url: get-started
+    Title: Overview
+  - Title: Quickstart Tutorial
     Articles:
     - Url: tutorials/quickstart
       Title: "Part 1: Introduction"
@@ -42,10 +44,6 @@
       Title: "Monitoring NServiceBus Demo - Message backlogs"
     - Url: tutorials/monitoring-demo/walkthrough-3
       Title: "Monitoring NServiceBus Demo - Struggling endpoints"
-  - Url: get-started
-    Title: Overview
-  - Url: get-started/high-level-content
-    Title: High-level content
 
 - Name: Architecture
   Topics:
