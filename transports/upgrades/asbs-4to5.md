@@ -21,7 +21,7 @@ Upgrading Azure Service Bus transport from version 4 to version 5 is a major upg
 [Polymorphic dispatch using message type inheritance](/nservicebus/messaging/dynamic-dispatch-and-routing.md) no longer auto subscribes to all descendant types. Polymorphic dispatch is still supported but requires that each descendant type in the inheritance tree [is configured with an explicit type subscription on the topology object](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance).
 
 > [!NOTE]
-> Starting with version 5.1, the transport provides a [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) that simplifies polymorphic dispatch scenarios. When configured, unmapped events are automatically routed to a shared topic with built-in filtering, eliminating the need for explicit per-type subscriptions in many inheritance scenarios.
+> Starting with version 5.1, the transport provides a [fallback topic](/transports/azure-service-bus/topology.md#subscription-rule-matching-fallback-topic) that simplifies polymorphic dispatch scenarios. When configured, unmapped events are automatically routed to a shared topic with built-in filtering, eliminating the need for explicit per-type subscriptions in many inheritance scenarios.
 
 
 ## Topologies
@@ -187,7 +187,7 @@ The [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) p
 
 ### Built-in filtering modes
 
-[Topic routing modes](/transports/azure-service-bus/topology.md#filtering-within-a-multiplexed-topic-using-built-in-routing-modes) provide built-in support for `CorrelationFilter` and `SqlFilter` on multiplexed topics, eliminating the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
+[Topic routing modes](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic) provide built-in support for `CorrelationFilter` and `SqlFilter` on multiplexed topics, eliminating the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
 
 > [!NOTE]
 > These features require version 5.1 or later and are not available in version 5.0. Endpoints using the migration topology cannot use the fallback topic or topic routing modes until they have fully migrated to the topic-per-event topology.
