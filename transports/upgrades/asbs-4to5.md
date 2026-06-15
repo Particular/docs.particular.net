@@ -183,7 +183,7 @@ When upgrading to version 5.1 or later of the transport, additional capabilities
 
 ### Fallback topic
 
-The [fallback topic](/transports/azure-service-bus/topology.md#fallback-topic) provides a catch-all destination for events that are not explicitly mapped. This simplifies polymorphic dispatch scenarios and reduces the number of explicit mappings required when subscribing through base contracts or interfaces.
+The [fallback topic](/transports/azure-service-bus/topology.md#subscription-rule-matching-fallback-topic) provides a catch-all destination for events that are not explicitly mapped. This simplifies polymorphic dispatch scenarios and reduces the number of explicit mappings required when subscribing through base contracts or interfaces.
 
 ### Built-in filtering modes
 
