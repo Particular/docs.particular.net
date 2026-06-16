@@ -1,11 +1,15 @@
 name: VerifyMaster
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
 env:
   DOTNET_NOLOGO: true
   DOTNET_ROLL_FORWARD: Major
+defaults:
+  run:
+    shell: pwsh
 jobs:
   content-verification:
     name: Content verification
@@ -19,8 +23,9 @@ jobs:
           global-json-file: global.json
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
+        shell: bash
         run: |
-           curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
+           echo "DOCSTOOL_VERSION=$(curl --connect-timeout 5 --max-time 15 --silent --show-error https://s3.amazonaws.com/particular.downloads/Particular.DocsTool/version.json)" >> $GITHUB_ENV
       - name: Cache docstool
         id: cache-docstool
         uses: actions/cache@v5.0.5
@@ -28,7 +33,7 @@ jobs:
           path: |
              ~/.dotnet/tools/docstool
              ~/.dotnet/tools/.store/particular.docstool
-          key: docstool-${{ hashFiles('docstool-versions.json') }}
+          key: docstool-${{ FromJson(env.DOCSTOOL_VERSION).version }}
       - name: Install docstool
         if: steps.cache-docstool.outputs.cache-hit != 'true'
         run: dotnet tool install Particular.DocsTool --global
@@ -36,14 +41,13 @@ jobs:
         run: docstool test --no-version-check
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
           }
           $body = @{
             channel = 'docs'
-            text = "Content verification has failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            text = "Content verification has failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/validate-master.yml?query=branch%3Amaster"
             username = 'Content verification'
             icon_emoji = 'github_actions'
             unfurl_links = false
@@ -66,14 +70,13 @@ jobs:
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        shell: pwsh
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
           }
           $body = @{
             channel = 'docs'
-            text = "Integrity tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            text = "Integrity tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/validate-master.yml?query=branch%3Amaster"
             username = 'Integrity tests'
             icon_emoji = 'github_actions'
             unfurl_links = false
@@ -82,4 +85,3 @@ jobs:
           $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
           Write-Output $result
           exit $(If ($result.ok) { 0 } Else { 1 })
-
