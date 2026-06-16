@@ -63,5 +63,33 @@ public class QuickStart
         }
         #endregion
 
+        #region aspire-quick-start-explicit-with-defaults
+        {
+            var builder = DistributedApplication.CreateBuilder(args);
+
+            //ASB connection string
+            var transport = builder.AddConnectionString("transport", "AzureServiceBus_ConnectionString");
+
+            //platform setup with ASB transport and license file
+            var platform = builder
+                .AddParticularPlatform("particular")
+                .WithTransportAzureServiceBus(transport)
+                .WithLicenseFromFile("license.xml");
+
+            //ServiceControl database setup
+            var serviceControlDb = platform.AddPersistenceRavenDb("particular-persistence");
+
+            //error instance setup
+            var servicecontrol = platform.AddServiceControlErrorInstance("particular-error", serviceControlDb)
+                .WithErrorQueueName("error")
+                .WithThroughputQueue("particular.throughput");
+
+            //default components for everything else not explicitly configured
+            platform.AddDefaultComponents();
+
+            builder.Build().Run();
+        }
+        #endregion
+
     }
 }

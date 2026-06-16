@@ -47,5 +47,16 @@ public class Transport
             .WithTransportAmazonSqs("us-west-1", sqsAccessId.Resource, sqsSecretKey.Resource);
 
         #endregion
+
+        #region aspire-transport-sqlserver
+
+        var sqlServer = builder.AddConnectionString("sqlserver");
+        // var sqlServer = builder.AddSqlServer("sqlserver");
+
+        builder
+            .AddParticularPlatform("particular")
+            .WithTransportSqlServer(sqlServer);
+
+        #endregion
     }
 }

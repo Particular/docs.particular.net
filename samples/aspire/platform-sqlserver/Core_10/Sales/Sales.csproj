@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>14.0</LangVersion>
+    <UserSecretsId>0272a6ff-52df-4789-91eb-272ec6cc140b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireDemo.ServiceDefaults\AspireDemo.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -87,4 +87,3 @@ To demonstrate the platform's error handling, the `Sales` endpoint's handler thr
 snippet: random-error
 
 Failed messages are moved to the error queue, where they can be inspected and retried from ServicePulse.
-
