@@ -21,7 +21,7 @@ These hands-on tutorials and demos introduce NServiceBus and the Particular Serv
 
 ### Learn more
 
-These additional resources provide a broader introduction to NServiceBus, the Particular Service Platform, and how they fit together.
+These additional resources provide a broader introduction to NServiceBus and the rest of the Particular Service Platform:
 
 * **[NServiceBus technical introduction](/nservicebus/)** - A more technical introduction to NServiceBus as well as the Service Platform.
 * **[(Video) - Live coding your first NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to sit back and watch an experienced developer build a messaging system with NServiceBus.
