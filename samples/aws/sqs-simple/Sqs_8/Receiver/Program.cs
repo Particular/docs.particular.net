@@ -16,9 +16,6 @@ var transport = new SqsTransport
 };
 endpointConfiguration.UseTransport(transport);
 
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
