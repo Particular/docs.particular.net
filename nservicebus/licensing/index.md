@@ -12,6 +12,7 @@ related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/support-policy
  - servicecontrol/license
+ - servicepulse/license
 ---
 
 ## License details
@@ -29,7 +30,11 @@ Some licenses have a date value in the `UpgradeProtectionExpiration` attribute. 
 > [!NOTE]
 > Only the Major/Minor part is relevant; e.g. if using NServiceBus 6.1.1 it's the release date of 6.1.0 that counts.
 
-## Throughput limitations
+## Behavior
+
+The license is only read once at startup. When the license expires the endpoint logs will contain a message indicating the license is expired. To resolve this the endpoint must be restarted so that it can read the updated license at startup.
+
+### Throughput limitations
 
 No technical limitations are enforced at runtime when either no license is found, invalid or corrupt license data is provided, or a license has expired.
 
@@ -40,10 +45,6 @@ There are several options available for installing the license file.
 partial: license-management
 
 Sometimes the license must be embedded in a single line of text, for example, in a command line when deploying an endpoint with Docker. For these scenarios, the license can be minified, removing all spaces and line breaks, by adding `minify=true` to the query string of the URL used to download a license file from the Particular Software website.
-
-## Behavior
-
-The license is only read once at startup. When the license expires the endpoint logs will contain a message indicating the license is expired. To resolve this the endpoint must be restarted so that it can read the updated license at startup.
 
 ## Troubleshooting
 
