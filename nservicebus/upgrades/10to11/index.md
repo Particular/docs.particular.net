@@ -266,6 +266,20 @@ This only matters when both of the following are true:
 
 To avoid the problem, upgrade message **receivers before senders** so that no version 10 endpoint receives baggage produced by a version 11 endpoint.
 
-#### Whitespace in baggage values
+#### Baggage
+
+##### Whitespace in values
 
 Contrary to version 10, version 11 of NServiceBus does not preserve leading or trailing whitespace in a baggage value. The W3C propagator treats such whitespace as insignificant optional whitespace and trims it when reading, whereas version 10 percent-encoded it. For example, a value of `" tenant"` is read back as `"tenant"`. This applies even when both endpoints run version 11. If exact leading or trailing whitespace must be retained, encode it into the value (for example, percent-encode it) before adding it to baggage and decode it after reading.
+
+##### Empty values are no longer propagated
+
+Version 10 preserved a baggage item that had an empty value: a header such as `key1=value1,key3=` was read back with `key3` present and set to an empty string. Version 11 discards baggage members that have an empty value when reading, so `key3` is not added to the activity at all. The propagator also stops parsing at the first empty-valued member, so members listed after it can be dropped as well.
+
+This is the behavior of the underlying .NET `DistributedContextPropagator`, which on this point is stricter than the [W3C Baggage](https://www.w3.org/TR/baggage/) specification (the specification permits empty values). Avoid relying on empty or null baggage values; if an item only needs to signal presence, give it a non-empty value such as `true` or `1`. Note that a `null` and an empty baggage value are indistinguishable on the wire — both serialize to `key=` — so neither survives.
+
+#### Trace state must conform to the W3C format
+
+Version 10 copied the `tracestate` value onto outgoing messages verbatim, without validation. Version 11 validates `tracestate` against the [W3C Trace Context](https://www.w3.org/TR/trace-context/#tracestate-header) format and drops any content that does not conform. As a result, a non-conformant trace state set on an ambient activity — for example, free-form text such as `my custom state`, or a member whose key contains uppercase letters — is no longer propagated to the message spans.
+
+To retain custom trace state, ensure it is a comma-separated list of `key=value` members with lowercase keys, for example `vendorkey=vendorvalue`. Values may contain mixed case; only keys are restricted to lowercase letters, digits, and `_`, `-`, `*`, `/`, `@`.
