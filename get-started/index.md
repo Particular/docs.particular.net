@@ -7,7 +7,7 @@ redirects:
 - get-started/high-level-content
 ---
 
-NServiceBus and the Particular Service Platform make it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. All the low-level serialization, threading, and transaction management is handled out-of-the box. Monitoring and debugging are easy to set up thanks to ServicePulse.
+The Particular Service Platform is a suite of tools for building and operating message-driven systems. NServiceBus is at its core, making it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies, with all the low-level serialization, threading, and transaction management handled out of the box.
 
 ### Resources
 
