@@ -3,7 +3,7 @@ using Particular.Aspire.Hosting.ServicePlatform.ThroughputReporting;
 var builder = DistributedApplication.CreateBuilder(args);
 
 #region transport
-var transport = builder.AddConnectionString("transport", "AzureServiceBus_ConnectionString");
+var transport = builder.AddConnectionString("transport");
 #endregion
 
 #region platform-config
