@@ -7,6 +7,7 @@ related:
 - samples/hosting/aspire
 - samples/aspire/platform
 - samples/aspire/platform-asb
+- samples/aspire/platform-sqs
 - samples/aspire/platform-sqlserver
 ---
 
