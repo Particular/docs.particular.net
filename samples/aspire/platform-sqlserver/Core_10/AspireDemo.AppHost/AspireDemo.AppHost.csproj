@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Particular.Aspire.Hosting.ServicePlatform" Version="1.1.0-alpha.1" />
+    <PackageReference Include="Particular.Aspire.Hosting.ServicePlatform" Version="1.*" />
   </ItemGroup>
 
 </Project>
