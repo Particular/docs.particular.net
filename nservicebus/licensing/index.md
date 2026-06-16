@@ -2,7 +2,7 @@
 title: License file information
 summary: Learn how NServiceBus licensing works, including configuration, license types, usage reporting, and expiration
 component: core
-reviewed: 2026-02-26
+reviewed: 2026-06-16
 redirects:
  - nservicebus/licensing-limitations
  - nservicebus/licensing/licensing-limitations
