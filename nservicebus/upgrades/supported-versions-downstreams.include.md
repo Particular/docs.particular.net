@@ -23,7 +23,6 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [11.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.2.1)| **Current** | 2026-04-07     | Active            | Active |
 | [11.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.1.1)| Mainstream Support | 2026-03-16     | 2026-07-07        | Ineligible |
-| [11.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.0.1)| Mainstream Support | 2026-01-30     | 2026-06-16        | Ineligible |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.8)| Mainstream Support | 2025-04-14     | 2028-01-29        | 2030-01-29 |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.10)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.7)| Extended Support | 2022-07-14     | 2024-11-17        | 2026-11-17 |
@@ -72,15 +71,15 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.0.1)| **Current** | 2026-01-30     | Active            | Active |
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.12)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.0.1)| **Current** | 2026-01-30     | Active            | Active |
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.12)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.13)| Extended Support | 2023-08-28     | 2026-04-16        | 2028-04-16 |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8)| Extended Support | 2021-06-23     | 2024-11-17        | 2026-11-17 |
 
@@ -609,7 +608,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.0)| **Current** | 2026-06-09     | Active            | Ineligible |
+| [1.0.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.1)| **Current** | 2026-06-09     | Active            | Ineligible |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
