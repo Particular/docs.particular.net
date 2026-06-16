@@ -1,7 +1,7 @@
 ---
 title: Upgrade Version 10 to 11
 summary: Instructions on how to upgrade NServiceBus from version 10 to version 11.
-reviewed: 2026-06-08
+reviewed: 2026-06-16
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -234,3 +234,38 @@ Or via MSBuild in the project file:
 
 > [!NOTE]
 > The legacy MD5-based host identifier algorithm and the `UseV2DeterministicGuid` AppContext switch will be removed in version 12.
+
+## OpenTelemetry
+
+### Context propagation
+
+In version 11, NServiceBus propagates the [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [W3C Baggage](https://www.w3.org/TR/baggage/) using the built-in .NET `DistributedContextPropagator` instead of the custom propagation logic used in version 10. This aligns the on-the-wire format with the W3C specifications and improves interoperability with standard OpenTelemetry tooling and non-NServiceBus systems that participate in the same trace. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for an overview of the feature.
+
+#### Trace correlation is unaffected
+
+The `traceparent` and `tracestate` headers continue to be emitted in the W3C format. Distributed traces still correlate correctly between version 10 and version 11 endpoints in both directions, so upgrading does not break trace continuity.
+
+#### Baggage serialization change
+
+The change affects how the `baggage` header is serialized on the wire:
+
+- Version 10 emitted a compact form with no optional whitespace (`key1=value1,key2=value2`) and percent-encoded baggage values aggressively.
+- Version 11 emits the W3C form with optional whitespace around the delimiters (`key1 = value1, key2 = value2`) and percent-encodes only the characters that are structurally significant (such as `,`, `;`, and `%`).
+
+Both versions decode percent-encoding when reading, so a baggage value written by one version is generally decoded correctly by the other — with the exception described below.
+
+#### Mixed-version incompatibility
+
+> [!WARNING]
+> When [baggage](https://www.w3.org/TR/baggage/) is used, a **version 11 endpoint sending to a version 10 endpoint corrupts every baggage value by prepending a single space**. Version 11 writes baggage using the W3C optional-whitespace format (`key = value`), and the version 10 reader does not trim that whitespace from the value when parsing. The opposite direction (a version 10 endpoint sending to a version 11 endpoint) is not affected.
+
+This only matters when both of the following are true:
+
+- The application adds baggage to activities. Baggage is opt-in; endpoints that do not use it are unaffected, and `traceparent`/`tracestate` correlation works regardless.
+- Version 10 and version 11 endpoints exchange messages during a rolling upgrade.
+
+To avoid the problem, upgrade message **receivers before senders** so that no version 10 endpoint receives baggage produced by a version 11 endpoint.
+
+#### Whitespace in baggage values
+
+Contrary to version 10, version 11 of NServiceBus does not preserve leading or trailing whitespace in a baggage value. The W3C propagator treats such whitespace as insignificant optional whitespace and trims it when reading, whereas version 10 percent-encoded it. For example, a value of `" tenant"` is read back as `"tenant"`. This applies even when both endpoints run version 11. If exact leading or trailing whitespace must be retained, encode it into the value (for example, percent-encode it) before adding it to baggage and decode it after reading.
