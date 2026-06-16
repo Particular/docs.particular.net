@@ -20,5 +20,8 @@
     <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.*" />
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.*" />
   </ItemGroup>
-
+  
+  <ItemGroup Label="Pinned dependencies to avoid CVEs">
+    <PackageReference Include="MessagePack" Version="3.*" />
+  </ItemGroup>
 </Project>
