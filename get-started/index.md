@@ -9,7 +9,7 @@ redirects:
 
 The Particular Service Platform is a suite of tools for building and operating message-driven systems. NServiceBus is at its core, making it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies, with all the low-level serialization, threading, and transaction management handled out of the box.
 
-### Resources
+## Resources
 
 These hands-on tutorials and demos introduce NServiceBus and the Particular Service Platform:
 
