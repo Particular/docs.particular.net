@@ -1483,6 +1483,8 @@
           Title: About ServicePulse
         - Url: servicepulse/installation
           Title: Installation
+        - Url: servicepulse/license
+          Title: Licensing
         - Url: servicepulse/containerization
           Title: Container deployment
         - Url: servicepulse/support-policy
