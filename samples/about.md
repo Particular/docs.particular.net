@@ -3,6 +3,7 @@ title: About the samples
 summary: Samples using NServiceBus and the Particular Service Platform
 reviewed: 2025-02-03
 suppressRelated: true
+hidden: true
 ---
 
 ## Technology choices
