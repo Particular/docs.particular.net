@@ -1,9 +1,22 @@
 ---
 title: Licensing ServiceControl
-summary: Configure, manage and troubleshoot ServiceControl license
-reviewed: 2026-04-10
+summary: Configure and manage ServiceControl license
+reviewed: 2026-06-16
 component: ServiceControl
+related:
+- servicepulse/license
+- nservicebus/licensing
 ---
+# Behavior
+
+The license is read only once at startup.
+
+## Expired license
+
+If the license has expired (or is corrupted), existing ServiceControl instances will continue working undisrupted and could be started and stopped normally.
+However, no new instances could be added.
+
+# License management
 
 In general, ServiceControl instances support [all of the license management options that NServiceBus supports](/nservicebus/licensing/#license-management), except for code-first configuration and the Windows Registry.
 
@@ -48,9 +61,3 @@ snippet: config-licensepath
 
 > [!NOTE]
 > This is the same setting to configure a license path for an NServiceBus 7 or lower endpoint. This license configuration option is [no longer supported in NServiceBus 8](/nservicebus/upgrades/7to8/#change-to-license-file-locations) or later endpoints.
-
-## Troubleshooting
-
-### ServiceControl license was updated, but ServicePulse reports the license has expired
-
-License information is read by ServicePulse from the ServiceControl Error instance via the HTTP API. ServiceControl Error instances read the license file during startup, which is cached for 8 hours. Therefore, either wait for the cache to expire or restart the ServiceControl Error instance manually so that ServicePulse reflects the new license.
