@@ -8,7 +8,7 @@ related:
 - nservicebus/licensing
 ---
 
-Licensing for ServicePulse depends on the [licensing configuration of ServiceControl](/servicecontrol/license), meaning that once the license is correctly configured for ServiceControl, nothing else needs to be modified in ServicePulse.
+Licensing for ServicePulse depends on the [licensing configuration of ServiceControl](/servicecontrol/license.md), meaning that once the license is correctly configured for ServiceControl, nothing else needs to be modified in ServicePulse.
 More specifically, the license information is read by ServicePulse from the ServiceControl Error instance via the HTTP API.
 
 ## Behavior
