@@ -11,8 +11,6 @@ The Particular Service Platform is a suite of tools for building and operating m
 
 ## Resources
 
-These hands-on tutorials and demos introduce NServiceBus and the Particular Service Platform:
-
 * **[Quickstart tutorial](/tutorials/quickstart/)** - The quickest way to try NServiceBus. In about 10 minutes, you'll send and process command messages, publish and subscribe to events, and see how messaging works without focusing on the underlying queuing technology. Start here if you're new to NServiceBus and want a quick hands-on introduction.
 * **[NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/)** - A deeper tutorial that builds a more realistic retail e-commerce backend. You'll learn how to split responsibilities across endpoints, send commands, publish events, and use reliable messaging to recover from failures.
 * **[NServiceBus Sagas](/tutorials/nservicebus-sagas/)** - A follow-on tutorial that introduces stateful message handling. You'll learn how to coordinate longer-running business processes, wait for multiple messages, delay work with timeouts, and manage workflows that unfold over time.
