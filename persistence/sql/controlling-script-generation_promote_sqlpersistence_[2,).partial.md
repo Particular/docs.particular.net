@@ -6,7 +6,7 @@ As stated above, scripts are created in the target project output directory. Thi
 > [!WARNING]
 > The target directory will be deleted and recreated as part of each build. Be sure to choose a path that is for script promotion only.
 
-Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx) is supported.
+Some token replacement using [MSBuild variables](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-reserved-and-well-known-properties) is supported.
 
  * `$(SolutionDir)`: The directory of the solution.
  * `$(ProjectDir)`: The directory of the project
