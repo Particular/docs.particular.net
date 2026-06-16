@@ -19,7 +19,7 @@ These hands-on tutorials and demos introduce NServiceBus and the Particular Serv
 * **[NServiceBus Monitoring demo](/tutorials/monitoring-demo/)** - A downloadable demo that shows the monitoring features of the Particular Service Platform in ServicePulse. It includes pre-configured platform components and sample endpoints so you can explore slow handlers, message backlogs, and struggling endpoints in a running system.
 
 
-### Learn more
+## Learn more
 
 These additional resources provide a broader introduction to NServiceBus and the rest of the Particular Service Platform:
 
