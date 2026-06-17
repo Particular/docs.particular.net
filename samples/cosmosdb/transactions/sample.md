@@ -1,7 +1,7 @@
 ---
 title: Cosmos DB Persistence Usage with transactions
 summary: Using Cosmos DB Persistence to store sagas and outbox records atomically
-reviewed: 2024-10-14
+reviewed: 2026-06-15
 component: CosmosDB
 related:
  - nservicebus/sagas
@@ -31,15 +31,13 @@ The shared message contracts used by all endpoints.
 
 ### Persistence config
 
-Configure the endpoint to use Cosmos DB Persistence.
+Configure the endpoint to use Cosmos DB Persistence.  The sample is configured to use the [Docker CosmosDB emulator](https://learn.microsoft.com/en-us/azure/cosmos-db/emulator-linux?context=/azure/cosmos-db/context/context#installation) if a connection string is not found in the `COSMOS_CONNECTION_STRING` environment variable.
 
 snippet: CosmosDBConfig
 
-Because the order id is used as a partition key it has to be used in the partition key path as well.
-
 ## Transaction Information
 
-Most messages implement `IProvideOrderId` and thus it is possible to use the provided order identification as a partition key.
+Most messages implement `IProvideOrderId` and thus it is possible to use the provided order identification (OrderId) as a partition key.
 
 snippet: TransactionInformationFromLogicalMessage
 
