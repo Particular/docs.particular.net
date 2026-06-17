@@ -58,8 +58,9 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/9.0.1)| **Current** | 2026-01-29     | Active            | Active |
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.1.1)| Mainstream Support | 2026-01-14     | 2028-01-29        | 2030-01-29 |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/9.0.2)| Mainstream Support | 2026-01-29     | 2026-09-16        | Ineligible |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.1.2)| Mainstream Support | 2026-01-14     | 2028-01-29        | 2030-01-29 |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.0.2)| ~~Unsupported~~ | ~~2025-06-04~~ | ~~2026-04-14~~    | ~~Ineligible~~ |
 | [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.1)| ~~Unsupported~~ | ~~2025-04-14~~ | ~~2026-06-04~~    | ~~Ineligible~~ |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0)| ~~Unsupported~~ | ~~2024-12-05~~ | ~~2025-07-14~~    | ~~Ineligible~~ |
@@ -221,7 +222,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [14.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/14.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [14.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/14.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [14.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/14.0.1)| Mainstream Support | 2026-01-30     | 2026-09-16        | Ineligible |
 | [13.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/13.0.5)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.6)| Extended Support | 2022-11-23     | 2026-04-16        | 2028-04-16 |
 | [~~11.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/11.0.1)| ~~Unsupported~~ | ~~2022-11-17~~ | ~~2023-11-23~~    | ~~Ineligible~~ |
@@ -247,14 +249,16 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.0.2)| Mainstream Support | 2026-01-30     | 2026-09-16        | Ineligible |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.0.2)| **Current** | 2026-01-30     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.0.2)| Mainstream Support | 2026-01-30     | 2026-09-16        | Ineligible |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.13)| Extended Support | 2023-08-28     | 2026-04-16        | 2028-04-16 |
@@ -1212,7 +1216,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.1)| **Current** | 2026-06-09     | Active            | Ineligible |
+| [1.1.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.1.0)| **Current** | 2026-06-16     | Active            | Ineligible |
+| [1.0.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.1)| Mainstream Support | 2026-06-09     | 2026-09-16        | Ineligible |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
