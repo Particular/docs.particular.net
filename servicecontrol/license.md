@@ -13,7 +13,7 @@ The license is read only once at startup.
 
 ### Expired license
 
-If the license has expired (or is corrupted), existing ServiceControl instances will continue working undisrupted and could be started and stopped normally.
+If the license has expired (or is corrupted), existing ServiceControl instances will continue to function and can be started and stopped normally.
 However, no new instances could be added.
 
 ## License management

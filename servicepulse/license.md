@@ -8,20 +8,19 @@ related:
 - nservicebus/licensing
 ---
 
-Licensing for ServicePulse depends on the [licensing configuration of ServiceControl](/servicecontrol/license.md), meaning that once the license is correctly configured for ServiceControl, nothing else needs to be modified in ServicePulse.
-More specifically, the license information is read by ServicePulse from the ServiceControl Error instance via the HTTP API.
+ServicePulse reads license information from the ServiceControl Error instance via the HTTP API, so once the [license is configured and read by ServiceControl](/servicecontrol/license.md), no further action is required.
 
 ## Behavior
 
-The license is constanly checked while using the application, so there is no need to restart or refresh the page once the license file has been modified.
+The license is constantly checked while using the ServicePulse, so there is no need to restart or refresh the page once the license file has been modified and ServiceControl has re-read it.
 
 ### Expired license
 
-If the license has expired (or is corrupted), then all the features of the application will be disabled, except for the ability to request a new license, request a trial extension (for trial licenses only) or contact customer support.
-Once a new license has been attached, then all functionalities will be restored.
+If the license has expired (or is corrupted), all application features will be disabled, except for the ability to request a new license, request a trial extension (for trial licenses only), or contact customer support.
+Once a new license is attached, all functionality will be restored.
 
 ## Troubleshooting
 
 ### ServiceControl license was updated, but ServicePulse reports the license has expired
 
-The license information depends on the license information on the ServiceControl Error instance. Such instances read the license file during startup, which is cached for 8 hours. Therefore, either wait for the cache to expire or restart the ServiceControl Error instance manually so that ServicePulse reflects the new license.
+License information is reported to ServicePulse by the ServiceControl Error instance, which reads the license file at startup and caches it for 8 hours. Restarting the ServiceControl Error instance or waiting for the cache to expire will resolve the issue.
