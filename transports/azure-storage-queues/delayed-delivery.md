@@ -6,11 +6,11 @@ related:
 - persistence
 - persistence/azure-table
 - persistence/azure-table/performance-tuning
-reviewed: 2024-10-10
+reviewed: 2026-06-16
 ---
 
 
-In Versions 7.4 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to provide [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport uses the same storage account to provide delayed delivery without needing an external persister.
+In versions 7.4 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to provide [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport uses the same storage account to provide delayed delivery without needing an external persister.
 
 
 ## How it works
@@ -31,7 +31,7 @@ partial: disabling
 > [!NOTE]
 > When making use of the table name override, make sure the table is unique per endpoint and not shared across multiple endpoints.
 
-## Backwards compatibility
+## Backward compatibility
 
 When upgrading to a version of the transport that supports delayed delivery natively, it is safe to run with both native-delay and non-native-delay endpoints at the same time. Endpoints supporting native delayed delivery can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. These endpoints can continue to receive delayed messages from non-native endpoints as well.
 
