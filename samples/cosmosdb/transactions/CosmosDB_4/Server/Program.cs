@@ -30,6 +30,8 @@ class Program
              persistence.CosmosClient(new CosmosClient(connection, new CosmosClientOptions {
                  ConnectionMode = ConnectionMode.Gateway // prevents a BadRequest error on CosmosDB installation to local emulators
              }));
+             
+             // Because OrderId is used as a partition key, it has to be used in the partition key path as well.
              persistence.DefaultContainer("Server", "/OrderId");
 
              #endregion

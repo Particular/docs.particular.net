@@ -35,8 +35,6 @@ Configure the endpoint to use Cosmos DB Persistence.  The sample is configured t
 
 snippet: CosmosDBConfig
 
-Because OrderId is used as a partition key, it has to be used in the partition key path as well.
-
 ## Transaction Information
 
 Most messages implement `IProvideOrderId` and thus it is possible to use the provided order identification (OrderId) as a partition key.
