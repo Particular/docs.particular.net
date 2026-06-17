@@ -10,7 +10,7 @@
 
             var transport = new MsmqTransport
             {
-                UseDeadLetterQueueForMessagesWithTimeToBeReceived = false
+                UseDeadLetterQueueForMessagesWithTimeToBeReceived = true
             };
             endpointConfiguration.UseTransport(transport);
 
