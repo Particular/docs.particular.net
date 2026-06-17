@@ -21,7 +21,7 @@ This sample shows how to create a custom [message mutator](/nservicebus/pipeline
 ```
 Press 's' to send a valid message
 Press 'e' to send a failed message
-Press any key to exit
+Press any other key to exit
 
 s
 INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032

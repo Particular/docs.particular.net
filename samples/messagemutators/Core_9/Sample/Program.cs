@@ -32,7 +32,7 @@ var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 Console.WriteLine("Press 's' to send a valid message");
 Console.WriteLine("Press 'e' to send a failed message");
-Console.WriteLine("Press any key to exit");
+Console.WriteLine("Press any other key to exit");
 
 while (true)
 {
