@@ -1,7 +1,7 @@
 ---
 title: Session filter pipeline extension
 summary: How to extend the pipeline to filter out messages from older sessions.
-reviewed: 2024-10-09
+reviewed: 2026-06-17
 component: Core
 related:
  - nservicebus/pipeline
@@ -11,7 +11,7 @@ related:
 This sample shows how to extend the NServiceBus message processing pipeline with custom behaviors to add session filters to an endpoint. An endpoint will accept messages only from a sending endpoint if they share a session key.
 
 > [!NOTE]
-> This technique can be useful in testing scenarios where left over messages from previous test runs should be ignored.
+> This technique can be useful in testing scenarios where leftover messages from previous test runs should be ignored.
 
 
 ## Code walk-through
@@ -40,15 +40,15 @@ The second behavior checks incoming messages for the session key header and only
 
 snippet: filter-incoming-messages
 
-## Running the Code
+## Running the code
 
- * Run the solution.
- * Verify that each endpoint is using the same session key
- * Send some messages from the sender to the receiver
- * Verify that the messages are sent and received correctly
- * Change the session key for the receiver
- * Send more messages from the sender to the receiver
- * Note that the messages are dropped and not processed
- * Change the session key for the sender to match the receiver
- * Send a final batch of messages
- * Verify that the new batch of messages are received
+1. Run the solution.
+1. Verify that each endpoint is using the same session key.
+1. Send some messages from the sender to the receiver.
+1. Verify that the messages are sent and received correctly.
+1. Change the session key for the receiver.
+1. Send more messages from the sender to the receiver.
+1. Note that the messages are dropped and not processed.
+1. Change the session key for the sender to match the receiver.
+1. Send a final batch of messages.
+1. Verify that the new batch of messages are received.

@@ -7,7 +7,7 @@ using NServiceBus.Transport;
 #region filter-incoming-messages
 public class FilterIncomingMessages: Behavior<ITransportReceiveContext>
 {
-    readonly ISessionKeyProvider sessionKeyProvider;
+    private readonly ISessionKeyProvider sessionKeyProvider;
     private readonly ILogger<FilterIncomingMessages> logger;
 
     public FilterIncomingMessages(ISessionKeyProvider sessionKeyProvider, ILogger<FilterIncomingMessages> logger)
