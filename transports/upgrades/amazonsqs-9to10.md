@@ -1,11 +1,8 @@
 ---
-title: SQL Server Transport Upgrade Version 9 to 9.1
-summary: Migration instructions on how to migrate the SQL Server transport from version 9 to version 9.1
-reviewed: 2026-06-04
-component: SqlTransport
-related:
-- transports/sql
-- transports/upgrades/sqlserver-4to5
+title: AmazonSQS Transport Upgrade Version 9 to 10
+summary: Instructions on how to upgrade the AmazonSQS transport from version 9 to 10
+component: SQS
+reviewed: 2026-06-17
 isUpgradeGuide: true
 ---
 
@@ -23,7 +20,7 @@ async Task Initialize()
     var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
 
     // Rest of your transport configuration here
-    var transport = new SqlServerTransport("connectionString");
+    var transport = new SqsTransport();
     // ...
 
     // Enable message-driven publish/subscribe compatibility
@@ -55,7 +52,7 @@ async Task Initialize(bool migrateAwayFromMessageDrivenPubSub = false)
     var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
 
     // Rest of your transport configuration here
-    var transport = new SqlServerTransport("connectionString");
+    var transport = new SqsTransport();
     // ...
 
     var routingConfig = config.UseTransport(transport);
@@ -70,10 +67,10 @@ async Task MigrateAwayFromMessageDrivenPubSub()
     autoSubscribe.DisableFor<MyEvent>();
 
     // Rest of your transport configuration here
-    var transport = new SqlServerTransport("connectionString");
+    var transport = new SqsTransport();
     // ...
 
-    // Enable message-driven publish/subscribe compatibility
+    // Enable message-driven pubsub compatibility
     transport.EnableMessageDrivenPubSubCompatibilityMode();
 
     var routing = endpointConfiguration.UseTransport(transport);

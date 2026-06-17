@@ -1,7 +1,7 @@
 ---
-title: Azure Storage Queues Transport Upgrade Version 14 to 14.1
-summary: Instructions on how to upgrade the Azure Storage Queues transport from version 14 to 14.1.
-reviewed: 2026-06-04
+title: Azure Storage Queues Transport Upgrade Version 14 to 15
+summary: Instructions on how to upgrade the Azure Storage Queues transport from version 14 to 15.
+reviewed: 2026-06-17
 component: ASQ
 related:
 - transports/azure-storage-queues
