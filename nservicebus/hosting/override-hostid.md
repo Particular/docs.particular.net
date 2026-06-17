@@ -5,22 +5,22 @@ component: Core
 versions: '[4.0,)'
 redirects:
  - nservicebus/override-hostid
-reviewed: 2024-10-14
+reviewed: 2026-06-17
 ---
 
 ## Host identifier
 
-In NServiceBus, all messages sent to the audit queue include two extra headers: `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`. These extra headers uniquely identify the running host for the endpoint, i.e. the operating system host (not to be confused with `NServiceBus.Host`). 
+In NServiceBus, all messages sent to the audit queue include two extra headers: `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`. These extra headers uniquely identify the running host for the endpoint, i.e. the operating system host (not to be confused with `NServiceBus.Host`).
 
-The host ID is used by ServiceControl to map a running endpoint to the host where they are deployed. This information is then displayed in ServicePulse so it's possible to identify in which host the endpoint is running.
+The host ID is used by ServiceControl to map a running endpoint to the host where it is deployed. This information is then displayed in ServicePulse so it's possible to identify in which host the endpoint is running.
 
-The default values in most scenarios is the machine name for `$.diagnostics.hostdisplayname` and a hash of the running executable's  path concatenated with the machine name for `$.diagnostics.hostid`.
+The default values in most scenarios are the machine name for `$.diagnostics.hostdisplayname` and a hash of the running executable's path concatenated with the machine name for `$.diagnostics.hostid`.
 
 ## Overriding the host identifier
 
 There are scenarios where the rules used by NServiceBus to generate a `hostid` and `hostdisplayname` are not adequate and the user needs to take control, e.g. in environments where endpoint upgrades are done to a new path or when self-hosting in Azure deployments.
 
-Manual configuration is required when deployments may end up in different paths than previously deployed versions (e.g. using [Octopus Deploy](https://octopus.com/)). The `hostid` must remain the same across restarts unless the physical host has changed.
+Configure the host identifier manually when deployments may end up in different paths than previously deployed versions (e.g. using [Octopus Deploy](https://octopus.com/)). The `hostid` must remain the same across restarts unless the physical host has changed.
 
 snippet: HostIdFixer
 
