@@ -2,7 +2,7 @@
 title: SQL Persistence - SQL Server dialect
 component: SqlPersistence
 related:
-reviewed: 2024-10-09
+reviewed: 2026-06-17
 ---
 
 > [!WARNING]
@@ -11,7 +11,7 @@ reviewed: 2024-10-09
 
 ## Supported database versions
 
-SQL persistence supports [SQL Server Version 2012](https://learn.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes). It does not work with lower versions due to the use of the [THROW functionality](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/throw-transact-sql).
+SQL persistence supports SQL Server 2012 or later. It does not work with lower versions due to the use of the [THROW functionality](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/throw-transact-sql).
 
 
 ## Usage
@@ -68,5 +68,5 @@ The steps to use SQL Always Encrypted are:
 The `Body` and `Operations` columns will now be readable only by clients that have the correct certificate or key stores configured.
 
 > [!NOTE]
-> Encrypting columns requires a few parameters including the type of encryption, the algorithm and the key. Installers currently do not support encryption. Therefore, [installers](/nservicebus/operations/installers.md) cannot be enabled in combination with SQL Server Always Encrypted.
+> Encrypting columns requires a few parameters including the type of encryption, the algorithm, and the key. Installers currently do not support encryption. Therefore, [installers](/nservicebus/operations/installers.md) cannot be enabled in combination with SQL Server Always Encrypted.
 
