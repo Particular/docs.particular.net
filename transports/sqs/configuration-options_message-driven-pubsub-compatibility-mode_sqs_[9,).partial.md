@@ -7,7 +7,7 @@ Message-driven publish/subscribe compatibility mode must be enabled on publisher
 > [!WARNING]
 > Starting from version 9.1 of the transport, publish/subscribe compatibility mode is deprecated.
 >
-> See [the upgrade guide](/transports/upgrades/amazonsqs-9to9.1.md) for more details.
+> See [the upgrade guide](/transports/upgrades/amazonsqs-9to10.md) for more details.
 
 To enable message-driven publish/subscribe compatibility mode, configure the endpoint as follows:
 
