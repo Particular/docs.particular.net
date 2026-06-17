@@ -1,7 +1,7 @@
 ---
 title: Message Mutators
 summary: Change messages by plugging custom logic in to a couple of interfaces, encrypting as required.
-reviewed: 2024-10-09
+reviewed: 2026-06-16
 component: Core
 redirects:
 - nservicebus/nservicebus-message-mutators-sample
@@ -13,13 +13,15 @@ related:
 
 This sample shows how to create a custom [message mutator](/nservicebus/pipeline/message-mutators.md).
 
-### Executing the sample
+## Executing the sample
 
  1. Run the solution.
  1. Press 's' in the window to send a valid message. Then press 'e' to send an invalid message. (The exception is expected.) The console output will look something like this:
 
 ```
-Press 's' to send a valid message, press 'e' to send a failed message. To exit, 'q'
+Press 's' to send a valid message
+Press 'e' to send a failed message
+Press any other key to exit
 
 s
 INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
@@ -29,7 +31,7 @@ INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCo
 INFO  Handler Received a CreateProductCommand message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
 
 e
-ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Milk Milk Milk Milk Milk, ListPrice=15 Image (length)=7340032, with the following error/s:
+ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Really long product name, ListPrice=15 Image (length)=7340032, with the following error/s:
 The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
 ```
@@ -40,7 +42,7 @@ The field ListPrice must be between 1 and 5.
 
 The `IMutateIncomingMessages` and `IMutateOutgoingMessages` interfaces give access to the message so that the inbound and/or outbound message can be modified.
 
-This sample implements two mutators, which validate all DataAnnotations attributes on both incoming or outgoing messages and throw an exception if the validation fails.
+This sample implements two mutators, which validate all DataAnnotations attributes on both incoming and outgoing messages and throw an exception if the validation fails.
 
 snippet: ValidationMessageMutator
 
@@ -56,7 +58,7 @@ snippet: TransportMessageCompressionMutator
 
 The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows the mutation of the outgoing and incoming transport message.
 
-The compression code uses the [GZipStream](https://msdn.microsoft.com/en-us/library/system.io.compression.gzipstream.aspx) class to do the compression. After the compression is done, the compressed array is placed back in the transport message Body property. The sample then signals to the receiver that the transport message was mutated (compressed) by setting the header key `IWasCompressed` to "true". The incoming mutator uses this key to determine whether or not to mutate (decompress) the message.
+The compression code uses the [GZipStream](https://learn.microsoft.com/en-us/dotnet/api/system.io.compression.gzipstream) class to do the compression. After the compression is done, the compressed array is placed back in the transport message Body property. The sample then signals to the receiver that the transport message was mutated (compressed) by setting the header key `IWasCompressed` to "true". The incoming mutator uses this key to determine whether to mutate (decompress) the message.
 
 ## Configuring NServiceBus to use the message mutators
 
@@ -77,7 +79,7 @@ The sample sends a similar message but with data that fails the logical message 
 
 snippet: SendingLarge
 
-The message is invalid for several reasons: the product name is over the 20 character limit, the list price is too high, and the sell end date is not in the valid range. The exception logs those invalid values.
+The message is invalid for two reasons: the product name is over the 20 character limit and the list price is too high. The exception logs those invalid values.
 
 ## Receiving a message
 
