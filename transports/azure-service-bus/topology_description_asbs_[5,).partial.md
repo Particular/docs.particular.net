@@ -175,7 +175,7 @@ snippet: asb-versioning-publisher-customization
 which would allow adding either a Correlation filter (preferred) or a SQL filter based on the promoted full name.
 
 > [!NOTE]
-> Starting with version 5.1 of the transport, the [FallbackTopic](#subscription-rule-matching-fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
+> Starting with version 6.1 of the transport, the [FallbackTopic](#subscription-rule-matching-fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
 
 ##### Advanced multiplexing strategies
 
@@ -235,7 +235,7 @@ topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged");
 
 ###### Filtering within a multiplexed topic
 
-Starting with version 5.1, the transport provides built-in support for filtering within multiplexed topics through the `TopicRoutingMode` enumeration. This eliminates the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
+Starting with version 6.4, the transport provides built-in support for filtering within multiplexed topics through the `TopicRoutingMode` enumeration. This eliminates the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
 
 The `TopicRoutingMode` enumeration supports the following modes:
 
@@ -324,7 +324,7 @@ This approach preserves per-event topic isolation while grouping handler logic b
 
 ##### Fallback topic
 
-Starting with version 5.1, the transport supports configuring a fallback topic that acts as a catch-all destination for events that are not explicitly mapped using `PublishTo` and `SubscribeTo` APIs.
+Starting with version 6.4, the transport supports configuring a fallback topic that acts as a catch-all destination for events that are not explicitly mapped using `PublishTo` and `SubscribeTo` APIs.
 
 The fallback topic is configured using the `UseFallbackTopic` method:
 
@@ -355,7 +355,7 @@ When a fallback topic is configured:
 | Multiplexing  | Low         | No               | Medium                      | All consumers handle all related events    |
 | Subscriber-side aggregation | High        | No               | Medium                      | Inheritance- or Interface-driven subscriptions             |
 | Multiplexing with filtering  | Low         | Yes              | High                        | Selective consumption with entity limits   |
-| Fallback topic (v5.1+)      | Low         | Yes              | Low                         | Simplified polymorphic dispatch            |
+| Fallback topic (v6.4+)      | Low         | Yes              | Low                         | Simplified polymorphic dispatch            |
 
 #### Handling overflow and scaling
 
