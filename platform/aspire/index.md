@@ -4,10 +4,10 @@ summary: Describes how to orchestrate the Particular Platform via an Aspire AppH
 reviewed: 2026-06-10
 component: Aspire.Hosting
 related:
-- samples/hosting/aspire
 - samples/aspire/platform
 - samples/aspire/platform-asb
 - samples/aspire/platform-sqs
+- samples/aspire/platform-rabbitmq
 - samples/aspire/platform-sqlserver
 ---
 
