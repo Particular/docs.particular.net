@@ -16,7 +16,7 @@ The license is constantly checked while using the ServicePulse, so there is no n
 
 ### Expired license
 
-If the license has expired (or is corrupted), all application features will be disabled, except for the ability to request a new license, request a trial extension (for trial licenses only), or contact customer support.
+If the license has expired (or is corrupted), all application features will be disabled, except for the ability to request a new license, request a trial extension (for trial licenses only), generate a usage report, or contact customer support.
 Once a new license is attached, all functionality will be restored.
 
 ## Troubleshooting
