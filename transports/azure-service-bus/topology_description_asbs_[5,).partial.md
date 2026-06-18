@@ -241,7 +241,7 @@ The `TopicRoutingMode` enumeration supports the following modes:
 
 - `NotMultiplexed` — The default mode. Events are published to individual topics without any multiplexing or filtering. No additional properties are stamped on published messages.
 - `CorrelationFilter` — The transport stamps the type names found in the `EnclosedMessageTypes` header as boolean application properties on published messages. On the subscriber side, correlation filter rules are created to match these properties.
-- `SqlFilter` — The transport uses SQL filter rules on the subscriber side to match the `EnclosedMessageTypes` header against the fully qualified class name using `LIKE '%TypeName%'`.
+- `SqlLikeFilter` — The transport uses SQL filter rules on the subscriber side to match the `EnclosedMessageTypes` header against the fully qualified class name using `LIKE '%TypeName%'`.
 
 > [!NOTE]
 > When using `CorrelationFilter` or `SqlFilter`, the publisher and subscriber configurations must match. Mismatched configurations will result in messages not being delivered.
