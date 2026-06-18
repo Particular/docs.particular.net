@@ -12,7 +12,7 @@ Experience the monitoring features of the Particular Service Platform by running
 
 <div class="text-center inline-download hidden-xs">
   <a id='download-demo' href='https://s3.amazonaws.com/particular.downloads/MonitoringDemo/Particular.MonitoringDemo.zip' class="btn btn-primary btn-lg">
-    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download demo
+    <span class="bi bi-download" aria-hidden="true"></span> Download demo
   </a>
 </div>
 
