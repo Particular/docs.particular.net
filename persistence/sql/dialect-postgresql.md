@@ -38,7 +38,7 @@ snippet: JsonBParameterModifier
 
 ### Newtonsoft.Json TypeNameHandling
 
-When using Newtonsoft.Json as serializer and the `$type` feature via [TypeNameHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_TypeNameHandling.htm), then the [MetadataPropertyHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_MetadataPropertyHandling.htm) should be set to [ReadAhead](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_MetadataPropertyHandling.htm).
+When using Newtonsoft.Json as serializer and the `$type` feature via [TypeNameHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_TypeNameHandling.htm), the [MetadataPropertyHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_MetadataPropertyHandling.htm) should be set to [ReadAhead](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_MetadataPropertyHandling.htm).
 
 snippet: PostgresTypeNameHandling
 
