@@ -2,10 +2,10 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.5)| **Current** | 2026-05-21     | Active            | Active |
-| [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.6)| Mainstream Support | 2026-02-06     | 2026-11-21        | Ineligible |
-| [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.4)| Mainstream Support | 2026-01-29     | 2026-08-06        | Ineligible |
-| [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.11)| Mainstream Support | 2024-09-10     | 2028-01-29        | 2030-01-29 |
+| [10.2.x](https://www.nuget.org/packages/NServiceBus/10.2.6)| **Current** | 2026-05-21     | Active            | Active |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.7)| Mainstream Support | 2026-02-06     | 2026-11-21        | Ineligible |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.5)| Mainstream Support | 2026-01-29     | 2026-08-06        | Ineligible |
+| [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.12)| Mainstream Support | 2024-09-10     | 2028-01-29        | 2030-01-29 |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus/9.1.4)| ~~Unsupported~~ | ~~2024-07-19~~ | ~~2025-03-10~~    | ~~Ineligible~~ |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus/9.0.5)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-01-19~~    | ~~Ineligible~~ |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.7)| Extended Support | 2024-04-11     | 2026-04-16        | 2028-04-16 |
@@ -197,7 +197,7 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.3.0)| **Current** | 2026-05-04     | Active            | Active |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.2)| Mainstream Support | 2026-03-18     | 2026-08-04        | Ineligible |
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.1)| Mainstream Support | 2026-02-09     | 2026-06-18        | Ineligible |
+| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.1)| ~~Unsupported~~ | ~~2026-02-09~~ | ~~2026-06-18~~    | ~~Ineligible~~ |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.1)| ~~Unsupported~~ | ~~2026-01-29~~ | ~~2026-05-09~~    | ~~Ineligible~~ |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.3)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.4)| ~~Unsupported~~ | ~~2025-02-26~~ | ~~2025-12-26~~    | ~~Ineligible~~ |
@@ -819,9 +819,9 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.1.0)| **Current** | 2026-05-27     | Active            | Active |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.0.1)| Mainstream Support | 2026-01-29     | 2026-08-27        | Ineligible |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.1.1)| Mainstream Support | 2026-01-15     | 2028-01-29        | 2030-01-29 |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.1.1)| **Current** | 2026-05-27     | Active            | Active |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/4.0.2)| Mainstream Support | 2026-01-29     | 2026-08-27        | Ineligible |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.1.2)| Mainstream Support | 2026-01-15     | 2028-01-29        | 2030-01-29 |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.0.2)| ~~Unsupported~~ | ~~2025-06-06~~ | ~~2026-04-15~~    | ~~Ineligible~~ |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.1)| ~~Unsupported~~ | ~~2025-04-11~~ | ~~2026-06-06~~    | ~~Ineligible~~ |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-07-11~~    | ~~Ineligible~~ |
