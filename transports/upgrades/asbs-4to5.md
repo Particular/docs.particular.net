@@ -187,7 +187,7 @@ The [fallback topic](/transports/azure-service-bus/topology.md#subscription-rule
 
 ### Built-in filtering modes
 
-[Topic routing modes](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic) provide built-in support for `CorrelationFilter` and `SqlFilter` on multiplexed topics, eliminating the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
+[Topic routing modes](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic) provide built-in support for `CorrelationFilter` and `SqlLikeFilter` on multiplexed topics, eliminating the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
 
 > [!NOTE]
 > These features require version 6.4 or later and are not available in version 5.0. Endpoints using the migration topology cannot use the fallback topic or topic routing modes until they have fully migrated to the topic-per-event topology.

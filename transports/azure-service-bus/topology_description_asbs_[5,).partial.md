@@ -244,9 +244,9 @@ The `TopicRoutingMode` enumeration supports the following modes:
 - `SqlLikeFilter` — The transport uses SQL filter rules on the subscriber side to match the `EnclosedMessageTypes` header against the fully qualified class name using `LIKE '%TypeName%'`.
 
 > [!NOTE]
-> When using `CorrelationFilter` or `SqlFilter`, the publisher and subscriber configurations must match. Mismatched configurations will result in messages not being delivered.
+> When using `CorrelationFilter` or `SqlLikeFilter`, the publisher and subscriber configurations must match. Mismatched configurations will result in messages not being delivered.
 >
-> `NotMultiplexed` and `CorrelationFilter` modes can coexist on the same topic and subscription because Azure Service Bus rule matching uses OR semantics. However, `SqlFilter` is incompatible with catch-all subscriptions because it uses a distinct filtering strategy.
+> `NotMultiplexed` and `CorrelationFilter` modes can coexist on the same topic and subscription because Azure Service Bus rule matching uses OR semantics. However, `SqlLikeFilter` is incompatible with catch-all subscriptions because it uses a distinct filtering strategy.
 
 The `TopicRoutingMode.SqlFilter` mode instructs the transport to use [SQL rules added on the subscriber](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) side to match the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) to the fully qualified class name, including `%` at the beginning and `%` at the end. In this case, `%` follows standard SQL syntax and stands for [any string of zero or more characters](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-sql-filter#pattern).
 
@@ -257,8 +257,8 @@ For example, a subscriber interested in the event `Shipping.OrderAccepted` will 
 ```
 
 ```csharp
-topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlFilter);
-topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlFilter);
+topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlLikeFilter);
+topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlLikeFilter);
 ```
 
 The `TopicRoutingMode.CorrelationFilter` mode instructs the transport to include the type names found in the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) as individual application properties on the published messages. On the subscriber side it instructs the subscription logic to create [correlation rules](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) to filter only selected messages.
@@ -332,7 +332,7 @@ The fallback topic is configured using the `UseFallbackTopic` method:
 topology.UseFallbackTopic("SharedEvents", TopicRoutingMode.CorrelationFilter);
 ```
 
-The fallback topic requires a routing mode, which must be either `CorrelationFilter` or `SqlFilter`.
+The fallback topic requires a routing mode, which must be either `CorrelationFilter` or `SqlLikeFilter`.
 
 When a fallback topic is configured:
 
