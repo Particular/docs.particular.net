@@ -53,7 +53,7 @@ snippet: MessageFailedHandler
 > Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the messages search results, meaning the failure and the failure notification will be returned. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
 
 
-### Registering the publisher for message-driven publish-subscribe
+### Registering the publisher for message-driven publish/subscribe
 
 Transports that use [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) must have the ServiceControl instance registered as the publisher of the `MessageFailed` event.
 
