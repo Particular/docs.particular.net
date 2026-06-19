@@ -32,7 +32,7 @@ snippet: SqlPersistenceUsagePostgreSqlEntra
 
 ### Passing Jsonb as NpgsqlDbType
 
-When handling parameters that pass [JSONB](https://www.postgresql.org/docs/9.4/datatype-json.html) data, it is [necessary to `NpgsqlParameter.NpgsqlDbType` to `NpgsqlDbType.Jsonb`](https://www.npgsql.org/doc/types/json.html?q=jsonb&tabs=datasource#string-mapping):
+When handling parameters that pass [JSONB](https://www.postgresql.org/docs/current/datatype-json.html) data, it is [necessary to `NpgsqlParameter.NpgsqlDbType` to `NpgsqlDbType.Jsonb`](https://www.npgsql.org/doc/types/json.html?q=jsonb&tabs=datasource#string-mapping):
 
 snippet: JsonBParameterModifier
 
@@ -43,7 +43,7 @@ When using Newtonsoft.Json as serializer and the `$type` feature via [TypeNameHa
 snippet: PostgresTypeNameHandling
 
 This is because Newtonsoft.Json normally expects the `$type` metadata to be the first property of each object for best efficiency in deserialization. If the `$type` does not appear first, then it assumes the property isn't there. 
-However, when using [Jsonb data](https://www.postgresql.org/docs/9.4/datatype-json.html) the stored object does not preserve the order of its keys, which can result in storing the `$type` property in any other position, causing for Newtonsoft.Json to assume that the object doesn't have the property.
+However, when using [Jsonb data](https://www.postgresql.org/docs/current/datatype-json.html) the stored object does not preserve the order of its keys, which can result in storing the `$type` property in any other position, causing for Newtonsoft.Json to assume that the object doesn't have the property.
 
 ### Spatial data
 
@@ -78,6 +78,6 @@ By default, SQL persistence uses an endpoint's name as a table prefix, the maxim
 
 The table creation for the SQL Persistence requires some dynamic SQL script execution. To achieve this in PostgreSql it is necessary to create temporary functions. These functions are created in the PostgreSql temporary-table schema, commonly referred to as `pg_temp`.
 
-As per [Client Connection Defaults](https://www.postgresql.org/docs/9.2/runtime-config-client.html) `pg_temp` is:
+As per [Client Connection Defaults](https://www.postgresql.org/docs/current/runtime-config-client.html) `pg_temp` is:
 
 > The current session's temporary-table schema, pg_temp_nnn, is always searched if it exists. It can be explicitly listed in the path by using the alias pg_temp
