@@ -1,6 +1,6 @@
 ---
 title: AWS Loan Broker Showcase
-summary: A sample for a fictional cinema demonstrating a saga that aggregates ticket sales.
+summary: A sample that demonstrates how to build distributed systems on AWS with NServiceBus
 reviewed: 2026-06-19
 component: Core
 ---
