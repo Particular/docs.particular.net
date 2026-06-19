@@ -41,7 +41,7 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 - Each topic is dedicated to one event type, so message consumption is isolated.
 - Failure domain size is reduced from the entire system to a single topic so if any single topic hits its 5 GB quota, only that event type is affected.
-- The maximum limit of 1,000 topics per messaging unit can comfortably support hundreds of event types, especially when factoring that not all event types are high-volume
+- The maximum limit of 1,000 topics per messaging unit can comfortably support hundreds of event types, especially when factoring that not all event types are high-volume.
 
 > [!NOTE]
 > If the system has numerous event types beyond these limits, an architectural review is recommended. Additional messaging units or other partitioning strategies may be required.
@@ -56,11 +56,11 @@ Even with installers enabled, an endpoint will only provision infrastructure for
 
 #### Subscription rule matching
 
-In this topology, no SQL or Correlation filtering is required on the topic itself, because messages in a topic are all of the same event type. Subscriptions can use a default “match-all” rule (`1=1`) or the default catch-all rule on each topic subscription.
+In this topology, no SQL or Correlation filtering is required on the topic itself, because messages in a topic are all of the same event type. Subscriptions use a default “match-all” rule (`1=1`) on each topic subscription.
 
 Since there is only one event type per topic:
 
-- Subscribers don’t need to manage large numbers of SQL or Correlation filters.
+- Subscribers don't need to manage large numbers of SQL or Correlation filters.
 - Interface-based inheritance does require extra care if multiple interfaces or base classes are in play (see below).
 
 > [!NOTE]
@@ -145,7 +145,7 @@ This will make auto-subscribe create these two topics instead and wire the subsc
 > [!WARNING]
 > When explicit routes are configured using `SubscribeTo<>`, the implicit default route created by auto-subscribe is no longer used. If the default route is also required, it must be added explicitly.
 
-Alternatively, the publisher can be configured to publish all its derived events onto the single `IOrderStatusChanged`  topic that multi-plexes all status changed related events:
+Alternatively, the publisher can be configured to publish all its derived events onto the single `IOrderStatusChanged` topic that multiplexes all status changed related events:
 
 snippet: asb-interface-based-inheritance-publisher
 
@@ -157,7 +157,7 @@ As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-
 
 Use one of the following options when evolving message contracts:
 
-- Publish both versions of the event on the publisher side to individual topics and setting up the subscribers where necessary to receive both _or_
+- Publish both versions of the event on the publisher side to individual topics and set up the subscribers where necessary to receive both _or_
 - Multiplex all versions of the event to the same topic and filter the versions on the subscriber within specialized filter rules
 
 When publishing both versions of the event, the subscribers need to opt-in to receiving those events by adding an explicit mapping:
@@ -174,7 +174,10 @@ snippet: asb-versioning-publisher-customization
 
 which would allow adding either a Correlation filter (preferred) or a SQL filter based on the promoted full name.
 
-##### Advanced Multiplexing Strategies
+> [!NOTE]
+> Starting with version 6.1 of the transport, the [FallbackTopic](#subscription-rule-matching-fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
+
+##### Advanced multiplexing strategies
 
 While the **topic-per-event** topology offers strong benefits for performance, observability, and isolation, certain scenarios may benefit from strategically multiplexing multiple events onto a shared topic. These scenarios include:
 
@@ -188,9 +191,9 @@ While the **topic-per-event** topology offers strong benefits for performance, o
 
 ---
 
-###### Publisher-Side Multiplexing
+###### Multiplexing related events
 
-The publishing side can be configured to route multiple event types to a shared topic using the `PublishTo` API:
+The publishing side can be configured to route multiple related event types to a shared topic using the `PublishTo` API:
 
 ```csharp
 topology.PublishTo<CustomerCreated>("Tenant.CustomerLifecycle");
@@ -206,19 +209,15 @@ class CustomerUpdatedHandler : IHandleMessages<CustomerUpdated> { ... }
 class CustomerDeletedHandler : IHandleMessages<CustomerDeleted> { ... }
 ```
 
-###### Subscriber-Side Multiplexing
-
-Alternatively, interface-based event grouping can be employed by subscribing explicitly to multiple topics:
+and have appropriate matching mappings:
 
 ```csharp
-topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerCreated");
-topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerUpdated");
-topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerDeleted");
+topology.SubscribeTo<CustomerCreated>("Tenant.CustomerLifecycle");
+topology.SubscribeTo<CustomerUpdated>("Tenant.CustomerLifecycle");
+topology.SubscribeTo<CustomerDeleted>("Tenant.CustomerLifecycle");
 ```
 
-This approach preserves per-event topic isolation while grouping handler logic by shared interfaces.
-
-###### Multiplexing Derived Events
+###### Multiplexing derived events
 
 For inheritance scenarios, it is possible to map multiple derived events to a common topic:
 
@@ -229,9 +228,56 @@ topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged");
 
 In this case, the topic `Shipping.IOrderStatusChanged` serves as a common destination for multiple concrete event types. Subscribers will receive all messages sent to that topic and must handle the full range of possible types.
 
-###### Filtering Within a Multiplexed Topic
+```csharp
+topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged");
+topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged");
+```
 
-If selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using the following customization (Subject used for demonstration purposes only):
+###### Filtering within a multiplexed topic
+
+Starting with version 6.4, the transport provides built-in support for filtering within multiplexed topics through the `TopicRoutingMode` enumeration. This eliminates the need for manual `OutgoingNativeMessageCustomization` when selective consumption is required.
+
+The `TopicRoutingMode` enumeration supports the following modes:
+
+- `NotMultiplexed` — The default mode. Events are published to individual topics without any multiplexing or filtering. No additional properties are stamped on published messages.
+- `CorrelationFilter` — The transport stamps the type names found in the `EnclosedMessageTypes` header as boolean application properties on published messages. On the subscriber side, correlation filter rules are created to match these properties.
+- `SqlLikeFilter` — The transport uses SQL filter rules on the subscriber side to match the `EnclosedMessageTypes` header against the fully qualified class name using `LIKE '%TypeName%'`.
+
+> [!NOTE]
+> When using `CorrelationFilter` or `SqlLikeFilter`, the publisher and subscriber configurations must match. Mismatched configurations will result in messages not being delivered.
+>
+> `NotMultiplexed` and `CorrelationFilter` modes can coexist on the same topic and subscription because Azure Service Bus rule matching uses OR semantics. However, `SqlLikeFilter` is incompatible with catch-all subscriptions because it uses a distinct filtering strategy.
+
+The `TopicRoutingMode.SqlFilter` mode instructs the transport to use [SQL rules added on the subscriber](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) side to match the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) to the fully qualified class name, including `%` at the beginning and `%` at the end. In this case, `%` follows standard SQL syntax and stands for [any string of zero or more characters](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-sql-filter#pattern).
+
+For example, a subscriber interested in the event `Shipping.OrderAccepted` will add the following rule to the subscription:
+
+```sql
+[NServiceBus.EnclosedMessageTypes] LIKE '%Shipping.OrderAccepted%'
+```
+
+```csharp
+topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlLikeFilter);
+topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.SqlLikeFilter);
+```
+
+The `TopicRoutingMode.CorrelationFilter` mode instructs the transport to include the type names found in the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) as individual application properties on the published messages. On the subscriber side it instructs the subscription logic to create [correlation rules](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) to filter only selected messages.
+
+```csharp
+topology.SubscribeTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.CorrelationFilter);
+topology.SubscribeTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.CorrelationFilter);
+```
+
+It is essential to have a matching publisher configuration:
+
+```csharp
+topology.PublishTo<OrderAccepted>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.CorrelationFilter);
+topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => options.Mode = TopicRoutingMode.CorrelationFilter);
+```
+
+###### Selective consumption using message customization
+
+In previous versions the similar goal can be achieved by using message customization. When selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
 
 ```csharp
 transport.OutgoingNativeMessageCustomization = (operation, message) =>
@@ -263,14 +309,53 @@ resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2021
 
 This configuration enables selective routing while using a shared topic, though it reintroduces filtering overhead and should be applied judiciously.
 
-##### Strategy Comparison
 
-| Strategy                      | Topic Count | Filter Required | Subscriber Code Complexity | Recommended Scenarios                     |
+##### Subscriber-side aggregation
+
+Alternatively, interface-based event grouping can be employed by subscribing explicitly to multiple topics:
+
+```csharp
+topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerCreated");
+topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerUpdated");
+topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerDeleted");
+```
+
+This approach preserves per-event topic isolation while grouping handler logic by shared interfaces.
+
+##### Fallback topic
+
+Starting with version 6.4, the transport supports configuring a fallback topic that acts as a catch-all destination for events that are not explicitly mapped using `PublishTo` and `SubscribeTo` APIs.
+
+The fallback topic is configured using the `UseFallbackTopic` method:
+
+```csharp
+topology.UseFallbackTopic("SharedEvents", TopicRoutingMode.CorrelationFilter);
+```
+
+The fallback topic requires a routing mode, which must be either `CorrelationFilter` or `SqlLikeFilter`.
+
+When a fallback topic is configured:
+
+- All unmapped events are published to the fallback topic instead of creating individual topics per event type.
+- Subscribers that do not have explicit mappings will automatically create subscriptions on the fallback topic with the appropriate filter rules.
+- This eliminates the need for brittle per-type subscription configuration when subscribing through a base contract or interface.
+- The `ThrowIfUnmappedEventTypes` validation does not apply when a fallback topic is configured.
+
+> [!WARNING]
+> The fallback topic mode becomes a strong contract. Changing the fallback topic mode retroactively changes the effective routing of every event mapped to the fallback topic. Ensure all publishers and subscribers agree on the fallback topic configuration.
+
+> [!NOTE]
+> The fallback topic also applies to mapped events whose publish destination equals the fallback topic name. In this case, the event inherits the fallback topic's routing mode unless an explicit mode is configured on the publish or subscribe entry.
+
+##### Strategy comparison
+
+| Strategy                      | Topic Count | Filter Required | Configuration Complexity | Recommended Scenarios                     |
 |------------------------------|-------------|------------------|-----------------------------|--------------------------------------------|
 | Per-event topic (default)    | High        | No               | Low                         | General purpose and high isolation         |
-| Publisher-side multiplexing  | Low         | No               | Medium                      | All consumers handle all related events    |
-| Subscriber-side multiplexing | High        | No               | Medium                      | Inheritance- or Interface-driven subscriptions             |
+| Multiplexing  | Low         | No               | Medium                      | All consumers handle all related events    |
+| Subscriber-side aggregation | High        | No               | Medium                      | Inheritance- or Interface-driven subscriptions             |
 | Multiplexing with filtering  | Low         | Yes              | High                        | Selective consumption with entity limits   |
+| Fallback topic (v6.4+)      | Low         | Yes              | Low                         | Simplified polymorphic dispatch            |
 
 #### Handling overflow and scaling
 
