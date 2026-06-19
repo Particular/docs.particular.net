@@ -18,6 +18,8 @@ The AWS Loan Broker Showcase simplifies serverless messaging on AWS. It demonstr
 
 ![Architecture of the AWS loan broker sample](architecture-view.png)
 
+Clone the repository : https://github.com/Particular/AwsLoanBrokerShowcase
+
 The example is composed by:
 
 - A client application, sending loan requests.
@@ -41,8 +43,11 @@ The example also exports metrics and traces to AWS CloudWatch and XRay.
 1. .NET 10 SDK
 2. Docker
 3. Docker Compose
+4. Git
 
 ## Running the sample
+
+Clone the repository : https://github.com/Particular/AwsLoanBrokerShowcase
 
 The simplest way to run the example is using Docker for both the endpoints and the infrastructure.
 The client application, the loan broker service, the e-mail sender, and the bank adapters can be deployed as Docker containers alongside the Particular platform to monitor the system, LocalStack to mock the AWS services, and the additional containers needed for enabling OpenTelemetry observability.
