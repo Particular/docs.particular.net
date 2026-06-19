@@ -1,7 +1,7 @@
 ---
 title: Particular Platform with Amazon SQS in Aspire
 summary: Orchestrating the Particular Platform with Amazon SQS transport via Aspire
-component: Core
+component: Aspire.Hosting
 reviewed: 2026-05-07
 ---
 
