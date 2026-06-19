@@ -18,7 +18,7 @@
 Reason: '{exceptionMessage}'.
 Open in ServicePulse: {GetServicePulseUri(failedMessageId)}";
 
-            using (var client = new HipchatClient())
+            using (var client = new ChatClient())
             {
                 client.PostChatMessage(chatMessage);
             }
@@ -32,7 +32,7 @@ Open in ServicePulse: {GetServicePulseUri(failedMessageId)}";
         }
     }
 
-    class HipchatClient :
+    class ChatClient :
         IDisposable
     {
         public void Dispose()
