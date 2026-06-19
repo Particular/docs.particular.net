@@ -103,7 +103,7 @@ Once the project is running, here are some things to try. (Links are to `localho
 
 ## Monitoring
 
-The example comes with the [Particular platform](/platform/), automatically available as Docker containers.
+The example comes with the [Particular platform](../../../platform/), automatically available as Docker containers.
 
 Monitoring information is available in [ServicePulse](http://localhost:9999).
 
@@ -121,7 +121,7 @@ NServiceBus supports OpenTelemetry. Starting with NServiceBus 9.1, the following
 - `nservicebus.recoverability.delayed` - Total number of delayed retries requested
 - `nservicebus.recoverability.error` - Total number of messages sent to the error queue
 
-For more information, refer to the [NServiceBus OpenTelemetry documentation](/nservicebus/operations/opentelemetry).
+For more information, refer to the [NServiceBus OpenTelemetry documentation](../../../nservicebus/operations/opentelemetry).
 
 All endpoints are configured to send OpenTelemetry traces to Jaeger. To visualize traces, open the [Jaeger dashboard](http://localhost:16686).
 
