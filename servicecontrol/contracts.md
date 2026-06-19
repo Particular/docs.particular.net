@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2026-06-18
+reviewed: 2026-06-19
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -15,17 +15,16 @@ related:
  - monitoring/custom-checks/notification-events
 ---
 
-ServiceControl publishes events that enable the creation of custom notifications and integrations to monitor the health of the system. 
-ServiceControl not only processes messages from [the error queue](/nservicebus/recoverability/configure-error-handling.md), but it also can get information from the [NServiceBus.Heartbeat](/monitoring/heartbeats/) and [NServiceBus.CustomChecks](/monitoring/custom-checks/) packages and react to them. When messages fail, heartbeats fail to arrive, or custom checks fail, ServiceControl publishes events that allow any subscribing endpoint to react to those events.
+ServiceControl publishes events that enable the creation of custom notifications and integrations to monitor the health of the system. ServiceControl processes messages from [the error queue](/nservicebus/recoverability/configure-error-handling.md) as well as data sent by endpoints using the [NServiceBus.Heartbeat](/monitoring/heartbeats/) and [NServiceBus.CustomChecks](/monitoring/custom-checks/) packages. When messages fail, heartbeats stop arriving, or custom checks fail, ServiceControl publishes events that any subscribing endpoint can react to.
 
 See [Monitor with ServiceControl events](/samples/servicecontrol/events-subscription/) for a sample.
 
 > [!WARNING]
-> External notification events are sent in batches. If a problem is encountered part way through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
+> External notification events are sent in batches. If a problem is encountered partway through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
 
 ## MessageFailed events
 
-Once a message arrives to the error queue, ServiceControl will publish a `MessageFailed` event. This message contains:
+Once a message arrives in the error queue, ServiceControl will publish a `MessageFailed` event. This message contains:
 
  * The endpoint that sent the message
  * The endpoint that received the message
@@ -39,9 +38,9 @@ It is possible to subscribe to this event type and act on the messages, for exam
 
 To subscribe to the `MessageFailed` event:
 
-1. Create an [NServiceBus endpoint](/nservicebus/hosting/nservicebus-host/).
+1. Create an [NServiceBus endpoint](/nservicebus/hosting/).
 2. Install the [ServiceControl.Contracts NuGet package](https://www.nuget.org/packages/ServiceControl.Contracts/).
-3. Configure the endpoint to use `JsonSerializer` as the message published by ServiceControl uses JSON serialization. Configure the endpoint with the following conventions, as the events published by ServiceControl do not derive from `IEvent`.
+3. Configure the endpoint to use `SystemJsonSerializer` as the message published by ServiceControl uses JSON serialization. Configure the endpoint with the following conventions, as the events published by ServiceControl do not derive from `IEvent`.
 
 snippet: ServiceControlEventsConfig
 
@@ -57,7 +56,7 @@ snippet: MessageFailedHandler
 
 Transports that use [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) must have the ServiceControl instance registered as the publisher of the `MessageFailed` event.
 
-For NServiceBus version 6 and higher, the [routing config code API](/nservicebus/messaging/routing.md#event-routing-message-driven) can be used:
+The [routing config code API](/nservicebus/messaging/routing.md#event-routing-message-driven) can be used:
 
 snippet: ServiceControlPublisherConfig
 
@@ -101,4 +100,4 @@ To avoid this situation, it is important to properly decommission an endpoint th
 
 ## Disabling integration 
 
-In systems that have significant load and don't any have subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. This can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
+In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. This can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
