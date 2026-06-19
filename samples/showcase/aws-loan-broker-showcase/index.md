@@ -70,7 +70,7 @@ docker compose up -d
 
 > [!NOTE]
 > To run transport and persistence using AWS services instead of LocalStack:
-> - remove the `AWS_ENDPOINT_URL` variable from the [aws.env](env/aws.env) file
+> - remove the `AWS_ENDPOINT_URL` variable from the [aws.env](https://github.com/Particular/AwsLoanBrokerShowcase/blob/main/env/aws.env) file
 > - ensure the following environment variables are defined with appropriate values:
 >   - `AWS_ACCESS_KEY_ID`
 >   - `AWS_SECRET_ACCESS_KEY`
