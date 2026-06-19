@@ -1,13 +1,13 @@
 ---
-title: Message signing using the pipeline
+title: Message signing using NServiceBus pipeline behaviors
 summary: Shows how to implement message signing and verification using NServiceBus pipeline behaviors.
-reviewed: 2024-10-10
+reviewed: 2026-06-17
 component: Core
 related:
  - samples/pipeline/unit-of-work
 ---
 
-This sample demonstrates how to implement message signing for messages in an NServiceBus system, in order to validate that a sender of a message is valid. The sample implements the message signing and verification as two separate [NServiceBus pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md): one to sign outgoing messages, and another to validate the signature on incoming messages.
+This sample demonstrates how to implement message signing in an NServiceBus system, in order to validate that a sender of a message is valid. The sample implements the message signing and verification as two separate [NServiceBus pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md): one to sign outgoing messages, and another to validate the signature on incoming messages.
 
 downloadbutton
 
@@ -36,7 +36,9 @@ ERROR SignatureVerificationBehavior Message signature for message id 333d2bb7-36
 
 ## Code walkhrough
 
-The **Shared** project contains the behaviors that implement message signing and signature verification, as well as an extension method that makes it easy to register the behaviors within an endpoint. The other three projects are the NServiceBus message endpoints described above, which refer to the items in the **Shared** project
+The **Shared** project contains the behaviors that implement message signing and signature verification, as well as an extension method that makes it easy to register the behaviors within an endpoint. 
+
+The other three projects are the NServiceBus message endpoints as described above, which refer to the items in the **Shared** project
 
 
 ### MessageSigningBehavior
@@ -48,26 +50,25 @@ snippet: MessageSigningBehavior
 The call to `next()` invokes the remainder of the outgoing pipeline, eventually resulting in the message being dispatched to the message transport.
 
 > [!NOTE]
-> While this sample shows how to do message signing, the same pattern could be used to implement full encryption of the message body. In this case, a message signature would not be written to the message headers. Instead, the entire body of the message would be replaced using `IOutgoingPhysicalMessageContext`'s `UpdateMessage(byte[] newBody)` method.
+> While this sample shows how to do message signing, the same pattern could be used to implement full encryption of the message body. In that case, a message signature would not be written to the message headers. Instead, the entire body of the message would be replaced using `IOutgoingPhysicalMessageContext`'s `UpdateMessage(byte[] newBody)` method.
 
 
 ### SignatureVerificationBehavior
 
-The `SignatureVerificationBehavior` operates on the `IIncomingPhysicalMessageContext`, which gives access to the serialized message, but on the incoming message. It also calculates the correct HMACSHA256 hash, and only calls `next()` to invoke the rest of the incoming pipeline (which includes the message handler) if the message signature is present and is correct.
+The `SignatureVerificationBehavior` operates on the `IIncomingPhysicalMessageContext`, which gives access to the serialized message of the incoming message. It also calculates the correct HMACSHA256 hash, and only calls `next()` to invoke the rest of the incoming pipeline (which includes the message handler) if the message signature is present and is correct.
 
 snippet: SignatureVerificationBehavior
 
 In this implementation, returning `Task.CompletedTask` without calling `next()` effectively stops the message processing pipeline, as further behaviors (including executing the message handlers) are not executed. This results in the message being consumed with an `ERROR` log message, but no exception thrown.
 
 > [!WARNING]
-> Consuming the message in this manner effectively deletes it. If an upstream message source were to begin accidentally signing messages incorrectly, the message would still be consumed, which would result in message loss. It is probably a good idea to audit these messages in some way.
-
-Another strategy would be to throw an exception, rather than consuming the message. This would result in the message going to the error queue, which would prevent message loss. However, this would first result in repeated retry attempts, none of which would succeed with an invalid message signature. This could be avoided by using a custom exception type (i.e. `MessageSignatureInvalidException`) and then configuring that message type to be an [unrecoverable exception](/nservicebus/recoverability/#unrecoverable-exceptions).
+> Consuming the message in this manner effectively deletes it. If an upstream message source were to begin accidentally signing messages incorrectly, the message would still be consumed from the transport, which would result in message loss. It is probably a good idea to audit these messages in some way.
+> Another strategy would be to throw an exception, rather than consuming the message. This would result in the message going to the error queue, which would prevent message loss. However, this would first result in repeated retry attempts, none of which would succeed with an invalid message signature. This could be avoided by using a custom exception type (i.e. `MessageSignatureInvalidException`) and then configuring that message type to be an [unrecoverable exception](/nservicebus/recoverability/#unrecoverable-exceptions).
 
 
 ### Configuring the behaviors
 
-The behaviors to sign outgoing messages and verify the signatures on incoming messages must both be added to the NServiceBus pipeline. Bundling this into an extension method enables configuring an endpoint to activate message signing with one line of code.
+The behaviors to sign outgoing messages and verify the signatures on incoming messages must both be added to the NServiceBus pipeline. Bundling this into an extension method enables configuring an endpoint to activate message signing with just one line of code.
 
 snippet: BehaviorConfigExtension
 
@@ -77,6 +78,6 @@ snippet: EnableSigning
 
 ## Summary
 
-The extensibility offered by the NServiceBus pipeline easily allows plugging in behaviors that enable message signing and verification. While this sample shows message signing, the same pattern could be leveraged to provide full end-to-end encryption of the message body.
+The extensibility offered by the NServiceBus pipeline easily allows plugging in behaviors that enable message signing and verification. While this sample only shows message signing, the same pattern could be leveraged to provide full end-to-end encryption of the message body.
 
 Rather than trying to configure all the different options (cipher selection, key storage, key rotation, etc.) on a one-size-fits-all solution, implementing an infrastructure solution with behaviors requires only the minimum amount of code necessary to fit a system's exact nonfunctional requirements.
