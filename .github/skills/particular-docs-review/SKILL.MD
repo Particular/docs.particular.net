@@ -14,7 +14,7 @@ Review docs for language accuracy, technical correctness, and consistency. Updat
 
 ## Spelling
 
-Use en-US American English. Common: -ize (organize, realize, analyze), -or (color, behavior), -er (center, meter), -ence (defense, license), practice (both noun/verb). Corrections: colour→color, centre→center, organise→organize, licence→license, defence→defense, programme→program, practise→practice.
+Use en-US American English. Common: -ize/yze (organize, realize, analyze), -or (color, behavior), -er (center, meter), -ence (defense, license), practice (both noun/verb). Corrections: colour→color, centre→center, organise→organize, licence→license, defence→defense, programme→program, practise→practice.
 
 When correcting, explicitly state alignment with en-US American English.
 
