@@ -9,7 +9,7 @@ component: Core
 
 The AWS Loan Broker Showcase is a basic loan broker implementation following the [structure presented](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingExample.html) by [Gregor Hohpe](https://www.enterpriseintegrationpatterns.com/gregor.html) in his book - [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/).
 
-![Logical architecture of the loan broker](ConsumerLoanBroker.gif)
+![Logical architecture of the loan broker](consumerloanbroker-logicalview.gif)
 
 The AWS Loan Broker Showcase simplifies serverless messaging on AWS. It demonstrates how to build distributed systems with NServiceBus and the Particular Service Platform, using AWS services - eliminating the complexity of managing dozens of Lambda functions and Step Functions with a streamlined, enterprise-grade messaging pattern.
 
