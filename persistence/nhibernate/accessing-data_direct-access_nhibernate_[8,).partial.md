@@ -12,7 +12,6 @@ snippet: NHibernateAccessingDataViaDI
 
 snippet: AccessingDataConfigureISessionDI
 
-
 ### Using in a saga
 
 include: saga-business-data-access
