@@ -12,7 +12,7 @@ CosmosDB does not support pessimistic locking natively. The behavior is based on
 > It is recommended to choose pessimistic concurrency over optimistic concurrency whenever a saga is experiencing a high number of optimistic concurrency control errors.
 
 > [!NOTE]
-> When using pessimistic locking with provisioned throughput it is important to understand the additional patch operation attempts that are issued during the saga loading attempt will lead to higher RU usage. It is important to set the lease lock acquisition minimum and maximum refresh delay according in alignment with the saga contention scenarios to avoid using too much unnecessary RUs.
+> When using pessimistic locking with provisioned throughput, it is important to understand that the additional patch operation attempts that are issued during the saga loading attempt will lead to higher RU usage. It is important to set the lease lock acquisition minimum and maximum refresh delay in alignment with the saga contention scenarios to avoid using too many unnecessary RUs.
 
 ### Pessimistic concurrency control settings
 
@@ -32,6 +32,6 @@ snippet: PessimisticLeaseLockAcquisitionTimeout
 
 ### Pessimistic lease lock acquisition minimum and maximum refresh delay
 
-To prevent request synchronization, the persister randomizes the interval between lock acquisition requests. By default, the interval has a value between 500 and 1000 milliseconds. These values can be adjusted using the following API:
+To prevent request synchronization, the persister randomizes the interval between lock acquisition requests. By default, the interval is between 500 and 1000 milliseconds. These values can be adjusted using the following API:
 
 snippet: PessimisticLeaseLockAcquisitionMinMaxRefreshDelay
