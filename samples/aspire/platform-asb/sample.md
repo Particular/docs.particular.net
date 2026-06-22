@@ -1,7 +1,7 @@
 ---
 title: Particular Platform with ASB in Aspire
 summary: Orchestrating the Particular Platform with Azure ServiceBus transport via Aspire
-component: Aspire.Hosting
+component: AspireHostPlatform
 reviewed: 2026-05-22
 ---
 

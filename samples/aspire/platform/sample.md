@@ -1,7 +1,7 @@
 ---
 title: Particular Platform in Aspire
 summary: Minimal orchestrating the Particular Platform via Aspire
-component: Aspire.Hosting
+component: AspireHostPlatform
 reviewed: 2026-05-07
 ---
 

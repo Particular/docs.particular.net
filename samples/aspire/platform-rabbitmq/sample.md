@@ -1,7 +1,7 @@
 ---
 title: Particular Platform with RabbitMQ in Aspire
 summary: Orchestrating the Particular Platform with RabbitMQ transport via Aspire
-component: Aspire.Hosting
+component: AspireHostPlatform
 reviewed: 2026-05-20
 ---
 
