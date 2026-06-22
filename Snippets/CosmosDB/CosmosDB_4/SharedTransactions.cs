@@ -38,12 +38,9 @@ class UsageHandler : IHandleMessages<MyMessage>
 
 #region CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
 
-class MyHandler : IHandleMessages<MyMessage>
+class MyHandler(ICosmosStorageSession storageSession) : IHandleMessages<MyMessage>
 {
-    public MyHandler(ICosmosStorageSession storageSession)
-    {
-        transactionalBatch = storageSession.Batch;
-    }
+    readonly TransactionalBatch transactionalBatch = storageSession.Batch;
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
@@ -51,44 +48,30 @@ class MyHandler : IHandleMessages<MyMessage>
 
         return Task.CompletedTask;
     }
-
-    private readonly TransactionalBatch transactionalBatch;
 }
 
 #endregion
 
 #region CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
 
-class MyCustomDependency
+class MyCustomDependency(ICosmosStorageSession storageSession)
 {
-    public MyCustomDependency(ICosmosStorageSession storageSession)
-    {
-        transactionalBatch = storageSession.Batch;
-    }
+    readonly TransactionalBatch transactionalBatch = storageSession.Batch;
 
     public void DeleteItemInCosmos(string itemId)
     {
         transactionalBatch.DeleteItem(itemId);
     }
-
-    private readonly TransactionalBatch transactionalBatch;
 }
 
-class MyHandlerWithCustomDependency : IHandleMessages<MyMessage>
+class MyHandlerWithCustomDependency(MyCustomDependency customDependency) : IHandleMessages<MyMessage>
 {
-    public MyHandlerWithCustomDependency(MyCustomDependency customDependency)
-    {
-        this.customDependency = customDependency;
-    }
-
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         customDependency.DeleteItemInCosmos(message.ItemId);
 
         return Task.CompletedTask;
     }
-
-    private readonly MyCustomDependency customDependency;
 }
 
 #endregion

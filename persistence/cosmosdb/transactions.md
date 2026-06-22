@@ -152,10 +152,10 @@ The `TestableCosmosSynchronizedStorageSession` class in the `NServiceBus.Testing
 
 ### With dependency injection
 
-For custom types that require access to the shared `TransactionalBatch`:
-
-snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
-
-Alternatively to using the `context.SynchronizedStorageSession.CosmosPersistenceSession()` extension method, the `ICosmosStorageSession` can be injected directly into the handler:
+Instead of obtaining the `ICosmosStorageSession` through the `context.SynchronizedStorageSession.CosmosPersistenceSession()` extension method, it can be injected directly into the handler:
 
 snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
+
+Injecting the `ICosmosStorageSession` also enables more complex dependency injection graphs, such as accessing the shared `TransactionalBatch` from a custom dependency:
+
+snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
