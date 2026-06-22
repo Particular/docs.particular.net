@@ -838,7 +838,7 @@
   NugetOrder:
     - NServiceBus.Envelope.CloudEvents
 
-- Key: Aspire.Hosting
+- Key: AspireHostPlatform
   Name: Particular.Aspire.Hosting.ServicePlatform
   DocsUrl: /platform/aspire
   GitHubOwner: Particular

@@ -7,7 +7,7 @@ ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 ASQN: NServiceBus.Transport.AzureStorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 ASTP: NServiceBus.Persistence.AzureTable
-AspirePlatformHost: Particular.Aspire.Hosting.ServicePlatform
+AspireHostPlatform: Particular.Aspire.Hosting.ServicePlatform
 Autofac: NServiceBus.Autofac
 AzureFunctions: NServiceBus.AzureFunctions.AzureServiceBus
 BinaryDataBusSerializer: NServiceBus.DataBus.BinarySerializer
