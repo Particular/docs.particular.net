@@ -1,7 +1,7 @@
 ---
 title: Securing ServiceControl
 summary: How security is addressed in ServiceControl and how to limit access to ServiceControl data.
-reviewed: 2024-10-16
+reviewed: 2026-06-01
 related:
 - servicecontrol/servicecontrol-instances/configuration
 - servicecontrol/configure-ravendb-location
@@ -17,9 +17,9 @@ It is critical to limit access to the ServiceControl instance, including accessi
 
 ### Post-installation: secure and limited access by default
 
-When installing ServiceControl, the default installation will limit access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
+When installing ServiceControl, the default installation limits access to localhost only. Any attempt to access the service's HTTP API from another machine results in an `access denied` message.
 
-This also applies to accessing ServiceControl from ServicePulse. Using the default settings, these tools can access ServiceControl only when they are installed on the same machine as ServiceControl.
+This also applies to ServicePulse and other clients that access ServiceControl. With the default settings, they can access ServiceControl only when they are installed on the same machine as the ServiceControl instance.
 
 
 ### Extending access by changing host name
@@ -33,7 +33,7 @@ Note that ServicePulse users must access the ServiceControl HTTP API using the s
 
 After setting the custom host name and port number and applying network rules limiting access to the ServiceControl service, limit access to very fine-grained aspects of the ServiceControl data. Specifically, it may be necessary to hide the message body, or even parts of the message body, from users (for example, if the message body contains credit card information).
 
-Following are several options for doing so.
+The following options can help limit that access.
 
 
 #### Limiting access to ServiceControl using Windows Authentication

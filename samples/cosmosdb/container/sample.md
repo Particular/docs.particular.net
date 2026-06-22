@@ -1,7 +1,7 @@
 ---
 title: Cosmos DB Persistence Usage with non-default container
 summary: Using Cosmos DB Persistence to store sagas providing a non-default container dynamically
-reviewed: 2024-10-15
+reviewed: 2026-06-01
 component: CosmosDB
 related:
  - nservicebus/sagas
@@ -40,11 +40,11 @@ In the non-transactional mode the saga id is used as a partition key and thus th
 
 ## Container Mapping
 
-For `ShipOrder` messages destined to go to the `ShipOrderSaga` the container is overridden at runtime to use `ShipOrderSagaData` container.
+For `ShipOrder` messages destined for `ShipOrderSaga`, the container is overridden at runtime to use the `ShipOrderSagaData` container.
 
 snippet: ContainerInformationFromLogicalMessage
 
-For all messages that have a saga type header `ShipOrderSaga` the container is overriden to use `ShipOrderSagaData` container too.
+For all messages that have a `ShipOrderSaga` saga type header, the container is also overridden to use the `ShipOrderSagaData` container.
 
 snippet: ContainerInformationFromHeaders
 

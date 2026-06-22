@@ -1,7 +1,7 @@
 ---
 title: Recoverability pipeline
 summary: Extending the recoverability pipeline with custom behaviors
-reviewed: 2024-10-24
+reviewed: 2026-06-01
 component: Core
 versions: '[8.0,)'
 ---
