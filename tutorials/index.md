@@ -1,13 +1,13 @@
 ---
 title: Tutorials
 suppressRelated: true
-reviewed: 2024-10-16
+reviewed: 2026-06-22
 summary: Step-by-step tutorials to help you learn how to use NServiceBus, with detailed instructions and downloadable solutions with the completed examples.
 redirects:
 - tutorials/monitoring
 ---
 
-These step-by-step tutorials help you learn how to use NServiceBus. Tutorials include concepts and detailed instructions for how to build a sample project in addition to a downloadable solution with a completed example.
+These step-by-step tutorials help you learn how to use NServiceBus. Each tutorial includes concepts and detailed instructions for building a sample project, plus a downloadable solution with a completed example.
 
 ### [NServiceBus Quick Start](quickstart/)
 
@@ -19,7 +19,7 @@ Learn the basics of NServiceBus, from sending messages between message endpoints
 
 ### [NServiceBus Sagas](nservicebus-sagas/)
 
-Learn to master NServiceBus sagas to model complex, long-running business processes. Learn how to model saga data, correlate messages to sagas, use timeouts to model time in your business processes, and how to integrate with third-party systems.
+Master NServiceBus sagas to model complex, long-running business processes. You'll learn how to model saga data, correlate messages to sagas, use timeouts to model time in your business processes, and integrate with third-party systems.
 
 ### [Monitoring NServiceBus demo walkthrough](monitoring-demo/)
 
