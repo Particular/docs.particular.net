@@ -1,24 +1,25 @@
 ---
 title: Transactions in Azure Cosmos DB persistence
+summary: Atomically commit saga and business data in Azure Cosmos DB by extracting the partition key and container from message headers or contents.
 component: CosmosDB
 related:
 - nservicebus/outbox
-reviewed: 2024-10-15
+reviewed: 2026-06-22
 redirects:
 - previews/cosmosdb/transactions
 ---
 
 By default, the persister does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
-The Cosmos DB persistence provides the several ways to specify the partition and Container used per message using message headers or the message contents to allow the use of transactions.
+The Cosmos DB persistence provides several ways to specify the partition and Container used per message using message headers or the message contents to allow the use of transactions.
 
-Using message headers only has the advantage being able to identify the partition or `Container` before the [outbox](/nservicebus/outbox) logic is executed, which allows the outbox feature to work entirely as intended.
+Using message headers only has the advantage of being able to identify the partition or `Container` before the [outbox](/nservicebus/outbox) logic is executed, which allows the outbox feature to work entirely as intended.
 
 In the case where the partition or Container cannot be identified using only the message headers, the message contents can be used. This works because the Cosmos DB persistence introduces additional outbox logic to locate the outbox record and bypass the remaining message processing pipeline at a later stage of processing.
 
 ## Specifying the `PartitionKey` to use for the transaction
 
-All operations in a Azure Cosmos DB transaction must be executed with documents contained in the same `Container` partition, identified by the `PartitionKey`.
+All operations in an Azure Cosmos DB transaction must be executed with documents contained in the same `Container` partition, identified by the `PartitionKey`.
 
 ### Using message header values
 
@@ -72,7 +73,7 @@ Additional overloads are available for extracting `PartitionKey`.
 
 include: defaultcontainer
 
-Optionally, the `Container` to use can specified during message processing by providing the `Container` name and partition key path using the `ContainerInformation` object.
+Optionally, the `Container` to use can be specified during message processing by providing the `Container` name and partition key path using the `ContainerInformation` object.
 
 include: containeroverride
 
@@ -151,10 +152,10 @@ The `TestableCosmosSynchronizedStorageSession` class in the `NServiceBus.Testing
 
 ### With dependency injection
 
-For custom types that require access to the shared `TransactionalBatch`:
-
-snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
-
-And alternatively to using the the extension method `IMessageHandlerContext.SynchronizedStorageSession.GetSharedTransactionalBatch()`:
+Instead of obtaining the `ICosmosStorageSession` through the `context.SynchronizedStorageSession.CosmosPersistenceSession()` extension method, it can be injected directly into the handler:
 
 snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
+
+Injecting the `ICosmosStorageSession` also enables more complex dependency injection graphs, such as accessing the shared `TransactionalBatch` from a custom dependency:
+
+snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
