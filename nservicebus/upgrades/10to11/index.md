@@ -196,13 +196,23 @@ The following APIs are deprecated:
 
 ## Host identifier algorithm change
 
-In version 11, the default algorithm for generating deterministic host identifiers changes from MD5 to XxHash128 (RFC 9562 version 8 GUIDs). This produces different host identifiers, which affects how endpoints are identified in [ServicePulse](/servicepulse/) and [ServiceControl](/servicecontrol/).
+In version 11, the default algorithm for generating deterministic host identifiers changes from MD5 to XxHash128 (RFC 9562 version 8 GUIDs). This produces different host identifiers, which affects how endpoints are identified in [ServicePulse](/servicepulse/) and [ServiceControl](/servicecontrol/). Changing the algorithm will cause existing known endpoints to appear inactive in the ServicePulse [heartbeats](/monitoring/heartbeats/in-servicepulse.md) and [monitoring](/monitoring/metrics/in-servicepulse.md) views, while new instances (with the changed host identifiers) appear in their place.
 
 ### Rationale
 
 This change provides a path for customers who require **FIPS-compliant** host identifiers (see [FIPS compliance](/nservicebus/compliance/fips.md)). The legacy MD5-based algorithm is not FIPS-compliant; by moving to the new `XxHash128` algorithm, the framework uses a compliant standard by default.
 
-To ensure a predictable transition, this is designed as a multi-phase migration. In version 11, the new algorithm becomes the default. By making this an explicit switch rather than an automatic change, there is a clear "escape hatch" to preserve legacy host IDs if correlation with older monitoring data (such as ServicePulse) must be maintained during the transition.
+To ensure a predictable transition, this is designed as a multi-phase migration:
+
+| NServiceBus Versions | Hashes Available | Default Hash | App Switch |
+|:-:|:-:|:-:|:-:|
+| <= 10.2 | MD5 Only | MD5 | - |
+| >= 10.2 && < 11.0 | MD5 + XxHash128 | MD5 | Can opt in |
+| >= 11.0 && < 12.0 | MD5 + XxHash128 | XxHash128 | Can opt out |
+| >= 12.0 | XxHash128 Only | XxHash128 | - |
+
+
+In version 11, XxHash128 becomes the default. By making this an explicit switch rather than an automatic change, there is a clear "escape hatch" to preserve legacy host IDs if correlation with older monitoring data (such as ServicePulse) must be maintained during the transition.
 
 This approach allows the framework to move toward a compliant default while providing the necessary flexibility to manage existing integrations before the legacy algorithm is removed in version 12.
 
@@ -218,7 +228,7 @@ To preserve the existing MD5-based host identifier after upgrading, set the foll
 AppContext.SetSwitch("NServiceBus.Core.Hosting.UseV2DeterministicGuid", false);
 ```
 
-Or via environment variable (.NET 9+):
+Or via environment variable:
 
 ```text
 DOTNET_NServiceBus_Core_Hosting_UseV2DeterministicGuid=false
