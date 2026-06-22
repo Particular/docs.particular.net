@@ -2,14 +2,14 @@
 title: CosmosDB Persistence Saga Concurrency
 summary: Explains how concurrency works with sagas in the CosmosDB persister
 component: CosmosDB
-reviewed: 2024-10-15
+reviewed: 2026-06-22
 related:
  - nservicebus/sagas/concurrency
 ---
 
 ## Default behavior
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When handling messages simultaneously, conflicts may occur. See below for examples of the exceptions that are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
 include: saga-concurrency
 
