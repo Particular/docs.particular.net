@@ -1,7 +1,7 @@
 ---
 title: Business Continuity / Disaster Recovery
-summary: Solutions for business continuity / disaster recovery with ServiceControl
-reviewed: 2024-10-16
+summary: Use multiple ServiceControl instances with error and audit log forwarding for business continuity and disaster recovery.
+reviewed: 2026-06-22
 related:
 - servicecontrol/backup-sc-database
 - servicecontrol/deploying-servicecontrol-in-a-cluster
@@ -44,13 +44,11 @@ To install this configuration:
 1. Set up the backup ServiceControl instances and configure them to use the backup queues.
 
 > [!WARNING]
-> Make sure the names of the backup ServiceControl instances are named differently from the primary ServiceControl instances, otherwise unexpected behavior may result.
+> Make sure the backup ServiceControl instances are named differently from the primary ServiceControl instances; otherwise, unexpected behavior may result.
 
 ## How retrying works
 
-Retrying a message from the primary instance will work as usual, however the backup instances will now update the status of the failed messages to "retry pending". Once the successful audit message is received, the backup instance will be notified as well and the failed message record in both instances will reflect the messages as having been successfully retried.
+Retrying a message from the primary instance works as usual. The backup instances update the status of the failed messages to "retry pending". Once the successful audit message is received, the backup instance is notified as well, and the failed message record in both instances reflects the message as successfully retried.
 
 > [!WARNING]
 > It is possible to duplicate messages when retrying from the backup instance if a retry has already been sent from the primary instance.
-
-
