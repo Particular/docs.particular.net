@@ -17,7 +17,8 @@ upgradeGuideCoreVersions:
 > [!WARNING]
 > In RavenDB 3.5, the client implementation of distributed transactions contains a bug that could cause an endpoint to lose data under rare conditions. If RavenDB is configured to enlist in distributed transactions with RavenDB 3.5, read [DTC not supported for RavenDB Persistence](/persistence/ravendb/dtc.md).
 
-include: cluster-configuration-info
+> [!NOTE]
+> Using RavenDB version 5 and higher in a cluster configuration with multiple nodes is only supported from version 7 or higher of the NServiceBus.RavenDB persistence package. For more information, read [cluster configuration with multiple nodes](/persistence/ravendb/cluster-configuration.md).
 
 As part of this update, [NServiceBus Version 6](/nservicebus/upgrades/5to6/) will be required.
 
