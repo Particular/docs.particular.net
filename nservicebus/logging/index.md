@@ -8,6 +8,7 @@ redirects:
 - nservicebus/logging-in-nservicebus
 - nservicebus/logging/usage
 - nservicebus/logging/message-contents
+- samples/logging/default
 related:
 - samples/logging
 ---
