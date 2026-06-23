@@ -32,18 +32,18 @@ snippet: SqlPersistenceUsagePostgreSqlEntra
 
 ### Passing Jsonb as NpgsqlDbType
 
-When handling parameters that pass [JSONB](https://www.postgresql.org/docs/current/datatype-json.html) data, it is [necessary to `NpgsqlParameter.NpgsqlDbType` to `NpgsqlDbType.Jsonb`](https://www.npgsql.org/doc/types/json.html?q=jsonb&tabs=datasource#string-mapping):
+When handling parameters that pass [JSONB](https://www.postgresql.org/docs/current/datatype-json.html) data, it is [necessary to set `NpgsqlParameter.NpgsqlDbType` to `NpgsqlDbType.Jsonb`](https://www.npgsql.org/doc/types/json.html?q=jsonb&tabs=datasource#string-mapping):
 
 snippet: JsonBParameterModifier
 
 ### Newtonsoft.Json TypeNameHandling
 
-When using Newtonsoft.Json as serializer and the `$type` feature via [TypeNameHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_TypeNameHandling.htm), the [MetadataPropertyHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_MetadataPropertyHandling.htm) should be set to [ReadAhead](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_MetadataPropertyHandling.htm).
+When using Newtonsoft.Json as the serializer and the `$type` feature via [TypeNameHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_TypeNameHandling.htm), the [MetadataPropertyHandling](https://www.newtonsoft.com/json/help/html/P_Newtonsoft_Json_JsonSerializerSettings_MetadataPropertyHandling.htm) should be set to [ReadAhead](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_MetadataPropertyHandling.htm).
 
 snippet: PostgresTypeNameHandling
 
 This is because Newtonsoft.Json normally expects the `$type` metadata to be the first property of each object for best efficiency in deserialization. If the `$type` does not appear first, then it assumes the property isn't there. 
-However, when using [Jsonb data](https://www.postgresql.org/docs/current/datatype-json.html) the stored object does not preserve the order of its keys, which can result in storing the `$type` property in any other position, causing for Newtonsoft.Json to assume that the object doesn't have the property.
+When using [Jsonb data](https://www.postgresql.org/docs/current/datatype-json.html) the stored object does not preserve the order of its keys, which can result in storing the `$type` property in any other position, causing for Newtonsoft.Json to assume that the object doesn't have the property.
 
 ### Spatial data
 
@@ -62,7 +62,7 @@ snippet: PostgreSqlSchema
 
 ## Case sensitivity
 
-Unless explicitly specified, PostgreSQL uses lower cases for all identifier names (e.g. column or table names, etc.). To enforce case sensitivity, it is necessary to quote all names.
+Unless explicitly specified, PostgreSQL uses lowercase for all identifier names (e.g. column or table names, etc.). To enforce case sensitivity, it is necessary to quote all names.
 
 SQL persistence internally honors the UpperCamelCase (also called PascalCase) convention. SQL persistence uses quoted identifier names in stored procedures, queries, etc.
 
