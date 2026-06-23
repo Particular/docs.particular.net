@@ -9,8 +9,6 @@ redirects:
  - nservicebus/ravendb/saga-concurrency
 ---
 
-include: cluster-configuration-info
-
 ## Default behavior
 
 When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
