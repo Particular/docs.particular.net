@@ -14,7 +14,7 @@ The platform provides an aggregated view of the information necessary to detect,
 
 youtube: https://www.youtube.com/watch?v=h5gcHWizS7o
 
-<div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon" aria-hidden="true"></span>Check the GitHub Showcase</a>
+<div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg">Check the GitHub Showcase</a>
 </div>
 
 
