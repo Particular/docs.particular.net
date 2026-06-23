@@ -9,8 +9,6 @@ redirects:
  - nservicebus/ravendb/operations-scripting
 ---
 
-include: cluster-configuration-info
-
 Example code and scripts to facilitate deployment and operational actions against RavenDB.
 
 These examples use the [RavenDB.Client](https://www.nuget.org/packages/RavenDB.Client/) NuGet.
