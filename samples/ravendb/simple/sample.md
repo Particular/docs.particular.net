@@ -8,9 +8,6 @@ related:
 reviewed: 2026-06-09
 ---
 
-include: cluster-configuration-info
-
-
 ## Code walk-through
 
 This sample shows a simple Client + Server scenario.
