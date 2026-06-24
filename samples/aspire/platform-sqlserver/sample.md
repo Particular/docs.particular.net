@@ -7,7 +7,7 @@ reviewed: 2026-05-22
 
 [Aspire](https://aspire.dev/) is a stack for developing distributed applications provided by Microsoft.
 
-This sample shows an Aspire AppHost project that orchestrates the Particular Platform, multiple NServiceBus endpoints, wiring up the required infrastructure pieces when using the [SQL Server](/transports/sql/) transport.
+This sample shows an Aspire AppHost project that orchestrates the Particular Platform, multiple NServiceBus endpoints, and wiring up the required infrastructure pieces when using the [SQL Server](/transports/sql/) transport.
 
 If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
 
@@ -64,13 +64,13 @@ snippet: persistence
 
 #### Default components
 
-`AddDefaultComponents` registers the remaining platform components using their default configuration — the ServiceControl audit and monitoring instances and ServicePulse. The error instance is added explicitly above so that usage reporting can be configured on it.
+`AddDefaultComponents` registers the remaining platform components; the ServiceControl audit and monitoring instances, and ServicePulse; using their default configuration. The error instance is added explicitly above so that usage reporting can be configured on it.
 
 snippet: default-components
 
 #### Endpoints
 
-Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. This wires the endpoint to the platform's transport connection string. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before it starts sending messages to it.
+Each NServiceBus endpoint is added as an Aspire project and linked to the platform with `WithParticularPlatform`. This wires the endpoint to the platform's transport connection string. The `ClientUI` endpoint additionally uses `WaitFor(sales)` so that the `Sales` endpoint exists before the client starts sending messages to it.
 
 snippet: endpoints
 
@@ -86,13 +86,13 @@ Each endpoint project retrieves the connection string for the Azure ServiceBus b
 
 snippet: transport-config
 
-Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and ServiceControl database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
+Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and ServiceControl database are recreated and therefore will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
 
 ### Endpoint projects
 
-Each of the endpoint projects contain the same code to create an application host, apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
+Each of the endpoint projects contain code to create an application host and apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
 
 snippet: endpoint-config
 
@@ -100,5 +100,5 @@ To demonstrate the platform's error handling, the `Sales` endpoint's handler thr
 
 snippet: random-error
 
-Failed messages are moved to the error queue, where they can be inspected and retried from ServicePulse.
+Failed messages are moved to the error queue, where they can be inspected and retried from within ServicePulse.
 
