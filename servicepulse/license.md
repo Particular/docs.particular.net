@@ -8,7 +8,7 @@ related:
 - nservicebus/licensing
 ---
 
-ServicePulse reads license information from the ServiceControl Error instance via the HTTP API, so once the [license is configured and read by ServiceControl](/servicecontrol/license.md), no further action is required.
+ServicePulse reads license information from the ServiceControl Error instance via the HTTP API when a route is loaded. Once the [license is updated in ServiceControl](/servicecontrol/license.md), the update will be detected by ServicePulse the next time the page is refreshed or navigation to a new route occurs.
 
 ## Behavior
 
