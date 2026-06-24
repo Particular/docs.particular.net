@@ -277,7 +277,7 @@ topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged", options => opt
 
 ###### Selective consumption using message customization
 
-In previous versions the similar goal can be achieved by using message customization. When selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
+In version 6.3 and earlier, similar functionality can be achieved by using message customization. When selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using manual customization:
 
 ```csharp
 transport.OutgoingNativeMessageCustomization = (operation, message) =>
@@ -345,7 +345,7 @@ When a fallback topic is configured:
 > The fallback topic mode becomes a strong contract. Changing the fallback topic mode retroactively changes the effective routing of every event mapped to the fallback topic. Ensure all publishers and subscribers agree on the fallback topic configuration.
 
 > [!NOTE]
-> The fallback topic also applies to mapped events whose publish destination equals the fallback topic name. In this case, the event inherits the fallback topic's routing mode unless an explicit mode is configured on the publish or subscribe entry.
+> The fallback topic also applies to mapped events that have a publish destination equal to the fallback topic name. In this case, the event inherits the fallback topic's routing mode unless an explicit mode is configured on the publish or subscribe entry.
 
 ##### Strategy comparison
 
