@@ -9,7 +9,7 @@ related:
 ---
 ## Behavior
 
-The license is read only once at startup.
+The license is read at startup, and every 8 hours thereafter to detect license updates.
 
 ### Expired license
 
