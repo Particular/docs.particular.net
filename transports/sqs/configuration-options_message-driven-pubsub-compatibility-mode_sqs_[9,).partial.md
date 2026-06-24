@@ -2,7 +2,7 @@
 
 To gradually migrate an existing system from message-driven publish/subscribe to native publish/subscribe using SNS, it's possible to enable message-driven publish/subscribe compatibility mode.
 
-Message-driven publish/subscribe compatibility mode must be enabled on publisher endpoints. When enabled, publishers will still consume subscription messages sent by endpoints via message-driven publish/subscribe, and when publishing an event, it will be sent to both legacy subscribers and SNS. Publishers deduplicate published events.
+Message-driven publish/subscribe compatibility mode must be enabled on publisher endpoints. When enabled, publishers will still consume subscription messages sent by endpoints via message-driven publish/subscribe and published events will be sent to both legacy subscribers and SNS. Publishers deduplicate published events.
 
 > [!WARNING]
 > Starting from version 9.1 of the transport, publish/subscribe compatibility mode is deprecated.
