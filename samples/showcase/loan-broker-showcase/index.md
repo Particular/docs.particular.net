@@ -17,7 +17,63 @@ The [AWS Loan Broker showcase](https://github.com/Particular/AwsLoanBrokerShowca
 
 The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses [Azure Service Bus](/transports/azure-service-bus/) for message queueing and event publishing, [SQL Server](/persistence/sql/) for [saga](/nservicebus/sagas/) data persistence, and [Azure Functions](/nservicebus/hosting/azure/functions/) to host some of the loan broker components.
 
-![Architecture of the loan broker showcase](loan-broker-landscape.svg)
+```mermaid
+flowchart LR
+    Client[["Client endpoint<br/><small>Sends the request</small>"]]
+    FindBestLoan(["FindBestLoan<br/><small>Command</small>"])
+
+    CreditBureau["Credit bureau API<br/><small>Serverless, HTTP call</small>"]
+    SagaStore[("Saga persistence<br/><small>SQL Server, DynamoDB, etc.<small>")]
+
+    subgraph Broker["LoanBrokerSaga manages the loan request"]
+        direction TB
+        Enrich["Enrichment handler<br/><small>Adds credit score</small>"]
+        Decide["LoanBrokerSaga<br/><small>Decides which banks to ask</small>"]
+        Enrich --> Decide
+    end
+
+    QuoteRequested(["QuoteRequested<br/><small>Event, published by saga</small>"])
+
+    BankA[["Bank A endpoint<br/><small>Subscriber queue</small>"]]
+    BankB[["Bank B endpoint<br/><small>Subscriber queue</small>"]]
+    BankC[["Bank C endpoint<br/><small>Subscriber queue</small>"]]
+    HandlerA["QuoteHandler<br/><small>Outbox-backed</small>"]
+    HandlerB["QuoteHandler<br/><small>Outbox-backed</small>"]
+    HandlerC["QuoteHandler<br/><small>Outbox-backed</small>"]
+
+    LoanQuoteSubmitted(["LoanQuoteSubmitted<br/><small>Command, by SagaId</small>"])
+    LoanQuotesReady(["LoanQuotesReady<br/><small>Event, saga completes</small>"])
+
+    ClientReceives[["Client endpoint<br/><small>Receives the result</small>"]]
+    Notifications[["Notifications endpoint<br/><small>Sends email</small>"]]
+
+    Client --> FindBestLoan --> Enrich
+    CreditBureau <--> Enrich
+    SagaStore <--> Decide
+    Decide --> QuoteRequested
+    QuoteRequested --> BankA --> HandlerA
+    QuoteRequested --> BankB --> HandlerB
+    QuoteRequested --> BankC --> HandlerC
+    HandlerA --> LoanQuoteSubmitted
+    HandlerB --> LoanQuoteSubmitted
+    HandlerC --> LoanQuoteSubmitted
+    LoanQuoteSubmitted --> Decide
+    Decide --> LoanQuotesReady
+    LoanQuotesReady --> ClientReceives
+    LoanQuotesReady --> Notifications
+
+    classDef endpoint fill:#64748b,stroke:#334155,color:#fff
+    classDef command fill:#d97706,stroke:#92400e,color:#fff
+    classDef event fill:#0d9488,stroke:#115e59,color:#fff
+    classDef external fill:#dc6e4f,stroke:#9a3412,color:#fff
+    classDef broker fill:#6d28d9,stroke:#4c1d95,color:#fff
+
+    class Client,ClientReceives,Notifications,BankA,BankB,BankC,HandlerA,HandlerB,HandlerC,Enrich,Decide endpoint
+    class FindBestLoan,LoanQuoteSubmitted command
+    class QuoteRequested,LoanQuotesReady event
+    class CreditBureau,SagaStore external
+    style Broker fill:#f3e8ff,stroke:#6d28d9,stroke-width:2px
+```
 
 The showcase is composed of:
 
