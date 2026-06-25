@@ -8,6 +8,7 @@ related:
  - samples/azure-service-bus-netstandard/options
  - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
  - samples/azure-service-bus-netstandard/topology-migration
+ - architecture/azure
 reviewed: 2026-05-05
 ---
 
