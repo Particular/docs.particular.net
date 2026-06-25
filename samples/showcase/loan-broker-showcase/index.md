@@ -29,7 +29,7 @@ The showcase is composed of:
 
 The example also ships the following monitoring services:
 
-- The Particular platform to monitor endpoints, capture and visualize audit messages, and manage failed messages.
+- The Particular platform to monitor endpoints, capture and visualize audited messages, and manage failed messages.
 - A Prometheus instance to collect, store, and query raw metrics data.
 - A Grafana instance with three different metrics dashboards using Prometheus as the data source.
 - A Jaeger instance to visualize OpenTelemetry traces.
