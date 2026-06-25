@@ -19,7 +19,7 @@ The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerSh
 
 ![Architecture of the loan broker showcase](loan-broker-landscape.svg)
 
-The example is composed of:
+The showcase is composed of:
 
 - A client application, sending loan requests.
 - A credit bureau provides the customers' credit scores.
