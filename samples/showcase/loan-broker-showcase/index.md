@@ -1,0 +1,35 @@
+---
+title: Loan Broker Showcases
+summary: Showcase samples that demonstrates how to build distributed systems on AWS and Azure with NServiceBus
+reviewed: 2026-06-19
+component: Core
+---
+
+The Loan Broker Showcase is a basic loan broker implementation following the [structure presented](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingExample.html) by [Gregor Hohpe](https://www.enterpriseintegrationpatterns.com/gregor.html) in his book - [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/).
+
+![Logical architecture of the loan broker](consumerloanbroker-logicalview.gif)
+
+The Loan Broker Showcase sample is available for AWS and Azure. 
+
+The [AWS Loan Broker Showcase](https://github.com/Particular/AwsLoanBrokerShowcase) simplifies serverless messaging on AWS. It demonstrates how to build distributed systems with NServiceBus and the Particular Service Platform, using AWS services - eliminating the complexity of managing dozens of Lambda functions and Step Functions with a streamlined, enterprise-grade messaging pattern. The showcase uses [AWS SQS and SNS](/transports/sqs/) for message queueing and event publishing.  
+
+The [Azure Loan Broker Showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses various services in Azure to demonstrate a distributed system built with NServiceBus and the Particular Service Platform, using [Azure Functions](/nservicebus/hosting/azure/functions/). [Azure Service Bus](/transports/azure-service-bus/) is used for message queueing and event publishing
+
+![Architecture of the AWS loan broker sample](architecture-view.png)
+
+The example is composed by:
+
+- A client application, sending loan requests.
+- A credit bureau providing the customers' credit score.
+- A loan broker service that receives loan requests enriches them with credit scores and orchestrates communication with downstream banks.
+- Three bank adapters, acting like Anti-Corruption layers (ACL), simulate communication with downstream banks offering loans.
+- An email sender simulating email communication with customers.
+
+The example also ships the following monitoring services:
+
+- The Particular platform to monitor endpoints, capture and visualize audit messages, and manage failed messages.
+- A Prometheus instance to collect, store, and query raw metrics data.
+- A Grafana instance with three different metrics dashboards using Prometheus as the data source.
+- A Jaeger instance to visualize OpenTelemetry traces.
+- AWS Distro for OpenTelemetry collector (ADOT) to collect and export metrics and traces to various destinations.
+
