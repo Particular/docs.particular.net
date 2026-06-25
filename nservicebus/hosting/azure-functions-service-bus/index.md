@@ -4,6 +4,7 @@ component: ASBFunctionsWorker
 summary: Using NServiceBus with the Azure Functions isolated worker hosting model.
 related:
   - samples/azure-functions/service-bus-worker
+  - samples/showcase/loan-broker-showcase/
 reviewed: 2026-05-05
 ---
 

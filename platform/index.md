@@ -35,3 +35,7 @@ include: servicepulse
 ServiceControl and ServicePulse are server applications. They should be deployed in each environment, for example: test, QA, and production.
 
 When investigating problems or developing [custom checks](/monitoring/custom-checks/), it can be useful to have the Platform installed on a development machine.
+
+## Additional resources
+
+Two [showcases](/samples/showcase/loan-broker-showcase/), one targeting Azure and the other targeting AWS, demonstrate how to integrate the Particular Service Platform.

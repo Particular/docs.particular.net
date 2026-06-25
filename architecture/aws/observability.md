@@ -54,3 +54,5 @@ The Particular Service Platform allows observability tools to capture spans emit
 [Message processing failed... But what's the root cause?](https://particular.net/videos/message-processing-failed)
 
 In this presentation, Laila Bougria discusses the need for distributed tracing in distributed systems, as well as the [ADOT collector (AWS Distro for OpenTelemetry Collector)](https://aws-otel.github.io/docs/getting-started/collector), AWS’ OpenTelemetry Collector implementation that simplifies exporting distributed traces from applications to AWS X-Ray, among others.
+
+The [AWS LoanBrokwer showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to integrate the Particular Service Platform and OpenTelemetry metrics and traces when hosting solutions in AWS.

@@ -30,3 +30,7 @@ Video: [Message processing failed, but what’s the root cause?](https://www.you
 ## The Particular Service Platform
 
 The Particular Service Platform offers multiple capabilities that allow teams to observe the message flows that are occurring in the system. ServicePulse provides multiple views that offer insights into message and [saga flows](/architecture/workflows.md#orchestration-implementing-orchestrated-workflows) based on audited messages. These message-based conversations are visualized using [flow diagrams](/servicepulse/message-details.md#messages-with-audited-conversation-data-flow-diagram), [sequence diagrams](/servicepulse/message-details.md#messages-with-audited-conversation-data-sequence-diagram), and [saga views](/servicepulse/message-details.md#messages-with-audited-conversation-data-saga-diagram), helping teams understand how endpoints interact and how messages move through the system. These visualizations help teams understand the components that are sending and receiving messages across the system.
+
+## Additional resources
+
+Two [showcases](/samples/showcase/loan-broker-showcase/), one targeting Azure and the other targeting AWS, demonstrate how to integrate the Particular Service Platform and OpenTelemetry metrics and traces.
