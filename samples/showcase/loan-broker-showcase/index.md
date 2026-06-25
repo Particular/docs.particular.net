@@ -1,21 +1,21 @@
 ---
 title: Loan Broker Showcases
-summary: Showcase samples that demonstrates how to build distributed systems on AWS and Azure with NServiceBus
+Showcases demonstrating how to build distributed systems on AWS and Azure with NServiceBus
 reviewed: 2026-06-19
 component: Core
 ---
 
-## Loan Broker Showcase
+## Loan Broker showcase
 
-The Loan Broker Showcase is a basic loan broker implementation following the [structure presented](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingExample.html) by [Gregor Hohpe](https://www.enterpriseintegrationpatterns.com/gregor.html) in his book - [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/).
+The Loan Broker showcase is a basic loan broker implementation following the [structure presented](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingExample.html) by [Gregor Hohpe](https://www.enterpriseintegrationpatterns.com/gregor.html) in his book - [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/).
 
 ![Logical architecture of the loan broker](consumerloanbroker-logicalview.gif)
 
-The Loan Broker Showcase sample is available for AWS and Azure.
+The Loan Broker showcase is available in two flavors, one for AWS and one for Azure.
 
-The [AWS Loan Broker Showcase](https://github.com/Particular/AwsLoanBrokerShowcase) simplifies serverless messaging on AWS. It demonstrates how to build distributed systems with NServiceBus and the Particular Service Platform, using AWS services - eliminating the complexity of managing dozens of [Lambda functions](/nservicebus/hosting/aws-lambda-simple-queue-service/) and Step Functions with a streamlined, enterprise-grade messaging pattern. The showcase uses [AWS SQS and SNS](/transports/sqs/) for message queueing and event publishing.  
+The [AWS Loan Broker showcase](https://github.com/Particular/AwsLoanBrokerShowcase) leverages AWS messaging, storage, and serverless services. It demonstrates how to build distributed systems with NServiceBus and the Particular Service Platform, using AWS services - eliminating the complexity of managing dozens of [Lambda functions](/nservicebus/hosting/aws-lambda-simple-queue-service/) and Step Functions with a streamlined, enterprise-grade messaging pattern. The showcase uses [AWS SQS and SNS](/transports/sqs/) for message queueing and event publishing, and [DynamoDB](/persistence/dynamodb/) for [saga](/nservicebus/sagas/) data persistence.
 
-The [Azure Loan Broker Showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses various services in Azure to demonstrate a distributed system built with NServiceBus and the Particular Service Platform, using [Azure Functions](/nservicebus/hosting/azure/functions/). [Azure Service Bus](/transports/azure-service-bus/) is used for message queueing and event publishing
+The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses various services in Azure to demonstrate a distributed system built with NServiceBus and the Particular Service Platform. [Azure Service Bus](/transports/azure-service-bus/) is used for message queueing and event publishing, [SQL Server](/persistence/sql/) for [saga](/nservicebus/sagas/) data persistence, and [Azure Functions](/nservicebus/hosting/azure/functions/) to host some of the endpoints.
 
 ![Architecture of the loan broker showcase](loan-broker-landscape.svg)
 
