@@ -19,10 +19,10 @@ The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerSh
 
 ![Architecture of the loan broker showcase](loan-broker-landscape.svg)
 
-The example is composed by:
+The example is composed of:
 
 - A client application, sending loan requests.
-- A credit bureau providing the customers' credit score.
+- A credit bureau provides the customers' credit scores.
 - A loan broker service that receives loan requests enriches them with credit scores and orchestrates communication with downstream banks.
 - Three bank adapters, acting like Anti-Corruption layers (ACL), simulate communication with downstream banks offering loans.
 - An email sender simulating email communication with customers.
