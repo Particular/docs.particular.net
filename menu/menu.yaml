@@ -67,6 +67,8 @@
       Url: architecture/observability
     - Title: Data distribution
       Url: architecture/data-distribution
+    - Title: Availability
+      Url: architecture/high-availability-and-disaster-recovery
   - Title: Azure
     Articles:
     - Title: Introduction
