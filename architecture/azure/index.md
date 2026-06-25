@@ -38,7 +38,7 @@ The Azure Architecture Center describes several [reference architectures](https:
 
 ### Design principles
 
-The Particular Service Platform makes systems follow the [ten design principles for Azure applications](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/).
+The Particular Service Platform makes systems follow the [design principles for Azure applications](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/).
 
 * [Self healing](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing) is provided by the rich set of [recoverability](/architecture/recoverability.md) features like automatic retries, load leveling, throttling and more, which make application services resilient to failures.
 * [Redundancy](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/redundancy) is provided by capabilities such as [scaling out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes) and [high availability](/nservicebus/scaling.md#high-availability). Further guidance on achieving this for Azure Service Bus can be found here:
