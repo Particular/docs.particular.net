@@ -7,7 +7,7 @@ related:
 - samples/aws/dynamodb-simple
 - samples/aws/dynamodb-transactions
 - nservicebus/transactional-session/persistences/dynamodb
-- samples/showcase/loan-broker-showcase/
+- samples/showcase/loan-broker-showcase
 ---
 
 Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database service for storage.

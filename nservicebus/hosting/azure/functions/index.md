@@ -9,7 +9,7 @@ related:
   - nservicebus/hosting/override-hostid
   - samples/azure-functions/service-bus
   - nservicebus/upgrades/azure-functions-service-bus-isolated-to-azure-functions
-  - samples/showcase/loan-broker-showcase/
+  - samples/showcase/loan-broker-showcase
 ---
 
 NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package.

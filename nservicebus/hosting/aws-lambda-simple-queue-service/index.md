@@ -5,7 +5,7 @@ summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue
 related:
  - samples/aws/lambda-sqs
  - samples/aws/lambda-sqs-annotations
- - samples/showcase/loan-broker-showcase/
+ - samples/showcase/loan-broker-showcase
 reviewed: 2026-05-26
 redirects:
  - previews/aws-lambda-simple-queue-service

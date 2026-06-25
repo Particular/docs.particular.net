@@ -5,7 +5,7 @@ component: SQS
 reviewed: 2026-03-24
 related:
  - samples/aws/sqs-simple
- - samples/showcase/loan-broker-showcase/
+ - samples/showcase/loan-broker-showcase
 redirects:
 - nservicebus/sqs/index
 - transports/sqs/why-use-sqs
