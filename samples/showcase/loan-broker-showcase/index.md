@@ -1,6 +1,6 @@
 ---
 title: Loan Broker Showcases
-Showcases demonstrating how to build distributed systems on AWS and Azure with NServiceBus
+summary: Showcases demonstrating how to build distributed systems on AWS and Azure with NServiceBus
 reviewed: 2026-06-19
 component: Core
 ---
