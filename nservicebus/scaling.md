@@ -37,7 +37,7 @@ Because of the [federated nature of queues with MSMQ](/transports/types.md#feder
 
 ## High availability
 
-Though not discussed here, there are many ways to achieve high availability for endpoints using infrastructure with either on-premise or cloud-based solutions. However, a different reason to try to achieve high availability is to make sure an endpoint continues to process messages while upgrading it to a newer version of either the endpoint itself or its messages. For more information on how to do message versioning, see [this sample](/samples/versioning/).
+Though not discussed here, there are many ways to achieve [high availability](/architecture/high-availability-and-disaster-recovery.md) for endpoints using infrastructure with either on-premise or cloud-based solutions. However, a different reason to try to achieve high availability is to make sure an endpoint continues to process messages while upgrading it to a newer version of either the endpoint itself or its messages. For more information on how to do message versioning, see [this sample](/samples/versioning/).
 
 Upgrading an endpoint without stopping message processing, can be accomplished by also using the *competing consumer pattern*, without necessarily deploying multiple endpoint instances to different nodes. In order words, this can even be achieved by deploying two endpoint instances on the same node.
 

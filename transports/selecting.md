@@ -82,7 +82,7 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 ### When to select this transport
 
 - When the application is running on Microsoft Azure
-- For enterprise messaging features, such as additional reliability
+- For enterprise messaging features, such as [additional reliability](https://learn.microsoft.com/en-us/azure/reliability/reliability-service-bus)
 - When messages are too large for Azure Storage Queues
 - When elastic scaling is required
 
