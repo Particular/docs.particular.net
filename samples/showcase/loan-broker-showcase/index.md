@@ -11,11 +11,11 @@ The Loan Broker showcase is a basic loan broker implementation following the [st
 
 ![Logical architecture of the loan broker](consumerloanbroker-logicalview.gif)
 
-The Loan Broker showcase is available in two flavors, one for AWS and one for Azure.
+The Loan Broker showcase demonstrates how to build distributed systems with NServiceBus and the Particular Service Platform. It's available in two flavors, one for AWS and one for Azure, each using equivalent cloud services for messaging, persistence, and hosting.
 
-The [AWS Loan Broker showcase](https://github.com/Particular/AwsLoanBrokerShowcase) leverages AWS messaging, storage, and serverless services. It demonstrates how to build distributed systems with NServiceBus and the Particular Service Platform, using AWS services - eliminating the complexity of managing dozens of [Lambda functions](/nservicebus/hosting/aws-lambda-simple-queue-service/) and Step Functions with a streamlined, enterprise-grade messaging pattern. The showcase uses [AWS SQS and SNS](/transports/sqs/) for message queueing and event publishing, and [DynamoDB](/persistence/dynamodb/) for [saga](/nservicebus/sagas/) data persistence.
+The [AWS Loan Broker showcase](https://github.com/Particular/AwsLoanBrokerShowcase) uses [AWS SQS and SNS](/transports/sqs/) for message queueing and event publishing, [DynamoDB](/persistence/dynamodb/) for [saga](/nservicebus/sagas/) data persistence, and [Lambda functions](/nservicebus/hosting/aws-lambda-simple-queue-service/) to host some of the loan broker components.
 
-The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses various services in Azure to demonstrate a distributed system built with NServiceBus and the Particular Service Platform. [Azure Service Bus](/transports/azure-service-bus/) is used for message queueing and event publishing, [SQL Server](/persistence/sql/) for [saga](/nservicebus/sagas/) data persistence, and [Azure Functions](/nservicebus/hosting/azure/functions/) to host some of the endpoints.
+The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses [Azure Service Bus](/transports/azure-service-bus/) for message queueing and event publishing, [SQL Server](/persistence/sql/) for [saga](/nservicebus/sagas/) data persistence, and [Azure Functions](/nservicebus/hosting/azure/functions/) to host some of the loan broker components.
 
 ![Architecture of the loan broker showcase](loan-broker-landscape.svg)
 
