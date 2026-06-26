@@ -34,4 +34,4 @@ The Particular Service Platform collects metrics in two forms:
 
 ## Additional resources
 
-The [Azure LoanBrokwer showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to integrate the Particular Service Platform and OpenTelemetry metrics and traces when hosting solutions in Azure.
+The [Azure Loan Broker showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to integrate the Particular Service Platform and OpenTelemetry metrics and traces when hosting solutions in Azure.

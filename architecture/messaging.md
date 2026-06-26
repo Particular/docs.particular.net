@@ -110,4 +110,4 @@ A **_message bus_** in the context of the [_bus architectural pattern_](https://
 
 - Gregor Hohpe's [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) website and accompanying book.
 - [More videos and presentations](https://particular.net/videos) about distributed systems design
-- The [LoanBrokwer showcase](/samples/showcase/loan-broker-showcase/), based on Gregor Hohpe's work, demonstrates many of the messaging patterns presented.
+- The [Loan Broker showcase](/samples/showcase/loan-broker-showcase/), based on Gregor Hohpe's work, demonstrates many of the messaging patterns presented.

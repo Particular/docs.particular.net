@@ -63,4 +63,4 @@ Consider using SQL transport if an existing application already uses a SQL Serve
 
 ## Additional resources
 
-- The [AWS LoanBrokwer showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to implement some of the presented messaging patterns using AWS SQS and SNS.
+- The [AWS Loan Broker showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to implement some of the presented messaging patterns using AWS SQS and SNS.

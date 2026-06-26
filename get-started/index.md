@@ -25,4 +25,4 @@ These additional resources provide a broader introduction to NServiceBus and the
 * **[(Video) - Live coding your first NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to sit back and watch an experienced developer build a messaging system with NServiceBus.
 * **[NServiceBus overview](https://particular.net/nservicebus)** - The most important benefits of NServiceBus at a glance.
 * **[The Particular Service Platform](/platform/)** - The wider benefits of the platform and where NServiceBus fits in.
-* **[The LoanBroaker showcases](/samples/showcase/loan-broker-showcase)** - Shocase a complex loan implementation using two flavors: one using Azure services, and the other, using AWS services.
+* **[The Loan Broker showcases](/samples/showcase/loan-broker-showcase)** - Showcase a complex loan implementation using two flavors: one using Azure services, and the other, using AWS services.
