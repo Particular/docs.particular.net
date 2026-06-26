@@ -2,6 +2,8 @@
 title: Performance Metrics in ServicePulse
 summary: Review NServiceBus endpoint performance metrics in ServicePulse, manage endpoints, and monitor failed messages and connectivity.   
 reviewed: 2024-11-27
+related:
+  - monitoring/metrics/definitions
 ---
 
 ServicePulse collects and displays performance monitoring data about running endpoints on the Monitoring tab.
