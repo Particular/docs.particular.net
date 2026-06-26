@@ -22,9 +22,9 @@ Separating slower messages from faster messages leads to higher throughput for t
 An endpoint may reach maximum message throughput when resources such as CPU or disk are fully utilized. In such cases, it may be beneficial to scale out an endpoint to multiple nodes.
 
 The following ServicePulse metrics are helpful to monitor for scaling opportunities:
-- [Queue length](/monitoring/metrics/definitions.md#metrics-captured-queue-length) - a consistently growing queue signals insufficient throughput
-- [Critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) - end-to-end latency degrading under load
-- [Processing time](/monitoring/metrics/definitions.md#metrics-captured-processing-time) - how long handlers take per message
+- [Queue length](/monitoring/metrics/definitions.md#metrics-captured-queue-length)
+- [Critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time)
+- [Processing time](/monitoring/metrics/definitions.md#metrics-captured-processing-time)
 
 However, a centralized resource, such as a database, may also be a bottleneck. Scaling out an endpoint to another node that uses the same database may not improve message throughput, or could even reduce it.
 
