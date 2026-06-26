@@ -9,6 +9,7 @@ related:
  - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
  - samples/azure-service-bus-netstandard/topology-migration
  - samples/showcase/loan-broker-showcase
+ - architecture/azure
 reviewed: 2026-05-05
 ---
 

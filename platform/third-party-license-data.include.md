@@ -234,7 +234,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.0.1/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.0.2/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 
 ### Particular.Aspire.Hosting.ServicePlatform
 

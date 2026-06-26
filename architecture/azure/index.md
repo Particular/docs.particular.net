@@ -38,10 +38,12 @@ The Azure Architecture Center describes several [reference architectures](https:
 
 ### Design principles
 
-The Particular Service Platform makes systems follow the [ten design principles for Azure applications](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/).
+The Particular Service Platform makes systems follow the [design principles for Azure applications](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/).
 
 * [Self healing](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing) is provided by the rich set of [recoverability](/architecture/recoverability.md) features like automatic retries, load leveling, throttling and more, which make application services resilient to failures.
-* [Redundancy](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/redundancy) is provided by capabilities such as [scaling out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes) and [high availability](/nservicebus/scaling.md#high-availability).
+* [Redundancy](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/redundancy) is provided by capabilities such as [scaling out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes) and [high availability](/nservicebus/scaling.md#high-availability). Further guidance on achieving this for Azure Service Bus can be found here:
+  * [Reliability in Azure Service Bus](https://learn.microsoft.com/en-us/azure/reliability/reliability-service-bus)
+  * [Azure Service Bus Geo-Disaster Recovery](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-geo-dr)
 * [Coordination is minimized](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/minimize-coordination) between services by [messaging](/architecture/messaging.md). Watch [_Autonomous microservices don't share data. Period_ (video)](https://www.youtube.com/watch?v=0TYbHVc2yWI) for more recommendations.
 * [Scaling out](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out) is achieved by various methods such as [asynchronous message-based communication](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/asynchronous-message-based-communication) and [competing consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers).
 * [Partitioning](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/partition) is achieved by making [suitable technology choices](/architecture/azure/#technology-choices). NServiceBus directly supports and integrates with a range of Azure services that provide partitioning for large-scale systems.
@@ -92,3 +94,4 @@ The Particular Service Platform helps achieve the five pillars of software quali
 
 * [Microsoft Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/)
 * [Azure services available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
+* [Architecture best practices for Azure Service Bus](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-service-bus)
