@@ -4,6 +4,8 @@ summary: Detailed definitions of NServiceBus metrics for endpoint monitoring, in
 reviewed: 2025-07-18
 redirects:
   - nservicebus/operations/metrics
+related:
+  - monitoring/metrics/in-servicepulse
 ---
 
 Gathering metrics is important to know how a system works and if it works properly. When a system is broken down into multiple processes, each with its own queue, gathering and reporting metrics becomes vital. Below is a list of metrics that are captured and reported by NServiceBus.
@@ -26,6 +28,8 @@ Processing time is the amount of time it takes for an endpoint to **successfully
 - the execution of all handlers and sagas for the incoming message
 - the execution of the incoming message processing pipeline, which includes deserialization and, where applicable, user-defined pipeline behaviors and saga loading and saving time
 - storing the outbox operations (if outbox is enabled)
+
+As load on a system increases, this can be a good metric to monitor for [scaling](/nservicebus/scaling.md) opportunities or potential bottlenecks.
 
 Processing failures are not included in the processing time metric.
 
@@ -54,6 +58,8 @@ Critical time is the amount of time between when a message is sent and when it i
 - Queue wait time: the amount of time that a message spends in the destination queue before being picked up and processed
 - Processing time: the amount of time that it takes for the destination endpoint to process the message
 - Outgoing messages dispatch time: The amount of time that it takes to transmit outgoing messages to the transport
+
+As load on a system increases, this can be a good metric to monitor for [scaling](/nservicebus/scaling.md) opportunities or potential bottlenecks.
 
 Critical time does _not_ include:
 
@@ -85,6 +91,8 @@ This metric measures the number of [messages moved to the error queue](/nservice
 ### Queue length
 
 This metric tracks the number of messages in the main input queue of the endpoint.
+
+As load on a system increases, this can be a good metric to monitor for [scaling](/nservicebus/scaling.md) opportunities or potential bottlenecks.
 
 > [!NOTE]
 > The queue length metric is measured centrally by the [ServiceControl Monitoring instance](/servicecontrol/monitoring-instances) for all transports except MSMQ, which uses a [custom plugin installed at the endpoint](/monitoring/metrics/msmq-queue-length.md). As a result, the NServiceBus.Metrics package does not contain a probe for this metric.
