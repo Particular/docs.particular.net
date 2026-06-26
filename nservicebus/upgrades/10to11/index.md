@@ -220,7 +220,7 @@ This approach allows the framework to move away from MD5-based host identifier g
 
 After upgrading, endpoints that rely on the default generated host identifier will receive new host identifiers. This causes endpoints to appear as new entries in ServicePulse, while the previous instances become stale and must be [removed from the monitoring view](/monitoring/metrics/in-servicepulse.md#disconnected-endpoints-removing-disconnected-endpoints).
 
-The changed host identifier also affects any custom logging, audit processing, dashboards, or queries that use the generated `$.diagnostics.hostid` value. Endpoint names, queues, message processing, and explicitly configured host identifiers are not affected.
+The changed host identifier also affects any custom logging, audit processing, dashboards, or queries that use generated host identifier headers, such as `$.diagnostics.hostid` or `$.diagnostics.originating.hostid`. Endpoint names, queues, message processing, and explicitly configured host identifiers are not affected.
 
 ServiceControl stores and displays the resulting host identifier value. It does not know whether two different host identifiers were generated from the same endpoint path and machine name by different algorithms.
 
