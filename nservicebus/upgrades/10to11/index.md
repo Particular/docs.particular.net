@@ -1,7 +1,7 @@
 ---
 title: Upgrade Version 10 to 11
 summary: Instructions on how to upgrade NServiceBus from version 10 to version 11.
-reviewed: 2026-06-08
+reviewed: 2026-06-26
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -200,7 +200,7 @@ In version 11, the default algorithm for generating deterministic host identifie
 
 ### Rationale
 
-This change provides a path for customers who require **FIPS-compliant** host identifiers (see [FIPS compliance](/nservicebus/compliance/fips.md)). The legacy MD5-based algorithm is not FIPS-compliant; by moving to the new `XxHash128` algorithm, the framework uses a compliant standard by default.
+This change avoids using MD5 for default host identifier generation, which prevents FIPS policy enforcement from blocking endpoint startup for this code path (see [FIPS compliance](/nservicebus/compliance/fips.md)). The legacy MD5-based algorithm is not appropriate for this non-cryptographic use case.
 
 To ensure a predictable transition, this is designed as a multi-phase migration:
 
@@ -212,17 +212,21 @@ To ensure a predictable transition, this is designed as a multi-phase migration:
 | >= 12.0 | XxHash128 Only | XxHash128 | - |
 
 
-In version 11, XxHash128 becomes the default. By making this an explicit switch rather than an automatic change, there is a clear "escape hatch" to preserve legacy host IDs if correlation with older monitoring data (such as ServicePulse) must be maintained during the transition.
+In version 11, XxHash128 becomes the default. The opt-out switch is intended as a temporary migration aid when operational dashboards, log queries, audit processing, or monitoring processes need more time to move from the legacy generated host identifiers to the new identifiers.
 
-This approach allows the framework to move toward a compliant default while providing the necessary flexibility to manage existing integrations before the legacy algorithm is removed in version 12.
+This approach allows the framework to move away from MD5-based host identifier generation while providing flexibility to manage existing integrations before the legacy algorithm is removed in version 12.
 
 ### Impact
 
-After upgrading, endpoints will receive new host identifiers. This causes endpoints to appear as new entries in ServicePulse, while the previous instances become stale and must be [removed from the monitoring view](/monitoring/metrics/in-servicepulse.md#disconnected-endpoints-removing-disconnected-endpoints).
+After upgrading, endpoints that rely on the default generated host identifier will receive new host identifiers. This causes endpoints to appear as new entries in ServicePulse, while the previous instances become stale and must be [removed from the monitoring view](/monitoring/metrics/in-servicepulse.md#disconnected-endpoints-removing-disconnected-endpoints).
 
-### Preserving the legacy host identifier
+The changed host identifier also affects any custom logging, audit processing, dashboards, or queries that use generated host identifier headers, such as `$.diagnostics.hostid` or `$.diagnostics.originating.hostid`. Endpoint names, queues, message processing, and explicitly configured host identifiers are not affected.
 
-To preserve the existing MD5-based host identifier after upgrading, set the following AppContext switch before endpoint startup:
+ServiceControl stores and displays the resulting host identifier value. It does not know whether two different host identifiers were generated from the same endpoint path and machine name by different algorithms.
+
+### Temporarily preserving the legacy generated host identifier
+
+To temporarily preserve the existing MD5-based generated host identifier after upgrading to version 11, set the following AppContext switch before endpoint startup:
 
 ```csharp
 AppContext.SetSwitch("NServiceBus.Core.Hosting.UseV2DeterministicGuid", false);
@@ -244,3 +248,5 @@ Or via MSBuild in the project file:
 
 > [!NOTE]
 > The legacy MD5-based host identifier algorithm and the `UseV2DeterministicGuid` AppContext switch will be removed in version 12.
+
+If an endpoint must keep a specific host identifier beyond version 11, configure the host identifier explicitly instead of relying on the legacy algorithm switch. For example, an endpoint can be configured with its existing host identifier to keep the value stable after the legacy algorithm is removed. See [Overriding the host identifier](/nservicebus/hosting/override-hostid.md).
