@@ -4,6 +4,8 @@ summary: The NServiceBus framework is the foundation for building scalable, reli
 component: Core
 reviewed: 2025-11-21
 suppressRelated: true
+related:
+- samples/showcase/loan-broker-showcase
 redirects:
 - nservicebus/overview
 ---

@@ -7,6 +7,7 @@ related:
 - samples/aws/dynamodb-simple
 - samples/aws/dynamodb-transactions
 - nservicebus/transactional-session/persistences/dynamodb
+- samples/showcase/loan-broker-showcase
 ---
 
 Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database service for storage.
@@ -58,7 +59,7 @@ snippet: DynamoDBCustomClientProviderRegistration
 
 ## Permissions
 
-Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html) 
+Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html)
 
 ### [Installers](/nservicebus/operations/installers.md) enabled:
 
@@ -91,7 +92,7 @@ When using [provisioned throughput](https://docs.aws.amazon.com/amazondynamodb/l
 > [!NOTE]
 > AWS provides [guidance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ProvisionedThroughput.Troubleshooting) on how to diagnose and troubleshoot provisioned throughput exceeded exceptions.
 
-The Dynamo DB SDK provides a mechanism to automatically retry operations when rate-limiting occurs. These settings can be adjusted to help prevent messages from failing during spikes in message volume, rather than changing the provisioned capacity or switching to autoscaling or the on-demand capacity mode. 
+The Dynamo DB SDK provides a mechanism to automatically retry operations when rate-limiting occurs. These settings can be adjusted to help prevent messages from failing during spikes in message volume, rather than changing the provisioned capacity or switching to autoscaling or the on-demand capacity mode.
 
 The retry-operations settings can be set when initializing the `AmazonDynamoDBClient` via the [`AmazonDynamoDBConfig`](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) properties:
 

@@ -96,3 +96,4 @@ Azure offers other messaging services focused on asynchronous communication. The
 - [Azure Service Bus quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)
 - [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets)
 - [Events, Data Points, and Messages—Choosing the right Azure messaging service](https://azure.microsoft.com/en-us/blog/events-data-points-and-messages-choosing-the-right-azure-messaging-service-for-your-data/)
+- The [Azure Loan Broker showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to implement some of the presented messaging patterns using Azure Service Bus

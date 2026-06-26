@@ -60,3 +60,7 @@ SQL Server transport is an NServiceBus feature that can use existing SQL Server 
 ### When to use SQL Server transport
 
 Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and only a limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
+
+## Additional resources
+
+- The [AWS Loan Broker showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to implement some of the presented messaging patterns using AWS SQS and SNS.
