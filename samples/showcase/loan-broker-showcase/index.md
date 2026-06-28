@@ -17,6 +17,8 @@ The [AWS Loan Broker showcase](https://github.com/Particular/AwsLoanBrokerShowca
 
 The [Azure Loan Broker showcase](https://github.com/Particular/AzureLoanBrokerShowcase) uses [Azure Service Bus](/transports/azure-service-bus/) for message queueing and event publishing, [SQL Server](/persistence/sql/) for [saga](/nservicebus/sagas/) data persistence, and [Azure Functions](/nservicebus/hosting/azure/functions/) to host some of the loan broker components.
 
+Here's an overview of the solution:
+
 ```mermaid
 flowchart LR
     Client[["Client endpoint<br/><small>Sends the request</small>"]]
