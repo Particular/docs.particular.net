@@ -31,12 +31,25 @@ amazonSnsConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
 var amazonSnsClient = new AmazonSimpleNotificationServiceClient(amazonSnsConfig);
 ```
 
+The SQS and SNS clients are both passed to the transport when configuring the endpoint:
+
+```csharp
+endpointConfiguration.UseTransport(new SqsTransport(amazonSqsClient, amazonSnsClient));
+```
+
 The DynamoDB configuration is shown in the following example:
 
 ```csharp
 var amazonDynamoDBConfig = new AmazonDynamoDBConfig();
 amazonDynamoDBConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
 var amazonDynamoDBClient = new AmazonDynamoDBClient(amazonDynamoDBConfig);
+```
+
+The DynamoDB client is passed to the persistence when configuring the endpoint:
+
+```csharp
+endpointConfiguration.UsePersistence<DynamoPersistence>()
+    .DynamoClient(amazonDynamoDBClient);
 ```
 
 > [!NOTE]
