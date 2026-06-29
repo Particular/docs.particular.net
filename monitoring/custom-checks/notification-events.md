@@ -1,7 +1,7 @@
 ---
 title: Custom Checks notification events
 summary: ServiceControl integration events notify when NServiceBus custom checks fail or succeed, aiding proactive system monitoring
-reviewed: 2024-10-28
+reviewed: 2026-06-29
 component: CustomChecks
 versions: 'CustomChecks:*'
 ---
@@ -10,7 +10,7 @@ ServiceControl exposes two integration events related to the Custom Checks plugi
 
 For information about how to subscribe to ServiceControl integration events, see [Using ServiceControl events](/servicecontrol/contracts.md).
 
-Each custom check begins in an unknown state. Once the custom checks executes and reports its status to ServiceControl the custom check will transition to a pass or fail status. External integration events are raised whenever custom checks transition into new states.
+Each custom check begins in an unknown state. Once the custom check executes and reports its status to ServiceControl, it will transition to either `pass` or `fail`. External integration events are raised whenever custom checks transition into new states.
 
 ```mermaid
 graph TD
