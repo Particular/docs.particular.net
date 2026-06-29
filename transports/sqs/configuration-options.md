@@ -2,7 +2,7 @@
 title: Configuration Options
 summary: Configuration options for the SQS transport.
 component: SQS
-reviewed: 2024-10-24
+reviewed: 2026-06-29
 redirects:
 - nservicebus/sqs/configuration-options
 ---
@@ -22,7 +22,7 @@ partial: donotwrapoutgoingmessages
 
 **Default**: 4 days
 
-This is the maximum time that a message will be retained within SQS and S3. When a sent message is not received and successfully processed within the specified time, the message will be lost. This value applies to both SQS and S3 - messages in SQS will be deleted after this amount of time, and large message bodies stored in S3 will automatically be deleted after this amount of time.
+This is the maximum time that a message will be retained within SQS and S3. If a sent message is not received and successfully processed within the specified time, it will be lost. This value applies to both SQS and S3: messages in SQS will be deleted after this period, and large message bodies stored in S3 will be automatically deleted after this period.
 
 The maximum value is 14 days.
 
@@ -31,7 +31,7 @@ The maximum value is 14 days.
 snippet: MaxTTL
 
 > [!NOTE]
-> [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 ageing policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
+> [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 aging policy controls payload deletion and respects the configured TTL. Since message payloads stored in S3 are important for audited and failed messages in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) aligns with the configured SQS and S3 TTLs.
 
 ## Queue name prefix
 
@@ -39,7 +39,7 @@ snippet: MaxTTL
 
 **Default**: None
 
-This string value is prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying many instances of the same application in the same AWS region (e.g. a development instance, a QA instance, and a production instance), and the queue names must be distinguished from each other.
+This string value is prepended to the name of every SQS queue referenced by the endpoint. This is useful when deploying multiple instances of the same application in the same AWS region (e.g., development, QA, and production), and when the queue names must be distinguished from one another.
 
 **Example**: For a development instance, specify:
 
@@ -74,7 +74,7 @@ snippet: S3BucketForLargeMessages
 
 **Mandatory**
 
-This is the path within the specified S3 bucket to store large messages.
+This is the path in the specified S3 bucket for storing large messages.
 
 ### S3 Client
 
@@ -99,7 +99,7 @@ snippet: S3ClientFactory
 
 **Default**: Disabled
 
-Specifies how the large messages stored in S3 are to be encrypted. The default option is no encryption. The alternative is to use a managed encryption key:
+Specifies how large messages stored in S3 are encrypted. The default option is no encryption. The alternative is to use a managed encryption key:
 
 snippet: S3ServerSideEncryption
 
