@@ -12,14 +12,4 @@ class DelayConfig
 
         #endregion
     }
-    
-    void ConfigurePeekBatchSize(EndpointConfiguration endpointConfiguration)
-    {
-        #region sqlserver-queue-peeker-config-batch-size
-
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.QueuePeekerOptions(peekBatchSize: 50);
-
-        #endregion
-    }
 }
