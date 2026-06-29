@@ -69,7 +69,7 @@ partial: messageBodyString-column
 
 The `RowVersion` column is used to define the FIFO order of the queue. It is auto-incremented by SQL Server (`identity(1,1)`). The receive message T-SQL query returns a message with the lowest value of `RowVersion` that is not locked by any other concurrent receive operation.
 
-A non-clustered index on the `RowVersion` column allows the receive query to efficiently locate the message with the lowest `RowVersion`. If this index is missing, the transport logs a warning recommending that it be created.
+A non-clustered index on the `RowVersion` column allows the receive query to efficiently locate the message with the lowest `RowVersion`. If this index is missing, the transport logs a warning recommending that it be created. Systems created with earlier transport versions may still use a clustered index; see the [non-clustered index upgrade guide](/transports/upgrades/sqlserver-non-clustered-idx.md) for migration steps.
 
 
 ## Behavior

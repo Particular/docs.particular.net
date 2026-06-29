@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Transport Design
 summary: The design and implementation details of PostgreSQL Transport
-reviewed: 2026-03-09
+reviewed: 2026-06-29
 component: PostgreSqlTransport
 ---
 
@@ -55,9 +55,9 @@ The maximum number of concurrent receive tasks never exceeds the value set by `L
 
 When all tasks are done the transport switches back to the *peek* mode.
 
-Under certain conditions, the initial estimate of the number of pending messages might be wrong e.g. when there is more than one instance of a scaled-out endpoint consuming messages from the same queue. In this case, one of the received tasks will fail (i.e. `delete` will return no results). When this happens, the transport immediately switches back to the *peek* mode.
+Under certain conditions, the initial estimate of the number of pending messages might be wrong e.g. when there is more than one instance of a scaled-out endpoint consuming messages from the same queue. In this case, one of the receive tasks will fail (i.e. `delete` will return no results). When this happens, the transport immediately switches back to the *peek* mode.
 
-The [default peek interval](#behavior-queue-peek-settings-peek-delay-configuration), if no peek has yet been run or the previous peek returned no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue.
+The [default peek interval](#behavior-queue-peek-settings-peek-delay-configuration), if no peek has yet been run or the previous peek returned no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. A value less than 100 milliseconds is rejected because it puts unnecessary stress on the database, while a value larger than 10 seconds should be used with caution as it may result in messages backing up in the queue.
 
 > [!WARNING]
 > If the queue peek interval is configured, it must not be set larger than the [Time-To-Be-Received](/nservicebus/messaging/discard-old-messages.md)(TTBR) to ensure that such messages are not discarded.
@@ -69,11 +69,5 @@ The [default peek interval](#behavior-queue-peek-settings-peek-delay-configurati
 Use the following code:
 
 snippet: postgresql-queue-peeker-config-delay
-
-#### Peek batch size configuration
-
-Use the following code:
-
-snippet: postgresql-queue-peeker-config-batch-size
 
 Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md).
