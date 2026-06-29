@@ -1,7 +1,7 @@
 ---
 title: SQL Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2024-10-24
+reviewed: 2026-06-29
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/design
