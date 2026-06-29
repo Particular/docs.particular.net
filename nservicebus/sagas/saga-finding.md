@@ -1,7 +1,7 @@
 ---
 title: Complex saga finding logic
 summary: Use IFindSaga to write custom code that resolves sagas.
-reviewed: 2024-10-28
+reviewed: 2026-06-29
 component: Core
 related:
 - samples/saga/nh-custom-sagafinder
@@ -10,7 +10,7 @@ related:
 - nservicebus/sagas/concurrency
 ---
 
-A saga can handle multiple messages. When NServiceBus receives a message that should be handled by a saga, it uses the [configured mapping information](/nservicebus/sagas/#correlating-messages-to-a-saga) to determine the correct saga instance that should handle the incoming message. In many cases the correlation logic is simple and can be specified using the provided [mapping function](/nservicebus/sagas/#correlating-messages-to-a-saga), which is the recommended default approach. However, if the correlation logic is very complex it might be necessary to define a custom saga finder.
+A saga can handle multiple messages. When NServiceBus receives a message that should be handled by a saga, it uses the [configured mapping information](/nservicebus/sagas/#correlating-messages-to-a-saga) to determine the correct saga instance that should handle the incoming message. In many cases, the correlation logic is simple and can be specified using the provided [mapping function](/nservicebus/sagas/#correlating-messages-to-a-saga), which is the recommended default approach. However, if the correlation logic is very complex, it might be necessary to define a custom saga finder.
 
 Custom Saga Finders are created by implementing `IFindSagas`.
 
@@ -18,7 +18,7 @@ snippet: saga-finder
 
 partial: mapping
 
-Many finders may exist for a given saga or message type. If a saga can't be found and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
+Many finders may exist for a given saga or message type. If a saga can't be found and the saga specifies that it should be started for that message type, NServiceBus will know to create a new saga instance.
 
 > [!WARNING]
 > When using custom saga finders, users are expected to configure any additional indexes needed to handle [concurrent access to saga instances](/nservicebus/sagas/concurrency.md) properly using the tooling of the selected storage engine. Due to this constraint, not all persisters will be able to support custom saga finders to the same degree.
