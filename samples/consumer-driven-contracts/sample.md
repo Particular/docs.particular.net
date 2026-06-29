@@ -1,7 +1,7 @@
 ---
 title: Consumer-driven Contracts sample
 summary: NServiceBus sample that shows a consumer-driven contract (CDC) approach to messaging.
-reviewed: 2024-10-30
+reviewed: 2026-06-29
 component: Core
 versions: '[6,)'
 ---
@@ -28,4 +28,4 @@ snippet: publisher-contracts
 Run the sample and notice how each consumer receives its contract when the producer publishes `MyEvent`.
 
 > [!NOTE]
-> Sharing contract types between endpoints is a larger topic, and this sample is using linked files for simplicity. See the [message contracts documentation](/nservicebus/messaging/evolving-contracts.md) for more details.
+> Sharing contract types across endpoints is a broader topic; this sample uses linked files for simplicity. See the [message contracts documentation](/nservicebus/messaging/evolving-contracts.md) for more details.
