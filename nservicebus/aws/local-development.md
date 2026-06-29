@@ -1,7 +1,7 @@
 ---
 title: AWS local development using LocalStack
 summary: Learn how to configure NServiceBus for AWS local development using LocalStack, with sample settings for SQS, SNS, and DynamoDB.
-reviewed: 2024-10-29
+reviewed: 2026-06-29
 ---
 
 [LocalStack](https://www.localstack.cloud/) is a tool to develop and test your AWS applications locally, reducing development time and increasing productivity.
@@ -11,7 +11,7 @@ reviewed: 2024-10-29
 
 To configure an NServiceBus endpoint to connect to LocalStack instead of AWS, the AWS endpoint URL must be set to the address of the LocalStack instance. The simplest way is by defining the `AWS_ENDPOINT_URL` environment variable and setting its value to the LocalStack URL:
 
-```
+```bash
 AWS_ENDPOINT_URL=http://localhost.localstack.cloud:4566
 ```
 
@@ -23,7 +23,7 @@ amazonSqsConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
 var amazonSqsClient = new AmazonSQSClient(amazonSqsConfig);
 ```
 
-Similarly, the Amazon SNS and DynamoDB configurations must follow the same patter. The following snippet shows the SNS configuration:
+Similarly, the Amazon SNS and DynamoDB configurations must follow the same pattern. The following snippet shows the SNS configuration:
 
 ```csharp
 var amazonSnsConfig = new AmazonSimpleNotificationServiceConfig();
