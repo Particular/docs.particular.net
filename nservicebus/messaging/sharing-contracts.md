@@ -2,7 +2,7 @@
 title: Sharing message contracts
 summary: How to define and share message contracts between endpoints.
 component: Core
-reviewed: 2024-10-31
+reviewed: 2026-06-29
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
@@ -19,13 +19,13 @@ A sender and receiver of a given message must use the same message contract. Mes
 
 * When all endpoints are located in a single solution, message contract assemblies may be directly referenced as project dependencies.
 * When endpoints are located in multiple solutions, message contracts may be shared as [NuGet packages](https://learn.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild). NuGet packages may be published on the file system or a NuGet server. A [custom NuGet config file](https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file) may be used to configure additional NuGet package sources.
-* Messages contracts may be shared as C# source files.
+* Message contracts may be shared as C# source files.
 
 ### NServiceBus dependency
 
 When [marker interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages-marker-interfaces) are used to define messages, message contract projects have a dependency on the NServiceBus package. This may cause version conflicts when message contracts are updated in endpoints targeting older major versions of NServiceBus. This may be avoided by either:
 
-* Use the [`NServiceBus.MessageInterfaces` package](/samples/message-assembly-sharing/) available from Version 8.2 onwards.
+* Using the [`NServiceBus.MessageInterfaces` package](/samples/message-assembly-sharing/) available from Version 8.2 onwards.
 * Referencing the oldest used NServiceBus major version from message contracts projects. [NuGet dependency resolution](https://learn.microsoft.com/en-us/nuget/concepts/dependency-resolution) allows endpoints on newer major versions of NServiceBus to reference assemblies that target an older version of NServiceBus, but not vice versa.
 * Switching to [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md). Unobtrusive mode allows an assembly to define message contracts without a dependency on the NServiceBus package, making it easy to share message contracts with endpoints targeting multiple versions of NServiceBus and running on various frameworks and platforms.
 
