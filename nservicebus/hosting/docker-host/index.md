@@ -13,9 +13,9 @@ versions: '[2,]'
 reviewed: 2026-05-05
 ---
 
-Hosting endpoints in Docker containers provides self-contained artifacts that can be deployed to multiple environments or managed by orchestration technologies such as [Kubernetes](https://kubernetes.io/docs/home/). To create and host an endpoint in a Docker container, use the `dotnet new` template from the [ParticularTemplates package](/nservicebus/dotnet-templates/). The generated project includes all required endpoint setup infrastructure, along with a `Dockerfile` needed to build and deploy a container hosting one endpoint.
+Hosting endpoints in Docker containers provides self-contained artifacts that can be deployed to multiple environments or managed by orchestration technologies such as [Kubernetes](https://kubernetes.io/docs/home/). Cloud providers, such as [AWS](/architecture/aws/compute.md#platform-as-a-service-containers) and [Azure](/architecture/azure/compute.md#platform-as-a-service-containers), also offer container hosting solutions.
 
-Cloud providers, such as [AWS](/architecture/aws/compute.md#platform-as-a-service-containers) and [Azure](/architecture/azure/compute.md#platform-as-a-service-containers) also offer container hosting solutions.
+To create and host an endpoint in a Docker container, use the `dotnet new` template from the [ParticularTemplates package](/nservicebus/dotnet-templates/). The generated project includes all required endpoint setup infrastructure, along with a `Dockerfile` needed to build and deploy a container hosting one endpoint.
 
 ## Template overview
 
