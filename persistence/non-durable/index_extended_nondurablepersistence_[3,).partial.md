@@ -44,6 +44,12 @@ The query is evaluated against a moment-in-time snapshot of the underlying stora
 
 For unit testing, use `TestableNonDurableSynchronizedStorageSession` to create a fake session backed by an in-memory store.
 
+### Custom index with ISagaPersister
+
+When maintaining a custom lookup index outside of the persister, resolve the saga ID from the index and delegate to `ISagaPersister.Get` to load the saga data. This still captures the saga entry for optimistic concurrency checks:
+
+snippet: NonDurableSagaFinderWithPersister
+
 ## OpenTelemetry instrumentation
 
 Non-durable persistence emits spans via the `NServiceBus.Persistence.NonDurable` activity source when an OpenTelemetry listener is configured.
