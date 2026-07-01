@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="NuGet.PackageManagement" Version="7.6.0" />
-    <PackageReference Include="YamlDotNet" Version="18.0.0" />
+    <PackageReference Include="YamlDotNet" Version="18.1.0" />
   </ItemGroup>
 
 </Project>
