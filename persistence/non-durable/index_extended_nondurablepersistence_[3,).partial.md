@@ -30,6 +30,14 @@ Saga data is the only persistence state that is JSON-serialized. By default, `Sy
 
 snippet: ConfiguringNonDurableSagaSerialization
 
+## Transactions
+
+Non-durable persistence participates in transactions through the synchronized storage session.
+
+When a transport publishes a `System.Transactions.Transaction` into the transport transaction, the persister enlists as a volatile resource manager. Saga, outbox, and subscription operations are staged during the handler and committed or rolled back as a unit through the transaction.
+
+When no transport transaction is available, the persister falls back to a standalone storage transaction that is committed when the handler completes successfully.
+
 ## Custom saga finders
 
 Non-durable persistence supports [custom saga finders](/nservicebus/sagas/saga-finding.md) via `ISagaFinder<TSagaData, TMessage>`.
