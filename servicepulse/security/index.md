@@ -13,6 +13,8 @@ ServicePulse authentication is configured in ServiceControl, not in ServicePulse
 
 To set up authentication, follow the [ServiceControl security guide](/servicecontrol/security).
 
+When [role-based access control](configuration/authorization.md) is enabled in ServiceControl, ServicePulse hides or disables the tabs, pages, and buttons that the signed-in user is not permitted to use.
+
 ## Enable HTTPS on ServicePulse
 
 ServicePulse should be served over HTTPS to protect user sessions and tokens in transit. Configure a TLS certificate so ServicePulse serves HTTPS directly.
@@ -25,6 +27,8 @@ For deployments that use a reverse proxy for TLS termination, or require end-to-
 
 ## Reference
 
+- [Authentication configuration](configuration/authentication.md)
+- [Role-based access control](configuration/authorization.md)
 - [TLS configuration](configuration/tls.md)
 - [Forward headers for reverse proxy](configuration/forward-headers.md)
 - [Hosting guide](hosting-guide.md)

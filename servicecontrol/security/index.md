@@ -87,6 +87,10 @@ Open ServicePulse in a browser. You should be redirected to your identity provid
 
 If authentication fails, check the ServiceControl logs for token validation errors. See [authentication configuration](configuration/authentication.md#troubleshooting) for common error messages and solutions.
 
+## Restricting what users can do
+
+Authentication verifies who a user is. To additionally restrict what each authenticated user is allowed to do — for example, granting some users read-only access while others can retry or edit messages — enable [role-based access control](configuration/authorization.md). Authorization is optional and disabled by default; when it is off, every authenticated user has full access.
+
 ## Advanced deployment patterns
 
 For deployments that use a reverse proxy for TLS termination, or require end-to-end encryption between a proxy and ServiceControl, see the [hosting guide](hosting-guide.md).
@@ -94,6 +98,7 @@ For deployments that use a reverse proxy for TLS termination, or require end-to-
 ## Reference
 
 - [Authentication configuration](configuration/authentication.md)
+- [Role-based access control](configuration/authorization.md)
 - [TLS configuration](configuration/tls.md)
 - [CORS configuration](configuration/cors.md)
 - [Hosting guide](hosting-guide.md)
