@@ -34,9 +34,9 @@ snippet: ConfiguringNonDurableSagaSerialization
 
 Non-durable persistence supports [custom saga finders](/nservicebus/sagas/saga-finding.md) via `ISagaFinder<TSagaData, TMessage>`.
 
-## Saga data projection
+### Querying saga data through the synchronized storage session
 
-The non-durable persistence exposes `INonDurableStorageSession` to query saga data directly from within a custom saga finder. This is useful when correlation logic is too complex to express through the standard saga mapping API.
+When correlation logic is too complex to express through the standard saga mapping API, use `INonDurableStorageSession.GetSagaData` to query the in-memory saga store directly from within a custom finder:
 
 snippet: NonDurableSagaProjection
 
@@ -44,7 +44,7 @@ The query is evaluated against a moment-in-time snapshot of the underlying stora
 
 For unit testing, use `TestableNonDurableSynchronizedStorageSession` to create a fake session backed by an in-memory store.
 
-### Custom index with ISagaPersister
+### Using a custom index with ISagaPersister
 
 When maintaining a custom lookup index outside of the persister, resolve the saga ID from the index and delegate to `ISagaPersister.Get` to load the saga data. This still captures the saga entry for optimistic concurrency checks:
 
