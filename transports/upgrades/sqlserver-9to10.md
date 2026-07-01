@@ -89,3 +89,9 @@ async Task MigrateAwayFromMessageDrivenPubSub()
     await endpointInstance.Stop();
 }
 ```
+
+## Queue peek batch size deprecation
+
+The queue peek batch size configuration (`SqlServerTransport.QueuePeeker.MaxRecordsToPeek`, and the `peekBatchSize` parameter of the legacy `QueuePeekerOptions(delay, peekBatchSize)` overload) has no effect and is deprecated. It has had no effect since Version 6.2: the number of messages received per peek is bounded by the configured [message processing concurrency](/nservicebus/operations/tuning.md), and the receive loop stops as soon as the queue is drained.
+
+Configuring it produces a compile-time warning and logs a runtime warning starting in the next Version 9 minor release. In Version 10, using it produces a compilation error. Remove it from the transport configuration.
