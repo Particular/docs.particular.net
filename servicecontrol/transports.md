@@ -144,7 +144,7 @@ In addition to the [connection string options of the transport](/transports/sql/
 The following options tune queue length monitoring (the data behind the throughput graphs) and are available in versions <!-- TODO: confirm first shipping ServiceControl version --> and above:
 
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - The base interval between queue length refresh queries. The default value is 1000 ms, matching the finest monitoring resolution (one data point per second). This is the cadence used whenever any monitored queue has messages.
-* `QueueLengthQueryMaxDelayInterval=<value_in_milliseconds>` - The upper bound for the adaptive back-off. While *every* monitored queue is empty the interval ramps from `QueueLengthQueryDelayInterval` up to this value, reducing query load on an idle system; it returns to the base interval as soon as any queue has work. The default value is 10000 ms. Set it equal to `QueueLengthQueryDelayInterval` to disable back-off and poll at a constant cadence.
+* `QueueLengthQueryMaxDelayInterval=<value_in_milliseconds>` - The upper bound for the adaptive back-off. While *every* monitored queue is empty, the interval ramps from `QueueLengthQueryDelayInterval` up to this value, reducing query load on an idle system; it returns to the base interval as soon as any queue has messages. The default value is 10000 ms. Set it equal to `QueueLengthQueryDelayInterval` to disable back-off and poll at a constant cadence.
 
 ### Example connection string
 
