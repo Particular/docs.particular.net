@@ -1,4 +1,4 @@
-﻿namespace NonDurablePersistence_2
+namespace NonDurablePersistence_2
 {
     using NServiceBus;
 
@@ -8,6 +8,10 @@
         {
             #region ConfiguringNonDurable
 
+            // Use NonDurable persistence for all concerns
+            endpointConfiguration.UsePersistence<NonDurablePersistence>();
+
+            // or select specific concerns
             endpointConfiguration.UsePersistence<NonDurablePersistence, StorageType.Sagas>();
             endpointConfiguration.UsePersistence<NonDurablePersistence, StorageType.Subscriptions>();
             endpointConfiguration.UsePersistence<NonDurablePersistence, StorageType.Outbox>();
