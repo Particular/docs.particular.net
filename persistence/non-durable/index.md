@@ -9,7 +9,7 @@ redirects:
 
 partial: noteinmemory
 
-Some scenarios require a non-durable persistence such as the development environment or a lightweight client not interested in durability across restarts:
+Some scenarios require a non-durable persistence such as the development environment, testing, high-throughput scenarios where speed outweighs the benefits of durability, or a lightweight client not interested in durability across restarts:
 
 ## Persistence at a glance
 
