@@ -31,9 +31,6 @@ snippet: ConfiguringNonDurable
 
 partial: configuration-shortcut
 
-> [!CAUTION]
-> All information stored is discarded when the process ends.
-
 partial: timeoutmanager
 
 partial: gatewaydedupe
