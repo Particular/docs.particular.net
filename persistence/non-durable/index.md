@@ -2,7 +2,7 @@
 title: Non-durable persistence
 summary: Non-durable persistence (previously known as In-Memory persistence) stores data in a non-durable manner
 component: NonDurablePersistence
-reviewed: 2024-12-26
+reviewed: 2026-07-01
 redirects:
 - nservicebus/persistence/in-memory
 ---
@@ -25,7 +25,11 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 ## Configuration
 
+Configure the endpoint to use non-durable persistence:
+
 snippet: ConfiguringNonDurable
+
+partial: configuration-shortcut
 
 > [!CAUTION]
 > All information stored is discarded when the process ends.
@@ -33,6 +37,8 @@ snippet: ConfiguringNonDurable
 partial: timeoutmanager
 
 partial: gatewaydedupe
+
+partial: extended
 
 ## Saga concurrency
 
@@ -51,3 +57,7 @@ System.InvalidOperationException: The saga with the correlation id 'Name: OrderI
 Non-durable persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
 
 Example exception:
+
+```
+System.InvalidOperationException: Saga with Id '7ac53d15-4742-4e38-9e2f-6d75c25b6621' can't be updated because it was updated by another process.
+```
