@@ -15,15 +15,12 @@ When [role-based access control](/servicecontrol/security/configuration/authoriz
 
 ## How it works
 
-On sign-in, ServicePulse asks each ServiceControl instance it talks to directly (the Primary and, when enabled, Monitoring) for the list of API routes the current token may call. It uses this manifest to decide which UI elements to show:
+When a user signs in, ServicePulse adapts its interface to the user's [role](/servicecontrol/security/configuration/authorization.md#built-in-roles):
 
 - Navigation tabs and pages the user cannot access are hidden.
 - Action buttons (for example _Retry_, _Edit_, _Delete_, _Restore_) the user cannot use are shown as disabled, with a tooltip explaining why, rather than failing after a click.
 
-Because ServiceControl enforces permissions server-side regardless of what ServicePulse displays, hiding and disabling elements is a usability aid, not a security boundary. A user cannot bypass a restriction by calling the API directly.
-
-> [!NOTE]
-> UI gating is fail-open: it applies only when authentication is enabled, the user is signed in, and the permissions manifest has loaded. If the manifest cannot be retrieved, ServicePulse shows all actions rather than blocking access — ServiceControl still rejects any action the user is not permitted to perform.
+ServiceControl enforces access on every request regardless of what ServicePulse displays, so hiding and disabling elements is a usability aid, not a security boundary. A user cannot bypass a restriction by calling the API directly.
 
 ## Reviewing your permissions
 
@@ -37,4 +34,4 @@ The signed-in user's roles do not grant the required permission. Check the **You
 
 ### All actions are visible even though authorization is enabled
 
-ServicePulse could not retrieve the permissions manifest and has failed open. Confirm that ServiceControl is reachable, that `Authentication.RoleBasedAuthorizationEnabled` is `true` on each instance, and check the browser's Network tab for a failed request to `my/routes`.
+ServicePulse could not determine the user's permissions and is showing everything rather than blocking access. Confirm that ServiceControl is reachable and that `Authentication.RoleBasedAuthorizationEnabled` is `true` on each instance. ServiceControl still rejects any action the user is not permitted to perform.
