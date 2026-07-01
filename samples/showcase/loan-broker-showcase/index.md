@@ -43,7 +43,7 @@ flowchart LR
     HandlerB["QuoteHandler<br/><small>Outbox-backed</small>"]
     HandlerC["QuoteHandler<br/><small>Outbox-backed</small>"]
 
-    LoanQuoteSubmitted(["LoanQuoteSubmitted<br/><small>Command, by SagaId</small>"])
+    LoanQuoteSubmitted(["Bank responses<br/><small>Reply, based on bank process</small>"])
     LoanQuotesReady(["LoanQuotesReady<br/><small>Event, saga completes</small>"])
 
     ClientReceives[["Client endpoint<br/><small>Receives the result</small>"]]
