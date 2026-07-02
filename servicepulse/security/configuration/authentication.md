@@ -5,6 +5,7 @@ reviewed: 2026-01-14
 component: ServicePulse
 related:
 - servicepulse/security/hosting-guide
+- servicepulse/security/configuration/authorization
 - servicecontrol/security/configuration/authentication
 - servicecontrol/security/entra-id-authentication
 ---
