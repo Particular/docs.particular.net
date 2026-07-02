@@ -89,6 +89,8 @@ If authentication fails, check the ServiceControl logs for token validation erro
 
 ## Restricting what users can do
 
+From ServiceControl version 6.18.0 it is possible to use Roles to restrict what users are able to do within the Platform.
+
 Authentication verifies who a user is. To additionally restrict what each authenticated user is allowed to do — for example, granting some users read-only access while others can retry or edit messages — enable [role-based access control](configuration/authorization.md). Authorization is optional and disabled by default; when it is off, every authenticated user has full access.
 
 ## Advanced deployment patterns
