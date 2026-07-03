@@ -29,4 +29,5 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 * [Azure Blob Storage Data Bus](/samples/databus/blob-storage-databus/)
 
 ## Loan Broker Showcase sample
+
 The [Azure Loan Broker showcase](/samples/showcase/loan-broker-showcase/) demonstrates how to integrate the Particular Service Platform and OpenTelemetry metrics and traces when hosting solutions in Azure.
