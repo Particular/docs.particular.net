@@ -134,14 +134,21 @@ host=<HOSTNAME>;username=<USERNAME>;password=<PASSWORD>;DisableRemoteCertificate
 
 ## SQL
 
-In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration), the following ServiceControl-specific options are available in versions 4.4 and above:
+**versions 4.4 and above:**
+
+In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration), the following ServiceControl-specific options are available:
+
+
 
 * `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
-The following options tune queue length monitoring (the data behind the throughput graphs) and are available in version 6.18.0 and above:
+
+**version 6.18.0 and above:**
+
+The following options tune queue length monitoring (the data behind the throughput graphs) and are available:
 
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - The base interval between queue length refresh queries. The default value is 1000 ms, matching the finest monitoring resolution (one data point per second). This is the cadence used whenever any monitored queue has messages.
 * `QueueLengthQueryMaxDelayInterval=<value_in_milliseconds>` - The upper bound for the adaptive back-off. While *every* monitored queue is empty, the interval ramps from `QueueLengthQueryDelayInterval` up to this value, reducing query load on an idle system; it returns to the base interval as soon as any queue has messages. The default value is 10000 ms. Set it equal to `QueueLengthQueryDelayInterval` to disable back-off and poll at a constant cadence.
