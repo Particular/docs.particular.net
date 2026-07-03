@@ -17,19 +17,4 @@ class DelayConfig
 
         #endregion
     }
-
-    void ConfigurePeekBatchSize(EndpointConfiguration endpointConfiguration)
-    {
-        #region sqlserver-queue-peeker-config-batch-size
-
-        var transport = new SqlServerTransport("connectionString")
-        {
-            QueuePeeker =
-            {
-                MaxRecordsToPeek = 50
-            }
-        };
-
-        #endregion
-    }
 }

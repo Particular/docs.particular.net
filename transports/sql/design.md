@@ -1,7 +1,7 @@
 ---
 title: SQL Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2024-10-24
+reviewed: 2026-06-29
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/design
@@ -69,7 +69,7 @@ partial: messageBodyString-column
 
 The `RowVersion` column is used to define the FIFO order of the queue. It is auto-incremented by SQL Server (`identity(1,1)`). The receive message T-SQL query returns a message with the lowest value of `RowVersion` that is not locked by any other concurrent receive operation.
 
-The clustered index of the queue table is based on the `RowVersion` column to ensure that new messages are always added at the end of the table.
+A non-clustered index on the `RowVersion` column allows the receive query to efficiently locate the message with the lowest `RowVersion`. If this index is missing, the transport logs a warning recommending that it be created. Systems created with earlier transport versions may still use a clustered index; see the [non-clustered index upgrade guide](/transports/upgrades/sqlserver-non-clustered-idx.md) for migration steps.
 
 
 ## Behavior
