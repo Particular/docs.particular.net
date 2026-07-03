@@ -1,11 +1,11 @@
 ---
 title: Transport configuration
-summary: ServiceControl can be configured to use one of the supported message transports which are configured for each instance type
-reviewed: 2025-10-22
+summary: ServiceControl can be configured to use one of the supported message transports, which are configured for each instance type
+reviewed: 2026-07-03
 component: ServiceControl
 ---
 
-ServiceControl can be configured to use one of the supported [message transports](/transports/) which are configured for each instance type using the following settings:
+ServiceControl can be configured to use one of the supported [message transports](/transports/), which are configured for each instance type using the following settings:
 
 * ServiceControl (Error) instance: [`ServiceControl/TransportType`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontroltransporttype)
 * Audit instance: [`ServiceControl.Audit/TransportType`](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-audittransporttype)
@@ -33,11 +33,11 @@ Starting with version 6.4.0, ServiceControl runs versions of the Azure Service B
 In order to continue using the single-topic topology, the topic name has to be specified explicitly using the `TopicName=<topic-bundle-name>` connection string option.
 
 > [!WARNING]
-> If any subscribers exist for these integration events and these endpoints have not yet been upgraded to NServiceBus.Transport.AzureServiceBus 5.x, then ServiceControl must be configured to use `TopicName=bundle-<topic-bundle-name>`
+> If any subscribers exist for these integration events, and these endpoints have not yet been upgraded to NServiceBus.Transport.AzureServiceBus 5.x, then ServiceControl must be configured to use `TopicName=bundle-<topic-bundle-name>`
 
-The new topology uses the event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in JSON](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Topology` application setting or `ServiceControl_Transport_ASBS_Topology` environment variable.
+The new topology uses the event type's full name as the topic name to which an event is published, e.g., `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in JSON](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Topology` application setting or `ServiceControl_Transport_ASBS_Topology` environment variable.
 
-Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
+Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint), the following ServiceControl-specific options are available in versions 4.4 and above:
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
@@ -52,8 +52,8 @@ As of version 4.21.8 of ServiceControl, the following options can be used to ena
   * No connection string options can be used when using a fully-qualified namespace.
 * Specifying the connection string option `Authentication=Managed Identity`
   * The fully-qualified namespace will be parsed from the `Endpoint=sb://my-namespace.servicebus.windows.net/` connection string option
-  * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
-  * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
+  * When specifying a managed identity for the connection string, a [`ManagedIdentityCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
+  * Set the `ClientId=some-client-id` connection string option to use a specific [user-assigned identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
 
 ### Enabling Partitioned Entities
 
@@ -77,7 +77,7 @@ Endpoints configured with a hierarchy namespace will use error, audit, and monit
 
 #### Previous versions
 
-Previous versions of ServiceControl can still be configured on a per-hierarchy basis. At a minimum, the error queue name needs the prefix prepended to the queue name, separated by a `/`.  If monitoring or auditing are enabled, they also need to be modified.
+Previous versions of ServiceControl can still be configured on a per-hierarchy basis. At a minimum, the error queue name needs the prefix prepended to it, separated by a `/`.  If monitoring or auditing is enabled, they also need to be modified.
 
 For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and monitoring queues named `error`, `audit`, and `monitoring`:
 - The [error queue name](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) would need to be set to `my-hierarchy/error`.
@@ -87,7 +87,7 @@ For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and
 ### Example connection string
 
 > [!NOTE]
-> When using the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator), the default connection string points to `localhost` for the Endpoint value. That results in an error being logged during the startup of ServiceControl instances. The error can be safely ignored as it doesn't affect ServiceControl operations, instead it's related to the throughput and licensing portion of Servicecontrol, which will be anyway not available when using the Azure Service Bus emulator. It's possible to prevent the error from showing up in the logs by creating an alias for `localhost` containing a `.`, such as for example, `servicebus-emulator.local` or by specifying an IP address, such as `127.0.0.1` for the Endpoint value.
+> When using the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator), the default connection string points to `localhost` for the Endpoint value. That results in an error being logged during the startup of ServiceControl instances. The error can be safely ignored as it doesn't affect ServiceControl operations, instead it's related to the throughput and licensing portion of Servicecontrol, which will be anyway not available when using the Azure Service Bus emulator. It's possible to prevent the error from showing up in the logs by creating an alias for `localhost` containing a `.`, such as `servicebus-emulator.local`, or by specifying an IP address, such as `127.0.0.1`, for the Endpoint value.
 
 ```text
 Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>;HierarchyNamespace=<hierarchyNamespacePrefix>
@@ -134,14 +134,21 @@ host=<HOSTNAME>;username=<USERNAME>;password=<PASSWORD>;DisableRemoteCertificate
 
 ## SQL
 
-In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
+**versions 4.4 and above:**
 
-* `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
+In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration), the following ServiceControl-specific options are available:
+
+
+
+* `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
-The following options tune queue length monitoring (the data behind the throughput graphs) and are available in versions <!-- TODO: confirm first shipping ServiceControl version --> and above:
+
+**version 6.18.0 and above:**
+
+The following options tune queue length monitoring (the data behind the throughput graphs) and are available:
 
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - The base interval between queue length refresh queries. The default value is 1000 ms, matching the finest monitoring resolution (one data point per second). This is the cadence used whenever any monitored queue has messages.
 * `QueueLengthQueryMaxDelayInterval=<value_in_milliseconds>` - The upper bound for the adaptive back-off. While *every* monitored queue is empty, the interval ramps from `QueueLengthQueryDelayInterval` up to this value, reducing query load on an idle system; it returns to the base interval as soon as any queue has messages. The default value is 10000 ms. Set it equal to `QueueLengthQueryDelayInterval` to disable back-off and poll at a constant cadence.
@@ -154,11 +161,11 @@ Data Source=<SQLInstance>;Initial Catalog=nservicebus;Integrated Security=True;Q
 
 ## PostgreSQL
 
-In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 5.10 and above:
+In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration), the following ServiceControl-specific options are available in versions 5.10 and above:
 
 * `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
-  * *Optional* `Subscriptions Table=schema.tablename` - to specify the schema with simple table name.
+  * *Optional* `Subscriptions Table=schema.tablename` - to specify the schema with a simple table name.
   * *Optional* `Subscriptions Table=schema.multi.table.name` - to specify the schema with a table name containing `.`.
   * *Optional* `Subscriptions Table==&quot;multi.table.name=&quot;` - to specify a table name containing `.` without a schema. In this case, `Queue Schema` will be used if specified, otherwise the default schema (`public`) will be used.
 
@@ -183,7 +190,7 @@ The following ServiceControl connection string options are available:
 * `ReservedBytesInMessageSize=<value>` - Available from 7.3 - Reserve bytes in message size calculation [option](/transports/sqs/configuration-options.md#reserve-bytes-when-calculating-message-size).
 
 > [!NOTE]
-> When using SQS as a transport, for local development purposes it is possible to set up ServiceControl to connect to a LocalStack instance.
+> When using SQS as the transport for local development, it is possible to configure ServiceControl to connect to a LocalStack instance.
 > Refer to the [documentation](/nservicebus/aws/local-development.md) about how to configure the environment to use LocalStack.
 
 ### Example connection string
