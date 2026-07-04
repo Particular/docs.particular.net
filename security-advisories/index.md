@@ -8,7 +8,7 @@ suppressRelated: true
 
 Particular Software investigates, assesses, remediates, and discloses security vulnerabilities identified in its own code in a coordinated manner aligned with standard industry disclosure practices.
 
-When a security vulnerability is confirmed, its scope, severity, exploitability, and potential customer impact are evaluated. This assessment may include code review, testing, security analysis tools, and industry-standard severity frameworks such as CVSS.
+When a security vulnerability is confirmed, its scope, severity, exploitability, and potential customer impact are evaluated. This assessment may include code review, testing, security analysis tools, and industry-standard severity frameworks such as Common Vulnerability Scoring System (CVSS).
 
 Depending on the nature of the issue, remediation may include one or more of the following actions:
 
@@ -21,8 +21,9 @@ For vulnerabilities that require confidentiality prior to release, investigation
 
 Where appropriate, temporary protective measures may also be taken, such as unlisting packages or removing releases, to limit further exposure while a remediation is being prepared.
 
-Security fixes and related communications are coordinated so that remediation is available before or at the time of public disclosure.
-Advisories are listed on the [Published Advisories](published-advisories.md) page and may be accompanied by additional customer communication when warranted.
+- Security fixes and related communications are coordinated so that remediation is available before or at the time of public disclosure.
+
+- Advisories are listed on the [Published Advisories](published-advisories.md) page and may be accompanied by additional customer communication when warranted.
 
 Public disclosures will typically include:
 
@@ -39,7 +40,7 @@ Particular Software maintains an automated process to identify, assess, track, a
 
 Automated dependency auditing is used to detect known vulnerable packages, including vulnerabilities introduced through transitive dependencies. Detection is based on published vulnerability intelligence associated with package ecosystems and GitHub Security Advisory identifiers.
 
-When a vulnerability is detected, the automation records the advisory using its unique `GitHubAdvisoryId` and begins coordinated tracking.
+When a vulnerability is detected, the automation records the advisory using its unique `GitHubAdvisoryId` and begins tracking it.
 
 ### 2. Centralized internal triage
 
@@ -47,14 +48,14 @@ For each newly detected dependency vulnerability, a centralized internal trackin
 
 ### 3. Repository and branch impact assessment
 
-After initial recording, the affected repositories and versions are determined. For each affected repository/version combination, the system creates a GitHub issue labeled as `Dependency CVE` that includes the advisory reference and necessary context.
+After initial recording, the affected repositories and versions are determined. For each affected repository/version combination, the system creates a GitHub issue labeled with `Dependency CVE` that includes the advisory reference and necessary context.
 Customers can subscribe to these issues to receive updates on the vulnerability status and remediation progress.
 
 If customers cannot wait for a fix to be released, they can [pin transitive dependencies](https://learn.microsoft.com/en-us/nuget/concepts/auditing-packages#transitive-packages) until a fix is released.
 
 ### 4. Remediation
 
-Dependency vulnerabilities are remediated by one or more of the following actions:
+Dependency vulnerabilities are remediated through one or more of the following actions:
 
 - upgrading the affected package to a version that resolves the vulnerability
 - upgrading a parent dependency that resolves the transitive vulnerability
