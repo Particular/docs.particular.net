@@ -17,17 +17,17 @@ The most important change is the hosting model:
 - The previous worker package supports a single NServiceBus endpoint per Azure Functions project.
 - The new package uses explicit endpoint declarations and can host multiple receiving and send-only endpoints in the same function app.
 
-For most migrations, the safest approach is to keep the current behavior first:
+For most migrations, the safest approach is to keep the current behavior unchanged at first:
 
-1. Migrate the existing endpoint as a single endpoint in the new package.
-2. Keep the same queue names and routing where possible.
+1. Start by migrating your existing endpoint as a single endpoint in the new package.
+2. Preserve the same queue names and routing wherever possible to avoid any disruption in message flow.
 
 ## Before you start
 
-Before changing code, identify:
+Identifying the following items will help you map your existing configuration to the new package and minimize migration effort. Before changing code, identify:
 
 - the current endpoint name and queue name
-- any HTTP, timer, or other Azure Functions that send or publish messages
+- any HTTP-triggered, timer-triggered, or other Azure Functions that send or publish messages
 - any use of `IFunctionEndpoint`
 - any custom trigger setup
 - any transport, routing, recoverability, audit, or diagnostics customizations
@@ -58,7 +58,7 @@ Do not add `NServiceBus.AzureFunctions.Common` directly. The Azure Service Bus p
 
 ## Update host startup
 
-The previous package is configured with `builder.AddNServiceBus(…)` and an assembly-level `NServiceBusTriggerFunction` attribute, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
+The previous package was configured using `builder.AddNServiceBus(…)` and an assembly-level `NServiceBusTriggerFunction` attribute, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 The new package registers the Azure Functions integration once at startup:
 
@@ -79,7 +79,7 @@ Remove the `[assembly: NServiceBusTriggerFunction(…)]` attribute. The new pack
 
 ## Migrate the receiving endpoint
 
-With the previous package, a project maps to a single endpoint, and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example, `[assembly: NServiceBusTriggerFunction("Sales")]`.
+Next, migrate your receiving endpoint configuration. With the previous package, a project maps to a single endpoint, and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example, `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 With the new package, the receiving endpoint is declared explicitly in code. A minimal one-to-one migration looks like this:
 
@@ -127,7 +127,7 @@ For the full configure-method model and parameter options, see [The configure me
 
 ### Handlers and sagas
 
-Due to assembly scanning not being available message handlers and sagas needs to be registered explicitly using `configuration.AddHandler`, `configuration.AddSaga` or `configuration.Handlers`.
+Due to assembly scanning not being available, message handlers and sagas need to be registered explicitly using `configuration.AddHandler`, `configuration.AddSaga` or `configuration.Handlers`.
 
 For additional registration approaches, see [Explicit handler and saga registration](/nservicebus/hosting/azure/functions/configuration.md#explicit-handler-and-saga-registration).
 
@@ -142,13 +142,9 @@ In the previous worker package, the effective Azure Service Bus topology could b
 
 When migrating, select the same topology that the endpoint used before the migration so that queue, topic, and subscription behavior remains consistent. For the supported transport settings in this hosting model, see [Transport configuration](/nservicebus/hosting/azure/functions/configuration.md#transport-configuration). For topology details, see [Azure Service Bus topology](/transports/azure-service-bus/topology.md).
 
-## Migrate usages of IFunctionEndpoint
+## Migrate IFunctionEndpoint usage
 
-With the previous worker package, Azure Functions that send messages outside handlers typically inject `IFunctionEndpoint`.
-
-With the new package, inject `IMessageSession` via [.NET keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services).
-
-There are two valid migration patterns.
+If your endpoint uses `IFunctionEndpoint` to send messages from HTTP-triggered, timer-triggered, or other Azure Functions, migrate to using `IMessageSession` via [.NET keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using one of these patterns:
 
 ### Pattern 1: Reuse the receiving endpoint session
 
