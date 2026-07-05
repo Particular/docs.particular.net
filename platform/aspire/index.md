@@ -25,7 +25,7 @@ A single `AddParticularPlatform(...)` call registers a platform resource that ow
 - The configured message [transport](#supported-components-transport)
 - The platform license
 
-Transport and licensing are configured once on the platform resource and propagated to every component, so the containers start in the correct order. ServiceControl's database is configured on the same resource and shared by the Error and Audit instances that require it. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring, and configure their own persistence separately.
+Transport and licensing are configured only once on the platform resource and propagated to every component, so the containers start in the correct order. ServiceControl's database is configured on the same resource and shared by the Error and Audit instances that require it. [NServiceBus endpoints](/nservicebus/endpoints/) attach with `WithParticularPlatform(...)` and pick up the same transport connection string and license without additional wiring, and configure their own persistence separately.
 
 snippet: aspire-apphost
 
@@ -76,11 +76,16 @@ Only the AppHost project needs this reference. NServiceBus endpoint projects pic
 
 ## Quick start
 
-`AddDefaultComponents()` wires up the Learning transport, a managed RavenDB instance, the ServiceControl error, audit, and monitoring instances, and ServicePulse with sensible defaults:
+`AddDefaultComponents()` wires up a complete platform with pre-configured components suitable for local development:
+
+- Learning transport (in-memory, development-only)
+- Managed RavenDB instance
+- ServiceControl error, audit, and monitoring instances
+- ServicePulse web UI
 
 snippet: aspire-quick-start-platform
 
-To attach an [NServiceBus endpoint](/nservicebus/endpoints/) so it picks up the platform's license and transport connection string, chain `WithParticularPlatform(platform)` on the endpoint's project resource:
+To attach an [NServiceBus endpoint](/nservicebus/endpoints/) to the platform, chain `WithParticularPlatform(platform)` on the endpoint's project resource. The endpoint will automatically receive the platform's license and transport connection string:
 
 snippet: aspire-quick-start-endpoint
 
@@ -88,13 +93,13 @@ These defaults are intended for local development. For production deployments, c
 
 snippet: aspire-quick-start-explicit
 
-`AddDefaultComponents()` can be combined with explicit configuration - it will wire up defaults for non explicitly defined components.
+`AddDefaultComponents()` can be combined with explicit configuration. Components you configure explicitly will use your settings; components you don't configure will use the defaults.
 
 snippet: aspire-quick-start-explicit-with-defaults
 
 ## Viewing the platform in the Aspire dashboard
 
-The platform appears in the [Aspire dashboard](https://aspire.dev/dashboard/) as a single `ParticularPlatform` parent resource. The components the integration creates are nested as children, each surfacing the URL exposed by its primary endpoint:
+The platform appears in the [Aspire dashboard](https://aspire.dev/dashboard/) as a single `ParticularPlatform` parent resource. The components that the integration creates are nested as children, each surfacing the URL exposed by its primary endpoint:
 
 - **ServicePulse**: the web UI
 - **ServiceControl Error**: the error instance API
@@ -104,11 +109,11 @@ The platform appears in the [Aspire dashboard](https://aspire.dev/dashboard/) as
 
 Externally supplied resources are not nested under the platform. An Azure Service Bus or RabbitMQ broker passed in via `AddConnectionString("...")` (or any other `Add*` call), and an existing RavenDB instance attached via `WithPersistenceRavenDb(existingRaven)`, appear as separate top-level resources in the dashboard. The platform does not own their lifecycle, so it does not group them under itself.
 
-The platform node tracks readiness as its children come up. It starts in `Starting`, transitions to `Running` once every child reports healthy, and moves to `RuntimeUnhealthy` if any child stops.
+The platform node displays the health status of its child components. It shows `Starting` while they boot, `Running` once all are healthy, and `RuntimeUnhealthy` if any fails.
 
 ## Configuring the transport
 
-The platform uses whichever transport is configured via a `WithTransport*` extension on the platform resource. The same transport connection string is then propagated to every ServiceControl instance and to any NServiceBus endpoint attached via `WithParticularPlatform(...)`. See [Supported components](#supported-components) for the transports currently wired through the integration.
+The platform uses the transport that is configured via a `WithTransport` extension on the platform resource. The same transport connection string is then propagated to every ServiceControl instance and to any NServiceBus endpoint attached via `WithParticularPlatform(...)`. See [Supported components](#supported-components) for the transports currently wired through the integration.
 
 ### Learning transport
 
@@ -116,10 +121,10 @@ The [Learning transport](/transports/learning/) stores messages on the local fil
 
 snippet: aspire-transport-learning
 
-The Learning transport appears in the Aspire dashboard as a `learning-transport` connection-string resource nested under the platform, holding the resolved storage path.
+In the Aspire dashboard, the Learning transport appears as a `learning-transport` resource nested under the platform. It displays the storage path where messages are stored.
 
 > [!WARNING]
-> The Learning transport is intended for development only and the AppHost will error during publish flows when it is included.
+> The Learning transport is intended for local development only. Remove it or replace it with a production transport before publishing your application.
 
 #### Options
 
