@@ -2,7 +2,7 @@
 title: Oracle dialect
 component: SqlPersistence
 related:
-reviewed: 2024-10-31
+reviewed: 2026-07-06
 versions: "[2,)"
 redirects:
  - nservicebus/sql-persistence/oracle-caveats
@@ -10,7 +10,7 @@ redirects:
 ---
 
 > [!WARNING]
-> SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that [Oracle support agreements](https://www.oracle.com/support/index.html) are in place.
+> SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However, it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that [Oracle support agreements](https://www.oracle.com/support/index.html) are in place.
 
 ## Supported database versions
 
