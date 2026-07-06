@@ -18,7 +18,7 @@ SQL persistence supports [Oracle 11g Release 2](https://docs.oracle.com/cd/E1188
 
 ## Usage
 
-Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
+[Oracle.ManagedDataAccess NuGet package](https://www.nuget.org/packages/Oracle.ManagedDataAccess) is required, and the persister can be configured as follows:
 
 snippet: SqlPersistenceUsageOracle
 
@@ -33,7 +33,7 @@ Refer to the dedicated [Oracle documentation](https://docs.oracle.com/cd/B19306_
 
 ## Schema support
 
-The notion of schemas is slightly different than in other databases, notably SQL Server and PostgreSQL. By default, when schema is not specified, SQL persistence uses the context of the logged-in user when referring to database objects. When a schema is specified, that schema is used instead of the logged-in user when referring to database tables.
+The notion of schemas is slightly different from that in other databases, notably SQL Server and PostgreSQL. By default, when no schema is specified, SQL persistence uses the logged-in user's context when referring to database objects. When a schema is specified, that schema is used instead of the logged-in user's context when referring to database tables.
 
 snippet: OracleSchema
 
@@ -41,7 +41,7 @@ snippet: OracleSchema
 
 include: name-lengths
 
-The SQL Persistence provides autonomy between endpoints by using separate tables for each endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names in [Oracle 12.1 and below](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), the SQL Persistence must make some compromises.
+SQL Persistence provides autonomy across endpoints by using separate tables for each endpoint, based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names in [Oracle 12.1 and below](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), the SQL Persistence must make some compromises.
 
 include: name-length-validation-on
 
@@ -50,7 +50,7 @@ include: name-length-validation-on
 > [!NOTE]
 > For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
 
-For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persistence type, and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersistenceTypeSuffix}{KeyType}`.
+For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, 3 for the persistence type, and an additional 3 for an index type. Names are then constructed as `{EndpointName}{PersistenceTypeSuffix}{KeyType}`.
 
 The following table shows table names created for an endpoint named `My.Endpoint`:
 
@@ -68,15 +68,15 @@ snippet: TablePrefix
 
 Tables generated for sagas reserve 27 characters for the saga name, leaving 3 characters for the `_PK` suffix for the table's primary key.
 
-To accommodate as many characters for the saga name as possible, the [table prefix](/persistence/sql/install.md#table-prefix) is omitted from the saga table name.
+To accommodate as many characters as possible in the saga name, the [table prefix](/persistence/sql/install.md#table-prefix) is omitted from the saga table name.
 
 | Saga Class Name |   Table Name  |    Primary Key   |
 |-----------------|:-------------:|:----------------:|
 | OrderPolicy     | `ORDERPOLICY` | `ORDERPOLICY_PK` |
 
-A 3-character suffix is not enough to uniquely identify multiple correlation properties in a deterministic way, so unfortunately index names for sagas cannot be named after the owner table in the same way as for other persistence types.
+A 3-character suffix is not sufficient to uniquely identify multiple correlation properties deterministically, so saga index names cannot be based on the owner table, as they are for other persistence types.
 
-Index names for correlation properties are constructed using the prefix `SAGAIDX_` plus a deterministic hash of the saga name and correlation property name. The owning table for a particular index can be discovered by querying the database:
+Index names for correlation properties are constructed using the prefix `SAGAIDX_` followed by a deterministic hash of the saga name and the correlation property name. The owning table for a particular index can be discovered by querying the database:
 
 ```sql
 select TABLE_NAME
@@ -85,10 +85,10 @@ where INDEX_NAME = 'SAGAIDX_525D1D4DC0C3DCD96947E1';
 ```
 
 > [!NOTE]
-> If either the saga name or correlation property name change, the name of the index will also change.
+> If either the saga name or the correlation property name changes, the index name will also change.
 
-If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
+If a saga name exceeds 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
 
 ### Custom Finders
 
-Because Oracle 11g does not support any JSON query capability, custom saga finders that locate saga data by querying into the JSON payload of the saga are not supported by SQL Persistence when using Oracle.
+Because Oracle 11g does not support JSON queries, custom saga finders that locate saga data by querying the saga's JSON payload are not supported by SQL Persistence when using Oracle.
