@@ -1,0 +1,81 @@
+# startcode audit-otlp-collector-config
+receivers:
+  # ServiceControl pushes its logs here (OTEL_EXPORTER_OTLP_ENDPOINT)
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch: {}
+
+  # ServiceControl exports ALL its logs when the Otlp provider is enabled.
+  # The audit trail is identified by its logger category ("ServiceControl.Audit"
+  # and "ServiceControl.Audit.Messages"), which arrives as the OTLP
+  # instrumentation scope name. Drop everything else so only the audit
+  # trail reaches the SIEM pipeline.
+  filter/audit-only:
+    logs:
+      log_record:
+        - not IsMatch(instrumentation_scope.name, "^ServiceControl\\.Audit")
+
+  # The ECS document is the log record body (a JSON string). Parsing it into
+  # a structured body lets backends index the individual ECS fields - this is
+  # what the Elasticsearch exporter's bodymap mapping mode expects. The
+  # elastic.mapping.mode scope attribute selects that mode per record
+  # (since collector 0.156 the exporter's mapping::mode config is ignored).
+  transform/parse-ecs:
+    log_statements:
+      - context: log
+        statements:
+          - set(body, ParseJSON(body)) where IsMatch(body, "^\\{")
+      - context: scope
+        statements:
+          - set(attributes["elastic.mapping.mode"], "bodymap")
+
+exporters:
+  # Prints every audit entry to the collector's stdout so the sample is
+  # observable with "docker compose logs otel-collector".
+  debug:
+    verbosity: detailed
+
+  # Elasticsearch / Elastic Security. In "bodymap" mapping mode (selected via
+  # the elastic.mapping.mode scope attribute above) the parsed ECS document is
+  # indexed as-is, exactly as ServiceControl emitted it. Elasticsearch's
+  # built-in logs-*-* index template already maps ECS fields; no custom
+  # mapping is needed. Production clusters use https and an api_key.
+  elasticsearch:
+    endpoint: http://elasticsearch:9200
+    logs_index: logs-servicecontrol.audit-default
+
+  # --- Other SIEM delivery options (add to the pipeline as needed) ---
+  #
+  # Splunk (HTTP Event Collector):
+  #
+  # splunk_hec:
+  #   endpoint: https://splunk:8088/services/collector
+  #   token: ${env:SPLUNK_HEC_TOKEN}
+  #   index: servicecontrol_audit
+  #
+  # Grafana Loki natively ingests OTLP (Loki >= 3.0), no dedicated exporter needed:
+  #
+  # otlphttp/loki:
+  #   endpoint: https://loki:3100/otlp
+  #
+  # Plain files (rotated), e.g. for compliance archival:
+  #
+  # file:
+  #   path: /var/log/otel/servicecontrol-audit.json
+  #   rotation:
+  #     max_megabytes: 30
+  #     max_backups: 14
+
+service:
+  pipelines:
+    logs/audit:
+      receivers: [otlp]
+      processors: [filter/audit-only, transform/parse-ecs, batch]
+      exporters: [debug, elasticsearch]
+# endcode

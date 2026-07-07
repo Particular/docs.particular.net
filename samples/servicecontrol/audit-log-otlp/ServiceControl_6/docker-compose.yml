@@ -1,0 +1,152 @@
+name: servicecontrol-audit-log-otlp
+
+services:
+
+  # Identity provider. The realm import creates the reader/admin/writer roles,
+  # three demo users, and the ServicePulse + ServiceControl API clients.
+  # start-dev + plain HTTP keep the sample small; production setups must use
+  # HTTPS - see https://docs.particular.net/servicecontrol/security/
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      # Pin the issuer to the host-visible URL; KC_HOSTNAME_BACKCHANNEL_DYNAMIC
+      # lets ServiceControl fetch discovery/JWKS via the in-network name
+      # (http://keycloak:8080) while tokens still validate against the pinned
+      # issuer (http://localhost:8088).
+      KC_HOSTNAME: http://localhost:8088
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
+      KC_HEALTH_ENABLED: "true"
+    ports:
+      - "8088:8080"
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import:ro
+    healthcheck:
+      # No curl in the Keycloak image; a TCP connect is enough signal that
+      # Quarkus is up and serving the discovery document.
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/localhost/8080"]
+      interval: 5s
+      timeout: 3s
+      retries: 40
+      start_period: 30s
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    # Run as the rabbitmq uid throughout so the image entrypoint skips its
+    # root->rabbitmq privilege drop, which breaks under rootless Podman.
+    user: "999:999"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  ravendb:
+    image: particular/servicecontrol-ravendb:6.18.0
+    volumes:
+      - ravendb-data:/var/lib/ravendb/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/setup/alive || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  # startcode audit-otlp-compose-servicecontrol
+  servicecontrol:
+    image: particular/servicecontrol:6.18.0
+    command: ["--setup-and-run"]
+    env_file: [.env]                       # provides PARTICULARSOFTWARE_LICENSE
+    environment:
+      TRANSPORTTYPE: RabbitMQ.QuorumConventionalRouting
+      CONNECTIONSTRING: "host=rabbitmq"
+      RAVENDB_CONNECTIONSTRING: "http://ravendb:8080"
+
+      # --- Authentication (OIDC) + role-based access control ---
+      SERVICECONTROL_AUTHENTICATION_ENABLED: "true"
+      SERVICECONTROL_AUTHENTICATION_ROLEBASEDAUTHORIZATIONENABLED: "true"
+      SERVICECONTROL_AUTHENTICATION_AUTHORITY: "http://keycloak:8080/realms/particular"
+      SERVICECONTROL_AUTHENTICATION_AUDIENCE: "servicecontrol-api"
+      # Keycloak puts realm roles in a nested claim; a dotted path reaches them
+      SERVICECONTROL_AUTHENTICATION_ROLESCLAIM: "realm_access.roles"
+      SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_CLIENTID: "servicepulse"
+      SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_AUTHORITY: "http://localhost:8088/realms/particular"
+      SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_APISCOPES: '["servicecontrol"]'
+      # Sample runs the identity provider over plain HTTP; never do this in production
+      SERVICECONTROL_AUTHENTICATION_REQUIREHTTPSMETADATA: "false"
+
+      # --- Audit log over OTLP ---
+      # Keep NLog for the operational log/console and add the OTLP logging
+      # provider. The ECS audit documents become the OTLP log record body.
+      SERVICECONTROL_LOGGINGPROVIDERS: "NLog,Otlp"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4317"
+    ports:
+      - "33333:33333"
+    depends_on:
+      rabbitmq: { condition: service_healthy }
+      ravendb: { condition: service_healthy }
+      keycloak: { condition: service_healthy }
+      otel-collector: { condition: service_started }
+  # endcode
+
+  servicepulse:
+    image: particular/servicepulse:2.9.0
+    environment:
+      SERVICECONTROL_URL: "http://servicecontrol:33333"
+      # No monitoring instance in this sample; "!" disables the monitoring UI
+      MONITORING_URL: "!"
+    ports:
+      - "9090:9090"
+    depends_on:
+      - servicecontrol
+
+  # startcode audit-otlp-compose-collector
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.156.0
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./otel-collector/otel-collector.yaml:/etc/otelcol-contrib/config.yaml:ro
+    depends_on:
+      elasticsearch: { condition: service_healthy }
+  # endcode
+
+  # Single-node Elasticsearch as the SIEM backend. Security is disabled to
+  # keep the sample small; production clusters authenticate and use TLS.
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.4.3
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:9.4.3
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch: { condition: service_healthy }
+
+volumes:
+  ravendb-data:
+  rabbitmq-data:
+  elasticsearch-data:
