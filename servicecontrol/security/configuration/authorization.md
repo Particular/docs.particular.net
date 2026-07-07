@@ -29,7 +29,7 @@ Access is granted through three built-in roles. Assign one or more of these role
 | `admin`  | Everything `reader` can do, plus managing the configuration and administration areas (licensing, notifications, retry redirects, throughput, and connections).     |
 | `writer` | Full access, including message actions such as retry, edit, archive, and restore.                                                                                  |
 
-Role names are matched case-insensitively. A user with none of these roles has no access to the affected areas.
+The roles are cumulative: `writer` is the highest level and can do everything `admin` and `reader` can, and `admin` can do everything `reader` can. Role names are matched case-insensitively, and a user with none of these roles has no access to the affected areas.
 
 > [!NOTE]
 > Only `reader`, `admin`, and `writer` grant access. Custom role names are not supported, so provider-side roles must be named to match.
@@ -41,16 +41,14 @@ Role names are matched case-insensitively. A user with none of these roles has n
 3. In the identity provider, create roles named `reader`, `admin`, and `writer`, and assign them to users. Ensure the roles are included in the access token — see [reading roles from the token](#reading-roles-from-the-token) for where different providers place them.
 4. On **every** ServiceControl instance (Primary, Audit, and Monitoring), set the following configuration keys:
 
-    ```xml
-    <!-- Turn on role-based authorization -->
-    <add key="ServiceControl/Authentication.RoleBasedAuthorizationEnabled" value="true" />
-    <!-- The token claim that carries the roles (see the table below) -->
-    <add key="ServiceControl/Authentication.RolesClaim" value="roles" />
-    ```
+    
 
 5. Restart all ServiceControl instances.
 
 Each instance authorizes its own requests, so all instances must have authorization enabled. For the app config keys and environment variables of every instance type, see [Primary](/servicecontrol/servicecontrol-instances/configuration.md#authentication), [Audit](/servicecontrol/audit-instances/configuration.md#authentication), and [Monitoring](/servicecontrol/monitoring-instances/configuration.md#authentication) configuration.
+
+> [!WARNING]
+> Enable authorization consistently across all instances. If one instance is left with `RoleBasedAuthorizationEnabled` set to `false` while the others have it enabled, that instance grants every authenticated user full access to its endpoints, and ServicePulse will show those actions as available. Apply the same setting to Primary, Audit, and Monitoring.
 
 ## Reading roles from the token
 
@@ -68,6 +66,15 @@ The value at the configured path may be a single string or an array of strings; 
 ## Authorization audit log
 
 Every authorization decision — both allowed and denied — is written to a dedicated audit log so access can be reviewed and retained for compliance. Entries are emitted under the log category `ServiceControl.Audit` and formatted as [Elastic Common Schema (ECS)](https://www.elastic.co/guide/en/ecs/current/index.html) JSON, so they can be ingested into Elastic/Kibana or most SIEM (Security Information and Event Management) systems without custom mapping. Allowed decisions are logged at `Information` level and denied decisions at `Warning` level.
+
+### Where the audit log is written
+
+ServiceControl routes the `ServiceControl.Audit` category to a dedicated destination automatically; no additional logging configuration is required. Each entry is a single ECS JSON object on its own line, kept separate from the operational log so the two streams do not mix.
+
+- **Running as a Windows service** (not in a container): entries are written to an `audit.json` file in the instance's log directory, alongside the console. The file rotates daily and when it exceeds 30 MB, retaining up to 14 archived files.
+- **Running in a container**: entries are written to standard output only, for the container's log driver or log aggregator to collect; no `audit.json` file is produced.
+
+The audit trail is captured from `Information` upward independently of the operational log level, so reducing operational verbosity never drops audit entries, and audit entries never appear in the operational log.
 
 ### Audit identity claims
 
