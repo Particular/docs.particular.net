@@ -5,6 +5,7 @@ reviewed: 2026-05-27
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide
+- servicecontrol/security/configuration/authorization
 - servicepulse/security/configuration/authentication
 ---
 
@@ -12,6 +13,8 @@ ServiceControl instances can be configured to require [JWT](https://en.wikipedia
 
 > [!NOTE]
 > Authentication is disabled by default. To enable it, follow the configuration instructions for each instance type below.
+
+Authentication verifies the identity of the caller. To additionally restrict what authenticated users are allowed to do, see [role-based access control](authorization.md).
 
 ## Configuration
 

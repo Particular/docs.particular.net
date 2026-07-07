@@ -377,6 +377,70 @@ The API scopes for ServicePulse to request when authenticating. This is a JSON a
 | --- | --- |
 | string (JSON array) | None |
 
+### ServiceControl/Authentication.RoleBasedAuthorizationEnabled
+
+_Added in version 6.18.0_
+
+Enables [role-based access control](/servicecontrol/security/configuration/authorization.md). When `false`, every authenticated user is granted every permission. Has no effect unless `Authentication.Enabled` is `true`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_ROLEBASEDAUTHORIZATIONENABLED` |
+| **App config key** | `ServiceControl/Authentication.RoleBasedAuthorizationEnabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl/Authentication.RolesClaim
+
+_Added in version 6.18.0_
+
+The token claim from which user roles are read. Supports a flat claim name (for example `roles`) or a dotted path into a nested JSON object claim (for example `realm_access.roles`). See [reading roles from the token](/servicecontrol/security/configuration/authorization.md#reading-roles-from-the-token).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_ROLESCLAIM` |
+| **App config key** | `ServiceControl/Authentication.RolesClaim` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `roles` |
+
+### ServiceControl/Authentication.SubjectIdClaim
+
+_Added in version 6.18.0_
+
+The token claim used as the stable user identifier in the [authorization audit log](/servicecontrol/security/configuration/authorization.md#authorization-audit-log). Requests are rejected if this claim is missing from the token.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SUBJECTIDCLAIM` |
+| **App config key** | `ServiceControl/Authentication.SubjectIdClaim` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `sub` |
+
+### ServiceControl/Authentication.SubjectNameClaim
+
+_Added in version 6.18.0_
+
+The token claim used as the human-readable display name in the [authorization audit log](/servicecontrol/security/configuration/authorization.md#authorization-audit-log). Requests are rejected if this claim is missing from the token.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SUBJECTNAMECLAIM` |
+| **App config key** | `ServiceControl/Authentication.SubjectNameClaim` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `preferred_username` |
+
 ## [TLS](/servicecontrol/security/configuration/tls.md)
 
 These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.

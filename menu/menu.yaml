@@ -1505,6 +1505,8 @@
         Articles:
         - Title: Authentication
           Url: servicepulse/security/configuration/authentication
+        - Title: Role-Based Access Control
+          Url: servicepulse/security/configuration/authorization
         - Title: Forward Headers for Reverse Proxy
           Url: servicepulse/security/configuration/forward-headers
         - Title: TLS
@@ -1600,6 +1602,8 @@
       Articles:
       - Title: Authentication
         Url: servicecontrol/security/configuration/authentication
+      - Title: Role-Based Access Control
+        Url: servicecontrol/security/configuration/authorization
       - Title: Forward Headers for Reverse Proxy
         Url: servicecontrol/security/configuration/forward-headers
       - Title: TLS
