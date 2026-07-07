@@ -200,8 +200,6 @@
     Articles:
     - Url: nservicebus/upgrades
       Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/10to11
-      Title: NServiceBus 10 to 11
     - Url: nservicebus/upgrades/9to10
       Title: NServiceBus 9 to 10
     - Url: nservicebus/upgrades/9to9.1

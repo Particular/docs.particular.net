@@ -9,6 +9,9 @@ upgradeGuideCoreVersions:
  - 11
 ---
 
+> [!TIP]
+> This is an upgrade guide for a version of NServiceBus that has not yet been released. It can currently be used to proactively adjust for changes introduced as warnings, but which will not be required until NServiceBus version 11 is released.
+
 include: upgrade-major
 
 ## Self-hosted endpoints
