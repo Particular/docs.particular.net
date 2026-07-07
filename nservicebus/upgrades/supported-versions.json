@@ -932,10 +932,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "11.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "11.2",
           "SupportLevel": "Mainstream"
         }

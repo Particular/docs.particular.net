@@ -139,7 +139,7 @@
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [11.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.2.1)| **Current** | 2026-04-07     | Active            | Active |
-| [11.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.1.1)| Mainstream Support | 2026-03-16     | 2026-07-07        | Ineligible |
+| [~~11.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.1.1)| ~~Unsupported~~ | ~~2026-03-16~~ | ~~2026-07-07~~    | ~~Ineligible~~ |
 | [~~11.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.0.1)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-06-16~~    | ~~Ineligible~~ |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.8)| Mainstream Support | 2025-04-14     | 2028-01-29        | 2030-01-29 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4)| ~~Unsupported~~ | ~~2025-03-11~~ | ~~2025-07-14~~    | ~~Ineligible~~ |
