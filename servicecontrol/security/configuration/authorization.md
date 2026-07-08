@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Role-Based Access Control
 summary: Restrict what authenticated users can do in ServiceControl and ServicePulse using roles
-reviewed: 2026-07-01
+reviewed: 2026-07-08
 component: ServiceControl
 related:
 - servicecontrol/security/configuration/authentication
@@ -23,13 +23,13 @@ When authorization is enabled, ServiceControl reads the user's roles from their 
 
 Access is granted through three built-in roles. Assign one or more of these role names to users in the identity provider:
 
-| Role     | Access                                                                                                                                                              |
-|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `reader` | Read-only access to everything.                                                                                                                                    |
-| `admin`  | Everything `reader` can do, plus managing the configuration and administration areas (licensing, notifications, retry redirects, throughput, and connections).     |
-| `writer` | Full access, including message actions such as retry, edit, archive, and restore.                                                                                  |
+| Role     | Access                                                                                                                                                                                                                          |
+|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `reader` | Read-only access to everything.                                                                                                                                                                                                |
+| `writer` | Everything `reader` can do, plus message and resource actions: retry, edit, archive, and unarchive/restore messages and recoverability groups; manage and delete endpoints; delete custom checks and queues; manage connections; delete monitoring endpoints. |
+| `admin`  | Everything `writer` can do, plus managing the configuration and administration areas (licensing, notifications, redirects, and throughput — throughput is visible only to `admin`).                                          |
 
-The roles are cumulative: `writer` is the highest level and can do everything `admin` and `reader` can, and `admin` can do everything `reader` can. Role names are matched case-insensitively, and a user with none of these roles has no access to the affected areas.
+The roles are cumulative: `admin` is the highest level and can do everything `writer` and `reader` can, and `writer` can do everything `reader` can. Role names are matched case-insensitively, and a user with none of these roles has no access to the affected areas.
 
 > [!NOTE]
 > Only `reader`, `admin`, and `writer` grant access. Custom role names are not supported, so provider-side roles must be named to match.
