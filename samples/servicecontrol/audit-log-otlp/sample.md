@@ -55,6 +55,8 @@ snippet: audit-otlp-compose-servicecontrol
 
 With `LoggingProviders=NLog,Otlp`, the operational log keeps flowing to the console/log files through NLog, while every log record — including the audit trail — is additionally exported as OTLP log records. The audit trail is emitted on the logger categories `ServiceControl.Audit` (authorization decisions and message operations) and `ServiceControl.Audit.Messages` (per-message entries of bulk operations), with the pre-rendered ECS JSON document as the OTLP log record *body*. Allowed decisions are logged at `Information` level; denied decisions at `Warning` level, so alerting on denials does not require parsing the payload.
 
+The `ServiceControl.Audit.Messages` category can be high volume on large bulk retries or archives. It can be filtered independently of the operation-level trail through standard `Microsoft.Extensions.Logging` configuration — see [filtering the per-message audit stream](/servicecontrol/logging.md#authorization-audit-trail-filtering-the-per-message-audit-stream).
+
 ## Configuring the collector
 
 The collector runs as a regular container next to ServiceControl:

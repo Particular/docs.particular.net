@@ -80,6 +80,50 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 <add key="ServiceControl/LogLevel" value="Info" />
 ```
 
+## Authorization audit trail
+
+When [role-based access control](/servicecontrol/security/configuration/authorization.md) is enabled (ServiceControl 6.18.0 and later), every authorization decision and message action is written to a dedicated audit trail, separate from the operational log, as [Elastic Common Schema (ECS)](https://www.elastic.co/docs/reference/ecs) JSON. See [the authorization documentation](/servicecontrol/security/configuration/authorization.md#authorization-audit-log) for the format and destinations, and the [audit-log-over-OTLP sample](/samples/servicecontrol/audit-log-otlp/) for an end-to-end pipeline into a SIEM.
+
+The audit trail uses two logger categories so they can be handled independently:
+
+| Category | Contents |
+|----------|----------|
+| `ServiceControl.Audit` | Authorization decisions (allow/deny) and operation-level message actions (e.g. "retry group X, 42 messages"). |
+| `ServiceControl.Audit.Messages` | One entry per individual message affected by a bulk action. High volume on large retry/archive operations. |
+
+### Filtering the per-message audit stream
+
+The `ServiceControl.Audit.Messages` category emits one entry per message, so a bulk retry or archive of thousands of messages produces thousands of entries. Because ServiceControl routes these categories through [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging), the per-message stream can be filtered independently using the standard [log-level configuration](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging#configure-logging), without affecting the operation-level trail on `ServiceControl.Audit`.
+
+Set the minimum level for the `ServiceControl.Audit.Messages` category to `Warning` to keep only failed per-message actions (successful ones are logged at `Information`), or to `None` to drop the per-message stream entirely. Either configuration source the host reads works:
+
+Environment variable (recommended for container deployments):
+
+```
+Logging__LogLevel__ServiceControl.Audit.Messages=Warning
+```
+
+Or an `appsettings.json` file in the instance folder:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "ServiceControl.Audit.Messages": "Warning"
+    }
+  }
+}
+```
+
+> [!NOTE]
+> This filters the category before it reaches any destination, so it applies to the `audit.json` file, the console, and the OTLP export alike. The operation-level `ServiceControl.Audit` trail — which still records that the bulk action occurred, who performed it, and the affected count — is unaffected. The same mechanism can raise or lower the level of any audit category; for example, setting `ServiceControl.Audit` to `Warning` keeps only denied decisions and failed actions.
+
+### Exporting the audit trail over OTLP
+
+ServiceControl can export its logs — including the audit trail — over OTLP (OpenTelemetry Protocol) in addition to, or instead of, the file/console output. Set the `LoggingProviders` setting to include `Otlp` (for example `NLog,Otlp`) and point the standard `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable at a collector. Each ECS audit document is exported as the OTLP log record body.
+
+When forwarding to Elasticsearch through the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/)'s `elasticsearch` exporter, select the exporter's `bodymap` mapping mode so the ECS document is indexed exactly as ServiceControl emitted it. In collector-contrib 0.156.0 and later the exporter's `mapping::mode` configuration option is deprecated and ignored; set the mode with the `elastic.mapping.mode` scope attribute (or the `X-Elastic-Mapping-Mode` client-metadata key) instead. The [audit-log-over-OTLP sample](/samples/servicecontrol/audit-log-otlp/) shows the full collector configuration.
+
 ## RavenDB Logging
 
 ServiceControl stores data in an embedded RavenDB database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
