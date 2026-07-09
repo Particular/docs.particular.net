@@ -107,6 +107,16 @@ When encryption is enabled, SQL Server uses a certificate to encrypt communicati
 
 To fix this error, [update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) or add `Encrypt=False` to the connection string if encryption is truly not necessary.
 
+## Service fails to start: Cannot validate the current RavenDB license
+
+If a ServiceControl instance stops during startup with the following error, the RavenDB server it uses cannot validate its license:
+
+```
+Cannot validate the current RavenDB license
+```
+
+This occurs when the RavenDB server cannot reach the RavenDB license server at `api.ravendb.net` and the license it holds does not cover the running RavenDB server version, most commonly after an upgrade. See [Licensing the ServiceControl RavenDB database](/servicecontrol/ravendb/licensing.md) for the cause and remedies.
+
 ## Unable to connect to ServiceControl from ServicePulse
 
 Attempt to connect to the ServiceControl instance's URL using a web browser. A valid response with JSON data should be returned. If not, verify that network configuration and/or firewall settings do not block access to the ServiceControl port specified in the URL.

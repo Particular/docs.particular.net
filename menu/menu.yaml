@@ -1727,6 +1727,8 @@
       Url: servicecontrol/backup-sc-database
     - Title: Containers
       Url: servicecontrol/ravendb/containers
+    - Title: RavenDB licensing
+      Url: servicecontrol/ravendb/licensing
     - Title: Compacting the database
       Url: servicecontrol/db-compaction
     - Title: Move database location
