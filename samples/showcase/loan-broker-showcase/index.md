@@ -7,7 +7,7 @@ component: Core
 
 ## Loan Broker showcase
 
-The Loan Broker showcase is a basic loan broker implementation following the [structure presented](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingExample.html) by [Gregor Hohpe](https://www.enterpriseintegrationpatterns.com/gregor.html) in his book - [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/).
+The Loan Broker showcase is a basic loan broker implementation following the [structure presented](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ComposedMessagingExample.html) by [Gregor Hohpe](https://www.enterpriseintegrationpatterns.com/gregor.html) in his book, [_Enterprise Integration Patterns_](https://www.enterpriseintegrationpatterns.com/).
 
 ![Logical architecture of the loan broker](consumerloanbroker-logicalview.gif)
 
@@ -79,11 +79,11 @@ flowchart LR
 
 The showcase is composed of:
 
-- A client application, sending loan requests.
+- A client application sends loan requests.
 - A credit bureau provides the customers' credit scores.
-- A loan broker service that receives loan requests enriches them with credit scores and orchestrates communication with downstream banks.
+- A loan broker service receives loan requests, enriches them with credit scores, and orchestrates communication with downstream banks.
 - Three bank adapters, acting like Anti-Corruption layers (ACL), simulate communication with downstream banks offering loans.
-- An email sender simulating email communication with customers.
+- An email sender simulates email communication with customers.
 
 The example also ships the following monitoring services:
 
