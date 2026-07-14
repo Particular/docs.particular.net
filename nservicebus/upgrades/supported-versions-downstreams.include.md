@@ -38,10 +38,10 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.4.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.4.1)| **Current** | 2026-06-19     | Active            | Active |
+| [6.4.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.4.2)| **Current** | 2026-06-19     | Active            | Active |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.3.0)| Mainstream Support | 2026-05-04     | 2026-09-19        | Ineligible |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.2)| Mainstream Support | 2026-03-18     | 2026-08-04        | Ineligible |
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.3)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.4)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.9)| Extended Support | 2023-03-23     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.8)| Extended Support | 2021-10-19     | 2024-11-17        | 2026-11-17 |
 
