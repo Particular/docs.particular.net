@@ -37,7 +37,7 @@ The `docker-compose.yml` starts:
 
 | Service | Purpose |
 |---------|---------|
-| `keycloak` | Identity provider; the imported realm defines the `reader`, `admin`, and `writer` roles and one demo user per role (password equals the username) |
+| `keycloak` | Identity provider; the imported realm defines the `reader`, `writer`, and `admin` roles and one demo user per role (password equals the username) |
 | `rabbitmq`, `ravendb` | ServiceControl transport and storage |
 | `servicecontrol` | Primary instance with authentication + role-based access control enabled and the audit log exported over OTLP |
 | `servicepulse` | Web UI, to generate audit events interactively |
@@ -45,7 +45,7 @@ The `docker-compose.yml` starts:
 | `elasticsearch`, `kibana` | The SIEM backend the audit trail is delivered to |
 
 > [!WARNING]
-> To stay focused on the logging pipeline, this sample runs the identity provider over plain HTTP and sets `Authentication.RequireHttpsMetadata` to `false`. Production deployments must use HTTPS end-to-end — see [securing ServiceControl](/servicecontrol/security/).
+> For simplicity, this sample runs the identity provider over **plain HTTP** and sets `Authentication.RequireHttpsMetadata` to `false`. However, production deployments must use **HTTPS** end-to-end — see [securing ServiceControl](/servicecontrol/security/) for details.
 
 ## Configuring ServiceControl
 
@@ -53,11 +53,11 @@ Two things happen in the ServiceControl service definition: role-based access co
 
 snippet: audit-otlp-compose-servicecontrol
 
-With `LoggingProviders=NLog,Otlp`, the operational log keeps flowing to the console/log files through NLog, while every log record — including the audit trail — is additionally exported as OTLP log records. The audit trail is emitted on the logger categories `ServiceControl.Audit` (authorization decisions and message operations) and `ServiceControl.Audit.Messages` (per-message entries of bulk operations), with the pre-rendered ECS JSON document as the OTLP log record *body*. Allowed decisions are logged at `Information` level; denied decisions at `Warning` level, so alerting on denials does not require parsing the payload.
+With `LoggingProviders=NLog,Otlp`, the operational log keeps flowing to the console/log files through NLog, while every log record — including the audit trail — is additionally exported as OTLP log records. The audit trail is emitted on the logger categories `ServiceControl.Audit` (authorization decisions and message operations) and `ServiceControl.Audit.Messages` (per-message entries of bulk operations), with the pre-rendered ECS JSON document as the OTLP log record *body*. Allowed decisions are logged at `Information` level, while denied decisions are logged at `Warning` level, so alerting on denials does not require parsing the payload.
 
 The `ServiceControl.Audit.Messages` category can be high volume on large bulk retries or archives. It can be filtered independently of the operation-level trail through standard `Microsoft.Extensions.Logging` configuration — see [filtering the per-message audit stream](/servicecontrol/logging.md#authorization-audit-trail-filtering-the-per-message-audit-stream).
 
-## Configuring the collector
+## Configuring the OpenTelemetry collector
 
 The collector runs as a regular container next to ServiceControl:
 
@@ -71,7 +71,7 @@ Four details worth calling out:
 
 - **Filtering by category.** The `Microsoft.Extensions.Logging` category name arrives as the OTLP *instrumentation scope name*, so the `filter` processor can isolate the audit trail (`ServiceControl.Audit*`) from operational logs without inspecting payloads.
 - **Parsing the body.** ServiceControl deliberately exports each audit entry as a self-contained ECS JSON string in the record body. The `transform` processor's `ParseJSON` turns it into a structured body so backends index the individual fields.
-- **Mapping mode.** The `elastic.mapping.mode` scope attribute selects the Elasticsearch exporter's `bodymap` mode, which indexes the parsed body verbatim — the Elasticsearch document is then exactly the ECS document ServiceControl emitted. (Since collector 0.156 the exporter's `mapping::mode` config option is deprecated and ignored; the scope attribute or the `X-Elastic-Mapping-Mode` client metadata key replaces it.)
+- **Mapping mode.** The `elastic.mapping.mode` scope attribute selects the Elasticsearch exporter's `bodymap` mode, which indexes the parsed body verbatim — the Elasticsearch document is then exactly the ECS document ServiceControl emitted. (Since collector 0.156, the exporter's `mapping::mode` config option is deprecated and ignored; the scope attribute or the `X-Elastic-Mapping-Mode` client metadata key replaces it.)
 - **Fan-out.** A single collector pipeline can deliver the same stream to multiple destinations — a SIEM for alerting plus rotated files for long-term retention.
 
 ## Running the sample
@@ -111,7 +111,7 @@ The collector delivers the same entries to Elasticsearch, into the `logs-service
 curl -s "http://localhost:9200/logs-servicecontrol.audit-default/_search?q=event.category:iam%20AND%20event.outcome:failure" | jq .hits.total.value
 ```
 
-Or use Kibana at `http://localhost:5601`: create a data view for `logs-servicecontrol.audit-*` with `@timestamp` as the time field (**Stack management** → **Data views**), then in **Discover** run the KQL query:
+Or use Kibana at `http://localhost:5601`: create a data view for `logs-servicecontrol.audit-*` with `@timestamp` as the time field (**Stack management** → **Data views**), then run the KQL query in **Discover**:
 
 ```
 event.category:iam and event.outcome:failure
@@ -121,7 +121,7 @@ Every denied authorization decision appears, with the full ECS document expandab
 
 ## The ECS audit document
 
-ECS is Elastic's open specification for naming log fields consistently so that tooling — dashboards, correlation rules, detection content — works across data sources. It is the de-facto ingestion schema for SIEMs beyond Elastic's own: most systems either ingest ECS natively or ship converters for it. In 2023 Elastic [donated ECS to OpenTelemetry](https://opentelemetry.io/blog/2023/ecs-otel-semconv-convergence/), and the two schemas are converging namespace by namespace, though the security-relevant `event.*` classification fields remain ECS-only for now.
+ECS is Elastic's open specification for naming log fields consistently so that tooling — dashboards, correlation rules, detection content — works across data sources. It is the de-facto ingestion schema for SIEMs beyond Elastic's own: most systems either ingest ECS natively or ship converters for it. In 2023, Elastic [donated ECS to OpenTelemetry](https://opentelemetry.io/blog/2023/ecs-otel-semconv-convergence/), and the two schemas are converging namespace by namespace, though the security-relevant `event.*` classification fields remain ECS-only for now.
 
 An *allowed* decision looks like:
 
@@ -173,6 +173,12 @@ Is there something that can *output* the logs to the destination of choice? Yes 
 | Generic / legacy SIEM | `syslog` | RFC 5424 over TCP/TLS as lowest common denominator |
 | Compliance archive | `file` | Rotated JSON files |
 
-Alternatives to the collector exist and speak OTLP too: [Elastic Agent embeds an OpenTelemetry Collector distribution](https://www.elastic.co/docs/reference/fleet/elastic-agent-as-otel-collector) (EDOT), [Vector](https://vector.dev/docs/reference/configuration/sources/opentelemetry/) has an OpenTelemetry source, and [Fluent Bit](https://docs.fluentbit.io/manual/data-pipeline/inputs/opentelemetry) ships OTLP input/output plugins. The collector remains the most direct fit here because the ECS documents need no re-mapping — any OTLP-capable pipeline can carry them.
+Alternatives to the OpenTelemtry collector that also speak OTLP include: 
+
+- [Elastic Agent embeds an OpenTelemetry Collector distribution](https://www.elastic.co/docs/reference/fleet/elastic-agent-as-otel-collector) (EDOT)
+- [Vector](https://vector.dev/docs/reference/configuration/sources/opentelemetry/) (has an OpenTelemetry source)
+- [Fluent Bit](https://docs.fluentbit.io/manual/data-pipeline/inputs/opentelemetry) (ships OTLP input/output plugins)
+
+However, the OpenTelemetry collector is recommended here because the ECS documents need no re-mapping — any OTLP-capable pipeline can carry them.
 
 Deployments that cannot use OTLP can still collect the audit trail from its file/console destination: when running as a Windows service the audit trail is written to `audit.json` in the instance log directory, and in containers it goes to standard output — see [the authorization documentation](/servicecontrol/security/configuration/authorization.md#authorization-audit-log) for details.
