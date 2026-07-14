@@ -1,7 +1,7 @@
 ---
 title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
-reviewed: 2026-03-09
+reviewed: 2026-07-14
 related:
   - servicepulse/usage
 redirects:
@@ -127,6 +127,39 @@ include: throughput-tool-global-options
 First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 90 days from each queue.
 
 Using Azure Service Bus metrics allows the tool to capture the last 90 days worth of data at once.
+
+#### Network requirements
+
+The tool contacts three separate Azure services over HTTPS (port 443), all of which must be reachable from the host that runs the tool:
+
+| Endpoint | Purpose |
+|-|-|
+| `login.microsoftonline.com` | Acquire an access token from Microsoft Entra ID. |
+| `{namespace}.servicebus.windows.net` | List the queue names in the namespace. |
+| `{region}.metrics.monitor.azure.com` | Query the `CompleteMessage` metrics for each queue. |
+
+Microsoft Entra ID and Azure Monitor are public endpoints. A [private endpoint](https://learn.microsoft.com/en-us/azure/service-bus-messaging/private-link-service) for the Service Bus namespace makes the namespace reachable, but it does not cover the other two services. A host that is restricted to the namespace alone cannot complete a run.
+
+#### Troubleshooting
+
+##### Unable to log in to Azure service using multiple credential types
+
+The tool tries several credential types in turn and reports this error when all of them fail. The first and most likely to succeed is the Azure CLI credential, which does not read the CLI configuration files directly. Instead, it runs `az account get-access-token` as a child process and waits a limited time for a response.
+
+A first, cold invocation of the Azure CLI can be slow, because the CLI must start up and then acquire a token from Microsoft Entra ID. On a host that is slow or has restricted network access, this can take longer than the tool is prepared to wait. The tool cannot distinguish this from a credential that is unavailable, so it moves on to the next credential type and ultimately reports a login failure.
+
+To confirm that the host can authenticate, and to prime the Azure CLI token cache so that the tool's own call returns promptly, run the following command on the host before running the tool:
+
+```shell
+az account get-access-token --resource https://servicebus.azure.net
+```
+
+If this command returns a token, run the tool again.
+
+> [!NOTE]
+> `az account show` does not confirm connectivity to Azure. It reads the locally cached profile from disk and succeeds even when the host cannot reach Microsoft Entra ID at all. Use `az account get-access-token` instead.
+
+If `az account get-access-token` does not return a token, the host cannot reach Microsoft Entra ID. See [network requirements](#running-the-tool-azure-service-bus-network-requirements).
 
 ### Amazon SQS
 
@@ -615,6 +648,27 @@ If there is any question about the number of endpoints based on the report data,
 
 Yes, just like NServiceBus and all the Particular Service Platform tools, the [EndpointThroughputCounter source code](https://github.com/Particular/Particular.EndpointThroughputCounter) is available on GitHub.
 
+### The tool appears to have stopped and produces no further output
+
+Unless `--customerName` is specified, the tool prompts for a customer name before it does any work. Some terminals, such as remote PowerShell sessions, do not display this prompt until the process writes a complete line. In those terminals the tool looks like it has stopped, when it is in fact waiting for input.
+
+To rule this out, run the tool with the customer name supplied so that it never prompts:
+
+```shell
+throughput-counter [command] [options] --customerName "My Company" --unattended
+```
+
+> [!NOTE]
+> `--unattended` suppresses the confirmation prompt, but the tool still prompts for a customer name if one is not supplied. Always specify `--customerName` together with `--unattended`.
+
 ### The tool threw an error
 
 Particular Software can help. Open a [non-critical support case](https://particular.net/support) and include the output of the application as well as the stack trace for the exception.
+
+The tool writes its error details to the standard error stream. PowerShell reformats that stream, presenting each line as a separate error record, so the detail below a message such as `Unable to log in to Azure service using multiple credential types` may not be visible. That detail is usually the most useful part of the report.
+
+To capture the complete output on Windows, run the tool through `cmd` so that PowerShell does not reformat the streams, then attach the resulting file to the support case:
+
+```shell
+cmd /c "throughput-counter [command] [options] > throughput-run.log 2>&1"
+```
