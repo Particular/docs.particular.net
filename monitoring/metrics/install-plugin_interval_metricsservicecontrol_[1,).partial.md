@@ -2,10 +2,10 @@
 
 Specifies the maximum delay between sending metrics report messages.
 
-The metrics plugin has a buffer and when that overflows a metric report message is sent and the buffer is cleared. When an endpoint instance is idle it will send metrics report messages at this interval to indicate it is idle. When the endpoint is under load the interval between metric messages will be much shorter as this buffer fills faster.
+The metrics plugin buffers measurements and sends a metric report message as soon as the buffer is half full, without waiting for the interval to elapse. When an endpoint instance is idle there are no measurements to report, so no metric report message is sent. The plugin still sends a report at this interval regardless of load, which is how ServiceControl monitoring knows the instance is running rather than gone. When the endpoint is under load the interval between metric messages will be much shorter as this buffer fills faster.
 
 > [!NOTE]
-> The size of this buffer is fixed and cannot be adjusted. The size value chosen that is compatible with the maximum message size limits of all supported transports.
+> The size of this buffer is fixed and cannot be adjusted. The size chosen is compatible with the maximum message size limits of all supported transports.
 
 The recommended value is between 10 and 60 seconds.
 
@@ -16,4 +16,4 @@ It is recommended to use higher values for systems that can have many endpoint i
 
 Example:
 
-If the system has 500 instances and the interval is set to 5 seconds an idle system will send on average 6.000 metric messages per minute (500 * 6) / 100 per second.
+If the system has 500 instances and the interval is set to 5 seconds, an idle system will send on average 6,000 messages per minute (500 × 12), which is 100 per second.
