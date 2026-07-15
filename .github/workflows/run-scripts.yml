@@ -33,7 +33,7 @@ jobs:
         with:
           global-json-file: global.json
           dotnet-version: 9.0
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Update Core Dependencies
