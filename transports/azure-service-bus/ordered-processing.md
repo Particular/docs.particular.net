@@ -56,8 +56,6 @@ It is possible that a publisher does not process messages in order. In such a ca
 
 ### Subscription Forwarder
 
-TODO: Do we need to mention this?
-
 ## Endpoint set up
 
 Setting the `EnableSessions` to `true` enables ordered processing on the endpoint. It is expected that all the messages processed by the endpoint are to be processed in order. It is therefore recommended to use separate endpoints for messages that require ordered processing and messages that do not require ordered processing. Ordered processing of messages have an impact on the throughput of the endpoint. Having separate endpoints for messages that requires ordered processing and messages that do not isolates the impact to only endpoints that process in order.
