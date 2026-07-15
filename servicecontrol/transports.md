@@ -90,7 +90,7 @@ For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and
 > [!NOTE]
 > This setting applies only to the [Monitoring instance](/servicecontrol/monitoring-instances/), which is the only instance type that tracks queue lengths.
 
-The Monitoring instance periodically queries the Azure Service Bus namespace to refresh the queue length data behind the throughput graphs:
+The Monitoring instance periodically queries the Azure Service Bus namespace to refresh the [queue length](/monitoring/metrics/definitions.md#metrics-captured-queue-length) metric shown in ServicePulse monitoring:
 
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - The delay between successive queue length refresh queries. The default value is 500 ms. Increase this value if Azure Service Bus rate throttling is observed.
 
