@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: Understand about ServiceControl logs; change log location and customize logging 
-reviewed: 2024-11-20
+reviewed: 2026-07-17
 redirects:
 - servicecontrol/setting-custom-log-location
 ---
@@ -31,11 +31,11 @@ All ServiceControl instances will log to the Windows Event Log as well as the Se
 
 ## Monitoring
 
-It is recommended to actively monitor the ServiceControl `logfile.${shortdate}.txt` log file for any log entries with log level `ERROR` or `FATAL`.
+It is recommended to actively monitor the ServiceControl `logfile.txt` log file for any log entries with log level `ERROR` or `FATAL`.
 
 ## Customize logging
 
-By default, ServiceControl logs to the event log and filesystem. Log files are named `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any destination.
+By default, ServiceControl logs to the event log and filesystem. The active ServiceControl log file is named `logfile.txt`, while the RavenDB log file names have the format `yyyy-MM-dd-HH-mm.###.log`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any destination.
 
 > [!NOTE]
 > Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
@@ -62,9 +62,9 @@ Example:
 
 ## Log File Names and Retention
 
-The current ServiceControl log file is named `logfile.<date>.txt`. The current RavenDB embedded log file is named `ravenlog.<date>.txt`. The date is written in the `yyyy-MM-dd` format.
+The current ServiceControl log file is named `logfile.txt`
 
-The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. If the log is rolled because of a date change the old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile`. If the log is rolled based on size a sequence number is added e.g `<logname>.<date>.<sequence>.txt`. The sequence number starts at 0. Higher numbers indicate more recent log files. ServiceControl will retain 14 log files. Older logs are deleted automatically.
+The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. If the log is rolled, the old log is named `logfile.<date>.##.txt` where date is in the format `yyyy-MM-dd`. The `##` represents a 2 digit sequence number that starts at `00`. Higher numbers indicate more recent log files. ServiceControl will retain 14 log files. Older logs are deleted automatically.
 
 ## Logging Levels
 
@@ -126,7 +126,9 @@ When forwarding to Elasticsearch through the [OpenTelemetry Collector](https://o
 
 ## RavenDB Logging
 
-ServiceControl stores data in an embedded RavenDB database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
+ServiceControl stores data in an embedded RavenDB database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The current RavenDB embedded log file is named `<date>-<time>.<sequence>.txt`. The date is written in the `yyyy-MM-dd` format and the time is in 24 hour format `HH:mm`. The sequence number is 3 digits long and starts at `000`.
+
+The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
 
 Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
