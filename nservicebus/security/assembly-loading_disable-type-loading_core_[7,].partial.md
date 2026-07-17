@@ -1,1 +1,0 @@
-Dynamic type loading can be disabled via the [serializer configuration](/nservicebus/serialization/#security-message-type-inference).
