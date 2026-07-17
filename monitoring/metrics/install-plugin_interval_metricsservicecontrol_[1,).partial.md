@@ -16,4 +16,4 @@ It is recommended to use higher values for systems that can have many endpoint i
 
 Example:
 
-If the system has 500 instances and the interval is set to 5 seconds, an idle system will send on average 6,000 messages per minute (500 × 12), which is 100 per second.
+If the system has 500 instances and the interval is set to 5 seconds, an idle system will send on average 6000 messages per minute (500 × 12), which is 100 per second.
