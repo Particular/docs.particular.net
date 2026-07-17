@@ -2,7 +2,7 @@
 title: Platform Sample installation
 summary: Installation instructions for using the platform sample for demo purposes.
 component: PlatformSample
-reviewed: 2024-11-06
+reviewed: 2026-07-16
 ---
 
 The [Platform Sample package](https://www.nuget.org/packages/Particular.PlatformSample) is a portable version of the Particular Service Platform which can be used to demonstrate the platform without installing it. This is the easiest way to experience the Particular Service Platform.
