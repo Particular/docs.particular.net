@@ -3,16 +3,19 @@ title: Roslyn analyzers for sagas
 summary: Details of the Roslyn analyzers that promote code quality in sagas.
 component: Core
 versions: '[7.7,)'
-reviewed: 2024-11-05
+reviewed: 2026-07-15
+related:
+- nservicebus/sagas/message-correlation
+- nservicebus/operations/nservicebus-analyzer
 ---
 
-Starting in NServiceBus version 7.7, [Roslyn analyzers](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the code in sagas and make suggestions for improvements directly in the editor, are packaged with the NServiceBus package.
+Starting in NServiceBus version 7.7, [Roslyn analyzers](https://learn.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the code in sagas, reporting problems and suggesting improvements directly in the editor, are packaged with the NServiceBus package.
 
 ## Non-mapping expression used in ConfigureHowToFindSaga method
 
 * **Rule ID**: NSB0003
 * **Severity**: Warning, Error starting in NServiceBus version 8
-* **Example message**: The ConfigureHowToFindSaga method should only contain mapping expressions (i.e. 'mapper.MapSaga().ToMessage<T>()') and not contain any other logic.
+* **Example message**: The ConfigureHowToFindSaga method should only contain mapping expressions (i.e. '`mapper.MapSaga().ToMessage<T>()`') and not contain any other logic.
 
 The `ConfigureHowToFindSaga` method is executed to determine the mappings between incoming messages and stored saga data. Arbitrary statements or calls to other methods, while they may be valid C#, are not valid in this method.
 
@@ -28,7 +31,7 @@ partial: single-correlation
 
 * **Rule ID**: NSB0006
 * **Severity**: Warning, Error starting in NServiceBus version 8
-* **Example message**: Saga `MySaga` implements `IAmStartedByMessages<MyMessage>` but does not provide a mapping for that message type. In the `ConfigureHowToFindSaga` method, after calling `mapper.MapSaga(saga => saga.CorrelationPropertyName)`, add `.ToMessage<MyMessage>(msg => msg.PropertyName)` to map a message property to the saga correlation ID, or `.ToMessageHeader<MyMessage>("HeaderName")` to map a header value that will contain the correlation ID.
+partial: starts-saga-no-mapping
 
 A message type identified by `IAmStartedByMessages<TMessage>` means that the message of type `TMessage` can start the saga. Because there may not yet be any saga data when this message is received, a message identified in this way **must** have an associated message mapping in the `ConfigureHowToFindSaga()` method; otherwise, it would be impossible to know if saga data had already been created.
 
@@ -38,7 +41,7 @@ The code fix will attempt to rewrite the `ConfigureHowToFindSaga()` method and g
 
 * **Rule ID**: NSB0007
 * **Severity**: Warning, Error starting in NServiceBus version 8
-* **Example message**: Saga data property `MySagaData.MyProperty`does not have a public setter. This could interfere with loading saga data. Add a public setter.
+* **Example message**: Saga data property `MySagaData.MyProperty` does not have a public setter. This could interfere with loading saga data. Add a public setter.
 
 Many saga persistence libraries use serialization and deserialization to store and load saga data. It's not always possible for serializers to set values unless the property is marked as `public` and has a `public` setter.
 
@@ -98,7 +101,7 @@ The generic class constraints on `Saga<TSagaData>` require the saga data class t
 
 A benefit to inheriting the `ContainSagaData` class is that in NServiceBus version 7 and above, the implemented properties are decorated with `[EditorBrowsable(EditorBrowsableState.Never)]`, which means that those properties that are _only_ needed by the saga infrastructure will not appear in IntelliSense. So, it is less likely that one of these reserved properties will be used accidentally.
 
-One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#customizing-concurrency-behavior-explicit-version). This attribute is not compatible with derived classes. In this case, the saga data class must implement `IContainSagaData` directly. The `NSB0012` diagnostic can be suppressed for this scenario to remove the warning.
+One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#customizing-concurrency-behavior-explicit-version). This attribute is not compatible with derived classes. In this case, the saga data class must implement `IContainSagaData` directly. The `NSB0012` diagnostic can be [suppressed](/nservicebus/operations/nservicebus-analyzer.md#disabling-the-analyzer) for this scenario to remove the warning.
 
 ## Reply in Saga should be ReplyToOriginator
 
@@ -116,7 +119,7 @@ More often, a reply in a saga should instead use `.ReplyToOriginator(…)`. In t
 
 * **Rule ID**: NSB0014
 * **Severity**: Warning
-* **Example message**: A saga should not have an intermediate base class and should inherit directly from NServiceBus.Saga<TSagaData>.
+* **Example message**: A saga should not have an intermediate base class and should inherit directly from `NServiceBus.Saga<TSagaData>`.
 
 Sagas should not use a base class (i.e. `MySaga : MyAbstractSaga<TSagaData>`) to provide shared functionality to multiple saga types. While this may work for sagas using [Learning Persistence](/persistence/learning/), some persistence libraries such as [SQL Persistence](/persistence/sql/) are unable to generate database scripts when sagas are constructed in this way.
 
@@ -161,3 +164,7 @@ snippet: SagaAnalyzerToSagaFieldNotOk
 Mapping to an arbitrary expression is also **invalid**:
 
 snippet: SagaAnalyzerToSagaExpressionNotOk
+
+partial: add-handler-on-saga
+
+partial: saga-attribute
