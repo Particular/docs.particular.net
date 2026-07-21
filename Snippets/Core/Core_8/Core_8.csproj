@@ -25,8 +25,4 @@
     <Reference Include="System.Web" />
   </ItemGroup>
 
-  <ItemGroup Label="Pinning transitive dependency with CVE">
-    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.3" />
-  </ItemGroup>
-
 </Project>

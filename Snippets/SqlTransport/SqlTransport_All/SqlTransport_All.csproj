@@ -6,10 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.*" />
-    <PackageReference Include="Microsoft.Management.Infrastructure" Version="3.*" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.*" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NUnit" Version="4.*" />
     <PackageReference Include="NUnit.Analyzers" Version="4.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
