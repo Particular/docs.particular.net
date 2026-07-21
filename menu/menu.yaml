@@ -833,6 +833,8 @@
       Title: Topology
     - Url: transports/azure-service-bus/transaction-support
       Title: Transaction support
+    - Url: transports/azure-service-bus/ordered-processing
+      Title: Support for Azure Service Bus Sessions
       Articles:
         - Url: nservicebus/azure/ways-to-live-without-transactions
           Title: Avoiding Transactions

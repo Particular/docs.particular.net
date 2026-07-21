@@ -21,7 +21,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 
 |Feature                    |   |
 |:---                       |---
-|Transactions |None, ReceiveOnly, SendsAtomicWithReceive
+|Transactions |None(unsupported for ordered processing), ReceiveOnly, SendsAtomicWithReceive
 |Pub/Sub                    |Native
 |Timeouts                   |Native
 |Large message bodies       | with Premium tier or data bus
