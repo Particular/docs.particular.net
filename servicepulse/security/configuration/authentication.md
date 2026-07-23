@@ -26,7 +26,7 @@ Authentication in ServicePulse is [configured in the primary ServiceControl inst
 | `client_id`  | The OIDC client ID registered with your identity provider                     |
 | `api_scopes` | API scopes to request (space-separated or JSON array)                         |
 | `audience`   | The audience claim for the access token (required by some identity providers) |
-| `scopes`     | _Added in version 6.18.3._ The complete scope string ServicePulse requests, composed by ServiceControl from `api_scopes` plus `openid profile email` and `offline_access` (see [Required Scopes](#required-scopes)). When talking to a ServiceControl instance older than 6.18.3, this field is absent and ServicePulse falls back to assembling the scope string itself, including `offline_access`. |
+| `scopes`     | _Added in version 6.18.3._ The complete scope string ServicePulse requests, composed by ServiceControl from `api_scopes` plus `openid profile email` and `offline_access` (see [Required Scopes](#identity-provider-setup-required-scopes)). When talking to a ServiceControl instance older than 6.18.3, this field is absent and ServicePulse falls back to assembling the scope string itself, including `offline_access`. |
 
 ## Identity Provider Setup
 
@@ -57,7 +57,7 @@ ServicePulse requests the following OIDC scopes in addition to any API scopes co
 - `email` - User's email address
 - `offline_access` - Enables refresh tokens for silent renewal
 
-`openid`, `profile`, and `email` are always requested. `offline_access` is included unless the operator has disabled it via [`Authentication.ServicePulse.OfflineAccessScopeEnabled`](/servicecontrol/servicecontrol-instances/configuration.md#authentication) on the primary ServiceControl instance — some identity providers reject the entire authorization request if a client requests a scope it isn't permitted to use, and `offline_access` is the scope most likely to trigger that. Disabling it trades away silent renewal via refresh token: see [Silent Renewal](#silent-renewal) for what that means in practice.
+`openid`, `profile`, and `email` are always requested. `offline_access` is included unless the operator has disabled it via [`Authentication.ServicePulse.OfflineAccessScopeEnabled`](/servicecontrol/servicecontrol-instances/configuration.md#authentication) on the primary ServiceControl instance — some identity providers reject the entire authorization request if a client requests a scope it isn't permitted to use, and `offline_access` is the scope most likely to trigger that. Disabling it trades away silent renewal via refresh token: see [Silent Renewal](#token-management-silent-renewal) for what that means in practice.
 
 ## Token Management
 
