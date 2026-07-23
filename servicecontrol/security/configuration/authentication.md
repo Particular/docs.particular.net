@@ -38,6 +38,8 @@ When registering ServiceControl with your identity provider, you will need the f
 
 Additionally, a separate application registration is required for ServicePulse. See [ServicePulse Identity Provider Setup](/servicepulse/security/configuration/authentication.md#identity-provider-setup) for those requirements.
 
+ServiceControl composes the complete scope string ServicePulse requests from `ServicePulse.ApiScopes` plus the fixed `openid profile email` scopes and `offline_access`. If your identity provider doesn't permit `offline_access` for the ServicePulse client, disable it with `Authentication.ServicePulse.OfflineAccessScopeEnabled`; see the [setting reference](/servicecontrol/servicecontrol-instances/configuration.md#authentication) for details and trade-offs.
+
 ### Identity Provider Guides
 
 Step-by-step instructions on configuring some specific identity providers are provided below. For any other identity providers, read their specific documentation and adapt it to the general guidance covered for [Microsoft Entra ID](../entra-id-authentication.md).
@@ -141,6 +143,12 @@ If ServicePulse shows authentication errors:
 3. Check that `ServicePulse.ApiScopes` includes the correct scope(s) for your API
 
 **Solution:** See the [ServicePulse authentication troubleshooting](/servicepulse/security/configuration/authentication.md#troubleshooting) for client-side issues.
+
+### ServicePulse sign-in fails before reaching the identity provider's login page
+
+This can happen when the identity provider rejects the authorization request outright because it includes a scope the client isn't permitted to request. `offline_access` is the scope most likely to trigger this, since not every identity provider or client registration allows it.
+
+**Solution:** Set `Authentication.ServicePulse.OfflineAccessScopeEnabled` to `false` on the primary instance so ServicePulse stops requesting `offline_access`, then confirm the remaining scopes match what the client registration allows.
 
 ### Clock skew causing token validation failures
 

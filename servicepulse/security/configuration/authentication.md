@@ -26,6 +26,7 @@ Authentication in ServicePulse is [configured in the primary ServiceControl inst
 | `client_id`  | The OIDC client ID registered with your identity provider                     |
 | `api_scopes` | API scopes to request (space-separated or JSON array)                         |
 | `audience`   | The audience claim for the access token (required by some identity providers) |
+| `scopes`     | _Added in version 6.18.3._ The complete scope string ServicePulse requests, composed by ServiceControl from `api_scopes` plus `openid profile email` and `offline_access` (see [Required Scopes](#required-scopes)). When talking to a ServiceControl instance older than 6.18.3, this field is absent and ServicePulse falls back to assembling the scope string itself, including `offline_access`. |
 
 ## Identity Provider Setup
 
@@ -56,6 +57,8 @@ ServicePulse requests the following OIDC scopes in addition to any API scopes co
 - `email` - User's email address
 - `offline_access` - Enables refresh tokens for silent renewal
 
+`openid`, `profile`, and `email` are always requested. `offline_access` is included unless the operator has disabled it via [`Authentication.ServicePulse.OfflineAccessScopeEnabled`](/servicecontrol/servicecontrol-instances/configuration.md#authentication) on the primary ServiceControl instance — some identity providers reject the entire authorization request if a client requests a scope it isn't permitted to use, and `offline_access` is the scope most likely to trigger that. Disabling it trades away silent renewal via refresh token: see [Silent Renewal](#silent-renewal) for what that means in practice.
+
 ## Token Management
 
 ### Storage
@@ -68,9 +71,9 @@ User tokens are stored in the browser's `sessionStorage`. This means:
 
 ### Silent Renewal
 
-ServicePulse automatically renews access tokens before they expire using a hidden iframe (`silent-renew.html`). This provides a seamless experience without requiring users to re-authenticate.
+ServicePulse automatically renews access tokens before they expire. With `offline_access` requested, it renews over a back-channel call to the token endpoint using a refresh token. Without `offline_access`, some identity providers don't issue a refresh token, so ServicePulse falls back to a hidden iframe (`silent-renew.html`) that depends on the identity provider's session cookie being sent in a third-party context — something browsers that restrict third-party cookies (Safari ITP, Brave, and Chrome's ongoing restrictions) will block.
 
-If silent renewal fails (e.g. session expired at the identity provider), users are redirected to log in again.
+If silent renewal fails (e.g. session expired at the identity provider, or the iframe fallback is blocked), users are redirected to log in again: a brief round-trip if the identity provider session is still live, or a full return to the login page if it isn't.
 
 ## User Interface
 
