@@ -9,10 +9,10 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.101.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.100.5/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.100.5/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.100.5/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.101.4/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.100.6/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.100.6/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.100.6/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.0/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
@@ -84,7 +84,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/RavenDB.Client" target="_blank">RavenDB.Client</a> | <a href="https://www.nuget.org/packages/RavenDB.Client/7.2.4/license" target="_blank">MIT</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/RavenDB.Client" target="_blank">RavenDB.Client</a> | <a href="https://www.nuget.org/packages/RavenDB.Client/7.2.5/license" target="_blank">MIT</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Log4Net
 
@@ -147,7 +147,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.101.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.101.4/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
@@ -174,7 +174,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/NuGet.Versioning" target="_blank">NuGet.Versioning</a> | <a href="https://www.nuget.org/packages/NuGet.Versioning/7.6.0/license" target="_blank">Apache-2.0</a> | <a href="https://aka.ms/nugetprj" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/RavenDB.Client" target="_blank">RavenDB.Client</a> | <a href="https://www.nuget.org/packages/RavenDB.Client/7.2.4/license" target="_blank">MIT</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/RavenDB.Client" target="_blank">RavenDB.Client</a> | <a href="https://www.nuget.org/packages/RavenDB.Client/7.2.5/license" target="_blank">MIT</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.SqlServer
 
@@ -248,7 +248,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/9.3.1/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.102.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.103/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.21.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.21.0/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.ResourceManager.Monitor" target="_blank">Azure.ResourceManager.Monitor</a> | <a href="https://www.nuget.org/packages/Azure.ResourceManager.Monitor/1.3.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.ResourceManager.Monitor_1.3.1/sdk/monitor/Azure.ResourceManager.Monitor/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus" target="_blank">Azure.ResourceManager.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus/1.1.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.ResourceManager.ServiceBus_1.1.0/sdk/servicebus/Azure.ResourceManager.ServiceBus/README.md" target="_blank">Project Site</a> |
@@ -268,8 +268,8 @@
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Abstractions" target="_blank">Microsoft.Extensions.Hosting.Abstractions</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting.Abstractions/10.0.10/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices" target="_blank">Microsoft.Extensions.Hosting.WindowsServices</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/10.0.10/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions" target="_blank">Microsoft.Extensions.Logging.Abstractions</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/10.0.10/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Protocols.OpenIdConnect" target="_blank">Microsoft.IdentityModel.Protocols.OpenIdConnect</a> | <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Protocols.OpenIdConnect/8.20.0/license" target="_blank">MIT</a> | <a href="https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Tokens" target="_blank">Microsoft.IdentityModel.Tokens</a> | <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Tokens/8.20.0/license" target="_blank">MIT</a> | <a href="https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Protocols.OpenIdConnect" target="_blank">Microsoft.IdentityModel.Protocols.OpenIdConnect</a> | <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Protocols.OpenIdConnect/8.21.0/license" target="_blank">MIT</a> | <a href="https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Tokens" target="_blank">Microsoft.IdentityModel.Tokens</a> | <a href="https://www.nuget.org/packages/Microsoft.IdentityModel.Tokens/8.21.0/license" target="_blank">MIT</a> | <a href="https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Mindscape.Raygun4Net.NetCore" target="_blank">Mindscape.Raygun4Net.NetCore</a> | <a href="https://www.nuget.org/packages/Mindscape.Raygun4Net.NetCore/11.2.6/license" target="_blank">View License</a> | <a href="https://raygun.com/platform/crash-reporting" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/NLog.Extensions.Logging" target="_blank">NLog.Extensions.Logging</a> | <a href="https://www.nuget.org/packages/NLog.Extensions.Logging/6.1.4/license" target="_blank">BSD-2-Clause</a> | <a href="https://github.com/NLog/NLog.Extensions.Logging" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL" target="_blank">Npgsql.EntityFrameworkCore.PostgreSQL</a> | <a href="https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/10.0.3/license" target="_blank">PostgreSQL</a> | <a href="https://github.com/npgsql/efcore.pg" target="_blank">Project Site</a> |
@@ -279,7 +279,7 @@
 | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol" target="_blank">OpenTelemetry.Exporter.OpenTelemetryProtocol</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/1.17.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting" target="_blank">OpenTelemetry.Extensions.Hosting</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting/1.17.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Polly.Core" target="_blank">Polly.Core</a> | <a href="https://www.nuget.org/packages/Polly.Core/8.7.0/license" target="_blank">BSD-3-Clause</a> | <a href="https://github.com/App-vNext/Polly" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/RavenDB.Embedded" target="_blank">RavenDB.Embedded</a> | <a href="https://www.nuget.org/packages/RavenDB.Embedded/7.2.4/license" target="_blank">View License</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/RavenDB.Embedded" target="_blank">RavenDB.Embedded</a> | <a href="https://www.nuget.org/packages/RavenDB.Embedded/7.2.5/license" target="_blank">View License</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/ReactiveUI.WPF" target="_blank">ReactiveUI.WPF</a> | <a href="https://www.nuget.org/packages/ReactiveUI.WPF/23.2.28/license" target="_blank">MIT</a> | <a href="https://reactiveui.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Seq.Extensions.Logging" target="_blank">Seq.Extensions.Logging</a> | <a href="https://www.nuget.org/packages/Seq.Extensions.Logging/9.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/datalust/seq-extensions-logging" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Configuration.ConfigurationManager" target="_blank">System.Configuration.ConfigurationManager</a> | <a href="https://www.nuget.org/packages/System.Configuration.ConfigurationManager/10.0.10/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
