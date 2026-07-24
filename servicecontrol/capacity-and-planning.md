@@ -35,7 +35,7 @@ See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.m
 **NOTE**
 
  * The maximum supported size of a RavenDB embedded database is 16 TB.
- * Failed messages *never* automatically expire and are retained indefinitely in the ServiceControl database until they are successfully retried or [manually deleted](https://docs.particular.net/servicepulse/intro-archived-messages).
+ * Failed messages *never* automatically expire and are retained indefinitely in the ServiceControl database until they are successfully retried or [manually deleted](/servicepulse/intro-archived-messages.md).
 
 ### Performance
 
