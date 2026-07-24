@@ -1,7 +1,7 @@
 ---
 title: Re-processing messages that failed to be imported
 summary: How to attempt to re-process messages that failed to be imported
-reviewed: 2024-12-02
+reviewed: 2026-07-24
 redirects:
 - servicecontrol/import-failed-audit-messages
 - servicecontrol/import-failed-audits
@@ -27,11 +27,11 @@ When a failed import is detected in the ServiceControl database, the [**Message 
 
 ## How to reimport
 
-To reimport the failed messages, the instance must be shut down and started from a command line using one of the following commands:
+To reimport the failed messages, the instance must be shut down and started from a command line using one of the methods outlined below.
 
-While in import mode, ServiceControl or ServiceControl Audit will not process its input queues. Once the message is re-processed successfully, it is available in ServicePulse.
+The custom check will no longer be displayed once all failed imports have been successfully reimported, and the re-processed messages will be available in ServicePulse.
 
-The custom check will no longer be displayed if all failed imports have been successfully reimported.
+While in import mode, ServiceControl and ServiceControl Audit will not process their input queues. 
 
 > [!NOTE]
 > Older, unsupported versions of ServiceControl (prior to 5.5.0) require a `--serviceName` command line option. The value to use for `--serviceName` is the instance name. It is available in the Windows Service information and ServiceControl Management Utility. 
