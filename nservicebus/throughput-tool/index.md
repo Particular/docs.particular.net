@@ -432,7 +432,12 @@ The following requests will be sent to the monitoring instance:
 
 ## Masking private data
 
-The generated report will contain the names of endpoints/queues and, for some transport types, a scope (e.g. the table schema in SQL Transport). Certain strings can be masked in the report file if the queue names contain confidential or proprietary information. Masking is not case sensitive.
+The generated report may contain terms which are considered confidential or proprietary information, including:
+- Queue/endpoint names
+- Catalog/schema names (SQL Server or PostgreSQL transport)
+- Virtual host names (RabbitMQ transport)
+
+The tool can be configured to mask selected terms. Masking is not case sensitive.
 
 ```shell
 throughput-counter [command] [options] --queueNameMasks Samples Simple
