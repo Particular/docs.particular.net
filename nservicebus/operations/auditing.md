@@ -2,7 +2,7 @@
 title: Auditing Messages
 summary: Send a copy of every successfully processed message to a central place for analysis and compliance purposes.
 component: Core
-reviewed: 2024-12-08
+reviewed: 2024-07-24
 related:
  - nservicebus/operations
  - nservicebus/messaging/headers
