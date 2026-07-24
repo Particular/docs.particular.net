@@ -1,7 +1,7 @@
 ---
 title: Deploying the MassTransit Connector
 summary: Configuring and running the MassTransit Connector and the rest of the Particular Platform
-reviewed: 2024-12-02
+reviewed: 2026-07-24
 component: ServiceControl
 ---
 
