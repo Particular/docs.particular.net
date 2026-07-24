@@ -24,7 +24,7 @@ string ReturnFirstExisting(params string[] paths)
 }
 
 var serviceControlSln = ReturnFirstExisting("../../checkout/ServiceControl/src/ServiceControl.slnx", "../../../ServiceControl/src/ServiceControl.slnx");
-var servicePulseSln = ReturnFirstExisting("../../checkout/ServicePulse/src/ServicePulse.sln", "../../../ServicePulse/src/ServicePulse.sln");
+var servicePulseSln = ReturnFirstExisting("../../checkout/ServicePulse/src/ServicePulse.slnx", "../../../ServicePulse/src/ServicePulse.slnx");
 var servicePulseNpm = ReturnFirstExisting("../../checkout/ServicePulse/src/Frontend", "../../../ServicePulse/src/Frontend");
 
 await using var output = new StreamWriter(includePath, append: false);
