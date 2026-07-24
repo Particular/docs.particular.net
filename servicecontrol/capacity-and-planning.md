@@ -1,7 +1,7 @@
 ---
 title: ServiceControl capacity planning
 summary: Outlines the ServiceControl capacity, throughput, and storage considerations for planning and supporting production environments
-reviewed: 2024-12-02
+reviewed: 2026-07-24
 isLearningPath: true
 ---
 
@@ -13,7 +13,7 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 ### Location
 
-Each ServiceControl instance stores its data in a [RavenDB](https://ravendb.net) instance. 
+Each ServiceControl instance stores its data in a [RavenDB](https://ravendb.net) instance.
 
 - For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/configure-ravendb-location.md).
 - For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/ravendb/containers.md).
@@ -35,7 +35,7 @@ See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.m
 **NOTE**
 
  * The maximum supported size of a RavenDB embedded database is 16 TB.
- * Failed messages *never* expire and are retained indefinitely in the ServiceControl database.
+ * Failed messages *never* automatically expire and are retained indefinitely in the ServiceControl database until they are successfully retried or [manually deleted](/servicepulse/intro-archived-messages.md).
 
 ### Performance
 
