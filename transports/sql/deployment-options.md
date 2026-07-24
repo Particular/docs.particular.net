@@ -21,7 +21,7 @@ In the default mode all tables for all endpoints exist in a single schema of a s
 | Sales    | `[sql_server_instance_01]`.`[nsb_database]`.`[nsb_schema]`.`[Sales]`  |
 | Billing  | `[sql_server_instance_01]`.`[nsb_database]`.`[nsb_schema]`.`[Billing]`|
 
-This mode does not require any transport-specific addressing configuration so it is easy to set up. It also does not require Distributed Transaction Coordinator (DTC) to ensure *exactly-once* message processing.
+This mode does not require any transport-specific addressing configuration so it is easy to set up.
 
 The snapshot (backup) of the entire system state can be done by backing up a single database. It is especially useful if business data is also stored in the same database.
 
@@ -36,7 +36,7 @@ In the multi-schema mode queue tables exist in a single catalog and may belong t
 
 In order to use this mode transport-specific [addressing](/transports/sql/addressing.md) information has to be provided to map endpoints and/or queues to schemas.
 
-The multi-schema mode does not require Distributed Transaction Coordinator (DTC) to ensure *exactly-once* message processing. The snapshot (backup) of the entire system state can be done by backing up a single database. It is especially useful if business data is also stored in the same database.
+The snapshot (backup) of the entire system state can be done by backing up a single database. It is especially useful if business data is also stored in the same database.
 
 ## Multi-catalog
 
@@ -48,7 +48,5 @@ In the multi-catalog mode queue tables exist in multiple catalogs provided all t
 | Billing  | `[sql_server_instance_01]`.**`[billing_database]`**.`[nsb_schema]`.`[Billing]` |
 
 In order to use this mode the transport-specific [addressing](/transports/sql/addressing.md) information has to be provided to map endpoints and/or queues to catalogs.
-
-The multi-catalog mode does not require Distributed Transaction Coordinator (DTC) to ensure *exactly-once* message processing.
 
 The multi-catalog mode can be combined with the multi-schema mode so that groups of endpoints are assigned catalogs and, within each catalog, each endpoint (or a sub-group of endpoints) has its own schema.
