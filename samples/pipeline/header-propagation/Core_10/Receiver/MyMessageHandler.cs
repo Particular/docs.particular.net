@@ -8,7 +8,7 @@ class MyMessageHandler : IHandleMessages<ProcessOrder>, IHandleMessages<ShipOrde
     public Task Handle(ProcessOrder message, IMessageHandlerContext context)
     {
         context.MessageHeaders.TryGetValue("CustomerId", out var customerId);
-        Console.WriteLine($"Recieved ProcessOrder for customer {customerId}. Shipping");
+        Console.WriteLine($"Received ProcessOrder for customer {customerId}. Shipping");
 
         return context.SendLocal(new ShipOrder());
     }
