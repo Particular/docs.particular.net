@@ -25,7 +25,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/3.1.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/3.2.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.Logging.AspNetCore" target="_blank">Amazon.Lambda.Logging.AspNetCore</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Logging.AspNetCore/5.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents/3.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 
