@@ -1,6 +1,6 @@
 ---
 title: Deployment options
-reviewed: 2024-11-06
+reviewed: 2026-24-07
 component: SqlTransport
 related:
  - nservicebus/operations
@@ -14,7 +14,7 @@ The SQL Server Transport offers several deployment options for the queue tables.
 
 ## Default
 
-In the default mode all tables for all endpoints exist in a single schema of a single catalog. Given two endpoints, Sales and Billing, here's the mapping of the endpoint names to the queue table names:
+In the default mode, all tables for all endpoints exist in a single schema of a single catalog. Given two endpoints, Sales and Billing, here is the mapping of the endpoint names to the queue table names:
 
 | Endpoint | Queue table name                                                      |
 |----------|-----------------------------------------------------------------------|
@@ -27,7 +27,7 @@ The snapshot (backup) of the entire system state can be done by backing up a sin
 
 ## Multi-schema
 
-In the multi-schema mode queue tables exist in a single catalog and may belong to different schemas. A schema can contain queues of one or more endpoints. Given two endpoints, Sales and Billing, here's the mapping of the endpoint names to the queue table names:
+In the multi-schema mode, queue tables exist in a single catalog and may belong to different schemas. A schema can contain queues of one or more endpoints. Given two endpoints, Sales and Billing, here is the mapping of the endpoint names to the queue table names:
 
 | Endpoint | Queue table name                                                      |
 |----------|-----------------------------------------------------------------------|
@@ -40,7 +40,7 @@ The snapshot (backup) of the entire system state can be done by backing up a sin
 
 ## Multi-catalog
 
-In the multi-catalog mode queue tables exist in multiple catalogs provided all these catalogs are in the same SQL Server instance. Given two endpoints, Sales and Billing, here's the mapping of the endpoint names to the queue table names:
+In the multi-catalog mode, queue tables exist in multiple catalogs provided all these catalogs are in the same SQL Server instance. Given two endpoints, Sales and Billing, here is the mapping of the endpoint names to the queue table names:
 
 | Endpoint | Queue table name                                                      |
 |----------|-----------------------------------------------------------------------|
