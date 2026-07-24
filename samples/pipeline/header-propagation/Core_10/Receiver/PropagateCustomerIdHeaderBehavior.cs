@@ -9,9 +9,9 @@ class PropagateCustomerIdHeaderBehavior : Behavior<IOutgoingLogicalMessageContex
     {
         if (context.TryGetIncomingPhysicalMessage(out var incomingMessage))
         {
-            if (incomingMessage.Headers.TryGetValue("CustomerId", out var incomingConversationId))
+            if (incomingMessage.Headers.TryGetValue("CustomerId", out var incomingCustomerId))
             {
-                context.Headers["CustomerId"] = incomingConversationId;
+                context.Headers["CustomerId"] = incomingCustomerId;
             }
         }
 

@@ -2,8 +2,10 @@
 title: NServiceBus host troubleshooting
 summary: Resolve common NServiceBus host issues
 component: Host
-reviewed: 2024-12-06
+reviewed: 2026-07-24
 ---
+
+include: host-deprecated-warning
 
 ## Host fails to start due to System.Reflection.ReflectionTypeLoadException
 
@@ -36,7 +38,7 @@ Verify that:
 
 ## Windows service fails to start due to reaching the timeout period
 
-When a Windows service fails to transition into the `SERVICE_RUNNING` state before timeout (i.e. fails to complete the start sequence), the following exception messages may be seen in the Windows Event Viewer:
+When a Windows service fails to transition into the `SERVICE_RUNNING` state before timeout (i.e., fails to complete the start sequence), the following exception messages may be seen in the Windows Event Viewer:
 
 ```txt
 A timeout was reached (30000 milliseconds) while waiting for the XYZ service to connect.
@@ -48,6 +50,6 @@ This often occurs when a dependency is not available in time during the start pr
 
 This problem can be mitigated by:
 
-- If the service is started automatically, configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started 
+- If the service is started automatically, configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started
 - Configuring [service dependencies](/nservicebus/hosting/windows-service.md#installation-specifying-service-dependencies) to ensure they are started before the service starts
 - Enabling [service recoverability](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) to ensure the service will automatically restart in case start fails

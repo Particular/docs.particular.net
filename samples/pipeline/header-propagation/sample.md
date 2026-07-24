@@ -1,7 +1,7 @@
 ---
 title: Header propagation using the pipeline
 summary: How to use the pipeline to copy a header from incoming messages to outgoing messages
-reviewed: 2024-12-10
+reviewed: 2026-07-24
 component: Core
 related:
  - nservicebus/pipeline
@@ -22,7 +22,7 @@ snippet: behavior
 
 ### Registering the behavior
 
-The following code registers the behavior in the receive pipeline:
+The following code registers the behavior in the receiver's outgoing pipeline:
 
 snippet: register-behavior
 
