@@ -10,7 +10,7 @@ related:
  - samples/azure-service-bus-netstandard/topology-migration
  - samples/showcase/loan-broker-showcase
  - architecture/azure
-reviewed: 2026-05-05
+reviewed: 2026-07-27
 ---
 
 The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Azure.Messaging.ServiceBus/) client library for .NET.
@@ -29,12 +29,15 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Scripted Deployment        |Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine`
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
+|Message sessions           |Not supported
 |Case Sensitive             |No
 |Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-azure-service-bus)
 
 > [!NOTE]
 > The Azure Service Bus transport only supports the Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
 >
+
+Support for Azure Service Bus message sessions is being considered. If session-based ordered processing is required, [add a thumbs-up or share the use case on issue #535](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/issues/535).
 
 ## Azure Service Bus Emulator
 

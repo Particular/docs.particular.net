@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2026-03-24
+reviewed: 2026-07-27
 related:
  - samples/aws/sqs-simple
  - samples/showcase/loan-broker-showcase
@@ -25,9 +25,12 @@ redirects:
 |Scripted Deployment        |Built-in CLI, C#
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
+|FIFO input queues          |Not supported
 |Case Sensitive             |Yes
 |Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)
 |Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-amazon-sqs)
+
+The FIFO queue used for unrestricted delayed delivery does not provide FIFO semantics for an endpoint's input queue. Support for FIFO endpoint queues is being considered. If ordered message-group processing is required, [add a thumbs-up or share the use case on issue #240](https://github.com/Particular/NServiceBus.AmazonSQS/issues/240).
 
 ## Advantages
 

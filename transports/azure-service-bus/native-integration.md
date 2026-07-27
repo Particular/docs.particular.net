@@ -4,7 +4,7 @@ summary: How to integrate NServiceBus endpoints with non-NServiceBus endpoints o
 component: ASBS
 related:
  - samples/azure-service-bus-netstandard/native-integration
-reviewed: 2025-10-14
+reviewed: 2026-07-27
 ---
 
 This document guides integrating NServiceBus endpoints with non-NServiceBus endpoints by sharing an Azure Service Bus (ASB) namespace as a mutual communication channel.
@@ -17,6 +17,7 @@ The following points must be taken into account when integrating
 1. The transport assumes a specific layout of ASB entities; any non-NServiceBus endpoint is expected to use the correct entities for each purpose. In general, the following rule applies: queues are for sending, and topics are for publishing. To learn more about the layouts of the built-in topology, refer to [Azure Service Bus Transport Topology](/transports/azure-service-bus/topology.md).
 1. By default, the transport creates its own entities when they don't exist in the namespace. However, non-NServiceBus endpoints may require manual creation of entities. Refer to the [Azure Service Bus documentation](https://learn.microsoft.com/en-us/azure/service-bus-messaging/) for more information on available ASB SDKs and tools to perform these tasks.
 1. The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).
+1. The native Azure Service Bus `MessageId` is distinct from the `NServiceBus.MessageId` header. Native integrations must not assume they match. If matching identifiers are required, [add a thumbs-up or share the use case on issue #581](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/issues/581).
 
 > [!NOTE]
 > Starting with versions 5.1.1, 5.0.3, 4.2.5, and 3.2.7, if the incoming Service Bus message specifies a value for the [`ContentType` property](https://learn.microsoft.com/en-us/rest/api/servicebus/message-headers-and-properties), the value is used to populate the `NServiceBus.ContentType` header.

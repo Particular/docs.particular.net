@@ -2,7 +2,7 @@
 title: Azure Cosmos DB Persistence
 summary: How to use NServiceBus with Azure Cosmos DB
 component: CosmosDB
-reviewed: 2025-09-25
+reviewed: 2026-07-27
 related:
 - samples/cosmosdb/transactions
 - samples/cosmosdb/container
@@ -65,6 +65,10 @@ snippet: CosmosDBCustomClientProvider
 and registered on the container:
 
 snippet: CosmosDBCustomClientProviderRegistration
+
+### Saga finding limitations
+
+Custom saga finders are not supported by Cosmos DB persistence. Use [message-property correlation](/nservicebus/sagas/message-correlation.md#message-property-expression) with a partition-aware mapping. If custom saga finders are required, [add a thumbs-up or share the use case on issue #378](https://github.com/Particular/NServiceBus.Persistence.CosmosDB/issues/378).
 
 ## Capacity planning using request units (RU)
 
@@ -206,6 +210,8 @@ snippet: CosmosDBConfigureThrottlingWithBuilder
 ## Transactions
 
 The Cosmos DB persister supports using the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/). However, Cosmos DB only allows operations to be batched if all operations are performed within the [same logical partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/transactional-batch?tabs=dotnet). This is due to the distributed nature of the Cosmos DB service, which does not support distributed transactions.
+
+Atomic commits are limited to operations in one logical partition of one container. Cross-partition and cross-container transactions are not supported. If this limitation affects the application, [add a thumbs-up or share the use case on issue #1049](https://github.com/Particular/NServiceBus.Persistence.CosmosDB/issues/1049).
 
 The [transactions](transactions.md) documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 
