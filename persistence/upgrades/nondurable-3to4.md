@@ -37,7 +37,7 @@ public class OrderSagaFinder : ISagaFinder<OrderSagaData, CompleteOrder>
 To update the saga finder above:
 
 1. Mark the `FindBy` method as `async`.
-2. Replace the `FindSagaData` method with `FindSagaData` and await the result.
+2. Replace the `GetSagaData` method with `FindSagaData` and await the result.
 3. Return the saga data directly instead of wrapping in `Task.FromResult<T>(…)`.
 
 The resulting method looks like this:
@@ -56,7 +56,7 @@ public class OrderSagaFinder : ISagaFinder<OrderSagaData, CompleteOrder>
             cancellationToken);
 
         // Within an async method, the result can be returned directly
-        return Task.FromResult(sagaData);
+        return sagaData;
     }
 }
 ```

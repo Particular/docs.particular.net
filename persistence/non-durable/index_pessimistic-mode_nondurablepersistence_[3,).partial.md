@@ -2,7 +2,7 @@
 
 Version 3.3.0 and above offer the option for pessimistic concurrency control in the saga persister.
 
-To configure pessimistic mode, configure the concurrency mode in the `NonDurableSagaOptions`. The pessimistic lock timeout can also be adjusted if necessary.
+To configure pessimistic mode, configure the concurrency mode in the `NonDurableSagaOptions`. The pessimistic lock timeout (defaults to 30 seconds) can also be adjusted if necessary.
 
 snippet: ConfiguringNonDurablePessimisticSagaLocking
 
