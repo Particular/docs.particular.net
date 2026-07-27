@@ -1,7 +1,7 @@
 ---
 title: Licensing ServiceControl
 summary: Configure and manage ServiceControl license
-reviewed: 2026-06-16
+reviewed: 2026-07-28
 component: ServiceControl
 related:
 - servicepulse/license
@@ -13,9 +13,7 @@ The license is read at startup, and every 8 hours thereafter to detect license u
 
 ### Expired license
 
-If the license has expired (or is corrupted), existing ServiceControl instances will continue to function and can be started and stopped normally.
-
-New instances cannot be added.
+If the license has expired (or is corrupted), existing ServiceControl instances will continue to function and can be started and stopped normally. Functionality in ServicePulse will be limited to functionality that supports license renewal.
 
 ## License management
 
@@ -26,37 +24,37 @@ In general, ServiceControl instances support [all of the license management opti
 
 In addition, ServiceControl provides additional license management techniques:
 
-### ServiceControl Management utility (SCMU)
+### ServiceControl Management Utility (SCMU)
 
-ServiceControl has a license user interface accessible in ServiceControl Management.
+ServiceControl has a license user interface accessible in ServiceControl Management, which is a Windows only management utility.
 
 #if-version [,5)
 ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
 #end-if
 #if-version [5,)
-If the ServiceControl Management application was not retained during instance installation, a new version can be downloaded to manage license files.
+If the ServiceControl Management Utility was not retained after instance installation, a new version can be downloaded to manage license files. The Management Utility itself is not installed; it exists as a standalone application for managing ServiceControl instances.
 #end-if
 
 The selected license file will be stored in the [machine-wide license file location](/nservicebus/licensing/#license-management-machine-wide-license-location), so it is available to all instances of ServiceControl regardless of the service account used.
 
-![](managementutil-addlicense.png 'width=500')
+![Add License](managementutil-addlicense.png 'width=500')
 
 ### ServiceControl PowerShell
 
 To import a license using PowerShell:
 
- * Ensure [ServiceControl PowerShell Module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) is installed.
  * Start PowerShell
+ * Ensure [ServiceControl PowerShell Module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) is installed.
  * Execute the following cmdlet with the path to the license file.
 
 snippet: ps-importlicense
 
 ### License from file system
 
-It is also possible to load the license from any location in the file system by configuring the `NServiceBus/LicensePath` setting. This allows the license to be loaded from (for example) a central network share instead of the registry.
+It is also possible to load the license from any location in the file system by configuring the `NServiceBus/LicensePath` setting. This allows the license to be loaded from, for example, a central network share instead of the registry.
 
 > [!NOTE]
-The easiest way to find the configuration file is to launch the Service Control Management Utility (SCMU), navigate to the relevant instance, and open its deployment paths.
+The easiest way to find the configuration file, on Windows, is to launch the Service Control Management Utility (SCMU), navigate to the relevant instance, and open its deployment paths.
 
 snippet: config-licensepath
 
