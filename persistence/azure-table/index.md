@@ -1,7 +1,7 @@
 ---
 title: Azure Table Persistence
 summary: Using Azure Tables as persistence
-reviewed: 2026-04-10
+reviewed: 2026-07-27
 component: ASP
 related:
  - persistence/upgrades/asp-saga-deduplication
@@ -58,3 +58,6 @@ Saga correlation property values are subject to the underlying Azure Storage tab
 ### Storage format
 
 partial: outbox-storage-format
+
+> [!WARNING]
+> Serialized transport operations for a single Outbox record cannot exceed the Azure Table 64 KiB string-property limit. Exceeding the limit causes processing to fail. If this limit affects the workload, [add a thumbs-up or share the use case on issue #815](https://github.com/Particular/NServiceBus.Persistence.AzureTable/issues/815).
