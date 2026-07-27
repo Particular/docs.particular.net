@@ -13,33 +13,33 @@ namespace NonDurablePersistence_3
     class OrderSagaFinder :
         ISagaFinder<OrderSagaData, CompleteOrder>
     {
-        public Task<OrderSagaData> FindBy(CompleteOrder message, ISynchronizedStorageSession session, IReadOnlyContextBag context, CancellationToken cancellationToken = default)
+        public async Task<OrderSagaData> FindBy(CompleteOrder message, ISynchronizedStorageSession session, IReadOnlyContextBag context, CancellationToken cancellationToken = default)
         {
             var nonDurableSession = session.NonDurablePersistenceSession();
 
-            var sagaData = nonDurableSession.GetSagaData<OrderSagaData>(
+            var sagaData = await nonDurableSession.FindSagaData<OrderSagaData>(
                 context,
                 data => data.OrderId == message.OrderId,
                 cancellationToken);
 
-            return Task.FromResult(sagaData);
+            return sagaData;
         }
     }
 
     class OrderSagaFinderWithState :
         ISagaFinder<OrderSagaData, CompleteOrder>
     {
-        public Task<OrderSagaData> FindBy(CompleteOrder message, ISynchronizedStorageSession session, IReadOnlyContextBag context, CancellationToken cancellationToken = default)
+        public async Task<OrderSagaData> FindBy(CompleteOrder message, ISynchronizedStorageSession session, IReadOnlyContextBag context, CancellationToken cancellationToken = default)
         {
             var nonDurableSession = session.NonDurablePersistenceSession();
 
-            var sagaData = nonDurableSession.GetSagaData<OrderSagaData, string>(
+            var sagaData = await nonDurableSession.FindSagaData<OrderSagaData, string>(
                 context,
                 message.OrderId,
                 (data, orderId) => data.OrderId == orderId,
                 cancellationToken);
 
-            return Task.FromResult(sagaData);
+            return sagaData;
         }
     }
 

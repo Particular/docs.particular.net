@@ -41,20 +41,6 @@ partial: extended
 
 When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-### Starting a saga
+By default, non-durable persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data. If a conflict is detected a `InvalidOperationException` will be thrown describing the conflict.
 
-Example exception:
-
-```
-System.InvalidOperationException: The saga with the correlation id 'Name: OrderId Value: f05c6e0c-aea6-48d6-846c-d1663998ebf2' already exists
-```
-
-### Updating or deleting saga data
-
-Non-durable persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
-
-Example exception:
-
-```
-System.InvalidOperationException: Saga with Id '7ac53d15-4742-4e38-9e2f-6d75c25b6621' can't be updated because it was updated by another process.
-```
+partial: pessimistic-mode

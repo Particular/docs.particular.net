@@ -1,3 +1,5 @@
+using System;
+
 namespace NonDurablePersistence_3
 {
     using System.Text.Json;
@@ -83,6 +85,24 @@ namespace NonDurablePersistence_3
                     {
                         TypeInfoResolverChain = { new SagaJsonContext() }
                     }
+                }
+            };
+
+            endpointConfiguration.UseNonDurablePersistence(options);
+
+            #endregion
+        }
+
+        void ConfigurePessimisticSagaLocking(EndpointConfiguration endpointConfiguration)
+        {
+            #region ConfiguringNonDurablePessimisticSagaLocking
+
+            var options = new NonDurablePersistenceOptions
+            {
+                Saga = new NonDurableSagaOptions
+                {
+                    ConcurrencyMode = NonDurableSagaConcurrencyMode.Pessimistic,
+                    PessimisticLockTimeout = TimeSpan.FromSeconds(30)
                 }
             };
 
