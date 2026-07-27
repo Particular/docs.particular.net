@@ -6,7 +6,7 @@ related:
  - samples/aws/lambda-sqs
  - samples/aws/lambda-sqs-annotations
  - samples/showcase/loan-broker-showcase
-reviewed: 2026-05-26
+reviewed: 2026-07-27
 redirects:
  - previews/aws-lambda-simple-queue-service
 ---
@@ -15,7 +15,7 @@ Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) usi
 
 ## Basic usage
 
-An NServiceBus endpoint is hosted in AWS Lambda by creating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition.
+An NServiceBus endpoint is hosted in AWS Lambda by creating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition. An AWS Lambda application currently supports one NServiceBus endpoint. Support for multiple endpoints in a single Lambda application is being considered. If multi-endpoint support would be valuable, [add a thumbs-up or share the use case on issue #681](https://github.com/Particular/NServiceBus.AwsLambda.Sqs/issues/681).
 
 ### `AwsLambdaSQSEndpoint` creation
 
