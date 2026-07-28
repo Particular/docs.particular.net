@@ -45,13 +45,13 @@ Console.WriteLine("Endpoint started.");
 var done = false;
 while (!done)
 {
-    Console.WriteLine("Press ESC to stop.\nPress O to place an order.");
+    Console.WriteLine("Press ESC to stop.\nPress S to place an order.");
     switch (Console.ReadKey(true).Key)
     {
         case ConsoleKey.Escape:
             done = true;
             break;
-        case ConsoleKey.O:
+        case ConsoleKey.S:
             var options = new SendOptions();
             options.RouteToThisEndpoint();
             #region set-custom-header
