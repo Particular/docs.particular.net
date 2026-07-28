@@ -11,7 +11,7 @@ This sample shows how to use pipeline behaviors to capture specific values from 
 
 ## Running the project
 
-The code consists of a single endpoint that sends messages to itself. Press <kbd>O</kbd> to place an order. As the message is processed, the `OrderId`, `CustomerId`, and `Priority` values appear as tags on the `process` span in the console output.
+The code consists of a single endpoint that sends messages to itself. Press <kbd>S</kbd> to place an order. As the message is processed, the `OrderId`, `CustomerId`, and `Priority` values appear as tags on the `process` span in the console output.
 
 ## Why use behaviors
 
