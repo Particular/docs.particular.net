@@ -406,7 +406,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.2.0)| **Current** | 2026-07-01     | Active            | Active |
+| [3.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.3.0)| **Current** | 2026-07-27     | Active            | Active |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.2.0)| Mainstream Support | 2026-07-01     | 2026-10-27        | Ineligible |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.1.0)| Mainstream Support | 2026-06-26     | 2026-10-01        | Ineligible |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.0.1)| Mainstream Support | 2026-01-30     | 2026-09-26        | Ineligible |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/2.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
@@ -432,8 +433,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.2)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.2)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.3)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.2.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-03-05~~    | ~~Ineligible~~ |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.1.2)| ~~Unsupported~~ | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |
@@ -465,8 +466,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.2)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.2)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.3)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.2.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-03-05~~    | ~~Ineligible~~ |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.1.2)| ~~Unsupported~~ | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |

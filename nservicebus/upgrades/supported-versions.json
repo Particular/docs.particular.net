@@ -858,6 +858,10 @@
         {
           "Minor": "3.2",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.3",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
