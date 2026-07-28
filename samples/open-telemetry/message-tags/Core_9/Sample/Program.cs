@@ -53,7 +53,7 @@ while (!done)
         case ConsoleKey.Escape:
             done = true;
             break;
-        case ConsoleKey.O:
+        case ConsoleKey.S:
             var options = new SendOptions();
             options.RouteToThisEndpoint();
             #region set-custom-header
