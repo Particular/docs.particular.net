@@ -1,7 +1,7 @@
 ---
 title: Complex saga finding logic
 summary: Use IFindSaga to write custom code that resolves sagas.
-reviewed: 2026-06-29
+reviewed: 2026-07-27
 component: Core
 related:
 - samples/saga/nh-custom-sagafinder
@@ -17,6 +17,9 @@ Custom Saga Finders are created by implementing `IFindSagas`.
 snippet: saga-finder
 
 partial: mapping
+
+> [!NOTE]
+> Cosmos DB persistence does not support custom saga finders. Use [message-property correlation](/nservicebus/sagas/message-correlation.md#message-property-expression) with a partition-aware mapping. For more information, see [Cosmos DB saga finding limitations](/persistence/cosmosdb/#usage-saga-finding-limitations).
 
 Many finders may exist for a given saga or message type. If a saga can't be found and the saga specifies that it should be started for that message type, NServiceBus will know to create a new saga instance.
 
