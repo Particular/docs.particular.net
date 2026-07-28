@@ -1,5 +1,5 @@
 ---
-title: Capturing message properties and header values as OpenTelemetry tags on spans
+title: Capturing message properties as OpenTelemetry span tags
 summary: Demonstrates how to use pipeline behaviors to capture specific values from message body properties and headers as tags on OpenTelemetry spans
 reviewed: 2026-07-27
 component: Core
