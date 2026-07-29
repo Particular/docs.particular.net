@@ -1,7 +1,7 @@
 ## Security Advisory Id GHSA-mmjf-rqrv-855v
 
 This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-mmjf-rqrv-855v](https://github.com/advisories/GHSA-mmjf-rqrv-855v) security advisory: Microsoft Security Advisory CVE-2026-50527 &#8211; .NET Denial of Service Vulnerability.
+Patches for components to update their dependencies to avoid references that have the [GHSA-mmjf-rqrv-855v](https://github.com/advisories/ghsa-mmjf-rqrv-855v) security advisory: Microsoft Security Advisory CVE-2026-50527 &#8211; .NET Denial of Service Vulnerability.
 
 ### Patch releases
 
