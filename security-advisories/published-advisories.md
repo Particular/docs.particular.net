@@ -19,3 +19,5 @@ suppressRelated: true
   * AWS CDK CodeBuild S3 Log Encryption Boolean Inversion
 * [GHSA-cvvh-rhrc-wg4q](ghsa-cvvh-rhrc-wg4q.md)
   * Microsoft Security Advisory CVE-2026-47302 – .NET Denial of Service Vulnerability
+* [GHSA-g8r8-53c2-pm3f](ghsa-g8r8-53c2-pm3f.md)
+  * Microsoft Security Advisory CVE-2026-47304 – .NET Security Feature Bypass Vulnerability
