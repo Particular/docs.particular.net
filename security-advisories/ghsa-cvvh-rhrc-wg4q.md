@@ -8,7 +8,7 @@ reviewed: "2026-07-29"
 ## Security Advisory Id GHSA-cvvh-rhrc-wg4q
 
 This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-cvvh-rhrc-wg4q](https://github.com/advisories/GHSA-cvvh-rhrc-wg4q) security advisory: Microsoft Security Advisory CVE-2026-47302 &#8211; .NET Denial of Service Vulnerability.
+Patches for components to update their dependencies to avoid references that have the [GHSA-cvvh-rhrc-wg4q](https://github.com/advisories/ghsa-cvvh-rhrc-wg4q) security advisory: Microsoft Security Advisory CVE-2026-47302 &#8211; .NET Denial of Service Vulnerability.
 
 ### Patch releases
 
