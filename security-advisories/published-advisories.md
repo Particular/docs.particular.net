@@ -15,3 +15,5 @@ suppressRelated: true
   * Microsoft Security Advisory CVE-2026-50648 – .NET Denial of Service Vulnerability
 * [GHSA-8q5v-6pqq-x66h](ghsa-8q5v-6pqq-x66h.md)
   * Microsoft Security Advisory CVE-2026-50525 – .NET Denial of Service Vulnerability
+* [GHSA-464c-974j-9xm6](ghsa-464c-974j-9xm6.md)
+  * AWS CDK CodeBuild S3 Log Encryption Boolean Inversion
