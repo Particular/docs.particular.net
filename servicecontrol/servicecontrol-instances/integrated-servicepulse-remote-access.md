@@ -88,7 +88,7 @@ New-NetFirewallRule -DisplayName "ServiceControl (integrated ServicePulse)" -Dir
 
 Microsoft documents both approaches in [Windows Firewall rules](https://learn.microsoft.com/en-us/windows/security/operating-system-security/network-security/windows-firewall/rules) and the [`New-NetFirewallRule` reference](https://learn.microsoft.com/en-us/powershell/module/netsecurity/new-netfirewallrule).
 
-Network firewalls, proxies, or DNS between users and the machine may also need changes. If any of this is managed by another team, this is the point to involve whoever looks after the network and security in the organization: the request is to allow inbound TCP traffic to this port on this machine, from the users who need access.
+Network firewalls, proxies, or DNS between users and the machine may also need changes. If another team is responsible for the network or security infrastructure, involve them at this point. They should configure the network to allow inbound TCP traffic to this port on this machine from the users who require access.
 
 > [!NOTE]
 > No `netsh http add urlacl` command is needed. That step appears in the ServicePulse in IIS instructions because it applies to standalone ServicePulse, which uses a different web server. ServiceControl does not require it.
