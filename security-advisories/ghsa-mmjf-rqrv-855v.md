@@ -1,3 +1,9 @@
+---
+title: "GHSA-mmjf-rqrv-855v"
+summary: "Microsoft Security Advisory CVE-2026-50527 – .NET Denial of Service Vulnerability."
+reviewed: "2026-07-29"
+---
+
 ## Security Advisory Id GHSA-mmjf-rqrv-855v
 
 This advisory discloses a security vulnerability 
