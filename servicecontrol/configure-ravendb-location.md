@@ -1,7 +1,7 @@
 ---
 title: RavenDB Embedded Location
 summary: Increase space for monitored data by configuring ServiceControl to save data in a location other than the default
-reviewed: 2026-07-24
+reviewed: 2026-07-30
 ---
 
 Each ServiceControl instance deployed using PowerShell or the ServiceControl Management Utility stores its data in a RavenDB embedded database server. The location of the data is set at install time.
@@ -19,7 +19,7 @@ ServiceControl Management does not provide a means of moving the ServiceControl 
 * The current database path is listed in the utility. Copy the contents of this directory to the new location
 * The new database location should not be a subfolder of one of the existing locations (e.g. Installation path, Log Path, etc)
 * Ensure that the service account used for ServiceControl has read/write access to the new location
-* Manually edit the configuration and specify the new location by changing or adding the `ServiceControl/DbPath` setting. See [Configuration Settings](/servicecontrol/servicecontrol-instances/configuration.md)
+* Manually edit the configuration and specify the new location by changing or adding the [`ServiceControl/DbPath`](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) setting
 * Restart the ServiceControl service
 * Remove the old database directory and contents
 

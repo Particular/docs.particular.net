@@ -1,7 +1,7 @@
 ---
 title: ServiceControl CORS Configuration
 summary: How to configure Cross-Origin Resource Sharing for ServiceControl instances
-reviewed: 2026-01-14
+reviewed: 2026-07-30
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide
@@ -26,8 +26,11 @@ CORS configuration is required when:
 
 CORS configuration is *not* required when:
 
-- ServicePulse is [hosted by ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md)
+- ServicePulse is [hosted by ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md), for calls to the Error instance that hosts it. Integrated ServicePulse calls that instance's API on its own origin using a relative URL.
 - ServicePulse is using the [internal reverse proxy](/servicepulse/containerization/#settings-enable-reverse-proxy).
+
+> [!NOTE]
+> A ServiceControl Monitoring instance is always a separate origin, because it has its own host name and port. CORS must be configured on the Monitoring instance whenever ServicePulse connects to it from another machine, including when using integrated ServicePulse. See [Remote access to integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse-remote-access.md#step-4-make-servicecontrol-monitoring-reachable).
 
 ## Configuration examples
 

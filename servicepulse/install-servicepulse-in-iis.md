@@ -1,9 +1,12 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2026-02-27
+reviewed: 2026-07-30
 component: ServicePulse
 ---
+
+> [!NOTE]
+> This page applies to standalone ServicePulse installations only. When using [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md), ServicePulse is served by the ServiceControl Error instance and neither IIS nor these steps are required. To make integrated ServicePulse reachable from other machines, see [Remote access to integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse-remote-access.md).
 
 ## Prerequisites
 

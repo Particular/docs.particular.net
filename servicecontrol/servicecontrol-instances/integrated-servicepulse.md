@@ -1,7 +1,7 @@
 ---
 title: Integrated ServicePulse
 summary: A guide to hosting ServicePulse and ServiceControl within the same host process.
-reviewed: 2026-02-16
+reviewed: 2026-07-30
 component: ServiceControl
 ---
 
@@ -11,9 +11,10 @@ Benefits:
 - No need for a standalone ServicePulse installation. Install and manage ServiceControl and ServicePulse in one place.
 - No need to configure ServicePulse with the ServiceControl Error instance url. Integrated ServicePulse is preconfigured to connect to the ServiceControl installation it runs in.
 - No need to upgrade ServicePulse. Each new version of ServiceControl includes the latest ServicePulse. Every time ServiceControl is upgraded, integrated ServicePulse is upgraded as well.
+- No need for a reverse proxy in front of ServicePulse, and fewer moving parts as a result. ServicePulse and the Error instance API are served from the same address, so there is nothing to route or rewrite and [CORS](/servicecontrol/security/configuration/cors.md) does not apply. Making ServicePulse [available to other machines](integrated-servicepulse-remote-access.md) is a matter of configuring the Error instance.
 
 Drawbacks:
-- Can not use built-in ServicePulse reverse proxy. Enable [security features of ServiceControl](/servicecontrol/security/) to secure access to ServiceControl data.
+- A ServiceControl Monitoring instance is not served through integrated ServicePulse. A standalone ServicePulse container can front both ServiceControl and Monitoring on a single address with its [built-in reverse proxy](/servicepulse/containerization/#reverse-proxy), whereas a Monitoring instance used with integrated ServicePulse must be [reachable by the browser directly](integrated-servicepulse-remote-access.md#step-4-make-servicecontrol-monitoring-reachable).
 - Can not use a single ServicePulse instance to control multiple ServiceControl installations. Each ServiceControl Error instance can be configured with a dedicated integrated ServicePulse.
 
 > [!NOTE]
@@ -36,8 +37,8 @@ When upgrading an existing ServiceControl Error instance via Powershell or docke
 
 Integrated ServicePulse shares settings with the ServiceControl Error instance it is hosted by (the hosting instance).
 
-- All host settings (such as [host name](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolhostname) and [port number](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolport)) are shared with the hosting instance. Integrated ServicePulse is available at the root url (`http://localhost:33333/` in a default installation).
-- Most security settings are shared with the hosting instance. There is no need to enable [header forwarding](/servicepulse/security/configuration/forward-headers.md) for ServicePulse specifically, and [CORS](/servicecontrol/security/configuration/cors.md) is no longer required
+- All host settings (such as [host name](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolhostname) and [port number](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolport)) are shared with the hosting instance. Integrated ServicePulse is available at the root url (`http://localhost:33333/` in a default installation). To make it reachable from other machines, see [Remote access to integrated ServicePulse](integrated-servicepulse-remote-access.md).
+- Most security settings are shared with the hosting instance. There is no need to enable [header forwarding](/servicepulse/security/configuration/forward-headers.md) for ServicePulse specifically, and [CORS](/servicecontrol/security/configuration/cors.md) is no longer required. Use the [security features of ServiceControl](/servicecontrol/security/) to control access to ServiceControl data.
 - [ServicePulse specific authorization configuration](/servicecontrol/servicecontrol-instances/configuration.md#authentication-servicecontrolauthentication-servicepulse-clientid) is still required.
 - Integrated ServicePulse is automatically configured to connect to the hosting instance. This configuration is read-only and cannot be changed.
 - Connection to a ServiceControl Monitoring instance can be [configured via the ServicePulse UI](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui).
