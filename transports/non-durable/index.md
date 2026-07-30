@@ -39,7 +39,7 @@ Use this transport when:
 
 ## Prerequisites
 
-- All endpoints must exist in the same process.
+- All endpoints must be hosted in the same process.
 - The system must be able to afford losing all messages when the process ends.
 
 ## Usage
