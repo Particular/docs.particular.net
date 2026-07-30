@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-Console.Title = "Non-Durable Transport Sample";
+Console.Title = "Non-Durable Sample";
 
 var builder = Host.CreateApplicationBuilder(args);
 
