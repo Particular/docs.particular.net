@@ -5,6 +5,7 @@ component: NonDurableTransport
 reviewed: 2026-07-30
 related:
  - persistence/non-durable
+ - samples/non-durable-transport
 redirects:
  - nservicebus/non-durable-transport
 ---
