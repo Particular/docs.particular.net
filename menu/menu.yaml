@@ -817,6 +817,10 @@
       Title: Learning transport
     - Url: transports/learning/viewing-messages
       Title: Viewing content
+  - Title: Non-Durable
+    Articles:
+    - Url: transports/non-durable
+      Title: Non-Durable transport
   - Title: Azure Service Bus
     Articles:
     - Url: transports/azure-service-bus

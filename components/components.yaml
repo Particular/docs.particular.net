@@ -251,6 +251,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: NonDurableTransport
+  Name: Non-Durable Transport
+  DocsUrl: /transports/non-durable
+  GitHubOwner: Particular
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.NonDurable
+  NugetOrder:
+    - NServiceBus.Transport.NonDurable
+
 - Key: LearningTransport
   Name: Learning Transport
   DocsUrl: /transports/learning

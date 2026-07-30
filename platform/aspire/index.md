@@ -40,6 +40,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | Transport                                                 | Status                       |
 | --------------------------------------------------------- | ---------------------------- |
 | [Learning](/transports/learning/)                         | Supported (Development only) |
+| [Non-Durable](/transports/non-durable/)                   | Not yet supported            |
 | [Azure Service Bus](/transports/azure-service-bus/)       | Supported                    |
 | [RabbitMQ](/transports/rabbitmq/)                         | Supported                    |
 | [Amazon SQS](/transports/sqs/)                            | Supported                    |
