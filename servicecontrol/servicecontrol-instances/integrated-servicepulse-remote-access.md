@@ -142,7 +142,7 @@ Monitoring data comes from a separate [ServiceControl Monitoring instance](/serv
 The default is `http://localhost:33633/`, and in a browser on someone else's machine `localhost` means *their* machine, not the ServiceControl machine. The Monitoring tab therefore fails to load until the following are configured.
 
 1. Set [`Monitoring/HttpHostname`](/servicecontrol/monitoring-instances/configuration.md#host-settings-monitoringhttphostname) on the Monitoring instance so it accepts connections from other machines, and allow its port (`33633` by default) through the firewall as in [Step 2](#step-2-allow-the-port-through-the-firewall).
-1. Allow the ServicePulse address on the Monitoring instance with [`Monitoring/Cors.AllowedOrigins`](/servicecontrol/monitoring-instances/configuration.md#cors-monitoringcors-allowedorigins). Because the Monitoring instance is at a different address from ServicePulse, browsers require it to opt in to these requests, even though this is not needed for the Error instance API:
+1. Decide which origins the Monitoring instance accepts requests from. Because it is at a different address from ServicePulse, its [CORS](/servicecontrol/security/configuration/cors.md) policy governs these requests, unlike calls to the Error instance API. [`Monitoring/Cors.AllowAnyOrigin`](/servicecontrol/monitoring-instances/configuration.md#cors-monitoringcors-allowanyorigin) defaults to `true`, so the Monitoring tab works without configuring anything here. For production, set it to `false` and list the ServicePulse address in [`Monitoring/Cors.AllowedOrigins`](/servicecontrol/monitoring-instances/configuration.md#cors-monitoringcors-allowedorigins) instead:
 
     ```xml
     <appSettings>

@@ -26,11 +26,12 @@ CORS configuration is required when:
 
 CORS configuration is *not* required when:
 
-- ServicePulse is [hosted by ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md), for calls to the Error instance that hosts it. Integrated ServicePulse calls that instance's API on its own origin using a relative URL.
-- ServicePulse is using the [internal reverse proxy](/servicepulse/containerization/#settings-enable-reverse-proxy).
+- ServicePulse is [hosted by ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md), for calls to the Error instance that hosts it. Integrated ServicePulse requests that instance's API on the same origin, using the root-relative URL `/api/`.
+- ServicePulse is using the [internal reverse proxy](/servicepulse/containerization/#settings-enable-reverse-proxy), which forwards both the Error instance API and the Monitoring instance API through the ServicePulse origin.
 
 > [!NOTE]
-> A ServiceControl Monitoring instance is always a separate origin, because it has its own host name and port. CORS must be configured on the Monitoring instance whenever ServicePulse connects to it from another machine, including when using integrated ServicePulse. See [Remote access to integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse-remote-access.md#step-4-make-servicecontrol-monitoring-reachable).
+> Unless it is reached through one of the reverse proxies above, a [ServiceControl Monitoring instance](/servicecontrol/monitoring-instances/) listens on its own port, so it is a separate origin from ServicePulse even when both run on the same machine. This includes integrated ServicePulse, which shares an origin with the Error instance hosting it but not with the Monitoring instance. These cross-origin requests are allowed by default, because `Cors.AllowAnyOrigin` defaults to `true`. When origins are restricted, as recommended for production, the ServicePulse origin must be added to [`Monitoring/Cors.AllowedOrigins`](/servicecontrol/monitoring-instances/configuration.md#cors-monitoringcors-allowedorigins) as well as to the Error instance. For a worked example, see [making ServiceControl Monitoring reachable](/servicecontrol/servicecontrol-instances/integrated-servicepulse-remote-access.md#step-4-make-servicecontrol-monitoring-reachable).
+
 
 ## Configuration examples
 
