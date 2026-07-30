@@ -3,7 +3,7 @@ title: Published Advisories
 reviewed: 2026-07-30
 suppressRelated: true
 ---
-* [GHSA-23rf-6693-g89p 2026-07-30] (ghsa-23rf-6693-g89p.md)
+* [GHSA-23rf-6693-g89p 2026-07-30](ghsa-23rf-6693-g89p.md)
   * Microsoft Security Advisory CVE-2026-50648 – .NET Denial of Service Vulnerability
 * [GHSA-8q5v-6pqq-x66h 2026-07-30](ghsa-8q5v-6pqq-x66h.md)
   * Microsoft Security Advisory CVE-2026-50525 – .NET Denial of Service Vulnerability
