@@ -30,7 +30,7 @@ This sample demonstrates two NServiceBus endpoints running in the same process, 
 ## Running the sample
 
  1. Run the console application.
- 1. Press <kbr>Enter</kbr> to send a `PlaceOrder` message.
+ 1. Press <kbd>Enter</kbd> to send a `PlaceOrder` message.
  1. Observe the console output as the saga starts, sends `ProcessPayment` to PaymentEndpoint, and handles the `PaymentCompleted` event or a timeout.
 
 ## Code walk-through
@@ -39,7 +39,7 @@ This sample demonstrates two NServiceBus endpoints running in the same process, 
 
 snippet: sample-config
 
-Both endpoints disable assembly scanning and explicitly register their handlers and sagas. Each endpoint has its own `NonDurableTransport` instance, but they share the same `NonDurableBroker`. SagaEndpoint enables inline execution; PaymentEndpoint does not.
+Both endpoints disable assembly scanning and explicitly register their handlers and sagas, which is required for [multi-endpoint hosting](/nservicebus/hosting/core-hosting.md#hosting-multiple-endpoints). Each endpoint has its own `NonDurableTransport` instance, but they share the same `NonDurableBroker`. SagaEndpoint enables inline execution; PaymentEndpoint does not.
 
 ### The saga
 
@@ -49,7 +49,7 @@ snippet: thesaga
 
 ## Expected output
 
-When <kbr>Enter</kbr> is pressed, the console shows output similar to:
+When <kbd>Enter</kbd> is pressed, the console shows output similar to:
 
 ```
 Sent PlaceOrder with OrderId <guid>
