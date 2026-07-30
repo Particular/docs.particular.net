@@ -13,5 +13,5 @@ suppressRelated: true
 
 * [GHSA-23rf-6693-g89p](ghsa-23rf-6693-g89p.md)
   * Microsoft Security Advisory CVE-2026-50648 – .NET Denial of Service Vulnerability
-* [GHSA-8q5v-6pqq-x66h](GHSA-8q5v-6pqq-x66h.md)
+* [GHSA-8q5v-6pqq-x66h](ghsa-8q5v-6pqq-x66h.md)
   * Microsoft Security Advisory CVE-2026-50525 – .NET Denial of Service Vulnerability
