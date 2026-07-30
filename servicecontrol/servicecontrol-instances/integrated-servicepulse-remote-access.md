@@ -58,7 +58,7 @@ Containers already accept connections addressed to any host name and need no cha
 
 Now that users type this address themselves, the default port `33333` is worth reconsidering. It can be changed with [`ServiceControl/Port`](configuration.md#host-settings-servicecontrolport).
 
-The port worth choosing is `443`, the standard port for HTTPS. Browsers hide it, so users get a clean address with no port number at all:
+The recommended port is `443`, the standard port for HTTPS. Browsers hide it, so users get a clean address with no port number.
 
 ```xml
 <appSettings>
