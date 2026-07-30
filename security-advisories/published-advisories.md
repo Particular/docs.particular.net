@@ -11,5 +11,5 @@ suppressRelated: true
 * [Security Advisory 2016-07-05](sqlserver-sqlinjection.md)
   * NServiceBus SQL Server Transport injection vulnerability.
 
-- [GHSA-23rf-6693-g89p](GHSA-23rf-6693-g89p.md)
-Microsoft Security Advisory CVE-2026-50648 – .NET Denial of Service Vulnerability
+* [GHSA-23rf-6693-g89p](ghsa-23rf-6693-g89p.md)
+ * Microsoft Security Advisory CVE-2026-50648 – .NET Denial of Service Vulnerability
