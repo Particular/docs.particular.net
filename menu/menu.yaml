@@ -1640,6 +1640,8 @@
       Url: servicecontrol/servicecontrol-instances
     - Title: Integrated ServicePulse
       Url: servicecontrol/servicecontrol-instances/integrated-servicepulse
+    - Title: Remote access to integrated ServicePulse
+      Url: servicecontrol/servicecontrol-instances/integrated-servicepulse-remote-access
     - Title: Deployment
       Url: servicecontrol/servicecontrol-instances/deployment
       Articles:

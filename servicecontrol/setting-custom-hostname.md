@@ -1,7 +1,7 @@
 ---
 title: Configure the ServiceControl URI
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
-reviewed: 2026-03-09
+reviewed: 2026-07-30
 ---
 
 To set a custom hostname and IP port for an instance of the ServiceControl service:
@@ -26,4 +26,6 @@ ServiceControl Management will then validate the settings changes and restart th
 
 ## Updating ServicePulse Configuration to ServiceControl Custom Hostname
 
-Refer to the [ServicePulse documentation](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to configure ServicePulse to connect to ServiceControl.
+Refer to the [ServicePulse documentation](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to configure a standalone ServicePulse to connect to ServiceControl.
+
+When using [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md), no such update is needed. It is preconfigured to connect to the Error instance that hosts it using a relative URL, so it follows the custom hostname automatically. See [Remote access to integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse-remote-access.md).
