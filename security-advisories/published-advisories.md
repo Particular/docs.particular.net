@@ -21,3 +21,5 @@ suppressRelated: true
   * Microsoft Security Advisory CVE-2026-47302 – .NET Denial of Service Vulnerability
 * [GHSA-g8r8-53c2-pm3f](ghsa-g8r8-53c2-pm3f.md)
   * Microsoft Security Advisory CVE-2026-47304 – .NET Security Feature Bypass Vulnerability
+* [GHSA-mmjf-rqrv-855v](ghsa-mmjf-rqrv-855v.md)
+  * Microsoft Security Advisory CVE-2026-50527 – .NET Denial of Service Vulnerability
