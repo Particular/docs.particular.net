@@ -821,6 +821,10 @@
     Articles:
     - Url: transports/non-durable
       Title: Non-Durable transport
+    - Url: transports/non-durable/simulation
+      Title: Simulation and rate limiting
+    - Url: transports/non-durable/observability
+      Title: Observability
   - Title: Azure Service Bus
     Articles:
     - Url: transports/azure-service-bus

@@ -2,7 +2,7 @@
 title: Non-Durable Transport
 summary: A transport for exchanging NServiceBus messages in memory in a non-durable fashion
 component: NonDurableTransport
-reviewed: 2026-07-30
+reviewed: 2026-07-31
 related:
  - persistence/non-durable
  - samples/non-durable-transport
@@ -34,6 +34,7 @@ Use this transport when:
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported
 |Native integration         |Not supported
+|OpenTelemetry tracing      |[Supported](observability.md)
 |Case Sensitive             |Yes
 |Aspire integration         |Not yet supported
 
@@ -90,34 +91,6 @@ This is useful for:
 
 snippet: NonDurableTransport-InlineExecution
 
-## Simulation and rate limiting
-
-The `NonDurableBroker` supports optional simulation settings for testing resilience scenarios. Simulation can introduce artificial delays or rejections on send, receive, and delayed delivery operations. Combined with a fake time provider, tests can simulate the passage of time deterministically.
-
-### Basic simulation
-
-Configure rate limiting with a fixed window:
-
-snippet: NonDurableTransport-Simulation
-
-### Simulating the passage of time
-
-Use `FakeTimeProvider` to advance time deterministically in tests:
-
-snippet: NonDurableTransport-SimulatedTime
-
-### Per-queue rate limit overrides
-
-Apply different simulation settings to specific queues:
-
-snippet: NonDurableTransport-QueueOverride
-
-### Delayed delivery simulation
-
-Control the timing of delayed message delivery:
-
-snippet: NonDurableTransport-DelayedDeliverySimulation
-
 ## Shutdown behavior
 
 The transport supports configurable shutdown behavior via `NonDurableTransportShutdownBehavior` on `NonDurableTransportOptions`.
@@ -148,18 +121,6 @@ Disposing the `NonDurableBroker` completes all queues and stops the delayed mess
 
 > [!NOTE]
 > Because the transport uses a static shared broker by default, the broker is not automatically disposed when a single endpoint stops. Explicitly dispose the broker only when you created it manually and want to free memory and signal completion to all queues. When the broker is registered in the dependency injection container, the container manages its disposal.
-
-## OpenTelemetry
-
-The transport emits OpenTelemetry activities under the source `NServiceBus.Transport.NonDurable`.
-
-| Activity name | Kind | Description |
-|:---|:---|:---|
-| `NServiceBus.Transport.NonDurable.Send` | Producer | A message is dispatched to a destination queue. |
-| `NServiceBus.Transport.NonDurable.Schedule` | Producer | A delayed delivery message is scheduled. |
-| `NServiceBus.Transport.NonDurable.Process` | Consumer | A message is received and processed. |
-
-Tags include `messaging.system = nondurable`, `messaging.destination.name`, `messaging.operation.name`, `messaging.message.id`, and `messaging.message.conversation_id`.
 
 ## Advantages
 
