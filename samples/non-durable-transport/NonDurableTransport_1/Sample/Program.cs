@@ -30,7 +30,7 @@ paymentEndpoint.UseSerialization<SystemJsonSerializer>();
 paymentEndpoint.AssemblyScanner().Disable = true;
 paymentEndpoint.AddHandler<ProcessPaymentHandler>();
 
-var paymentTransport = new NonDurableTransport(new NonDurableTransportOptions());
+var paymentTransport = new NonDurableTransport();
 paymentEndpoint.UseTransport(paymentTransport);
 #endregion
 
