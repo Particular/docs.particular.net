@@ -28,7 +28,9 @@ When using a custom mapping, ensure a unique index exists for every column refer
 
 ## Prerequisites
 
-This sample requires an instance of SQL Server at `.\SqlExpress` and the database `Samples.CustomNhMappings` to run correctly.
+This sample requires an instance of SQL Server and a database named `Samples.CustomNhMappings`. The database must already exist, as the endpoint creates only the tables it needs.
+
+Each project connects to `localhost,1433` using SQL Server authentication. To run against SQL Server Express instead, use the `.\SqlExpress` connection string shown in the comment directly above the `connectionString` variable in each project's `Program.cs`.
 
 ## Custom .hbm.xml mapping
 
@@ -50,7 +52,7 @@ snippet: AddMappingsFromFilesystem
 
 ## Use Fluent NHibernate
 
-[Fluent NHibernate](http://www.fluentnhibernate.org) provides a type-safe mapping approach where the mapping is specified in code (not as `.hbm.xml`), but the mapping is still separate from the classes. The benefit of this approach is the compile-time feedback provided when a mapping is invalid.
+[Fluent NHibernate](https://fluentnhibernate.org) provides a type-safe mapping approach where the mapping is specified in code (not as `.hbm.xml`), but the mapping is still separate from the classes. The benefit of this approach is the compile-time feedback provided when a mapping is invalid.
 
 To use it with NServiceBus:
 
