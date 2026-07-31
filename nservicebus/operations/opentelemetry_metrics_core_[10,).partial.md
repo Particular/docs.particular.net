@@ -23,7 +23,7 @@ Meter source `NServiceBus.Core.Pipeline.Incoming`:
 
 Starting NServiceBus V10.1 envelope unwrapping metrics are emitted as part of the `NServiceBus.Core.Pipeline.Incoming` source:
 
-- [`nservicebus.envelope.uwrapped`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics) - Total number of times when an envelope handler failed to unwrap an incoming message. Emitted for every unwrapping attempt
+- [`nservicebus.envelope.unwrapped`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics) - Total number of times when an envelope handler failed to unwrap an incoming message. Emitted for every unwrapping attempt
 
 Meter source `NServiceBus.TransactionalSession`:
 
