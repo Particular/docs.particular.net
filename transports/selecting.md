@@ -43,7 +43,9 @@ Q-->|No|N{<center>Is interop<br/>with existing<br/>systems needed?</center>}
 Y-->|Azure/no preferences|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
 Y-->|Amazon|Y2[Amazon SQS]
 N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
-N-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
+N-->|No|SP{<center>Can all endpoints<br/>run in one process<br/>and tolerate message loss<br/>on process termination?</center>}
+SP-->|Yes|NDT[Non-Durable Transport]
+SP-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
 NY-->|Yes|NYY[SQL Server]
 NY-->|No|NYN[<center>RabbitMQ/<br/>SQL Server</center>]
 NN-->|Yes|NNY[<center>RabbitMQ</center>]
