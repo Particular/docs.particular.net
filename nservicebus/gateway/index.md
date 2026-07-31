@@ -3,7 +3,7 @@ title: Gateway
 summary: Durable fire-and-forget messaging across physically separated IT infrastructure
 component: Gateway
 isLearningPath: true
-reviewed: 2024-12-24
+reviewed: 2026-07-31
 redirects:
  - nservicebus/introduction-to-the-gateway
 related:
