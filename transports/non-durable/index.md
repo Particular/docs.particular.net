@@ -89,6 +89,8 @@ This is useful for:
 - Scenarios that require mediator-like behavior with immediate feedback.
 - Tests that need deterministic, immediate execution without background polling.
 
+Providing a non-null `InlineExecutionOptions` enables the inline execution mode, and additional settings are available as properties on the class:
+
 snippet: NonDurableTransport-InlineExecution
 
 ## Shutdown behavior
