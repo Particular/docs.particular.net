@@ -117,7 +117,7 @@ If a cancellation token is provided to the Stop method and it signals cancellati
 
 Buffered messages remain in the queue on shutdown. They can be processed if the same receiver starts again, for example, through `ChangeConcurrency`; otherwise they are lost when the `NonDurableBroker` is disposed. A new endpoint using the same broker can process a buffered message, but it cannot complete an inline-execution dispatch task owned by the previous endpoint instance. Use `DrainQueueBeforeShutdown` if inline cascades must be given an opportunity to complete before shutdown returns.
 
-### Broker disposal
+## Broker disposal
 
 Disposing the `NonDurableBroker` completes all queues and stops the delayed message pump. Any buffered messages will be lost. Receivers drain any remaining buffered envelopes before exiting.
 
