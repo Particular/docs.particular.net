@@ -2,7 +2,7 @@
 title: Auditing Messages
 summary: Send a copy of every successfully processed message to a central place for analysis and compliance purposes.
 component: Core
-reviewed: 2024-07-24
+reviewed: 2024-07-31
 related:
  - nservicebus/operations
  - nservicebus/messaging/headers
@@ -23,7 +23,7 @@ It is recommended to specify a central auditing queue for all related endpoints 
 
 ## How it works
 
-Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus captures a copy of every **successfully processed message** and forwards it to a specified audit queue. When a message fails to be processed it is forwarded to the configured error queue and not be copied to the audit queue.
+Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus captures a copy of every **successfully processed message** and forwards it to a specified audit queue. When a message fails to be processed it is forwarded to the configured error queue and will not be copied to the audit queue.
 
 This means that a message is eventually forwarded to either the *audit queue* or the *error queue*, but while it's in flight it will be in the *endpoint queue* until all immediate and delayed processing attempts have exceeded.
 
