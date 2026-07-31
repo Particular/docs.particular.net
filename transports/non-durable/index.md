@@ -36,7 +36,7 @@ Use this transport when:
 |Native integration         |Not supported
 |OpenTelemetry tracing      |[Supported](observability.md)
 |Case Sensitive             |Yes
-|Aspire integration         |Not yet supported
+|Aspire integration         |No
 
 ## Prerequisites
 
