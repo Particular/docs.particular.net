@@ -4,6 +4,8 @@ reviewed: 2026-07-30
 suppressRelated: true
 ---
 
+> [!NOTE]
+> Third-party dependency vulnerability patch information can be found [here](dependency-vulnerabilities.md)
 * [Security Advisory (2020-03-11)](servicepulse-directorytraversal.md)
   * ServicePulse Directory Traversal vulnerability.
 * [Security Advisory (2017-01-10)](msmq-permissions.md)
