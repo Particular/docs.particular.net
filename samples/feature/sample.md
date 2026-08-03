@@ -1,7 +1,7 @@
 ---
 title: Building a custom feature
 summary: How to build a custom feature in NServiceBus
-reviewed: 2024-12-24
+reviewed: 2026-08-03
 component: Core
 related:
 - nservicebus/pipeline
