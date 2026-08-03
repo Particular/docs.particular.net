@@ -1,7 +1,7 @@
 ---
 title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
-reviewed: 2024-12-28
+reviewed: 2026-08-03
 component: Core
 related:
 - nservicebus/hosting/docker-host
@@ -30,7 +30,7 @@ Running the sample involves building the container images and starting the multi
 Build the container images by using the following command:
 
 ```
-dotnet publish Docker.sln -f net9.0 --os linux --arch x64 /t:PublishContainer
+dotnet publish Docker.sln -f net10.0 --os linux --arch x64 /t:PublishContainer
 ```
 
 ### Starting containers
