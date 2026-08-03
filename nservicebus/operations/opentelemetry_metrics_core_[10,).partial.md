@@ -38,4 +38,19 @@ Meter source `NServiceBus.Envelope.CloudEvents`:
 - [`nservicebus.envelope.cloud_events.received.invalid_message`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics-cloudevents-specific-metrics) - Total number of received messages not conforming to the specification
 - [`nservicebus.envelope.cloud_events.received.unexpected_version`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics-cloudevents-specific-metrics) - Total number of received messages with unexpected version field value
 
+### Opt-in performance metrics
+
+Some metrics are disabled by default because they add overhead or expose fine-grained internal timings that most endpoints don't need. They can be enabled individually via `endpointConfiguration.PerformanceMetrics()`:
+
+snippet: opentelemetry-performance-metrics
+
+The following metrics become available once opted in:
+
+- `nservicebus.sagas.fetch_time` - The time in seconds for loading saga data from the persister. Enabled by `EnableSagaFetchTime`. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.message_type`, `nservicebus.saga_type`, `execution.result`, `error.type`
+- `nservicebus.messaging.deserialize_time` - The time in seconds for deserializing an incoming message. Enabled by `EnableDeserializeTime`. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `execution.result`, `error.type`
+- `nservicebus.messaging.serialize_time` - The time in seconds for serializing an outgoing message. Enabled by `EnableSerializeTime`. Tags: `nservicebus.message_type`, `execution.result`, `error.type`
+- `nservicebus.outbox.fetch_time` - The time in seconds for querying the outbox storage for deduplication. Enabled by `EnableOutboxFetchTime`. Tags: `nservicebus.queue`, `nservicebus.discriminator`
+- `nservicebus.outbox.store_time` - The time in seconds for storing a message in the outbox storage. Enabled by `EnableOutboxStoreTime`. Tags: `nservicebus.queue`, `nservicebus.discriminator`
+- `nservicebus.persistence.time` - The time in seconds for completing the synchronized storage session (includes saga and outbox persistence). Enabled by `EnablePersistenceTime`. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.message_type`, `nservicebus.message_handler_types`
+
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
