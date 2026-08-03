@@ -1,6 +1,4 @@
-In order to provision or de-provision the resources required by an endpoint, the `rabbitmq-transport` command line (CLI) tool can be used.
-
-The tool can be obtained from NuGet and installed using the following command:
+To provision or deprovision the resources required by an endpoint, use the `rabbitmq-transport` command-line (CLI) tool. The tool can be obtained from NuGet and installed using the following command:
 
 ```
 dotnet tool install -g NServiceBus.Transport.RabbitMQ.CommandLine
@@ -28,12 +26,12 @@ rabbitmq-transport delays create [options]
 
 #### Options
 
-`--connectionString` | `-c` : Force this command to use the specified connection string<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
-`--certPath`: The path to the client certificate file for connecting to the broker<br />
-`--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option<br />
-`--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
-`--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
+- `--connectionString` | `-c`: Force this command to use the specified connection string
+- `--connectionStringEnv`: Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option
+- `--certPath`: The path to the client certificate file for connecting to the broker
+- `--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option
+- `--disableCertValidation`: Disable remote certificate validation when connecting to the broker
+- `--useExternalAuth`: Use the external authorization option when connecting to the broker
 
 ### `delays migrate`
 
@@ -45,13 +43,13 @@ rabbitmq-transport delays migrate [options]
 
 #### Options
 
-`--connectionString` | `-c` : Force this command to use the specified connection string<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
-`--certPath`: The path to the client certificate file for connecting to the broker<br />
-`--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option<br />
-`--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
-`--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
-`--routingTopology` | `-r` : The routing topology to use<br />
+- `--connectionString` | `-c`: Force this command to use the specified connection string
+- `--connectionStringEnv`: Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option
+- `--certPath`: The path to the client certificate file for connecting to the broker
+- `--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option
+- `--disableCertValidation`: Disable remote certificate validation when connecting to the broker
+- `--useExternalAuth`: Use the external authorization option when connecting to the broker
+- `--routingTopology` | `-r`: The routing topology to use
 
 ### `delays verify`
 
@@ -66,9 +64,9 @@ rabbitmq-transport delays verify [options]
 
 #### Options
 
-`--url` : The URL of the RabbitMQ management API<br />
-`--username` : The username for accessing the RabbitMQ management API<br />
-`--password`: The password for accessing the RabbitMQ management API<br />
+- `--url`: The URL of the RabbitMQ management API
+- `--username`: The username for accessing the RabbitMQ management API
+- `--password`: The password for accessing the RabbitMQ management API
 
 ### `endpoint create`
 
@@ -80,22 +78,22 @@ rabbitmq-transport endpoint create <endpointName> [options]
 
 #### Arguments
 
-`endpointName` : The name of the endpoint to create
+- `endpointName`: The name of the endpoint to create
 
 #### Options
 
-`--connectionString` | `-c` : Force this command to use the specified connection string<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
-`--certPath`: Set the path to the client certificate file for connecting to the broker<br />
-`--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
-`--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
-`--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
-`--routingTopology` | `-r` : Specifies which routing topology to use<br />
-`--useDurableEntities` | `-d` : Specifies if entities should be created as durable<br />
-`--queueType` | `-t` : Specifies queue type will be used for queue creation<br />
-`--errorQueueName`: Also create an error queue with the specified name<br />
-`--auditQueueName`: Also create an audit queue with the specified name<br />
-`--instanceDiscriminators`: An optional list of instance discriminators to use when the endpoint needs uniquely addressable instances<br />
+- `--connectionString` | `-c`: Force this command to use the specified connection string
+- `--connectionStringEnv`: Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option
+- `--certPath`: Set the path to the client certificate file for connecting to the broker
+- `--certPassphrase`: The passphrase for the client certificate file when using a client certificate
+- `--disableCertValidation`: Disable remote certificate validation when connecting to the broker
+- `--useExternalAuth`: Use the external authorization option when connecting to the broker
+- `--routingTopology` | `-r`: Specifies which routing topology to use
+- `--useDurableEntities` | `-d`: Specifies if entities should be created as durable
+- `--queueType` | `-t`: Specifies the queue type to be used for queue creation
+- `--errorQueueName`: Also create an error queue with the specified name
+- `--auditQueueName`: Also create an audit queue with the specified name
+- `--instanceDiscriminators`: An optional list of instance discriminators to use when the endpoint needs uniquely addressable instances
 
 ### `queue migrate-to-quorum`
 
@@ -110,13 +108,13 @@ rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 
 #### Arguments
 
-`queueName` : The name of the classic queue to migrate to a quorum queue
+- `queueName`: The name of the classic queue to migrate to a quorum queue
 
 #### Options
 
-`--connectionString` | `-c` : Force this command to use the specified connection string<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
-`--certPath`: Set the path to the client certificate file for connecting to the broker<br />
-`--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
-`--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
-`--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
+- `--connectionString` | `-c`: Force this command to use the specified connection string
+- `--connectionStringEnv`: Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option
+- `--certPath`: Set the path to the client certificate file for connecting to the broker
+- `--certPassphrase`: The passphrase for the client certificate file when using a client certificate
+- `--disableCertValidation`: The passphrase for client certificate validation when using a client certificate
+- `--useExternalAuth`: Use the external authorization option when connecting to the broker

@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
-reviewed: 2024-12-13
+reviewed: 2026-08-03
 component: Rabbit
 related:
  - nservicebus/operations

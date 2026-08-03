@@ -2,7 +2,7 @@ Example code and scripts to facilitate deployment and operational actions agains
 
 These samples use the [RabbitMQ.Client NuGet Package](https://www.nuget.org/packages/RabbitMQ.Client/).
 
-Since the RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
+Since the RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx), it is not possible to run this code within PowerShell.
 
 ## Native Send
 
@@ -63,7 +63,7 @@ snippet: rabbit-create-queues-shared-usage
 
 ## Create HA policy
 
-To configure HA policy, refer to the [RabbitMQ HA documentation](https://www.rabbitmq.com/ha.html).
+To configure an HA policy, refer to the [RabbitMQ HA documentation](https://www.rabbitmq.com/ha.html).
 
 ## Delete queues
 
