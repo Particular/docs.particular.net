@@ -1,7 +1,7 @@
 ---
 title: Message routing
 summary: How NServiceBus routes messages between endpoints.
-reviewed: 2024-12-31
+reviewed: 2026-08-03
 component: Core
 isLearningPath: true
 redirects:
@@ -16,15 +16,15 @@ related:
 - nservicebus/concepts/priority-queues
 ---
 
-The routing subsystem is responsible for finding destinations for messages. In most cases, the code which sends messages should not specify the destination of the message being sent:
+The routing subsystem is responsible for finding destinations for messages. In most cases, the code that sends messages should not specify the destination of the message being sent:
 
 snippet: BasicSend
 
 The routing subsystem will provide the destination address based on the message type.
 
-NServiceBus routing consists of two layers: logical and physical. Logical routing defines which logical endpoint should receive a given outgoing message. Physical routing defines to which physical instance of the selected endpoint the message should be delivered. While logical routing is a developer's concern, physical routing is controlled by operations.
+NServiceBus routing consists of two layers: logical and physical. Logical routing defines which logical endpoint should receive a given outgoing message. Physical routing defines which physical instance of the selected endpoint the message should be delivered to. While logical routing is a developer's concern, physical routing is controlled by operations.
 
-[Broker transports](/transports/types.md#broker-transports) handle the physical routing automatically. Other transport might require specific configuration. See also [MSMQ Routing](/transports/msmq/routing.md).
+[Broker transports](/transports/types.md#broker-transports) handle the physical routing automatically. Other transports might require specific configuration. See also [MSMQ Routing](/transports/msmq/routing.md).
 
 ## Command routing
 
@@ -40,7 +40,7 @@ In specific cases, like sending to the same endpoint or a specific queue (e.g., 
 
 ## Event routing
 
-When events are published, they can be received by multiple logical endpoints. However, even in cases where those logical endpoints are scaled out, each event will be received by only one physical instance of a specific logical subscriber. It is important to note that before the event is published and delivered, the subscriber has to express its interest in that event by having a message handler for it.
+When events are published, they can be received by multiple logical endpoints. However, even when those logical endpoints are scaled out, each event will be received by only one physical instance of a specific logical subscriber. Before the event is published and delivered, the subscriber must express interest in that event by having a message handler for it.
 
 ### Native
 
@@ -72,7 +72,7 @@ var endpointConfiguration = new EndpointConfiguration("Sales");
 endpointConfiguration.MakeInstanceUniquelyAddressable("B");
 ```
 
-Uniquely addressable instances are used for [callbacks](/nservicebus/messaging/callbacks.md) but can be used for other purposes like data partitioning with processing affinity or a form or processing prioritization.
+Uniquely addressable instances are used for [callbacks](/nservicebus/messaging/callbacks.md) but can be used for other purposes like data partitioning with processing affinity or a form of processing prioritization.
 
 ```c#
 var options = new SendOptions();
