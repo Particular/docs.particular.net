@@ -2,7 +2,7 @@
 title: SQL Transport Troubleshooting
 summary: Tips on what to do when the SQL Transport is not behaving as expected
 component: SQLTransport
-reviewed: 2024-12-19
+reviewed: 2026-08-03
 related:
  - transports/sql
 ---
