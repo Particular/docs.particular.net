@@ -146,6 +146,6 @@ When bridged to a durable transport, audit messages are consumed by the target q
 
 To prevent audit message buildup, either:
 
+- Do not enable auditing.
 - Configure [audit message expiry](/nservicebus/operations/auditing.md#configuring-auditing-timetobereceived).
-- Disable auditing.
 - Take control of what is being audited using [audit filtering](/nservicebus/operations/auditing.md#filtering-audit-messages).
