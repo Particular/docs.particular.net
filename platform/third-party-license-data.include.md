@@ -224,6 +224,12 @@
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/System.Threading.Channels" target="_blank">System.Threading.Channels</a> | <a href="https://www.nuget.org/packages/System.Threading.Channels/10.0.10/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
+### NServiceBus.Transport.NonDurable
+
+| Dependency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/System.Threading.RateLimiting" target="_blank">System.Threading.RateLimiting</a> | <a href="https://www.nuget.org/packages/System.Threading.RateLimiting/10.0.10/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
+
 ### NServiceBus.Transport.PostgreSql
 
 | Dependency | License | Project Site |
