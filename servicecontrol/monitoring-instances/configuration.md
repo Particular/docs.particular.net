@@ -232,7 +232,7 @@ Controls whether HTTPS is required when retrieving metadata from the authority.
 
 _Added in version 6.18.0_
 
-Enables [role-based access control](/servicecontrol/security/configuration/authorization.md) on the Monitoring instance. When `false`, every authenticated user is granted every permission. Has no effect unless `Authentication.Enabled` is `true`.
+Enables [role-based access control](/servicecontrol/security/configuration/authorization.md) on the Monitoring instance. When `false`, every authenticated user is granted every permission. Requires `Authentication.Enabled` to be `true`; the instance refuses to start if this is enabled while authentication is disabled.
 
 | Context | Name |
 | --- | --- |
