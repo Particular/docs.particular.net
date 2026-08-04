@@ -2,7 +2,7 @@
 title: Non-Durable Transport
 summary: A transport for exchanging NServiceBus messages in memory in a non-durable fashion
 component: NonDurableTransport
-reviewed: 2026-07-31
+reviewed: 2026-08-04
 related:
  - persistence/non-durable
  - samples/non-durable-transport
@@ -136,3 +136,16 @@ Disposing the `NonDurableBroker` completes all queues and stops the delayed mess
 - All messages are lost when the process ends.
 - Endpoints must run in the same process.
 - No native integration with external systems. Use the [NServiceBus Messaging Bridge](/nservicebus/bridge) to connect non-durable endpoints to endpoints using a durable transport. For example, tenant endpoints can run on the non-durable transport while ServiceControl and audit infrastructure run on SQL Server or Azure Service Bus.
+
+## Auditing
+
+> [!NOTE]
+> The transport intentionally does not expire audit messages automatically. What to do with audit messages is a scenario-dependent user choice: they may be bridged to a durable transport where they are consumed, filtered to reduce volume, or configured with expiry to limit retention. When auditing is configured and the endpoint is not bridged to a durable transport, audit messages remain in the in-memory broker and will accumulate indefinitely, which can lead to out-of-memory exceptions.
+
+When bridged to a durable transport, audit messages are consumed by the target queue and do not accumulate in memory.
+
+To prevent audit message buildup, either:
+
+- Configure [audit message expiry](/nservicebus/operations/auditing.md#configuring-auditing-timetobereceived).
+- Disable auditing.
+- Take control of what is being audited using [audit filtering](/nservicebus/operations/auditing.md#filtering-audit-messages).
