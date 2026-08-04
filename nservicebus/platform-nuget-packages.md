@@ -59,7 +59,7 @@ The serializer controls the wire format of message bodies. The System.Text.Json 
 
 ### Monitoring
 
-These packages send health, metrics, and audit data to ServiceControl, so that ServicePulse and ServiceInsight can report on the running system:
+These packages send health, metrics, and audit data to ServiceControl, so that ServicePulse can report on the running system:
 
 - [NServiceBus.Metrics](https://www.nuget.org/packages/NServiceBus.Metrics)
 - [NServiceBus.Metrics.ServiceControl](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl)
