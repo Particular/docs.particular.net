@@ -15,7 +15,7 @@ Every endpoint references the core package, which provides the messaging, routin
 
 ### Transports
 
-The transport is the messaging infrastructure that carries messages between endpoints. Each endpoint is configured with one:
+The transport is the messaging infrastructure that carries messages between endpoints. Each endpoint is configured with one. See [selecting a transport](/transports/selecting.md) for help choosing:
 
 - [NServiceBus.Transport.AzureServiceBus](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus)
 - [NServiceBus.Transport.AzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues)
