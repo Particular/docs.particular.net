@@ -1188,10 +1188,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "6.3",
           "SupportLevel": "Mainstream"
         },
@@ -1262,6 +1258,15 @@
         {
           "Minor": "2.0",
           "SupportLevel": "Extended"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.Transport.NonDurable",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
