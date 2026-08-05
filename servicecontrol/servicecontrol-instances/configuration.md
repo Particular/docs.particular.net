@@ -399,7 +399,7 @@ Some identity providers reject the entire authorization request if a client requ
 
 _Added in version 6.18.0_
 
-Enables [role-based access control](/servicecontrol/security/configuration/authorization.md). When `false`, every authenticated user is granted every permission. Has no effect unless `Authentication.Enabled` is `true`.
+Enables [role-based access control](/servicecontrol/security/configuration/authorization.md). When `false`, every authenticated user is granted every permission. Requires `Authentication.Enabled` to be `true`; the instance refuses to start if this is enabled while authentication is disabled.
 
 | Context | Name |
 | --- | --- |
