@@ -345,6 +345,8 @@ This "inverse" approach has a few practical advantages during a migration:
 - Most event types are low-volume and a shared topic is acceptable for them.
 - Only a subset of events justify dedicated topics for isolation or scale.
 
+In short, choose this path when the per-event mapping and sequencing effort of the migration topology would buy little because few events actually benefit from a dedicated topic.
+
 ### Trade-offs
 
 - **Rule count is the dominant cost, not filter type.** Every message published to a shared topic is evaluated against every rule on every subscription. Event inheritance can quietly multiply rules: a concrete type plus its interfaces can mean several rules per subscription per event. Treat rule count as an operational metric: subscriptions per topic, rules per subscription, and rules compared per published message. Watch topic depth and CPU as event hierarchy depth grows.
