@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Persistence Usage
 summary: Using SQL Persistence to store sagas and timeouts.
-reviewed: 2024-12-19
+reviewed: 2026-08-06
 component: SqlPersistence
 related:
  - nservicebus/sagas
@@ -10,7 +10,7 @@ related:
 This sample shows a client/server scenario.
 
 > [!WARNING]
-> By default all endpoints are started when the solution is run, which means that the sample requires all databases (i.e. SQL Server, MySQL, Oracle, PostreSQL) to be configured to run correctly. In order to run the sample with just one database, disable the relevant endpoints.
+> By default all endpoints are started when the solution is run, which means that the sample requires all databases (i.e. SQL Server, MySQL, Oracle, and PostgreSQL) to be configured to run correctly. In order to run the sample with just one database, disable the relevant endpoints.
 
 include: sqlpersistence-prereqs
 
@@ -18,7 +18,7 @@ include: sqlpersistence-prereqs
 ## Projects
 
 
-#### SharedMessages
+### SharedMessages
 
 The shared message contracts used by all endpoints.
 
@@ -48,7 +48,7 @@ Note that only `ServerShared` has the [NServiceBus.Persistence.Sql NuGet package
 
 These scripts will be copied to the output of each endpoint and executed at startup.
 
-The endpoints know which scripts to execute via the `persistence.SqlVariant();` API at configuration time.
+The endpoints know which scripts to execute via the `persistence.SqlDialect<T>();` API at configuration time.
 
 snippet: SqlPersistenceSettings
 
@@ -73,7 +73,7 @@ snippet: MySqlConfig
 snippet: OracleConfig
 
 
-#### PostgreSql
+#### PostgreSQL
 
 snippet: postgreSqlConfig
 
