@@ -4,7 +4,7 @@
 
 When sending messages it is possible to provide custom `SqlTransaction` instance that will be used when executing transport operations. This enables sending two or more messages in a single, atomic transaction or share the same transaction between transport and relational data store.
 
-This API can be used both with `MessageSession` and in the message receive context, e.g. in a handler.
+This API can be used both with `MessageSession` and in the message receive context, e.g., in a handler.
 
 snippet: UseCustomSqlConnectionAndTransaction
 
