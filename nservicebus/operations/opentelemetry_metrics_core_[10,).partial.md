@@ -7,6 +7,10 @@ NServiceBus endpoints can be configured to expose metrics related to message pro
 
 snippet: opentelemetry-enablemeters
 
+Because all metrics from a meter source are emitted by default, use an OpenTelemetry view to drop any that are not needed:
+
+snippet: opentelemetry-metrics-filter-view
+
 ### Emitted meters
 
 Meter source `NServiceBus.Core.Pipeline.Incoming`:
@@ -17,9 +21,15 @@ Meter source `NServiceBus.Core.Pipeline.Incoming`:
 - [`nservicebus.messaging.handler_time`](/monitoring/metrics/definitions.md#metrics-captured-handler-time) - The time the user handling code takes to handle a message
 - [`nservicebus.messaging.processing_time`](/monitoring/metrics/definitions.md#metrics-captured-processing-time) - The time the endpoint takes to process a message
 - [`nservicebus.messaging.critical_time`](/monitoring/metrics/definitions.md#metrics-captured-critical-time) - The time between when a message is sent and when it is fully processed
+- `nservicebus.messaging.deserialize_time` - The time in seconds for deserializing an incoming message. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `execution.result`, `error.type`
+- `nservicebus.messaging.serialize_time` - The time in seconds for serializing an outgoing message. Tags: `nservicebus.message_type`, `execution.result`, `error.type`
 - [`nservicebus.recoverability.immediate`](/monitoring/metrics/definitions.md#metrics-captured-immediate-retries) - Total number of immediate retries requested
 - [`nservicebus.recoverability.delayed`](/monitoring/metrics/definitions.md#metrics-captured-delayed-retries) - Total number of delayed retries requested
 - [`nservicebus.recoverability.error`](/monitoring/metrics/definitions.md#metrics-captured-moved-to-error-queue) - Total number of messages sent to the error queue
+- `nservicebus.sagas.fetch_time` - The time in seconds for loading saga data from the persister. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.message_type`, `nservicebus.saga_type`, `execution.result`, `error.type`
+- `nservicebus.outbox.fetch_time` - The time in seconds for querying the outbox storage for deduplication. Tags: `nservicebus.queue`, `nservicebus.discriminator`
+- `nservicebus.outbox.store_time` - The time in seconds for storing a message in the outbox storage. Tags: `nservicebus.queue`, `nservicebus.discriminator`
+- `nservicebus.persistence.commit_time` - The time in seconds for completing the synchronized storage session. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.message_type`, `nservicebus.message_handler_types`
 
 Starting NServiceBus V10.1 envelope unwrapping metrics are emitted as part of the `NServiceBus.Core.Pipeline.Incoming` source:
 
