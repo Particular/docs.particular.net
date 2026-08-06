@@ -114,7 +114,8 @@ To restrict permissions to the minimal required set, create a custom role with t
                     "Microsoft.ServiceBus/namespaces/providers/Microsoft.Insights/metricDefinitions/read",
                     "Microsoft.ServiceBus/namespaces/queues/read",
                     "Microsoft.Resources/subscriptions/read",
-                    "Microsoft.Resources/subscriptions/resources/read"
+                    "Microsoft.Resources/subscriptions/resources/read",
+                    "Microsoft.Insights/Metrics/Read"
                 ],
                 "notActions": [],
                 "dataActions": [],
