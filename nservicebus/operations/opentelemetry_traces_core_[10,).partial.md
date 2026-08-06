@@ -112,20 +112,12 @@ This is the mode recommended by the OpenTelemetry semantic conventions, which de
 - Span event storage is expensive or not supported in the observability backend being used.
 - Teams prefer a single, authoritative log entry per failure rather than exception details appearing in both trace and log outputs.
 
-> [!NOTE]
-> Even after switching to `Logs` mode, existing trace consumers do not lose access to exception details. OpenTelemetry SDKs can be configured to route exception log records to span events, preserving backward compatibility at the SDK layer rather than the instrumentation layer.
-
-#### Exception deduplication
-
-NServiceBus processing involves nested spans. An incoming message is processed under a pipeline span, and each message handler runs under its own handler span nested inside it. When a handler throws, the exception propagates outward through the pipeline span.
-
-Without deduplication, the same exception would be recorded on every span it propagates through, creating duplicate events in the trace. NServiceBus tracks exception instances using reference equality and records details only the first time an exception is seen on a given message processing attempt. The innermost span - the handler span - captures the details. Outer spans, such as the pipeline span, are marked as failed but do not add another exception event or log entry for the same exception.
 
 #### Environment variable override
 
 The exception recording mode can also be set via the [`OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) environment variable, which is part of the standard OpenTelemetry transition mechanism for migrating from span events to log records. Because the environment variable takes precedence over any value configured in code, operators can drive the entire migration through deployment configuration - without requiring code changes at each step. For example, `logs/dup` can be set first to emit exceptions to both signals simultaneously, giving teams time to verify that their log aggregation pipeline captures exception details correctly before switching to `logs` to stop emitting span events entirely.
 
-This also gives ops teams independent control over observability behavior in each environment. If a developer has hardcoded `ExceptionRecordingMode.SpanAndLogs` in the application, an operator can still force `Logs` mode in production by setting the environment variable, without waiting for a code change to be approved, merged, and deployed.
+This also gives ops teams independent control over observability behavior in each environment. If the application hardcodes `ExceptionRecordingMode.SpanAndLogs`, the `Logs` mode can be forced in production by setting the environment variable, without the need for a redeploy.
 
 | Environment variable value | Equivalent `ExceptionRecordingMode` |
 |---|---|
