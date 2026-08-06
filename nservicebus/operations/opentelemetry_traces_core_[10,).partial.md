@@ -112,7 +112,6 @@ This is the mode recommended by the OpenTelemetry semantic conventions, which de
 - Span event storage is expensive or not supported in the observability backend being used.
 - Teams prefer a single, authoritative log entry per failure rather than exception details appearing in both trace and log outputs.
 
-
 #### Environment variable override
 
 The exception recording mode can also be set via the [`OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) environment variable, which is part of the standard OpenTelemetry transition mechanism for migrating from span events to log records. Because the environment variable takes precedence over any value configured in code, operators can drive the entire migration through deployment configuration - without requiring code changes at each step. For example, `logs/dup` can be set first to emit exceptions to both signals simultaneously, giving teams time to verify that their log aggregation pipeline captures exception details correctly before switching to `logs` to stop emitting span events entirely.
