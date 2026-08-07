@@ -1,7 +1,7 @@
 ---
 title: The Particular Service Platform
 summary: Discover how NServiceBus, ServiceControl, and ServicePulse work together to monitor, recover, and scale distributed messaging systems.
-reviewed: 2026-03-05
+reviewed: 2026-08-07
 suppressRelated: true
 isLearningPath: true
 redirects:
@@ -32,7 +32,7 @@ include: servicepulse
 
 ## Working with the platform
 
-ServiceControl and ServicePulse are server applications. They should be deployed in each environment, for example: test, QA, and production.
+ServiceControl and ServicePulse are server applications. They should be deployed in each environment, for example: test, QA, and production. See [Running the Particular Service Platform in containers](/platform/containers.md) for an overview of deploying them as containers.
 
 When investigating problems or developing [custom checks](/monitoring/custom-checks/), it can be useful to have the Platform installed on a development machine.
 
