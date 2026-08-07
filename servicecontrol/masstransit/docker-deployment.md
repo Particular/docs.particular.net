@@ -20,6 +20,8 @@ The `particular/servicecontrol-masstransit-connector` container reads messages f
 
 The `particular/servicepulse` container exposes a web interface to allow users to retry failed messages back to the MassTransit system.
 
+include: platform-container-examples
+
 ## Getting started
 
 The first step is to configure and deploy the `particular/servicecontrol` image, to do this follow [this deployment guide](/servicecontrol/servicecontrol-instances/deployment/containers.md).
