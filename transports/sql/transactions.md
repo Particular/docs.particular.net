@@ -1,7 +1,7 @@
 ---
 title: Transaction support
 summary: The design and implementation details of SQL Server transport transaction support
-reviewed: 2024-12-28
+reviewed: 2026-08-06
 component: SqlTransport
 redirects:
 - nservicebus/sqlserver/transactions
@@ -12,8 +12,8 @@ redirects:
 The SQL Server transport supports the following [transport transaction modes](/transports/transactions.md):
 
  * Transaction scope (distributed transaction)
- * Transport transaction - Send atomic with receive
- * Transport transaction - receive only
+ * Transport transaction - Sends atomic with receive
+ * Transport transaction - Receive only
  * Unreliable (transactions disabled)
 
 `TransactionScope` mode is beneficial as it enables `exactly once` message processing with distributed transactions. However, when transport, persistence, and business data are all stored in a single SQL Server catalog, it is possible to achieve `exactly-once` message delivery without distributed transactions. For more details, refer to the [SQL Server native integration](/samples/sqltransport/native-integration/) sample.
