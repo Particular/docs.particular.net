@@ -253,3 +253,23 @@ Or via MSBuild in the project file:
 > The legacy MD5-based host identifier algorithm and the `UseV2DeterministicGuid` AppContext switch will be removed in version 12.
 
 If an endpoint must keep a specific host identifier beyond version 11, configure the host identifier explicitly instead of relying on the legacy algorithm switch. For example, an endpoint can be configured with its existing host identifier to keep the value stable after the legacy algorithm is removed. See [Overriding the host identifier](/nservicebus/hosting/override-hostid.md).
+
+## OpenTelemetry
+
+### Deprecated span attributes
+
+#### otel.status_code and otel.status_description
+
+Earlier versions of NServiceBus set `otel.status_code` and `otel.status_description` as explicit span attributes on failed spans, in addition to setting the span status via the OpenTelemetry API. These are NServiceBus-specific tags that predate reliable support for `Activity.SetStatus` in .NET. They are now redundant: the standard `Activity.SetStatus` call is the canonical way to convey span status, and exporters surface it correctly without these extra attributes.
+
+In version 10, these attributes are still emitted for backward compatibility. They will be removed in version 11.
+
+If dashboards, alerts, or queries rely on `otel.status_code` or `otel.status_description` span attributes set by NServiceBus, migrate to using the span status provided by the OpenTelemetry exporter before upgrading to version 11.
+
+#### exception.escaped
+
+The `exception.escaped` attribute on exception span events is deprecated in the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/attributes-registry/exception/). The spec notes that it is no longer recommended to record exceptions that are handled and do not escape the scope of a span.
+
+In version 10, `exception.escaped` is still included in exception events for backward compatibility. It will be removed in version 11.
+
+#### `start_dispatch` and `end_dispatch`
