@@ -1,8 +1,10 @@
 ### Interval
 
-Specifies the maximum delay between sending metrics report messages.
+The interval defines the maximum delay between sending metrics report messages.
 
 The metrics plugin buffers measurements and sends a metric report message as soon as the buffer is half full, without waiting for the interval to elapse. When an endpoint instance is idle the plugin will still send a report at this interval so that ServiceControl monitoring knows that the instance is still running. When the endpoint is under load, the time between metric messages will be much shorter as the buffer fills faster.
+
+The metrics plugin buffers measurements and sends a report as soon as the buffer reaches half capacity, even if the interval has not elapsed. When an endpoint instance is idle, a report is still sent at the configured interval so that ServiceControl Monitoring can confirm the instance is active. When the endpoint is under load, reports are sent more frequently because the buffer fills more quickly and time between metric messages will be much shorter.
 
 > [!NOTE]
 > The size of this buffer is fixed and cannot be adjusted. The size chosen is compatible with the maximum message size limits of all supported transports.
