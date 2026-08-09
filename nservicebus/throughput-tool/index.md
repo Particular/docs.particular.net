@@ -74,7 +74,7 @@ The tool can collect data using various methods depending on the system's config
 > [!TIP]
 > If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput.
 >
-> If this or any other problem is encountered attempting to generate a throughput report, [open a support case](https://customers.particular.net/request-support/licensing).
+> If this or any other problem is encountered while attempting to generate a throughput report, [open a support case](https://customers.particular.net/request-support/licensing).
 
 ### Azure Service Bus
 
