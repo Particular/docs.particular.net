@@ -256,6 +256,29 @@ If an endpoint must keep a specific host identifier beyond version 11, configure
 
 ## OpenTelemetry
 
+### ActivitySources
+
+In version 11, NServiceBus emits spans from three ActivitySources:
+
+| Source | Spans |
+|---|---|
+| `NServiceBus.Core` | Pipeline spans (send, publish, process) |
+| `NServiceBus.Core.Handler` | Handler invocation spans |
+| `NServiceBus.Core.Recoverability` | Recoverability action spans |
+
+In version 10, handler spans were emitted from `NServiceBus.Core` by default, with `NServiceBus.Core.Handler` available as an opt-in via the `NServiceBus.Core.OpenTelemetry.UseHandlerActivitySource` AppContext switch. In version 11, handler spans are always emitted from `NServiceBus.Core.Handler`.
+
+Any OpenTelemetry configuration that only subscribes to `NServiceBus.Core` will no longer receive handler spans after upgrading. Update the tracer configuration to subscribe to all required sources:
+
+```csharp
+Sdk.CreateTracerProviderBuilder()
+    .AddSource("NServiceBus.Core")
+    .AddSource("NServiceBus.Core.Handler")
+    .AddSource("NServiceBus.Core.Recoverability")
+    // ...
+    .Build();
+```
+
 ### Deprecated span attributes
 
 #### otel.status_code and otel.status_description
@@ -282,8 +305,8 @@ NServiceBus adds two span events to the incoming message pipeline span whenever 
 In version 10, these events are always emitted when OpenTelemetry instrumentation is enabled. In version 11, they are opt-out via the `EmitMessageDispatchingEvents` property on `InstrumentationOptions`:
 
 ```csharp
-var instrumentationOptions = endpointConfiguration.EnableOpenTelemetry();
-instrumentationOptions.EmitMessageDispatchingEvents = false;
+var options = endpointConfiguration.Tracing();
+options.EmitMessageDispatchingEvents = false;
 ```
 
 The default remains `true` for backward compatibility. Consider disabling these events when they add no diagnostic value in order to reduce observability ingestion cost.
@@ -334,3 +357,35 @@ This is the behavior of the underlying .NET `DistributedContextPropagator`, whic
 Version 10 copied the `tracestate` value onto outgoing messages verbatim, without validation. Version 11 validates `tracestate` against the [W3C Trace Context](https://www.w3.org/TR/trace-context/#tracestate-header) format and drops any content that does not conform. As a result, a non-conformant trace state set on an ambient activity - for example, free-form text such as `my custom state`, or a member whose key contains uppercase letters - is no longer propagated to the message spans.
 
 To retain custom trace state, ensure it is a comma-separated list of `key=value` members with lowercase keys, for example `vendorkey=vendorvalue`. Values may contain mixed case; only keys are restricted to lowercase letters, digits, and `_`, `-`, `*`, `/`, `@`.
+
+### Metrics
+
+#### New performance metrics
+
+Version 11 adds six new histograms to the `NServiceBus.Core.Pipeline.Incoming` meter source:
+
+| Metric | Description |
+|---|---|
+| `nservicebus.messaging.deserialize_time` | Time to deserialize an incoming message |
+| `nservicebus.messaging.serialize_time` | Time to serialize an outgoing message |
+| `nservicebus.sagas.fetch_time` | Time to load saga data from the persister |
+| `nservicebus.outbox.fetch_time` | Time to query outbox storage for deduplication |
+| `nservicebus.outbox.store_time` | Time to store a message in outbox storage |
+| `nservicebus.persistence.commit_time` | Time to complete the synchronized storage session |
+
+These metrics are emitted automatically when the meter source is subscribed. No additional configuration is required. See [OpenTelemetry metrics](/nservicebus/operations/opentelemetry.md#meters-emitted-meters) for the full tag reference.
+
+#### Meter source version
+
+The `NServiceBus.Core.Pipeline.Incoming` meter source version has been updated to `0.4.0`. If any monitoring configuration references this version string explicitly, update it accordingly.
+
+#### execution.result tag is now opt-out
+
+The `execution.result` tag, which carries `"success"` or `"failure"`, is now opt-out. It is emitted on: `nservicebus.messaging.successes`, `nservicebus.messaging.failures`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time`, `nservicebus.messaging.handler_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.messaging.serialize_time`, and `nservicebus.sagas.fetch_time`. It remains enabled by default for backward compatibility. To disable it:
+
+```csharp
+var options = endpointConfiguration.Tracing();
+options.Meters.EmitExecutionResultTags = false;
+```
+
+Disabling the tag reduces metric cardinality and ingestion cost when the success/failure breakdown is not needed at the metric level, for example when that information is already available through spans or logs.

@@ -1,3 +1,19 @@
+### Trace sources
+
+NServiceBus emits spans from three ActivitySources:
+
+| Source | Description |
+|---|---|
+| `NServiceBus.Core` | Pipeline spans: send, publish, process |
+| `NServiceBus.Core.Handler` | Handler invocation spans (one per handler per message) |
+| `NServiceBus.Core.Recoverability` | Recoverability action spans (immediate retry, delayed retry, move to error, discard) |
+
+Subscribe to the sources needed for the endpoint's observability requirements:
+
+snippet: opentelemetry-enabletracing-all-sources
+
+Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` suppresses handler spans - `Activity.Current` inside handlers and behaviors becomes the pipeline span. This enables a flattened trace view where handler work appears directly on the process span.
+
 ### Span relationships
 
 #### Send operations
@@ -18,11 +34,11 @@ flowchart LR;
   NSBM1--child--> PRM1
 ```
 
-To force the creation of a new trace when receiving the message, the `SendOptions`-API can be used as follows:
+The default trace behavior for sends is to continue the existing trace: the receiver span is a child of the sender span. To override this for a specific message, use `SendOptions`:
 
 snippet: opentelemetry-sendoptions-start-new-trace
 
-This ensures a new trace is created, and links the send and receive spans, which looks as follows:
+This creates a new trace on the receiver and links the send and receive spans:
 
 ```mermaid
 flowchart LR;
@@ -37,6 +53,10 @@ flowchart LR;
   end
   NSBM1-. link .-PRM1;
 ```
+
+To change the default for all sends from an endpoint, set `SendTraceMode`:
+
+snippet: opentelemetry-trace-mode-send
 
 #### Publish operations
 
@@ -57,11 +77,11 @@ flowchart LR;
   NSBM1-. link .-PRM1;
 ```
 
-To force the continuation of the existing trace when receiving the message, the `PublishOptions`-API can be used as follows:
+The default trace behavior for publishes is to start a new linked trace on each subscriber. To override this for a specific event, use `PublishOptions`:
 
 snippet: opentelemetry-publishoptions-continue-trace
 
-This ensures the trace is continued and the receive span to be created as a child of the publish span, which looks as follows:
+This continues the publisher's trace in the subscriber:
 
 ```mermaid
 flowchart LR;
@@ -77,10 +97,42 @@ flowchart LR;
   NSBM1--child--> PRM1
 ```
 
+To change the default for all publishes from an endpoint, set `PublishTraceMode`:
+
+snippet: opentelemetry-trace-mode-publish
+
+Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive`) always take precedence over the endpoint-level defaults.
+
 ### Delayed messages
 
-In some cases, the user can choose to delay the delivery of a message to some point in the future. This is also the mechanism that's used for [delayed retries](/nservicebus/recoverability/#delayed-retries).
-When a message is delayed, a new trace will always be created for the receive operation, as it happens at a different moment in time. Therefore, any delayed retry or delayed message, will automatically appear linked to the send or publish context.
+When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is started at delivery time by default. This reflects that the receive operation happens at a different moment in time than the send or retry decision.
+
+The trace behavior for each category of delayed message is configurable independently:
+
+snippet: opentelemetry-trace-mode-delayed
+
+| Option | Default | Applies to |
+|---|---|---|
+| `DelayedDelivery.SendOperationTraceMode` | `StartNew` | `SendOptions.DelayDeliveryWith` / `DoNotDeliverBefore` |
+| `DelayedDelivery.SagaTimeoutTraceMode` | `StartNew` | Saga timeouts (`Saga.RequestTimeout`) |
+| `Recoverability.DelayedRetryTraceMode` | `StartNew` | Delayed retries driven by recoverability policy |
+
+### Recoverability spans
+
+When a message cannot be processed successfully, NServiceBus emits a recoverability span from the `NServiceBus.Core.Recoverability` ActivitySource. The span carries a `nservicebus.recoverability_action` tag indicating the outcome:
+
+| Tag value | Meaning |
+|---|---|
+| `immediate_retry` | Message will be retried immediately |
+| `delayed_retry` | Message will be retried after a delay |
+| `move_to_error` | Message is moved to the error queue |
+| `discard` | Message is discarded without further processing |
+
+Recoverability spans are children of the process span. To receive them, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
+
+### Failed spans and the error.type tag
+
+When a span fails, NServiceBus sets the span status to `Error` and adds an `error.type` tag containing the fully qualified exception type name. This tag is set on the innermost span where the exception was thrown.
 
 ### Exception recording
 
