@@ -57,4 +57,46 @@ public static class TraceConfiguration
 
         #endregion
     }
+
+    public static void EnableHandlerActivitySource()
+    {
+        #region opentelemetry-handler-activity-source-switch
+
+        // Must be set before the endpoint starts.
+        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseHandlerActivitySource", true);
+
+        #endregion
+    }
+
+    public static void UseDestinationInSpanNames(EndpointConfiguration endpointConfiguration)
+    {
+        #region opentelemetry-span-names-destination
+
+        var options = endpointConfiguration.Tracing();
+        options.UseMessageDestinationInSpanNames = true;
+
+        #endregion
+    }
+
+    public static void DisableDispatchingEvents(EndpointConfiguration endpointConfiguration)
+    {
+        #region opentelemetry-dispatching-events-disable
+
+        var options = endpointConfiguration.Tracing();
+        options.EmitMessageDispatchingEvents = false;
+
+        #endregion
+    }
+
+    public static void EnableDistributedContextPropagator()
+    {
+        #region opentelemetry-distributed-context-propagator-switch
+
+        // Must be set before the endpoint starts.
+        // Opts in to W3C DistributedContextPropagator-based trace context propagation.
+        // This becomes the default in version 11.
+        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseDistributedContextPropagator", true);
+
+        #endregion
+    }
 }

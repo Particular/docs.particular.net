@@ -31,8 +31,8 @@ Meter source `NServiceBus.Core.Pipeline.Incoming`:
 - [`nservicebus.messaging.handler_time`](/monitoring/metrics/definitions.md#metrics-captured-handler-time) - The time the user handling code takes to handle a message
 - [`nservicebus.messaging.processing_time`](/monitoring/metrics/definitions.md#metrics-captured-processing-time) - The time the endpoint takes to process a message
 - [`nservicebus.messaging.critical_time`](/monitoring/metrics/definitions.md#metrics-captured-critical-time) - The time between when a message is sent and when it is fully processed
-- `nservicebus.messaging.active_messages` - Number of messages currently being processed by the endpoint. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.message_type`, `nservicebus.enclosed_message_types`
-- `nservicebus.messaging.deserialize_time` - The time in seconds for deserializing an incoming message. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `execution.result`, `error.type`
+- `nservicebus.messaging.active_messages` (UpDownCounter) - Number of messages currently being processed by the endpoint. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.enclosed_message_types`
+- `nservicebus.messaging.deserialize_time` - The time in seconds for deserializing an incoming message. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.enclosed_message_types`, `execution.result`, `error.type`
 - `nservicebus.messaging.serialize_time` - The time in seconds for serializing an outgoing message. Tags: `nservicebus.message_type`, `execution.result`, `error.type`
 - [`nservicebus.recoverability.immediate`](/monitoring/metrics/definitions.md#metrics-captured-immediate-retries) - Total number of immediate retries requested
 - [`nservicebus.recoverability.delayed`](/monitoring/metrics/definitions.md#metrics-captured-delayed-retries) - Total number of delayed retries requested

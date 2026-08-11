@@ -12,6 +12,13 @@ Subscribe to the sources needed for the endpoint's observability requirements:
 
 snippet: opentelemetry-enabletracing-all-sources
 
+> [!NOTE]
+> In version 10, `NServiceBus.Core.Handler` must be opted into via an AppContext switch before the endpoint starts:
+>
+> snippet: opentelemetry-handler-activity-source-switch
+>
+> Without this switch, handler spans are emitted from `NServiceBus.Core` instead. In version 11, `NServiceBus.Core.Handler` is the default and the switch is removed.
+
 Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` suppresses handler spans - `Activity.Current` inside handlers and behaviors becomes the pipeline span. This enables a flattened trace view where handler work appears directly on the process span.
 
 ### Span relationships
@@ -129,6 +136,42 @@ When a message cannot be processed successfully, NServiceBus emits a recoverabil
 | `discard` | Message is discarded without further processing |
 
 Recoverability spans are children of the process span. To receive them, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
+
+### Span names
+
+By default, NServiceBus uses generic operation names for spans: `"send message"`, `"process message"`, `"publish event"`, `"reply"`, etc. To include the destination or source queue in the span name - following the OpenTelemetry messaging semantic convention format `{operation} {destination}` - enable `UseMessageDestinationInSpanNames`:
+
+snippet: opentelemetry-span-names-destination
+
+With this enabled:
+
+| Operation | Default span name | With destination |
+|---|---|---|
+| Receive | `process message` | `process {receiveAddress}` |
+| Send | `send message` | `send message {destination}` |
+| Reply | `reply` | `reply {destination}` |
+| Move to error | `move to error` | `move to {errorQueue}` |
+
+### Dispatching events
+
+When outgoing messages are dispatched during message processing, NServiceBus adds two span events to the incoming pipeline span:
+
+- `"Start dispatching"` - emitted before dispatch, includes a `message-count` event tag
+- `"Finished dispatching"` - emitted after dispatch completes
+
+To suppress these events:
+
+snippet: opentelemetry-dispatching-events-disable
+
+These events are emitted by default. Disabling them reduces observability ingestion cost when dispatch timing is not needed.
+
+### Context propagation
+
+NServiceBus propagates the [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [W3C Baggage](https://www.w3.org/TR/baggage/) headers between endpoints. In version 10, NServiceBus uses a custom propagator by default. To opt in to propagation via the built-in .NET `DistributedContextPropagator` instead, set the following AppContext switch before the endpoint starts:
+
+snippet: opentelemetry-distributed-context-propagator-switch
+
+This is the default behavior in version 11, where the custom propagator and the switch are removed. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for details on baggage serialization changes introduced with this switch.
 
 ### Failed spans and the error.type tag
 
