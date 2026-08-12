@@ -1,4 +1,4 @@
-An instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded. For example:
+An instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded before running it to ingest messages. For example:
 
 ```shell
 docker stop {CONTAINER_NAME}
