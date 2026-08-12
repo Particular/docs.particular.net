@@ -365,7 +365,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/4.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/4.1.0)| **Current** | 2026-08-10     | Active            | Active |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/4.0.1)| Mainstream Support | 2026-01-30     | 2026-11-10        | Ineligible |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.2.2)| Mainstream Support | 2025-10-13     | 2028-01-29        | 2030-01-29 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.3)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-01-13~~    | ~~Ineligible~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.2)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
