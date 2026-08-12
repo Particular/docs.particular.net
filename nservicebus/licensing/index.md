@@ -48,7 +48,7 @@ Sometimes the license must be embedded in a single line of text, for example, in
 
 ### License signature type
 
-By default, licenses are signed using `Rsa1024Sha1`. For environments that require stronger cryptographic signing, licenses can be signed using a 4096-bit RSA key pair with SHA256 instead.
+By default, licenses are signed using `Rsa1024Sha1` (1024-bit RSA with SHA-1). For environments that require stronger cryptographic signing, licenses can be signed using a 4096-bit RSA key pair with SHA-256 instead.
 
 To download a license with the stronger signature, add `signaturetype=Rsa4096Sha256` to the query string of the license download URL.
 
