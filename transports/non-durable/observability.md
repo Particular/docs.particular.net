@@ -15,6 +15,8 @@ The transport emits OpenTelemetry activities under the source `NServiceBus.Trans
 | `NServiceBus.Transport.NonDurable.Schedule` | Producer | A delayed delivery message is scheduled. |
 | `NServiceBus.Transport.NonDurable.Process` | Consumer | A message is received and processed. |
 
+These activities describe the raw transport interactions and are emitted under the transport's own activity source. Enabling or configuring the [NServiceBus Core OpenTelemetry](/nservicebus/operations/opentelemetry.md) does not change this behavior. Core emits its own activities under the `NServiceBus.Core` source. Options such as `StartNewTraceOnReceive()` and `ContinueExistingTraceOnReceive()` control how Core's activities correlate to each other; they do not affect the transport activities described here.
+
 ## Span correlation
 
 The `Process` span is a root span. It correlates to the producer span that created the message through an [activity link](https://opentelemetry.io/docs/concepts/signals/traces/), following the [OpenTelemetry messaging semantic conventions](https://opentelemetry.io/docs/specs/semconv/messaging/). The producer span is parented to the handler activity that performed the send.
