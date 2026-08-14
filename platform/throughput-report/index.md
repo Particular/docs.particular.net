@@ -1,7 +1,7 @@
 ---
 title: Usage Report Requirements
 summary: Minimal setup required for generating a usage report for licensing of the Particular Service Platform.
-reviewed: 2025-05-08
+reviewed: 2026-08-14
 related:
   - nservicebus/licensing
   - servicepulse/usage
@@ -15,6 +15,9 @@ The minimal installation required to generate the usage report is:
 - [ServiceControl](/servicecontrol/). Only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic.
 - [ServicePulse](/servicepulse/). This is the UI that interfaces with the ServiceControl service to allow users to specify which endpoints are NServiceBus related and generate the usage report to send to Particular.
 
+> [!NOTE]
+> ServicePulse can run in an [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and be started from within ServiceControl, in which case no additional installation is required.
+
 ## Installation options
 
 > [!WARNING]
@@ -27,7 +30,8 @@ The following methods can be used to install these requirements:
 - [Windows Only](#windows-installation)
   - ServiceControl through [ServiceControl Management Utility](#windows-installation-servicecontrol-servicecontrol-management-utility-scmu)
   - ServiceControl through [Powershell](#windows-installation-servicecontrol-powershell)
-  - [ServicePulse](#windows-installation-servicepulse)
+  - ServicePulse running in [an integrated mode from within ServiceControl Management Utility](#windows-installation-servicepulse-integrated-into-servicecontrol-management-utility-scmu)
+  - ServicePulse as a [stand alone Windows service](#windows-installation-servicepulse-stand-alone)
 
 > [!NOTE]
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
@@ -52,7 +56,7 @@ The containers required for generating a usage report are:
 
 ### Cloud environments
 
-When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS. 
+When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS.
 In other hosting environments where the RavenDB [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is suggested to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation
@@ -81,5 +85,21 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
   - Most of the parameters can be left as per the example, with the `-Transport` and `-ConnectionString` parameters set according to your environment.
 
 ### ServicePulse
+
+ServicePulse can be installed separately as a Windows service, or it can run in an [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) from within the ServiceControl Management Utility (SCMU).
+
+#### Integrated into ServiceControl Management Utility (SCMU)
+
+##### New installations
+
+When installing a new instance of ServiceControl via SCMU, once the service is installed and running, a link to launch an integrated version of ServicePulse will be visible in SCMU.
+![ServicePulse link](scmu-5.png 'width=500')
+
+##### Upgrades
+
+When upgrading from an older version of ServiceControl via SCMU, ensure you click the `Enable Integrated ServicePulse` option.
+![Enable integrated ServicePulse](scmu-6.png 'width=500')
+
+#### Stand alone
 
 Follow the [installation instructions](/servicepulse/installation.md) and ensure ServicePulse is [configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to point to the port of the ServiceControl instance installed above.
