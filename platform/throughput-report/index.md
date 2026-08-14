@@ -17,6 +17,7 @@ The minimal installation required to generate the usage report is:
 
 > [!NOTE]
 > ServicePulse can run in an [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and be started from within ServiceControl, in which case no additional installation is required.
+> This [can be enabled](/servicecontrol/servicecontrol-instances/configuration#host-settings-servicecontrolenableintegratedservicepulse) when installing via the ServiceControl Management Utility as well as when running via Containers
 
 ## Installation options
 
@@ -52,7 +53,7 @@ The containers required for generating a usage report are:
 - [RavenDB](/servicecontrol/ravendb/containers.md)
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
-- [ServicePulse](/servicepulse/containerization/)
+- [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration#host-settings-servicecontrolenableintegratedservicepulse))
 
 ### Cloud environments
 
