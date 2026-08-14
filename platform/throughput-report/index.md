@@ -17,7 +17,7 @@ The minimal installation required to generate the usage report is:
 
 > [!NOTE]
 > ServicePulse can run in an [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and be started from within ServiceControl, in which case no additional installation is required.
-> This [can be enabled](/servicecontrol/servicecontrol-instances/configuration#host-settings-servicecontrolenableintegratedservicepulse) when installing via the ServiceControl Management Utility as well as when running via Containers
+> This [can be enabled](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse) when installing via the ServiceControl Management Utility as well as when running via Containers
 
 ## Installation options
 
