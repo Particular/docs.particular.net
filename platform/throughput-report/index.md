@@ -90,6 +90,8 @@ ServicePulse can be installed separately as a Windows service, or it can run in 
 
 #### Integrated into ServiceControl Management Utility (SCMU)
 
+This is the easiest and recommended way to run ServicePulse for usage report purposes.
+
 ##### New installations
 
 When installing a new instance of ServiceControl via SCMU, once the service is installed and running, a link to launch an integrated version of ServicePulse will be visible in SCMU.
