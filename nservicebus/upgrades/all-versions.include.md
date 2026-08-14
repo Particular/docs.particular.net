@@ -251,7 +251,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.NonDurable/1.0.1)| **Current** | 2026-08-03     | Active            | Active |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.NonDurable/1.1.0)| **Current** | 2026-08-13     | Active            | Active |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.NonDurable/1.0.1)| Mainstream Support | 2026-08-03     | 2026-11-13        | Ineligible |
 
 #### [NServiceBus.Transport.PostgreSql](/nuget/NServiceBus.Transport.PostgreSql)
 
