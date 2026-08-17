@@ -52,7 +52,7 @@ Follow Microsoft's guide to [expose a web API](https://learn.microsoft.com/en-us
 | Admin consent description  | `Allows ServicePulse to call ServiceControl` |
 
 > [!NOTE]
-> Ensure that an owner is [assigned to the API application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis#assign-application-owner), otherwise the API will not be listed when requesting API permissions.
+> Ensure that you are assigned as the [owner of the API application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis#assign-application-owner), otherwise the API will not be listed when requesting API permissions.
 
 ## Step 2: Register ServicePulse
 
