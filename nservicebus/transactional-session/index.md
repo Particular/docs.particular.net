@@ -1,7 +1,7 @@
 ---
 title: Transactional session
 summary: Atomicity when modifying data and sending messages outside the context of a message handler
-reviewed: 2025-01-24
+reviewed: 2026-08-18
 component: TransactionalSession
 related:
 - samples/transactional-session/aspnetcore-webapi
@@ -25,7 +25,7 @@ Consider an ASP.NET Core controller that creates a user in the business database
 
 In the context of a message handler, the [NServiceBus Outbox](/nservicebus/outbox) feature can mitigate this problem. However, these scenarios require that the operations occur within a message handler.
 
-A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler. However, this approach is not always feasible. Here are two examples:
+A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated` event from within a message handler. However, this approach is not always feasible. Here are two examples:
 
 * Existing applications often have non-trivial processing logic in controllers. Moving all of it into dedicated message handlers could entail significant effort.
 * Processing logic in the controller may assume specific side effects to occur within the scope of the request, e.g., validation, notifications, or error handling. The logic may, therefore, not be ready for the asynchronous, fire-and-forget approach required when offloading work into message handlers.
@@ -46,7 +46,7 @@ To ensure atomic consistency across database and message operations, enable the 
 
 snippet: enabling-outbox
 
-The transactional session can be resolved from the container, and must be opened:
+The transactional session can be resolved from the dependency injection container and must be opened:
 
 snippet: opening-transactional-session
 
@@ -60,7 +60,7 @@ Once all the operations that are part of the atomic request have been executed, 
 
 snippet: committing-transactional-session
 
-Disposing of the transactional session without committing will roll back any changes that were made.
+Disposing of the transactional session without committing will roll back any changes made.
 
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
@@ -79,7 +79,7 @@ The transactional session feature requires a supported persistence package to st
 
 ## Design considerations
 
-It's recommended to not mix the processing of dispatch messages with business messages in order to get:
+It's recommended not to mix the processing of dispatch messages with business messages in order to get:
 
 - Predictable dispatch message processing: Processing of dispatch messages will be more reliable since there is no risk of getting delayed behind slow business messages
 - More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the dispatch message processing and not be skewed by business messages
@@ -98,7 +98,7 @@ To guarantee atomic consistency across database and message operations, the tran
 > [!NOTE]
 > The outbox must be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
 
-With the outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to zombie records or ghost messages in case of a failure during the commit phase.
+With the outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). Message operations and database changes are not guaranteed to be atomic. This might lead to zombie records or ghost messages if a failure occurs during the commit phase.
 
 ## How it works
 
@@ -154,7 +154,7 @@ sequenceDiagram
     deactivate ReceivePipeline
 ```
 
-Internally, the transactional session doesn't use a single transaction that spans all the operations. The transactional session acknowledgement occurs in two separate phases:
+Internally, the transactional session doesn't use a single transaction spanning all operations. The transactional session acknowledgment occurs in two separate phases:
 
 ### Phase 1
 
@@ -191,13 +191,13 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the dispatch message stores the `OutboxRecord`
 
-Sending the dispatch message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the dispatch message will ensure the outgoing operations are sent.
+Sending the dispatch message first ensures that the transaction eventually has an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the dispatch message will ensure the outgoing operations are sent.
 
 ### Failure to send the dispatch message
 
 If sending the dispatch message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
-If the transaction completes and the dispatch message fails to process through all the retry attempts, the dispatch message will be moved to the error queue and the outgoing messages will not be dispatched. Once the error is resolved, the dispatch message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If the messages are not manually retried, the stored outgoing messages will never be delivered. If that's undesirable, the system must be returned to a consistent state via other means.
+If the transaction completes and the dispatch message fails to go through all retry attempts, it will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the dispatch message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If the messages are not manually retried, the stored outgoing messages will never be delivered. If that's undesirable, the system must be returned to a consistent state via other means.
 
 ### Failure to commit the outbox record
 
@@ -205,7 +205,7 @@ If the `Commit` fails, the dispatch message will (after the [maximum commit dura
 
 ### Commit takes too long
 
-When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration), the dispatch message will result in a tombstone record in the outbox preventing the commit from succeeding. The following exception is thrown:
+When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration), the dispatch message will result in a tombstone record in the outbox, preventing the commit from succeeding. The following exception is thrown:
 
 `Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded`
 
@@ -221,13 +221,13 @@ A variation of this is when using a remote processing endpoint that does not hav
 
 ### Maximum commit duration
 
-The maximum commit duration limits the amount of time it can take for a transaction to commit the changes before the operation times out. The value can be configured when opening the session.
+The maximum commit duration limits how long a transaction can take to commit before the operation times out. The value can be configured when opening the session.
 
 The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
 
 snippet: configuring-timeout-transactional-session
 
-The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the dispatch message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
+The maximum commit duration does not represent the total transaction time; rather, it is the time it takes to complete the commit operation (as observed from the perspective of the dispatch message). In practice, the observed total commit time might be longer due to transport delays, latency, delayed delivery, input queue load, endpoint concurrency limits, and more.
 
 When the dispatch message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
 
@@ -243,6 +243,6 @@ partial: config
 
 ### Metadata
 
-It is possible to add metadata (e.g. tenant information) transactional session dispatch message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the dispatch message is received in the `TransportReceive` part of the pipeline.
+It is possible to add metadata (e.g., tenant information) to the transactional session dispatch message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the dispatch message is received in the `TransportReceive` part of the pipeline.
 
 snippet: configuring-metadata-transactional-session
