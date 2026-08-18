@@ -55,7 +55,7 @@ The server wraps the regular `CosmosClient` with the Cosmos DB encryption client
 
 snippet: EncryptionPolicy
 
-The policy encrypts `OrderId` and `OrderDescription` using randomized encryption. The `id` and `PartitionKey` properties remain unencrypted because Cosmos DB needs them for point reads and routing. The NServiceBus persistence metadata also remains unencrypted because pessimistic locking updates a nested property within that object.
+The policy uses [encryption policy format version 2](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#choosing-a-client-encryption-policy), which allows all saga data properties to be encrypted. `OrderId` and `OrderDescription` use randomized encryption, while `id` and `PartitionKey` use [deterministic encryption](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#randomized-vs-deterministic-encryption) because Cosmos DB requires these values for point reads and routing. The NServiceBus persistence metadata remains unencrypted because pessimistic locking updates a nested property within that object.
 
 The key encryption key resolver stores a generated RSA private key under the server output directory. This is suitable only for demonstrating the encryption flow. Production systems should use a secure key store, such as Azure Key Vault, and must retain the key for as long as encrypted data needs to be read.
 
