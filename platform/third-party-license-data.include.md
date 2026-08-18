@@ -27,7 +27,7 @@
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/3.3.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.Logging.AspNetCore" target="_blank">Amazon.Lambda.Logging.AspNetCore</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Logging.AspNetCore/5.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents/3.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents/3.0.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 
 ### NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
@@ -147,7 +147,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.103.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.103.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
@@ -268,6 +268,7 @@
 | <a href="https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Shell" target="_blank">Microsoft-WindowsAPICodePack-Shell</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE" target="_blank">View License</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer" target="_blank">Microsoft.AspNetCore.Authentication.JwtBearer</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/10.0.11/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect" target="_blank">Microsoft.AspNetCore.Authentication.OpenIdConnect</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect/10.0.11/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure" target="_blank">Microsoft.Data.SqlClient.Extensions.Azure</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure/7.0.2/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank">Microsoft.EntityFrameworkCore</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/10.0.11/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Relational" target="_blank">Microsoft.EntityFrameworkCore.Relational</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Relational/10.0.11/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer" target="_blank">Microsoft.EntityFrameworkCore.SqlServer</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/10.0.11/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
