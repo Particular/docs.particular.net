@@ -1,7 +1,7 @@
 # Build and run this Dockerfile from the repository root directory
 # Example commands:
-# podman build -f samples/cosmosdb/simple/CosmosDB_3/Dockerfile -t cosmosdb-simple .
-# podman run --rm -e COSMOS_CONNECTION_STRING="$COSMOS_CONNECTION_STRING" cosmosdb-simple
+# podman build -f samples/cosmosdb/encryption/CosmosDB_3/Dockerfile -t cosmosdb-encryption .
+# podman run --rm -e COSMOS_CONNECTION_STRING="$COSMOS_CONNECTION_STRING" cosmosdb-encryption
 
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
@@ -11,10 +11,10 @@ WORKDIR /source
 COPY nuget.config Directory.Build.props BannedSymbols.txt ./
 
 # Copy the sample solution
-COPY samples/cosmosdb/simple/CosmosDB_3/ ./samples/cosmosdb/simple/CosmosDB_3/
+COPY samples/cosmosdb/encryption/CosmosDB_3/ ./samples/cosmosdb/encryption/CosmosDB_3/
 
 # Restore packages
-WORKDIR /source/samples/cosmosdb/simple/CosmosDB_3
+WORKDIR /source/samples/cosmosdb/encryption/CosmosDB_3
 RUN dotnet restore --no-cache
 
 # Build the solution (no configuration specified, using net9.0 as the latest target)
@@ -40,7 +40,7 @@ COPY --from=build /app/client ./client/
 COPY --from=build /app/server ./server/
 
 # Copy the startup script
-COPY samples/cosmosdb/simple/CosmosDB_3/run_sample.sh ./
+COPY samples/cosmosdb/encryption/CosmosDB_3/run_sample.sh ./
 RUN chmod +x run_sample.sh
 
 CMD ["./run_sample.sh"]

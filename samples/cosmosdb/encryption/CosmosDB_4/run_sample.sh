@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Starting CosmosDB Simple Sample Test"
+echo "Starting CosmosDB Encryption Sample Test"
 
 # Check if COSMOS_CONNECTION_STRING is set
 if [ -z "$COSMOS_CONNECTION_STRING" ]; then
@@ -132,7 +132,7 @@ echo "The sample demonstrates:"
 echo "1. ✓ Client sending StartOrder message to Server"
 echo "2. ✓ Server receiving StartOrder and creating OrderSaga"
 echo "3. ✓ Saga processing and timeout handling"
-echo "4. ✓ CosmosDB persistence working correctly"
+echo "4. ✓ CosmosDB client-side encryption and persistence working correctly"
 
 echo ""
 echo "Server log output:"

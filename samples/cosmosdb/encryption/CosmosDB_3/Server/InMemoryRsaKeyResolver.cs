@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Concurrent;
+using System.IO;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using Azure.Core.Cryptography;
 
 // Demo only: stores an unprotected RSA private key on disk. Use a secure key store in production.

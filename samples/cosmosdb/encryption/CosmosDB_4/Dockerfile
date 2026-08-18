@@ -1,7 +1,7 @@
 # Build and run this Dockerfile from the repository root directory
 # Example commands:
-# podman build -f samples/cosmosdb/simple/CosmosDB_4/Dockerfile -t cosmosdb-simple-v10 .
-# podman run --rm -e COSMOS_CONNECTION_STRING="$COSMOS_CONNECTION_STRING" cosmosdb-simple-v10
+# podman build -f samples/cosmosdb/encryption/CosmosDB_4/Dockerfile -t cosmosdb-encryption-v10 .
+# podman run --rm -e COSMOS_CONNECTION_STRING="$COSMOS_CONNECTION_STRING" cosmosdb-encryption-v10
 
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:10.0-preview AS build
@@ -14,10 +14,10 @@ ENV DOTNET_SYSTEM_NET_SECURITY_NOREVOCATIONCHECKBYDEFAULT=true
 COPY nuget.config Directory.Build.props BannedSymbols.txt ./
 
 # Copy the sample solution
-COPY samples/cosmosdb/simple/CosmosDB_4/ ./samples/cosmosdb/simple/CosmosDB_4/
+COPY samples/cosmosdb/encryption/CosmosDB_4/ ./samples/cosmosdb/encryption/CosmosDB_4/
 
 # Restore packages
-WORKDIR /source/samples/cosmosdb/simple/CosmosDB_4
+WORKDIR /source/samples/cosmosdb/encryption/CosmosDB_4
 RUN dotnet restore --no-cache
 
 # Build the solution (no configuration specified, using net10.0 as the target)
@@ -48,7 +48,7 @@ COPY --from=build /app/client ./client/
 COPY --from=build /app/server ./server/
 
 # Copy the startup script
-COPY samples/cosmosdb/simple/CosmosDB_4/run_sample.sh ./
+COPY samples/cosmosdb/encryption/CosmosDB_4/run_sample.sh ./
 RUN chmod +x run_sample.sh
 
 CMD ["./run_sample.sh"]

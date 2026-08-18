@@ -29,7 +29,7 @@ class Program
             };
             if (key.Key == ConsoleKey.S)
             {
-                await messageSession.Send("Samples.CosmosDB.Simple.Server", startOrder);
+                await messageSession.Send("Samples.CosmosDB.Encryption.Server", startOrder);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;
             }
@@ -46,7 +46,7 @@ class Program
              Console.Title = "Client";
          }).UseNServiceBus(x =>
          {
-             var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Client");
+             var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Encryption.Client");
              endpointConfiguration.UsePersistence<LearningPersistence>();
              endpointConfiguration.UseTransport(new LearningTransport());
              endpointConfiguration.UseSerialization<SystemJsonSerializer>();

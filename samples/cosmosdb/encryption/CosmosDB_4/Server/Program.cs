@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 Console.Title = "Server";
 
-var cosmosClient = await CreateEncryptingClientAsync();
+using var cosmosClient = await CreateEncryptingClientAsync();
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -14,8 +14,10 @@ var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Encrypti
 
 var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
 persistence.DatabaseName("Samples.CosmosDB.Encryption");
+// NServiceBus must use the encryption-enabled client so saga reads and writes apply the encryption policy.
 persistence.CosmosClient(cosmosClient);
 persistence.DefaultContainer("Server", "/id");
+// The container is created explicitly with its encryption policy, so persistence must not create it.
 persistence.DisableContainerCreation();
 
 endpointConfiguration.UseTransport(new LearningTransport());
@@ -40,6 +42,7 @@ static async Task<CosmosClient> CreateEncryptingClientAsync()
     {
         cosmosClientOptions.ConnectionMode = ConnectionMode.Gateway;
         cosmosClientOptions.LimitToEndpoint = true;
+        // The emulator uses a development certificate. Never disable certificate validation for non-local endpoints.
         cosmosClientOptions.ServerCertificateCustomValidationCallback = (_, _, _) => true;
     }
 
@@ -49,21 +52,22 @@ static async Task<CosmosClient> CreateEncryptingClientAsync()
     var cosmosClient = new CosmosClient(connection, cosmosClientOptions)
         .WithEncryption(resolver, resolverName);
 
+    // Demo only: recreating the database avoids stale encryption keys. Never delete a production database at startup.
+    await DropDatabaseAsync(cosmosClient);
     await cosmosClient.CreateDatabaseIfNotExistsAsync("Samples.CosmosDB.Encryption");
 
     await EncryptionSetup.CreateClientEncryptionKeyIfNotExistsAsync(cosmosClient, resolverName);
 
-    await DropContainerAsync(cosmosClient, "Server");
     await EncryptionSetup.CreateEncryptedContainerIfNotExistsAsync(cosmosClient);
 
     return cosmosClient;
 }
 
-static async Task DropContainerAsync(CosmosClient client, string containerName)
+static async Task DropDatabaseAsync(CosmosClient client)
 {
     try
     {
-        await client.GetContainer("Samples.CosmosDB.Encryption", containerName).DeleteContainerAsync();
+        await client.GetDatabase("Samples.CosmosDB.Encryption").DeleteAsync();
     }
     catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
     {
