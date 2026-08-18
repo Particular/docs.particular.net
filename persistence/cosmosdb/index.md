@@ -7,6 +7,7 @@ related:
 - samples/cosmosdb/transactions
 - samples/cosmosdb/container
 - samples/cosmosdb/simple
+- samples/cosmosdb/encryption
 redirects:
 - previews/cosmosdb
 ---
@@ -206,6 +207,27 @@ snippet: CosmosDBConfigureThrottlingWithClientOptions
 They may also be set when using a `CosmosClientBuilder` via the [`WithThrottlingRetryOptions`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.withthrottlingretryoptions?view=azure-dotnet) method:
 
 snippet: CosmosDBConfigureThrottlingWithBuilder
+
+## Client-side encryption
+
+Azure Cosmos DB supports [client-side encryption](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted) (also known as Always Encrypted), which encrypts sensitive data in the application before it is stored in Cosmos DB. This ensures that plaintext data is never visible to the Cosmos DB service.
+
+Client-side encryption can be used with NServiceBus saga data. Individual saga data properties can be encrypted by configuring an encryption policy on the Cosmos DB container. This is useful when saga data contains sensitive information such as personal identifiers, financial data, or other regulated content.
+
+### Limitations
+
+The following properties cannot be encrypted:
+
+- **`id`** and **partition key** properties — Cosmos DB requires these in plaintext for point reads and routing.
+- **`_NServiceBus-Persistence-Metadata`** — The persistence metadata property cannot be encrypted because [pessimistic locking](/persistence/cosmosdb/saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals) patches a nested path within this object. Only top-level properties can be included in an encryption policy, so encrypting the metadata property would encrypt the entire subtree and prevent the lock from functioning.
+
+Outbox records are not supported with client-side encryption.
+
+[`EnableInstallers`](/nservicebus/operations/installers.md) cannot be used with client-side encryption. The NServiceBus installer creates a standard container without an encryption policy, and an encryption policy can only be set at container creation time — it cannot be added or modified afterward. The container must be created manually with the required client encryption key and encryption policy before the endpoint starts.
+
+### Sample
+
+See the [Cosmos DB Persistence with Encryption sample](/samples/cosmosdb/encryption/) for a working example that demonstrates encrypting saga data properties.
 
 ## Transactions
 
