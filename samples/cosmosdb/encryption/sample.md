@@ -59,7 +59,8 @@ The policy encrypts `OrderId` and `OrderDescription` using randomized encryption
 
 The key encryption key resolver stores a generated RSA private key under the server output directory. This is suitable only for demonstrating the encryption flow. Production systems should use a secure key store, such as Azure Key Vault, and must retain the key for as long as encrypted data needs to be read.
 
-NOTE: The server deletes and recreates the `Samples.CosmosDB.Encryption` database each time it starts so that the sample always uses the expected encryption key and policy. Starting the server therefore removes all existing sample data.
+> [!NOTE]
+> The server deletes and recreates the `Samples.CosmosDB.Encryption` database each time it starts so that the sample always uses the expected encryption key and policy. Starting the server therefore removes all existing sample data.
 
 ## Order saga data
 
