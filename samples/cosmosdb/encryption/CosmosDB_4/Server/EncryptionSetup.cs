@@ -16,9 +16,7 @@ static class EncryptionSetup
     {
         var database = encryptingClient.GetDatabase(DatabaseName);
 
-        try
-        {
-            await database.CreateClientEncryptionKeyAsync(
+        await database.CreateClientEncryptionKeyAsync(
                 ClientEncryptionKeyId,
                 DataEncryptionAlgorithm.AeadAes256CbcHmacSha256,
                 new EncryptionKeyWrapMetadata(
@@ -27,10 +25,6 @@ static class EncryptionSetup
                     "https://demo.local/keys/nsb-demo-kek/1",
                     "RSA-OAEP"),
                 cancellationToken: cancellationToken);
-        }
-        catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Conflict)
-        {
-        }
     }
 
     public static async Task CreateEncryptedContainerIfNotExistsAsync(

@@ -71,5 +71,6 @@ static async Task DropDatabaseAsync(CosmosClient client)
     }
     catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
     {
+        // Database does not exist, nothing to delete.
     }
 }
