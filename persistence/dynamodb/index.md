@@ -47,6 +47,8 @@ When [installers](/nservicebus/operations/installers.md) are enabled, NServiceBu
 
 snippet: DynamoDBDisableTableCreation
 
+When the deployment process creates the table instead, see [table creation](/persistence/dynamodb/table-creation.md) for the required schema.
+
 ### Customizing the AmazonDynamoDBClient provider
 
 In cases when the `AmazonDynamoDBClient` is configured and used via dependency injection, a custom provider can be implemented:
@@ -73,7 +75,7 @@ Below is the list of minimum required [IAM policies for operating the DynamoDB p
   - `dynamodb:PutItem`,
   - `dynamodb:DeleteItem`
 
-### Installers disabled (or when using `DisableTableCreation()`)
+### Installers disabled (or when using `DisableTablesCreation()`)
 
   - `dynamodb:DescribeTimeToLive`,
   - `dynamodb:Query`,

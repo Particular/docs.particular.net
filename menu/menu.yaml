@@ -1299,6 +1299,8 @@
       Title: Transactions
     - Url: nservicebus/aws/local-development
       Title: Local development
+    - Url: persistence/dynamodb/table-creation
+      Title: Table creation
     - Url: persistence/dynamodb/capacity-planning
       Title: Capacity planning
 
