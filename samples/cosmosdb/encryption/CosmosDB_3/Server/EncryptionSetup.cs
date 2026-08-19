@@ -46,17 +46,21 @@ static class EncryptionSetup
                 // NServiceBus derives the saga ID from the correlation value and performs a point read,
                 // so the correlated property can use randomized encryption.
                 Encrypted("/OrderId"),
-                Encrypted("/OrderDescription")
+                Encrypted("/OrderDescription"),
+
+                // Policy format version 2 allows encrypting id and partition key
+                // but requires deterministic encryption for these properties.
+                EncryptedDeterministic("/id"),
+                EncryptedDeterministic("/PartitionKey")
 
                 // Deliberately NOT encrypted:
-                //   id                                  - point-read key, and policy format 1 forbids it
-                //   /PartitionKey                       - routing key, forbidden by policy format 1
                 //   /_NServiceBus-Persistence-Metadata  - pessimistic locking patches a path INSIDE
                 //                                         this object (SagaDataContainer-ReservedUntil).
                 //                                         Only top-level paths can be encrypted, so
                 //                                         including it would encrypt the whole subtree
                 //                                         and break the lock.
-            ])
+            ],
+            policyFormatVersion: 2)
         };
 
         #endregion
@@ -69,6 +73,14 @@ static class EncryptionSetup
         Path = path,
         ClientEncryptionKeyId = ClientEncryptionKeyId,
         EncryptionType = EncryptionType.Randomized.ToString(),
+        EncryptionAlgorithm = DataEncryptionAlgorithm.AeadAes256CbcHmacSha256
+    };
+
+    static ClientEncryptionIncludedPath EncryptedDeterministic(string path) => new()
+    {
+        Path = path,
+        ClientEncryptionKeyId = ClientEncryptionKeyId,
+        EncryptionType = EncryptionType.Deterministic.ToString(),
         EncryptionAlgorithm = DataEncryptionAlgorithm.AeadAes256CbcHmacSha256
     };
 }
