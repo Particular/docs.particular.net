@@ -46,6 +46,22 @@ partial: license-management
 
 Sometimes the license must be embedded in a single line of text, for example, in a command line when deploying an endpoint with Docker. For these scenarios, the license can be minified, removing all spaces and line breaks, by adding `minify=true` to the query string of the URL used to download a license file from the Particular Software website.
 
+### License signature type
+
+By default, licenses are signed using `Rsa1024Sha1` (1024-bit RSA with SHA-1). For environments that require stronger cryptographic signing, licenses can be signed using a 4096-bit RSA key pair with SHA-256 instead.
+
+To download a license with the stronger signature, add `signature-version=V2` to the query string of the license download URL.
+
+> [!WARNING]
+> RSA 4096 / SHA256 signed licenses are only supported in the following NServiceBus versions:
+>
+> - 9.2.12 and higher patches
+> - 10.0.5 and higher patches
+> - 10.1.7 and higher patches
+> - 10.2.6 and all higher versions
+>
+> Using an `Rsa4096Sha256` signed license with an older version will cause a license validation failure.
+
 ## Troubleshooting
 
 Diagnose license scanning issues by [enabling Debug logging](/nservicebus/logging/#built-in-logging-changing-the-defaults-changing-the-logging-level) as all traversed locations and the scan result are logged.
