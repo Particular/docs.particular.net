@@ -1,5 +1,5 @@
 ---
-title: Outbox with DynamoDB
+title: Outbox with DynamoDB persistence
 summary: How to configure Outbox persistence in DynamoDB
 component: DynamoDB
 reviewed: 2025-04-08

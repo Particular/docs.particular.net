@@ -1,5 +1,5 @@
 ---
-title: Table creation with DynamoDB
+title: Table creation with DynamoDB persistence
 summary: How to create the table used by DynamoDB persistence instead of relying on installers
 component: DynamoDB
 reviewed: 2026-08-20
