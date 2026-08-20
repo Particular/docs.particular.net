@@ -1,8 +1,8 @@
 ---
-title: Table creation (DynamoDB)
+title: Table creation
 summary: How to create the table used by DynamoDB persistence instead of relying on installers
 component: DynamoDB
-reviewed: 2026-08-19
+reviewed: 2026-08-20
 related:
 - persistence/dynamodb
 - nservicebus/operations/installers
@@ -69,3 +69,26 @@ aws dynamodb update-time-to-live `
 Time-to-live can only be configured once the table is active, which is why the `wait table-exists` call separates the two commands.
 
 When saga and outbox data are stored in separate tables, create each one with the same key schema. Only the outbox table needs time-to-live enabled.
+
+## Local development
+
+The table is also required when running against [LocalStack](/nservicebus/aws/local-development.md) or another local DynamoDB instance, unless installers create it. The commands above work unchanged, but the AWS CLI must be told to send them to the local instance instead of AWS.
+
+A local instance does not validate credentials, but the CLI still requires them, so configure a profile with placeholder values:
+
+```ps
+aws configure set aws_access_key_id demo --profile localstack
+aws configure set aws_secret_access_key demo --profile localstack
+aws configure set region us-east-1 --profile localstack
+```
+
+Select that profile and the local endpoint for the current session:
+
+```ps
+$env:AWS_PROFILE = "localstack"
+$env:AWS_ENDPOINT_URL = "http://localhost.localstack.cloud:4566"
+```
+
+`AWS_ENDPOINT_URL` requires AWS CLI version 2.13 or later. On earlier versions, pass `--endpoint-url http://localhost.localstack.cloud:4566` to each command instead.
+
+The endpoint itself needs the same endpoint URL and credentials to reach the table. See [AWS local development using LocalStack](/nservicebus/aws/local-development.md).

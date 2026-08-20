@@ -1,5 +1,5 @@
 ---
-title: Sagas (DynamoDB)
+title: Sagas
 summary: How to configure saga persistence in DynamoDB
 component: DynamoDB
 reviewed: 2025-04-24
