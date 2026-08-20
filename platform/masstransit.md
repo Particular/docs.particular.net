@@ -1,7 +1,7 @@
 ---
 title: MassTransit Error Management - Early Access
 summary: Manage errors from MassTransit systems with the Particular Service Platform
-reviewed: 2025-01-23
+reviewed: 2026-08-20
 ---
 
 The Particular Service Platform now offers its error management capabilities for MassTransit endpoints on RabbitMQ and Azure Service Bus under the [early access license - for free](https://particular.net/eula/early_access).
@@ -28,7 +28,7 @@ In addition, the platform offers more advanced features such as [retry redirects
 
 
 
-This is done with a [container](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
+This is done with a [container](/servicecontrol/masstransit/) that runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
 
 ![Particular Service Platform architecture](architecture-overview-diagram-masstransit.svg)
 
@@ -44,7 +44,7 @@ As the error management capability is packaged in containers, removing it is ver
 1. Disable the [connector container](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector)
 1. [Retry all the failed messages](/servicepulse/intro-failed-message-retries.md#servicepulse-interface-retrying-failed-messages)
 1. [Validate that all pending retries have completed](/servicepulse/intro-pending-retries.md)
-1. [Remove all 4 containers from your system](/servicecontrol/masstransit/docker-deployment.md)
+1. [Remove all four containers from your system](/servicecontrol/masstransit/docker-deployment.md)
 1. (Optional) Remove the [platform queues](/servicecontrol/masstransit/#what-queues-are-created)
 1. Done!
 
