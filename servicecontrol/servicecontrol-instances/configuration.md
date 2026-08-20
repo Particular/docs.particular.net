@@ -185,11 +185,11 @@ Set to `true` to enable [integrated ServicePulse](/servicecontrol/servicecontrol
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_ENABLEINTEGRATEDSERVICEPULSE` |
 | **App config key** | `ServiceControl/EnableIntegratedServicePulse` |
-| **SCMU field** | `Enable integrated ServicePulse` |
+| **SCMU field** | `ENABLE INTEGRATED SERVICEPULSE` |
 
 | Type | Default value |
 | --- | --- |
-| bool | `false` |
+| bool | `false` (SCMU dropdown defaults to `On`) |
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
@@ -904,7 +904,7 @@ For a message to be considered for deletion, it needs to have a status of either
 
 | Type | Default value |
 | --- | --- |
-| timespan | None (required) |
+| timespan | None (required) (SCMU slider defaults to `15 Days`) |
 
 Valid range for this setting is between 5 days and 45 days.
 
@@ -967,11 +967,11 @@ Use this setting to configure whether the bodies of processed error messages sho
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_ENABLEFULLTEXTSEARCHONBODIES` |
 | **App config key** | `ServiceControl/EnableFullTextSearchOnBodies` |
-| **SCMU field** | N/A |
+| **SCMU field** | `FULL TEXT SEARCH ON MESSAGE BODIES` |
 
 | Type | Default value |
 | --- | --- |
-| bool | `true` |
+| bool | `true` (SCMU dropdown defaults to `On`) |
 
 > [!NOTE]
 > Changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
@@ -990,7 +990,7 @@ The transport type to run ServiceControl with.
 
 | Type | Default value |
 | --- | --- |
-| string | `MSMQ` |
+| string | None |
 
 Valid values are documented in the [ServiceControl transport configuration documentation](/servicecontrol/transports.md).
 
