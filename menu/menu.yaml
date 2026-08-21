@@ -130,6 +130,8 @@
     Url: platform
   - Title: Installation
     Url: platform/installation
+  - Title: Containers
+    Url: platform/containers
   - Title: Platform Sample installation
     Url: platform/platform-sample-package
   - Title: Aspire
