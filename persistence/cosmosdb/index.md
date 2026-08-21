@@ -7,6 +7,7 @@ related:
 - samples/cosmosdb/transactions
 - samples/cosmosdb/container
 - samples/cosmosdb/simple
+- samples/cosmosdb/encryption
 redirects:
 - previews/cosmosdb
 ---
@@ -206,6 +207,39 @@ snippet: CosmosDBConfigureThrottlingWithClientOptions
 They may also be set when using a `CosmosClientBuilder` via the [`WithThrottlingRetryOptions`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.fluent.cosmosclientbuilder.withthrottlingretryoptions?view=azure-dotnet) method:
 
 snippet: CosmosDBConfigureThrottlingWithBuilder
+
+## Client-side encryption
+
+Azure Cosmos DB supports [client-side encryption](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted) (also known as Always Encrypted), which encrypts sensitive data in the application before it is stored in Cosmos DB. This ensures that plaintext data is never visible to the Cosmos DB service.
+
+Client-side encryption can be used with NServiceBus saga data. Individual saga data properties can be encrypted by configuring an encryption policy on the Cosmos DB container. This is useful when saga data contains sensitive information such as personal identifiers, financial data, or other regulated content.
+
+### Encryption types
+
+Cosmos DB Always Encrypted supports two [encryption types](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#randomized-vs-deterministic-encryption):
+
+- **Randomized** — more secure, but prevents queries from filtering on encrypted properties. Suitable for saga data properties that are only read via point reads.
+- **Deterministic** — always produces the same ciphertext for a given plaintext value, allowing equality filters on encrypted properties.
+
+NServiceBus derives the saga ID from the correlation property and performs a point read, so saga data properties can use randomized encryption.
+
+### Encrypting id and partition key
+
+With [encryption policy format version 1](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#choosing-a-client-encryption-policy), the `id` and partition key properties cannot be encrypted. [Policy format version 2](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/3241) lifts this restriction, allowing `id` and partition key to be encrypted using deterministic encryption. The [encryption sample](/samples/cosmosdb/encryption/) demonstrates this using policy format version 2.
+
+### Limitations
+
+The following property cannot be encrypted:
+
+- **`_NServiceBus-Persistence-Metadata`** — The persistence metadata property cannot be encrypted because [pessimistic locking](/persistence/cosmosdb/saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals) patches a nested path within this object. Only top-level properties can be included in an encryption policy, so encrypting the metadata property would encrypt the entire subtree and prevent the lock from functioning.
+
+Outbox records are not supported with client-side encryption.
+
+[`EnableInstallers`](/nservicebus/operations/installers.md) cannot be used with client-side encryption. The NServiceBus installer creates a standard container without an encryption policy, and an encryption policy can only be set at container creation time — it cannot be added or modified afterward. The container must be created manually with the required client encryption key and encryption policy before the endpoint starts.
+
+### Sample
+
+See the [Cosmos DB Persistence with Encryption sample](/samples/cosmosdb/encryption/) for a working example that demonstrates encrypting saga data properties.
 
 ## Transactions
 
