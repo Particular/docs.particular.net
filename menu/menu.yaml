@@ -395,6 +395,8 @@
         Title: Non-Durable Messaging
       - Url: nservicebus/messaging/forwarding
         Title: Forwarding
+    - Url: nservicebus/messaging/trimming-safe-messaging-overloads
+      Title: Trimming-safe messaging overloads
     - Url: nservicebus/messaging/delayed-delivery
       Title: Delayed Delivery
       Articles:
