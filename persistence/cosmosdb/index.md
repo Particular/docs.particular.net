@@ -225,7 +225,7 @@ NServiceBus derives the saga ID from the correlation property and performs a poi
 
 ### Encrypting id and partition key
 
-With [encryption policy format version 1](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#choosing-a-client-encryption-policy), the `id` and partition key properties cannot be encrypted. [Policy format version 2](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/3241) lifts this restriction, allowing `id` and partition key to be encrypted using deterministic encryption. The [encryption sample](/samples/cosmosdb/encryption/) demonstrates this using policy format version 2.
+With [encryption policy format version 1](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#choosing-a-client-encryption-policy), the `id` and partition key properties cannot be encrypted. [Policy format version 2](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.clientencryptionpolicy?view=azure-dotnet) [lifts this restriction](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/3241), allowing `id` and partition key to be encrypted using deterministic encryption. The [encryption sample](/samples/cosmosdb/encryption/) demonstrates this using policy format version 2.
 
 ### Limitations
 
