@@ -233,7 +233,7 @@ The following property cannot be encrypted:
 
 - **`_NServiceBus-Persistence-Metadata`** — The persistence metadata property cannot be encrypted because [pessimistic locking](/persistence/cosmosdb/saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals) patches a nested path within this object. Only top-level properties can be included in an encryption policy, so encrypting the metadata property would encrypt the entire subtree and prevent the lock from functioning.
 
-Outbox records are not supported with client-side encryption.
+Outbox records are not supported with client-side encryption. The outbox internally uses stream-based Cosmos DB APIs that bypass the encryption client, so outbox records would be written and read without encryption regardless of the container's encryption policy.
 
 [`EnableInstallers`](/nservicebus/operations/installers.md) cannot be used with client-side encryption. The NServiceBus installer creates a standard container without an encryption policy, and an encryption policy can only be set at container creation time — it cannot be added or modified afterward. The container must be created manually with the required client encryption key and encryption policy before the endpoint starts.
 
