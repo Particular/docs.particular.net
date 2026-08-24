@@ -237,6 +237,8 @@ Outbox records are not supported with client-side encryption. The outbox interna
 
 [`EnableInstallers`](/nservicebus/operations/installers.md) cannot be used with client-side encryption. The NServiceBus installer creates a standard container without an encryption policy, and an encryption policy can only be set at container creation time — it cannot be added or modified afterward. The container must be created manually with the required client encryption key and encryption policy before the endpoint starts.
 
+If you need the installers for other reasons, you can instead disable container creation by calling `persistence.DisableContainerCreation();`
+
 ### Sample
 
 See the [Cosmos DB Persistence with Encryption sample](/samples/cosmosdb/encryption/) for a working example that demonstrates encrypting saga data properties.
