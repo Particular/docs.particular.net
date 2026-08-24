@@ -133,7 +133,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.11.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.11.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.12.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.12.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.4/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.CosmosDB
@@ -201,7 +201,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.11.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.11.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.12.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.12.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.29.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.29.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Queues" target="_blank">Azure.Storage.Queues</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/12.27.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.27.1/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.0/license" target="_blank">View License</a> | <i>None provided</i> |
@@ -246,7 +246,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.5.1/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.5.2/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.302/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
 
 ### ServiceControl NuGet packages
@@ -254,7 +254,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/9.3.2/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.103.4/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.104/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.102.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.21.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.21.0/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.ResourceManager.Monitor" target="_blank">Azure.ResourceManager.Monitor</a> | <a href="https://www.nuget.org/packages/Azure.ResourceManager.Monitor/1.3.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.ResourceManager.Monitor_1.3.1/sdk/monitor/Azure.ResourceManager.Monitor/README.md" target="_blank">Project Site</a> |
@@ -284,9 +284,9 @@
 | <a href="https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL" target="_blank">Npgsql.EntityFrameworkCore.PostgreSQL</a> | <a href="https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/10.0.3/license" target="_blank">PostgreSQL</a> | <a href="https://github.com/npgsql/efcore.pg" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/NuGet.Versioning" target="_blank">NuGet.Versioning</a> | <a href="https://www.nuget.org/packages/NuGet.Versioning/7.9.0/license" target="_blank">Apache-2.0</a> | <a href="https://aka.ms/nugetprj" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/NUnit" target="_blank">NUnit</a> | <a href="https://www.nuget.org/packages/NUnit/4.6.1/license" target="_blank">MIT</a> | <a href="https://nunit.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.Console" target="_blank">OpenTelemetry.Exporter.Console</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.Console/1.17.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol" target="_blank">OpenTelemetry.Exporter.OpenTelemetryProtocol</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/1.17.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting" target="_blank">OpenTelemetry.Extensions.Hosting</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting/1.17.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.Console" target="_blank">OpenTelemetry.Exporter.Console</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.Console/1.18.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol" target="_blank">OpenTelemetry.Exporter.OpenTelemetryProtocol</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/1.18.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting" target="_blank">OpenTelemetry.Extensions.Hosting</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting/1.18.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Polly.Core" target="_blank">Polly.Core</a> | <a href="https://www.nuget.org/packages/Polly.Core/8.7.0/license" target="_blank">BSD-3-Clause</a> | <a href="https://github.com/App-vNext/Polly" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/RavenDB.Embedded" target="_blank">RavenDB.Embedded</a> | <a href="https://www.nuget.org/packages/RavenDB.Embedded/7.2.5/license" target="_blank">View License</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/ReactiveUI.WPF" target="_blank">ReactiveUI.WPF</a> | <a href="https://www.nuget.org/packages/ReactiveUI.WPF/24.1.0/license" target="_blank">MIT</a> | <a href="https://reactiveui.net/" target="_blank">Project Site</a> |
