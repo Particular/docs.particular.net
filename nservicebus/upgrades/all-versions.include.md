@@ -443,7 +443,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.3)| **Current** | 2026-01-30     | Active            | Active |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.4)| **Current** | 2026-01-30     | Active            | Active |
 | [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.2.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-03-05~~    | ~~Ineligible~~ |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.1.2)| ~~Unsupported~~ | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
@@ -476,7 +476,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.3)| **Current** | 2026-01-30     | Active            | Active |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.4)| **Current** | 2026-01-30     | Active            | Active |
 | [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.2.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-03-05~~    | ~~Ineligible~~ |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.1.2)| ~~Unsupported~~ | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
@@ -491,7 +491,7 @@
 | [11.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/11.0.1)| **Current** | 2026-01-30     | Active            | Active |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/10.1.1)| Mainstream Support | 2025-09-09     | 2028-01-29        | 2030-01-29 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/10.0.0)| ~~Unsupported~~ | ~~2025-08-22~~ | ~~2025-12-09~~    | ~~Ineligible~~ |
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/9.1.1)| Mainstream Support | 2025-06-03     | 2026-08-22        | Ineligible |
+| [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/9.1.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-08-22~~    | ~~Ineligible~~ |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/9.0.1)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.2.2)| Extended Support | 2023-04-05     | 2026-04-16        | 2028-04-16 |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/8.1.0)| ~~Unsupported~~ | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Ineligible~~ |
@@ -523,7 +523,7 @@
 | [11.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/11.0.1)| **Current** | 2026-01-30     | Active            | Active |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/10.1.1)| Mainstream Support | 2025-09-09     | 2028-01-29        | 2030-01-29 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/10.0.0)| ~~Unsupported~~ | ~~2025-08-22~~ | ~~2025-12-09~~    | ~~Ineligible~~ |
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.1.1)| Mainstream Support | 2025-06-03     | 2026-08-22        | Ineligible |
+| [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.1.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-08-22~~    | ~~Ineligible~~ |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.0.1)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.2.2)| Extended Support | 2023-04-05     | 2026-04-16        | 2028-04-16 |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.1.0)| ~~Unsupported~~ | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Ineligible~~ |
@@ -1009,7 +1009,7 @@
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/6.0.1)| **Current** | 2026-01-30     | Active            | Active |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/5.1.1)| Mainstream Support | 2025-09-09     | 2028-01-29        | 2030-01-29 |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/5.0.0)| ~~Unsupported~~ | ~~2025-08-22~~ | ~~2025-12-09~~    | ~~Ineligible~~ |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/4.0.2)| Mainstream Support | 2024-04-16     | 2026-08-22        | Ineligible |
+| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/4.0.2)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2026-08-22~~    | ~~Ineligible~~ |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/3.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/2.0.0)| Extended Support | 2021-12-09     | 2024-11-17        | 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1)| ~~Unsupported~~ | ~~2021-11-30~~ | ~~2022-12-09~~    | ~~Ineligible~~ |
