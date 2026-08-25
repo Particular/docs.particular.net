@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Analyzer
 summary: How to use the NServiceBus analyzer to avoid missing awaits
-reviewed: 2025-03-31
+reviewed: 2026-08-24
 component: Core
 versions: '[6,]'
 ---
@@ -64,3 +64,5 @@ Add a `<NoWarn>NSB0001</NoWarn>` element to the csproj file.
 ### Treat warnings as errors
 
 The C# compiler already contains a set of inspections which can warn about incorrect usage of `async` and `Task`-based APIs. It is recommended to treat these warnings as errors to ensure they are not missed accidentally. This feature can be enabled by the project settings or by adding `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>` to the `csproj` file directly.
+
+partial: migration-analyzer
