@@ -246,7 +246,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.5.2/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.5.3/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.302/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
 
 ### ServiceControl NuGet packages
