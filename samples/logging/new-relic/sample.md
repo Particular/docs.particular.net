@@ -3,7 +3,7 @@ title: Capture and visualize metrics using NewRelic
 summary: Illustrates how to capture, store, and visualize NServiceBus metrics in NewRelic
 component: Metrics
 isLearningPath: true
-reviewed: 2025-10-15
+reviewed: 2026-08-20
 previewImage: newrelic-processingtime.png
 ---
 
@@ -24,13 +24,11 @@ This sample reports the following metrics to NewRelic:
 
 For a detailed explanation of these metrics, refer to the [metrics captured section](/monitoring/metrics/definitions.md#metrics-captured) of the metrics definitions documentation.
 
-The [New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus/f3f28a00-8cea-41f1-a6fe-ebf5eae5791e) can be used to get started quickly.
-
 ## Prerequisites
 
 To run this sample, [create a NewRelic account](https://newrelic.com/signup?via=login), then download and run the NewRelic agent.
 
-See the [Introduction to New Relic Insights](https://docs.newrelic.com/docs/insights/use-insights-ui/getting-started/introduction-new-relic-insights) guide for information on how to get started with NewRelic monitoring.
+See the [Introduction to New Relic](https://docs.newrelic.com/docs/new-relic-solutions/get-started/intro-new-relic/) guide for information on how to get started with NewRelic monitoring.
 
 ## Code overview
 
@@ -66,21 +64,26 @@ snippet: newrelic-appname
 
 ## Dashboard
 
-A ready-to-use dashboard is available in the [official New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus/f3f28a00-8cea-41f1-a6fe-ebf5eae5791e).
+The [official New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus) provides a quickstart with a pre-built dashboard and alert policies. The quickstart dashboard displays standard .NET APM metrics such as transaction throughput, error rates, and VM resource utilization. It does not display the custom NServiceBus metrics reported by this sample.
 
 ### Create a custom dashboard
 
-Custom dashboards can be created by using NewRelic Insights. The following steps have to be performed:
+To visualize the custom NServiceBus metrics reported by this sample, create a dashboard in [New Relic One](https://one.newrelic.com) using NRQL queries:
 
-* Create a new dashboard by using the `Create a dashboard` button under `All Dashboards`.
-* Open up the Data Explorer, select the corresponding application name and filter for `Custom` metrics.
-* Click the custom metric to be added and click on `Add to an Insights dashboard` to add the metric to the previously created dashboard
-* Edit titles if desired
+1. Navigate to **All capabilities** > **Dashboards**.
+1. Click **+ Create a dashboard** and select **Create a new dashboard**.
+1. Add a chart by clicking **+ Add widget** and selecting **Add a chart**.
+1. Query the custom metrics using NRQL. To start, search for Custom in For example, to chart processing time:
 
-![NewRelic Insights Data Explorer](newrelic-insights-dataexplorer.png)
+   ```sql
+   SELECT average(newrelic.timeslice.value)
+   FROM Metric
+   WHERE appName = 'NewRelicSample'
+     AND metricTimesliceName LIKE 'Custom/NServiceBus/TracingEndpoint/%/ProcessingTime_Seconds'
+   TIMESERIES
+   ```
 
-### Samples
+   Use `metricTimesliceName LIKE 'Custom/NServiceBus/TracingEndpoint/%'` to browse all metrics sent by the sample. See the [New Relic documentation on querying APM metric timeslice data](https://docs.newrelic.com/docs/data-apis/understand-data/metric-data/query-apm-metric-timeslice-data-nrql/) for more details.
+1. Click **Run** to preview the chart, then **Save** to add it to the dashboard.
 
-![Metric Version 2 and higher dashboard](newrelic-dashboard.png)
-
-![Multiple metrics combined](newrelic-dashboard-combined.png)
+To see the list of available metrics, go to **Data Explorer** whithin th
