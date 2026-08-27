@@ -87,4 +87,4 @@ To visualize the custom NServiceBus metrics reported by this sample, create a da
 1. Click **Run** to preview the chart, then **Save** to add it to the dashboard.
 
 To see the list all th emetrics in the sample, go to **Data Explorer** whithin the **Add Widget** wizard, select **Timeslices** and type:`^Custom/`.
-![alt text](image.png)
+![New Relic Data Explorer showing Timeslices filtered to custom NServiceBus metrics](image.png)
