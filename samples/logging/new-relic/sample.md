@@ -73,7 +73,7 @@ To visualize the custom NServiceBus metrics reported by this sample, create a da
 1. Navigate to **All capabilities** > **Dashboards**.
 1. Click **+ Create a dashboard** and select **Create a new dashboard**.
 1. Add a chart by clicking **+ Add widget** and selecting **Add a chart**.
-1. Query the custom metrics using NRQL. To start, search for Custom in For example, to chart processing time:
+1. Query the custom metrics using NRQL. Start by typing `Custom` in the search bar. As an example, the following query returns a processing time chart:
 
    ```sql
    SELECT average(newrelic.timeslice.value)
