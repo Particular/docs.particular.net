@@ -86,5 +86,5 @@ To visualize the custom NServiceBus metrics reported by this sample, create a da
    Use `metricTimesliceName LIKE 'Custom/NServiceBus/TracingEndpoint/%'` to browse all metrics sent by the sample. See the [New Relic documentation on querying APM metric timeslice data](https://docs.newrelic.com/docs/data-apis/understand-data/metric-data/query-apm-metric-timeslice-data-nrql/) for more details.
 1. Click **Run** to preview the chart, then **Save** to add it to the dashboard.
 
-To see the list all th emetrics in the sample, go to **Data Explorer** whithin the **Add Widget** wizard, select **Timeslices** and type:`^Custom*`.
+To see the list all th emetrics in the sample, go to **Data Explorer** whithin the **Add Widget** wizard, select **Timeslices** and type:`^Custom/`.
 ![alt text](image.png)
