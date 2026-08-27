@@ -13,7 +13,7 @@
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.100.11/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.100.11/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.100.11/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.0/license" target="_blank">View License</a> | <i>None provided</i> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
 
@@ -166,7 +166,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.0/license" target="_blank">View License</a> | <i>None provided</i> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 | <a href="https://www.nuget.org/packages/RabbitMQ.Client" target="_blank">RabbitMQ.Client</a> | <a href="https://www.nuget.org/packages/RabbitMQ.Client/7.2.2/license" target="_blank">Apache-2.0 OR MPL-2.0</a> | <a href="https://www.rabbitmq.com/dotnet.html" target="_blank">Project Site</a> |
 
 ### NServiceBus.RavenDB
@@ -195,7 +195,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/7.20.2/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.20.2/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.0/license" target="_blank">View License</a> | <i>None provided</i> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Transport.AzureStorageQueues
 
@@ -204,7 +204,7 @@
 | <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.12.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.12.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.29.2/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.29.2/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Queues" target="_blank">Azure.Storage.Queues</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/12.27.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.27.1/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.0/license" target="_blank">View License</a> | <i>None provided</i> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Transport.Bridge
 
