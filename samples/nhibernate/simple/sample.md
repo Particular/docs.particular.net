@@ -1,7 +1,7 @@
 ---
 title: Simple NHibernate Persistence Usage
 summary: Using NHibernate to store sagas and timeouts.
-reviewed: 2025-01-24
+reviewed: 2026-08-27
 component: NHibernate
 related:
  - nservicebus/sagas
@@ -10,7 +10,7 @@ related:
 
 ## Prerequisites
 
-The sample relies on the availability of a SQL Server named `.\SqlExpress` and the existence of a database named `Samples.NHibernate`.
+The sample relies on the availability of SQL Server or SqlExpress with an existing database. The supplied connection string can be overwritten to point to a custom instance.
 
 ## Code walk-through
 
@@ -18,9 +18,10 @@ This sample shows a simple client/server scenario.
 
 * `Client` sends a `StartOrder` message to `Server`.
 * `Server` starts an `OrderSaga`.
-* `OrderSaga` requests a timeout with `CompleteOrder` data.
+* `OrderSaga`:
+  * sends a `ShipOrder` message to itself - the handler of this message saves `OrderShipped` business data to the database
+  * requests a timeout with `CompleteOrder` data.
 * When the `CompleteOrder` timeout fires, the `OrderSaga` publishes an `OrderCompleted` event.
-* `Server` then publishes a message that the client has subscribed to.
 * `Client` handles the `OrderCompleted` event.
 
 ### NHibernate config
@@ -47,7 +48,7 @@ snippet: handler
 
 ## The database
 
-Data in the database is stored in three different tables.
+Data in the database is stored in two different tables.
 
 ### The saga data
 
