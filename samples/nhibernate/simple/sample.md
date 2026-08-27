@@ -1,16 +1,19 @@
 ---
 title: Simple NHibernate Persistence Usage
-summary: Using NHibernate to store sagas and timeouts.
+summary: Using NHibernate to store saga data and business data.
 reviewed: 2026-08-27
 component: NHibernate
 related:
  - nservicebus/sagas
  - persistence
+ - persistence/nhibernate
 ---
 
 ## Prerequisites
 
-The sample relies on the availability of SQL Server or SqlExpress with an existing database. The supplied connection string can be overwritten to point to a custom instance.
+This sample requires an instance of SQL Server and a database named `Samples.NHibernate`. The database must already exist, as the endpoint creates only the tables it needs.
+
+The `Server` project connects to `localhost,1433` using SQL Server authentication. To run against SQL Server Express instead, use the `.\SqlExpress` connection string shown in the comment directly above the `connectionString` variable in `Program.cs`.
 
 ## Code walk-through
 
@@ -19,14 +22,14 @@ This sample shows a simple client/server scenario.
 * `Client` sends a `StartOrder` message to `Server`.
 * `Server` starts an `OrderSaga`.
 * `OrderSaga`:
-  * sends a `ShipOrder` message to itself - the handler of this message saves `OrderShipped` business data to the database
-  * requests a timeout with `CompleteOrder` data.
+  * Sends a `ShipOrder` message to itself, and the handler for that message saves `OrderShipped` business data to the database.
+  * Requests a timeout with `CompleteOrder` data.
 * When the `CompleteOrder` timeout fires, the `OrderSaga` publishes an `OrderCompleted` event.
 * `Client` handles the `OrderCompleted` event.
 
 ### NHibernate config
 
-NHibernate is configured with the right driver, dialect, and connection string. Then, since NHibernate needs a way to map the class to the database table, the configuration code does this using the ModelMapper API. Finally, the configuration is used to run the endpoint.
+NHibernate is configured with the right driver, dialect, and connection string. Then, since NHibernate needs a way to map the class to the database table, the configuration code does this using the `ModelMapper` API. Finally, the configuration is passed to the NServiceBus NHibernate persistence.
 
 snippet: config
 
@@ -52,12 +55,12 @@ Data in the database is stored in two different tables.
 
 ### The saga data
 
-* `IContainSagaData.Id` maps to the OrderSagaData primary key and unique identifier column `Id`.
+* `IContainSagaData.Id` maps to the `OrderSagaData` primary key and unique identifier column `Id`.
 * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to columns of the same name with type `varchar(255)`.
-* Custom properties on SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to columns with the same name and the respecting types.
+* Custom properties on `OrderSagaData`, in this case `OrderDescription` and `OrderId`, are also mapped to columns with the same name and the respective types.
 
-![](sagadata.png)
+![Query results for the OrderSagaData table](sagadata.png)
 
 ### The handler stored data
 
-![](handlerdoc.png)
+![Query results for the OrderShipped table](handlerdoc.png)
