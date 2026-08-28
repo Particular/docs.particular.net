@@ -50,7 +50,10 @@ Sometimes the license must be embedded in a single line of text, for example, in
 
 By default, licenses are signed using `Rsa1024Sha1` (1024-bit RSA with SHA-1). For environments that require stronger cryptographic signing, licenses can be signed using a 4096-bit RSA key pair with SHA-256 instead.
 
-To download a license with the stronger signature, add `signature-version=V2` to the query string of the license download URL.
+A license with the stronger signature can be obtained in one of two ways:
+
+1. [Log in to the customer portal](https://customers.particular.net/) and download the alternative license file format.
+2. Add `signature-version=V2` to the query string of the license download URL.
 
 > [!WARNING]
 > RSA 4096 / SHA256 signed licenses are only supported in the following NServiceBus versions:
