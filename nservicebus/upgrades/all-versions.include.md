@@ -283,7 +283,7 @@
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [11.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate/11.1.0)| **Current** | 2026-05-28     | Active            | Active |
-| [11.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/11.0.1)| Mainstream Support | 2026-01-29     | 2026-08-28        | Ineligible |
+| [~~11.0.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/11.0.1)| ~~Unsupported~~ | ~~2026-01-29~~ | ~~2026-08-28~~    | ~~Ineligible~~ |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.1.2)| Mainstream Support | 2025-06-03     | 2028-01-29        | 2030-01-29 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.3)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.6)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
@@ -317,7 +317,7 @@
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [11.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/11.1.0)| **Current** | 2026-05-28     | Active            | Active |
-| [11.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/11.0.1)| Mainstream Support | 2026-01-29     | 2026-08-28        | Ineligible |
+| [~~11.0.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/11.0.1)| ~~Unsupported~~ | ~~2026-01-29~~ | ~~2026-08-28~~    | ~~Ineligible~~ |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.1.2)| Mainstream Support | 2025-06-03     | 2028-01-29        | 2030-01-29 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.3)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.6)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
