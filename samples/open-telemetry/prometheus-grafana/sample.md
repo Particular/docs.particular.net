@@ -3,7 +3,7 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2026-04-30
+reviewed: 2026-08-28
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
@@ -35,36 +35,7 @@ Opt into a specific metric, either by name or by wildcard:
 
 snippet: enable-opentelemetry-metrics
 
-Each reported metric is tagged with the following additional information:
-
-- the queue name of the endpoint
-- the uniquely addressable address for the endpoint (if set)
-- the .NET fully qualified type information for the message being processed
-- the exception type name (if applicable)
-
-### Message processing counters
-
-The following metric keys are available to monitor the rate of messages from the queuing system use:
-
-- `nservicebus.messaging.fetches`
-- `nservicebus.messaging.successes`
-- `nservicebus.messaging.failures`
-
-### Recoverability
-
-To monitor [recoverability](/nservicebus/recoverability/) metrics, use:
-
-- `nservicebus.recoverability.immediate`
-- `nservicebus.recoverability.delayed`
-- `nservicebus.recoverability.error`
-
-#### Handler time, critical time, and processing time
-
-To monitor [handler time, processing time, and critical time](/monitoring/metrics/definitions.md#metrics-captured) (in seconds) for successfully processed messages use:
-
-- `nservicebus.messaging.handler_time`
-- `nservicebus.messaging.processing_time`
-- `nservicebus.messaging.critical_time`
+For the full list of available metrics, tags, and configuration options, see the [OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md#meters).
 
 ## Exporting metrics
 
@@ -87,7 +58,7 @@ nservicebus_messaging_fetches{nservicebus_discriminator="main",nservicebus_messa
 
 # HELP nservicebus_messaging_failures Total number of messages processed unsuccessfully by the endpoint.
 # TYPE nservicebus_messaging_failures counter
-nservicebus_messaging_failures{nservicebus_discriminator="main",nservicebus_failure_type="System.Exception",nservicebus_message_type="SomeCommand, Endpoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",nservicebus_queue="OpenTelemetryDemo"} 210 1657693075515
+nservicebus_messaging_failures{error_type="System.Exception",nservicebus_discriminator="main",nservicebus_message_type="SomeCommand, Endpoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",nservicebus_queue="OpenTelemetryDemo"} 210 1657693075515
 ```
 
 The diagram below shows the overall component interactions:
