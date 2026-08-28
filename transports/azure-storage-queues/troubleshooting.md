@@ -1,8 +1,8 @@
 ---
 title: Azure Storage Queues Troubleshooting
-summary: Tips for troubleshooting the Azure Storage Queues persister
+summary: Tips for troubleshooting the Azure Storage Queues transport
 component: ASQ
-reviewed: 2026-02-25
+reviewed: 2026-08-28
 ---
 
 ## Message size too large

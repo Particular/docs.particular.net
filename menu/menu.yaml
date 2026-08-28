@@ -620,6 +620,8 @@
       Title: Dependency Vulnerabilities
   - Title: Operations
     Articles:
+    - Url: nservicebus/operations
+      Title: About operations
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
     - Url: nservicebus/operations/opentelemetry
