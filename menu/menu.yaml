@@ -1588,6 +1588,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 6.19 to 6.20
+      Url: servicecontrol/upgrades/6.19to6.20
     - Title: Version 6.4 to 6.5
       Url: servicecontrol/upgrades/6.4to6.5
     - Title: Version 6.3 to 6.4
@@ -1745,6 +1747,8 @@
       Url: servicecontrol/db-compaction
     - Title: Move database location
       Url: servicecontrol/move-database-location
+    - Title: RavenDB search engine
+      Url: servicecontrol/ravendb/search-engine
   - Title: Integration
     Articles:
     - Title: Integration events
