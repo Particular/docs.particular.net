@@ -183,6 +183,8 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
+Querying of metrics from RabbitMQ requires access to the management API. If it is not possible to access the management API, e.g. due to security considerations, then use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
 #### Minimum permissions
 
 User with monitoring tag and read permission.
@@ -193,7 +195,7 @@ MSMQ does not support native querying of metrics. Use [audit and monitoring data
 
 ### IBM MQ
 
-IBM MQ usage reporting uses [audit and monitoring data](#audit-and-monitoring-data).
+IBM MQ does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
 
 ### Azure Storage Queues
 
@@ -201,7 +203,7 @@ Azure Storage Queues does not support native querying of metrics. Use [audit and
 
 ## Audit and monitoring data
 
-For transports that do not support querying broker-side metrics, ServiceControl generates the usage report from data collected by the Audit and Monitoring instances. To enable this:
+For transports that do not support querying broker-side metrics, ServiceControl generates the usage report from data collected by the Audit and/or Monitoring instances. To enable this:
 
 - Auditing
   - install the [Audit](./../servicecontrol/audit-instances) instance
