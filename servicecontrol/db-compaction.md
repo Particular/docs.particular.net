@@ -9,7 +9,7 @@ redirects:
 
 If a ServiceControl instance's retention period, message throughput, or average message size have been reduced, it may be possible to compact the database. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 
-## RavenDB 5 databases
+## RavenDB v5.x and v6.x databases
 
 The following applies to all databases used with ServiceControl version 5 and above, as well as audit instances that were originally created with ServiceControl 4.26.0 or later.
 
