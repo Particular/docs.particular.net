@@ -64,7 +64,10 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 > [!WARNING]
 > When using ServicePulse, the message body is not viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
-### Separate disks for database and index files
+### Separate disks for database, index, and journal files
+
+> [!NOTE]
+> This suggestion applies to ServiceControl primary instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
 
 Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
 
