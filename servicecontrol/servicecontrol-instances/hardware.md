@@ -29,9 +29,10 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 * Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures applications are not competing for storage IOPS.
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
-* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) should be located on disks suitable for low latency write operations (e.g. fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
+* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
 * Use fixed-size (not dynamically expanding virtual) disks
-* Use solid state drives (SSDs) to significantly reduce seek times and increase throughput
+* Use solid-state drives (SSDs) to significantly reduce seek times and increase throughput
+* RavenDB storage compaction requires an amount of free disk space equal to the database to compact; account for the compaction operation when determining storage disk sizes 
 
 > [!NOTE]
 > To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
