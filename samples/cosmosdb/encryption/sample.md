@@ -28,7 +28,7 @@ The shared message contracts used by all endpoints.
 
 ### Server
 
-* Receive the `StartOrder` message and initiate an `OrderSaga`.
+* Receives the `StartOrder` message and initiates an `OrderSaga`.
 * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
 * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
@@ -47,7 +47,7 @@ In Program.cs of the Server project, the endpoint is configured to use Cosmos DB
 
 snippet: CosmosDBConfig
 
-In the non-transactional mode, the saga id is used as a partition key, and thus, the container needs to use `/id` as the partition key path.
+In the non-transactional mode, the saga id is used as a partition key, and, therefore, the container needs to use `/id` as the partition key path.
 
 ### Encryption setup
 
@@ -55,16 +55,16 @@ The server wraps the regular `CosmosClient` with the Cosmos DB encryption client
 
 snippet: EncryptionPolicy
 
-The policy uses [encryption policy format version 2](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#choosing-a-client-encryption-policy), which allows all saga data properties to be encrypted. `OrderId` and `OrderDescription` use randomized encryption, while `id` and `PartitionKey` use [deterministic encryption](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#randomized-vs-deterministic-encryption) because Cosmos DB requires these values for point reads and routing. The NServiceBus persistence metadata remains unencrypted because pessimistic locking updates a nested property within that object.
+The policy uses [encryption policy format version 2](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#choosing-a-client-encryption-policy), which allows all saga data properties to be encrypted. `OrderId` and `OrderDescription` use randomized encryption, while `id` and `PartitionKey` use [deterministic encryption](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-always-encrypted#randomized-vs-deterministic-encryption), because Cosmos DB requires these values for point reads and routing. The NServiceBus persistence metadata remains unencrypted, because pessimistic locking updates a nested property within that object.
 
-The key encryption key resolver stores a generated RSA private key under the server output directory. This is suitable only for demonstrating the encryption flow. Production systems should use a secure key store, such as Azure Key Vault, and must retain the key for as long as encrypted data needs to be read.
+The key encryption key resolver stores a generated RSA private key under the server output directory. This is suitable only for demonstrating the encryption flow; production systems should use a secure key store, such as Azure Key Vault, and must retain the key for as long as encrypted data needs to be read.
 
 > [!NOTE]
-> The server deletes and recreates the `Samples.CosmosDB.Encryption` database each time it starts so that the sample always uses the expected encryption key and policy. Starting the server therefore removes all existing sample data.
+> The server deletes and recreates the `Samples.CosmosDB.Encryption` database each time it starts so that the sample always uses the expected encryption key and policy. Starting the server removes all existing sample data.
 
 ## Order saga data
 
-The data stored on the saga is defined in the `OrderSagaData.cs` file in the `Server` project:
+The data stored by the saga is defined in the `OrderSagaData.cs` file in the `Server` project:
 
 snippet: sagadata
 
