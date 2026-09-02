@@ -72,8 +72,6 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
 - Run the executable. This will require Admin privileges
 - Add a new ServiceControl instance
     ![Add new ServiceControl Instance](scmu-1.png 'width=500')
-- Uncheck the `ServiceControl Audit` node, since this isn't required for usage reports
-    ![Uncheck Audit Instance](scmu-2.png 'width=500')
 - Choose your transport and supply the connection string
     ![Choose transport](scmu-3.png 'width=500')
 - Click 'Add'
