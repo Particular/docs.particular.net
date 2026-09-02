@@ -1,6 +1,6 @@
 ---
 title: Hosting Samples
-reviewed: 2025-01-30
+reviewed: 2026-09-02
 related: 
  - nservicebus/hosting
 ---
