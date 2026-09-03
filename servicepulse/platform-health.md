@@ -23,4 +23,5 @@ The raise support button on this page allows you to quickly export a snapshot of
 
 Raising a support request from the Platform Health dashboard will assist the support team by providing you with an up to date snapshot of the Platform instance and its current health. The snapshot includes information about the status of your system that is useful to the support team when responding to your request including; installed versions, basic configuration such as transport type, and any system alerts.
 
-> Note: While we do not include sensitive information such as database connection strings or hostnames in the snapshot it is still recommended that you review the content for any confidential information before sending it to support.
+> [!NOTE]
+> While we do not include sensitive information such as database connection strings or hostnames in the snapshot it is still recommended that you review the content for any confidential information before sending it to support.
