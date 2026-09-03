@@ -1567,6 +1567,8 @@
           Title: Endpoint connection settings
         - Url: servicepulse/usage
           Title: Measuring system usage
+        - Url: servicepulse/platform-health
+          Title: Platform Health
 
 - Name: ServiceControl
   Topics:
