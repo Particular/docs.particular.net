@@ -30,4 +30,4 @@ Whenever a muted custom check is executed and reports its status to ServiceContr
 
 ## System checks
 
-Some custom checks are raised internally by ServiceControl to monitor its own health and functionality. These are known as system checks and are treated similarly to regular custom checks in ServicePulse, the main difference is that when ServicePulse detects these checks failing they will be hidden by default on the custom checks page and will instead appear as an alert in the [platform health](/servicepulse/platform-health.md) section.
+Some custom checks are raised internally by ServiceControl to monitor its own health and functionality. These are referred to as "platform custom checks" and are hidden by default on the custom checks page and will instead appear as an alert in the [platform health](/servicepulse/platform-health.md) dashboard.
