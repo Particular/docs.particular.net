@@ -24,7 +24,7 @@ The trade-off is that each message processing attempt requires an additional rou
 
 By default, the outbox uses an ADO.NET transaction through NHibernate's `ITransaction` abstraction. This mode is appropriate for most scenarios.
 
-### TransactionScope
+### Transaction Scope
 
 When an outbox transaction must span multiple databases, enable `TransactionScope` support:
 
