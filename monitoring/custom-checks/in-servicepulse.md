@@ -27,3 +27,7 @@ Sometimes a custom check reports an easy-to-solve error; however, the custom che
 Rather than waiting for the failing custom check to run again to update its status, the check can be muted. Muted custom checks have been removed from ServicePulse and will no longer contribute to the main custom checks dashboard badge.
 
 Whenever a muted custom check is executed and reports its status to ServiceControl, it is automatically unmuted.
+
+## System checks
+
+Some custom checks are raised internally by ServiceControl to monitor its own health and functionality. These are known as system checks and are treated similarly to regular custom checks in ServicePulse, the main difference is that when ServicePulse detects these checks failing they will be hidden by default on the custom checks page and will instead appear as an alert in the [platform health](/servicepulse/platform-health/) section.
