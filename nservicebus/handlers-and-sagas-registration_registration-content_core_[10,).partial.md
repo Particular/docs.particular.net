@@ -100,6 +100,8 @@ snippet: DisableAssemblyScanning
 
 When assembly scanning is disabled, message handlers, sagas, features, and installers must be explicitly registered. Messages received without a registered handler or saga [will fail and be moved to the error queue](/nservicebus/handlers/?version=core_10#no-handler-for-a-message).
 
+In trimmed or NativeAOT deployments, message types that are only sent, published, or replied to, and that no registered handler or saga handles, must also be registered explicitly with `AddMessageType<T>()`, available starting in NServiceBus version 10.3. See [registering message types](/nservicebus/messaging/trimming-safe-messaging-overloads.md#registering-message-types).
+
 ### Fine-grained scanning configuration
 
 Scanning can be configured with exclusions, additional paths, nested directories, and exception handling. See [Assembly scanning](/nservicebus/hosting/assembly-scanning.md) for all configuration options.
