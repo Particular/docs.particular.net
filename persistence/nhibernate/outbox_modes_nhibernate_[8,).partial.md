@@ -1,42 +1,40 @@
 ## Concurrency control
 
-By default the outbox uses optimistic concurrency control. That means that when two copies of the same message arrive at the endpoint, both messages are picked up (if concurrency settings of the endpoint allow for it) and processing begins on both of them. When the message handlers are completed, both processing threads attempt to insert the outbox record as part of the transaction that includes the application state change.
+By default, the outbox uses optimistic concurrency control; when two copies of the same message arrive, the endpoint may process both concurrently. After the message handlers finish, both processing attempts try to insert an outbox record in the transaction that contains the application state change. One transaction will succeed, and the other will fail with a the unique index constraint violation. When the failed message is processed again, the endpoint discards it as a duplicate.
 
-At this point one of the transactions succeeds and the other fails due to unique index constraint violation. When the copy of the message that failed is picked up again, it is discarded as a duplicate.
-
-The outcome is that the application state change is applied only once (the other attempt has been rolled back) but the message handlers have been executed twice. If the message handler contains logic that has non-transactional side effects (e.g. sending an e-mail), that logic may be executed multiple times.
+The application state change is applied only once since the other attempt is rolled back, but the message handlers still run twice. Non-transactional side effects, e.g. sending an email, may therefore occur more than once.
 
 ### Pessimistic concurrency control
 
-The pessimistic concurrency control mode can be activated using the following API:
+Enable pessimistic concurrency control using the following API:
 
 snippet: OutboxPessimisticMode
 
-In the pessimistic mode the outbox record is inserted before the handlers are executed. As a result, when using a database that creates locks on insert, only one thread is allowed to execute the message handlers. The other thread, even though it picked up the second copy of a message, is blocked on a database lock. Once the first thread commits the transaction, the second thread is interrupted with an exception as it is not allowed to insert the outbox record. As a result, the message handlers are executed only once.
+In pessimistic mode, the outbox record is inserted before the handlers run. With a database that locks inserted rows, only one processing attempt can run the message handlers. The attempt processing the duplicate waits for the database lock. After the first attempt commits, the duplicate insert fails, and the handlers do not run for the duplicate.
 
-The trade-off is that each message processing attempt requires additional round trip to the database.
+The trade-off is that each message processing attempt requires an additional round trip to the database.
 
 > [!NOTE]
-> The pessimistic mode depends on the locking behavior of the database when inserting rows. Consult the documentation of the database to check in which isolation modes the outbox pessimistic mode is appropriate.
+> Pessimistic mode depends on how the database locks inserted rows. Consult the database documentation to determine which transaction isolation levels support this mode.
 
 > [!WARNING]
-> Even the pessimistic mode does not ensure that the message handling logic is always executed exactly once. Non-transactional side effects, such as sending e-mail, can still be duplicated in case of errors that cause handling logic to be retried.
+> Pessimistic mode does not guarantee that message handling logic runs exactly once. Errors that cause retries can still duplicate non-transactional side effects, such as sending an email.
 
 ## Transactions
 
-By default the outbox uses the ADO.NET transactions abstracted via `ITransaction`. This is appropriate for most situations.
+By default, the outbox uses an ADO.NET transaction through NHibernate's `ITransaction` abstraction. This mode is appropriate for most scenarios.
 
-### Transaction Scope
+### TransactionScope
 
-In cases where the outbox transaction spans multiple databases, the `TransactionScope` support has to be enabled:
+When an outbox transaction must span multiple databases, enable `TransactionScope` support:
 
 snippet: OutboxTransactionScopeMode
 
-In this mode the NHibernate persistence creates a `TransactionScope` that wraps the whole message processing attempt and within that scope it opens a session, that is used for:
+In this mode, NHibernate Persistence creates a `TransactionScope` around the entire message processing attempt. Within that scope, it opens a session that is used for:
 
-- storing the outbox record
-- persisting the application state change applied via `SynchronizedStorageSession`
+- Storing the outbox record.
+- Persisting application state changes made through `SynchronizedStorageSession`.
 
-In addition to the session managed by NServiceBus, users can open their own NHibernate sessions or plain database connections in the message handlers. If the underlying database technology supports distributed transactions managed by Microsoft Distributed Transaction Coordinator -- MS DTC (e.g. SQL Server, Oracle or PostgreSQL), the transaction gets escalated to a distributed transaction.
+Message handlers can also open NHibernate sessions or database connections. When the database supports transactions managed by Microsoft Distributed Transaction Coordinator (MS DTC), enlisting multiple connections escalates the transaction to a distributed transaction. Examples of supported databases include SQL Server, Oracle, and PostgreSQL.
 
-The `TransactionScope` mode is most useful in legacy scenarios e.g. when migrating from MSMQ transport to a messaging infrastructure that does not support MS DTC. In order to maintain consistency the outbox has to be used in place of distributed transport-database transactions. If the legacy database cannot be modified to add the outbox table, the only option is to place the outbox table in a separate database and use distributed transactions between the databases.
+`TransactionScope` mode is primarily useful in legacy scenarios, e.g. when migrating from MSMQ to a transport that does not support distributed transactions. The outbox provides consistency in place of distributed transactions between the transport and the database. If the existing database cannot be modified to add the outbox table, place the table in a separate database and use a distributed transaction between the two databases.
