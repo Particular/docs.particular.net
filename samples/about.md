@@ -1,7 +1,7 @@
 ---
 title: About the samples
 summary: Samples using NServiceBus and the Particular Service Platform
-reviewed: 2025-02-03
+reviewed: 2026-09-03
 suppressRelated: true
 hidden: true
 ---
@@ -60,7 +60,7 @@ Samples are not meant to be production-ready code or to be used as-is with Parti
 
 ### Samples are not "endpoint drop in" projects
 
-Since the endpoint in samples have to choose specific technologies (transport, serializer, persistence, etc.), before using this code in production ensure the code conforms with any specific [technology choices](./hosting/generic-host/).
+Since the endpoint in samples have to choose specific technologies (transport, serializer, persistence, etc.), before using this code in production ensure the code conforms with any specific [technology choices](/nservicebus/hosting/generic-host/).
 
 ### Samples are downloadable and runnable
 
