@@ -896,7 +896,7 @@ Configures the maximum duration, in seconds, that an audit message query (for ex
 
 | Type | Default value |
 | --- | --- |
-| int | `30` (30 seconds) |
+| int | `60` (1 minute) |
 
 #end-if
 ## Transport

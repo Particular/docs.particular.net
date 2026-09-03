@@ -989,7 +989,7 @@ Configures the maximum duration, in seconds, that a failed message view query (f
 
 | Type | Default value |
 | --- | --- |
-| int | `30` (30 seconds) |
+| int | `60` (1 minute) |
 
 #end-if
 
