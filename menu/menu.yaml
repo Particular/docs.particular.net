@@ -1856,7 +1856,6 @@
         Url: modernization/migrate-to-the-cloud/on-premises-to-azure
 
 - Name: Shape the future
-  LlmsRoot: shape-the-future
   Topics:
   - Title: Introduction
     Url: shape-the-future
