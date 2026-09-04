@@ -31,7 +31,7 @@ public class ShipOrderSaga(ILogger<ShipOrderSaga> logger) :
 
         state.OrderId = Data.OrderId;
 
-        return ReplyToOriginator(context, state);
+        return ReplyToOriginator<CompleteOrder>(context, state);
     }
 }
 

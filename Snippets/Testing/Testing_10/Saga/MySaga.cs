@@ -9,7 +9,7 @@ public class MySaga :
     {
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
         {
-            await ReplyToOriginator(context, new MyResponse());
+            await ReplyToOriginator<MyResponse>(context, new MyResponse());
             await context.Publish(new MyEvent());
             await context.Send(new MyCommand());
             await RequestTimeout(context, TimeSpan.FromDays(7), message);

@@ -16,7 +16,7 @@ public class MySaga :
         {
             SomeId = Data.SomeId
         };
-        return ReplyToOriginator(context, almostDoneMessage);
+        return ReplyToOriginator<AlmostDoneMessage>(context, almostDoneMessage);
     }
 
     #endregion
