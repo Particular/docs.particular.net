@@ -96,3 +96,11 @@ Updating the full-text index requires a considerable amount of CPU and disk spac
 
 - Turn off the 'FULL TEXT SEARCH ON MESSAGE BODIES' in the settings configuration of ServiceControl Management Utility
 - Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file
+
+### Disable RavenDB document prefetching
+
+## Persistently high disk I/O levels on audit instances
+
+Audit instances with full-text indexing and message expiration enabled, and affected by constant high throughput on the audit queue, might show persistently high disk I/O levels. Some of the I/O is caused by document prefetching to optimize query performance. Considering that, under those premises, there is a disproportionate amount of I/O time dedicated to writes, it is better to disable prefetching by setting the system-wide environment variable `RAVEN_Storage_EnablePrefetching` to `false`. Once set, restart the ServiceControl instances.
+
+Once instances have been restarted, validate the setting has been applied by going to instance settings -> Database Settings -> Filter by `EnablePrefetching`, the reported value is `false`.
