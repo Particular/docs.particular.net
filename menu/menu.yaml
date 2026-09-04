@@ -1,4 +1,5 @@
 - Name: Getting Started
+  LlmsRoot: get-started
   Topics:
   - Url: get-started
     Title: Overview
@@ -125,6 +126,7 @@
         Url: architecture/aws/observability
 
 - Name: Service Platform
+  LlmsRoot: platform
   Topics:
   - Title: Introduction
     Url: platform
@@ -1307,6 +1309,7 @@
       Title: Capacity planning
 
 - Name: Hosting
+  LlmsRoot: nservicebus
   Topics:
   - Title: General
     Articles:
