@@ -976,6 +976,23 @@ Use this setting to configure whether the bodies of processed error messages sho
 > [!NOTE]
 > Changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
 
+#if-version [6.20,)
+### ServiceControl/QueryTimeoutInSeconds
+
+Configures the maximum duration, in seconds, that a failed message view query (for example a message search or a conversation lookup issued by ServicePulse or ServiceInsight) is allowed to run before it is cancelled. This protects the RavenDB server from queries over very large data sets that would otherwise run for a long time and consume large amounts of temporary disk space. Values larger than one hour fall back to the default. Applies to all persisters. On the SQL Server and PostgreSQL persisters the `Database/CommandTimeout` setting additionally bounds each individual database command.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_QUERYTIMEOUTINSECONDS` |
+| **App config key** | `ServiceControl/QueryTimeoutInSeconds` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `60` (1 minute) |
+
+#end-if
+
 ## Transport
 
 ### ServiceControl/TransportType
