@@ -321,6 +321,7 @@ Conventions:
 * `Title` is required for all nodes other than top level.
 * Maximum of 4 levels deep.
 * URL is optional. if it does not exist it will render as an expandable node.
+* `llmsRoot` is optional and defaults to the first URL segment. Use an explicit value for synthetic or cross-root products. Values define llms index and `describedby` ownership and must be valid URL roots.
 
 ### URLs
 
