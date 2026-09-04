@@ -170,7 +170,7 @@ Use this pattern when send-only traffic should be isolated from the receiving en
 
 Declare the send-only endpoint using a static `Configure{EndpointName}` method decorated with `[NServiceBusSendOnlyFunction("client")]`, then inject the keyed `IMessageSession` into the sending function. Add `IServiceCollection` to the configure method signature when endpoint-specific services need to be registered and later resolved via keyed services.
 
-For the send-only declaration pattern and keyed-service examples, see [Send-only endpoints](/nservicebus/hosting/azure/functions#send-only-endpoints). For connection-setting behavior, see [Connection configuration](/nservicebus/hosting/azure/functions/configuration.md#connection-configuration).
+For the send-only declaration pattern and keyed-service examples, see [Send-only endpoints](/nservicebus/hosting/azure/functions/#send-only-endpoints). For connection-setting behavior, see [Connection configuration](/nservicebus/hosting/azure/functions/configuration.md#connection-configuration).
 
 The key used in `[FromKeyedServices("client")]` must match the name passed to `[NServiceBusSendOnlyFunction("client")]`.
 
