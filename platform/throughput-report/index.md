@@ -8,7 +8,7 @@ related:
   - servicepulse/usage-config
 ---
 
-The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a process needs to be run that queries the transport broker for up to 24 hours and a report generated from this data to be sent to Particular.
+The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a process needs to be run that queries the transport broker for up to 24 hours, and a report generated from this data to be sent to Particular.
 
 The minimal installation required to generate the usage report is:
 
@@ -58,7 +58,7 @@ The containers required for generating a usage report are:
 ### Cloud environments
 
 When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS.
-In other hosting environments where the RavenDB [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is suggested to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
+In hosting environments where the RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is recommended to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation
 
@@ -69,7 +69,7 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
 #### ServiceControl Management Utility (SCMU)
 
 - [Download](https://particular.net/start-servicecontrol-download) the latest SCMU
-- Run the executable. This will require Admin privileges
+- Run the executable. This will require Admin privileges.
 - Add a new ServiceControl instance
     ![Add new ServiceControl Instance](scmu-1.png 'width=500')
 - Uncheck the `ServiceControl Audit` node, since this isn't required for usage reports
@@ -83,7 +83,7 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
 - Ensure you meet the [prerequisites](/servicecontrol/servicecontrol-instances/deployment/powershell.md#prerequisites)
 - Install and import the [Particular.ServiceControl.Management module](/servicecontrol/servicecontrol-instances/deployment/powershell.md#installing-and-using-the-powershell-module)
 - Run the [New-ServiceControlInstance cmdlet](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance)
-  - Most of the parameters can be left as per the example, with the `-Transport` and `-ConnectionString` parameters set according to your environment.
+  - Most parameters can remain as shown in the example, with the `-Transport` and `-ConnectionString` values set according to your environment.
 
 ### ServicePulse
 
@@ -91,7 +91,7 @@ ServicePulse can be installed separately as a Windows service, or it can run in 
 
 #### Integrated into ServiceControl Management Utility (SCMU)
 
-This is the easiest and recommended way to run ServicePulse for usage report purposes.
+This is the easiest and recommended way to run ServicePulse for generating usage reports.
 
 ##### New installations
 
