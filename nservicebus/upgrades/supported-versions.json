@@ -1039,10 +1039,6 @@
           "SupportLevel": "Extended"
         },
         {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "6.0",
           "SupportLevel": "Mainstream"
         },
@@ -1062,10 +1058,6 @@
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
-        },
-        {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
         },
         {
           "Minor": "6.0",

@@ -537,7 +537,7 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/7.0.3)| **Current** | 2026-01-30     | Active            | Active |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/6.0.4)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.3)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
+| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.3)| ~~Unsupported~~ | ~~2025-06-07~~ | ~~2026-09-05~~    | ~~Ineligible~~ |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.2.2)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-06-07~~    | ~~Ineligible~~ |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.1.1)| ~~Unsupported~~ | ~~2024-09-17~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-12-17~~    | ~~Ineligible~~ |
@@ -553,7 +553,7 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/7.0.3)| **Current** | 2026-01-30     | Active            | Active |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/6.0.4)| Mainstream Support | 2025-09-05     | 2028-01-29        | 2030-01-29 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.3)| Mainstream Support | 2025-06-07     | 2026-09-05        | Ineligible |
+| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.3)| ~~Unsupported~~ | ~~2025-06-07~~ | ~~2026-09-05~~    | ~~Ineligible~~ |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.2.2)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-06-07~~    | ~~Ineligible~~ |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.1.1)| ~~Unsupported~~ | ~~2024-09-17~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-12-17~~    | ~~Ineligible~~ |
