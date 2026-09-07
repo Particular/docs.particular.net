@@ -985,7 +985,7 @@ A query that runs out of its allowed time is answered with HTTP status `504 Gate
 
 When the instance gathers a message view from its own database and the configured [audit instances](/servicecontrol/audit-instances/), a timed-out or unreachable instance does not fail the request. The response contains the data of the instances that did answer, carries no `ETag`, and lists the missing instances in the `X-Particular-Incomplete-Results` header as `instanceId:reason` entries, where the reason is `timeout`, `unavailable` or `error`. Only when no instance answered and at least one of them timed out is the request answered with `504 Gateway Timeout`.
 
-The instance waits for an audit instance's answer for this duration plus 30 seconds, so the same value should be configured on the audit instances through `ServiceControl.Audit/QueryTimeoutInSeconds`.
+The instance waits for an audit instance's answer for at most this duration, so it also bounds the whole query when an audit instance is slow, unresponsive, or configured with a larger `ServiceControl.Audit/QueryTimeoutInSeconds`. An audit instance that has not answered in time is reported as missing; its own limit still ends the query on its side.
 
 | Context | Name |
 | --- | --- |
