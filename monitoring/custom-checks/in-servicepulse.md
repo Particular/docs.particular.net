@@ -1,7 +1,7 @@
 ---
 title: Managing custom checks in ServicePulse
 summary: ServicePulse displays custom check status, helping track endpoint issues and maintain NServiceBus health
-reviewed: 2026-07-06
+reviewed: 2026-09-03
 redirects:
   - servicepulse/intro-endpoints-custom-checks
 ---
@@ -27,3 +27,7 @@ Sometimes a custom check reports an easy-to-solve error; however, the custom che
 Rather than waiting for the failing custom check to run again to update its status, the check can be muted. Muted custom checks have been removed from ServicePulse and will no longer contribute to the main custom checks dashboard badge.
 
 Whenever a muted custom check is executed and reports its status to ServiceControl, it is automatically unmuted.
+
+## System checks
+
+Some custom checks are raised internally by ServiceControl to monitor its own health and functionality. These are referred to as "platform custom checks" and are hidden by default on the custom checks page and will instead appear as an alert in the [platform health](/servicepulse/platform-health.md) dashboard.
