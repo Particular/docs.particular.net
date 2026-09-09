@@ -9,9 +9,6 @@ related:
 - samples/azure-service-bus-netstandard/cloud-events
 ---
 
-> [!WARNING]
-> This is an experimental feature and, as such, is subject to changes.
-
 This guideline explains how to configure NServiceBus endpoints to receive [CloudEvents](https://cloudevents.io/).
 
 > [!NOTE]
