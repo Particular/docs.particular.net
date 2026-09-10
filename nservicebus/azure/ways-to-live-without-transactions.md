@@ -26,7 +26,7 @@ If local transactions are available and all business and messaging operations oc
 
 ### Disadvantages
 
-- There can be only one transactional resource in the entire system. This technique can only be applied if the application fits within the limitations of this transactional resource. As some Azure services throttle quite aggressively, sometimes due to the behavior of other tenants, capacity planning might become an issue.
+- The entire system is limited to only a single transactional resource and, therefore, this technique can only be applied if the application fits within the limitations of this transactional resource. Since some Azure services throttle quite aggressively, sometimes due to the behavior of other tenants, capacity planning may become an issue.
 - Injecting the transaction might be a challenge in some parts of the system, e.g. when using third-party libraries.
 
 ## Atomic operations and transport retries
