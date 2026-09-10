@@ -851,7 +851,6 @@ Set to `false` to disable ingesting new error messages. Useful in some upgrade s
 | Type | Default value |
 | --- | --- |
 | bool | `true` |
-.
 
 ### ServiceControl/AllowMessageEditing
 
