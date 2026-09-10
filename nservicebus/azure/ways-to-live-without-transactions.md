@@ -44,7 +44,7 @@ Another important consideration is that regular transactions also have a *rollba
 
 ### Disadvantages
 
-- The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
+- The application must ensure that operations related to business logic are atomic; i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
 - Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side effects. [The need for idempotency](#the-need-for-idempotency) discusses techniques to achieve idempotency.
 - Retry behavior is usually combined with timeouts. Timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
 
