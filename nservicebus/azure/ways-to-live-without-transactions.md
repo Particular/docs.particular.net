@@ -33,7 +33,7 @@ If local transactions are available and all business and messaging operations oc
 
 If a resource does not support transactions, atomic operations combined with automatic retries can be used to ensure consistency. The idea is that every atomic operation is *transactional*, meaning that the whole operation either succeeds or fails as a single unit. If all operations conform to that rule, then transactions are not needed anymore.
 
-One operation that fits this criterion is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow grouping a number of operations into a single batch in order to make the whole set atomic. However, it works only for Azure Storage Tables and only when the partition key for all operations is the same.
+One operation that fits this criterion is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow grouping a number of operations into a single batch in order to make the whole set atomic. This only works for Azure Storage Tables however, and only when the partition key for all operations is the same.
 
 Another important consideration is that regular transactions also have a *rollback* mechanism that will allow the message receiver to retry processing the original message later without causing unintended side effects. When using a transport with automatic retries, it is necessary to also support rollback semantics.
 
