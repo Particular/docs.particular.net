@@ -9,14 +9,17 @@ This article provides recommendations and performance benchmarks to help select 
 
 ## General recommendations
 
-* A dedicated production server for installing ServiceControl instances (Error, Audit, and Monitoring).
+* A dedicated set of production servers for installing ServiceControl instances (Error, Audit, and Monitoring). 
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
-* 3 GHz quad core CPU or better.
-* A dedicated, non-virtual, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
+* 3 GHz quad-core CPU or better.
+* A dedicated, non-virtual and non-ephemeral, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
+
+> [!IMPORTANT]
+> It's recommended to not install more than one ServiceControl instance per server.
 
 ### Scaling ServiceControl
 
-When possible, scaling *up* a single machine to handle system load is recommended. When scaling up is not an option, ServiceControl may be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
+When possible, scale *up* a single machine to handle system load. When scaling up is not an option, ServiceControl may be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
 ### Ongoing server performance monitoring
 
@@ -39,6 +42,16 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 
 > [!NOTE]
 > Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
+
+### Message ingestion performance baseline
+
+When using a virtual machine with the following hardware specs:
+
+- 4 cores with hyperthreading (e.g, L4 or E4 series in Azure)
+- 32 GB of RAM
+- A dedicated premium SSD with 6400 IOPS and a max throughput of 250 MBps
+
+It's reasonable to expect that the ServiceControl instance can ingest up to 250 msgs/sec.
 
 ### Hosting in the cloud
 
