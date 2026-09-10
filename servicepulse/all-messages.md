@@ -56,7 +56,7 @@ The results can be filtered by one or more of the following criteria:
 
 - **Search:** Perform a free-text search across message data. See [filtering options](#filtering-options) for the supported syntax.
 - **Endpoint:** Select a specific endpoint.
-- **Sent:** Limit the results to messages sent within a time range. See [time range](#time-range).
+- **Sent:** Limit the results to messages sent within a time range. See [time range](#filtering-time-range).
 
 Every change to a filter runs the query immediately; there is no separate search button. The filters are part of the page URL, so a link to the view reproduces the same query.
 
