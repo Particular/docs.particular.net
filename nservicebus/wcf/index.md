@@ -10,7 +10,7 @@ related:
 reviewed: 2025-05-13
 ---
 > [!WARNING]
-> **NServiceBus.WCF has been sunset and will be deprecated on April 16, 2031, in line with the end of [Extended Support](https://docs.particular.net/nservicebus/upgrades/support-policy#extended-support) for NServiceBus 8. Support will end after the deprecation date**
+> **NServiceBus.WCF has been sunset and will be deprecated on April 16, 2031, in line with the end of [Extended Support](/nservicebus/upgrades/support-policy#extended-support) for NServiceBus 8. Support will end after the deprecation date**
 
 It is possible to expose the message send+receive action as a WCF service. In effect, this allows a WCF service call to be "proxied" through to a message being sent, and then wait for the response to return the WCF result.
 
