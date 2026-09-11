@@ -51,10 +51,11 @@ Once confident of a successful upgrade, the old database can be removed:
 If the Error instance cannot be force-upgraded, instead create a new Error instance.
 
 1. Open ServiceControl Management.
-2. Click **New**, then **Add ServiceControl and Audit Instances**.
-3. Uncheck the **ServiceControl.Audit** checkbox so that only a ServiceControl (Error) instance will be installed.
-4. Configure the new Error instance as desired, or to match the previous instance, except that new ports must be selected if deploying on the same machine.
-5. Click the **Add** button to create and start the new instance.
+2. Click **New**, then **Error handling**.
+3. If using a stand alone version of [ServicePulse](/servicepulse/), uncheck the `Integrated ServicePulse` check box.
+4. Click **Next**.
+5. Configure the new Error instance as desired, or to match the previous instance, except that new ports must be selected if deploying on the same machine.
+6. Click the **Add** button to create and start the new instance.
 
 Now that the instance is created, the configuration must be modified so that the Error instance can communicate with the same Audit instances as the previous Error instance.
 

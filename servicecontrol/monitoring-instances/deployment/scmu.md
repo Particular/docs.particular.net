@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Monitoring instances using SCMU
-reviewed: 2025-04-17
+reviewed: 2026-09-02
 redirects:
  - servicecontrol/monitoring-instances/installation
 ---
@@ -41,7 +41,7 @@ Clicking the upgrade link will:
 
 ## Using ServiceControl Management to add monitoring instances
 
-Click on the `+ NEW` link at the top of the screen and select "Monitoring instance" to launch the "New instance form". Complete the form to register a new monitoring instance.
+Click on the `+ NEW` link at the top of the screen and select "Monitoring only" then "Next" to launch the "New instance form". Complete the form to register a new monitoring instance.
 
 ## Service name and plugins
 

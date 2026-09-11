@@ -1,7 +1,7 @@
 ---
 title: Replacing an Audit instance using ServiceControl Management
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
-reviewed: 2026-04-17
+reviewed: 2026-09-02
 component: ServiceControl
 related:
   - servicecontrol/migrations/replacing-audit-instances/powershell
@@ -16,10 +16,9 @@ This article describes how to use the ServiceControl Management Utility to repla
 First, a new audit instance must be created. If it is on the same machine, different ports must be specified. Deploying it on a separate machine is preferable, as the databases of each instance will not compete for the same resources.
 
 1. Open ServiceControl Management.
-2. Click **New**, then **Add ServiceControl and Audit Instances**.
-3. Uncheck the **ServiceControl** checkbox so that only an Audit instance will be installed.
-4. Configure the new Audit instance as desired, or to match the previous instance, except that new ports must be selected if deploying on the same machine.
-5. Click the **Add** button to create and start the new instance.
+2. Click **New**, then **Audit only**.
+3. Configure the new Audit instance as desired, or to match the previous instance, except that new ports must be selected if deploying on the same machine.
+4. Click the **Add** button to create and start the new instance.
 
 ## Add the instance to RemoteInstances
 

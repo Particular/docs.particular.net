@@ -102,13 +102,11 @@ Once it has finished installing, run the ServiceControl Management Utility.
 > [!NOTE]
 > You can use an existing ServiceControl instance if it is version 1.43 or higher.
 
-In the `ServiceControl Management Utility`, click **+ New** and select **ServiceControl instance** from the list of options.
+In the `ServiceControl Management Utility`, click **+ New**, then **Error only** followed by **Next**.
 
 ![ServiceControl Management Utility - Add new ServiceControl instance](scmu-add-new-sc-instance.png "width=615")
 
 Scroll down to the **Transport Configuration** section. Select the transport that your NServiceBus system uses. Depending on the transport you may need to add an additional connection string.
-
-Under **Audit Forwarding** select either On or Off. If you are not currently using an audit queue, you can safely turn this off. See [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) for more information.
 
 Click the Add button. Your ServiceControl instance will start and appear on the main page of the `ServiceControl Management Utility`.
 
@@ -117,13 +115,13 @@ Click the Add button. Your ServiceControl instance will start and appear on the 
 The listing for the ServiceControl instance includes a URL. This URL will be needed when installing ServicePulse below.
 
 > [!NOTE]
-> Creating the ServiceControl instance will also create the audit and error queues if they did not already exist. By default these are called _audit_ and _error_ respectively.
+> Creating the ServiceControl instance will also create the error queue if it did not already exist. By default this queue is called _error_.
 
 ### Create a ServiceControl monitoring instance
 
 A monitoring instance collects data from the monitoring queue and aggregates information from all of the endpoints in the system.
 
-In the `ServiceControl Management Utility`, click **+ New** and select **monitoring endpoint** from the list of options.
+In the `ServiceControl Management Utility`, click **+ New**, then **Monitoring only** followed by **Next**
 
 ![ServiceControl Management Utility - Add new Monitoring instance](scmu-add-new-mon-instance.png "width=615")
 
@@ -190,7 +188,7 @@ snippet: SetupMonitoring-ConfigureError
 
 Whenever an NServiceBus endpoint successfully processes a message, it can be configured to send a copy to a centralized audit queue. Each environment should contain a single audit queue and should not share an audit queue with another environment.
 
-The audit queue is created with a new ServiceControl instance. By default, it is named `audit`.
+The audit queue is created with a new ServiceControl Audit instance. By default, it is named `audit`.
 
 Configure your endpoint to send processed messages to an audit queue.
 
