@@ -186,7 +186,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.11.1/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.11.2/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.50.4/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Snappier" target="_blank">Snappier</a> | <a href="https://www.nuget.org/packages/Snappier/1.3.1/license" target="_blank">BSD-3-Clause</a> | <a href="https://brantburnett.github.io/Snappier/" target="_blank">Project Site</a> |
 
@@ -240,7 +240,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.0.2/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.0.3/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 
 ### Particular.Aspire.Hosting.ServicePlatform
 
@@ -268,7 +268,7 @@
 | <a href="https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Shell" target="_blank">Microsoft-WindowsAPICodePack-Shell</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE" target="_blank">View License</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer" target="_blank">Microsoft.AspNetCore.Authentication.JwtBearer</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/10.0.12/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect" target="_blank">Microsoft.AspNetCore.Authentication.OpenIdConnect</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect/10.0.12/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure" target="_blank">Microsoft.Data.SqlClient.Extensions.Azure</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure/7.0.2/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure" target="_blank">Microsoft.Data.SqlClient.Extensions.Azure</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure/7.0.3/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank">Microsoft.EntityFrameworkCore</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/10.0.12/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Relational" target="_blank">Microsoft.EntityFrameworkCore.Relational</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Relational/10.0.12/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer" target="_blank">Microsoft.EntityFrameworkCore.SqlServer</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/10.0.12/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
@@ -325,7 +325,6 @@
 | <a href="https://www.npmjs.com/package/@tinyhttp/content-disposition" target="_blank">@tinyhttp/content-disposition</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://tinyhttp.v1rtl.site" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/@vue-flow/controls" target="_blank">@vue-flow/controls</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/bcakmakoglu/vue-flow#readme" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/@vue-flow/core" target="_blank">@vue-flow/core</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://vueflow.dev" target="_blank">Project Site</a> |
-| <a href="https://www.npmjs.com/package/@vuepic/vue-datepicker" target="_blank">@vuepic/vue-datepicker</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://vue3datepicker.com" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/@vueuse/core" target="_blank">@vueuse/core</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/vueuse/vueuse#readme" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/bootstrap" target="_blank">bootstrap</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://getbootstrap.com/" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/codemirror" target="_blank">codemirror</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/codemirror/basic-setup#readme" target="_blank">Project Site</a> |
