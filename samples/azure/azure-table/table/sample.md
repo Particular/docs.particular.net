@@ -1,7 +1,7 @@
 ---
 title: AzureTable Persistence Usage with non-default table
 summary: Using Azure Table Persistence to store sagas providing a non-default table dynamically
-reviewed: 2025-02-25
+reviewed: 2026-09-11
 component: ASP
 related:
  - nservicebus/sagas
