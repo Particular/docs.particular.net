@@ -64,6 +64,9 @@ The source generator automatically matches the visibility of the generated exten
 
 When source generation is not available or when only a few components need to be registered, individual types can be added explicitly.
 
+> [!NOTE]
+> `AddHandler<THandler>()`, `AddSaga<TSaga>()`, and `AddMessageType<T>()` use reflection unless the NServiceBus source generator replaces the call at build time. The source generator can only replace calls that name a concrete type, so pass handler, saga, and message types directly instead of forwarding a type parameter through generic helper code. Without a replacement, the call falls back to reflection and can report the trimming warning IL2026; `AddHandler<THandler>()` and `AddSaga<TSaga>()` can also report the AOT warning IL3050.
+
 ### Register a message handler
 
 Use `AddHandler<THandler>()` to register a message handler:

@@ -3,11 +3,12 @@ title: Trimming-safe messaging overloads
 summary: Use the strongly-typed messaging overloads and the migration analyzer to make messaging code trimming-safe and AOT-safe
 component: Core
 versions: '[10,)'
-reviewed: 2026-09-03
+reviewed: 2026-09-11
 related:
  - nservicebus/messaging/send-a-message
  - nservicebus/messaging/reply-to-a-message
  - nservicebus/operations/nservicebus-analyzer
+ - nservicebus/pipeline/message-mutators
 ---
 
 Starting in NServiceBus version 10.3.0, the messaging APIs provide strongly-typed overloads that are safe to use with [trimming](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/) and [NativeAOT](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/). A migration analyzer included in the NServiceBus package guides existing applications to these overloads.
@@ -22,7 +23,7 @@ Code is trimming-safe when the types it needs are known at compile time and pres
 
 The object-based overloads, such as `Send(message, options)` and `Publish(message, options)`, determine the message type at runtime by calling `message.GetType()`. When trimming or NativeAOT is enabled, the runtime type information required to route the message may no longer be available, so these overloads cannot be analyzed statically and are annotated with `RequiresUnreferencedCode`.
 
-Strongly-typed overloads carry the message type either in the generic type argument, as in `Send<T>(message, options)`, or as an explicit `Type` parameter, as in `Send(message, messageType, options)`. Because the type is known at compile time, these overloads are trimming-safe and AOT-safe.
+Strongly-typed overloads carry the message type either in the generic type argument, as in `Send<T>(message, options)`, or as an explicit `Type` parameter, as in `Send(message, messageType, options)`. Because the message type is supplied by the caller instead of being discovered from the message instance at runtime, the trimmer can analyze these overloads. When passing the type explicitly, use a value the trimmer can see through, such as `typeof(MyMessage)`.
 
 ## Strongly-typed overloads
 
@@ -49,6 +50,22 @@ await session.Send(message, messageType, new SendOptions());
 ```
 
 This is a common pattern for type-erased scenarios. Explicit-type overloads exist for `Send`, `Publish`, `Reply`, `SendLocal`, and `UpdateMessage`.
+
+## Logical message mutators
+
+Logical message mutators can replace the message instance while it is processed in the pipeline. The replacement methods carry the logical message type, so mutators can be trimming-safe:
+
+| Context | Generic overload | Explicit-type overload |
+| -- | -- | -- |
+| `MutateIncomingMessageContext` | `UpdateMessageInstance<T>(T newMessage)` | `UpdateMessageInstance(object newMessage, Type messageType)` |
+| `MutateOutgoingMessageContext` | `UpdateMessage<T>(T newMessage)` | `UpdateMessage(object newMessage, Type messageType)` |
+| `IIncomingLogicalMessageContext` | `UpdateMessageInstance<T>(T newInstance)` | `UpdateMessageInstance(object newInstance, Type messageType)` |
+
+The declared type is the logical message type. For outgoing messages, it also determines how the message is routed and which message type is recorded on the message. It can differ from the runtime type of the instance as long as the instance is assignable to the declared type.
+
+On `IIncomingLogicalMessageContext`, the object-based `UpdateMessageInstance(object)` overload is still available and wins overload resolution for a call without a type argument, so pipeline behaviors must pass the type argument explicitly: `context.UpdateMessageInstance<MyMessage>(message)`. The mutator contexts have no competing overload, so there the type argument can be inferred from the message instance.
+
+Starting in NServiceBus version 10.3, prefer the strongly-typed methods above. The object-based `MutateIncomingMessageContext.Message` and `MutateOutgoingMessageContext.OutgoingMessage` setters are obsolete, will be treated as errors from version 11, and will be removed in version 12; the object-only `IIncomingLogicalMessageContext.UpdateMessageInstance(object)` method is annotated with `RequiresUnreferencedCode` and is planned for obsoletion. All of them determine the logical message type from the runtime type of the instance, which trimming cannot analyze.
 
 ## Route and publisher registration
 
@@ -90,15 +107,37 @@ This diagnostic fires when the runtime type can differ from the static type, for
 
 This diagnostic fires when the generic overload is called with `System.Object` as the explicit type argument, for example `Send<object>(message, options)`. The strongly-typed overload would route the message as `System.Object`, which is never the intent. Specify the actual message type instead.
 
+The diagnostics also cover logical message mutators. Assigning to `MutateIncomingMessageContext.Message` or `MutateOutgoingMessageContext.OutgoingMessage` is analyzed like the other messaging operations, and the code fix rewrites the assignment to the typed replacement method:
+
+```csharp
+// MutateIncomingMessageContext
+context.Message = new MyMessage();
+
+// MutateOutgoingMessageContext
+context.OutgoingMessage = new MyEvent();
+```
+
+becomes
+
+```csharp
+// MutateIncomingMessageContext
+context.UpdateMessageInstance<MyMessage>(new MyMessage());
+
+// MutateOutgoingMessageContext
+context.UpdateMessage<MyEvent>(new MyEvent());
+```
+
+Calling `UpdateMessageInstance` on an incoming logical message context is analyzed in the same way. The code fix keeps the explicit type argument because `IIncomingLogicalMessageContext` also has an object-based `UpdateMessageInstance(object)` overload; for the mutator contexts the type argument can be inferred from the message instance.
+
 ## When the migration diagnostics are active
 
 NSB0039 and NSB0040 are quiet by default in ordinary builds. They activate automatically when a project enables trimming or AOT compatibility:
 
-* `PublishTrimmed`
-* `PublishAot`
-* `IsAotCompatible`
-* `IsTrimmable`
-* `EnableTrimAnalyzer`
+- `PublishTrimmed`
+- `PublishAot`
+- `IsAotCompatible`
+- `IsTrimmable`
+- `EnableTrimAnalyzer`
 
 The diagnostics can also be enabled per rule in `.editorconfig`:
 
@@ -125,10 +164,24 @@ Users who migrate early may add explicit generic type arguments, such as `Send<M
 
 Starting in NServiceBus version 10.3.0, an endpoint can be published as a trimmed or NativeAOT application when it uses a transport and persistence that keep all message state inside the endpoint process or its local environment:
 
-* The [Learning transport](/transports/learning/) and [Learning persistence](/persistence/learning/) ship with the NServiceBus package and are designed for development and testing.
-* The [Non-Durable transport](/transports/non-durable/) and [Non-durable persistence](/persistence/non-durable/) are production options when message loss can be tolerated. Messages are held in process memory and are lost when the process ends, but no external infrastructure is required.
+- The [Learning transport](/transports/learning/) and [Learning persistence](/persistence/learning/) ship with the NServiceBus package and are designed for development and testing.
+- The [Non-Durable transport](/transports/non-durable/) and [Non-durable persistence](/persistence/non-durable/) are production options when message loss can be tolerated. Messages are held in process memory and are lost when the process ends, but no external infrastructure is required.
 
 Trimmed and NativeAOT endpoints discover handler, saga, and message types at build time rather than by scanning assemblies at runtime. See [registering message types](#registering-message-types) for the required configuration.
+
+## Trimming-safe serialization
+
+The [System.Text.Json serializer](/nservicebus/serialization/system-json.md) is the recommended serializer for trimmed and NativeAOT applications. Reflection-based serialization is not available in these deployments, so message types must be registered in a source-generated `JsonSerializerContext` and supplied through `JsonSerializerOptions`:
+
+```csharp
+configuration.UseSerialization<SystemJsonSerializer>()
+    .Options(new JsonSerializerOptions
+    {
+        TypeInfoResolver = MyMessagesJsonContext.Default
+    });
+```
+
+The [XML serializer](/nservicebus/serialization/xml.md) is not supported with trimming or NativeAOT because it relies on runtime type information and dynamic code generation.
 
 ## Registering message types
 
@@ -136,7 +189,7 @@ With assembly scanning disabled and trimming or NativeAOT enabled, NServiceBus r
 
 snippet: RegisterMessageTypeManually
 
-`AddMessageType<T>()` registers the message type together with its hierarchy of base types and implemented interfaces. The type must already be identified as a message by the endpoint's conventions; the method does not classify arbitrary types as messages. In ordinary applications the hierarchy is inferred at runtime, while under trimming or NativeAOT the call is replaced by a source-generated, reflection-free registration.
+`AddMessageType<T>()` registers the message type together with its hierarchy of base types and implemented interfaces. The type must already be identified as a message by the endpoint's conventions; the method does not classify arbitrary types as messages. In ordinary applications the hierarchy is inferred at runtime, while under trimming or NativeAOT the call is replaced by a source-generated, reflection-free registration. The call must name a concrete message type: the source generator cannot replace a call that forwards a type parameter through a generic helper method.
 
 When a required message type is not registered, message processing fails with an exception that names the missing type and the registration to add. Message types that are known when the endpoint starts fail at startup; message types that appear only later fail on first use.
 
@@ -144,5 +197,5 @@ When a required message type is not registered, message processing fails with an
 
 Strongly-typed messaging is one part of running an NServiceBus endpoint with trimming or NativeAOT:
 
-* [Startup diagnostics](/nservicebus/hosting/startup-diagnostics.md#adding-startup-diagnostics-sections) — register diagnostics sections with type information so the diagnostics document can be serialized without reflection.
-* [Registering handlers and sagas](/nservicebus/handlers-and-sagas-registration.md) — source-generated registration is trimming and AOT-friendly; discovery by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) relies on runtime type information.
+- [Startup diagnostics](/nservicebus/hosting/startup-diagnostics.md#adding-startup-diagnostics-sections) — register diagnostics sections with type information so the diagnostics document can be serialized without reflection.
+- [Registering handlers and sagas](/nservicebus/handlers-and-sagas-registration.md) — source-generated registration is trimming and AOT-friendly; discovery by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) relies on runtime type information.
