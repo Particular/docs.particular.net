@@ -17,11 +17,13 @@ Starting in NServiceBus version 10.3.0, the messaging APIs provide strongly-type
 
 Trimming removes unreferenced code and metadata from an application at publish time, and Native AOT compiles the application to platform-native code ahead of time. In both scenarios, the runtime type information that reflection-based code depends on may no longer be available.
 
-Code is trimming-safe when the types it needs are known at compile time and preserved in the published application. Code that discovers types at runtime, such as `message.GetType()`, is not trimming-safe because the metadata for the type may have been removed.
+Code is trimming-safe when the types it needs are known at compile time and preserved in the published application. Code that discovers types at runtime, such as `Assembly.GetTypes()`, is not trimming-safe because the metadata for those types may have been removed.
 
 ## Why messaging needs strongly-typed overloads
 
-The object-based overloads, such as `Send(message, options)` and `Publish(message, options)`, determine the message type at runtime by calling `message.GetType()`. When trimming or Native AOT is enabled, the runtime type information required to route the message may no longer be available, so these overloads cannot be analyzed statically and are annotated with `RequiresUnreferencedCode`.
+The object-based overloads, such as `Send(message, options)` and `Publish(message, options)`, determine the message type at runtime by calling `message.GetType()`. The runtime type's name is written to the [`NServiceBus.EnclosedMessageTypes` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes), which the receiving endpoint uses to map the incoming message back to the same type before deserializing it. NServiceBus also resolves the message type's base types and interfaces to invoke handlers that accept them and to match subscribers when the message is published.
+
+Resolving a message type and its hierarchy from the message instance relies on reflection. Under trimming or Native AOT, the metadata for types that the application does not reference directly may be removed. Because the trimmer cannot predict what `message.GetType()` will return, it cannot preserve the required metadata. The object-based overloads therefore cannot be analyzed statically and are annotated with `RequiresUnreferencedCode`.
 
 Strongly-typed overloads carry the message type either in the generic type argument, as in `Send<T>(message, options)`, or as an explicit `Type` parameter, as in `Send(message, messageType, options)`. Because the message type is supplied by the caller instead of being discovered from the message instance at runtime, the trimmer can analyze these overloads. When passing the type explicitly, use a value the trimmer can see through, such as `typeof(MyMessage)`.
 
@@ -180,6 +182,20 @@ configuration.UseSerialization<SystemJsonSerializer>()
         TypeInfoResolver = MyMessagesJsonContext.Default
     });
 ```
+
+Message types can be spread across multiple `JsonSerializerContext` sources, for example a context generated for the endpoint's own messages and a context supplied by a shared contracts package. [JsonTypeInfoResolver.Combine](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.serialization.metadata.jsontypeinforesolver.combine) merges them into a single resolver that queries the contexts in order and uses the first one that has metadata for a given type:
+
+```csharp
+configuration.UseSerialization<SystemJsonSerializer>()
+    .Options(new JsonSerializerOptions
+    {
+        TypeInfoResolver = JsonTypeInfoResolver.Combine(
+            MyMessagesJsonContext.Default,
+            SharedContractsJsonContext.Default)
+    });
+```
+
+The [JsonSerializerOptions.TypeInfoResolverChain](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializeroptions.typeinforesolverchain) list is an alternative for adding resolvers to options that already have one.
 
 The [XML serializer](/nservicebus/serialization/xml.md) is not supported with trimming or Native AOT because it relies on runtime type information and dynamic code generation.
 
