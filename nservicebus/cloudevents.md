@@ -5,6 +5,7 @@ component: CloudEvents
 reviewed: 2026-02-05
 versions: '[1,]'
 related:
+- nservicebus/messaging/envelope-handlers
 - samples/aws/cloud-events
 - samples/azure-service-bus-netstandard/cloud-events
 ---
