@@ -1,7 +1,7 @@
 ---
 title: Avoiding Transactions in Azure
 summary: Learn strategies for running NServiceBus on Azure without distributed transactions, including atomic operations, sagas, routing slips and idempotency patterns.
-reviewed: 2025-02-10
+reviewed: 2026-09-08
 isLearningPath: true
 ---
 
@@ -11,7 +11,7 @@ This article lists options available to avoid the need for transactions and disc
 
 Possible approaches:
 
-- Sharing local transaction.
+- Sharing local transactions.
 - Atomic operations and transport retries.
 - Sagas and compensation logic.
 - Routing slips and compensation logic.
@@ -22,20 +22,20 @@ If local transactions are available and all business and messaging operations oc
 
 ### Advantages
 
-- It is possible to prevent escalating a transaction to a distributed transaction. The only required change is to injecting the transport level transaction into other parts of the application.
+- It is possible to prevent a transaction from escalating to a distributed transaction. The only required change is to inject the transport level transaction into other parts of the application.
 
 ### Disadvantages
 
-- There can be only a single transactional resource in the entire system. The technique can only be applied if the application fits the limitations of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
+- The entire system is limited to only a single transactional resource and, therefore, this technique can only be applied if the application fits within the limitations of this transactional resource. Since some Azure services throttle quite aggressively, sometimes due to the behavior of other tenants, capacity planning may become an issue.
 - Injecting the transaction might be a challenge in some parts of the system, e.g. when using third-party libraries.
 
 ## Atomic operations and transport retries
 
-If a resource does not support transactions, atomic operations combined with automatic retries can be used to ensure consistency. The idea is that every atomic operation is *transactional*, meaning that the whole operation either succeeds or fails as a single unit. If all operations conform to that rule then transactions are not needed anymore.
+If a resource does not support transactions, atomic operations combined with automatic retries can be used to ensure consistency. The idea is that every atomic operation is *transactional*, meaning that the whole operation either succeeds or fails as a single unit. If all operations conform to that rule, then transactions are not needed anymore.
 
-One operation that fits this criteria is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow grouping a number of operations into a single batch in order to make the whole set atomic. However, it works only for Azure Storage Tables and only when the partition key for all operations is the same.
+One operation that fits this criterion is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow grouping a number of operations into a single batch in order to make the whole set atomic. This only works for Azure Storage Tables however, and only when the partition key for all operations is the same.
 
-Another important consideration is that regular transactions also have a *rollback* mechanism that will allow the message receiver to retry processing the original message later without causing unintended side-effects. When using a transport with an automatic retry functionality, it is necessary to also support rollback semantics.
+Another important consideration is that regular transactions also have a *rollback* mechanism that will allow the message receiver to retry processing the original message later without causing unintended side effects. When using a transport with automatic retries, it is necessary to also support rollback semantics.
 
 ### Advantages
 
@@ -44,15 +44,15 @@ Another important consideration is that regular transactions also have a *rollba
 
 ### Disadvantages
 
-- The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
-- Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) discusses techniques to achieve idempotency.
+- The application must ensure that operations related to business logic are atomic; i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
+- Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side effects. [The need for idempotency](#the-need-for-idempotency) discusses techniques to achieve idempotency.
 - Retry behavior is usually combined with timeouts. Timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
 
 ## Sagas and compensation logic
 
-Sagas are essentially a stateful set of message handlers that can be used to track and orchestrate a transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate for the failure at a business logic level.
+Sagas are essentially a stateful set of message handlers that can be used to track and orchestrate a transaction. The handlers communicate with each other; each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate for the failure at a business logic level.
 
-In essence, using sagas is implementing a Distributed Transaction Coordinator that operates on business logic level instead of using a two-phase commit protocol.
+In essence, sagas implement a Distributed Transaction Coordinator that operates at a business logic level instead of using a two-phase commit protocol.
 
 ### Advantages
 
@@ -82,11 +82,11 @@ There are multiple ways to achieve idempotency, some at the technical level, oth
 
 Message deduplication is the easiest way to detect if a message has been executed already. Every message that has been processed so far is stored. When a new message comes in, it is compared to the set of already processed messages (usually by comparing their unique identifiers). If the message is identical to one of the stored messages, it is a duplicate and the new message won't be processed.
 
-One advantage of this approach is its simplicity; however it has downsides. As every message needs to be stored and searched for, it can reduce message throughput because of the additional lookups. That can potentially cause high contention on the message store.
+One advantage of this approach is its simplicity; however, it has downsides. As every message needs to be stored and searched for, it can reduce message throughput because of the additional lookups. This can potentially cause high contention on the message store.
 
 ### Natural idempotency
 
-Many operations can be designed in a naturally idempotent way. For example, `TurnOnTheLights` is an idempotent operation because it will have the same effect no matter what was the previous state and how many times the operation is executed. `FlipTheLightSwitch` however is not naturally idempotent because the results will vary depending on the initial state and the number of times it was executed.
+Many operations can be designed in a naturally idempotent way. For example, `TurnOnTheLights` is an idempotent operation because it will have the same effect regardless of the previous state and how many times the operation is executed. `FlipTheLightSwitch` however is not naturally idempotent because the results will vary depending on the initial state and the number of times it was executed.
 
 Using natural idempotency is recommended whenever possible.
 
@@ -106,12 +106,12 @@ The state machine represents the progression of the relationship between endpoin
 
 ### Side effect checks
 
-In some situations, it is possible to verify if a command has been executed by checking its indirect side effects, for example, when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`.
+In some situations, it is possible to verify if a command has been executed by checking its indirect side effects, e.g. when the `TheFireIsHot` flag is set to true, there is no need to `TurnOnTheFire`.
 
-Arguably this is a risky approach that can lead to subtle errors. Although it's useful in the real world, it has to be used very carefully, preferably only if no other approach can be used.
+Arguably this is a risky approach that can lead to subtle errors. Although it's useful in the real world, it has to be used very carefully; preferably only if no other approach can be used.
 
 ### Accept uncertainty
 
-In some systems it is possible to accept uncertainty and potential inaccuracies caused by non-idempotent messages. In some cases the data doesn't have to be consistent at all times. In other systems there might be mechanisms that allow for dealing with inconsistencies afterwards.
+In some systems it is possible to accept uncertainty and potential inaccuracies caused by non-idempotent messages. In some cases the data doesn't have to be consistent at all times. In other systems there might be mechanisms that allow for dealing with inconsistencies afterward.
 
-Although that might seem unacceptable for many programmers, in the end it is a business decision. It's always recommended to talk to business experts and double-check their expectations.
+This might seem unacceptable for many programmers, but in the end it is a business decision. It's always recommended to talk to business owners/experts and double-check their expectations.
