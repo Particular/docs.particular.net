@@ -36,7 +36,7 @@ The following messaging operations provide generic overloads that are trimming-s
 | Reply | `Reply<T>(T message)` |
 | SendLocal | `SendLocal<T>(T message)` |
 | UpdateMessage | `UpdateMessage<T>(T newInstance)` |
-| ReplyToOriginator | `ReplyToOriginator<T>(T message)` |
+| ReplyToOriginator | `ReplyToOriginator<T>(IMessageHandlerContext context, T message)` |
 
 ## Explicit-type overloads
 

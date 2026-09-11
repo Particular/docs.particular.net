@@ -9,6 +9,6 @@ snippet: disable-dynamic-type-loading
 
 ### Message type inference
 
-When an incoming message does not provide message type information via the `NServiceBus.EnclosedMessageTypes` header, the serializer can attempt to determine the message type based on the message's content (e.g., using Json.NET's `TypeNameHandling` setting). The exact capabilities and behavior depends heavily on the specific serializer being used but might introduce unintended security vulnerabilities. The endpoint can be configured to fail message processing immediately when the `NServiceBus.EnclosedMessageTypes` header does not contain a valid message type without passing the message content to the serializer:
+When an incoming message does not provide message type information via the `NServiceBus.EnclosedMessageTypes` header, the serializer can attempt to determine the message type based on the message's content (e.g., using Json.NET's `TypeNameHandling` setting). The exact capabilities and behavior depend heavily on the specific serializer. Message type inference might introduce unintended security vulnerabilities. The endpoint can be configured to fail message processing immediately when the `NServiceBus.EnclosedMessageTypes` header does not contain a valid message type without passing the message content to the serializer:
 
 snippet: disable-message-type-inference
