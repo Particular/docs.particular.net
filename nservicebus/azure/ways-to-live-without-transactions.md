@@ -50,7 +50,7 @@ Another important consideration is that regular transactions also have a *rollba
 
 ## Sagas and compensation logic
 
-Sagas are essentially a stateful set of message handlers that can be used to track and orchestrate a transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate for the failure at a business logic level.
+Sagas are essentially a stateful set of message handlers that can be used to track and orchestrate a transaction. The handlers communicate with each other; each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate for the failure at a business logic level.
 
 In essence, sagas implement a Distributed Transaction Coordinator that operates at a business logic level instead of using a two-phase commit protocol.
 
@@ -82,7 +82,7 @@ There are multiple ways to achieve idempotency, some at the technical level, oth
 
 Message deduplication is the easiest way to detect if a message has been executed already. Every message that has been processed so far is stored. When a new message comes in, it is compared to the set of already processed messages (usually by comparing their unique identifiers). If the message is identical to one of the stored messages, it is a duplicate and the new message won't be processed.
 
-One advantage of this approach is its simplicity; however, it has downsides. As every message needs to be stored and searched for, it can reduce message throughput because of the additional lookups. That can potentially cause high contention on the message store.
+One advantage of this approach is its simplicity; however, it has downsides. As every message needs to be stored and searched for, it can reduce message throughput because of the additional lookups. This can potentially cause high contention on the message store.
 
 ### Natural idempotency
 
@@ -92,7 +92,7 @@ Using natural idempotency is recommended whenever possible.
 
 ### Entities and messages with version information
 
-Idempotency can be achieved by adding versioning information to the entities. Typically, it is in the form of a timestamp or a version number.
+Idempotency can be achieved by adding versioning information to the entities. Typically it is in the form of a timestamp or a version number.
 
 The versioning information is included in each command that alters the state of the entity. That way, when the command is received, the handler can compare the versioning information on both the entity and the message and decide whether the code in the handler needs to be executed or not.
 
@@ -106,12 +106,12 @@ The state machine represents the progression of the relationship between endpoin
 
 ### Side effect checks
 
-In some situations, it is possible to verify if a command has been executed by checking its indirect side effects, for example, when the `TheFireIsHot` flag is set to true, there is no need to `TurnOnTheFire`.
+In some situations, it is possible to verify if a command has been executed by checking its indirect side effects, e.g. when the `TheFireIsHot` flag is set to true, there is no need to `TurnOnTheFire`.
 
-Arguably this is a risky approach that can lead to subtle errors. Although it's useful in the real world, it has to be used very carefully, preferably only if no other approach can be used.
+Arguably this is a risky approach that can lead to subtle errors. Although it's useful in the real world, it has to be used very carefully; preferably only if no other approach can be used.
 
 ### Accept uncertainty
 
 In some systems it is possible to accept uncertainty and potential inaccuracies caused by non-idempotent messages. In some cases the data doesn't have to be consistent at all times. In other systems there might be mechanisms that allow for dealing with inconsistencies afterward.
 
-Although that might seem unacceptable for many programmers, in the end it is a business decision. It's always recommended to talk to business experts and double-check their expectations.
+This might seem unacceptable for many programmers, but in the end it is a business decision. It's always recommended to talk to business owners/experts and double-check their expectations.
