@@ -6,7 +6,7 @@ Starting in version 10.3, custom sections can be registered with a strongly-type
 
 snippet: CustomDiagnosticsSectionTypes
 
-Registering sections with type information makes startup diagnostics serialization AOT-safe and trimming-safe. This is required when reflection-based serialization is disabled, such as in NativeAOT applications. In that case, a section registered with the object-based overload cannot be serialized. NServiceBus logs an error identifying the section, and the diagnostics document is not written. When reflection-based serialization is disabled, every section in the document must be registered with type information. A single legacy section prevents the complete document from being written.
+Registering sections with type information makes startup diagnostics serialization AOT-safe and trimming-safe. This is required when reflection-based serialization is disabled, such as in Native AOT applications. In that case, a section registered with the object-based overload cannot be serialized. NServiceBus logs an error identifying the section, and the diagnostics document is not written. When reflection-based serialization is disabled, every section in the document must be registered with type information. A single legacy section prevents the complete document from being written.
 
 The object-based overload remains available and continues to work when reflection-based serialization is enabled.
 

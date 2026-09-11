@@ -35,7 +35,7 @@ snippet: IMutateOutgoingMessages
 
 ### Replacing the message instance
 
-Starting in NServiceBus version 10.3, logical message mutators can replace the message instance by calling a strongly-typed method. The typed method keeps the logical message type known at compile time, which is required for [trimming and NativeAOT](/nservicebus/messaging/trimming-safe-messaging-overloads.md#logical-message-mutators).
+Starting in NServiceBus version 10.3, logical message mutators can replace the message instance by calling a strongly-typed method. The typed method keeps the logical message type known at compile time, which is required for [trimming and Native AOT](/nservicebus/messaging/trimming-safe-messaging-overloads.md#logical-message-mutators).
 
 | Mutator context | Replace the message instance |
 | -- | -- |
