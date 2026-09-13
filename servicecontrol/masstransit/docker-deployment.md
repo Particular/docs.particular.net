@@ -1,13 +1,13 @@
 ---
 title: Deploying the MassTransit Connector
 summary: Configuring and running the MassTransit Connector and the rest of the Particular Platform
-reviewed: 2026-07-24
+reviewed: 2026-08-07
 component: ServiceControl
 ---
 
 ## Overview
 
-When MassTransit is used with the rest of the platform, there are in total 4 containers that need to be deployed:
+See [Running the Particular Service Platform in containers](/platform/containers.md) for an overview of deploying the platform as containers. When MassTransit is used with the rest of the platform, there are in total 4 containers that need to be deployed:
 
 1. [particular/servicecontrol](https://hub.docker.com/r/particular/servicecontrol)
 1. [particular/servicecontrol-ravendb](https://hub.docker.com/r/particular/servicecontrol-ravendb)
@@ -19,6 +19,8 @@ The `particular/servicecontrol` and `particular/servicecontrol-ravendb` containe
 The `particular/servicecontrol-masstransit-connector` container reads messages from the MassTransit system's error queues and moves them into the `error` queue to be ingested by ServiceControl.
 
 The `particular/servicepulse` container exposes a web interface to allow users to retry failed messages back to the MassTransit system.
+
+include: platform-container-examples
 
 ## Getting started
 
