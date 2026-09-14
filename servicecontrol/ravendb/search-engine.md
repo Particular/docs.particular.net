@@ -102,7 +102,7 @@ In the **List of Indexes** the index shows the replacement being built. Once the
 ### 4. Lock the index
 
 > [!NOTE]
-> This only applies to ServiceControl versions prior to 6.20.0.
+> Locking the index is required to keep non-default index configurations. Locking is only required when migrating to Lucene to ServiceControl versions prior to 6.20.0.
 
 While still in the Studio, click the `🔓 Unlocked` button of the migrated index and change it to `🔒 Locked (ignore)` ([lock modes](https://ravendb.net/docs/article-page/7.0/csharp/client-api/operations/maintenance/indexes/set-index-lock#lock-modes)). The Studio confirms with _Lock mode was set to: Locked (ignore)_.
 
