@@ -223,7 +223,8 @@ If unable to resolve the issue, open a [non-critical support case](https://parti
 
 ## Report masks
 
-Information that is considered sensitive can be obfuscated in the usage report.
-All words to be redacted can be specified in the `Mask Report Data` tab. Specify one word per line.
+Sensitive information can be anonymized in the usage report. Endpoint, queue, and machine names sometimes contain customer, project, or product names; any such word can be masked so that it is redacted (obfuscated) before the report is generated and never leaves the environment.
+
+Specify the words to anonymize in the `Mask Report Data` tab, one word per line. Every occurrence of a listed word is replaced in the generated report.
 
 ![usage-setup-masks](images/usage-setup-masks.png "width=600")
