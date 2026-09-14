@@ -25,7 +25,8 @@ audit --> error
 monitoring --> error
 ```
 
-Only the Error and Audit instances need a RavenDB container; Monitoring instances don't store any data. Audit and Monitoring instances are optional, but recommended: an Error instance is required to run ServiceControl at all.
+Only the Error and Audit instances need a RavenDB container; Monitoring instances don't store any data.
+Audit and Monitoring instances are optional but recommended.
 
 ## Deploying the pieces
 
