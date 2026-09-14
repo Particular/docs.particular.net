@@ -51,7 +51,7 @@ When using a virtual machine with the following hardware specs:
 - 32 GB of RAM
 - A dedicated premium SSD with 6400 IOPS and a max throughput of 250 MBps
 
-It's reasonable to expect that the ServiceControl instance can ingest up to 250 msgs/sec.
+It's reasonable to expect that the ServiceControl instance can ingest up to 250 msgs/sec for a database of 1TB.
 
 ### Hosting in the cloud
 
