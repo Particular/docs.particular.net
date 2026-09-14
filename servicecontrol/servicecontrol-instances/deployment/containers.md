@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
 summary: A guide to setting up and deploying ServiceControl Error instances using Containers
-reviewed: 2026-04-17
+reviewed: 2026-08-07
 component: ServiceControl
 versions: '[5.3, )'
 redirects:
@@ -12,7 +12,7 @@ redirects:
 ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
 
 ```shell
-docker run -d --name servicecontrol -p 33333:33333 \
+docker run -d --name error -p 33333:33333 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
     -e CONNECTIONSTRING="host=rabbitmq" \
     -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
@@ -25,33 +25,7 @@ include: platform-container-examples
 
 ## Initial setup
 
-Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
-
-The container image will run in setup mode by adding the `--setup` argument. For example:
-
-```shell
-# Using docker run
-docker run --rm {OPTIONS} particular/servicecontrol --setup
-```
-
-Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
-
-After setup is complete, the container will exit, and the `--rm` (or equivalent) option can be used to automatically remove it.
-
-The setup process should be repeated any time the container is [updated to a new version](#upgrading).
-
-### Simplified setup
-
-Instead of running `--setup` as a separate container, the setup and run operations can be combined using the `--setup-and-run` argument:
-
-```shell
-# Using docker run
-docker run {OPTIONS} particular/servicecontrol --setup-and-run
-```
-
-The `--setup-and-run` argument runs the setup process when the container starts, after which the application runs normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
-
-Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
+include: servicecontrol-container-setup-explanation
 
 ## Required settings
 
@@ -90,18 +64,8 @@ When using tools such as Docker Compose that share environment information acros
 
 In the event of a naming collision, a fully qualified key such as `SERVICECONTROL_TRANSPORTTYPE` will be preferred over the shared `TRANSPORTTYPE` variant.
 
-Not all settings are relevant to error instances running in a container. For example, HTTP hostname and port use standard values inside the container, and are mapped to real hosts and ports by infrastructure external to the container. Be sure to carefully review the documentation for each configuration setting to ensure it is relevant in a container context.
+include: servicecontrol-container-settings-caveat
 
 ## Upgrading
 
-A ServiceControl error instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded. For example:
-
-```shell
-docker stop error
-docker rm error
-docker pull particular/servicecontrol:latest
-docker run -rm {OPTIONS} particular/servicecontrol:latest --setup
-docker run -d {OPTIONS} particular/servicecontrol:latest
-```
-
-Note that Docker can cache the `latest` tag as well as the major/minor tags (such as `5` or `5.3`) unless the tag is pulled again. To be certain, use the full version tag.
+include: servicecontrol-container-upgrading-explanation
