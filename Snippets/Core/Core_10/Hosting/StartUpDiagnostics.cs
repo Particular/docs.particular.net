@@ -1,5 +1,6 @@
 ﻿namespace Core.Hosting;
 
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Settings;
@@ -44,12 +45,44 @@ public class StartUpDiagnostics
 
         settings.AddStartupDiagnosticsSection(
             sectionName: "MySection",
-            section: new
+            section: new MyDiagnostics
             {
                 SomeSetting = "some data",
                 SomeOtherSetting = 10
-            });
+            },
+            typeInfo: DiagnosticsJsonContext.Default.MyDiagnostics);
+
+        #endregion
+    }
+
+    void CustomDiagnosticsSectionFactory(IReadOnlySettings settings)
+    {
+        #region CustomDiagnosticsSectionFactory
+
+        settings.AddStartupDiagnosticsSectionFactory(
+            sectionName: "MySection",
+            sectionFactory: () => new MyDiagnostics
+            {
+                SomeSetting = "some data",
+                SomeOtherSetting = 10
+            },
+            typeInfo: DiagnosticsJsonContext.Default.MyDiagnostics);
 
         #endregion
     }
 }
+
+#region CustomDiagnosticsSectionTypes
+
+sealed class MyDiagnostics
+{
+    public required string SomeSetting { get; init; }
+    public required int SomeOtherSetting { get; init; }
+}
+
+[JsonSerializable(typeof(MyDiagnostics))]
+sealed partial class DiagnosticsJsonContext : JsonSerializerContext
+{
+}
+
+#endregion

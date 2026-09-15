@@ -2,10 +2,11 @@
 title: Messages, events, and commands
 summary: Messages as commands or events are the the unit of communication for message-based distributed systems. NServiceBus ensures they are used correctly.
 component: Core
-reviewed: 2025-02-19
+reviewed: 2026-08-24
 related:
  - nservicebus/messaging/conventions
  - nservicebus/messaging/unobtrusive-mode
+ - nservicebus/messaging/trimming-safe-messaging-overloads
  - samples/message-assembly-sharing
 redirects:
  - nservicebus/introducing-ievent-and-icommand
