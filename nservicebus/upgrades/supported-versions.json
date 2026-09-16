@@ -41,10 +41,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
         }
@@ -1165,10 +1161,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "14.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "14.1",
           "SupportLevel": "Mainstream"
         }
@@ -1234,10 +1226,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
         }
@@ -1256,10 +1244,6 @@
         },
         {
           "Minor": "8.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "9.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1339,10 +1323,6 @@
     {
       "PackageId": "Particular.Aspire.Hosting.ServicePlatform",
       "Versions": [
-        {
-          "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "1.1",
           "SupportLevel": "Mainstream"
