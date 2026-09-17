@@ -1,7 +1,7 @@
 ---
 title: RavenDB search engine
 summary: Which RavenDB search engine ServiceControl uses for its indexes and how to migrate existing indexes from Corax to Lucene
-reviewed: 2026-08-28
+reviewed: 2026-09-17
 component: ServiceControl
 related:
 - servicecontrol/ravendb/accessing-database
@@ -11,11 +11,14 @@ related:
 
 RavenDB supports two search engines for indexes: [Corax](https://ravendb.net/docs/article-page/7.0/csharp/indexes/search-engine/corax) and [Lucene](https://lucene.apache.org/). The search engine determines how RavenDB builds and queries an index. Which engine is used is decided when a database or index is created and it can be changed afterwards, at the cost of a full index rebuild.
 
-Load testing of the ServiceControl error and audit instances showed that, for the index definitions ServiceControl uses, Lucene indexes:
+The ServiceControl error and audit databases have a specific workload: messages are ingested continuously, expired messages are deleted continuously by the retention process, and the data is queried only occasionally, when ServicePulse is used. Load testing of this workload showed that, for the index definitions ServiceControl uses, Lucene indexes:
 
 - take up less storage
 - use less memory
-- index and query faster
+- keep up with ingestion and deletion with less index lag
+- query faster
+
+Corax has shown performance and stability issues on large ServiceControl databases. Starting with ServiceControl version 6.20, new databases therefore use Lucene, and **migrating existing databases to Lucene is recommended**.
 
 ## Default search engine per version
 
@@ -24,7 +27,7 @@ Load testing of the ServiceControl error and audit instances showed that, for th
 | 5.x and 6.0–6.19 | Corax | Keep the engine they were created with |
 | 6.20 and later | Lucene | Keep the engine they were created with |
 
-Upgrading ServiceControl never changes the search engine of an existing database. Changing the engine triggers a full rebuild of every index, which on very large databases can take days depending on the available compute, and while the rebuild runs the ingestion and indexing rates are degraded. Migrating an existing database to Lucene is therefore an explicit operator decision, see [Migrating existing indexes to Lucene](#migrating-existing-indexes-to-lucene).
+Upgrading ServiceControl never changes the search engine of an existing database. Changing the engine triggers a full rebuild of every index, which on very large databases can take days depending on the available compute, and while the rebuild runs the ingestion and indexing rates are degraded. The upgrade therefore does not migrate existing databases automatically. The migration is a planned operator action that should be scheduled separately for each environment, see [Should existing indexes be migrated?](#should-existing-indexes-be-migrated) and [Migrating existing indexes to Lucene](#migrating-existing-indexes-to-lucene).
 
 > [!NOTE]
 > Monitoring instances do not use RavenDB and are not affected.
@@ -46,21 +49,24 @@ The search engine of an index can also be inspected in the RavenDB Studio, on th
 
 ## Should existing indexes be migrated?
 
-Migration is recommended when one or more of the following apply:
+Yes. Migrating existing error and audit databases to Lucene is recommended for all instances. Corax has shown performance and stability issues on large ServiceControl databases, and these issues get worse as the database grows. Migrating proactively, while the database is small and the instance is healthy, keeps the rebuild short and avoids having to migrate while the instance is already struggling.
 
-- The instance experiences the issues described in [Audit instances: Corrupted indexes or corrupted database after a service shutdown](/servicecontrol/troubleshooting.md#audit-instances-corrupted-indexes-or-corrupted-database-after-a-service-shutdown)
-- The instance shows high memory pressure or [RavenDB dirty memory](/servicecontrol/troubleshooting.md#ravendb-dirty-memory) warnings
-- Storage size or index lag of the database is a concern
-- There is a planned maintenance window in which the rebuild can complete
+Migrate as soon as possible when the instance shows one or more of the following symptoms. They indicate that the Corax indexes can no longer keep up with the load:
 
-Migration can safely be postponed when the instance is performing well. The custom check will continue to report the Corax indexes; it is informational and does not affect the operation of the instance.
+- Frequent or persistent index lag, reported by the [stale indexes](/servicecontrol/troubleshooting.md#stale-indexes) custom check
+- High RAM utilization or [RavenDB dirty memory](/servicecontrol/troubleshooting.md#ravendb-dirty-memory) warnings
+- [High CPU utilization](/servicecontrol/troubleshooting.md#high-cpu-utilization) caused by indexing
+- Corrupted indexes or a lengthy database recovery after a service shutdown, see [Audit instances: Corrupted indexes or corrupted database after a service shutdown](/servicecontrol/troubleshooting.md#audit-instances-corrupted-indexes-or-corrupted-database-after-a-service-shutdown)
+- Database storage growth that is dominated by the size of the indexes
+
+Instances without these symptoms should be migrated in the next planned maintenance window. Because the rebuild requires downtime or degraded ingestion, plan the migration separately for each environment. Migrate development and test instances first to estimate the rebuild duration for production. The `Error Database Search Engine` or `Audit Database Search Engine` custom check continues to fail until all indexes use Lucene.
 
 > [!WARNING]
 > Before migrating, [back up the database](/servicecontrol/backup-sc-database.md) and estimate the rebuild duration. The rebuild has to process every document in the database. Extrapolate from a smaller instance, or from the time the last [database upgrade](/servicecontrol/upgrades/) took, and schedule the migration in a maintenance window. Consider temporarily adding CPU and RAM to the host until the rebuild completes.
 
 ## Migrating existing indexes to Lucene
 
-The migration is performed per index in the RavenDB Studio. The ServiceControl instance recreates its index definitions at every start-up, so the migrated index must be **locked** afterwards, otherwise the instance resets it to the database default (Corax for databases created before version 6.20) and triggers another rebuild.
+The migration is performed per index in the RavenDB Studio. On ServiceControl versions before 6.20, the migrated index must also be **locked** afterwards. Those versions recreate their index definitions at every start-up and would otherwise reset the index to the database default (Corax) and trigger another rebuild.
 
 The indexes with the highest load, and therefore the ones that benefit most, are:
 
@@ -102,7 +108,7 @@ In the **List of Indexes** the index shows the replacement being built. Once the
 ### 4. Lock the index
 
 > [!NOTE]
-> Locking the index is required to keep non-default index configurations. Locking is only required when migrating to Lucene to ServiceControl versions prior to 6.20.0.
+> Locking the index is required to keep a non-default index configuration on ServiceControl versions prior to 6.20.0. On version 6.20.0 and later, this step can be skipped.
 
 While still in the Studio, click the `🔓 Unlocked` button of the migrated index and change it to `🔒 Locked (ignore)` ([lock modes](https://ravendb.net/docs/article-page/7.0/csharp/client-api/operations/maintenance/indexes/set-index-lock#lock-modes)). The Studio confirms with _Lock mode was set to: Locked (ignore)_.
 
@@ -124,4 +130,4 @@ Instead of migrating indexes one by one, the database default can be changed so 
 3. Reload the database when prompted.
 4. **Reset** each index (**List of Indexes** > index menu > **Reset**) so that it is rebuilt with the new engine.
 
-Resetting an index deletes it and rebuilds it from scratch; queries against it return stale results until the rebuild completes. Because all indexes are rebuilt, this approach causes a longer period of degraded performance than migrating individual indexes, but does not require indexes to be locked and applies to indexes added by future ServiceControl versions as well.
+Resetting an index deletes it and rebuilds it from scratch; queries against it return stale results until the rebuild completes. Because all indexes are rebuilt, this approach causes a longer period of degraded performance than migrating individual indexes, but does not require indexes to be locked and applies to indexes added by future ServiceControl versions as well. Because the custom check only passes once all indexes use Lucene, this approach is the most direct way to complete the migration.
