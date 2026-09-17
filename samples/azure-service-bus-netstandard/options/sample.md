@@ -2,7 +2,7 @@
 title: Azure Service Bus Topology Options
 summary: How to use topology options to layout the topic topology in app settings.
 component: ASBS
-reviewed: 2025-02-12
+reviewed: 2026-09-17
 related:
  - transports/azure-service-bus
 ---
@@ -22,11 +22,11 @@ The sample contains three executable projects:
 
 ### Configuration from options
 
-With the generic hosts ability to load configuration sections it is a matter of loading the topology options from the section in the Application configuration as shown below:
+With the generic host's ability to load configuration sections, it is a matter of loading the topology options from the section in the Application configuration as shown below:
 
 Snippet: OptionsLoading
 
-In this example the publisher overrides the default topic destination to a custom conventions instead of using the default fullname of the event type:
+In this example, the publisher overrides the default topic destination to a custom convention instead of using the default fullname of the event type:
 
 Snippet: PublisherAppsettings
 
@@ -38,7 +38,7 @@ partial: restrictions
 
 ### Validation
 
-The transport provides integration with Microsoft.Extensions.Options and has a built-in options validator. With the generic host it is possible to register the validator to make sure the configuration loaded fulfills the requirements of the broker (e.g. topic name length) and is self-consistent.
+The transport provides integration with Microsoft.Extensions.Options and has a built-in options validator. With the generic host, it is possible to register the validator to make sure the configuration loaded fulfills the requirements of the broker (e.g. topic name length) and is self-consistent.
 
 Snippet: OptionsValidation
 
