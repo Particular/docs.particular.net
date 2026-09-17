@@ -95,7 +95,7 @@ Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://r
 > [!NOTE]
 > Only applies to instances that use the RavenDB 3.5 storage engine
 
-Use the [`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#embedded-database-ravenindexstoragepath) setting to change the index storage location.
+Use the [`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#storage-ravenindexstoragepath) setting to change the index storage location.
 
 #end-if
 
