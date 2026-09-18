@@ -12,7 +12,7 @@
 | <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.103.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.100.14/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.101/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.100.14/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.100.15/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
@@ -186,7 +186,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.11.2/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.12.0/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.50.4/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Snappier" target="_blank">Snappier</a> | <a href="https://www.nuget.org/packages/Snappier/1.3.1/license" target="_blank">BSD-3-Clause</a> | <a href="https://brantburnett.github.io/Snappier/" target="_blank">Project Site</a> |
 
@@ -247,13 +247,13 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.5.4/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.302/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.303/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
 
 ### ServiceControl NuGet packages
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/9.3.2/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/9.3.3/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.104.4/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.103.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.21.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.21.0/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
