@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
+﻿using NServiceBus.Transport.AzureServiceBus;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConsole();
@@ -23,6 +19,7 @@ var transport = new AzureServiceBusTransport(section["ConnectionString"]!, topol
         OptionsValidator = new TopologyOptionsDisableValidationValidator()
     }
 };
+
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
