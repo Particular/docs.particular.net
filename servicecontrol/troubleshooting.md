@@ -162,7 +162,9 @@ This can be resolved by temporarily stopping message ingestion to let the indexe
 
 While message ingestion is disabled, the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
 
-Consider upgrading the storage if these errors persists.
+Consider upgrading the storage if these errors persist.
+
+If index lag occurs frequently and the indexes use the Corax search engine, [migrate the indexes to Lucene](#indexes-use-the-corax-search-engine). Lucene indexes update faster and use less memory for the ServiceControl workload.
 
 Contact [Particular support](https://particular.net/support) for assistance.
 
@@ -227,6 +229,7 @@ Resolution:
 - Ensure all the latest performance enhancements are available by having the latest version of ServiceControl installed. The most recent version is available at <https://particular.net/downloads>
 - Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md). If the system continuously produces messages or generates many or substantial messages (several kilobytes or larger), ServiceControl requires even faster disks than specified by the **minimum** requirements.
 - Ensure no custom checks shown in ServicePulse indicate index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
+- Ensure the RavenDB indexes use the Lucene search engine. Indexes that still use Corax are reported by the `Error Database Search Engine` or `Audit Database Search Engine` custom check, see [indexes use the Corax search engine](#indexes-use-the-corax-search-engine)
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
 > [!WARNING]
@@ -421,7 +424,22 @@ To mitigate this situation, migrate the full-text search indexes from Corax to t
 It might be sufficient to migrate only the `MessagesViewIndex` (even though full-text search is enabled), which has the highest load.
 
 > [!NOTE]
-> Starting with ServiceControl version 6.20, new databases use Lucene by default and instances report indexes that still use Corax via a custom check and a start-up warning. Existing databases are not migrated automatically.
+> Starting with ServiceControl version 6.20, new databases use Lucene by default and instances report indexes that still use Corax via a custom check and a start-up warning. Existing databases are not migrated automatically; migrating them is recommended, see [indexes use the Corax search engine](#indexes-use-the-corax-search-engine).
+
+## Indexes use the Corax search engine
+
+_Available in version 6.20_
+
+Error and audit instances report indexes that still use the Corax search engine with the following custom check message, from the `Error Database Search Engine` or `Audit Database Search Engine` custom check:
+
+> The following RavenDB index(es) use the Corax search engine: `<database>/<index>`. Lucene indexes are smaller, use less memory and perform better for ServiceControl workloads, and are the default for new databases. Consider switching these indexes to Lucene. Note that switching triggers a full rebuild of the index: on very large databases this can take days depending on the available compute, and while the rebuild is running ingestion and indexing rates can be degraded. Plan the switch accordingly.
+
+> [!NOTE]
+> The same message is logged with a warning severity in the ServiceControl instance logs at every start-up.
+
+Migrating the reported indexes to Lucene is recommended. Corax has shown performance and stability issues on large ServiceControl databases, which get worse as the database grows. Lucene indexes are smaller, use less memory, and perform better for the [ServiceControl workload](/servicecontrol/ravendb/search-engine.md) of continuous message ingestion and deletion combined with occasional queries. Typical symptoms are frequent [stale indexes](#stale-indexes), [high CPU utilization](#high-cpu-utilization), high RAM utilization or [RavenDB dirty memory](#ravendb-dirty-memory) warnings, and [corrupted indexes after a service shutdown](#audit-instances-corrupted-indexes-or-corrupted-database-after-a-service-shutdown). Instances that show these symptoms should be migrated as soon as possible; other instances in the next planned maintenance window.
+
+The migration requires a full index rebuild and should be planned separately for each environment. See [RavenDB search engine](/servicecontrol/ravendb/search-engine.md) for guidance on planning the migration and for the migration procedure.
 
 ## RavenDB dirty memory
 
@@ -440,6 +458,7 @@ Dirty memory issues can be mitigated using one or more of the following strategi
 
 - Consider adding faster storage to reduce I/O impact and allow the RavenDB instance to flush dirty memory faster
 - Reduce the instance max concurrency level by reducing the `MaximumConcurrencyLevel` setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
+- If the indexes use the Corax search engine, [migrate them to Lucene](#indexes-use-the-corax-search-engine), which uses less memory for the ServiceControl workload
 - If the issue affects an audit instance, consider [scaling it out using a sharding or a competing consumer approach](servicecontrol-instances/remotes.md).
 
 ## Benchmarking storage performance on Linux containers
