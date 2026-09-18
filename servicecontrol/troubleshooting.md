@@ -235,20 +235,6 @@ Resolution:
 > [!WARNING]
 > Disabling *Full-Text Search* causes text search to be unavailable in ServicePulse.
 
-## Saga audit data retention custom check failure
-
-Users who have migrated from earlier versions of ServiceControl may have historical saga audit records still in the database. This custom check will fail if there is no audit retention period set on the ServiceControl Error instance when saga audit data exists. To resolve this issue a retention period should be configured by adding:
-
-  ```xml
-  <add key="ServiceControl/AuditRetentionPeriod" value="DD:HH:MM" />
-  ```
-
-For example, a 20-day retention period would be set as follows:
-
-  ```xml
-  <add key="ServiceControl/AuditRetentionPeriod" value="20:00:00" />
-  ```
-
 ## Logs contain EsentOutOfLongValueIDsException
 
 If ServiceControl logs contain a `Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)` error similar to the following snippet, its [database must be compacted](db-compaction.md).
