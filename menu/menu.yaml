@@ -3,6 +3,8 @@
   Topics:
   - Url: get-started
     Title: Overview
+  - Url: get-started/mcp-server
+    Title: MCP Server overview
   - Title: Quickstart Tutorial
     Articles:
     - Url: tutorials/quickstart
