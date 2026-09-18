@@ -2,7 +2,7 @@
 title: Error Instance Configuration Settings
 summary: Categorized list of ServiceControl Error instance configuration settings.
 component: ServiceControl
-reviewed: 2025-10-22
+reviewed: 2026-06-01
 redirects:
  - servicecontrol/creating-config-file
 ---
@@ -84,23 +84,6 @@ The port to bind the embedded HTTP API server.
 > [!WARNING]
 > If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
-### ServiceControl/DatabaseMaintenancePort
-
-The port to expose the RavenDB database.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DATABASEMAINTENANCEPORT` |
-| **App config key** | `ServiceControl/DatabaseMaintenancePort` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | `33334` |
-
-> [!NOTE]
-> This setting is not relevant when running an error instance in a container.
-
 ### ServiceControl/VirtualDirectory
 
 The virtual directory to bind the embedded HTTP server to; modify this setting to bind to a specific virtual directory.
@@ -146,20 +129,6 @@ The maximum allowed time for the process to complete the shutdown.
 | Containers | TimeSpan | `00:00:05` (5 seconds) |
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
-
-### ServiceControl/MaintenanceMode
-
-Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_MAINTENANCEMODE` |
-| **App config key** | `ServiceControl/MaintenanceMode` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| boolean | `False` |
 
 ### ServiceControl/DisableExternalIntegrationsPublishing
 
@@ -711,9 +680,366 @@ A comma-separated list of allowed origins, e.g. `https://servicepulse.yourcompan
 | --- | --- |
 | string | None |
 
-## Embedded database
+## Storage
 
-These settings are not valid for ServiceControl instances hosted in a container.
+RavenDB is the default ServiceControl storage type. ServiceControl 7 and later can also use SQL Server or PostgreSQL storage.
+
+#if-version [7,)
+
+SQL Server and PostgreSQL storage require a database connection and external storage for message bodies.
+
+### ServiceControl/PersistenceType
+
+The ServiceControl storage implementation used by the instance.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_PERSISTENCETYPE` |
+| **App config key** | `ServiceControl/PersistenceType` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `RavenDB` |
+
+Valid values are `RavenDB`, `SQLServer`, and `PostgreSQL`.
+
+### ServiceControl/Database/ConnectionString
+
+The connection string for the SQL Server or PostgreSQL database. The database must already exist.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATABASE_CONNECTIONSTRING` |
+| **App config key** | `ServiceControl/Database/ConnectionString` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for SQL Server and PostgreSQL storage) |
+
+### ServiceControl/Database/Schema
+
+The schema that contains the ServiceControl tables. The schema must already exist. Schema names can contain letters, digits, and underscores, must start with a letter or underscore, and are limited to 63 characters.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATABASE_SCHEMA` |
+| **App config key** | `ServiceControl/Database/Schema` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | The database provider's default schema (`dbo` for SQL Server or `public` for PostgreSQL) |
+
+### ServiceControl/Database/CommandTimeout
+
+The command timeout, in seconds, for SQL database operations.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATABASE_COMMANDTIMEOUT` |
+| **App config key** | `ServiceControl/Database/CommandTimeout` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `30` |
+
+When using SQL Server or PostgreSQL storage, message bodies that exceed the configured inline storage limit are stored in the file system, Azure Blob Storage, or Amazon S3.
+
+### ServiceControl/MessageBody/StorageType
+
+The external storage provider used for message bodies.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_STORAGETYPE` |
+| **App config key** | `ServiceControl/MessageBody/StorageType` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for SQL Server and PostgreSQL storage) |
+
+Valid values are `FileSystem`, `AzureBlob`, and `S3`.
+
+### ServiceControl/MaxBodySizeToStore
+
+The maximum message body size, in bytes, stored inline in the SQL database. Larger message bodies are stored using the configured external storage provider.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MAXBODYSIZETOSTORE` |
+| **App config key** | `ServiceControl/MaxBodySizeToStore` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `102400` (100 KB) |
+
+### ServiceControl/MessageBody/FileSystem/StoragePath
+
+The directory where message bodies are stored when `StorageType` is `FileSystem`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH` |
+| **App config key** | `ServiceControl/MessageBody/FileSystem/StoragePath` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for file system storage) |
+
+### ServiceControl/MessageBody/FileSystem/DataSpaceRemainingThreshold
+
+The percentage of disk space that must remain available on the drive containing the message body storage directory. The value must be between `0` and `100`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_DATASPACEREMAININGTHRESHOLD` |
+| **App config key** | `ServiceControl/MessageBody/FileSystem/DataSpaceRemainingThreshold` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `15` (percent) |
+
+### ServiceControl/MessageBody/Azure/ConnectionString
+
+The Azure Storage connection string used to authenticate with shared key or shared access signature (SAS) credentials when `StorageType` is `AzureBlob`. Configure either this setting or `ServiceControl/MessageBody/Azure/ServiceUri`, but not both.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_CONNECTIONSTRING` |
+| **App config key** | `ServiceControl/MessageBody/Azure/ConnectionString` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/Azure/ServiceUri
+
+The Azure Blob Storage service URI used with managed identity when `StorageType` is `AzureBlob`. Configure either this setting or `ServiceControl/MessageBody/Azure/ConnectionString`, but not both.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_SERVICEURI` |
+| **App config key** | `ServiceControl/MessageBody/Azure/ServiceUri` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/Azure/ManagedIdentityClientId
+
+The client ID of the user-assigned managed identity used to access Azure Blob Storage. When this setting is not specified, the default Azure credential chain is used.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_MANAGEDIDENTITYCLIENTID` |
+| **App config key** | `ServiceControl/MessageBody/Azure/ManagedIdentityClientId` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/Azure/AuthorityHost
+
+The Microsoft Entra authority host URI used for managed identity authentication in sovereign clouds. When this setting is not specified, the Azure SDK uses the `AZURE_AUTHORITY_HOST` environment variable or its default authority host.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_AUTHORITYHOST` |
+| **App config key** | `ServiceControl/MessageBody/Azure/AuthorityHost` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/Azure/ContainerName
+
+The Azure Blob Storage container used to store message bodies.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_CONTAINERNAME` |
+| **App config key** | `ServiceControl/MessageBody/Azure/ContainerName` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `error-bodies` |
+
+### ServiceControl/MessageBody/S3/BucketName
+
+The Amazon S3 bucket used to store message bodies when `StorageType` is `S3`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_BUCKETNAME` |
+| **App config key** | `ServiceControl/MessageBody/S3/BucketName` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for S3 storage) |
+
+### ServiceControl/MessageBody/S3/KeyPrefix
+
+The prefix applied to message body object keys in Amazon S3.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_KEYPREFIX` |
+| **App config key** | `ServiceControl/MessageBody/S3/KeyPrefix` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `error-bodies/` |
+
+### ServiceControl/MessageBody/S3/Region
+
+The AWS region containing the S3 bucket. When this setting is not specified, the AWS SDK resolves the region from its default configuration chain.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_REGION` |
+| **App config key** | `ServiceControl/MessageBody/S3/Region` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/S3/ServiceUrl
+
+The service URL for an S3-compatible storage provider. Leave this setting empty when using Amazon S3.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_SERVICEURL` |
+| **App config key** | `ServiceControl/MessageBody/S3/ServiceUrl` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/S3/AccessKeyId
+
+The access key ID used to authenticate with S3. Configure this setting together with `ServiceControl/MessageBody/S3/SecretAccessKey`, or leave both empty to use the AWS SDK default credential chain.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_ACCESSKEYID` |
+| **App config key** | `ServiceControl/MessageBody/S3/AccessKeyId` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/S3/SecretAccessKey
+
+The secret access key used to authenticate with S3. Configure this setting together with `ServiceControl/MessageBody/S3/AccessKeyId`, or leave both empty to use the AWS SDK default credential chain.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_SECRETACCESSKEY` |
+| **App config key** | `ServiceControl/MessageBody/S3/SecretAccessKey` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/MessageBody/MinCompressionSize
+
+The minimum message body size, in bytes, at which external message bodies are compressed.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MESSAGEBODY_MINCOMPRESSIONSIZE` |
+| **App config key** | `ServiceControl/MessageBody/MinCompressionSize` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `4096` (4 KB) |
+
+#end-if
+
+The following settings apply only when using RavenDB storage.
+
+### ServiceControl/DatabaseMaintenancePort
+
+The port to expose the RavenDB database.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATABASEMAINTENANCEPORT` |
+| **App config key** | `ServiceControl/DatabaseMaintenancePort` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `33334` |
+
+> [!NOTE]
+> This setting is not relevant when running an error instance in a container.
+
+### ServiceControl/MaintenanceMode
+
+Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) to perform database maintenance.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MAINTENANCEMODE` |
+| **App config key** | `ServiceControl/MaintenanceMode` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| boolean | `False` |
+
+### ServiceControl/DataSpaceRemainingThreshold
+
+The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-message-database-storage-space) check. If the remaining hard drive space drops below this threshold, the check fails and alerts the user.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATASPACEREMAININGTHRESHOLD` |
+| **App config key** | `ServiceControl/DataSpaceRemainingThreshold` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `20` (percent) |
+
+### ServiceControl/MinimumStorageLeftRequiredForIngestion
+
+_Added in version 4.28.0_
+
+The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold, the check fails and message ingestion stops to prevent data loss. Message ingestion resumes when more disk space is available.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MINIMUMSTORAGELEFTREQUIREDFORINGESTION` |
+| **App config key** | `ServiceControl/MinimumStorageLeftRequiredForIngestion` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `5` (percent) |
+
+The following embedded RavenDB settings are not valid for ServiceControl instances hosted in a container.
 
 ### ServiceControl/DbPath
 
@@ -1424,33 +1750,3 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 
 > [!NOTE]
 > When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
-
-## Troubleshooting
-
-### ServiceControl/DataSpaceRemainingThreshold
-
-The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DATASPACEREMAININGTHRESHOLD` |
-| **App config key** | `ServiceControl/DataSpaceRemainingThreshold` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | 20 (percent) |
-
-### ServiceControl/MinimumStorageLeftRequiredForIngestion
-
-This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_MINIMUMSTORAGELEFTREQUIREDFORINGESTION` |
-| **App config key** | `ServiceControl/MinimumStorageLeftRequiredForIngestion` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | 5 (percent) |

@@ -32,7 +32,7 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 * Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures applications are not competing for storage IOPS.
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
-* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
+* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
 * Use fixed-size (not dynamically expanding virtual) disks
 * Use solid-state drives (SSDs) to significantly reduce seek times and increase throughput
 * RavenDB storage compaction requires an amount of free disk space equal to the database to compact; account for the compaction operation when determining storage disk sizes 
@@ -83,7 +83,7 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 > [!NOTE]
 > This suggestion applies to ServiceControl primary instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
 
-Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
+Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
 
 #if-version [5,)
 
@@ -95,7 +95,7 @@ Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://r
 > [!NOTE]
 > Only applies to instances that use the RavenDB 3.5 storage engine
 
-Use the [`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#embedded-database-ravenindexstoragepath) setting to change the index storage location.
+Use the [`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#storage-ravenindexstoragepath) setting to change the index storage location.
 
 #end-if
 
