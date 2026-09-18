@@ -11,6 +11,7 @@ The Particular Software Model Context Protocol (MCP) Server enables clients like
 
 - Enhance agentic development environments like Visual Studio, JetBrains Rider, and Visual Studio Code with documentation content
 - Use official documentation content in Copilot agents, Claude Code agents, and custom solutions
+- Up-to-date information, not the stale data from when the model was trained
 - Enable learners, engineers, and support to use official documentation content in their flow of work
 
 ## How the MCP Server works
