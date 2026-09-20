@@ -3,7 +3,7 @@ title: Azure Service Bus Pub/Sub Native Integration
 summary: How to consume event messages published by non-NServiceBus endpoints.
 component: ASBS
 isLearningPath: true
-reviewed: 2025-02-14
+reviewed: 2026-09-20
 related:
  - transports/azure-service-bus
 ---
@@ -22,4 +22,4 @@ The sample contains three executable projects:
 * `NativeSubscriberA`: an executable subscribing to the `EventOne` event published by the `Publisher`.
 * `NativeSubscriberB`: an executable subscribing to both events published by the `Publisher`.
 
-Partial: per-event
+partial: per-event
