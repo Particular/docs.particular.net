@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus topology migration
 summary: Demonstrates how to migrate from the single-topic to topic-per-event topology
-reviewed: 2025-02-12
+reviewed: 2026-09-20
 component: ASBS
 related:
 - transports/azure-service-bus
@@ -14,7 +14,7 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample shows a basic two-endpoint scenario in which one endpoint is publishing an event (Publisher) which the other is processing it (Subscriber). Both endpoints use version 5 of the transport but, initially, are configured with the migration topology to deliver the event using the single-topic approach via the `bundle-1` topic.
+This sample shows a basic two-endpoint scenario in which one endpoint is publishing an event (Publisher) which the other is processing it (Subscriber). Both endpoints use the same version of the transport but, initially, are configured with the migration topology to deliver the event using the single-topic approach via the `bundle-1` topic.
 
 ## Running the sample
 
