@@ -21,7 +21,7 @@ Once installed, the `asb-transport` command line tool will be available for use.
 This tool accepts commands with the shape:
 
 ```
-asb-transport <command> [options]`
+asb-transport [command] [subcommand] [options]`
 ```
 
 ## Connection string
