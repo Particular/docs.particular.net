@@ -24,7 +24,7 @@ This sample shows a basic two-endpoint scenario in which one endpoint is publish
 Before the event delivery path can be migrated to topic-per-event approach, the infrastructure needs to be created in Azure Service Bus. This can be done using the [command line utility](/transports/azure-service-bus/operational-scripting.md):
 
 ```
-asb-transport migration endpoint subscribe-migrated Subscriber Shared.MyEvent
+asb-transport migration endpoint subscribe-migrated Samples.TopologyMigration.Subscriber Shared.MyEvent
 ```
 
 Alternatively, it can be also done by the endpoint itself during startup if [installers are enabled](/nservicebus/operations/installers.md#running-installers-during-endpoint-startup). To do that comment out the "Step 0" code in the `Program.cs` file of Subscriber and uncomment "Step 1". Run the sample to verify if the event has been delivered. Note that the event has been delivered via the single-topic path.
@@ -37,7 +37,7 @@ Now that the infrastructure for the new path has been created, switch the Publis
 To verify that, decommission the old path. You can do that using the [command line utility](/transports/azure-service-bus/operational-scripting.md):
 
 ```
-asb-transport migration endpoint unsubscribe Subscriber Shared.MyEvent
+asb-transport migration endpoint unsubscribe Samples.TopologyMigration.Subscriber Shared.MyEvent
 ```
 
 Run the sample to verify if the event has indeed been delivered.
