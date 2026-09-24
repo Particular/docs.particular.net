@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-public class Message1Handler (ILogger<Message1Handler> logger):
-    IHandleMessages<Message1>
+public class Message1Handler(ILogger<Message1Handler> logger) : IHandleMessages<Message1>
 {
 
     public Task Handle(Message1 message, IMessageHandlerContext context)

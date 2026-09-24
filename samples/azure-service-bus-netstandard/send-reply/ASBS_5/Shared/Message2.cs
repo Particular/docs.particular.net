@@ -1,7 +1,4 @@
-using NServiceBus;
-
-public class Message2 :
-    IMessage
+public class Message2 : IMessage
 {
-    public string Property { get; set; }
+    public required string Property { get; set; }
 }
