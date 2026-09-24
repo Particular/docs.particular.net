@@ -1,11 +1,11 @@
 ---
 title: Particular Docs MCP Server overview
 summary: The Particular Docs MCP Server is a Model Context Protocol server that adds up-to-date documentation as context to language models
-reviewed: 2028-09-18
+reviewed: 2026-09-18
 suppressRelated: false
 ---
 
-The Particular Software Model Context Protocol (MCP) Server enables clients like GitHub Copilot, Claude Code, and other AI agents to bring up-to-date information directly from the official NServiceBus and Particular Service Platform documentation. It's a remote MCP server using streamable http. It allows agents to search through documentation and fetch complete articles.
+The Particular Software Model Context Protocol (MCP) Server enables clients like GitHub Copilot, Claude Code, and other AI agents to access up-to-date information directly from the official NServiceBus and Particular Service Platform documentation. It's a remote MCP server using streamable HTTP. It allows agents to search through documentation and fetch complete articles.
 
 ## Use cases
 
