@@ -15,7 +15,7 @@ The Particular Software Model Context Protocol (MCP) Server enables clients like
 
 ## How the MCP Server works
 
-The Particular Docs MCP Server is a remote [MCP](https://modelcontextprotocol.io/) server that uses streamable http. Compatible client apps can connect with the endpoint.
+The Particular Docs MCP Server is a remote [MCP](https://modelcontextprotocol.io/) server that uses streamable HTTP. Compatible client apps can connect with the endpoint.
 
 ```html
 https://docs.particular.net/mcp
