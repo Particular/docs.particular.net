@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable CS0618 // Type or member is obsolete
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -15,13 +16,9 @@ var endpointConfiguration = new EndpointConfiguration("Samples.TopologyMigration
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString")!;
 
-#pragma warning disable CS0618 // Type or member is obsolete
-
 //Step 0: Using the topology that supports migration and single-topic event delivery path
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
 topology.EventToMigrate<MyEvent>();
-
-#pragma warning restore CS0618 // Type or member is obsolete
 
 //Step 2: Switch to topic-per-event delivery path
 //var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -79,3 +76,5 @@ using (var cts = new CancellationTokenSource())
 }
 
 await host.StopAsync();
+
+#pragma warning restore CS0618 // Type or member is obsolete
