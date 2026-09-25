@@ -1,7 +1,7 @@
 ---
 title: Handler Ordering
 summary: Controlling the order in which handlers are executed
-reviewed: 2025-02-17
+reviewed: 2026-09-25
 component: Core
 redirects:
 - nservicebus/how-do-i-specify-the-order-in-which-handlers-are-invoked
@@ -13,20 +13,10 @@ In the past, message handlers used to be the only way to implement cross-cutting
 > [!WARNING]
 > It is now recommended to plug into the [message handling pipeline](/nservicebus/pipeline/) to implement these cross-cutting concerns.
 
-If it is not possible to migrate this kind of functionality out of message handlers, there are a number of ways to specify the order in which they will be executed.
+If it is not possible to migrate this kind of functionality out of message handlers, the order in which they will be executed can be specified.
 
 > [!NOTE]
 > Consult the [data access guidelines](/nservicebus/handlers/accessing-data.md) when multiple handlers for the same message need to participate in the same transaction.
-
-### Overview of the implementation
-
- 1. Find the list of possible handlers for a message.
- 1. If an order has been specified for any of those handlers, move them to the start of the list.
- 1. Execute the handlers.
-
-The remaining handlers (i.e. ones not specified in the ordering) are executed in a non-deterministic order.
-
-### With the configuration API
 
 #### Specifying one handler to run first
 
@@ -35,3 +25,5 @@ snippet: HandlerOrderingWithFirst
 #### Specifying multiple handlers to run in order
 
 snippet: HandlerOrderingWithMultiple
+
+partial: add-handler
