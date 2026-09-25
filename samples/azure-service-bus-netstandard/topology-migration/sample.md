@@ -14,12 +14,12 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample shows a basic two-endpoint scenario in which one endpoint is publishing an event (Publisher) which the other is processing it (Subscriber). Both endpoints use the same version of the transport but, initially, are configured with the migration topology to deliver the event using the single-topic approach via the `bundle-1` topic.
+This sample shows a basic two-endpoint scenario in which one endpoint is publishing an event (Publisher), and the other is processing it (Subscriber). Both endpoints use the same version of the transport, but are initially configured with the migration topology to deliver the event using the single-topic approach via the `bundle-1` topic.
 
 ## Running the sample
 
 1. First, without changing the code, run the `Subscriber` project by itself. This will create all the necessary publish/subscribe infrastructure in Azure Service Bus.
-2. Next, without changing the code, run the `Publisher` project. This will publish an event that the `Subscriber` will process.
+2. Next, without changing the code, run the `Publisher` project. This will publish an event that `Subscriber` will process.
 
 Before the event delivery path can be migrated to topic-per-event approach, the infrastructure needs to be created in Azure Service Bus. This can be done using the [command line utility](/transports/azure-service-bus/operational-scripting.md):
 
@@ -27,12 +27,12 @@ Before the event delivery path can be migrated to topic-per-event approach, the 
 asb-transport migration endpoint subscribe-migrated Samples.TopologyMigration.Subscriber Shared.MyEvent
 ```
 
-Alternatively, it can be also done by the endpoint itself during startup if [installers are enabled](/nservicebus/operations/installers.md#running-installers-during-endpoint-startup). To do that comment out the "Step 0" code in the `Program.cs` file of Subscriber and uncomment "Step 1". Run the sample to verify if the event has been delivered. Note that the event has been delivered via the single-topic path.
+Alternatively, it can be also done by the endpoint itself during startup if [installers are enabled](/nservicebus/operations/installers.md#running-installers-during-endpoint-startup). To do that, comment out the "Step 0" code in the `Program.cs` file of Subscriber, and uncomment "Step 1". Run the sample to verify that the event has been delivered. Note that the event has been delivered via the single-topic path.
 
 Now that the infrastructure for the new path has been created, switch the Publisher to use that path:
 
-1. Comment out the "Step 0" code in the `Program.cs` file of Publisher and uncomment "Step 2".
-2. Run the sample to verify if the event has been delivered. Note that the event has been delivered via the new path.
+1. Comment out the "Step 0" code in the `Program.cs` file of Publisher, and uncomment "Step 2".
+2. Run the sample to verify that the event has been delivered. Note that the event has been delivered via the new path.
 
 To verify that, decommission the old path. You can do that using the [command line utility](/transports/azure-service-bus/operational-scripting.md):
 
@@ -40,11 +40,11 @@ To verify that, decommission the old path. You can do that using the [command li
 asb-transport migration endpoint unsubscribe Samples.TopologyMigration.Subscriber Shared.MyEvent
 ```
 
-Run the sample to verify if the event has indeed been delivered.
+Run the sample to verify that the event has indeed been delivered.
 
-In the last step
+In the last step:
 
 1. Comment out the "Step 1" and "Step 2" lines
 2. Uncomment "Step 3" in both Publisher and Subscriber
 
-After this change the endpoints are fully migrated to the topic-per-event topology and are no longer able to communicate with endpoint that use the single-topic approach.
+After this change, the endpoints are fully migrated to the topic-per-event topology and are no longer able to communicate with endpoints that use the single-topic approach.

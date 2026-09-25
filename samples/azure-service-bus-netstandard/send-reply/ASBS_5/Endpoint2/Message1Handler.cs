@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
-public class Message1Handler(ILogger<Message1Handler> logger) :  IHandleMessages<Message1>
+public class Message1Handler(ILogger<Message1Handler> logger) : IHandleMessages<Message1>
 {
-
     public Task Handle(Message1 message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received Message1: {Property}", message.Property);
