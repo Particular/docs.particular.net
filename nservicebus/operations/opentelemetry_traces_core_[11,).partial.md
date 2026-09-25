@@ -12,13 +12,6 @@ Subscribe to the sources needed for the endpoint's observability requirements:
 
 snippet: opentelemetry-enabletracing-all-sources
 
-> [!NOTE]
-> In version 10, `NServiceBus.Core.Handler` must be opted into via an AppContext switch before the endpoint starts:
->
-> snippet: opentelemetry-handler-activity-source-switch
->
-> Without this switch, handler spans are emitted from `NServiceBus.Core` instead. In version 11, `NServiceBus.Core.Handler` is the default and the switch is removed.
-
 Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` suppresses handler spans - `Activity.Current` inside handlers and behaviors becomes the pipeline span. This enables a flattened trace view where handler work appears directly on the process span.
 
 ### Span relationships
@@ -67,28 +60,7 @@ snippet: opentelemetry-trace-mode-send
 
 #### Publish operations
 
-A span is emitted for each message published by an NServiceBus endpoint. When the message is processed by a subscriber, a process span is created in a new trace, which is linked to the publish span.
-
-
-```mermaid
-flowchart LR;
-  subgraph PRODUCER
-  direction TB
-   NSBM1[NServiceBus Publish span]
-  end
-  subgraph CONSUMER
-  direction TB
-  PRM1[NServiceBus Process span]
-
-  end
-  NSBM1-. link .-PRM1;
-```
-
-The default trace behavior for publishes is to start a new linked trace on each subscriber. To override this for a specific event, use `PublishOptions`:
-
-snippet: opentelemetry-publishoptions-continue-trace
-
-This continues the publisher's trace in the subscriber:
+A span is emitted for each message published by an NServiceBus endpoint. When the message is processed by a subscriber, a process span is created as a child of the publish span, continuing the publisher's trace.
 
 ```mermaid
 flowchart LR;
@@ -104,19 +76,35 @@ flowchart LR;
   NSBM1--child--> PRM1
 ```
 
+To start a new trace on the subscribers for a specific event, use `PublishOptions`:
+
+snippet: opentelemetry-publishoptions-start-new-trace
+
+This creates a new trace on each subscriber and links the publish and process spans:
+
+```mermaid
+flowchart LR;
+  subgraph PRODUCER
+  direction TB
+   NSBM1[NServiceBus Publish span]
+  end
+  subgraph CONSUMER
+  direction TB
+  PRM1[NServiceBus Process span]
+
+  end
+  NSBM1-. link .-PRM1;
+```
+
 To change the default for all publishes from an endpoint, set `PublishTraceMode`:
 
-snippet: opentelemetry-trace-mode-publish
+snippet: opentelemetry-trace-mode-publish-start-new
 
 Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive`) always take precedence over the endpoint-level defaults.
 
 #### Transport SDK spans
 
-Some transport SDKs, such as the Azure Service Bus, RabbitMQ, and Amazon SQS clients, emit their own spans for the native send and receive operations. When the endpoint subscribes to the SDK's ActivitySource, the SDK receive span is the ambient `Activity.Current` at the moment NServiceBus starts processing a message.
-
-In version 10 the default is unchanged in that situation: the process span is a child of the NServiceBus send span, and the SDK receive span is not part of the NServiceBus trace. To make the process span a child of the SDK receive span instead, with a link back to the NServiceBus send span, set the following AppContext switch before the endpoint starts:
-
-snippet: opentelemetry-transport-span-as-parent-switch
+Some transport SDKs, such as the Azure Service Bus, RabbitMQ, and Amazon SQS clients, emit their own spans for the native send and receive operations. When the endpoint subscribes to the SDK's ActivitySource, the SDK receive span is the ambient `Activity.Current` at the moment NServiceBus starts processing a message. The process span is then created as a child of the SDK receive span, with a link back to the NServiceBus send span:
 
 ```mermaid
 flowchart LR;
@@ -133,7 +121,7 @@ flowchart LR;
   NSBM1-. link .-PRM1;
 ```
 
-If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and the process span is created as described in the sections above, regardless of the switch. This is the default behavior in version 11, where the switch is removed.
+If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and the process span is a child of the NServiceBus send span, as described in the sections above.
 
 ### Delayed messages
 
@@ -164,43 +152,20 @@ Recoverability spans are children of the process span. To receive them, subscrib
 
 ### Span names
 
-By default, NServiceBus uses generic operation names for spans: `"send message"`, `"process message"`, `"publish event"`, `"reply"`, etc. To include the destination or source queue in the span name - following the OpenTelemetry messaging semantic convention format `{operation} {destination}` - enable `UseMessageDestinationInSpanNames`:
+Span names follow the OpenTelemetry messaging semantic convention format `{operation} {destination}`:
 
-snippet: opentelemetry-span-names-destination
-
-With this enabled:
-
-| Operation | Default span name | With destination |
-|---|---|---|
-| Receive | `process message` | `process {receiveAddress}` |
-| Send | `send message` | `send message {destination}` |
-| Reply | `reply` | `reply {destination}` |
-| Move to error | `move to error` | `move to {errorQueue}` |
-
-### Dispatching events
-
-When outgoing messages are dispatched during message processing, NServiceBus adds two span events to the incoming pipeline span:
-
-- `"Start dispatching"` - emitted before dispatch, includes a `message-count` event tag
-- `"Finished dispatching"` - emitted after dispatch completes
-
-To suppress these events:
-
-snippet: opentelemetry-dispatching-events-disable
-
-These events are emitted by default. Disabling them reduces observability ingestion cost when dispatch timing is not needed.
+| Operation | Span name |
+|---|---|
+| Receive | `process {receiveAddress}` |
+| Send | `send message {destination}` |
+| Reply | `reply {destination}` |
+| Move to error | `move to {errorQueue}` |
 
 ### Context propagation
 
-NServiceBus propagates the [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [W3C Baggage](https://www.w3.org/TR/baggage/) headers between endpoints.
+NServiceBus propagates the [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [W3C Baggage](https://www.w3.org/TR/baggage/) headers between endpoints using the built-in .NET `DistributedContextPropagator`.
 
-In addition to the W3C `traceparent` header, NServiceBus writes the context of the send or publish span to the `NServiceBus.TraceParent` header. Transport SDKs that emit their own spans overwrite `traceparent` on the message with the context of their native send span, and the NServiceBus-specific header keeps the NServiceBus send span reachable for the receiver. Receivers use `NServiceBus.TraceParent` when present and fall back to `traceparent`, so messages from endpoints on versions that only write the W3C header continue the trace as before.
-
-In version 10, NServiceBus uses a custom propagator by default. To opt in to propagation via the built-in .NET `DistributedContextPropagator` instead, set the following AppContext switch before the endpoint starts:
-
-snippet: opentelemetry-distributed-context-propagator-switch
-
-This is the default behavior in version 11, where the custom propagator and the switch are removed. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for details on baggage serialization changes introduced with this switch.
+In addition to the W3C `traceparent` header, NServiceBus writes the context of the send or publish span to the `NServiceBus.TraceParent` header. Transport SDKs that emit their own spans overwrite `traceparent` on the message with the context of their native send span, and the NServiceBus-specific header keeps the NServiceBus send span reachable for the receiver. Receivers use `NServiceBus.TraceParent` when present and fall back to `traceparent`.
 
 ### Failed spans and the error.type tag
 

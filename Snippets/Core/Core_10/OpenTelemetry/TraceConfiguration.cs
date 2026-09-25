@@ -31,6 +31,17 @@ public static class TraceConfiguration
         #endregion
     }
 
+    public static void ConfigurePublishTraceModeStartNew(EndpointConfiguration endpointConfiguration)
+    {
+        #region opentelemetry-trace-mode-publish-start-new
+
+        var options = endpointConfiguration.Tracing();
+        // Set to StartNew to make every subscriber start a new trace linked to the publish span.
+        options.PublishTraceMode = TraceMode.StartNew;
+
+        #endregion
+    }
+
     public static void ConfigureDelayedTraceMode(EndpointConfiguration endpointConfiguration)
     {
         #region opentelemetry-trace-mode-delayed
@@ -74,7 +85,7 @@ public static class TraceConfiguration
         #region opentelemetry-span-names-destination
 
         var options = endpointConfiguration.Tracing();
-        options.UseMessageDestinationInSpanNames = true;
+        options.UseMessageTypeNamesInSpanNames = true;
 
         #endregion
     }
