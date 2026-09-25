@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
-public class Message2Handler :
-    IHandleMessages<Message2>
+public class Message2Handler : IHandleMessages<Message2>
 {
     static readonly ILog Log = LogManager.GetLogger<Message2Handler>();
 
