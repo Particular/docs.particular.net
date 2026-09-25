@@ -279,6 +279,16 @@ Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
+### Process span parent with instrumented transport SDKs
+
+When a transport SDK, such as the Azure Service Bus, RabbitMQ, or Amazon SQS client, emits its own receive span and the endpoint subscribes to that ActivitySource, version 11 creates the NServiceBus process span as a child of the SDK receive span and links it to the NServiceBus send span. In version 10, the process span is a child of the NServiceBus send span regardless of the SDK span. The version 11 behavior can be enabled in version 10 via the `NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent` AppContext switch:
+
+```csharp
+AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent", true);
+```
+
+In version 11, the switch is removed. Dashboards or queries that assume the parent of the process span is the NServiceBus send span need updating for endpoints that subscribe to a transport SDK's ActivitySource; the send span remains reachable through the span link.
+
 ### Deprecated span attributes
 
 #### otel.status_code and otel.status_description

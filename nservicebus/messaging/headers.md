@@ -314,6 +314,12 @@ These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemet
 * [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
 * [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
 
+#if-version [10.3,)
+### NServiceBus.TraceParent
+
+The context of the NServiceBus send or publish span, in the same format as `traceparent`. Transport SDKs with their own OpenTelemetry instrumentation overwrite `traceparent` with the context of their native send span, so this header keeps the NServiceBus send span reachable. Receivers use this header when present and fall back to `traceparent`.
+#end-if
+
 ## Audit headers
 
 Headers added when a message is [audited](/nservicebus/operations/auditing.md).
