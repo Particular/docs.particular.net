@@ -110,6 +110,31 @@ snippet: opentelemetry-trace-mode-publish
 
 Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive`) always take precedence over the endpoint-level defaults.
 
+#### Transport SDK spans
+
+Some transport SDKs, such as the Azure Service Bus, RabbitMQ, and Amazon SQS clients, emit their own spans for the native send and receive operations. When the endpoint subscribes to the SDK's ActivitySource, the SDK receive span is the ambient `Activity.Current` at the moment NServiceBus starts processing a message.
+
+In version 10 the default is unchanged in that situation: the process span is a child of the NServiceBus send span, and the SDK receive span is not part of the NServiceBus trace. To make the process span a child of the SDK receive span instead, with a link back to the NServiceBus send span, set the following AppContext switch before the endpoint starts:
+
+snippet: opentelemetry-transport-span-as-parent-switch
+
+```mermaid
+flowchart LR;
+  subgraph SENDER
+  direction TB
+   NSBM1[NServiceBus Send span]
+  end
+  subgraph RECEIVER
+  direction TB
+  SDK1[Transport SDK Receive span]
+  PRM1[NServiceBus Process span]
+  end
+  SDK1--child--> PRM1
+  NSBM1-. link .-PRM1;
+```
+
+If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and the process span is created as described in the sections above, regardless of the switch. This is the default behavior in version 11, where the switch is removed.
+
 ### Delayed messages
 
 When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is started at delivery time by default. This reflects that the receive operation happens at a different moment in time than the send or retry decision.
@@ -167,7 +192,11 @@ These events are emitted by default. Disabling them reduces observability ingest
 
 ### Context propagation
 
-NServiceBus propagates the [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [W3C Baggage](https://www.w3.org/TR/baggage/) headers between endpoints. In version 10, NServiceBus uses a custom propagator by default. To opt in to propagation via the built-in .NET `DistributedContextPropagator` instead, set the following AppContext switch before the endpoint starts:
+NServiceBus propagates the [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [W3C Baggage](https://www.w3.org/TR/baggage/) headers between endpoints.
+
+In addition to the W3C `traceparent` header, NServiceBus writes the context of the send or publish span to the `NServiceBus.TraceParent` header. Transport SDKs that emit their own spans overwrite `traceparent` on the message with the context of their native send span, and the NServiceBus-specific header keeps the NServiceBus send span reachable for the receiver. Receivers use `NServiceBus.TraceParent` when present and fall back to `traceparent`, so messages from endpoints on versions that only write the W3C header continue the trace as before.
+
+In version 10, NServiceBus uses a custom propagator by default. To opt in to propagation via the built-in .NET `DistributedContextPropagator` instead, set the following AppContext switch before the endpoint starts:
 
 snippet: opentelemetry-distributed-context-propagator-switch
 

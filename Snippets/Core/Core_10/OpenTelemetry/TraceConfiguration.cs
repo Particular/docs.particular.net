@@ -1,5 +1,6 @@
 namespace Core.OpenTelemetry;
 
+using System;
 using global::OpenTelemetry;
 using global::OpenTelemetry.Trace;
 using NServiceBus;
@@ -84,6 +85,18 @@ public static class TraceConfiguration
 
         var options = endpointConfiguration.Tracing();
         options.EmitMessageDispatchingEvents = false;
+
+        #endregion
+    }
+
+    public static void EnableTransportSpanAsParent()
+    {
+        #region opentelemetry-transport-span-as-parent-switch
+
+        // Must be set before the endpoint starts.
+        // Makes the process span a child of the transport SDK's receive span when one is ambient,
+        // with a link to the NServiceBus send span. This becomes the default in version 11.
+        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent", true);
 
         #endregion
     }
