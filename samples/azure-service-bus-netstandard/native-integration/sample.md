@@ -3,7 +3,7 @@ title: Azure Service Bus transport native integration sample
 summary: How to consume messages published by non-NServiceBus endpoints.
 component: ASBS
 isLearningPath: true
-reviewed: 2026-09-20
+reviewed: 2025-02-14
 related:
  - transports/azure-service-bus
 ---
@@ -28,13 +28,15 @@ Configuring the native sender to send messages to the queue used by the receivin
 
 snippet: EndpointName
 
-The native sender is using `ServiceBusSender` to send a single `ServiceBusMessage`.
+The native sender is using `QueueClient` to send a single `Message`.
 
 ## Message serialization
 
-The NServiceBus endpoint is using [JSON serialization](/nservicebus/serialization/system-json.md). Therefore, the message sent by a native sender must be valid JSON.
+The NServiceBus endpoint is using [JSON serialization](/nservicebus/serialization/newtonsoft.md). Therefore, the message sent by a native sender must be valid JSON.
 
 snippet: SerializedMessage
+
+To generate a serialized message, the `MessageGenerator` project can be used with the unit test named `Generate` under the `SerializedMessageGenerator` test fixture.
 
 ## Message type detection
 
