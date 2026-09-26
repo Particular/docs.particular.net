@@ -102,7 +102,7 @@ public class HeaderWriterSaga
             var replyFromSagaMessage = new ReplyFromSagaMessage();
             await context.Reply(replyFromSagaMessage);
             var replyToOriginatorFromSagaMessage = new ReplyToOriginatorFromSagaMessage();
-            await ReplyToOriginator(context, replyToOriginatorFromSagaMessage);
+            await ReplyToOriginator<ReplyToOriginatorFromSagaMessage>(context, replyToOriginatorFromSagaMessage);
             await RequestTimeout(context, TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
         }
 
