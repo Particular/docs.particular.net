@@ -8,7 +8,7 @@ These commands are dedicated to endpoints that are configured with the migration
 - `migration endpoint subscribe migrated`
 - `migration endpoint unsubscribe migrated`
 
-### asb-transport migration endpoint create
+### migration endpoint create
 
 Creates infrastructure for an endpoint: input queue, topic, and subscription.
 
@@ -39,7 +39,7 @@ asb-transport migration endpoint create name
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-### asb-transport migration endpoint subscribe
+### migration endpoint subscribe
 
 Creates a new subscription for an endpoint using single-topic approach.
 
@@ -62,7 +62,7 @@ asb-transport migration endpoint subscribe name event-type
 
 `-r` | `--rule-name`: Rule name (defaults to event type)
 
-### asb-transport migration endpoint unsubscribe
+### migration endpoint unsubscribe
 
 Delete a subscription for an endpoint using single-topic approach.
 
@@ -102,7 +102,7 @@ asb-transport migration endpoint subscribe-migrated name topic
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-### asb-transport migration endpoint unsubscribe-migrated
+### migration endpoint unsubscribe-migrated
 
 Deletes a subscription for an endpoint using topic-per-event approach.
 

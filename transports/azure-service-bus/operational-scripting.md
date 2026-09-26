@@ -2,14 +2,14 @@
 title: Operational Scripting
 summary: Explains how to create queues and topics with the Azure Service Bus transport using scripting
 component: ASBS
-reviewed: 2025-02-17
+reviewed: 2026-09-22
 related:
 - transports/azure-service-bus/configuration
 ---
 
 ## Operational Scripting
 
-In order to provision or de-provision the resources required by an endpoint, the `asb-transport` command line (CLI) tool can be used.
+In order to provision or de-provision the resources required by an endpoint, a command line (CLI) tool called `asb-transport` is provided. 
 
 The tool can be obtained from NuGet and installed using the following command:
 
@@ -18,16 +18,16 @@ dotnet tool install -g NServiceBus.Transport.AzureServiceBus.CommandLine
 ```
 
 Once installed, the `asb-transport` command line tool will be available for use.
+This tool accepts commands with the shape:
 
-`asb-transport <command> [options]`
+```
+asb-transport [command] [subcommand] [options]`
+```
+
+## Connection string
+All of the supported commands will obtain the connection string from the `AzureServiceBus_ConnectionString` environment variable if no other value is provided.
 
 ## Available commands
-
-- `endpoint create`
-- `endpoint subscribe`
-- `endpoint unsubscribe`
-- `queue create`
-- `queue delete`
 
 partial: endpoint-command
 
