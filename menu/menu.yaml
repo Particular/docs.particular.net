@@ -572,6 +572,8 @@
       Title: Custom
   - Title: Message Envelopes
     Articles:
+    - Url: nservicebus/messaging/envelope-handlers
+      Title: Envelope Handlers
     - Url: nservicebus/cloudevents
       Title: CloudEvents
   - Title: Dependency Injection
