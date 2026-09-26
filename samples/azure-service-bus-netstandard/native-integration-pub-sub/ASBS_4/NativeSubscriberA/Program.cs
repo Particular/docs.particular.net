@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
 using NativeSender;
@@ -32,7 +30,7 @@ class Program
         await TopologyManager.CreateSubscription(
             ConnectionString,
             subscriptionName,
-            ruleName:"event-one",
+            ruleName: "event-one",
             sqlFilter: new SqlRuleFilter($"[NServiceBus.EnclosedMessageTypes] LIKE '%{typeof(EventOne).FullName}%'")
             );
         #endregion
@@ -51,7 +49,7 @@ class Program
 
     static async Task MessageHandler(ProcessMessageEventArgs args)
     {
-        var messageType = (string) args.Message.ApplicationProperties[EnclosedMessageTypesHeader];
+        var messageType = (string)args.Message.ApplicationProperties[EnclosedMessageTypesHeader];
         var bodyJson = Encoding.UTF8.GetString(args.Message.Body.ToArray());
 
         Console.WriteLine($"Received: {messageType}");
