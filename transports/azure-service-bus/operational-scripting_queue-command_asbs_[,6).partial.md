@@ -1,4 +1,4 @@
-### asb-transport queue create
+### queue create
 
 Create a queue using:
 
@@ -19,7 +19,7 @@ asb-transport queue create name
 `-p` | `--partitioned`: Enable partitioning
 
 
-### asb-transport queue delete
+### queue delete
 
 Delete a queue using:
 
