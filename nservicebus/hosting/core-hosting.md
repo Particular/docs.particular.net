@@ -39,6 +39,18 @@ NServiceBus also supports hosting multiple logical endpoints in one process. Com
 
 Compared to a single-endpoint host, each additional endpoint adds registration, startup, and coordination overhead within the shared process.
 
+### Multi-hosting requirements
+
+There are a few differences when hosting multiple endpoints so that each endpoint does not interfere with the others in the same host:
+
+- Each endpoint must [manually register handlers, sagas, and other components](/nservicebus/handlers-and-sagas-registration.md#assembly-scanning-disable-assembly-scanning) that belong to them
+- Each endpoint must [explicitly disable assembly scanning](/nservicebus/hosting/assembly-scanning.md#disable-assembly-scanning) so that handlers, sagas, etc. that do not belong to the endpoint are not registered.
+
+> [!TIP]
+> It can be easier to manage handler and saga registration by decorating handlers and sagas with the `[Handler]` and `[Saga]` attributes to enable [source-generated handler/saga registration](/nservicebus/handlers/convention-based.md#registering-handlers). In this scenario, it is useful to use `.editorconfig` settings to [change the severity of Roslyn diagnostics `NSB0034` and `NSB0035`] to `error` so that forgetting to add an attribute to a new handler/saga (which would cause it to not be included in source generation) becomes a build error.
+
+### Registering multiple endpoints
+
 Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the endpoint identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services within the dependency injection container:
 
 snippet: AddNServiceBusEndpointMulti
