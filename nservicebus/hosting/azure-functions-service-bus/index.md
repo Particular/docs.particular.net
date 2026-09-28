@@ -76,14 +76,14 @@ To manually provision the entities in the namespace for the Function endpoint, u
 
 ### Creating the endpoint queue
 
-For more details, see the [operation scripting documentation](/transports/azure-service-bus/operational-scripting.md) for the `asb-transport endpoint create` command.
+For more details, see the [operation scripting documentation](/transports/azure-service-bus/operational-scripting.md#available-commands-endpoint-create) for the `asb-transport endpoint create` command.
 
 > [!WARNING]
 > If the `asb-transport` command-line tool is not used to create the queue, set the `MaxDeliveryCount` setting to the maximum value.
 
 ### Subscribing to events
 
-For more details, see the [operational scripting documentation](/transports/azure-service-bus/operational-scripting.md) for the `asb-transport endpoint subscribe` command.
+For more details, see the [operational scripting documentation](/transports/azure-service-bus/operational-scripting.md#available-commands-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command.
 
 partial: topology
 
