@@ -85,7 +85,7 @@ It's recommended not to mix the processing of dispatch messages with business me
 - More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the dispatch message processing and not be skewed by business messages
 - Simplified management: Knowing that the endpoint only processes dispatch messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
 
-When configuring endpoints for usage measurement in ServicePulse, mark dedicated transactional session processor endpoints with the appropriate [endpoint type indicator](/servicepulse/usage.md#setting-an-endpoint-type-endpoint-type-indicators).
+When configuring endpoints for usage measurement in ServicePulse, mark dedicated transactional session processor endpoints with the appropriate [endpoint type indicator](/servicepulse/usage-reporting-with-servicepulse.md#endpoint-type-indicators).
 
 partial: design-considerations
 
@@ -234,7 +234,7 @@ When the dispatch message is consumed, but the outbox record is not yet availabl
 ```csharp
 CommitDelayIncrement = 2 * CommitDelayIncrement;
 RemainingCommitDuration = RemainingCommitDuration
-  - (CommitDelayIncrement > RemainingCommitDuration 
+  - (CommitDelayIncrement > RemainingCommitDuration
       ? RemainingCommitDuration
       : CommitDelayIncrement);
 ```

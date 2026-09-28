@@ -67,11 +67,11 @@ snippet: persistence
 
 #### Usage reporting
 
-The ServiceControl error instance can collect endpoint usage data, which powers the [usage report](/servicepulse/usage.md) in ServicePulse. When using Azure Service Bus, collecting this data requires Azure credentials with the **Monitoring Reader** role. These values are supplied as Aspire parameters:
+The ServiceControl error instance can collect endpoint usage data, which powers the [usage report](/servicepulse/usage-reporting-with-servicepulse.md) in ServicePulse. When using Azure Service Bus, collecting this data requires Azure credentials with the **Monitoring Reader** role. These values are supplied as Aspire parameters:
 
 snippet: throughput-reporting-params
 
-The parameters are passed to `WithThroughputReporting` when the error instance is registered. See [usage reporting setup](/servicepulse/usage-config.md#connection-setup-azure-service-bus) for details on how to obtain them. If usage reporting is not required, omit these parameters and the `WithThroughputReporting` call.
+The parameters are passed to `WithThroughputReporting` when the error instance is registered. See [usage reporting setup](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus) for details on how to obtain them. If usage reporting is not required, omit these parameters and the `WithThroughputReporting` call.
 
 #### Default components
 

@@ -4,15 +4,15 @@ summary: Minimal setup required for generating a usage report for licensing of t
 reviewed: 2026-08-14
 related:
   - nservicebus/licensing
-  - servicepulse/usage
-  - servicepulse/usage-config
+  - servicepulse/usage-reporting-with-servicepulse
+  - servicepulse/usage-reporting-setup
 ---
 
 The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a process needs to be run that queries the transport broker for up to 24 hours, and a report generated from this data to be sent to Particular.
 
 The minimal installation required to generate the usage report is:
 
-- [ServiceControl](/servicecontrol/). For most transports, only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic. Certain transports [cannot query the broker directly](/servicepulse/usage-config.md#audit-and-monitoring-data); for these an audit or monitoring instance will also be required and all endpoints will need to be configured to send data to these instances.
+- [ServiceControl](/servicecontrol/). For most transports, only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic. Certain transports [cannot query the broker directly](/servicepulse/usage-reporting-setup.md#audit-and-monitoring-data); for these an audit or monitoring instance will also be required and all endpoints will need to be configured to send data to these instances.
 - [ServicePulse](/servicepulse/). This is the UI that interfaces with the ServiceControl service to allow users to specify which endpoints are NServiceBus related and generate the usage report to send to Particular.
 
 > [!NOTE]

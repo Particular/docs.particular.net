@@ -3,7 +3,7 @@ title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
 reviewed: 2026-07-14
 related:
-  - servicepulse/usage
+  - servicepulse/usage-reporting-with-servicepulse
 redirects:
   - nservicebus/throughput-tool/azure-service-bus
   - nservicebus/throughput-tool/amazon-sqs
@@ -16,7 +16,7 @@ redirects:
 ---
 
 > [!WARNING]
-> Starting 1 January 2027, all projects in active development will be required to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report usage instantly at any time, without needing to run an external tool or wait for data collection.
+> Starting 1 January 2027, all projects in active development will be required to use [ServicePulse](./../../servicepulse/usage-reporting-with-servicepulse.md) for usage data collection. Once configured, ServicePulse provides the ability to report usage instantly at any time, without needing to run an external tool or wait for data collection.
 >
 > The legacy Endpoint Throughput Counter tool is offered as an alternate option for customers who aren't able to use ServicePulse. If you encounter any issues installing ServicePulse in your environment, please reach out so we can assist in finding a solution.
 >
@@ -543,7 +543,7 @@ The tool measures the number of endpoints used in a system, along with each endp
 
 ### Why should I run the tool
 
-The tool is available as an alternate option for customers who are not able to use [ServicePulse](./../../servicepulse/usage.md) to measure their endpoint throughput.
+The tool is available as an alternate option for customers who are not able to use [ServicePulse](./../../servicepulse/usage-reporting-with-servicepulse.md) to measure their endpoint throughput.
 
 It assists in gathering the information needed for licensing NServiceBus and the Particular Service Platform as required for production systems. Particular Software also uses the information in aggregate to better serve customer needs.
 

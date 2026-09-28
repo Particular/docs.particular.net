@@ -1534,8 +1534,8 @@
           Title: Hosting
         - Url: servicepulse/how-to-configure-endpoints-for-monitoring
           Title: Monitoring endpoints
-        - Url: servicepulse/usage-config
-          Title: Usage Setup
+        - Url: servicepulse/usage-reporting-setup
+          Title: Usage Reporting Setup
         - Url: servicepulse/install-servicepulse-in-iis
           Title: Install in IIS
         - Url: servicepulse/troubleshooting
@@ -1570,8 +1570,8 @@
           Title: Health check notifications
         - Url: servicepulse/endpoint-connection
           Title: Endpoint connection settings
-        - Url: servicepulse/usage
-          Title: Measuring system usage
+        - Url: servicepulse/usage-reporting-with-servicepulse
+          Title: Usage Reporting with ServicePulse
         - Url: servicepulse/platform-health
           Title: Platform Health
 

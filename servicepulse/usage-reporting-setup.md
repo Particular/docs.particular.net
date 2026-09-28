@@ -1,24 +1,27 @@
 ---
 title: Usage Reporting Setup
-summary: Viewing endpoint usage summary and generating a usage report
+summary: How to set up ServicePulse for usage reporting
 component: ServicePulse
-reviewed: 2026-02-11
+reviewed: 2026-09-27
 related:
-  - servicepulse/usage
+  - servicepulse/usage-reporting-with-servicepulse
+redirects:
+  - servicepulse/usage-config
 ---
 
-This document describes the settings required for collecting usage data to generate a usage report.
+This document describes the settings required for collecting usage data to generate a [usage report](usage-reporting-with-servicepulse.md) in ServicePulse.
 
 > [!NOTE]
 > The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
 
 ## Connection setup
 
-In most scenarios existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
+In most scenarios, existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
 
 ![usage-setup-connections](images/usage-setup-connection.png "width=600")
 
 If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/servicecontrol-instances/configuration.md) file.
+
 The Usage Setup tab provides easy copy/paste functionality to obtain the required settings in the correct format, based on configuration type.
 
 Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
@@ -35,11 +38,11 @@ Steps:
     - `ClientId`
     - `ClientSecret`
 
+The setup can be done via the [portal](#connection-setup-azure-service-bus-using-azure-portal) or [CLI](#connection-setup-azure-service-bus-using-azure-cli).
 
 #### Using Azure Portal
 
-To use the Azure Portal, follow these instructions. Alternatively, use the Azure CLI as described below.
-
+To use the Azure Portal:
 
 1. Create App
     - Native to: **Home > App registrations**
@@ -54,7 +57,7 @@ To use the Azure Portal, follow these instructions. Alternatively, use the Azure
 
 #### Using Azure CLI
 
-To use the Azure CLI or scripting, follow these instructions. Alternatively, use the Azure Portal as described above.
+To use the Azure CLI or scripting:
 
 ```ps1
 # Set context first
@@ -125,7 +128,6 @@ To restrict permissions to the minimal required set, create a custom role with t
     }
 }
 ```
-
 
 The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription. The `Microsoft.Insights/Metrics/Read` permissions are required to find the available metrics.
 
