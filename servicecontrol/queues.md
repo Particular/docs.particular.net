@@ -17,7 +17,7 @@ Queues are only created during "Setup". Setup is run when an instance is created
 
 These queues can also be manually created before deploying a ServiceControl instance. The technique used will differ depending on the transport in use:
 
-- [Azure Service Bus](/transports/azure-service-bus/operational-scripting.md#available-commands-asb-transport-queue-create)
+- [Azure Service Bus](/transports/azure-service-bus/operational-scripting.md#queue-create)
 - [Azure Storage Queues](/transports/azure-storage-queues/operations-scripting.md#create-queues)
 - [SQL Server](/transports/sql/operations-scripting.md#create-queues)
 - [MSMQ](/transports/msmq/operations-scripting.md#create-queues)
