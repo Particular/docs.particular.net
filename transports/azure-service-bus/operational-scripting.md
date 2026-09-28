@@ -28,6 +28,11 @@ asb-transport [command] [subcommand] [options]`
 All of the supported commands will obtain the connection string from the `AzureServiceBus_ConnectionString` environment variable if no other value is provided.
 
 ## Available commands
+- `endpoint create`
+- `endpoint subscribe`
+- `endpoint unsubscribe`
+- `queue create`
+- `queue delete`
 
 partial: endpoint-command
 
