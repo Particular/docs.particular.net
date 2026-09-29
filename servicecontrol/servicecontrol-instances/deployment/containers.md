@@ -64,7 +64,7 @@ docker run --rm {OPTIONS} particular/servicecontrol --setup --skip-queue-creatio
 
 ## Required settings
 
-The following environment settings are required to run a ServiceControl error instance.
+The following environment settings are required to run a ServiceControl error instance.🍅
 
 include: servicecontrol-container-transport
 include: servicecontrol-container-ravenconnectionstring

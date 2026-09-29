@@ -12,7 +12,7 @@ This article provides recommendations and performance benchmarks to help select 
 * A dedicated set of production servers for installing ServiceControl instances (Error, Audit, and Monitoring). 
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 3 GHz quad-core CPU or better.
-* A dedicated, non-virtual and non-ephemeral, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
+* 🍅 A dedicated, non-virtual and non-ephemeral, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
 
 > [!IMPORTANT]
 > It's recommended to not install more than one ServiceControl instance per server.
@@ -32,10 +32,10 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 * Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures applications are not competing for storage IOPS.
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
-* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
+* 🍅[Database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
 * Use fixed-size (not dynamically expanding virtual) disks
-* Use solid-state drives (SSDs) to significantly reduce seek times and increase throughput
-* RavenDB storage compaction requires an amount of free disk space equal to the database to compact; account for the compaction operation when determining storage disk sizes 
+* 🍅Use solid-state drives (SSDs) to significantly reduce seek times and increase throughput
+* 🍅RavenDB storage compaction requires an amount of free disk space equal to the database to compact; account for the compaction operation when determining storage disk sizes 
 
 > [!NOTE]
 > To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
@@ -67,7 +67,7 @@ ServiceControl can be hosted in the cloud by:
 
 ### Increase RAM
 
-The embedded RavenDB will use additional RAM to improve indexing performance. During times of high load, ServiceControl can peak to 12GB or more.
+The 🍅embedded RavenDB will use additional RAM to improve indexing performance. During times of high load, ServiceControl can peak to 12GB or more.
 
 ### Message size / MaxBodySizeToStore
 
@@ -83,7 +83,7 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 > [!NOTE]
 > This suggestion applies to ServiceControl primary instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
 
-Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
+Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath), it's possible to store the 🍅embedded database index files on a separate disk.
 
 #if-version [5,)
 
@@ -95,17 +95,17 @@ Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://r
 > [!NOTE]
 > Only applies to instances that use the RavenDB 3.5 storage engine
 
-Use the [`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#storage-ravenindexstoragepath) setting to change the index storage location.
+Use the 🍅[`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#storage-ravenindexstoragepath) setting to change the index storage location.
 
 #end-if
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-servicecontrol) instead.
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-servicecontrol) instead.🍅
 
 ### Turn off full-text search
 
-Updating the full-text index requires a considerable amount of CPU and disk space. If the full-text search on message bodies is not required, consider turning it off by doing either one of the following:
+Updating the full-text index requires a considerable amount of CPU and disk space. If the full-text search on message bodies is not required, consider turning it off by doing either one of the following:🍅
 
 - Turn off the 'FULL TEXT SEARCH ON MESSAGE BODIES' in the settings configuration of ServiceControl Management Utility
 - Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file

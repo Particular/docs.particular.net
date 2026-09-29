@@ -50,8 +50,8 @@ The service account running ServiceControl instance requires following filesyste
 |------|--------|
 | Executables (e.g.  `C:\Program Files (x86)\Particular Software\Particular.ServiceControl`) | Read |
 | Logs (e.g. `C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\Logs`)      |   Write     |
-| Database (e.g `C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB`) | Write|
-| Database volume (e.g. `C:`) | Read Attributes|
+| 🍅Database (e.g `C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB`) | Write|
+| 🍅Database volume (e.g. `C:`) | Read Attributes|
 
 > [!NOTE]
 > The database volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.

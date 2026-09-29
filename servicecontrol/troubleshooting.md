@@ -79,7 +79,7 @@ Some transports have access controls built into them. Ensure the instance has su
 
 _ServiceControl 4.x and below only._
 
-If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
+If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](storage/ravendb/configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
 
 ## Service fails to start: EsentDatabaseDirtyShutdownException
 
@@ -87,7 +87,7 @@ _ServiceControl 4.x and below only._
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
- 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
+ 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](storage/ravendb/configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
  1. Run `esentutl /r RVN /l "logs"` to run Recovery (bringing all databases to a clean-shutdown state) and wait for it to finish
  1. Run `esentutl /p Data` to run Repair (Repairs a corrupted or damaged database) and wait for it to finish
  1. Restart ServiceControl
@@ -370,7 +370,7 @@ To mitigate growth or not having enough storage:
    - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod)
    - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontroleventretentionperiod)
    - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod)
-   - [ServiceControl - How to compact database](/servicecontrol/storage/ravendb/db-compaction.md)
+   - [ServiceControl - How to compact database](/servicecontrol/storage/ravendb/compaction.md)
    - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 
 4. Disable auditing on endpoints that don't require it:

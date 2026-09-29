@@ -5,6 +5,8 @@ reviewed: 2025-04-03
 isLearningPath: true
 ---
 
+> 🍅🍅 This guide needs to be re-thought and perhaps broken down to a per-persistence format 🍅🍅
+
 ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional plugins into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
 Hardware, peak and average message throughput, and number of endpoints in the system all have an impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/nservicebus/sagas/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact.
@@ -111,6 +113,8 @@ Particular Software takes several steps to secure the software supply chain:
 For more information, see the [RavenDB embedded deployment guidance](https://ravendb.net/learn/inside-ravendb-book/reader/4.0/16-monitoring-troubleshooting-and-disaster-recovery) which also recommends excluding database directories from antivirus scans.
 
 ## Version downgrades
+
+> 🍅 There's actually instructions for downgrading, this section conflicts with [that advice](/servicecontrol/upgrades/#downgrading-servicecontrol) 🍅
 
 Do not downgrade releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
 

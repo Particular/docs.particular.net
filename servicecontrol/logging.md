@@ -126,7 +126,7 @@ When forwarding to Elasticsearch through the [OpenTelemetry Collector](https://o
 
 ## RavenDB Logging
 
-ServiceControl stores data in an embedded RavenDB database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The current RavenDB embedded log file is named `<date>-<time>.<sequence>.txt`. The date is written in the `yyyy-MM-dd` format and the time is in 24 hour format `HH:mm`. The sequence number is 3 digits long and starts at `000`.
+ServiceControl stores data in an embedded RavenDB🍅 database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The current RavenDB embedded log file is named `<date>-<time>.<sequence>.txt`. The date is written in the `yyyy-MM-dd` format and the time is in 24 hour format `HH:mm`. The sequence number is 3 digits long and starts at `000`.
 
 The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
 
