@@ -1,5 +1,7 @@
 ### RavenDB connection string
 
+🍅 needs to provide the list of storages instead and link to doco
+
 _Environment variable:_ `RAVENDB_CONNECTIONSTRING`
 
 Provides the URL to connect to the database container that stores the instance's data. The database container should be exclusive to the instance, and not shared by any other ServiceControl instances.

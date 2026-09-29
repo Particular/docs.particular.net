@@ -18,7 +18,7 @@ A ServiceControl Error instance:
 
 ## Storage
 
-RavenDB is the default storage for ServiceControl Error instances.
+🍅 RavenDB is the default storage for ServiceControl Error instances.
 
 #if-version [7,)
 

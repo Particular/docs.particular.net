@@ -1,3 +1,5 @@
+🍅 add the new EF custom checks e.g. sweep failures
+
 ### Health monitoring
 
 ServiceControl includes some basic self-monitoring implemented as [custom checks](/monitoring/custom-checks/). These checks are reported in ServicePulse along with other custom checks.

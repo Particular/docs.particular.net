@@ -1805,6 +1805,8 @@
         Url: servicecontrol/migrations/replacing-audit-instances/powershell
       - Title: using Containers
         Url: servicecontrol/migrations/replacing-audit-instances/containers
+    - Title: RavenDB to SQL storage
+      Url: servicecontrol/migrations/ravendb-to-sql
     - Title: New persistence format
       Url: servicecontrol/migrations/new-persistence
   - Title: Troubleshooting
