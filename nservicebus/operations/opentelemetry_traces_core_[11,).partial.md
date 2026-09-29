@@ -12,7 +12,7 @@ Subscribe to the sources needed for the endpoint's observability requirements:
 
 snippet: opentelemetry-enabletracing-all-sources
 
-Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` suppresses handler spans - `Activity.Current` inside handlers and behaviors becomes the pipeline span. This enables a flattened trace view where handler work appears directly on the process span.
+Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` enables a flattened trace view where only handler execution is represented in the trace (without any message header tags and without links to the send operation).
 
 ### Span relationships
 

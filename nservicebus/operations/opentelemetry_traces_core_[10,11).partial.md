@@ -114,7 +114,7 @@ Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive
 
 Some transport SDKs, such as the Azure Service Bus, RabbitMQ, and Amazon SQS clients, emit their own spans for the native send and receive operations. When the endpoint subscribes to the SDK's ActivitySource, the SDK receive span is the ambient `Activity.Current` at the moment NServiceBus starts processing a message.
 
-In version 10 the default is unchanged in that situation: the process span is a child of the NServiceBus send span, and the SDK receive span is not part of the NServiceBus trace. To make the process span a child of the SDK receive span instead, with a link back to the NServiceBus send span, set the following AppContext switch before the endpoint starts:
+In version 10, the default is unchanged in that situation: the NServiceBus process span is a child of the NServiceBus send span. To make the NServiceBus process span a child of the SDK receive span instead, with a link back to the NServiceBus send span, enable the following AppContext switch before the endpoint starts:
 
 snippet: opentelemetry-transport-span-as-parent-switch
 
