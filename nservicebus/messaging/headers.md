@@ -310,9 +310,20 @@ The NServiceBus version number.
 
 These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint, in accordance with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context):
 
-* [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
+# if-version [10.3,)
+* [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) - used by the receiver only when a message lacks the `NServiceBus.TraceParent` header 
+* 
+# end-if
 * [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
 * [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
+
+# if-version [10.3,)
+## NServiceBus.TraceParent
+
+The span ID value of the NServiceBus send or publish operation in the same format as W3C `traceparent` header. 
+
+Introduced to ensure that the transport SDKs do not override the trace information with their own OpenTelemetry instrumentation data.
+# end-if
 
 ## Audit headers
 

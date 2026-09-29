@@ -1,5 +1,6 @@
 namespace Core.OpenTelemetry;
 
+using System;
 using global::OpenTelemetry;
 using global::OpenTelemetry.Trace;
 using NServiceBus;
@@ -26,6 +27,17 @@ public static class TraceConfiguration
         // Default: StartNew - subscribers start a new trace linked to the publish span.
         // Set to ContinueExisting to continue the publisher's trace in the subscriber.
         options.PublishTraceMode = TraceMode.ContinueExisting;
+
+        #endregion
+    }
+
+    public static void ConfigurePublishTraceModeStartNew(EndpointConfiguration endpointConfiguration)
+    {
+        #region opentelemetry-trace-mode-publish-start-new
+
+        var options = endpointConfiguration.Tracing();
+        // Set to StartNew to make every subscriber start a new trace linked to the publish span.
+        options.PublishTraceMode = TraceMode.StartNew;
 
         #endregion
     }
@@ -73,7 +85,7 @@ public static class TraceConfiguration
         #region opentelemetry-span-names-destination
 
         var options = endpointConfiguration.Tracing();
-        options.UseMessageDestinationInSpanNames = true;
+        options.UseMessageTypeNamesInSpanNames = true;
 
         #endregion
     }
@@ -84,6 +96,18 @@ public static class TraceConfiguration
 
         var options = endpointConfiguration.Tracing();
         options.EmitMessageDispatchingEvents = false;
+
+        #endregion
+    }
+
+    public static void EnableTransportSpanAsParent()
+    {
+        #region opentelemetry-transport-span-as-parent-switch
+
+        // Must be set before the endpoint starts.
+        // Makes the process span a child of the transport SDK's receive span when one is ambient,
+        // with a link to the NServiceBus send span. This becomes the default in version 11.
+        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent", true);
 
         #endregion
     }
