@@ -30,7 +30,7 @@ ServiceControl is configured with default expiration policies that delete old me
 
 To limit the rate at which the database grows, the body of an audit messages may be truncated if it exceeds a configurable threshold.
 
-See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md).
+See also: [Automatic Expiration of ServiceControl Data](/servicecontrol/storage/ravendb/how-purge-expired-data.md).
 
 **NOTE**
 
