@@ -318,7 +318,7 @@ These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemet
 * [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
 
 #if-version [10.3,)
-### NServiceBus.TraceParent
+## NServiceBus.TraceParent
 
 The span ID value of the NServiceBus send or publish operation in the same format as W3C `traceparent` header. 
 
