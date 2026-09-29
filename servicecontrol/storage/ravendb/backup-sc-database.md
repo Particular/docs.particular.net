@@ -2,6 +2,8 @@
 title: Backup the ServiceControl Data
 summary: How to backup the ServiceControl RavenDB instance
 reviewed: 2026-09-18
+redirects:
+  - servicecontrol/backup-sc-database
 ---
 ServiceControl uses RavenDB for data storage. To backup or restore the database instance, follow these procedures:
 

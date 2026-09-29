@@ -3,8 +3,10 @@ title: RavenDB search engine
 summary: Which RavenDB search engine ServiceControl uses for its indexes and how to migrate existing indexes from Corax to Lucene
 reviewed: 2026-09-17
 component: ServiceControl
+redirects:
+  - servicecontrol/ravendb/search-engine
 related:
-- servicecontrol/ravendb/accessing-database
+- servicecontrol/storage/ravendb/accessing-database
 - servicecontrol/troubleshooting
 - servicecontrol/upgrades/6.19to6.20
 ---
@@ -62,7 +64,7 @@ Migrate as soon as possible when the instance shows one or more of the following
 Instances without these symptoms should be migrated in the next planned maintenance window. Because the rebuild requires downtime or degraded ingestion, plan the migration separately for each environment. Migrate development and test instances first to estimate the rebuild duration for production. The `Error Database Search Engine` or `Audit Database Search Engine` custom check continues to fail until all indexes use Lucene.
 
 > [!WARNING]
-> Before migrating, [back up the database](/servicecontrol/backup-sc-database.md) and estimate the rebuild duration. The rebuild has to process every document in the database. Extrapolate from a smaller instance, or from the time the last [database upgrade](/servicecontrol/upgrades/) took, and schedule the migration in a maintenance window. Consider temporarily adding CPU and RAM to the host until the rebuild completes.
+> Before migrating, [back up the database](/servicecontrol/storage/ravendb/backup-sc-database.md) and estimate the rebuild duration. The rebuild has to process every document in the database. Extrapolate from a smaller instance, or from the time the last [database upgrade](/servicecontrol/upgrades/) took, and schedule the migration in a maintenance window. Consider temporarily adding CPU and RAM to the host until the rebuild completes.
 
 ## Migrating existing indexes to Lucene
 
@@ -79,8 +81,8 @@ Other indexes can be migrated using the same procedure. Migrate one index at a t
 
 ### 1. Access the RavenDB Studio
 
-- **Windows deployment**: start the instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
-- **Container deployment**: stop the ServiceControl container and open the Studio on port `8080` of the [database container](/servicecontrol/ravendb/containers.md).
+- **Windows deployment**: start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
+- **Container deployment**: stop the ServiceControl container and open the Studio on port `8080` of the [database container](/servicecontrol/storage/ravendb/containers.md).
 - **External RavenDB server**: open the Studio of the RavenDB server that hosts the ServiceControl database.
 
 Running the migration while the instance is stopped (maintenance mode) is recommended. It avoids ingestion competing with the rebuild for CPU and I/O and prevents the instance from resetting the index before it has been locked. Messages accumulate in the error and audit queues while the instance is stopped; ensure the queues have enough capacity for the expected duration.

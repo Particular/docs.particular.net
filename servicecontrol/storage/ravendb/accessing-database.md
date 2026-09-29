@@ -4,6 +4,7 @@ summary: How to get direct access to the database used by ServiceControl Error a
 reviewed: 2026-04-20
 component: ServiceControl
 redirects:
+  - servicecontrol/accessing-database
   - servicecontrol/maintenance-mode
   - servicecontrol/audit-instances/maintenance-mode
 ---

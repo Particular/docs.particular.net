@@ -60,7 +60,7 @@ This field can also contain a `*` as a wildcard to allow remote connections that
 | string | `localhost` |
 
 > [!WARNING]
-> If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
+> If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
 
 #if-version [5,)
 > [!NOTE]
@@ -82,7 +82,7 @@ The port to bind the embedded HTTP API server.
 | int | `33333` |
 
 > [!WARNING]
-> If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
+> If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
 
 ### ServiceControl/VirtualDirectory
 
@@ -997,7 +997,7 @@ The port to expose the RavenDB database.
 
 ### ServiceControl/MaintenanceMode
 
-Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) to perform database maintenance.
+Run [ServiceControl error instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) to perform database maintenance.
 
 | Context | Name |
 | --- | --- |
