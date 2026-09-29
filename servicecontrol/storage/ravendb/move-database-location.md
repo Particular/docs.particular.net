@@ -2,6 +2,8 @@
 title: ServiceControl Move Database to Another Location
 summary: Move Database to Another Location
 reviewed: 2025-06-29
+redirects:
+  - servicecontrol/move-database-location
 ---
 
 

@@ -53,9 +53,11 @@ If you are using the Particular Service Platform with Aspire today and would lik
 
 This is the database that backs the ServiceControl instances. It is separate from the [persistence](/persistence/) an NServiceBus endpoint uses for sagas, outbox, and subscriptions, which the integration does not manage.
 
-| Database                             | Status    |
-| ------------------------------------ | --------- |
-| [RavenDB](/servicecontrol/ravendb/)  | Supported |
+| Database                                          | Status            |
+| ------------------------------------------------- | ----------------- |
+| [RavenDB](/servicecontrol/storage/ravendb/)       | Supported         |
+| [SQLServer](/servicecontrol/storage/sqlserver/)   | Not yet supported |
+| [PostgreSQL](/servicecontrol/storage/postgresql/) | Not yet supported |
 
 ## Prerequisites
 
@@ -192,7 +194,7 @@ snippet: aspire-transport-sqlserver
 
 ServiceControl uses a database to store error and audit data, retry state, and saga audit history. This is ServiceControl's own database; it is separate from any persistence your NServiceBus endpoints use for sagas, outbox, or subscriptions, which you configure in each endpoint as usual. See [Supported components](#supported-components) for the persisters currently wired through the integration.
 
-Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require a database. Follow the [managing database guidance](/servicecontrol/ravendb/containers.md) when setting up for production use.
+Configure persistence on the platform resource, then pass the resulting persistence builder into the ServiceControl Error and Audit instances that need it. The Monitoring instance does not require a database. Follow the [managing database guidance](/servicecontrol/storage/ravendb/containers.md) when setting up for production use.
 
 ### RavenDB
 
@@ -200,7 +202,7 @@ RavenDB can be modelled as either a managed child of the platform (the integrati
 
 #### Managed RavenDB instance
 
-`AddPersistenceRavenDb(name)` adds the [`particular/servicecontrol-ravendb` container](/servicecontrol/ravendb/containers.md) as a child of the platform. This is the path used by `AddDefaultComponents()`.
+`AddPersistenceRavenDb(name)` adds the [`particular/servicecontrol-ravendb` container](/servicecontrol/storage/ravendb/containers.md) as a child of the platform. This is the path used by `AddDefaultComponents()`.
 
 snippet: aspire-persistence-ravendb-managed
 
@@ -443,7 +445,7 @@ snippet: aspire-host-ports
 
 The integration uses the `latest` tag for every managed container image (`particular/servicecontrol`, `particular/servicecontrol-audit`, `particular/servicecontrol-monitoring`, `particular/servicecontrol-ravendb`, `particular/servicepulse`). Pin each component to a specific version for production so deployments are reproducible and ServiceControl picks up new major versions intentionally.
 
-The ServiceControl Error, Audit, Monitoring, and RavenDB versions must align. See [Managing ServiceControl RavenDB instances via Containers](/servicecontrol/ravendb/containers.md) for the version-pairing rules.
+The ServiceControl Error, Audit, Monitoring, and RavenDB versions must align. See [Managing ServiceControl RavenDB instances via Containers](/servicecontrol/storage/ravendb/containers.md) for the version-pairing rules.
 
 snippet: aspire-image-pinning
 

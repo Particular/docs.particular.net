@@ -26,7 +26,7 @@ ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. S
 
 #end-if
 
-When using RavenDB, instances deployed using the [ServiceControl Management Utility](/servicecontrol/servicecontrol-instances/deployment/scmu.md) or [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) use an embedded database. Instances deployed using [containers](/servicecontrol/servicecontrol-instances/deployment/containers.md) use a [separate RavenDB container](/servicecontrol/ravendb/containers.md).
+When using RavenDB, instances deployed using the [ServiceControl Management Utility](/servicecontrol/servicecontrol-instances/deployment/scmu.md) or [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) use an embedded database. Instances deployed using [containers](/servicecontrol/servicecontrol-instances/deployment/containers.md) use a [separate RavenDB container](/servicecontrol/storage/ravendb/containers.md).
 
 Failed message data is retained until seven days after successful retry is detected or the failed message is [manually archived](/servicepulse/intro-archived-messages.md). [This retention period can be customized](/servicecontrol/servicecontrol-instances/configuration.md#data-retention).
 

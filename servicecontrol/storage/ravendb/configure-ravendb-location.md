@@ -2,6 +2,8 @@
 title: RavenDB Embedded Location
 summary: Increase space for monitored data by configuring ServiceControl to save data in a location other than the default
 reviewed: 2026-07-30
+redirects: 
+  - servicecontrol/configure-ravendb-location
 ---
 
 Each ServiceControl instance deployed using PowerShell or the ServiceControl Management Utility stores its data in a RavenDB embedded database server. The location of the data is set at install time.
