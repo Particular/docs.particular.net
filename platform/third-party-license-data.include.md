@@ -240,13 +240,13 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.1.0/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.1.1/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 
 ### Particular.Aspire.Hosting.ServicePlatform
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.5.4/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.6.0/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.305/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
 
 ### ServiceControl NuGet packages
@@ -268,7 +268,7 @@
 | <a href="https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Shell" target="_blank">Microsoft-WindowsAPICodePack-Shell</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE" target="_blank">View License</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer" target="_blank">Microsoft.AspNetCore.Authentication.JwtBearer</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/10.0.12/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect" target="_blank">Microsoft.AspNetCore.Authentication.OpenIdConnect</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.OpenIdConnect/10.0.12/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure" target="_blank">Microsoft.Data.SqlClient.Extensions.Azure</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure/7.1.0/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure" target="_blank">Microsoft.Data.SqlClient.Extensions.Azure</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient.Extensions.Azure/7.1.1/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore" target="_blank">Microsoft.EntityFrameworkCore</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/10.0.12/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Relational" target="_blank">Microsoft.EntityFrameworkCore.Relational</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Relational/10.0.12/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer" target="_blank">Microsoft.EntityFrameworkCore.SqlServer</a> | <a href="https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/10.0.12/license" target="_blank">MIT</a> | <a href="https://docs.microsoft.com/ef/core/" target="_blank">Project Site</a> |
