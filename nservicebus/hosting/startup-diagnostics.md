@@ -3,7 +3,7 @@ title: Startup diagnostics
 summary: Describes the mechanism for gathering diagnostic information when endpoints start
 component: Core
 versions: '[7,)'
-reviewed: 2026-05-07
+reviewed: 2026-08-24
 ---
 
 > [!NOTE]
@@ -41,8 +41,6 @@ snippet: CustomDiagnosticsWriter
 
 ## Adding startup diagnostics sections
 
-To extend the startup diagnostics with custom sections:
-
-snippet: CustomDiagnosticsSection
+partial: adding-sections
 
 Settings can be accessed from a [feature](/nservicebus/pipeline/features.md#feature-setup) or via the [endpoint configuration](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).

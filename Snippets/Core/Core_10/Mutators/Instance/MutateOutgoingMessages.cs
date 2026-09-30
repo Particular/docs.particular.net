@@ -23,7 +23,7 @@ public class MutateOutgoingMessages :
         }
 
         // the outgoing message
-        // optionally replace the message instance by setting context.OutgoingMessage
+        // optionally replace the message instance with context.UpdateMessage<T>(...)
         var outgoingMessage = context.OutgoingMessage;
 
         return Task.CompletedTask;

@@ -30,14 +30,14 @@ public class MySaga :
         {
             SomeId = Data.SomeId
         };
-        return ReplyToOriginator(context, almostDoneMessage);
+        return ReplyToOriginator<AlmostDoneMessage>(context, almostDoneMessage);
     }
 
     public Task Timeout(MyCustomTimeout state, IMessageHandlerContext context)
     {
         if (!Data.Message2Arrived)
         {
-            return ReplyToOriginator(context, new TiredOfWaitingForMessage2());
+            return ReplyToOriginator<TiredOfWaitingForMessage2>(context, new TiredOfWaitingForMessage2());
         }
         return Task.CompletedTask;
     }

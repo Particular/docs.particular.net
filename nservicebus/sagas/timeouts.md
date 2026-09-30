@@ -1,7 +1,7 @@
 ---
 title: Saga Timeouts
 summary: Configure saga timeouts in NServiceBus to specify an upper limit to the waiting period for messages that are handled by the saga
-reviewed: 2026-01-12
+reviewed: 2026-09-11
 component: Core
 related:
 - samples/saga

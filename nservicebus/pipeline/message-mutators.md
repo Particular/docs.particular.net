@@ -2,12 +2,13 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2026-06-01
+reviewed: 2026-09-11
 redirects:
  - nservicebus/pipeline-management-using-message-mutators
 related:
  - samples/messagemutators
  - nservicebus/messaging/headers
+ - nservicebus/messaging/trimming-safe-messaging-overloads
 ---
 
 Message mutators allow mutation of messages in the pipeline.
@@ -30,6 +31,23 @@ snippet: IMutateIncomingMessages
 ### IMutateOutgoingMessages
 
 snippet: IMutateOutgoingMessages
+
+
+### Replacing the message instance
+
+Starting in NServiceBus version 10.3, logical message mutators can replace the message instance by calling a strongly-typed method. The typed method keeps the logical message type known at compile time, which is required for [trimming and Native AOT](/nservicebus/messaging/trimming-safe-messaging-overloads.md#logical-message-mutators).
+
+| Mutator context | Replace the message instance |
+| -- | -- |
+| `MutateIncomingMessageContext` | `context.UpdateMessageInstance(newMessage)` |
+| `MutateOutgoingMessageContext` | `context.UpdateMessage(newMessage)` |
+
+Both contexts also provide an overload that accepts the message instance and an explicit `Type` for scenarios where the message type is not known at compile time.
+
+The declared type is the logical message type. For outgoing messages, it also determines how the message is routed and which message type is recorded on the message. It can differ from the runtime type of the instance as long as the instance is assignable to the declared type.
+
+> [!NOTE]
+> Assigning to `MutateIncomingMessageContext.Message` or `MutateOutgoingMessageContext.OutgoingMessage` determines the logical message type from the runtime type of the instance, which is not trimming-safe. Starting in version 10.3, these setters are obsolete and the compiler reports a warning when they are used. They will be treated as errors from version 11. The getters remain available and are the recommended way to read the current message.
 
 
 ## Transport message mutators

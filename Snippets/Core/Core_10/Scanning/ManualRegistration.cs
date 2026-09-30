@@ -43,6 +43,15 @@ class ManualRegistration
 
         #endregion
     }
+
+    void RegisterMessageTypeManually(EndpointConfiguration endpointConfiguration)
+    {
+        #region RegisterMessageTypeManually
+
+        endpointConfiguration.AddMessageType<PlaceOrder>();
+
+        #endregion
+    }
 }
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
