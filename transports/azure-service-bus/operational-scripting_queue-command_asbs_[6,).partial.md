@@ -1,4 +1,4 @@
-### asb-transport queue create
+### queue create
 
 Create a queue using:
 
@@ -28,7 +28,7 @@ asb-transport queue create name
 See also the Azure CLI option [`--forward-dead-lettered-messages-to`](https://learn.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-create).
 
 
-### asb-transport queue delete
+### queue delete
 
 Delete a queue using:
 

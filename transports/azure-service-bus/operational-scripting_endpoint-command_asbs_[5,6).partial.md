@@ -1,4 +1,4 @@
-### asb-transport endpoint create
+### endpoint create
 
 Creates infrastructure for an endpoint -- input queue.
 
@@ -18,7 +18,7 @@ asb-transport endpoint create name
 
 `-p` | `--partitioned`: Enable partitioning
 
-### asb-transport endpoint subscribe
+### endpoint subscribe
 
 Creates a new subscription for an endpoint.
 
@@ -35,7 +35,7 @@ asb-transport endpoint subscribe name topic
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-### asb-transport endpoint unsubscribe
+### endpoint unsubscribe
 
 Deletes a subscription for an endpoint.
 
