@@ -20,10 +20,6 @@ CommonAssemblyInfo.cs
 lib/sqlite/System.Data.SQLite.dll
 *.orig
 *.zip
-
-# Databus samples store files in a sln-local folder 
-samples/databus/**/storage/*
-
 packages
 PrecompiledWeb
 tempstorage
