@@ -308,7 +308,9 @@ The NServiceBus version number.
 
 ## OpenTelemetry-related headers
 
-These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint, in accordance with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context):
+These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint, in accordance with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context). They are written for messages sent through the outgoing pipeline. Messages forwarded to the error queue, audit queue, or a delayed retry keep the values of the original message.
+
+The headers are:
 
 # if-version [10.3,)
 * [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) - used by the receiver only when a message lacks the `NServiceBus.TraceParent` header 
