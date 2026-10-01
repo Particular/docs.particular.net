@@ -168,7 +168,6 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.3.1)| **Current** | 2026-07-27     | Active            | Active |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.2.0)| Mainstream Support | 2026-07-01     | 2026-10-27        | Ineligible |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.1.0)| Mainstream Support | 2026-06-26     | 2026-10-01        | Ineligible |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/2.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/1.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 
