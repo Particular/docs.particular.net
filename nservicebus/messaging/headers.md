@@ -313,11 +313,14 @@ These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemet
 The headers are:
 
 # if-version [10.3,)
-* [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) - used by the receiver only when a message lacks the `NServiceBus.TraceParent` header 
-* 
+* [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header) - used by the receiver only when a message lacks the `NServiceBus.TraceParent` header
 # end-if
 * [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
-* [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
+* [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format) - the baggage of the activity that sent the message
+
+# if-version [10.3,)
+Receivers read `tracestate` and `baggage` only from messages that also carry `NServiceBus.TraceParent` or `traceparent`. The baggage is applied to the process span even when a transport SDK receive span is its parent, because the transport SDKs do not propagate baggage. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for details.
+# end-if
 
 # if-version [10.3,)
 ## NServiceBus.TraceParent

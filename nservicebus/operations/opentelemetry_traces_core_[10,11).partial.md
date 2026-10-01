@@ -209,6 +209,19 @@ This keeps the forwarded message correlated to its original sender instead of th
 
 Custom `RecoverabilityAction` and `AuditAction` implementations that forward the received message get the same behavior: the headers are dispatched as they were received, so the trace stays intact without any additional work.
 
+#### Baggage
+
+NServiceBus writes the [baggage](https://www.w3.org/TR/baggage/) of the current activity to the `baggage` header of every message that flows through the outgoing pipeline. On receive, NServiceBus applies the baggage from that header to the process span, so handlers and behaviors can read it with `Activity.Current.GetBaggageItem`. Baggage therefore flows end to end on every transport, including transports whose SDK has no OpenTelemetry instrumentation.
+
+On receive, the following rules apply:
+
+- Baggage and `tracestate` are read from the message only when it also carries NServiceBus trace context, that is a `NServiceBus.TraceParent` or `traceparent` header. The W3C specifications define both headers as companions of `traceparent`. A message without a trace header gets a process span that is a child of `Activity.Current`, if any, and inherits the baggage of that activity. The `baggage` header of such a message is ignored.
+- When the process span is a child of a transport SDK receive span, as described under Transport SDK spans above, NServiceBus still applies the baggage from the message. The Azure Service Bus, RabbitMQ, and Amazon SQS clients do not propagate baggage, so without this step the baggage would not reach the handlers. Should the SDK receive span already carry a baggage key with the same name, the item from the message is not added again and the value on the SDK span is used. This prevents the same key from being written twice when the message is sent on.
+- Baggage follows the message, not the trace. When the receiver starts a new trace, for example for a delayed message or because `StartNewTraceOnReceive` was used, the baggage from the message is still applied to the process span.
+
+> [!NOTE]
+> Baggage is meant for a small number of cross-cutting values, such as a tenant identifier or the identifier of the originating request. Baggage is never removed along a conversation and travels with every message to every receiver, including subscribers, the audit queue, and the error queue. Do not put sensitive or large values in baggage. NServiceBus does not enforce the limits of 64 items and 8,192 bytes defined by the W3C Baggage specification.
+
 In version 10, NServiceBus uses a custom propagator by default. To opt in to propagation via the built-in .NET `DistributedContextPropagator` instead, set the following AppContext switch before the endpoint starts:
 
 snippet: opentelemetry-distributed-context-propagator-switch
