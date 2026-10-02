@@ -1,7 +1,7 @@
 ---
 title: RavenDB search engine
-summary: Which RavenDB search engine ServiceControl uses for its indexes and how to migrate existing indexes from Corax to Lucene
-reviewed: 2026-09-17
+summary: Selecting Corax or Lucene as the search engine for ServiceControl and how to migrate existing indexes between them
+reviewed: 2026-10-02
 component: ServiceControl
 related:
 - servicecontrol/ravendb/accessing-database
@@ -9,7 +9,7 @@ related:
 - servicecontrol/upgrades/6.19to6.20
 ---
 
-RavenDB supports two search engines for indexes: [Corax](https://ravendb.net/docs/article-page/7.0/csharp/indexes/search-engine/corax) and [Lucene](https://lucene.apache.org/). The search engine determines how RavenDB builds and queries an index. Which engine is used is decided when a database or index is created and it can be changed afterwards, at the cost of a full index rebuild.
+RavenDB supports two search engines for indexes: [Corax](https://docs.ravendb.net/indexes/search-engine/corax) and [Lucene](https://lucene.apache.org/). The selected engine determines how RavenDB builds and queries an index. The engine choice is made when creating a database or index, and while it can be changed later, doing so triggers a full index rebuild.
 
 The ServiceControl error and audit databases have a specific workload: messages are ingested continuously, expired messages are deleted continuously by the retention process, and the data is queried only occasionally, when ServicePulse is used. Load testing of this workload showed that, for the index definitions ServiceControl uses, Lucene indexes:
 
@@ -18,7 +18,7 @@ The ServiceControl error and audit databases have a specific workload: messages 
 - keep up with ingestion and deletion with less index lag
 - query faster
 
-Corax has shown performance and stability issues on large ServiceControl databases. Starting with ServiceControl version 6.20, new databases therefore use Lucene, and **migrating existing databases to Lucene is recommended**.
+Meanwhile, Corax demonstrated more performance and stability issues on large ServiceControl databases. Because of this, starting with ServiceControl version 6.20, new databases default to using Lucene, and **migrating existing databases to Lucene is recommended**.
 
 ## Default search engine per version
 
@@ -27,7 +27,7 @@ Corax has shown performance and stability issues on large ServiceControl databas
 | 5.x and 6.0–6.19 | Corax | Keep the engine they were created with |
 | 6.20 and later | Lucene | Keep the engine they were created with |
 
-Upgrading ServiceControl never changes the search engine of an existing database. Changing the engine triggers a full rebuild of every index, which on very large databases can take days depending on the available compute, and while the rebuild runs the ingestion and indexing rates are degraded. The upgrade therefore does not migrate existing databases automatically. The migration is a planned operator action that should be scheduled separately for each environment, see [Should existing indexes be migrated?](#should-existing-indexes-be-migrated) and [Migrating existing indexes to Lucene](#migrating-existing-indexes-to-lucene).
+As the table above illustrates, upgrading ServiceControl does not impact the search engine of existing databases. This is because changing the engine triggers a full rebuild of every index, which can take days on very large databases depending on the available computing power. In addition, while the rebuild runs, the ingestion and indexing rates are degraded. Thus, migration should be planned and scheduled for each environment. See [Should existing indexes be migrated?](#should-existing-indexes-be-migrated) and [Migrating existing indexes to Lucene](#migrating-existing-indexes-to-lucene) for more details.
 
 > [!NOTE]
 > Monitoring instances do not use RavenDB and are not affected.
