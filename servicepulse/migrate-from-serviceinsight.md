@@ -16,7 +16,7 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 ### Prerequisites
 
 - A running instance of [ServiceControl](/servicecontrol). As both ServiceInsight and ServicePulse require this, any system already using ServiceInsight meets this requirement.
-- One of the following ways to host ServicePulse:
+- ServicePulse hosted using any of the following ways:
   - Integrated ServicePulse (ServiceControl 6.13 or later). [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) runs inside the ServiceControl Error instance and is automatically configured to connect to it, so no separate installation is needed. It is also upgraded automatically whenever ServiceControl is upgraded.
   - Docker for running ServicePulse in a container. This is best suited for cross-platform environments or monitoring multiple systems. 
   - A Windows machine with .NET Framework 4.5 or later to install ServicePulse directly. Only one instance can be installed at a time, so if there are multiple systems to monitor then multiple distinct [URL connection configurations will need to be used](/servicepulse/host-config.md#configuring-connections-via-servicepulse-url-query-string-parameters).
