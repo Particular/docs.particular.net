@@ -5,8 +5,6 @@ component: ServicePulse
 reviewed: 2026-10-01
 related:
 - servicepulse/troubleshooting
-redirects:
-- servicepulse/installation
 ---
 
 > [!IMPORTANT]
