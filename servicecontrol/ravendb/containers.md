@@ -1,6 +1,6 @@
 ---
 title: Managing ServiceControl RavenDB instances via Containers
-reviewed: 2026-03-20
+reviewed: 2026-08-07
 component: ServiceControl
 versions: '[5,)'
 redirects:
@@ -39,6 +39,8 @@ docker run -d --name servicecontrol-db \
 #end-if
 
 Once the database container is running, the connection string `http://servicecontrol-db:8080` can be used for the `RAVENDB_CONNECTIONSTRING` value for an [Error instance](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [Audit instance](/servicecontrol/audit-instances/deployment/containers.md).
+
+include: platform-container-examples
 
 ## Required settings
 
