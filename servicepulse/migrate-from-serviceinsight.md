@@ -34,7 +34,7 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 
     Each method provides a way to configure the URL during setup, but it can also be configured in the ServicePulse UI afterwards:
 
-    ![ServicePulse  connection settings ](images/si-migration-sp-connections.png 'width=800')
+    ![ServicePulse connection settings](images/si-migration-sp-connections.png 'width=800')
 
     If [monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md) is enabled on your endpoints system, the ServiceControl monitoring url can be configured at this time to allow ServicePulse to display monitoring information.
 
