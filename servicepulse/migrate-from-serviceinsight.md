@@ -24,9 +24,6 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 
 ### Migration steps
 
-> [!NOTE]
-> ServicePulse does not require any data migration from ServiceInsight. Both tools read data directly from ServiceControl, so the same message information will be available in ServicePulse.
-
 1. Open ServiceInsight and take note of the connection urls.
   ![ServiceInsight connection urls](images/si-migration-si-connections.png 'width=400')
 
