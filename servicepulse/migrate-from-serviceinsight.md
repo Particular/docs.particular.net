@@ -15,7 +15,7 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 
 ### Prerequisites
 
-- A running instance of [ServiceControl](/servicecontrol). As both ServiceInsight and ServicePulse require this, any system already using ServiceInsight meets this requirement.
+- A running instance of [ServiceControl](/servicecontrol) is required, and any system already using ServiceInsight meets this prerequisite because both ServiceInsight and ServicePulse read the same message data directly from ServiceControl, with no data migration needed
 - ServicePulse hosted using any of the following ways:
   - Integrated ServicePulse (ServiceControl 6.13 or later). [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) runs inside the ServiceControl Error instance and is automatically configured to connect to it, so no separate installation is needed. It is also upgraded automatically whenever ServiceControl is upgraded.
   - Docker for running ServicePulse in a container. This is best suited for cross-platform environments or monitoring multiple systems. 
@@ -35,17 +35,13 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 
     If [monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md) is enabled on your endpoints system, the ServiceControl monitoring url can be configured at this time to allow ServicePulse to display monitoring information.
 
-  > [!NOTE]
-  > If there were multiple urls configured in ServiceInsight, a separate container or URL is needed for each.  See the [known limitations](#known-limitations-connection-to-multiple-servicecontrol-instances).
-
-
  3. Optionally, uninstall ServiceInsight. It will continue to function as long as the ServiceControl api remains the same, but it will no longer receive updates and support will end when it is deprecated.
 
 ## Known limitations
 
 ### Connection to multiple ServiceControl instances
 
-ServicePulse currently connects to one ServiceControl instance at a time. To work around this, a separate container can be run for each system that needs to be monitored, or [separate URLs](/servicepulse/host-config.md#configuring-connections-via-servicepulse-url-query-string-parameters) can be bookmarked for each primary and monitoring connection configuration.
+ServicePulse currently connects to one ServiceControl instance at a time. If multiple ServiceControl URLs were previously configured in ServiceInsight, use a separate ServicePulse container for each system that needs to be monitored, or bookmark [separate URLs](/servicepulse/host-config.md#configuring-connections-via-servicepulse-url-query-string-parameters) for each primary and monitoring connection configuration.
 
 ### Custom message viewer plugins
 
