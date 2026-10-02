@@ -636,8 +636,6 @@
       Title: Auditing Messages
     - Url: nservicebus/security/property-encryption
       Title: Message Property Encryption
-    - Url: nservicebus/operations/configuring-aws
-      Title: NServiceBus in AWS
     - Url: nservicebus/operations/dotnet-framework-version-requirements
       Title: .NET Framework requirements
     - Url: nservicebus/operations/installers
