@@ -39,6 +39,7 @@ The executable accepts some parameters to customize the installation experience.
 - `INST_URI [uri]`: To provide the URL of the ServiceControl API. The default value is: `http://localhost:33333/api/`.
 - `INST_SC_MONITORING_URI [uri]`: To provide the URL of the ServiceControl Monitoring API. The default value is: `http://localhost:33633/`.
 
+<!-- Placeholder to remember to check the command -->
 For example:
 ```
 .\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/ INST_SC_MONITORING_URI=http://localhost:33633/
