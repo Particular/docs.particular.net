@@ -412,7 +412,7 @@ It might be sufficient to migrate only the `MessagesViewIndex` (even though full
 > [!NOTE]
 > Starting with ServiceControl version 6.20, new databases use Lucene by default and instances report indexes that still use Corax via a custom check and a start-up warning. Existing databases are not migrated automatically; migrating them is recommended, see [indexes use the Corax search engine](#indexes-use-the-corax-search-engine).
 
-## Indexes use the Corax search engine
+## Indexes using the Corax search engine
 
 _Available in version 6.20_
 
