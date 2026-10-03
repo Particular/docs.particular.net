@@ -159,7 +159,7 @@ Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontr
 }
 ```
 
-### SQLServer
+### SQL Server
 
 #### Settings
 
