@@ -2,7 +2,7 @@
 title: Usage Reporting Setup
 summary: How to set up ServicePulse for usage reporting
 component: ServicePulse
-reviewed: 2026-09-27
+reviewed: 2026-02-11
 related:
   - servicepulse/usage-reporting-with-servicepulse
 redirects:
