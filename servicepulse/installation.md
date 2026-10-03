@@ -1,5 +1,5 @@
 ---
-title: Installing ServicePulse using the standalone installer
+title: Installing ServicePulse on Windows using the standalone installer
 summary: Describes how to install ServicePulse
 component: ServicePulse
 reviewed: 2026-10-01
@@ -8,17 +8,18 @@ related:
 ---
 
 > [!IMPORTANT]
-> This guide explains how to install ServicePulse using the standalone installer. It is also possible to run ServicePulse [in ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) or in a [container](containerization).
+> This guide explains how to install ServicePulse on Windows using the standalone installer. It is also possible to run ServicePulse [in ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) or in a [container](containerization).
 
 ## Prerequisites
 
- * .NET Framework 4.8 or later
- * A currently-supported version of:
+ - A Windows machine
+ - .NET Framework 4.8 or later
+ - A supported version of:
      - Microsoft Edge
      - Chrome
      - Firefox
      - Safari
- * A running error instance of [ServiceControl](/servicecontrol)
+ - A running instance of [ServiceControl](/servicecontrol)
 
 
 ## Installation
@@ -30,13 +31,13 @@ related:
 
 ### Available installation parameters
 
-The executable accepts some parameters to customize the installation experience.
+The executable accepts some parameters to customize the installation experience. All of them are optional.
 
 - `Quiet`: Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
-- `Log [file location]`: Provides the location on disk for the log file to be generated.
-- `INST_PORT_PULSE [port number]`: Provides the port number that ServicePulse web application will run on. The default value is 9090.
-- `INST_URI [uri]`: Provides location of the ServiceControl Instance API. The default value is: `http://localhost:33333/api/`.
-- `INST_SC_MONITORING_URI [uri]`: Provides location of the Monitoring Instance API. The default value is: `http://localhost:33633/`.
+- `Log [file location]`: To provide the location on disk for the log file to be generated.
+- `INST_PORT_PULSE [port number]`: To provide the port number that ServicePulse web application will run on. The default value is 9090.
+- `INST_URI [uri]`: To provide the URL of the ServiceControl API. The default value is: `http://localhost:33333/api/`.
+- `INST_SC_MONITORING_URI [uri]`: To provide the URL of the ServiceControl Monitoring API. The default value is: `http://localhost:33633/`.
 
 For example:
 ```
@@ -56,4 +57,4 @@ In order to move ServicePulse to a new location, the ServicePulse installer must
 
 ## ServicePulse license
 
-ServicePulse will check the current licensing status by querying the ServiceControl error instance. If ServicePulse indicates that the license is invalid or has expired, then the [license must be updated in ServiceControl](/servicecontrol/license.md).
+ServicePulse will check the current licensing status by querying the connected ServiceControl API. If ServicePulse indicates that the license is invalid or has expired, then the [license must be updated in ServiceControl](/servicecontrol/license.md).
