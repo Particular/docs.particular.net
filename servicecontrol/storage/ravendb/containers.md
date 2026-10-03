@@ -4,6 +4,7 @@ reviewed: 2026-03-20
 component: ServiceControl
 versions: '[5,)'
 redirects:
+  - servicecontrol/ravendb/containers
   - servciecontrol/ravendb/deployment/containers
 ---
 

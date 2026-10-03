@@ -50,7 +50,7 @@ Or edit `ServiceControl.exe.config` directly and restart the service:
 ```
 
 > [!WARNING]
-> Before changing the host name, confirm that `ServiceControl/DbPath` is present in `ServiceControl.exe.config`. When that setting is absent, the default database folder name is derived from the host name and port, so changing either one points ServiceControl at a different, empty database. Instances deployed with ServiceControl Management or PowerShell have `ServiceControl/DbPath` written explicitly and are unaffected. See [RavenDB embedded location](/servicecontrol/configure-ravendb-location.md).
+> Before changing the host name, confirm that `ServiceControl/DbPath` is present in `ServiceControl.exe.config`. When that setting is absent, the default database folder name is derived from the host name and port, so changing either one points ServiceControl at a different, empty database. Instances deployed with ServiceControl Management or PowerShell have `ServiceControl/DbPath` written explicitly and are unaffected. See [RavenDB embedded location](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
 
 Containers already accept connections addressed to any host name and need no change; expose the container's port `33333` instead.
 
@@ -73,7 +73,7 @@ This gives `https://servicepulse.example.com` and combines with the TLS certific
 Before changing the port, check that:
 
 - nothing else on the machine already uses it, IIS in particular, which usually claims `443`
-- the [`ServiceControl/DbPath`](configuration.md#embedded-database-servicecontroldbpath) warning above is satisfied, because the default database folder name includes the port as well as the host name
+- the [`ServiceControl/DbPath`](configuration.md#storage-servicecontroldbpath) warning above is satisfied, because the default database folder name includes the port as well as the host name
 - any other tools or scripts calling the API directly are updated, along with the [`ServiceControl/RemoteInstances`](configuration.md#host-settings-servicecontrolremoteinstances) configuration of any *other* Error instance configured to read from this one, which only applies to federated setups
 
 Alternatively, leave ServiceControl's port alone and put a [reverse proxy](#using-a-reverse-proxy-instead) in front to publish it on `443`.
@@ -199,4 +199,4 @@ The monitoring address still points at `localhost`, the Monitoring instance is n
 
 ### ServiceControl starts with an empty database after changing the host name
 
-`ServiceControl/DbPath` was not set explicitly, so the default database location changed along with the host name. Stop the service, add `ServiceControl/DbPath` pointing at the original database folder, and restart. See [RavenDB embedded location](/servicecontrol/configure-ravendb-location.md).
+`ServiceControl/DbPath` was not set explicitly, so the default database location changed along with the host name. Stop the service, add `ServiceControl/DbPath` pointing at the original database folder, and restart. See [RavenDB embedded location](/servicecontrol/storage/ravendb/configure-ravendb-location.md).

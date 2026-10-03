@@ -18,7 +18,7 @@ ServiceControl stores audit and error data. Any audit and error data that is old
 > The expiration process curates only the data in RavenDB. Audit and error forwarding queues are not curated or managed by ServiceControl. To turn these settings off, edit the configuration settings for the instance.
 
 > [!WARNING]
-> The database will not automatically shrink in size after reducing the retention period. Ensure ServiceControl had time to purge all expired messages and then [compact the database](db-compaction.md).
+> The database will not automatically shrink in size after reducing the retention period. Ensure ServiceControl had time to purge all expired messages and then [compact the database](storage/ravendb/compaction.md).
 
 ## Differences in message retention implementations
 

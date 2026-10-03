@@ -13,10 +13,10 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 ### Location
 
-Each ServiceControl instance stores its data in a [RavenDB](https://ravendb.net) instance.
+Each ServiceControl instance stores its data in a 🍅[RavenDB](https://ravendb.net) instance.
 
-- For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/configure-ravendb-location.md).
-- For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/ravendb/containers.md).
+- For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
+- For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/storage/ravendb/containers.md).
 
 The location of the database has a significant impact on overall system performance and throughput. The database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
 
@@ -30,18 +30,18 @@ ServiceControl is configured with default expiration policies that delete old me
 
 To limit the rate at which the database grows, the body of an audit messages may be truncated if it exceeds a configurable threshold.
 
-See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md).
+See also: [Automatic Expiration of ServiceControl Data](/servicecontrol/how-purge-expired-data.md).
 
 **NOTE**
 
- * The maximum supported size of a RavenDB embedded database is 16 TB.
+ * The maximum supported size of a RavenDB embedded database is 16 TB.🍅
  * Failed messages *never* automatically expire and are retained indefinitely in the ServiceControl database until they are successfully retried or [manually deleted](/servicepulse/intro-archived-messages.md).
 
 ### Performance
 
-From a performance perspective, ServiceControl is similar to a database installation. It requires a significant amount of disk and network I/O due to process audit, error and monitoring messages. Each of these message-processing operations requires disk I/O. The higher the message throughput of an environment, the higher the required disk I/O.
+From a performance perspective, ServiceControl is similar to a database installation.🍅 It requires a significant amount of disk and network I/O due to process audit, error and monitoring messages. Each of these message-processing operations requires disk I/O. The higher the message throughput of an environment, the higher the required disk I/O.
 
-For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations. Indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If full-text indexing is enabled, messages are added to full-text search, which requires the CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl error or audit instances can be configured in the ServiceControl Management Utility.
+For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations.🍅 Indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If full-text indexing is enabled, messages are added to full-text search, which requires the CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl error or audit instances can be configured in the ServiceControl Management Utility.
 
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 

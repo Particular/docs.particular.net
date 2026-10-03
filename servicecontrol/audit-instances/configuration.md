@@ -2,7 +2,7 @@
 title: Audit Instance Configuration Settings
 summary: Categorized list of ServiceControl Audit instance configuration settings.
 component: ServiceControl
-reviewed: 2026-04-10
+reviewed: 2026-06-01
 redirects:
  - servicecontrol/audit-instances/creating-config-file
 ---
@@ -64,7 +64,7 @@ This field can also contain a `*` as a wildcard to allow remote connections that
 | string | `localhost` |
 
 > [!WARNING]
-> If the `ServiceControl.Audit/HostName` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
+> If the `ServiceControl.Audit/HostName` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
 
 #if-version [5,)
 > [!NOTE]
@@ -86,7 +86,7 @@ The port to bind the embedded HTTP API server.
 | int | `44444` |
 
 > [!WARNING]
-> If the `ServiceControl.Audit/Port` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
+> If the `ServiceControl.Audit/Port` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
 
 ### ServiceControl.Audit/DatabaseMaintenancePort
 
@@ -142,7 +142,7 @@ The maximum allowed time for the process to gracefully complete the shutdown aft
 
 ### ServiceControl.Audit/MaintenanceMode
 
-Run [ServiceControl audit instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
+Run a RavenDB-backed [ServiceControl audit instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) to perform database maintenance.
 
 | Context | Name |
 | --- | --- |
@@ -601,9 +601,79 @@ A comma-separated list of allowed origins, e.g. `https://servicepulse.example.co
 | --- | --- |
 | string | None |
 
+## Storage
+
+RavenDB is the default Audit instance storage type.
+
+#if-version [7,)
+
+SQL Server and PostgreSQL storage require an existing database. The schema must also exist before setup runs. The installer does not yet create SQL-backed Audit instances; configure these settings in the application configuration file or environment variables.
+
+### ServiceControl.Audit/PersistenceType
+
+The storage implementation used by the Audit instance.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_PERSISTENCETYPE` |
+| **App config key** | `ServiceControl.Audit/PersistenceType` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | `RavenDB` |
+
+Valid values are `RavenDB`, `SQLServer`, and `PostgreSQL`.
+
+### ServiceControl.Audit/Database/ConnectionString
+
+The connection string for the SQL Server or PostgreSQL database. The database must already exist.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_DATABASE_CONNECTIONSTRING` |
+| **App config key** | `ServiceControl.Audit/Database/ConnectionString` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for SQL Server and PostgreSQL storage) |
+
+### ServiceControl.Audit/Database/Schema
+
+The schema that contains the Audit instance tables. The schema must already exist.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_DATABASE_SCHEMA` |
+| **App config key** | `ServiceControl.Audit/Database/Schema` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | The database provider's default schema (`dbo` for SQL Server or `public` for PostgreSQL) |
+
+### ServiceControl.Audit/Database/CommandTimeout
+
+The command timeout, in seconds, for SQL database operations.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_DATABASE_COMMANDTIMEOUT` |
+| **App config key** | `ServiceControl.Audit/Database/CommandTimeout` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `30` |
+
+SQL-backed Audit instances do not support maintenance mode. SQL Server requires Full-Text Search to be installed.
+
+#end-if
+
 ## Embedded database
 
-These settings are not valid for ServiceControl instances hosted in a container.
+These settings apply only to RavenDB storage and are not valid for ServiceControl instances hosted in a container.
 
 ### ServiceControl.Audit/DbPath
 
@@ -810,6 +880,10 @@ The grace period to keep an audit message before it is deleted.
 
 Valid range for this setting is from 1 hour to 365 days.
 
+#if-version [7,)
+For PostgreSQL storage, the retention period must be between one and 90 days.
+#end-if
+
 > [!NOTE]
 > Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
 
@@ -851,7 +925,7 @@ Cloud transports with higher latency can benefit from higher concurrency values,
 
 _Added in 4.17.0_
 
-Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
+Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching. SQL Server and PostgreSQL storage always index message bodies for full-text search, regardless of this setting.
 
 | Context | Name |
 | --- | --- |
@@ -886,7 +960,7 @@ Configures the maximum duration, in seconds, for processing a batch of audited m
 #if-version [6.20,)
 ### ServiceControl.Audit/QueryTimeoutInSeconds
 
-Configures the maximum duration, in seconds, that an audit message query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This protects the RavenDB server from queries over very large data sets that would otherwise run for a long time and consume large amounts of temporary disk space. Values larger than one hour fall back to the default.
+Configures the maximum duration, in seconds, that an audit message query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This prevents long-running queries from consuming resources. With RavenDB, queries over very large data sets can consume large amounts of temporary disk space. Values larger than one hour fall back to the default.
 
 A query that runs out of its allowed time is answered with HTTP status `504 Gateway Timeout` and a problem details body that names this setting. The error instance treats that answer as a missing instance rather than as an instance with no data. The maximum duration the error instance will wait for an audit instance is bounded by its own [`ServiceControl/QueryTimeoutInSeconds`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrol-querytimeoutinseconds), independently of this value.
 

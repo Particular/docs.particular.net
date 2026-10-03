@@ -74,6 +74,6 @@ ServiceControl.Audit.exe --import-failed-audits
 
 ## Modify message data
 
-If the message still fails to import, it usually means that the message is malformed, and ServiceControl won't be able to ingest it. It may be possible to correct the message data manually to allow ServiceControl to import the message. To review the malformed messages, [access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md) and inspect the `FailedAuditImports` or `FailedErrorImports` collection. Review the import failure logs to determine why the import continues to fail. If modifying the audit message data can resolve the issue, make the necessary changes to the message document to allow ServiceControl to import the message.
+If the message still fails to import, it usually means that the message is malformed, and ServiceControl won't be able to ingest it. It may be possible to correct the message data manually to allow ServiceControl to import the message. To review the malformed messages, [access the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md)🍅 and inspect the `FailedAuditImports` or `FailedErrorImports` collection. Review the import failure logs to determine why the import continues to fail. If modifying the audit message data can resolve the issue, make the necessary changes to the message document to allow ServiceControl to import the message.
 
 Once the data has been modified, the message can be [reimported again](#how-to-reimport).

@@ -55,7 +55,7 @@ Using `--setup-and-run` removes the need to repeat a setup process when the cont
 
 ## Required settings
 
-The following environment settings are required to run a ServiceControl error instance.
+The following environment settings are required to run a ServiceControl error instance.🍅
 
 include: servicecontrol-container-transport
 include: servicecontrol-container-ravenconnectionstring

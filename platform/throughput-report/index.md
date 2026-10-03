@@ -50,14 +50,14 @@ When installing ServiceControl directly, through one of the [Windows installatio
 
 The containers required for generating a usage report are:
 
-- [RavenDB](/servicecontrol/ravendb/containers.md)
+- [RavenDB](/servicecontrol/storage/ravendb/containers.md) 🍅
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
 - [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse))
 
 ### Cloud environments
 
-When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS.
+When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS. 🍅
 In hosting environments where the RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is recommended to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation

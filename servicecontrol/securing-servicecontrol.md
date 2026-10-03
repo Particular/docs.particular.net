@@ -4,8 +4,8 @@ summary: How security is addressed in ServiceControl and how to limit access to 
 reviewed: 2026-06-01
 related:
 - servicecontrol/servicecontrol-instances/configuration
-- servicecontrol/configure-ravendb-location
-- servicecontrol/backup-sc-database
+- servicecontrol/storage/ravendb/configure-ravendb-location
+- servicecontrol/storage/ravendb/backup-sc-database
 ---
 
 ServiceControl serves as the back-end service for ServicePulse, supplying these client applications with the information required for their functionality. It does so by exposing an HTTP API that can be accessed by these and other third-party tools.
@@ -57,7 +57,7 @@ An example of how to set encryption for specific message properties can be viewe
 
 ### Accessing the embedded RavenDB database
 
-ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.
+🍅 ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.
 
 Access to the location of the database files enables full access to the database contents, so take great care to ensure the database location is secure from unauthorized access and tampering.
 
