@@ -66,10 +66,10 @@ Instances without these symptoms should be migrated in the next planned maintena
 
 ## Migrating existing indexes to Lucene
 
-The migration is performed per index in RavenDB Studio.
+Do the migration for each index in RavenDB Studio.
 
 > [!IMPORTANT]
-> On ServiceControl versions before 6.21.1, the migrated index must also be **locked** afterward. These versions recreate their index definitions at every start-up and will reset the index to the database default (Corax) and trigger another rebuild otherwise.
+> On ServiceControl versions before 6.21.1, also **lock** the migrated index after the migration. Those versions deploy their index definitions at each start-up. Without the lock, they reset the index to the database default, Corax, and start another rebuild.
 
 The indexes with the highest load, and therefore the ones that benefit most, are:
 
@@ -111,21 +111,21 @@ In the **List of Indexes**, the index shows the replacement being built. Once th
 ### 4. Lock the index
 
 > [!NOTE]
-> Locking the index is required on ServiceControl versions prior to 6.21.1. Starting with version 6.21.1, ServiceControl keeps the search engine configured on an index when it updates its index definitions at start-up, and this step can be skipped.
+> The lock is necessary on ServiceControl versions before 6.21.1. From version 6.21.1, ServiceControl keeps the search engine configured on an index when it updates its index definitions at start-up. On these versions, this step is not necessary.
 
 While still in RavenDB Studio, click the `🔓 Unlocked` button of the migrated index and change it to `🔒 Locked (ignore)` ([lock modes](https://ravendb.net/docs/article-page/7.0/csharp/client-api/operations/maintenance/indexes/set-index-lock#lock-modes)). RavenDB Studio confirms with _Lock mode was set to: Locked (ignore)_.
 
 A locked index is left untouched when ServiceControl recreates its index definitions at start-up, so the index stays on Lucene.
 
 > [!WARNING]
-> Locking an index also means that index definition changes shipped with future ServiceControl versions are not applied to it. Check the upgrade guide of each new version for changes to the locked indexes; if an index definition changes, unlock the index, let ServiceControl update it, and repeat this migration for it. On version 6.21.1 and later, the index can instead be unlocked permanently: definition changes are then applied automatically and the index stays on Lucene.
+> A locked index does not receive index definition changes from new ServiceControl versions. Check the upgrade guide of each new version for changes to the locked indexes. If an index definition changes, unlock the index, let ServiceControl update it, and do this migration again for it. On version 6.21.1 and later, the index can stay unlocked. ServiceControl then applies definition changes automatically and the index stays on Lucene.
 
 #### Index reset to Corax after unlocking
 
-On versions 6.20.0 to 6.21.0, unlocking a migrated index causes ServiceControl to reset it at the next start-up. RavenDB then builds a replacement index named `ReplacementOf/<index>` that uses Corax, and swaps it in once the replacement is no longer stale. The recovery steps depend on whether the swap has already happened. Check the **List of Indexes** in the Studio:
+On versions 6.20.0 to 6.21.0, ServiceControl resets an unlocked migrated index at the next start-up. RavenDB then builds a replacement index with the name `ReplacementOf/<index>` that uses Corax. When the replacement is no longer stale, RavenDB swaps it in. The recovery steps depend on the state of the swap. Check the **List of Indexes** in the Studio:
 
-- **The replacement is still being built**: `ReplacementOf/<index>` is listed and the migrated index still shows Lucene. Upgrade to version 6.21.1 or later and make sure the migrated index is unlocked. At start-up, ServiceControl keeps the search engine configured on the migrated index (Lucene) and RavenDB discards the Corax replacement index without rebuilding the migrated index. If upgrading is not possible, stop the instance, lock the migrated index again as `🔒 Locked (ignore)`, and delete the `ReplacementOf/<index>` index in the Studio.
-- **The replacement has already been swapped in**: no `ReplacementOf/<index>` is listed and the index shows Corax. The Lucene configuration is lost. Upgrade to version 6.21.1 or later, then repeat [step 2](#migrating-existing-indexes-to-lucene-2-change-the-search-engine-of-the-index) for the index. On small or idle databases the swap completes within seconds after start-up, so this is the more common state.
+- **The replacement is not swapped in yet**: `ReplacementOf/<index>` is in the list and the migrated index shows Lucene. Upgrade to version 6.21.1 or later and make sure that the migrated index is unlocked. At start-up, ServiceControl keeps the Lucene search engine configured on the migrated index. RavenDB discards the Corax replacement and does not rebuild the migrated index. If an upgrade is not possible, stop the instance, lock the migrated index again as `🔒 Locked (ignore)`, and delete the `ReplacementOf/<index>` index in the Studio.
+- **The replacement is swapped in**: `ReplacementOf/<index>` is not in the list and the index shows Corax. The Lucene configuration is lost. Upgrade to version 6.21.1 or later. Then do [step 2](#migrating-existing-indexes-to-lucene-2-change-the-search-engine-of-the-index) again for the index. On small or idle databases, the swap completes in seconds after start-up. This state is the more common one.
 
 ### 5. Restart the instance
 
