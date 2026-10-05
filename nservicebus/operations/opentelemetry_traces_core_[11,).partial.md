@@ -203,6 +203,13 @@ On receive, the following rules apply:
 > [!NOTE]
 > Baggage is meant for a small number of cross-cutting values, such as a tenant identifier or the identifier of the originating request. Baggage is never removed along a conversation and travels with every message to every receiver, including subscribers, the audit queue, and the error queue. Do not put sensitive or large values in baggage. NServiceBus does not enforce the limits of 64 items and 8,192 bytes defined by the W3C Baggage specification.
 
+NServiceBus reads and writes baggage through `System.Diagnostics.Activity`. It does not use the `Baggage` API of the `OpenTelemetry.Api` package. The two are separate stores, and neither one reads the other:
+
+- In handler, behavior, and library code, use `Activity.Current?.SetBaggage(...)` and `Activity.Current?.GetBaggageItem(...)`. NServiceBus writes those items to the `baggage` header of outgoing messages, and applies the header to the process span on receive.
+- Baggage set through `Baggage.SetBaggage(...)` from `OpenTelemetry.Api` is not written to outgoing messages. Copy the value onto `Activity.Current` before sending when a message has to carry it.
+
+The community [OpenTelemetry .NET instrumentation reference](https://github.com/Aaronontheweb/dotnet-skills/blob/master/skills/opentelementry-dotnet-instrumentation/traces-and-propagation-reference.md#net-baggage-api) describes both APIs and when to use each.
+
 ### Failed spans and the error.type tag
 
 When a span fails, NServiceBus sets the span status to `Error` and adds an `error.type` tag containing the fully qualified exception type name. This tag is set on the innermost span where the exception was thrown.
