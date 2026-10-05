@@ -46,3 +46,7 @@ macOS platforms are supported as development environments, but not for productio
 | .NET Core 2.2 | [.NET Core 2.2 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/2.2/2.2-supported-os.md) | December 23, 2019 |
 | .NET Core 2.1 | [.NET Core 2.1 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/2.1/2.1-supported-os.md) | August 21, 2021 |
 | .NET Core 2.0 | [.NET Core 2.0 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/2.0/2.0-supported-os.md) | October 1, 2018 |
+
+## .NET Framework
+
+Systems running on .NET Framework 4.7.2 and up using NServiceBus 8 are covered by [paid extended support](support-policy.md#extended-support) until April 16, 2031.
