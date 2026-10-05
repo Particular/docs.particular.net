@@ -122,10 +122,10 @@ A locked index is left untouched when ServiceControl recreates its index definit
 
 #### Index reset to Corax after unlocking
 
-On versions 6.20.0 to 6.21.0, unlocking a migrated index causes ServiceControl to reset it at the next start-up. RavenDB then builds a replacement index named `ReplacementOf/<index>` that uses Corax. To recover:
+On versions 6.20.0 to 6.21.0, unlocking a migrated index causes ServiceControl to reset it at the next start-up. RavenDB then builds a replacement index named `ReplacementOf/<index>` that uses Corax, and swaps it in once the replacement is no longer stale. The recovery steps depend on whether the swap has already happened. Check the **List of Indexes** in the Studio:
 
-- Upgrade to version 6.21.1 or later and make sure the migrated index is unlocked. At start-up, ServiceControl keeps the search engine configured on the migrated index (Lucene) and RavenDB discards the Corax replacement index without rebuilding the migrated index.
-- If upgrading is not possible, stop the instance, lock the migrated index again as `🔒 Locked (ignore)`, and delete the `ReplacementOf/<index>` index in the Studio.
+- **The replacement is still being built**: `ReplacementOf/<index>` is listed and the migrated index still shows Lucene. Upgrade to version 6.21.1 or later and make sure the migrated index is unlocked. At start-up, ServiceControl keeps the search engine configured on the migrated index (Lucene) and RavenDB discards the Corax replacement index without rebuilding the migrated index. If upgrading is not possible, stop the instance, lock the migrated index again as `🔒 Locked (ignore)`, and delete the `ReplacementOf/<index>` index in the Studio.
+- **The replacement has already been swapped in**: no `ReplacementOf/<index>` is listed and the index shows Corax. The Lucene configuration is lost. Upgrade to version 6.21.1 or later, then repeat [step 2](#migrating-existing-indexes-to-lucene-2-change-the-search-engine-of-the-index) for the index. On small or idle databases the swap completes within seconds after start-up, so this is the more common state.
 
 ### 5. Restart the instance
 
