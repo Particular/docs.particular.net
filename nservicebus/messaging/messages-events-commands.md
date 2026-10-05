@@ -22,7 +22,7 @@ A message is the unit of communication for NServiceBus. There are two types of m
 
 ## Commands
 
-A command tells a service to do something. Typically, a command should only be consumed by a single consumer. For example, if there is a command, called `SubmitOrder`, then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
+A command tells a service to do something. Typically, a command should only be consumed by a single consumer. For example, if there is a command called `SubmitOrder` then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
 
 Commands should be expressed in a verb-noun sequence, following the tell style:
 
