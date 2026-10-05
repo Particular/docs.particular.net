@@ -247,7 +247,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Aspire.Hosting" target="_blank">Aspire.Hosting</a> | <a href="https://www.nuget.org/packages/Aspire.Hosting/13.6.0/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/aspire" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.305/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MessagePack" target="_blank">MessagePack</a> | <a href="https://www.nuget.org/packages/MessagePack/2.5.307/license" target="_blank">MIT</a> | <a href="https://github.com/MessagePack-CSharp/MessagePack-CSharp" target="_blank">Project Site</a> |
 
 ### ServiceControl NuGet packages
 
@@ -292,7 +292,7 @@
 | <a href="https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime" target="_blank">OpenTelemetry.Instrumentation.Runtime</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime/1.19.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Polly.Core" target="_blank">Polly.Core</a> | <a href="https://www.nuget.org/packages/Polly.Core/8.8.0/license" target="_blank">BSD-3-Clause</a> | <a href="https://github.com/App-vNext/Polly" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/RavenDB.Embedded" target="_blank">RavenDB.Embedded</a> | <a href="https://www.nuget.org/packages/RavenDB.Embedded/7.2.6/license" target="_blank">View License</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/ReactiveUI.WPF" target="_blank">ReactiveUI.WPF</a> | <a href="https://www.nuget.org/packages/ReactiveUI.WPF/25.1.1/license" target="_blank">MIT</a> | <a href="https://reactiveui.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/ReactiveUI.WPF" target="_blank">ReactiveUI.WPF</a> | <a href="https://www.nuget.org/packages/ReactiveUI.WPF/26.0.1/license" target="_blank">MIT</a> | <a href="https://reactiveui.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Seq.Extensions.Logging" target="_blank">Seq.Extensions.Logging</a> | <a href="https://www.nuget.org/packages/Seq.Extensions.Logging/9.0.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/datalust/seq-extensions-logging" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Configuration.ConfigurationManager" target="_blank">System.Configuration.ConfigurationManager</a> | <a href="https://www.nuget.org/packages/System.Configuration.ConfigurationManager/10.0.12/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter" target="_blank">System.Diagnostics.PerformanceCounter</a> | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter/10.0.12/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
