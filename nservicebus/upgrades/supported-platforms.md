@@ -1,10 +1,11 @@
 ---
 title: Supported frameworks and platforms
 summary: Frameworks and platforms supported by NServiceBus
-reviewed: 2024-05-06
+reviewed: 2026-10-05
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
+ - nservicebus/upgrades/support-policy
  - nservicebus/upgrades/supported-versions
 ---
 
@@ -26,6 +27,10 @@ Each major version of NServiceBus is built against a specific framework version.
 | NServiceBus 8       | .NET 6 and up | .NET Framework 4.7.2 and up |
 | NServiceBus 7       | .NET Core 2.0 and up | .NET Framework 4.5.2 and up |
 
+### .NET Framework
+
+include: dotnet-framework-support
+
 ## Supported .NET operating systems
 
 When a version of NServiceBus [is supported](supported-versions.md) according to the [support policy](support-policy.md), it can be run in production on any Windows or Linux platform specified by the links in the following table, until [Microsoft's end-of-support date](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) for that .NET version.
@@ -46,7 +51,3 @@ macOS platforms are supported as development environments, but not for productio
 | .NET Core 2.2 | [.NET Core 2.2 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/2.2/2.2-supported-os.md) | December 23, 2019 |
 | .NET Core 2.1 | [.NET Core 2.1 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/2.1/2.1-supported-os.md) | August 21, 2021 |
 | .NET Core 2.0 | [.NET Core 2.0 Supported OS Versions](https://github.com/dotnet/core/blob/main/release-notes/2.0/2.0-supported-os.md) | October 1, 2018 |
-
-## .NET Framework
-
-Systems running on .NET Framework 4.7.2 and up using NServiceBus 8 are covered by [paid extended support](support-policy.md#extended-support) until April 16, 2031.
