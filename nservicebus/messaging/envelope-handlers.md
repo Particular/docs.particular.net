@@ -2,7 +2,7 @@
 title: Envelope Handlers
 summary: Implement IEnvelopeHandler to unwrap incoming messages from custom envelope formats before they enter the NServiceBus pipeline.
 component: Core
-reviewed: 2026-09-25
+reviewed: 2026-10-05
 versions: '[10.1,)'
 related:
 - nservicebus/cloudevents
@@ -20,6 +20,10 @@ When a message arrives from the transport, NServiceBus passes it through all reg
 - If a handler returns a non-null headers dictionary, that handler's extracted headers and body are used as the incoming message for the pipeline. No further handlers are tried.
 - If a handler returns `null` or throws an exception, the next handler is tried. Exceptions are logged as warnings; they do not fail the message.
 - If no handler successfully unwraps the message, NServiceBus treats it as a standard NServiceBus-formatted message.
+
+Unwrapping replaces only the transport-level envelope format. The unwrapped message then continues through the pipeline like any incoming message: NServiceBus deserializes its body using the configured deserializer. The deserializer is selected from the `NServiceBus.ContentType` header in the message headers (the headers returned by the handler, or the transport headers when no handler matched). If that header is missing or does not match a registered deserializer, NServiceBus uses the default serializer. For more information on deserializer selection, see [message serialization](/nservicebus/serialization/).
+
+The returned headers also enable [message type mapping](/nservicebus/messaging/message-type-detection.md). Include the [`NServiceBus.EnclosedMessageTypes` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) or use a serializer that can infer the message type from the body.
 
 Each unwrapping attempt is tracked via the `nservicebus.envelope.unwrapped` [OpenTelemetry metric](/nservicebus/operations/opentelemetry.md).
 
