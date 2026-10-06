@@ -61,18 +61,6 @@ An endpoint that [only sends](/nservicebus/endpoints/#send-only) messages and do
 
 Send-only endpoints that make use of the [transactional session feature](/nservicebus/transactional-session) do technically process messages but also do not count towards licensing costs.
 
-### No longer in use
-
-NServiceBus endpoint that is no longer in use, usually with zero throughput in the corresponding queue. These endpoints are not included in licensing calculations since they are inactive.
-
-### Planned to be decommissioned
-
-An endpoint that is expected to no longer be used within the next 30 days. These endpoints may be excluded from licensing calculations as they represent temporary infrastructure.
-
-### Not an NServiceBus Endpoint
-
-Not an NServiceBus endpoint. These are broker queues or other messaging infrastructure that should not be included in NServiceBus licensing calculations.
-
 ### Gateway or Bridging Endpoint
 
 These are endpoints that are either part of the [Gateway](/nservicebus/gateway/) or [Messaging Bridge](/nservicebus/bridge/) infrastructure.
@@ -80,6 +68,18 @@ These are endpoints that are either part of the [Gateway](/nservicebus/gateway/)
 ### Particular Platform Endpoint
 
 This is a Particular Platform infrastructure endpoint.
+
+### Planned to be decommissioned
+
+An endpoint that is expected to no longer be used within the next 30 days. These endpoints may be excluded from licensing calculations as they represent temporary infrastructure.
+
+### No longer in use
+
+NServiceBus endpoint that is no longer in use, usually with zero throughput in the corresponding queue. These endpoints are not included in licensing calculations since they are inactive.
+
+### Not an NServiceBus Endpoint
+
+Not an NServiceBus endpoint. These are broker queues or other messaging infrastructure that should not be included in NServiceBus licensing calculations.
 
 ## Bulk endpoint type updates
 
