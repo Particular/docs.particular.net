@@ -33,7 +33,7 @@ Changes made to the endpoint type are automatically saved for future reporting, 
 
 ### Detected broker queues
 
-For [NServiceBus transport](./../transports) that allow querying the broker, there may be additional information on the `Detected Broker Queues` tab. These are queues detected on the broker that cannot be automatically linked to an NServiceBus endpoint. These queues will be included in the usage report, but their corresponding endpoints can also be [marked to indicate their type](#endpoint-type-indicators).
+For [NServiceBus transports](./../transports) that allow querying the broker, there may be additional information on the `Detected Broker Queues` tab. These are queues detected on the broker that cannot be automatically linked to an NServiceBus endpoint. These queues will be included in the usage report, but their corresponding endpoints can also be [marked to indicate their type](#endpoint-type-indicators).
 
 This feature will not be displayed for non-broker transports like MSMQ and Azure Storage Queues.
 
