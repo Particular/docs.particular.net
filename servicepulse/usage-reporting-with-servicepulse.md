@@ -53,17 +53,17 @@ The following endpoint type indicators are available to help categorize endpoint
 
 Known NServiceBus [endpoint](/nservicebus/endpoints/). These endpoints are included in licensing calculations as they represent active NServiceBus endpoints processing business messages.
 
+### Send-Only Endpoint
+
+An endpoint that [only sends](/nservicebus/endpoints/#send-only) messages and does not process any messages. These endpoints do need a valid license, but do not count towards licensing costs.
+
+#### Transactional Session Processor Endpoint
+
+Send-only endpoints that make use of the [transactional session feature](/nservicebus/transactional-session) do technically process messages but also do not count towards licensing costs.
+
 ### No longer in use
 
 NServiceBus endpoint that is no longer in use, usually with zero throughput in the corresponding queue. These endpoints are not included in licensing calculations since they are inactive.
-
-### Transactional Session Processor Endpoint
-
-An [endpoint that is only processing transactional session dispatch messages](/nservicebus/transactional-session/#design-considerations). These are [specialized endpoints](/nservicebus/transactional-session/#remote-processor) dedicated to handling the coordination of transactional sessions, and are excluded from licensing calculations.
-
-### Send-Only Endpoint
-
-An endpoint that [only sends](/nservicebus/endpoints/#send-only) messages and does not process any messages. These endpoints have different licensing considerations since they don't process incoming messages.
 
 ### Planned to be decommissioned
 
