@@ -75,7 +75,7 @@ NServiceBus endpoint that is no longer in use, usually with zero throughput in t
 
 ### Not an NServiceBus Endpoint
 
-Not an NServiceBus endpoint. These are broker queues or other messaging infrastructure that should not be included in NServiceBus licensing calculations.
+Not an NServiceBus endpoint. These are broker queues, possibly used by other non-NServiceBus systems, or other messaging infrastructure and should not count towards licensing costs.
 
 ## Bulk endpoint type updates
 
