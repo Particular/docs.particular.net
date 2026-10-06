@@ -23,7 +23,7 @@ The Usage page in ServicePulse has two tabs:
 - [Detected endpoint queues](#viewing-usage-data-in-servicepulse-detected-endpoint-queues)
 - [Detected broker queues](#viewing-usage-data-in-servicepulse-detected-broker-queues) (only displayed when using a broker transport)
 
-For each detected endpoint queue and broker queue, the maximum daily throughput is displayed. This can be helpful to get an understanding of which [tier](https://particular.net/pricing) the corresponding endpoint belongs to for licensing purposes.
+For each detected endpoint queue and broker queue, the maximum daily throughput is displayed.
 
 ### Detected endpoint queues
 
