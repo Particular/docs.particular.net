@@ -71,7 +71,7 @@ These "audit", "error", and "ServiceControl" endpoints are part of the platform 
 
 ### No longer in use
 
-NServiceBus endpoint that is no longer in use, usually with zero throughput in the corresponding queue. These endpoints are not included in licensing calculations since they are inactive.
+An NServiceBus endpoint that is no longer in use, having zero throughput in the corresponding queue. Note that these endpoints need to be at zero throughput for at least three consecutive months to be excluded from licensing calculations.
 
 ### Not an NServiceBus Endpoint
 
