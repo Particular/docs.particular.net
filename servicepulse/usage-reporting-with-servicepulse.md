@@ -63,11 +63,11 @@ Send-only endpoints that make use of the [transactional session feature](/nservi
 
 ### Gateway or Bridging Endpoint
 
-These are endpoints that are either part of the [Gateway](/nservicebus/gateway/) or [Messaging Bridge](/nservicebus/bridge/) infrastructure.
+These are endpoints that are either part of the [Gateway](/nservicebus/gateway/) or [Messaging Bridge](/nservicebus/bridge/) infrastructure and do not count towards licensing costs.
 
 ### Particular Platform Endpoint
 
-This is a Particular Platform infrastructure endpoint.
+These "audit", "error", and "ServiceControl" endpoints are part of the platform infrastructure endpoint and do not count towards licensing costs.
 
 ### Planned to be decommissioned
 
