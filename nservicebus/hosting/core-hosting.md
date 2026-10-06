@@ -47,7 +47,7 @@ When hosting multiple endpoints in the same host, configure each endpoint so tha
 - Each endpoint must [explicitly disable assembly scanning](/nservicebus/hosting/assembly-scanning.md#disable-assembly-scanning) so that handlers, sagas,  and other components that do not belong to the endpoint are not registered.
 
 > [!TIP]
-> It can be easier to manage handler and saga registration by decorating handlers and sagas with the `[Handler]` and `[Saga]` attributes to enable [source-generated handler/saga registration](/nservicebus/handlers/convention-based.md#registering-handlers). Conisder using `.editorconfig` settings to [change the severity of Roslyn diagnostics `NSB0034` and `NSB0025`](/nservicebus/handlers/convention-based.md#analyzers) to `error` so that forgetting to add an attribute to a new handler/saga (which would cause it to be excluded from source generation) becomes a build error.
+> It can be easier to manage handler and saga registration by decorating handlers and sagas with the `[Handler]` and `[Saga]` attributes to enable [source-generated handler/saga registration](/nservicebus/handlers/convention-based.md#registering-handlers). Conisder using `.editorconfig` settings to [change the severity of Roslyn diagnostics `NSB0022` and `NSB0025`](/nservicebus/handlers/convention-based.md#analyzers) to `error` so that forgetting to add an attribute to a new handler/saga (which would cause it to be excluded from source generation) becomes a build error.
 
 ### Registering multiple endpoints
 
