@@ -27,13 +27,13 @@ For each detected endpoint queue and broker queue, the maximum daily throughput 
 
 ### Detected endpoint queues
 
-This list is comprised of endpoint queues that have a clear connection to an NServiceBus endpoint. However, these can be marked to indicate if they correspond to a [type of endpoint that should not count toward licensing](#endpoint-type-indicators).
+This list is comprised of endpoint queues that have a clear connection to an NServiceBus endpoint. These can be marked to indicate [their type](#endpoint-type-indicators).
 
 Changes made to the endpoint type are automatically saved for future reporting, so it is important to remember to make an update if the endpoint type changes.
 
 ### Detected broker queues
 
-For [NServiceBus transport](./../transports) that allow querying the broker, there may be additional information on the `Detected Broker Queues` tab. These are queues detected on the broker that cannot be automatically linked to an NServiceBus endpoint. These queues will be included in the usage report for NServiceBus licensing purposes, but their corresponding endpoints can also be [marked to indicate if they should not count toward licensing](#endpoint-type-indicators).
+For [NServiceBus transport](./../transports) that allow querying the broker, there may be additional information on the `Detected Broker Queues` tab. These are queues detected on the broker that cannot be automatically linked to an NServiceBus endpoint. These queues will be included in the usage report, but their corresponding endpoints can also be [marked to indicate their type](#endpoint-type-indicators).
 
 This feature will not be displayed for non-broker transports like MSMQ and Azure Storage Queues.
 
@@ -43,7 +43,7 @@ Click `Download Report` to generate a usage report as a JSON file. This report c
 
 The `Download Report` button is disabled if there is less than 24 hours worth of usage data.
 
-The report file must be provided to Particular Software on request; it is **not** automatically uploaded or sent. Once Particular Software receives the report, the reported queues and throughput are analyzed to determine which ones count for licensing purposes.
+The report file must be provided to Particular Software on request; it is **not** automatically uploaded or sent. Once Particular Software receives the report, the reported queues and throughput are analyzed to determine licensing needs.
 
 ## Endpoint type indicators
 
