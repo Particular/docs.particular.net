@@ -69,10 +69,6 @@ These are endpoints that are either part of the [Gateway](/nservicebus/gateway/)
 
 These "audit", "error", and "ServiceControl" endpoints are part of the platform infrastructure endpoint and do not count towards licensing costs.
 
-### Planned to be decommissioned
-
-An endpoint that is expected to no longer be used within the next 30 days. These endpoints may be excluded from licensing calculations as they represent temporary infrastructure.
-
 ### No longer in use
 
 NServiceBus endpoint that is no longer in use, usually with zero throughput in the corresponding queue. These endpoints are not included in licensing calculations since they are inactive.
