@@ -28,6 +28,17 @@ Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 ### Azure Service Bus
 
+Gathering usage data requires:
+1. Configuring the `SubscriptionId` for the Azure Service Bus namespace
+2. A token-based identity with permission to read usage data
+
+>[!NOTE]
+>The built-in **Monitoring Reader** role is sufficient to read usage data. For a minimal permission set, see [Minimum permissions](#connection-setup-azure-service-bus-minimum-permissions)
+
+If ServiceControl uses managed identity (or any token-based credentials) to connect to the Azure Service Bus namespace, then ServiceControl uses the same credentials to gather usage data.
+
+If ServiceControl does not use token-based credentials to connect to the Azure Service Bus namespace, separate credentials must be supplied.
+
 Steps:
 
 1. Create an **ApplicationId (aka ClientId)** for ServiceControl

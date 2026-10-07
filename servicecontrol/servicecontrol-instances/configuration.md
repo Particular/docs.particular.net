@@ -1149,7 +1149,7 @@ The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-s
 
 | Type | Required |
 | --- | --- |
-| string | yes |
+| string | yes, unless [using token-based authentication for transport connection](/servicepulse/usage-reporting-setup.md#azure-service-bus) |
 
 ### LicensingComponent/ASB/SubscriptionId
 
@@ -1179,7 +1179,7 @@ The Client ID (aka Application ID) for an [Azure service principal](https://lear
 
 | Type | Required |
 | --- | --- |
-| string | yes |
+| string | yes, unless [using token-based authentication for transport connection](/servicepulse/usage-reporting-setup.md#azure-service-bus) |
 
 Example Client ID from an Azure App Registration:
 ![Screenshot showing where the Client ID appears in an App Registration](/servicecontrol/asb-app-service-principal.png)
@@ -1197,7 +1197,7 @@ The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/ho
 
 | Type | Required |
 | --- | --- |
-| string | yes |
+| string | yes, unless [using token-based authentication for transport connection](/servicepulse/usage-reporting-setup.md#azure-service-bus) |
 
 > [!NOTE]
 > Certificates and federated credentials are not supported at this time.
