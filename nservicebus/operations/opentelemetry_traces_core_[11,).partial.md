@@ -239,7 +239,7 @@ When the environment variable is not set, the value configured in code is used, 
 
 ### Startup diagnostics
 
-The effective instrumentation options are written to the `OpenTelemetry` section of the [startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) file. Use this section to verify which trace modes and exception recording mode an endpoint runs with.
+The effective instrumentation options are written to the `OpenTelemetry` section of the [startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) file. Use this section to verify which trace modes and exception recording mode an endpoint runs with. `ExceptionRecordingMode` shows the value after the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable override is applied.
 
 ```json
 "OpenTelemetry": {
@@ -255,6 +255,5 @@ The effective instrumentation options are written to the `OpenTelemetry` section
   }
 }
 ```
-
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
