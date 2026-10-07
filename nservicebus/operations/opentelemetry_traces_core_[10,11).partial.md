@@ -192,6 +192,16 @@ flowchart LR;
 
 If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and the process span is created as described in the sections above, whether or not the switch is set. This is the only behavior in version 11.
 
+#### Sampling
+
+A parent-based sampler, such as the OpenTelemetry `ParentBasedSampler`, decides whether to sample a span based on its parent. By default in version 10, the parent of the process span is the NServiceBus send span, so the sampling decision of the sender applies.
+
+When the version 11 behavior is enabled and the process span is a child of the transport SDK receive span, the sampler looks at the SDK receive span instead. If the SDK receive span is not sampled, the process span and the handler spans below it are not sampled either, even when the send span was. This is intentional. On receive, the question a sampler has to answer is whether anything should be recorded for this incoming message, and the SDK receive span is the first span for it. To keep the NServiceBus spans of a message, configure the sampler so that it also samples the SDK receive span, or do not subscribe to the SDK's ActivitySource.
+
+When a new trace is started on receive, the process span is a root span with a link to the send span, whether or not an SDK receive span exists. The sampler then makes a root sampling decision.
+
+NServiceBus treats an ambient activity that exists when the transport hands a message over for processing as the receive span of the transport SDK or of the NServiceBus transport. Activities started by the host do not reach that point. For example, an activity that wraps `host.Start()` is not `Activity.Current` when a message is processed. This is a property of each transport's message pump, not something NServiceBus enforces. `Activity.Current` is an `AsyncLocal` value, so a transport whose message pump runs inside an active activity would make that activity the parent of every process span, and the sampling decision for every message would follow it.
+
 ### Delayed messages
 
 When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is started at delivery time by default. This reflects that the receive operation happens at a different moment in time than the send or retry decision.

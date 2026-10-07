@@ -326,6 +326,8 @@ When a transport SDK, such as the Azure Service Bus, RabbitMQ, or Amazon SQS cli
 
 Dashboards or queries that assume the parent of the process span is the NServiceBus send span need updating for endpoints that subscribe to a transport SDK's ActivitySource. The send span remains reachable through the span link.
 
+This also changes sampling. A parent-based sampler, such as the OpenTelemetry `ParentBasedSampler`, now decides whether to sample the process span based on the SDK receive span instead of the NServiceBus send span. If the SDK receive span is not sampled, the NServiceBus spans for that message are dropped with it. In version 10, the sampling decision of the sender applies. To keep the NServiceBus spans, configure the sampler so that it also samples the SDK receive span. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for details.
+
 Endpoints that do not subscribe to a transport SDK's ActivitySource are not affected. Without a listener there is no SDK span, and the process span stays a child of the NServiceBus send span.
 
 ### Span names
