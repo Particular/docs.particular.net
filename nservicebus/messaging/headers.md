@@ -323,7 +323,7 @@ The headers are:
 * [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format) - the baggage of the activity that sent the message
 
 #if-version [10.3,)
-Receivers read `tracestate` and `baggage` only from messages that also carry `NServiceBus.TraceParent` or `traceparent`. The baggage is applied to the process span even when a transport SDK receive span is its parent, because the transport SDKs do not propagate baggage. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for details.
+Receivers read `tracestate` and `baggage` only from messages that also carry `NServiceBus.TraceParent` or `traceparent`. The baggage is applied to the process span even when a transport SDK receive span is its parent (in version 11, or in version 10 with the version 11 behavior enabled), because the transport SDKs do not propagate baggage. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for details.
 #end-if
 
 #if-version [10.3,)
