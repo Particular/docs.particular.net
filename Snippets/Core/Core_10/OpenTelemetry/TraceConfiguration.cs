@@ -63,7 +63,7 @@ public static class TraceConfiguration
         #region opentelemetry-handler-activity-source-switch
 
         // Must be set before the endpoint starts.
-        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseHandlerActivitySource", true);
+        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseV11Behavior", true);
 
         #endregion
     }

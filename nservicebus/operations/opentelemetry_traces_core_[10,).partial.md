@@ -13,11 +13,9 @@ Subscribe to the sources needed for the endpoint's observability requirements:
 snippet: opentelemetry-enabletracing-all-sources
 
 > [!NOTE]
-> In version 10, `NServiceBus.Core.Handler` must be opted into via an AppContext switch before the endpoint starts:
->
-> snippet: opentelemetry-handler-activity-source-switch
->
-> Without this switch, handler spans are emitted from `NServiceBus.Core` instead. In version 11, `NServiceBus.Core.Handler` is the default and the switch is removed.
+> In version 10, `NServiceBus.Core.Handler` must be opted into via the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch before the endpoint starts. Without this switch, handler spans are emitted from `NServiceBus.Core` instead. The switch enables all version 11 OpenTelemetry behaviors at once, not only the handler activity source. In version 11, these behaviors are the default and the switch is removed.
+
+snippet: opentelemetry-handler-activity-source-switch
 
 Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` suppresses handler spans - `Activity.Current` inside handlers and behaviors becomes the pipeline span. This enables a flattened trace view where handler work appears directly on the process span.
 
