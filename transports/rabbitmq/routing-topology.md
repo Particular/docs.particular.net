@@ -35,12 +35,9 @@ For each event type, a set of *fanout* exchanges is created to represent its inh
 - Bindings connect child types to their parents, modeling the full hierarchy.  
 - Exchanges are also created for each implemented interface.  
 
-When subscribing, an endpoint ensures the infrastructure exists and then adds a binding from the subscribed type's exchange to its own exchange.  
+When subscribing, an endpoint ensures the infrastructure exists and then adds a binding from the subscribed type’s exchange to its own exchange.  
 
 When publishing, the endpoint ensures the infrastructure exists and then publishes to the exchange of the event type.
-
-> [!NOTE]
-> Because the exchange hierarchy mirrors the full type hierarchy, polymorphic pub/sub works automatically: a subscriber to a base class or interface receives messages published as any derived type, with no additional configuration. This differs from transports such as [Azure Service Bus](/transports/azure-service-bus/) and [IBM MQ](/transports/ibmmq/), which use a topic-per-concrete-type topology and require [explicit type mappings](/transports/azure-service-bus/topology.md#polymorphic-events) for polymorphic subscriptions. Both pub/sub and subscriber endpoints must use the same routing topology, and topology changes require coordinated deployments.
 
 ### Enabling
 
