@@ -1,5 +1,6 @@
 ﻿namespace Core.OpenTelemetry;
 
+using System;
 using System.Collections.Generic;
 using global::OpenTelemetry;
 using global::OpenTelemetry.Metrics;
