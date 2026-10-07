@@ -1121,6 +1121,21 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus)
 
+### LicensingComponent/ASB/SubscriptionId
+
+Version: 5.4.0+
+
+The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
+| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
+
 ### LicensingComponent/ASB/ServiceBusName
 
 Version: 5.4.0+
@@ -1150,21 +1165,6 @@ The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-s
 | Type | Required |
 | --- | --- |
 | string | yes, unless [using token-based authentication for transport connection](/servicepulse/usage-reporting-setup.md#azure-service-bus) |
-
-### LicensingComponent/ASB/SubscriptionId
-
-Version: 5.4.0+
-
-The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
-| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
-
-| Type | Required |
-| --- | --- |
-| string | yes |
 
 ### LicensingComponent/ASB/ClientId
 
