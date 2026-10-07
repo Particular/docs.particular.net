@@ -8,6 +8,8 @@ NServiceBus emits spans from three ActivitySources:
 | `NServiceBus.Core.Handler` | Handler invocation spans (one per handler per message) |
 | `NServiceBus.Core.Recoverability` | Recoverability action spans (immediate retry, delayed retry, move to error, discard) |
 
+All three sources report version `1.0.0`. Version 10 reports `0.1.0` and uses a different set of span names and tags.
+
 Subscribe to the sources needed for the endpoint's observability requirements:
 
 snippet: opentelemetry-enabletracing-all-sources
@@ -152,14 +154,22 @@ Recoverability spans are children of the process span. To receive them, subscrib
 
 ### Span names
 
-Span names follow the OpenTelemetry messaging semantic convention format `{operation} {destination}`:
+Span names follow the OpenTelemetry messaging semantic convention format `{operation} {target}`. The target is the queue for receive and recoverability spans, and the message type name for outgoing spans:
 
 | Operation | Span name |
 |---|---|
-| Receive | `process {receiveAddress}` |
-| Send | `send message {destination}` |
-| Reply | `reply {destination}` |
+| Process | `process {receiveAddress}` |
+| Send | `send message {MessageType}` |
+| Publish | `publish {EventType}` |
+| Reply | `reply {MessageType}` |
+| Subscribe | `subscribe event {EventType}` |
+| Unsubscribe | `unsubscribe event {EventType}` |
+| Immediate retry | `immediate retry {receiveAddress}` |
+| Delayed retry | `delayed retry {receiveAddress}` |
 | Move to error | `move to {errorQueue}` |
+| Discard | `discard` |
+
+A subscribe span for several event types lists the type names separated by spaces. Message type names are short names, not full type names.
 
 ### Context propagation
 

@@ -13,13 +13,57 @@ Subscribe to the sources needed for the endpoint's observability requirements:
 snippet: opentelemetry-enabletracing-all-sources
 
 > [!NOTE]
-> In version 10, `NServiceBus.Core.Handler` must be opted into via an AppContext switch before the endpoint starts:
+> In version 10, handler spans are emitted from `NServiceBus.Core`. They move to `NServiceBus.Core.Handler` only when the version 11 behavior is enabled, as described under *Version 11 behavior opt-in* below. In version 11 they always come from `NServiceBus.Core.Handler`.
 >
-> snippet: opentelemetry-handler-activity-source-switch
->
-> Without this switch, handler spans are emitted from `NServiceBus.Core` instead. In version 11, `NServiceBus.Core.Handler` is the default and the switch is removed.
+> A tracer that subscribes only to `NServiceBus.Core` therefore receives no handler spans once the version 11 behavior is active.
+
+All three sources report version `0.1.0` in version 10, and `1.0.0` when the version 11 behavior is enabled. Use the version to tell the two sets of span names and tags apart.
 
 Subscribing to `NServiceBus.Core.Handler` without subscribing to `NServiceBus.Core` suppresses handler spans - `Activity.Current` inside handlers and behaviors becomes the pipeline span. This enables a flattened trace view where handler work appears directly on the process span.
+
+### Version 11 behavior opt-in
+
+Some OpenTelemetry behaviors change in version 11. Version 10 keeps the version 10 behavior by default. One AppContext switch enables all of the changes together, so an endpoint can adopt the version 11 telemetry before it upgrades:
+
+snippet: opentelemetry-v11-behavior-switch
+
+The switch can also be set without code. With an environment variable:
+
+```text
+DOTNET_NServiceBus_Core_OpenTelemetry_UseV11Behavior=true
+```
+
+Or in the project file:
+
+```xml
+<ItemGroup>
+  <RuntimeHostConfigurationOption Include="NServiceBus.Core.OpenTelemetry.UseV11Behavior" Value="true" />
+</ItemGroup>
+```
+
+The switch is read once, before the endpoint starts, and applies to the whole process. Two endpoints in the same process cannot use different modes.
+
+The switch enables all of these changes:
+
+| Behavior | Version 10 | Version 11 |
+|---|---|---|
+| Handler span source | `NServiceBus.Core` | `NServiceBus.Core.Handler` |
+| ActivitySource version | `0.1.0` | `1.0.0` |
+| Parent of the process span under an instrumented transport SDK | NServiceBus send span | SDK receive span, with a link to the send span |
+| Span names | generic, for example `process message` | operation and target, for example `process orders` |
+| Trace context and baggage propagation | custom propagator | `System.Diagnostics.DistributedContextPropagator` |
+| `Start dispatching` and `Finished dispatching` span events | emitted | not emitted |
+| `execution.result` metric tag | emitted | not emitted |
+| `otel.status_code`, `otel.status_description` and `exception.escaped` | emitted on failures | not emitted |
+| Outbox deduplication span tag | `nservicebus.outbox.deduplicate-message` | `nservicebus.outbox.deduplicated_message` |
+| `nservicebus.event_types` and `nservicebus.enclosed_message_types` span tags | delimited string | array of type names |
+
+`PublishTraceMode` is not part of the switch. It stays configurable in version 11; only its default changes. See *Publish operations* below.
+
+> [!WARNING]
+> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on the `execution.result` metric tag, or on the span tags above must be updated. The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
+
+In version 11 these behaviors are the only behaviors, and the switch is removed.
 
 ### Span relationships
 
@@ -114,9 +158,7 @@ Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive
 
 Some transport SDKs, such as the Azure Service Bus, RabbitMQ, and Amazon SQS clients, emit their own spans for the native send and receive operations. When the endpoint subscribes to the SDK's ActivitySource, the SDK receive span is the ambient `Activity.Current` at the moment NServiceBus starts processing a message.
 
-In version 10, the default is unchanged in that situation: the NServiceBus process span is a child of the NServiceBus send span. To make the NServiceBus process span a child of the SDK receive span instead, with a link back to the NServiceBus send span, enable the following AppContext switch before the endpoint starts:
-
-snippet: opentelemetry-transport-span-as-parent-switch
+In version 10, the default is unchanged in that situation: the NServiceBus process span is a child of the NServiceBus send span. The process span becomes a child of the SDK receive span, with a link back to the NServiceBus send span, when the version 11 behavior is enabled:
 
 ```mermaid
 flowchart LR;
@@ -133,7 +175,7 @@ flowchart LR;
   NSBM1-. link .-PRM1;
 ```
 
-If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and the process span is created as described in the sections above, regardless of the switch. This is the default behavior in version 11, where the switch is removed.
+If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and the process span is created as described in the sections above, whether or not the switch is set. This is the only behavior in version 11.
 
 ### Delayed messages
 
@@ -164,18 +206,22 @@ Recoverability spans are children of the process span. To receive them, subscrib
 
 ### Span names
 
-By default, NServiceBus uses generic operation names for spans: `"send message"`, `"process message"`, `"publish event"`, `"reply"`, etc. To include the destination or source queue in the span name - following the OpenTelemetry messaging semantic convention format `{operation} {destination}` - enable `UseMessageTypeNamesInSpanNames`:
+In version 10, NServiceBus uses generic operation names for spans, such as `process message` and `publish event`. When the version 11 behavior is enabled, the names follow the OpenTelemetry messaging semantic convention format `{operation} {target}`. The target is the queue for receive and recoverability spans, and the message type name for outgoing spans:
 
-snippet: opentelemetry-span-names-destination
-
-With this enabled:
-
-| Operation | Default span name | With destination |
+| Operation | Version 10 | Version 11 |
 |---|---|---|
-| Receive | `process message` | `process {receiveAddress}` |
-| Send | `send message` | `send message {destination}` |
-| Reply | `reply` | `reply {destination}` |
+| Process | `process message` | `process {receiveAddress}` |
+| Send | `send message` | `send message {MessageType}` |
+| Publish | `publish event` | `publish {EventType}` |
+| Reply | `reply` | `reply {MessageType}` |
+| Subscribe | `subscribe event` | `subscribe event {EventType}` |
+| Unsubscribe | `unsubscribe event` | `unsubscribe event {EventType}` |
+| Immediate retry | `immediate retry` | `immediate retry {receiveAddress}` |
+| Delayed retry | `delayed retry` | `delayed retry {receiveAddress}` |
 | Move to error | `move to error` | `move to {errorQueue}` |
+| Discard | `discard` | `discard` |
+
+A subscribe span for several event types lists the type names separated by spaces. Message type names are short names, not full type names.
 
 ### Dispatching events
 
@@ -184,11 +230,7 @@ When outgoing messages are dispatched during message processing, NServiceBus add
 - `"Start dispatching"` - emitted before dispatch, includes a `message-count` event tag
 - `"Finished dispatching"` - emitted after dispatch completes
 
-To suppress these events:
-
-snippet: opentelemetry-dispatching-events-disable
-
-These events are emitted by default. Disabling them reduces observability ingestion cost when dispatch timing is not needed.
+These events are emitted in version 10. They are not emitted when the version 11 behavior is enabled, and they are removed in version 11. There is no option to keep them.
 
 ### Context propagation
 
@@ -209,11 +251,7 @@ This keeps the forwarded message correlated to its original sender instead of th
 
 Custom `RecoverabilityAction` and `AuditAction` implementations that forward the received message get the same behavior: the headers are dispatched as they were received, so the trace stays intact without any additional work.
 
-In version 10, NServiceBus uses a custom propagator by default. To opt in to propagation via the built-in .NET `DistributedContextPropagator` instead, set the following AppContext switch before the endpoint starts:
-
-snippet: opentelemetry-distributed-context-propagator-switch
-
-This is the default behavior in version 11, where the custom propagator and the switch are removed. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for details on baggage serialization changes introduced with this switch.
+In version 10, NServiceBus uses a custom propagator. Propagation moves to the built-in .NET `DistributedContextPropagator` when the version 11 behavior is enabled, and the custom propagator is removed in version 11. The `baggage` header format changes with it. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for the serialization details and for the effect on a rolling upgrade.
 
 ### Failed spans and the error.type tag
 

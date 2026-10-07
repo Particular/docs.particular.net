@@ -11,15 +11,15 @@ Because all metrics from a meter source are emitted by default, use an OpenTelem
 
 snippet: opentelemetry-metrics-filter-view
 
-### Meter options
+### execution.result tag
 
-#### execution.result tag
+Several metrics carry an `execution.result` tag with a value of `"success"` or `"failure"`. The tag increases metric cardinality and the associated ingestion cost.
 
-Several metrics include an `execution.result` tag with a value of `"success"` or `"failure"`. This tag increases metric cardinality and the associated ingestion cost. To opt out, set `EmitExecutionResultTags` to `false`:
+In version 10 the tag is emitted on `nservicebus.messaging.successes`, `nservicebus.messaging.failures`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time`, `nservicebus.messaging.handler_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.messaging.serialize_time`, and `nservicebus.sagas.fetch_time`.
 
-snippet: opentelemetry-meters-disable-execution-result-tags
+The tag is not emitted when the [version 11 behavior](/nservicebus/operations/opentelemetry.md) is enabled, and it is removed in version 11. There is no option to keep it. The outcome stays available without the tag: `nservicebus.messaging.successes` and `nservicebus.messaging.failures` are separate instruments, and the histograms carry `error.type` when the operation fails.
 
-The `execution.result` tag is emitted by default. Disabling it affects all metrics that carry it: `nservicebus.messaging.successes`, `nservicebus.messaging.failures`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time`, `nservicebus.messaging.handler_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.messaging.serialize_time`, and `nservicebus.sagas.fetch_time`.
+To drop the tag on version 10, use an OpenTelemetry view.
 
 ### Emitted meters
 

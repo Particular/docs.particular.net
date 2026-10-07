@@ -70,56 +70,12 @@ public static class TraceConfiguration
         #endregion
     }
 
-    public static void EnableHandlerActivitySource()
+    public static void EnableV11Behavior()
     {
-        #region opentelemetry-handler-activity-source-switch
+        #region opentelemetry-v11-behavior-switch
 
-        // Must be set before the endpoint starts.
-        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseHandlerActivitySource", true);
-
-        #endregion
-    }
-
-    public static void UseDestinationInSpanNames(EndpointConfiguration endpointConfiguration)
-    {
-        #region opentelemetry-span-names-destination
-
-        var options = endpointConfiguration.Tracing();
-        options.UseMessageTypeNamesInSpanNames = true;
-
-        #endregion
-    }
-
-    public static void DisableDispatchingEvents(EndpointConfiguration endpointConfiguration)
-    {
-        #region opentelemetry-dispatching-events-disable
-
-        var options = endpointConfiguration.Tracing();
-        options.EmitMessageDispatchingEvents = false;
-
-        #endregion
-    }
-
-    public static void EnableTransportSpanAsParent()
-    {
-        #region opentelemetry-transport-span-as-parent-switch
-
-        // Must be set before the endpoint starts.
-        // Makes the process span a child of the transport SDK's receive span when one is ambient,
-        // with a link to the NServiceBus send span. This becomes the default in version 11.
-        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent", true);
-
-        #endregion
-    }
-
-    public static void EnableDistributedContextPropagator()
-    {
-        #region opentelemetry-distributed-context-propagator-switch
-
-        // Must be set before the endpoint starts.
-        // Opts in to W3C DistributedContextPropagator-based trace context propagation.
-        // This becomes the default in version 11.
-        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseDistributedContextPropagator", true);
+        // Must be set before the endpoint starts. Enables every version 11 OpenTelemetry behavior.
+        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseV11Behavior", true);
 
         #endregion
     }
