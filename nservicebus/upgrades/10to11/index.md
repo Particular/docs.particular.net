@@ -256,6 +256,43 @@ If an endpoint must keep a specific host identifier beyond version 11, configure
 
 ## OpenTelemetry
 
+Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. Span names, the parent of the process span, some span attributes, the baggage wire format and one metric tag all change. These changes break dashboards, alerts and queries that match on the old output.
+
+Version 10 keeps the version 10 output. Every change below is available on version 10 behind a single opt-in switch, so the new output can be adopted and verified before the upgrade to version 11.
+
+### Adopting the version 11 behavior on version 10
+
+Set the following AppContext switch before endpoint startup:
+
+```csharp
+AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseV11Behavior", true);
+```
+
+Or via environment variable:
+
+```text
+DOTNET_NServiceBus_Core_OpenTelemetry_UseV11Behavior=true
+```
+
+Or via MSBuild in the project file:
+
+```xml
+<ItemGroup>
+  <RuntimeHostConfigurationOption Include="NServiceBus.Core.OpenTelemetry.UseV11Behavior" Value="true" />
+</ItemGroup>
+```
+
+| NServiceBus version | Behaviors available | Default | App switch |
+|:-:|:-:|:-:|:-:|
+| 10.x before the switch | version 10 only | version 10 | - |
+| 10.x with the switch | version 10 + version 11 | version 10 | Can opt in |
+| >= 11.0 | version 11 only | version 11 | - |
+
+The switch enables every change in this section at once. It cannot enable them one at a time, because version 11 does not offer them one at a time either. The switch is read once, before the endpoint starts, and applies to the whole process, so two endpoints in one process cannot use different modes.
+
+> [!NOTE]
+> Version 11 has no switch to restore the version 10 output. Verify the changes on version 10 with the switch enabled before upgrading.
+
 ### ActivitySources
 
 In version 11, NServiceBus emits spans from three ActivitySources:
@@ -266,7 +303,7 @@ In version 11, NServiceBus emits spans from three ActivitySources:
 | `NServiceBus.Core.Handler` | Handler invocation spans |
 | `NServiceBus.Core.Recoverability` | Recoverability action spans |
 
-In version 10, handler spans were emitted from `NServiceBus.Core` by default, with `NServiceBus.Core.Handler` available as an opt-in via the `NServiceBus.Core.OpenTelemetry.UseHandlerActivitySource` AppContext switch. In version 11, handler spans are always emitted from `NServiceBus.Core.Handler`.
+In version 10, handler spans are emitted from `NServiceBus.Core`. In version 11, they are emitted from `NServiceBus.Core.Handler`.
 
 Any OpenTelemetry configuration that only subscribes to `NServiceBus.Core` will no longer receive handler spans after upgrading. Update the tracer configuration to subscribe to all required sources:
 
@@ -279,23 +316,61 @@ Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
+#### ActivitySource version
+
+The three sources report version `1.0.0` in version 11, instead of `0.1.0` in version 10. The version identifies which set of span names and attributes a span belongs to. Monitoring configuration that filters on the source version must be updated.
+
 ### Process span parent with instrumented transport SDKs
 
-When a transport SDK, such as the Azure Service Bus, RabbitMQ, or Amazon SQS client, emits its own receive span and the endpoint subscribes to that ActivitySource, version 11 creates the NServiceBus process span as a child of the SDK receive span and links it to the NServiceBus send span. In version 10, the process span is a child of the NServiceBus send span regardless of the SDK span. The version 11 behavior can be enabled in version 10 via the `NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent` AppContext switch:
+When a transport SDK, such as the Azure Service Bus, RabbitMQ, or Amazon SQS client, emits its own receive span and the endpoint subscribes to that ActivitySource, version 11 creates the NServiceBus process span as a child of the SDK receive span and links it to the NServiceBus send span. In version 10, the process span is a child of the NServiceBus send span regardless of the SDK span.
 
-```csharp
-AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseTransportSpanAsParent", true);
-```
+Dashboards or queries that assume the parent of the process span is the NServiceBus send span need updating for endpoints that subscribe to a transport SDK's ActivitySource. The send span remains reachable through the span link.
 
-In version 11, the switch is removed. Dashboards or queries that assume the parent of the process span is the NServiceBus send span need updating for endpoints that subscribe to a transport SDK's ActivitySource; the send span remains reachable through the span link.
+Endpoints that do not subscribe to a transport SDK's ActivitySource are not affected. Without a listener there is no SDK span, and the process span stays a child of the NServiceBus send span.
 
-### Deprecated span attributes
+### Span names
+
+In version 10, span names are generic, such as `process message` and `publish event`. In version 11 they follow the OpenTelemetry messaging semantic convention format `{operation} {target}`. The target is the queue for receive and recoverability spans, and the message type name for outgoing spans.
+
+| Operation | Version 10 | Version 11 |
+|---|---|---|
+| Process | `process message` | `process {receiveAddress}` |
+| Send | `send message` | `send message {MessageType}` |
+| Publish | `publish event` | `publish {EventType}` |
+| Reply | `reply` | `reply {MessageType}` |
+| Subscribe | `subscribe event` | `subscribe event {EventType}` |
+| Unsubscribe | `unsubscribe event` | `unsubscribe event {EventType}` |
+| Immediate retry | `immediate retry` | `immediate retry {receiveAddress}` |
+| Delayed retry | `delayed retry` | `delayed retry {receiveAddress}` |
+| Move to error | `move to error` | `move to {errorQueue}` |
+| Discard | `discard` | `discard` |
+
+Message type names are short names, not full type names. A subscribe span for several event types lists the type names separated by spaces.
+
+Alerts, dashboards and trace searches that match on a span name must be updated. A name match fails silently: the query returns no results instead of an error.
+
+### Renamed span attributes
+
+#### nservicebus.outbox.deduplicated_message
+
+The outbox deduplication attribute is renamed from `nservicebus.outbox.deduplicate-message` to `nservicebus.outbox.deduplicated_message`. The [OpenTelemetry attribute naming rules](https://opentelemetry.io/docs/specs/semconv/general/naming/) ask for snake_case inside a dot-delimited name, and do not allow hyphens.
+
+#### Array-valued type attributes
+
+The `nservicebus.enclosed_message_types` attribute on message spans and the `nservicebus.event_types` attribute on subscribe and unsubscribe spans are arrays of type names in version 11. In version 10 they are single delimited strings.
+
+> [!NOTE]
+> An array-valued attribute is only visible through `Activity.TagObjects`. `Activity.Tags` returns string values only and skips these attributes. Custom enrichers, processors and tests that read `Activity.Tags` must move to `Activity.TagObjects`.
+
+The `nservicebus.enclosed_message_types` *metric* tag is unchanged. It remains a single delimited string.
+
+### Removed span attributes
 
 #### otel.status_code and otel.status_description
 
 Earlier versions of NServiceBus set `otel.status_code` and `otel.status_description` as explicit span attributes on failed spans, in addition to setting the span status via the OpenTelemetry API. These are NServiceBus-specific tags that predate reliable support for `Activity.SetStatus` in .NET. They are now redundant: the standard `Activity.SetStatus` call is the canonical way to convey span status, and exporters surface it correctly without these extra attributes.
 
-In version 10, these attributes are still emitted for backward compatibility. They will be removed in version 11.
+In version 10, these attributes are still emitted for backward compatibility. They are removed in version 11.
 
 If dashboards, alerts, or queries rely on `otel.status_code` or `otel.status_description` span attributes set by NServiceBus, migrate to using the span status provided by the OpenTelemetry exporter before upgrading to version 11.
 
@@ -303,23 +378,16 @@ If dashboards, alerts, or queries rely on `otel.status_code` or `otel.status_des
 
 The `exception.escaped` attribute on exception span events is deprecated in the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/attributes-registry/exception/). The spec notes that it is no longer recommended to record exceptions that are handled and do not escape the scope of a span.
 
-In version 10, `exception.escaped` is still included in exception events for backward compatibility. It will be removed in version 11.
+In version 10, `exception.escaped` is still included in exception events for backward compatibility. It is removed in version 11.
 
-#### `start_dispatch` and `end_dispatch`
+### Removed span events
 
 NServiceBus adds two span events to the incoming message pipeline span whenever outgoing messages are dispatched during message processing:
 
 - `"Start dispatching"` - emitted before the outgoing messages are handed to the transport, with a `message-count` event tag indicating how many messages are being dispatched.
 - `"Finished dispatching"` - emitted after the dispatch completes.
 
-In version 10, these events are always emitted when OpenTelemetry instrumentation is enabled. In version 11, they are opt-out via the `EmitMessageDispatchingEvents` property on `InstrumentationOptions`:
-
-```csharp
-var options = endpointConfiguration.Tracing();
-options.EmitMessageDispatchingEvents = false;
-```
-
-The default remains `true` for backward compatibility. Consider disabling these events when they add no diagnostic value in order to reduce observability ingestion cost.
+In version 10, these events are always emitted when OpenTelemetry instrumentation is enabled. In version 11, they are removed. There is no option to keep them. Consumers that read the events lose them; the dispatch itself is still visible through the outgoing message spans.
 
 ### Context propagation
 
@@ -349,6 +417,8 @@ This only matters when both of the following are true:
 - Version 10 and version 11 endpoints exchange messages during a rolling upgrade.
 
 To avoid the problem, upgrade message **receivers before senders** so that no version 10 endpoint receives baggage produced by a version 11 endpoint.
+
+The same applies on version 10 to an endpoint that has the `UseV11Behavior` switch enabled. Such an endpoint writes the version 11 baggage format, so enable the switch on receivers before senders.
 
 #### Baggage
 
@@ -389,13 +459,10 @@ These metrics are emitted automatically when the meter source is subscribed. No 
 
 The `NServiceBus.Core.Pipeline.Incoming` meter source version has been updated to `0.4.0`. If any monitoring configuration references this version string explicitly, update it accordingly.
 
-#### execution.result tag is now opt-out
+#### execution.result tag is removed
 
-The `execution.result` tag, which carries `"success"` or `"failure"`, is now opt-out. It is emitted on: `nservicebus.messaging.successes`, `nservicebus.messaging.failures`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time`, `nservicebus.messaging.handler_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.messaging.serialize_time`, and `nservicebus.sagas.fetch_time`. It remains enabled by default for backward compatibility. To disable it:
+The `execution.result` tag, which carries `"success"` or `"failure"`, is removed in version 11. There is no option to keep it. In version 10 it is emitted on `nservicebus.messaging.successes`, `nservicebus.messaging.failures`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time`, `nservicebus.messaging.handler_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.messaging.serialize_time`, and `nservicebus.sagas.fetch_time`.
 
-```csharp
-var options = endpointConfiguration.Tracing();
-options.Meters.EmitExecutionResultTags = false;
-```
+The tag duplicated information that is already available: `nservicebus.messaging.successes` and `nservicebus.messaging.failures` are separate instruments, and the histograms carry `error.type` when the operation fails. Removing the tag also lowers metric cardinality and ingestion cost.
 
-Disabling the tag reduces metric cardinality and ingestion cost when the success/failure breakdown is not needed at the metric level, for example when that information is already available through spans or logs.
+Update any dashboard or alert that groups or filters on `execution.result`. Use the separate success and failure instruments, or `error.type`, instead.
