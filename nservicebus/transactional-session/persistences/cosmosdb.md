@@ -2,7 +2,7 @@
 title: Transactional Session with CosmosDB Persistence
 summary: How to configure a transactional session with CosmosDB Persistence
 component: TransactionalSession.CosmosDB
-reviewed: 2025-01-24
+reviewed: 2026-08-20
 redirects:
 related:
 - persistence/cosmosdb
@@ -32,7 +32,7 @@ snippet: open-transactional-session-cosmos-container
 
 ## Transaction usage
 
-Message and database operations made via the the transactional session are committed together once the session is committed:
+Message and database operations made via the transactional session are committed together once the session is committed:
 
 snippet: use-transactional-session-cosmos
 

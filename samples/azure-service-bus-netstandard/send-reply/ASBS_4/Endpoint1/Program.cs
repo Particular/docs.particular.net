@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
-Console.Title = "Endpoint1";
+﻿Console.Title = "Endpoint1";
 
 #region config
 

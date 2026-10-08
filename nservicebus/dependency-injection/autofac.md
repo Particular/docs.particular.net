@@ -2,7 +2,7 @@
 title: Autofac
 summary: Details on how to Configure NServiceBus to use Autofac for dependency injection.
 component: Autofac
-reviewed: 2025-02-14
+reviewed: 2026-09-11
 redirects:
  - nservicebus/containers/autofac
 ---

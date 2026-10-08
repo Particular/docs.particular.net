@@ -1,7 +1,7 @@
 ---
 title: Setup Queue Length Metrics Reporting for the MSMQ Transport
 summary: Setup MSMQ queue length metrics reporting for NServiceBus endpoints and forward data to ServiceControl for improved monitoring
-reviewed: 2025-01-30
+reviewed: 2026-08-27
 component: MetricsServiceControl
 related:
   - samples/logging/metrics  

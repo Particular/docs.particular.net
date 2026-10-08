@@ -1,7 +1,7 @@
 ---
 title: MSMQ native integration
 summary: Sample code and scripts to facilitate native integration scenarios with MSMQ.
-reviewed: 2026-05-10
+reviewed: 2026-08-27
 component: MsmqTransport
 ---
 

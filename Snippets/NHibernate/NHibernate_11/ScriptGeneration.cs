@@ -42,22 +42,16 @@ class ScriptGeneration
     }
 
     [Saga]
-    class ExampleSaga : Saga<ExampleSagaData>
+    public class ExampleSaga : Saga<ExampleSagaData>
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ExampleSagaData> mapper)
         {
         }
     }
 
-    public class ExampleSagaData : ContainSagaData
-    {
-    }
+    public class ExampleSagaData : ContainSagaData;
 
-    class EntityMapping : ClassMapping<ExampleEntity>
-    {
-    }
+    class EntityMapping : ClassMapping<ExampleEntity>;
 
-    class ExampleEntity
-    {
-    }
+    class ExampleEntity;
 }

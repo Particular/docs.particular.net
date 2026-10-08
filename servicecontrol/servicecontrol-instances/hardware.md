@@ -9,14 +9,17 @@ This article provides recommendations and performance benchmarks to help select 
 
 ## General recommendations
 
-* A dedicated production server for installing ServiceControl instances (Error, Audit, and Monitoring).
+* A dedicated set of production servers for installing ServiceControl instances (Error, Audit, and Monitoring). 
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
-* 3 GHz quad core CPU or better.
-* A dedicated, non-virtual, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
+* 3 GHz quad-core CPU or better.
+* A dedicated, non-virtual and non-ephemeral, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
+
+> [!IMPORTANT]
+> It's recommended to not install more than one ServiceControl instance per server.
 
 ### Scaling ServiceControl
 
-When possible, scaling *up* a single machine to handle system load is recommended. When scaling up is not an option, ServiceControl may be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
+When possible, scale *up* a single machine to handle system load. When scaling up is not an option, ServiceControl may be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
 ### Ongoing server performance monitoring
 
@@ -29,15 +32,26 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 * Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures applications are not competing for storage IOPS.
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
-* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) should be located on disks suitable for low latency write operations (e.g. fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
+* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
 * Use fixed-size (not dynamically expanding virtual) disks
-* Use solid state drives (SSDs) to significantly reduce seek times and increase throughput
+* Use solid-state drives (SSDs) to significantly reduce seek times and increase throughput
+* RavenDB storage compaction requires an amount of free disk space equal to the database to compact; account for the compaction operation when determining storage disk sizes 
 
 > [!NOTE]
 > To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
 
 > [!NOTE]
 > Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
+
+### Message ingestion performance baseline
+
+When using a virtual machine with the following hardware specs:
+
+- 4 cores with hyperthreading (e.g, L4 or E4 series in Azure)
+- 32 GB of RAM
+- A dedicated premium SSD with 6400 IOPS and a max throughput of 250 MBps
+
+It's reasonable to expect that the ServiceControl instance can ingest up to 250 msgs/sec for a database of 1TB.
 
 ### Hosting in the cloud
 
@@ -64,7 +78,10 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 > [!WARNING]
 > When using ServicePulse, the message body is not viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
-### Separate disks for database and index files
+### Separate disks for database, index, and journal files
+
+> [!NOTE]
+> This suggestion applies to ServiceControl primary instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
 
 Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
 
@@ -92,3 +109,14 @@ Updating the full-text index requires a considerable amount of CPU and disk spac
 
 - Turn off the 'FULL TEXT SEARCH ON MESSAGE BODIES' in the settings configuration of ServiceControl Management Utility
 - Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file
+
+### Disable RavenDB document prefetching
+
+## Persistently high disk I/O levels on audit instances
+
+> [!NOTE]
+> Starting with ServiceControl Version 6.20.0, prefetching is disabled by default.
+
+Audit instances with full-text indexing and message expiration enabled, and affected by constant high throughput on the audit queue, might show persistently high disk I/O levels. Some of the I/O is caused by document prefetching to optimize query performance. Considering that, under those premises, there is a disproportionate amount of I/O time dedicated to writes, it is better to disable prefetching by setting the system-wide environment variable `RAVEN_Storage_EnablePrefetching` to `false`. Once set, restart the ServiceControl instances.
+
+Once instances have been restarted, validate the setting has been applied by going to instance settings -> Database Settings -> Filter by `EnablePrefetching`, the reported value is `false`.

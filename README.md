@@ -321,6 +321,7 @@ Conventions:
 * `Title` is required for all nodes other than top level.
 * Maximum of 4 levels deep.
 * URL is optional. if it does not exist it will render as an expandable node.
+* `llmsRoot` is optional and defaults to the first URL segment. Use an explicit value for synthetic or cross-root products. Values define llms index and `describedby` ownership and must be valid URL roots.
 
 ### URLs
 
@@ -553,6 +554,10 @@ Partials are version-specific files that contain markdown. Partials are preferab
 They are only rendered in the target page when the version filter matches the convention for a give file.
 
 Partial Convention: `filePrefix_key_nugetAlias_version.partial.md`
+
+When a new major version changes the behavior a partial describes, close the open-ended range of the current partial and add a new partial for the new major. For example, rename `feature_key_core_[9,).partial.md` to `feature_key_core_[9,10).partial.md` and add `feature_key_core_[10,).partial.md`. Each partial describes the defaults and opt-in options of its own version range from that version's reader perspective; migration details belong in the upgrade guide. Sibling partials must not have overlapping ranges.
+
+A partial can be added for a version that has no snippets yet. It is not shown until a versioned snippet directory makes that version appear in the version dropdown (see [snippet versioning](#snippet-versioning)), and any `snippet:` keys it references must exist in that version's snippet directory by then.
 
 Make sure to use component alias (as defined in components.yaml file) in the partial name. For most components component alias will be identical to NuGet alias, however it's not always the case, e.g. the Callbacks feature has been moved out of core package to the dedicated NServiceBus.Callbacks package, so the there are two NuGet aliases that are related to this feature, but it's still the same component and has a single component alias.
 

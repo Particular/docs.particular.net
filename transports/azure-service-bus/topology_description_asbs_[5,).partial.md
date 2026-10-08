@@ -175,7 +175,7 @@ snippet: asb-versioning-publisher-customization
 which would allow adding either a Correlation filter (preferred) or a SQL filter based on the promoted full name.
 
 > [!NOTE]
-> Starting with version 6.1 of the transport, the [FallbackTopic](#subscription-rule-matching-fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
+> Starting with version 6.4 of the transport, the [FallbackTopic](#subscription-rule-matching-fallback-topic) feature provides a simpler alternative for managing message contract evolution by routing all unmapped events to a shared topic with built-in filtering support.
 
 ##### Advanced multiplexing strategies
 
@@ -248,7 +248,7 @@ The `TopicRoutingMode` enumeration supports the following modes:
 >
 > `NotMultiplexed` and `CorrelationFilter` modes can coexist on the same topic and subscription because Azure Service Bus rule matching uses OR semantics. However, `SqlLikeFilter` is incompatible with catch-all subscriptions because it uses a distinct filtering strategy.
 
-The `TopicRoutingMode.SqlFilter` mode instructs the transport to use [SQL rules added on the subscriber](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) side to match the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) to the fully qualified class name, including `%` at the beginning and `%` at the end. In this case, `%` follows standard SQL syntax and stands for [any string of zero or more characters](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-sql-filter#pattern).
+The `TopicRoutingMode.SqlLikeFilter` mode instructs the transport to use [SQL rules added on the subscriber](https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters) side to match the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) to the fully qualified class name, including `%` at the beginning and `%` at the end. In this case, `%` follows standard SQL syntax and stands for [any string of zero or more characters](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-sql-filter#pattern).
 
 For example, a subscriber interested in the event `Shipping.OrderAccepted` will add the following rule to the subscription:
 

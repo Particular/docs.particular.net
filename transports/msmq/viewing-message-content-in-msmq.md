@@ -2,7 +2,7 @@
 title: Viewing MSMQ content
 summary: Provides options for visualizing messages and queues in MSMQ
 component: MsmqTransport
-reviewed: 2025-08-14
+reviewed: 2026-08-27
 redirects:
  - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
  - nservicebus/viewing-message-content-in-msmq
@@ -43,7 +43,7 @@ Start > Run > compmgmt.msc > Services and Applications > Message Queuing
 
 ### QueueExplorer
 
-[QueueExplorer](http://www.cogin.com/mq/) is a commercial third-party product for managing MSMQ.
+[QueueExplorer](https://www.cogin.com/mq/) is a commercial third-party product for managing MSMQ.
 
 > QueueExplorer provides features beyond the built-in console, such as copying, moving, or deleting messages; saving and loading; stress testing; and viewing/editing full message bodies (with support for .NET serialized objects).
 

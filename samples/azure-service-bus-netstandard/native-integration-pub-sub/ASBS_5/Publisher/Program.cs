@@ -1,7 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
 Console.Title = "Publisher";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Publisher");

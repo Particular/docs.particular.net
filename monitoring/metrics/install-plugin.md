@@ -9,7 +9,7 @@ redirects:
   - nservicebus/operations/metrics/service-control
 ---
 
-The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring data gathered with `NServiceBus.Metrics` to a `ServiceControl.Monitoring` service.
+The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring data collected  by `NServiceBus.Metrics` to a `ServiceControl.Monitoring` instance.
 
 > [!NOTE]
 > This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
@@ -18,11 +18,11 @@ The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring da
 > The metrics feature can't be used on send-only endpoints
 
 > [!NOTE]
-> When using the MSMQ transport, the additional [`NServiceBus.Metrics.ServiceControl.Msmq` package](/monitoring/metrics/msmq-queue-length.md) is required to report queue length, which ServiceControl cannot measure for MSMQ itself. All other metrics are reported without it.
+> For endpoints using the MSMQ transport, an additional [`NServiceBus.Metrics.ServiceControl.Msmq`](/monitoring/metrics/msmq-queue-length.md)  package is required to report queue length, as ServiceControl cannot determine MSMQ queue length on its own. All other metrics are reported without this package.
 
 ## Configuration
 
-To install the plugin in an endpoint, reference the [NServiceBus.Metrics.ServiceControl NuGet package](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/), which allows collection and propagation of metrics to ServiceControl.
+To install the plugin in an endpoint, reference the [NServiceBus.Metrics.ServiceControl  package](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/), which allows collection and propagation of metrics to ServiceControl.
 
 It can be enabled via:
 
@@ -38,12 +38,12 @@ partial: ttbr
 
 ### Instance ID
 
-Overrides the value ServiceControl monitoring uses to identify this endpoint instance, in place of `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
+The `InstanceId` parameter overrides the value ServiceControl monitoring uses to identify the endpoint instance, in place of `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 
 It is recommended to [override the *host id* and *host display name* via NServiceBus core](/nservicebus/hosting/override-hostid.md) and to use the API without the `InstanceId` argument. By default, the monitoring plugin will use these values to identify the monitored endpoint instances in the user interface.
 
 > [!NOTE]
-> Make sure that the `InstanceId` value is unique, human-readable, and stable between restarts. ServiceControl monitoring identifies instances by this value, so a value that changes on restart appears as a new instance.
+> If an explicit `InstanceId` is provided ,ensure that the `InstanceId` value is unique, human-readable, and stable between restarts. As ServiceControl monitoring identifies instances by this value, a value that changes on restart appears will appear as a new instance.
 
 A human-readable value is passed in the following example:
 

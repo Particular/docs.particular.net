@@ -1,7 +1,7 @@
 ---
 title: Multiple Deserializers
 summary: Using the AddDeserializer API to enable deserializing multiple formats.
-reviewed: 2025-01-16
+reviewed: 2026-08-10
 component: Core
 related:
  - nservicebus/serialization

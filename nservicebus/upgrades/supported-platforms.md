@@ -1,10 +1,11 @@
 ---
 title: Supported frameworks and platforms
 summary: Frameworks and platforms supported by NServiceBus
-reviewed: 2024-05-06
+reviewed: 2026-10-05
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
+ - nservicebus/upgrades/support-policy
  - nservicebus/upgrades/supported-versions
 ---
 
@@ -25,6 +26,10 @@ Each major version of NServiceBus is built against a specific framework version.
 | NServiceBus 9       | .NET 8 and up | — |
 | NServiceBus 8       | .NET 6 and up | .NET Framework 4.7.2 and up |
 | NServiceBus 7       | .NET Core 2.0 and up | .NET Framework 4.5.2 and up |
+
+### .NET Framework
+
+include: dotnet-framework-support
 
 ## Supported .NET operating systems
 

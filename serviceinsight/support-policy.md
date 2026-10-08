@@ -1,7 +1,7 @@
 ---
 title: ServiceInsight support policy
 summary: Versions of ServiceInsight that are currently supported
-reviewed: 2025-01-05
+reviewed: 2026-08-10
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/all-versions
@@ -13,12 +13,7 @@ related:
  - servicecontrol/upgrades/supported-versions
 ---
 
-> [!WARNING]
-> **ServiceInsight has been sunset and will be deprecated on February 10th, 2027.**
->
-> No further improvements or features will be made but support (including bug fixes) will continue until the deprecation date.
-> 
-> We recommend [migrating to ServicePulse](/servicepulse/migrate-from-serviceinsight.md) before the deprecation date for vizualization and debugging capabilities.
+include: serviceinsight-sunset
 
 The latest version can be found on the [downloads page](https://particular.net/downloads); however, it is recommended to migrate to the latest version of [ServicePulse](/servicepulse/migrate-from-serviceinsight.md) for the latest features and full support.
 
