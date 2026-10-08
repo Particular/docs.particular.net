@@ -1,7 +1,7 @@
 ---
 title: Migrate ServiceControl to container deployment
 summary: Instructions on how to migrate ServiceControl instances from Windows to container-based hosting.
-reviewed: 2026-04-20
+reviewed: 2026-08-07
 isUpgradeGuide: true
 component: ServiceControl
 related:
@@ -10,7 +10,7 @@ related:
   - servicecontrol/monitoring-instances/deployment/containers
 ---
 
-ServiceControl 5.3.0 adds the ability to host ServiceControl instances in Linux containers. This article describes how to migrate from ServiceControl hosted on Windows hosting to new ServiceControl instances hosted in containerized infrastructure.
+ServiceControl 5.3.0 adds the ability to host ServiceControl instances in Linux containers. This article describes how to migrate from ServiceControl hosted on Windows hosting to new ServiceControl instances hosted in containerized infrastructure. See [Running the Particular Service Platform in containers](/platform/containers.md) for an overview of the resulting container topology.
 
 Migration for ServiceControl instances is different for each instance type.
 
