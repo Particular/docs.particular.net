@@ -2,7 +2,7 @@
 title: Transactional Session with NHibernate Persistence
 summary: How to configure the transactional session with NHibernate Persistence
 component: TransactionalSession.NHibernate
-reviewed: 2025-01-24
+reviewed: 2026-08-19
 redirects:
 related:
 - persistence/nhibernate
@@ -25,7 +25,7 @@ snippet: open-transactional-session-nhibernate
 
 ## Transaction usage
 
-Message and database operations made via the the transactional session are committed together once the session is committed:
+Message and database operations made via the transactional session are committed together once the session is committed:
 
 snippet: use-transactional-session-nhibernate
 

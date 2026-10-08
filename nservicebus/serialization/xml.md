@@ -1,7 +1,7 @@
 ---
 title: XML Serializer
 summary: A custom XML serializer
-reviewed: 2025-01-17
+reviewed: 2026-08-10
 component: Xml
 redirects:
  - nservicebus/serialization/xml-serializer
@@ -63,7 +63,7 @@ The XML serializer in NServiceBus is a custom implementation. As such it does no
 * Types with non-default constructors. Types must have a public constructor with no parameters.
 * [ArrayList](https://msdn.microsoft.com/en-us/library/system.collections.arraylist.aspx)
 * [HashTable](https://msdn.microsoft.com/en-us/library/system.collections.hashtable.aspx)
-#if-version [,11)
+#if-version [,10.2)
 * [DateOnly](https://learn.microsoft.com/en-us/dotnet/api/system.dateonly) _(Supported starting in version 10.2)_
 * [TimeOnly](https://learn.microsoft.com/en-us/dotnet/api/system.timeonly) _(Supported starting in version 10.2)_
 #end-if

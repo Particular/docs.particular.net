@@ -5,12 +5,10 @@ component: CloudEvents
 reviewed: 2026-02-05
 versions: '[1,]'
 related:
+- nservicebus/messaging/envelope-handlers
 - samples/aws/cloud-events
 - samples/azure-service-bus-netstandard/cloud-events
 ---
-
-> [!WARNING]
-> This is an experimental feature and, as such, is subject to changes.
 
 This guideline explains how to configure NServiceBus endpoints to receive [CloudEvents](https://cloudevents.io/).
 

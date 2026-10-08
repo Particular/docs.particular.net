@@ -1,7 +1,7 @@
 ---
 title: Overview
 summary: Samples using NServiceBus and the Particular Service Platform
-reviewed: 2025-02-03
+reviewed: 2026-09-02
 redirects:
   - samples/netcore
 ---

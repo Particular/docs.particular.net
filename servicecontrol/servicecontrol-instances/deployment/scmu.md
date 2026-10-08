@@ -1,7 +1,7 @@
 ---
 title: Deploying Error instances using ServiceControl Management
 summary: A guide to using ServiceControl Management Utility to set up ServiceControl instances. Information about installing and upgrading ServiceControl instances.
-reviewed: 2026-03-20
+reviewed: 2026-09-02
 component: ServiceControl
 related:
  - servicecontrol/servicecontrol-instances/hardware
@@ -29,16 +29,20 @@ See [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md)
 
 ## Installing ServiceControl instances
 
-There are [three types](/servicecontrol/#servicecontrol-instance-types) of ServiceControl instances that can be installed using the ServiceControl Management utility. As the error and audit instance usually go side-by-side, they are installed and configured at the same time.
+There are [three types](/servicecontrol/#servicecontrol-instance-types) of ServiceControl instances that can be installed using the ServiceControl Management utility. As the error and audit instance usually go side-by-side, they can be installed and configured at the same time.
 
 1. Open the ServiceControl Management Utility.
 2. Click the `New` button at the top-right and a popup window appears.
-3. Select either `Add ServiceControl and Audit instances` or `Add monitoring instance`.
+3. Select one of the following before clicking `Next`:
+   1. `Error only` - to install only the Error instance, with the option to include [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md)
+   2. `Error + Audit` - to install the Error and Audit instances, with the option to include [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md)
+   3. `Audit only` - to install only the Audit instance
+   4. `Monitoring only` - to install only the Monitoring instance
 4. Provide a name and transport.
    1. The default name is `Particular.ServiceControl`.
       The name is used to derive names for the error and audit instances. The name of each instance can be adjusted from its default if required.
    2. The transport should match the endpoint's transport.
-5. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
+5. For additional instance settings, the `ServiceControl` and `ServiceControl Audit` sections are expanded.
    1. The name of the instance can be modified; the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
       1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename) to ServiceControl.
       2. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` is a common option.
@@ -50,7 +54,7 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
       This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
-   8. Disable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) if it is not needed.
+   8. [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) can be confirmed as on or off.
 
 A monitoring instance differs from error and audit instances in its configuration:
 

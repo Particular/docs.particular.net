@@ -1,7 +1,7 @@
 ---
 title: Transport configuration
 summary: ServiceControl can be configured to use one of the supported message transports, which are configured for each instance type
-reviewed: 2026-07-03
+reviewed: 2026-07-15
 component: ServiceControl
 ---
 
@@ -41,7 +41,8 @@ Furthermore, in addition to the [connection string options of the transport](/tr
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
-* `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies the delay between queue length refresh queries for queue length monitoring. The default value is 500 ms.
+
+The `QueueLengthQueryDelayInterval` option, which applies only to the Monitoring instance, is documented separately under [Queue length monitoring](#azure-service-bus-queue-length-monitoring).
 
 ### Enabling Managed Identity
 
@@ -83,6 +84,15 @@ For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and
 - The [error queue name](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) would need to be set to `my-hierarchy/error`.
 - The [audit queue name](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) would need to be set to `my-hierarchy/audit`.
 - The [monitoring queue name](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringerrorqueue) would need to be set to `my-hierarchy/monitoring`.
+
+### Queue length monitoring
+
+> [!NOTE]
+> This setting applies only to the [Monitoring instance](/servicecontrol/monitoring-instances/), which is the only instance type that tracks queue lengths.
+
+The Monitoring instance periodically queries the Azure Service Bus namespace to refresh the [queue length](/monitoring/metrics/definitions.md#metrics-captured-queue-length) metric shown in ServicePulse monitoring:
+
+* `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - The delay between successive queue length refresh queries. The default value is 500 ms. Increase this value if Azure Service Bus rate throttling is observed.
 
 ### Example connection string
 

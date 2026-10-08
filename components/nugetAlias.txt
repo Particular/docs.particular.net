@@ -93,6 +93,7 @@ Extensions.Logging: NServiceBus.Extensions.Logging
 TimeoutMigration: Particular.TimeoutMigration
 CosmosDB: NServiceBus.Persistence.CosmosDB
 NonDurablePersistence: NServiceBus.Persistence.NonDurable
+NonDurableTransport: NServiceBus.Transport.NonDurable
 TransactionalSession: NServiceBus.TransactionalSession
 NHibernateTS: NServiceBus.NHibernate.TransactionalSession
 SqlPersistenceTS: NServiceBus.Persistence.Sql.TransactionalSession

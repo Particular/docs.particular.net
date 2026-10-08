@@ -2,7 +2,7 @@
 title: Messages, events, and commands
 summary: Messages as commands or events are the the unit of communication for message-based distributed systems. NServiceBus ensures they are used correctly.
 component: Core
-reviewed: 2025-02-19
+reviewed: 2026-09-30
 related:
  - nservicebus/messaging/conventions
  - nservicebus/messaging/unobtrusive-mode
@@ -18,13 +18,13 @@ redirects:
  - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A _message_ is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and users to follow messaging best-practices. 
+A message is the unit of communication for NServiceBus. There are two types of messages: commands and events. This distinction enables users to express the intent of messages and to follow messaging best-practices.
 
 ## Commands
 
-A command tells a service to do something, and typically a command should only be consumed by a single consumer. Commands are sent via either message handler context within a message handler, a saga, a pipeline behavior, a message or transactional session. For example if there is a command, such as SubmitOrder, then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
+A command tells a service to do something. Typically, a command should only be consumed by a single consumer. For example, if there is a command called `SubmitOrder` then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
 
-Commands should be expressed in a verb-noun sequence, following the _tell_ style:
+Commands should be expressed in a verb-noun sequence, following the tell style:
 
 - UpdateCustomerAddress
 - UpgradeCustomerAccount
@@ -32,47 +32,59 @@ Commands should be expressed in a verb-noun sequence, following the _tell_ style
 
 ## Events
 
-An event signifies that something has happened. Events are published via either message handler context within a message handler, a saga, a pipeline behavior, a message or transactional session.
+An event signifies that something has happened. Events can be consumed by multiple consumers that are interested in reacting to the event occurring.
 
 Events should be expressed in a noun-verb (past tense) sequence, indicating that something happened. Some example event names may include:
 
 - CustomerAddressUpdated
 - CustomerAccountUpgraded
-- OrderSubmitted, OrderAccepted, OrderRejected, OrderShipped
+- OrderSubmitted
+- OrderAccepted
+- OrderRejected
+- OrderShipped
 
-## Commands vs Events 
+## Commands vs Events
 
 Command | Event
 -- | --
-Used to _make a request to perform an action_. | Used to _communicate that an action has been performed_.
-Has one logical owner. | Has one logical owner.
-Should be _sent to_ the logical owner. | Should be _published by_ the logical owner.
-Cannot be _published_. | Cannot be _sent_.
-_Cannot_ be subscribed to or unsubscribed from. | _Can_ be subscribed to and unsubscribed from.
-_Can_ be sent using the [gateway](/nservicebus/gateway). | _Cannot_ be sent using the [gateway](/nservicebus/gateway).
+Used to make a request to perform an action | Used to communicate that an action has been performed
+Has one logical owner | Has one logical owner
+Should be sent to the logical owner | Should be published by the logical owner
+Cannot be published | Cannot be sent
+Cannot be subscribed to or unsubscribed from | Can be subscribed to and unsubscribed from
+Can be sent using the [gateway](/nservicebus/gateway) | Cannot be sent using the [gateway](/nservicebus/gateway)
 
 > [!NOTE]
-> In a request and response pattern, _reply_ messages are neither a command nor an event.
+> In a request and response pattern, reply messages are neither a command nor an event.
 
 ### Validation
 
 There are checks in place to ensure best practices are followed. Violations of the above guidelines generate the following exceptions:
 
- * _"Pub/Sub is not supported for Commands. They should be sent directly to their logical owner."_ — thrown when attempting to publish a Command or subscribe to/unsubscribe from a Command.
- * _"Events can have multiple recipients so they should be published."_ — thrown when attempting to use `Send()` to send an event.
- * _"Reply is not supported for commands or events. Commands should be sent to their logical owner. Events should be published."_ — thrown when attempting to reply with a Command or an Event.
- * _"Cannot configure routing for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the destination endpoint for a non-message type.
- * _"Cannot configure routing for assembly {name} because it contains no types considered as messages. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the destination endpoint for an assembly that contains no types considered messages.
- * _"Cannot configure routing for namespace {name} because it contains no types considered as messages..."_ — thrown when configuring the destination endpoint for a namespace that contains no types considered messages.
- * _"Cannot configure publisher for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the publisher for a type that is not a message.
- * _"Cannot configure publisher for type {name} because it is not considered an event. Event types have to either implement NServiceBus.IEvent interface or match a defined event convention."_ — thrown when configuring the publisher for a type that is not an event.
- * _"Cannot configure publisher for type {name} because it is a command."_ — thrown when configuring the publisher for a command.
+ * `Pub/sub is not supported for commands, so they should be be sent to their logical owner instead.`
+   * Thrown when attempting to publish a command or subscribe to/unsubscribe from a command
+ * `Events can have multiple recipients, so they should be published.`
+   * Thrown when attempting to use `Send()` to send an event
+ * `Reply is not supported for commands or events. Commands should be sent to their logical owner. Events should be published.`
+   * Thrown when attempting to reply with a command or an event
+ * `Cannot configure routing for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention.`
+   * Thrown when configuring the destination endpoint for a non-message type
+ * `Cannot configure routing for assembly {name} because it contains no types considered as messages. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention.`
+   * Thrown when configuring the destination endpoint for an assembly that contains no types considered messages
+ * `Cannot configure routing for namespace {name} because it contains no types considered as messages. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention.`
+   * Thrown when configuring the destination endpoint for a namespace that contains no types considered messages
+ * `Cannot configure publisher for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention.`
+   * Thrown when configuring the publisher for a type that is not a message
+ * `Cannot configure publisher for type {name} because it is not considered an event. Event types have to either implement NServiceBus.IEvent interface or match a defined event convention.`
+   * Thrown when configuring the publisher for a type that is not an event
+ * `Cannot configure publisher for type {name} because it is a command.`
+   * Thrown when configuring the publisher for a command
 
  This enforcement is enabled by default but can be [disabled](best-practice-enforcement.md).
 
 ## Designing messages
 
-A message can be defined using a [class](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes), [record](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records), or an [interface](/nservicebus/messaging/messages-as-interfaces.md). Messages should focus on _data only_ and avoid including methods or other business logic. Treating messages as simple contracts makes them easier to version and evolve over time.
+A message can be defined using a [class](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes), [record](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records), or an [interface](/nservicebus/messaging/messages-as-interfaces.md). Messages should focus on data only and avoid including methods or other business logic. Treating messages as simple contracts makes them easier to version and evolve over time.
 
 Ideally, a good message type will:
 
@@ -83,7 +95,7 @@ Ideally, a good message type will:
 
 Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message.
 
-Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).
+Messages define the data contracts between endpoints. More details are available in the [sharing message contracts](sharing-contracts.md) documentation.
 
 By following these guidelines, message types are generally more compatible with [serializers](/nservicebus/serialization) and tend to be more evolvable over time.
 
@@ -100,9 +112,9 @@ Messages can be defined by implementing a marker interface or specifying a custo
 
 The simplest way to identify messages is to use interfaces.
 
-* `NServiceBus.ICommand` for a command.
-* `NServiceBus.IEvent` for an event.
-* `NServiceBus.IMessage` for any other message type (e.g., a _reply_ in a request/response pattern).
+* `NServiceBus.ICommand` for a command
+* `NServiceBus.IEvent` for an event
+* `NServiceBus.IMessage` for any other message type (e.g., a reply in a request/response pattern)
 
 ```csharp
 public class MyCommand : ICommand { }
@@ -112,7 +124,7 @@ public class MyEvent : IEvent { }
 public class MyMessage : IMessage { }
 ```
 
-Those interfaces are available in [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces). The project targets `netstandard2.0` has a stable version number which is highly unlikely to change. Using these well-defined interfaces should be prefered over conventions since `NServiceBus.MessageInterfaces` package can be used to create a shared message assembly that can be used by multiple major versions of NServiceBus, and in projects using different target frameworks, while still relying on the `ICommand` and `IEvent` marker interfaces.
+The interfaces are available in the [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces) package. The package targets `netstandard2.0` and has a stable version number which is highly unlikely to change. Using these well-defined interfaces should be preferred over conventions because the `NServiceBus.MessageInterfaces` package can be used to create a shared message assembly that can be used by multiple major versions of NServiceBus while still relying on the `ICommand` and `IEvent` marker interfaces.
 
 ### Conventions
 

@@ -1,8 +1,8 @@
 ### Customizing the transaction isolation level
 
-The transaction isolation level for the outbox operation can be specified:
+Use the following API to configure the transaction isolation level for outbox operations:
 
 snippet: OutboxTransactionIsolation
 
 > [!NOTE]
-> The default isolation level is `Serializable`. The isolation level values of `Chaos`, `ReadUncommitted`, `Snapshot` and `Unspecified` are not allowed. Outbox relies on pessimistic locking to prevent concurrent more-than-once invocation.
+> The default isolation level is `Serializable`. The `Chaos`, `ReadUncommitted`, `Snapshot`, and `Unspecified` isolation levels are not supported. The outbox uses pessimistic locking to prevent concurrent duplicate message processing.

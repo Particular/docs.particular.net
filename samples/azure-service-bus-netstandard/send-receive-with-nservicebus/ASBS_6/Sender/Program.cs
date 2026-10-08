@@ -1,11 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
 using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -15,7 +7,7 @@ builder.Logging.AddConsole();
 
 var endpointConfiguration = new EndpointConfiguration("Sender");
 
-var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
 var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

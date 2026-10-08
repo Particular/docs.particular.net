@@ -3,9 +3,6 @@ using Azure.Messaging.ServiceBus.Administration;
 
 namespace NativeSender
 {
-    using System;
-    using System.Threading.Tasks;
-
     public static class TopologyManager
     {
         public static async Task CreateSubscription(string connectionString, string subscriptionName, string ruleName, SqlRuleFilter sqlFilter, string topicPath, string forwardTo)

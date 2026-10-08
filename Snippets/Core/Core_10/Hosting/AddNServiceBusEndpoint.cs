@@ -31,12 +31,14 @@ class AddNServiceBusEndpointHosting
         var salesConfig = new EndpointConfiguration("Sales");
         var billingConfig = new EndpointConfiguration("Billing");
 
+        // Customize each endpoint configuration
+
         builder.Services.AddNServiceBusEndpoint(salesConfig, salesConfig.EndpointName);
         builder.Services.AddNServiceBusEndpoint(billingConfig, billingConfig.EndpointName);
 
         #endregion
     }
-    
+
     void MultipleEndpointsLean(HostApplicationBuilder builder)
     {
         #region AddNServiceBusEndpointMultiLean

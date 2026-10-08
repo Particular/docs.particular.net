@@ -8,7 +8,7 @@ These commands are dedicated to endpoints that are configured with the migration
 - `migration endpoint subscribe migrated`
 - `migration endpoint unsubscribe migrated`
 
-### asb-transport migration endpoint create
+### migration endpoint create
 
 Creates infrastructure for an endpoint: input queue, topic, and subscription.
 
@@ -51,7 +51,7 @@ asb-transport migration endpoint create name
 
 
 
-### asb-transport migration endpoint subscribe
+### migration endpoint subscribe
 
 Creates a new subscription for an endpoint using single-topic approach.
 
@@ -79,7 +79,7 @@ asb-transport migration endpoint subscribe name event-type
 > [!NOTE] 
 > The hierarchy namespace option shifts the migration endpoint consistently into the hierarchy meaning the endpoint name and topics will have the hierarchy name applied.
 
-### asb-transport migration endpoint unsubscribe
+### migration endpoint unsubscribe
 
 Delete a subscription for an endpoint using single-topic approach.
 
@@ -107,7 +107,7 @@ asb-transport migration endpoint unsubscribe name event-type
 > [!NOTE] 
 > The hierarchy namespace option shifts the migration endpoint consistently into the hierarchy meaning the endpoint name and topics will have the hierarchy name applied.
 
-### asb-transport migration endpoint subscribe-migrated
+### migration endpoint subscribe-migrated
 
 Creates a new subscription for an endpoint using topic-per-event approach.
 
@@ -129,7 +129,7 @@ asb-transport migration endpoint subscribe-migrated name topic
 > [!NOTE] 
 > The hierarchy namespace option shifts the migration endpoint consistently into the hierarchy meaning the endpoint name and topics will have the hierarchy name applied.
 
-### asb-transport migration endpoint unsubscribe-migrated
+### migration endpoint unsubscribe-migrated
 
 Deletes a subscription for an endpoint using topic-per-event approach.
 
