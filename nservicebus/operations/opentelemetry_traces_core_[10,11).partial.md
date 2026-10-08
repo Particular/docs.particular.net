@@ -315,4 +315,26 @@ This also gives ops teams independent control over observability behavior in eac
 
 When the environment variable is not set, the value configured in code is used, defaulting to `SpanAndLogs` if not explicitly configured.
 
+### Startup diagnostics
+
+The effective instrumentation options are written to the `OpenTelemetry` section of the [startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) file. Use this section to verify which trace modes and exception recording mode an endpoint runs with. `ExceptionRecordingMode` shows the value after the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable override is applied.
+
+```json
+"OpenTelemetry": {
+  "SendTraceMode": "ContinueExisting",
+  "PublishTraceMode": "StartNew",
+  "ExceptionRecordingMode": "SpanAndLogs",
+  "Recoverability": {
+    "DelayedRetryTraceMode": "StartNew"
+  },
+  "DelayedDelivery": {
+    "SendOperationTraceMode": "StartNew",
+    "SagaTimeoutTraceMode": "StartNew"
+  },
+  "UseV11Behavior": false
+}
+```
+
+`UseV11Behavior` shows whether the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch is enabled. The switch turns on the version 11 tracing behaviors described in [Version 11 behavior opt-in](#traces-version-11-behavior-opt-in). It does not change the `PublishTraceMode` default, which stays `StartNew` until version 11.
+
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
