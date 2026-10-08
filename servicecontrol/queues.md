@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Queues
 summary: A breakdown of all of the queues required by each ServiceControl instance
-reviewed: 2025-07-06
+reviewed: 2026-10-07
 component: ServiceControl
 ---
 
@@ -23,6 +23,13 @@ These queues can also be manually created before deploying a ServiceControl inst
 - [MSMQ](/transports/msmq/operations-scripting.md#create-queues)
 - [RabbitMQ](/transports/rabbitmq/operations-scripting.md#endpoint-create)
 - [Amazon SQS](/transports/sqs/operations-scripting.md)
+
+If queues are manually created, queue creation can be skipped during setup.
+
+- Containers: add the `--skip-queue-creation` argument together with `--setup` or `--setup-and-run`
+- PowerShell: add the `-SkipQueueCreation` argument to the `New-*` and `Invoke-*Upgrade` cmdlets
+- Command line (Windows service executables): add `--skip-queue-creation` together with `--setup` (or `-s`)
+
 
 > [!NOTE]
 > ServiceControl instances do not subscribe to any events, and so do not require any subscriptions to be configured.

@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Audit instances using PowerShell
-reviewed: 2026-05-07
+reviewed: 2026-10-07
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/installation-powershell
@@ -31,6 +31,8 @@ Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/ser
 snippet: ps-new-audit-instance
 
 include: powershell-new-configuration
+
+include: powershell-skip-queue-creation
 
 > [!NOTE]
 > The address of a ServiceControl Error instance must be provided to send notifications to.

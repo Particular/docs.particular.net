@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
 summary: A guide to setting up and deploying ServiceControl Error instances using Containers
-reviewed: 2026-04-17
+reviewed: 2026-10-07
 component: ServiceControl
 versions: '[5.3, )'
 redirects:
@@ -52,6 +52,15 @@ docker run {OPTIONS} particular/servicecontrol --setup-and-run
 The `--setup-and-run` argument runs the setup process when the container starts, after which the application runs normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
 
 Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
+
+### Skipping queue creation
+
+include: servicecontrol-container-skip-queue-creation
+
+```shell
+# Using docker run
+docker run --rm {OPTIONS} particular/servicecontrol --setup --skip-queue-creation
+```
 
 ## Required settings
 
