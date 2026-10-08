@@ -2,7 +2,7 @@
 title: Usage Reporting Setup
 summary: How to set up ServicePulse for usage reporting
 component: ServicePulse
-reviewed: 2026-02-11
+reviewed: 2026-10-08
 related:
   - servicepulse/usage-reporting-with-servicepulse
 redirects:
@@ -29,17 +29,20 @@ Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 ### Azure Service Bus
 
 Gathering usage data requires:
+
 1. Configuring the `SubscriptionId` for the Azure Service Bus namespace
-2. A token-based identity with permission to read usage data
+2. An identity with permission to read usage data from Azure Monitor
 
->[!NOTE]
->The built-in **Monitoring Reader** role is sufficient to read usage data. For a minimal permission set, see [Minimum permissions](#connection-setup-azure-service-bus-minimum-permissions)
+> [!NOTE]
+> The built-in **Monitoring Reader** role is sufficient to read usage data. For a minimal permission set, see [Minimum permissions](#connection-setup-azure-service-bus-minimum-permissions).
 
-If ServiceControl uses managed identity (or any token-based credentials) to connect to the Azure Service Bus namespace, then ServiceControl uses the same credentials to gather usage data.
+If the ServiceControl error instance uses `DefaultAzureCredential` or `ManagedIdentityCredential` for its Azure Service Bus connection, usage reporting uses the same identity. Grant that identity access to Azure Monitor and configure `LicensingComponent/ASB/SubscriptionId`. The separate `LicensingComponent/ASB/TenantId`, `ClientId`, and `ClientSecret` settings are not required.
 
-If ServiceControl does not use token-based credentials to connect to the Azure Service Bus namespace, separate credentials must be supplied.
+For connection instructions, see [Managed identity](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) or [Certificate authentication](/servicecontrol/transports.md#azure-service-bus-enabling-certificate-authentication) in the ServiceControl transport configuration documentation.
 
-Steps:
+If ServiceControl connects to Azure Service Bus using a shared access key, separate client-secret credentials must be supplied for usage reporting. To use a certificate instead, configure the error instance's Service Bus connection as described in the certificate authentication instructions above.
+
+Steps for shared access key connections:
 
 1. Create an **ApplicationId (aka ClientId)** for ServiceControl
 2. Assign it the **Monitoring Reader** role
