@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Monitoring instances using PowerShell
-reviewed: 2026-04-17
+reviewed: 2026-10-07
 component: ServiceControl
 redirects:
  - servicecontrol/monitoring-instances/installation/installation-powershell
@@ -30,6 +30,8 @@ Use the `New-MonitoringInstance` cmdlet to deploy a new ServiceControl Monitorin
 snippet: ps-new-monitoring-instance
 
 include: powershell-new-configuration
+
+include: powershell-skip-queue-creation
 
 ### Listing deployed instances
 

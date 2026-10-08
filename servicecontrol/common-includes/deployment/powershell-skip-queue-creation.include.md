@@ -1,0 +1,1 @@
+To skip queue creation, for example when the queues were created manually, add the `-SkipQueueCreation` argument. Only queue creation is skipped; the rest of the setup process still runs. See [ServiceControl queues](/servicecontrol/queues.md#skipping-queue-creation) for details.
