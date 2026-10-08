@@ -335,6 +335,6 @@ The effective instrumentation options are written to the `OpenTelemetry` section
 }
 ```
 
-`UseV11Behavior` shows whether the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch is enabled. The switch turns on the version 11 tracing behaviors described in [Version 11 behavior opt-in](#version-11-behavior-opt-in). It does not change the `PublishTraceMode` default, which stays `StartNew` until version 11.
+`UseV11Behavior` shows whether the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch is enabled. The switch turns on the version 11 tracing behaviors described in [Version 11 behavior opt-in](#traces-version-11-behavior-opt-in). It does not change the `PublishTraceMode` default, which stays `StartNew` until version 11.
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
