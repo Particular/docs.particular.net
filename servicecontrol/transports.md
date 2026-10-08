@@ -136,6 +136,8 @@ These options are available in version 6.5 and above:
 * `ManagementApiPassword=<PASSWORD>` - The password used to connect to the RabbitMQ management API. If this option is not set, the credentials from the broker connection string will be used.
 * `ValidateDeliveryLimits=<true(default)|false>` - Controls the [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation) of the ServiceControl queues.
 
+In version 6.5 and above, ServiceControl runs the same broker requirement checks and delivery limit validation as endpoints for the queues it consumes from, such as the error, audit, and `Particular.*` queues. To run ServiceControl with a management API user that has only the read-only `management` tag, [create delivery limit policies in advance](/transports/rabbitmq/connection-settings.md#delivery-limit-validation-creating-delivery-limit-policies-in-advance) that also cover these queues. Usage reporting and queue length monitoring only read from the management API. See [minimum management API permissions](/transports/rabbitmq/connection-settings.md#configuring-rabbitmq-management-api-access-minimum-management-api-permissions) for details.
+
 ### Example connection string
 
 ```text
