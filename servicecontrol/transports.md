@@ -1,7 +1,7 @@
 ---
 title: Transport configuration
 summary: ServiceControl can be configured to use one of the supported message transports, which are configured for each instance type
-reviewed: 2026-07-15
+reviewed: 2026-10-08
 component: ServiceControl
 ---
 
@@ -55,6 +55,58 @@ As of version 4.21.8 of ServiceControl, the following options can be used to ena
   * The fully-qualified namespace will be parsed from the `Endpoint=sb://my-namespace.servicebus.windows.net/` connection string option
   * When specifying a managed identity for the connection string, a [`ManagedIdentityCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
   * Set the `ClientId=some-client-id` connection string option to use a specific [user-assigned identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
+
+### Enabling certificate authentication
+
+ServiceControl can authenticate to Azure Service Bus with an application certificate instead of a client secret. This uses `DefaultAzureCredential` with the Azure SDK's [certificate environment settings](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.environmentcredential).
+
+1. Create or select a Microsoft Entra app registration. In **Certificates & secrets > Certificates**, upload the public certificate. See [Register an application and upload a certificate](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-1-recommended-upload-a-trusted-certificate-issued-by-a-certificate-authority).
+2. On the Azure Service Bus namespace, open **Access control (IAM)** and assign the application's service principal the **Azure Service Bus Data Owner** role. This grants ServiceControl access to its queues and permission to manage transport entities.
+3. Place the certificate and its private key on the ServiceControl host in a PEM or PFX file. Grant the account running the ServiceControl instance read access to the file.
+4. Set the instance's transport connection string to only the fully-qualified namespace:
+
+   ```text
+   my-namespace.servicebus.windows.net
+   ```
+
+   Use the appropriate connection setting for the instance:
+
+   | Instance | Environment variable | Configuration setting |
+   | --- | --- | --- |
+   | Error | `SERVICECONTROL_CONNECTIONSTRING` | [Error instance connection string](/servicecontrol/servicecontrol-instances/configuration.md#transport-nservicebustransport) |
+   | Audit | `SERVICECONTROL_AUDIT_CONNECTIONSTRING` | [Audit instance connection string](/servicecontrol/audit-instances/configuration.md#transport-nservicebustransport) |
+   | Monitoring | `MONITORING_CONNECTIONSTRING` | [Monitoring instance connection string](/servicecontrol/monitoring-instances/configuration.md#transport-nservicebustransport) |
+
+   In an application configuration file, set `NServiceBus/Transport` in the `connectionStrings` section to the same namespace value. SCMU users can set the transport connection string in the instance settings.
+
+   Do not include `sb://`, a trailing slash, or additional connection string options. Do not use `Authentication=Managed Identity`: that selects `ManagedIdentityCredential`, which does not use the application certificate.
+
+5. Make these environment variables available to the ServiceControl process:
+
+   | Environment variable | Value |
+   | --- | --- |
+   | `AZURE_TENANT_ID` | The app registration's Directory (tenant) ID. |
+   | `AZURE_CLIENT_ID` | The app registration's Application (client) ID. |
+   | `AZURE_CLIENT_CERTIFICATE_PATH` | The absolute path to the PEM or PFX file containing the certificate and private key. |
+   | `AZURE_CLIENT_CERTIFICATE_PASSWORD` | The password protecting a PFX file, if applicable. Omit for an unencrypted certificate file. |
+
+   Leave `AZURE_CLIENT_SECRET` unset. If both a client secret and a certificate are configured, the Azure SDK selects the client secret.
+
+   For a Windows service, configure the environment for the service process. Variables set only in an interactive shell are not available to the service.
+
+6. Restart the ServiceControl instance after changing its connection or environment settings.
+
+#### Usage reporting with a certificate
+
+Usage reporting requires ServiceControl version 5.4 and above and ServicePulse version 1.40 and above. When the error instance uses the certificate connection above, usage reporting uses the same application's identity to read Azure Monitor.
+
+1. Assign the application's service principal the **Monitoring Reader** role on the Azure Service Bus namespace, in addition to its Service Bus permissions. For a custom role, see [Minimum permissions](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus-minimum-permissions).
+2. Configure [`LicensingComponent/ASB/SubscriptionId`](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport-licensingcomponentasbsubscriptionid) with the subscription containing the namespace. The environment variable is `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID`.
+3. Omit `LicensingComponent/ASB/TenantId`, `LicensingComponent/ASB/ClientId`, and `LicensingComponent/ASB/ClientSecret`. The Azure environment variables above configure the certificate identity; these separate usage-reporting settings are not used with this connection.
+4. Restart the error instance and run the connection test from the ServicePulse [Usage Setup diagnostics](/servicepulse/usage-reporting-setup.md#diagnostics). After the test succeeds, [generate a usage report](/servicepulse/usage-reporting-with-servicepulse.md).
+
+> [!NOTE]
+> The error instance must use the certificate identity for its Azure Service Bus connection as well as usage reporting. Keeping a shared access key connection requires separate client-secret credentials for usage reporting, even if the certificate environment variables are set.
 
 ### Enabling Partitioned Entities
 
