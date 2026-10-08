@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
 using NativeSender;
@@ -32,7 +30,7 @@ static class Program
         await TopologyManager.CreateSubscription(
             ConnectionString,
             queueName,
-            ruleName:"$default",
+            ruleName: "$default",
             sqlFilter: new TrueRuleFilter(),
             topicPath: "EventOne",
             forwardTo: queueName
@@ -40,7 +38,7 @@ static class Program
         await TopologyManager.CreateSubscription(
             ConnectionString,
             queueName,
-            ruleName:"$default",
+            ruleName: "$default",
             sqlFilter: new TrueRuleFilter(),
             topicPath: "EventTwo",
             forwardTo: queueName
@@ -60,7 +58,7 @@ static class Program
 
     static async Task MessageHandler(ProcessMessageEventArgs args)
     {
-        var messageType = (string) args.Message.ApplicationProperties[EnclosedMessageTypesHeader];
+        var messageType = (string)args.Message.ApplicationProperties[EnclosedMessageTypesHeader];
         var bodyJson = Encoding.UTF8.GetString(args.Message.Body.ToArray());
 
         Console.WriteLine($"Received: {messageType}");

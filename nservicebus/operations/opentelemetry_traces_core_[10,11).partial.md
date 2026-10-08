@@ -152,6 +152,21 @@ To change the default for all publishes from an endpoint, set `PublishTraceMode`
 
 snippet: opentelemetry-trace-mode-publish
 
+The opposite override is also available. Use it to keep the new trace for one event after the endpoint
+default was changed to `ContinueExisting`:
+
+snippet: opentelemetry-publishoptions-start-new-trace
+
+Or for all publishes from the endpoint:
+
+snippet: opentelemetry-trace-mode-publish-start-new
+
+> [!NOTE]
+> In version 10, `PublishTraceMode` defaults to `StartNew`. In version 11 the default becomes
+> `ContinueExisting`, so subscribers continue the publisher's trace unless the endpoint or the publish
+> opts out. `PublishTraceMode` is not governed by the version 11 behavior switch; only its default
+> changes with the major version.
+
 Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive`) always take precedence over the endpoint-level defaults.
 
 #### Transport SDK spans

@@ -1,7 +1,7 @@
 ---
 title: Asynchronous Handlers
 summary: How to deal with synchronous and asynchronous code inside asynchronous handlers
-reviewed: 2025-01-17
+reviewed: 2026-08-10
 component: Core
 versions: '[6.0,)'
 ---
@@ -45,11 +45,11 @@ I/O-bound work typically takes longer to complete compared to compute-bound work
 
 ### Memory and allocations
 
-Asynchronous code tends to use much less memory because the amount of memory saved by freeing up a thread in the worker thread pool dwarfs the amount of memory used for all the compiler-generated async structures combined.
+For high-concurrency I/O-bound workloads, asynchronous code tends to use much less memory because the amount of memory saved by freeing up a thread in the worker thread pool dwarfs the amount of memory used for all the compiler-generated async structures combined.
 
 ### Synchronous vs. asynchronous
 
-If each request is examined in isolation, asynchronous code would be slightly slower than the corresponding synchronous version. There might be extra kernel transitions, task scheduling, etc., but the scalability more than compensates for this.
+If each request is examined in isolation, asynchronous code would be slower than the corresponding synchronous version. There might be extra memory allocations, continuations, kernel transitions, task scheduling, etc., but the scalability more than compensates for this.
 
 From a server perspective, if asynchronous code is compared to synchronous code by looking at one method or one request at a time, then synchronous might make more sense. But if asynchronous code is compared to parallelism — watching the server as a whole — asynchronous wins. Every worker thread that can be freed up on a server is worth freeing up. It reduces the amount of memory needed and frees up the CPU for compute-bound work while saturating the I/O system completely.
 
@@ -89,6 +89,8 @@ For high-throughput scenarios, and if there are only one or two asynchronous exi
 snippet: HandlerReturnsATask
 
 snippet: HandlerReturnsTwoTasks
+
+Mind that many sources recommend [awaiting over returning the task](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#prefer-asyncawait-over-directly-returning-task) and that returning the task directly may affect stacktraces.
 
 ## Concurrency
 

@@ -2,16 +2,16 @@
 title: Conventions
 summary: Custom conventions for defining how certain types are detected and to support unobtrusive mode
 component: Core
-reviewed: 2026-05-22
+reviewed: 2026-06-01
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
 ---
 
-*Conventions* can be used to identify which types are messages, commands, and events, instead of using [marker interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages-marker-interfaces). This can be done to avoid references to the NServiceBus assembly, referred to as *[unobtrusive mode](unobtrusive-mode.md)*. This is ideal for use in cross-platform environments.
+*Conventions* identify message, command, and event types without [marker interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages-marker-interfaces). Using conventions for message identification is called *[unobtrusive mode](unobtrusive-mode.md)*.
 
 > [!NOTE]
-> For systems using NServiceBus version 8 or higher, it's preferable to use the marker interfaces in the [NServiceBus.MessageInterfaces package](https://www.nuget.org/packages/NServiceBus.MessageInterfaces) to build message assemblies that can be shared between different major versions of NServiceBus and different versions of .NET. See the details in the [sharing message assemblies sample](/samples/message-assembly-sharing/).
+> For new message contracts with NServiceBus 8 or later, prefer the marker interfaces in the [NServiceBus.MessageInterfaces package](https://www.nuget.org/packages/NServiceBus.MessageInterfaces). The package avoids a dependency on the NServiceBus assembly while supporting shared message assemblies across major NServiceBus versions and .NET target frameworks. Use conventions when existing message types cannot implement marker interfaces or when conventions are needed for other features. See the [sharing message assemblies sample](/samples/message-assembly-sharing/).
 
 Currently, *conventions* exist to identify:
 

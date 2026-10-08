@@ -3,7 +3,7 @@ title: Manipulate pipeline with behaviors
 summary: Manipulating the message-handling pipeline with behaviors
 component: Core
 versions: '[4.0,)'
-reviewed: 2024-12-31
+reviewed: 2026-08-06
 related:
 - nservicebus/pipeline/steps-stages-connectors
 redirects:

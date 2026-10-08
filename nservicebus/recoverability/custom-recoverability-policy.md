@@ -1,8 +1,8 @@
 ---
 title: Custom Recoverability Policy
-summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
+summary: Implement custom recoverability policies to override NServiceBus default retry behavior for advanced failure handling scenarios.
 component: Core
-reviewed: 2025-01-27
+reviewed: 2026-08-26
 versions: '[6.0,)'
 related:
  - samples/faulttolerance
@@ -65,10 +65,6 @@ The information provided in the configuration is static and will not change betw
 
 
 ## Implement a custom policy
-
-> [!NOTE]
-> New APIs were made available starting in version 6.2. The examples below show how to implement recovery customizations both before and after version 6.2. It is not necessary to implement both snippets for a given example.
-
 
 ### Partial customization
 

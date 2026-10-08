@@ -2,7 +2,7 @@
 title: RavenDB Gateway Storage
 summary: RavenDB deduplication storage for the gateway component
 component: GatewayRavenDB
-reviewed: 2025-02-07
+reviewed: 2026-09-03
 related:
  - samples/gateway
 ---

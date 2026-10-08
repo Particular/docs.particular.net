@@ -37,15 +37,9 @@ class ScriptGeneration
         }
     }
 
-    public class ExampleSagaData : ContainSagaData
-    {
-    }
+    public class ExampleSagaData : ContainSagaData;
 
-    class EntityMapping : ClassMapping<ExampleEntity>
-    {
-    }
+    class EntityMapping : ClassMapping<ExampleEntity>;
 
-    class ExampleEntity
-    {
-    }
+    class ExampleEntity;
 }

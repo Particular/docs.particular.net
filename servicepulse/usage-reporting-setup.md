@@ -1,24 +1,27 @@
 ---
 title: Usage Reporting Setup
-summary: Viewing endpoint usage summary and generating a usage report
+summary: How to set up ServicePulse for usage reporting
 component: ServicePulse
 reviewed: 2026-02-11
 related:
-  - servicepulse/usage
+  - servicepulse/usage-reporting-with-servicepulse
+redirects:
+  - servicepulse/usage-config
 ---
 
-This document describes the settings required for collecting usage data to generate a usage report.
+This document describes the settings required for collecting usage data to generate a [usage report](usage-reporting-with-servicepulse.md) in ServicePulse.
 
 > [!NOTE]
 > The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
 
 ## Connection setup
 
-In most scenarios existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
+In most scenarios, existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
 
 ![usage-setup-connections](images/usage-setup-connection.png "width=600")
 
 If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/servicecontrol-instances/configuration.md) file.
+
 The Usage Setup tab provides easy copy/paste functionality to obtain the required settings in the correct format, based on configuration type.
 
 Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
@@ -35,11 +38,11 @@ Steps:
     - `ClientId`
     - `ClientSecret`
 
+The setup can be done via the [portal](#connection-setup-azure-service-bus-using-azure-portal) or [CLI](#connection-setup-azure-service-bus-using-azure-cli).
 
 #### Using Azure Portal
 
-To use the Azure Portal, follow these instructions. Alternatively, use the Azure CLI as described below.
-
+To use the Azure Portal:
 
 1. Create App
     - Native to: **Home > App registrations**
@@ -54,7 +57,7 @@ To use the Azure Portal, follow these instructions. Alternatively, use the Azure
 
 #### Using Azure CLI
 
-To use the Azure CLI or scripting, follow these instructions. Alternatively, use the Azure Portal as described above.
+To use the Azure CLI or scripting:
 
 ```ps1
 # Set context first
@@ -114,7 +117,8 @@ To restrict permissions to the minimal required set, create a custom role with t
                     "Microsoft.ServiceBus/namespaces/providers/Microsoft.Insights/metricDefinitions/read",
                     "Microsoft.ServiceBus/namespaces/queues/read",
                     "Microsoft.Resources/subscriptions/read",
-                    "Microsoft.Resources/subscriptions/resources/read"
+                    "Microsoft.Resources/subscriptions/resources/read",
+                    "Microsoft.Insights/Metrics/Read"
                 ],
                 "notActions": [],
                 "dataActions": [],
@@ -125,8 +129,7 @@ To restrict permissions to the minimal required set, create a custom role with t
 }
 ```
 
-
-The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription.
+The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription. The `Microsoft.Insights/Metrics/Read` permissions are required to find the available metrics.
 
 ### Amazon SQS
 
@@ -156,7 +159,7 @@ Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontr
 }
 ```
 
-### SQLServer
+### SQL Server
 
 #### Settings
 
@@ -182,6 +185,8 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
+Querying of metrics from RabbitMQ requires access to the management API. If it is not possible to access the management API, e.g. due to security considerations, then use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
 #### Minimum permissions
 
 User with monitoring tag and read permission.
@@ -192,7 +197,7 @@ MSMQ does not support native querying of metrics. Use [audit and monitoring data
 
 ### IBM MQ
 
-IBM MQ usage reporting uses [audit and monitoring data](#audit-and-monitoring-data).
+IBM MQ does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
 
 ### Azure Storage Queues
 
@@ -200,7 +205,7 @@ Azure Storage Queues does not support native querying of metrics. Use [audit and
 
 ## Audit and monitoring data
 
-For transports that do not support querying broker-side metrics, ServiceControl generates the usage report from data collected by the Audit and Monitoring instances. To enable this:
+For transports that do not support querying broker-side metrics, ServiceControl generates the usage report from data collected by the Audit and/or Monitoring instances. To enable this:
 
 - Auditing
   - install the [Audit](./../servicecontrol/audit-instances) instance
@@ -220,7 +225,8 @@ If unable to resolve the issue, open a [non-critical support case](https://parti
 
 ## Report masks
 
-Information that is considered sensitive can be obfuscated in the usage report.
-All words to be redacted can be specified in the `Mask Report Data` tab. Specify one word per line.
+Sensitive information can be anonymized in the usage report. Endpoint, queue, and machine names sometimes contain customer, project, or product names; any such word can be masked so that it is redacted (obfuscated) before the report is generated and never leaves the environment.
+
+Specify the words to anonymize in the `Mask Report Data` tab, one word per line. Every occurrence of a listed word is replaced in the generated report.
 
 ![usage-setup-masks](images/usage-setup-masks.png "width=600")

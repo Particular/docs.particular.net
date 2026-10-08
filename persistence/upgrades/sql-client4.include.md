@@ -1,11 +1,12 @@
-Version 4 of `Microsoft.Data.SqlClient` includes [a breaking change](https://github.com/dotnet/SqlClient/pull/1210) which sets `Encrypt=True` by default. If the client and server are not configured with a valid certificate, this can cause an exception at startup:
+`Microsoft.Data.SqlClient` requires an encrypted connection by default and validates the certificate presented by SQL Server. If the server is not configured with a valid certificate, or the machine hosting the endpoint does not trust that certificate, this can cause an exception at startup:
 
 ```txt
-System.Data.SqlClient.SqlException
+Microsoft.Data.SqlClient.SqlException
   HResult=0x80131904
   Message=A connection was successfully established with the server, but then an error occurred during the login process. (provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.)
-  Source=.Net SqlClient Data Provider
 ```
+
+Requiring encryption has been the default since version 4, which [changed the `Encrypt` default from `False` to `True`](https://github.com/dotnet/SqlClient/pull/1210). Endpoints that connected without encryption before upgrading to version 4 or later will encounter this exception.
 
 To fix this, [update the SQL Server installation with a valid certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-sql-server-encryption) and [configure the machine hosting the endpoint to trust that certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/special-cases-for-encrypting-connections-sql-server).
 

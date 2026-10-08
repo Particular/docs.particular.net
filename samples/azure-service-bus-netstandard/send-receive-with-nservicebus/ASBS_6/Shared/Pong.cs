@@ -1,9 +1,8 @@
 ﻿using NServiceBus;
 
-namespace Shared
+namespace Shared;
+
+public class Pong : IMessage
 {
-    public class Pong : IMessage
-    {
-        public string Acknowledgement { get; set; }
-    }
+    public required string Acknowledgement { get; set; }
 }
