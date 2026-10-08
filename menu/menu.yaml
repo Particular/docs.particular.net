@@ -1631,6 +1631,8 @@
         Url: servicecontrol/security/configuration/cors
     - Title: Hosting guide
       Url: servicecontrol/security/hosting-guide
+    - Title: SMTP account for email notifications
+      Url: servicecontrol/security/smtp-account
     - Title: Examples
       Articles:
       - Title: Microsoft Entra ID Authentication Guide

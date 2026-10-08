@@ -103,6 +103,7 @@ For deployments that use a reverse proxy for TLS termination, or require end-to-
 - [Role-based access control](configuration/authorization.md)
 - [TLS configuration](configuration/tls.md)
 - [CORS configuration](configuration/cors.md)
+- [Securing the SMTP account for email notifications](smtp-account.md)
 - [Hosting guide](hosting-guide.md)
 - [Microsoft Entra ID guide](entra-id-authentication.md)
 - [ServicePulse security](/servicepulse/security)
