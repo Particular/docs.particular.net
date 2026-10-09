@@ -28,7 +28,7 @@ Ensure that an instance of the latest [Azurite Emulator](https://learn.microsoft
 
 ### Server
 
-* Receives the `StartOrder` message and initiates an `OrderSaga`.
+* Receives the `StartOrder` message and starts an `OrderSaga`.
 * `OrderSaga` sends a `ShipOrder` message to itself and requests a timeout with an instance of `CompleteOrder` with the saga data.
 * `ShipOrderHandler` handles the `ShipOrder` message.
 * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
