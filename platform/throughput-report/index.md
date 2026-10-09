@@ -32,7 +32,7 @@ The following methods can be used to install these requirements:
   - ServiceControl through [ServiceControl Management Utility](#windows-installation-servicecontrol-servicecontrol-management-utility-scmu)
   - ServiceControl through [Powershell](#windows-installation-servicecontrol-powershell)
   - ServicePulse running in [an integrated mode from within ServiceControl Management Utility](#windows-installation-servicepulse-integrated-into-servicecontrol-management-utility-scmu)
-  - ServicePulse as a [stand alone Windows service](#windows-installation-servicepulse-stand-alone)
+  - ServicePulse as a [standalone Windows service](#windows-installation-servicepulse-standalone)
 
 > [!NOTE]
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
@@ -101,6 +101,6 @@ When installing a new instance of ServiceControl via SCMU, once the service is i
 When upgrading from an older version of ServiceControl via SCMU, ensure you click the `Enable Integrated ServicePulse` option.
 ![Enable integrated ServicePulse](scmu-6.png 'width=500')
 
-#### Stand alone
+#### Standalone
 
-Follow the [installation instructions](/servicepulse/installation.md) and ensure ServicePulse is [configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to point to the port of the ServiceControl instance installed above.
+Follow the [installation instructions](/servicepulse/windows-installer.md) and ensure ServicePulse is [configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to point to the port of the ServiceControl instance installed above.
