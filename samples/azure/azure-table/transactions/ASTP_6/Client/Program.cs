@@ -10,15 +10,6 @@ endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-Console.WriteLine("Press any key, the application is starting");
-Console.TreatControlCAsInput = true;
-var input = Console.ReadKey();
-if (input.Key == ConsoleKey.C && (input.Modifiers & ConsoleModifiers.Control) != 0)
-{
-    Environment.Exit(0);
-}
-Console.WriteLine("Starting...");
-
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 

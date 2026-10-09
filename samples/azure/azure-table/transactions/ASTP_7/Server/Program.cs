@@ -32,9 +32,7 @@ persistence.DefaultTable("Server");
 
 #region BehaviorRegistration
 
-var serviceProvider = builder.Services.BuildServiceProvider();
-var logger = serviceProvider.GetRequiredService<ILogger<OrderIdHeaderAsPartitionKeyBehavior>>();
-endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior(logger), "Extracts a partition key from a header");
+endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior.Registration());
 endpointConfiguration.Pipeline.Register(new OrderIdAsPartitionKeyBehavior.Registration());
 
 #endregion
@@ -44,16 +42,6 @@ var transport = endpointConfiguration.UseTransport<LearningTransport>();
 transport.Transactions(TransportTransactionMode.ReceiveOnly);
 endpointConfiguration.EnableInstallers();
 
-
-Console.WriteLine("Press any key, the application is starting");
-Console.TreatControlCAsInput = true;
-var input = Console.ReadKey();
-Console.TreatControlCAsInput = false;
-if (input.Key == ConsoleKey.C && (input.Modifiers & ConsoleModifiers.Control) != 0)
-{
-    Environment.Exit(0);
-}
-Console.WriteLine("Starting...");
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();
