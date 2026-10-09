@@ -8,16 +8,16 @@ related:
 - servicecontrol/security/configuration/forward-headers
 ---
 
-> [!NOTE]
+> [!IMPORTANT]
 > This page is **not** relevant if:
 > - [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) is used. Integrated ServicePulse uses [the forward header configuration of the ServiceControl Error instance](/servicecontrol/security/configuration/forward-headers.md) that hosts it.
-> - the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/installation.md) hosting options provided. Forward header configuration is only required if using a reverse proxy.
+> - the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/windows-installer.md) hosting options provided. Forward header configuration is only required if using a reverse proxy.
 
 When ServicePulse is deployed behind a reverse proxy that terminates SSL/TLS (like nginx, Traefik, or a cloud load balancer), you need to configure forwarded headers so ServicePulse correctly understands the original client request.
 
 ## Configuration
 
-There are two hosting options for ServiceControl, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [TLS](tls.md), in a scenario-based format.
+On this document only two hosting options for ServicePulse will be considered, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/windows-installer.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [TLS](tls.md), in a scenario-based format.
 
 ### Container
 
@@ -135,7 +135,7 @@ The following examples show common forward header configurations for different d
 
 When running behind a single reverse proxy with a known IP address:
 
-**Container:**
+#### Container:
 
 ```bash
 docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
@@ -145,7 +145,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
            particular/servicepulse:latest
 ```
 
-**Windows Service:**
+#### Windows Service:
 
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=false --forwardedheadersknownproxies=10.0.0.5
@@ -155,7 +155,7 @@ ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallp
 
 When running behind multiple proxies (e.g. load balancer and application gateway):
 
-**Container:**
+#### Container:
 
 ```bash
 docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
@@ -165,7 +165,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
            particular/servicepulse:latest
 ```
 
-**Windows Service:**
+#### Windows Service:
 
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=false --forwardedheadersknownproxies=10.0.0.5,10.0.0.6
@@ -187,7 +187,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
 
 For development or fully trusted environments (not recommended for production):
 
-**Container:**
+#### Container:
 
 ```bash
 docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
@@ -196,7 +196,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
            particular/servicepulse:latest
 ```
 
-**Windows Service:**
+#### Windows Service:
 
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=true
