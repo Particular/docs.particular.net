@@ -1498,8 +1498,8 @@
       Articles:
         - Url: servicepulse
           Title: About ServicePulse
-        - Url: servicepulse/installation
-          Title: Installation
+        - Url: servicepulse/windows-installer
+          Title: Windows installer
         - Url: servicepulse/license
           Title: Licensing
         - Url: servicepulse/containerization

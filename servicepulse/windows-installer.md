@@ -5,6 +5,8 @@ component: ServicePulse
 reviewed: 2026-10-01
 related:
 - servicepulse/troubleshooting
+redirects:
+- servicepulse/installation
 ---
 
 > [!IMPORTANT]
@@ -33,15 +35,24 @@ related:
 
 The executable accepts some parameters to customize the installation experience. All of them are optional.
 
-- `Quiet`: Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
-- `Log [file location]`: To provide the location on disk for the log file to be generated.
-- `INST_PORT_PULSE [port number]`: To provide the port number that ServicePulse web application will run on. The default value is 9090.
-- `INST_URI [uri]`: To provide the URL of the ServiceControl API. The default value is: `http://localhost:33333/api/`.
-- `INST_SC_MONITORING_URI [uri]`: To provide the URL of the ServiceControl Monitoring API. The default value is: `http://localhost:33633/`.
+- `/Quiet`: Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
+- `/Log [file location]`: To provide the location on disk for the log file to be generated.
+- `INST_PORT_PULSE=[port number]`: To provide the port number that ServicePulse web application will run on. The default value is 9090.
+- `INST_URI=[uri]`: To provide the URL of the ServiceControl API. The default value is: `http://localhost:33333/api/`.
+- `INST_SC_MONITORING_URI=[uri]`: To provide the URL of the ServiceControl Monitoring API. The default value is: `http://localhost:33633/`.
 
-For example:
+#### Example
+
+To install ServicePulse 2.12.0 and configure it to:
+- run without the user interface for the installer
+- create a log file at C:\temp\servicepulse-installer.log
+- use the port 12345
+- connect to ServiceControl on port 33334
+- connect to ServiceControl Monitoring on port 23456
+
+Then the command will be:
 ```
-.\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/ INST_SC_MONITORING_URI=http://localhost:33633/
+Particular.ServicePulse-2.12.0.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33334/api/ INST_SC_MONITORING_URI=http://localhost:23456/
 ```
 
 ## Configuring ServicePulse
