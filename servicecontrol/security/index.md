@@ -113,5 +113,5 @@ For deployments that use a reverse proxy for TLS termination, or require end-to-
 
 Alternatives:
 
-1. **[Use ServicePulse](/servicepulse/installation.md)** - the recommended path; functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
+1. **[Use ServicePulse](/servicepulse/windows-installer.md)** - the recommended path; functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
 2. **Leave authentication disabled** on the relevant ServiceControl instance.
