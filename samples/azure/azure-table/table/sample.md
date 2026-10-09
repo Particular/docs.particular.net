@@ -1,7 +1,7 @@
 ---
 title: AzureTable Persistence Usage with non-default table
 summary: Using Azure Table Persistence to store sagas providing a non-default table dynamically
-reviewed: 2025-02-25
+reviewed: 2026-10-09
 component: ASP
 related:
  - nservicebus/sagas
@@ -11,7 +11,11 @@ This sample shows a client/server scenario using a dynamic table configuration f
 
 ## Prerequisites
 
-Ensure that an instance of the latest [Azure Storage Emulator](https://learn.microsoft.com/en-us/azure/storage/storage-use-emulator) or [Azure Cosmos DB Emulator](https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator) is running.
+1. Install Docker.
+1. If running Docker on Windows, set Docker to use Linux containers.
+1. In the sample directory, execute the following to set up the Azurite Azure Storage emulator instance:
+
+> docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite
 
 ## Projects
 
