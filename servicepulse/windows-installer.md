@@ -43,7 +43,7 @@ The executable accepts some parameters to customize the installation experience.
 
 #### Example
 
-If the version of ServicePulse that wants to be installed is 2.12.0 and it needs to be configured to:
+To install ServicePulse 2.12.0 and configure it to:
 - run without the user interface for the installer
 - create a log file on C:\temp\servicepulse-installer.log
 - use the port 12345
