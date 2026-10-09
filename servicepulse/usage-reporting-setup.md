@@ -2,7 +2,7 @@
 title: Usage Reporting Setup
 summary: How to set up ServicePulse for usage reporting
 component: ServicePulse
-reviewed: 2026-02-11
+reviewed: 2026-10-09
 related:
   - servicepulse/usage-reporting-with-servicepulse
 redirects:
@@ -28,26 +28,25 @@ Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 ### Azure Service Bus
 
-Gathering usage data requires:
-1. Configuring the `SubscriptionId` for the Azure Service Bus namespace
-2. A token-based identity with permission to read usage data
+ServiceControl reads the message counts for each queue from the namespace's [metrics in Azure Monitor](https://learn.microsoft.com/en-us/azure/service-bus-messaging/monitor-service-bus-reference). This requires a Microsoft Entra identity, either a [managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) or a [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals), that has the [**Monitoring Reader**](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/roles-permissions-security#monitoring-reader) role on the namespace. For a minimal permission set, see [Minimum permissions](#connection-setup-azure-service-bus-minimum-permissions).
 
->[!NOTE]
->The built-in **Monitoring Reader** role is sufficient to read usage data. For a minimal permission set, see [Minimum permissions](#connection-setup-azure-service-bus-minimum-permissions)
+Azure Service Bus supports two ways to authenticate: [Microsoft Entra ID and shared access signatures (SAS)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization). The one the transport connection string uses determines which identity ServiceControl uses to read the metrics:
 
-If ServiceControl uses managed identity (or any token-based credentials) to connect to the Azure Service Bus namespace, then ServiceControl uses the same credentials to gather usage data.
+| Transport connection string | Identity used to read the metrics | Settings required |
+| --- | --- | --- |
+| [Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity): a fully qualified namespace, or `Authentication=Managed Identity` | The same identity the transport uses | None |
+| [Shared access signature (SAS)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas): `Endpoint=sb://…;SharedAccessKeyName=…;SharedAccessKey=…` | A separate service principal with a client secret | `TenantId`, `ClientId`, and `ClientSecret` |
 
-If ServiceControl does not use token-based credentials to connect to the Azure Service Bus namespace, separate credentials must be supplied.
+In both cases, setting `SubscriptionId` to the [Azure subscription](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription) that contains the namespace is recommended. If it is not set, ServiceControl uses the first subscription the identity can access, and reports that it cannot find the namespace if the namespace is in a different one.
 
-Steps:
+**When the transport uses Microsoft Entra ID authentication**, [assign the **Monitoring Reader** role](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) on the namespace to the managed identity or service principal that the transport uses. `TenantId`, `ClientId`, and `ClientSecret` are not needed, and ServiceControl ignores them if they are set. With a fully qualified namespace, ServiceControl uses [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet), so the identity can also be a service principal that authenticates with a [certificate credential](https://learn.microsoft.com/en-us/entra/identity-platform/certificate-credentials) or a [federated identity credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation), configured through [environment variables](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet#environment-variables).
 
-1. Create an **ApplicationId (aka ClientId)** for ServiceControl
-2. Assign it the **Monitoring Reader** role
-3. Configure for the ServiceControl instance at minimum:
-    - `TenantId`
-    - `SubscriptionId`
-    - `ClientId`
-    - `ClientSecret`
+**When the transport uses a shared access signature (SAS)**, create a separate service principal for ServiceControl:
+
+1. Create an app registration for ServiceControl, and note its **Application (client) ID** and **Directory (tenant) ID**.
+2. Add a [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/how-to-add-credentials?tabs=client-secret) to the app registration.
+3. Assign the app registration's service principal the **Monitoring Reader** role on the namespace.
+4. Configure `TenantId`, `ClientId`, and `ClientSecret` on the ServiceControl instance. See [Settings](#connection-setup-azure-service-bus-settings).
 
 The setup can be done via the [portal](#connection-setup-azure-service-bus-using-azure-portal) or [CLI](#connection-setup-azure-service-bus-using-azure-cli).
 
@@ -55,16 +54,21 @@ The setup can be done via the [portal](#connection-setup-azure-service-bus-using
 
 To use the Azure Portal:
 
-1. Create App
-    - Native to: **Home > App registrations**
+1. Create the app registration (SAS only):
+    - Navigate to: **Home > App registrations**
     - Select **➕ New registration**
-2. Assign application to role:
+    - On the **Overview** page, note the **Application (client) ID** and **Directory (tenant) ID**
+2. Add a client secret (SAS only):
+    - Navigate to: **{application name} > Certificates & secrets > Client secrets**
+    - Select **➕ New client secret**, and note the secret's **Value**
+3. Assign the **Monitoring Reader** role:
     - Navigate to: **Home > Service Bus > {service bus namespace} > Access control (IAM)**
-    - Select: **➕ Add**
+    - Select: **➕ Add > Add role assignment**
     - Enter:
       - Role: `Monitoring Reader`
-      - Members: Select **➕ Select Members > {application name}**
-    - Select: **Review and Assign**
+      - Assign access to: **User, group, or service principal** for the app registration, or **Managed identity** for a managed identity
+      - Members: Select **➕ Select members > {application or managed identity name}**
+    - Select: **Review + assign**
 
 #### Using Azure CLI
 
@@ -74,11 +78,15 @@ To use the Azure CLI or scripting:
 # Set context first
 az account set --subscription "YourAzureSubscriptionName"
 
-# Create ApplicationId (ClientId)
-az ad app create --display-name ServiceControlUsageReporting
+# Create the app registration and its service principal (SAS only)
+$applicationId = az ad app create --display-name ServiceControlUsageReporting --query appId --output tsv
+az ad sp create --id $applicationId
 
-# Store your ApplicationId (ClientId)
-$applicationId = "<Your Application ID>"
+# Add a client secret (SAS only). The output shows the ClientSecret (password) and TenantId (tenant)
+az ad app credential reset --id $applicationId --append
+
+# Store who gets the role: the app registration (SAS), or the transport's managed identity principal ID
+$assigneeId = $applicationId
 
 # List subscription ID
 az servicebus namespace list
@@ -89,8 +97,9 @@ $subscriptionId = "<Your Subscription ID>"
 # List resource group
 az group list
 
-# Store resource group name
+# Store resource group and namespace names
 $resourceGroupName = "<Your Resource Group Name>"
+$namespaceName = "<Your Namespace Name>"
 
 # Assign role to resource group
 $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
@@ -99,8 +108,8 @@ $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName"
 # end alternative
 
-# assign Monitoring Reader role to ApplicationId
-New-AzRoleAssignment -ApplicationId $applicationId -RoleDefinitionName "Monitoring Reader" -Scope $scope
+# Assign the Monitoring Reader role
+az role assignment create --assignee $assigneeId --role "Monitoring Reader" --scope $scope
 ```
 
 #### Settings
@@ -109,7 +118,7 @@ Refer to the [Usage Reporting when using the Azure Service Bus transport](/servi
 
 #### Minimum Permissions
 
-The built-in role [`Monitoring Reader`](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
+The built-in role [`Monitoring Reader`](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
 
 To restrict permissions to the minimal required set, create a custom role with the following permissions:
 
