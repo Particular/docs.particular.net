@@ -39,7 +39,7 @@ Azure Service Bus supports two methods to authenticate: [Microsoft Entra ID and 
 
 In both cases, setting `SubscriptionId` to the [Azure subscription](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription) that contains the namespace is recommended. If it is not set, ServiceControl will use the first subscription that the identity can access, and report that it cannot find the namespace if the namespace is not in that first subscription.
 
-**When the transport uses Microsoft Entra ID authentication**, [assign the **Monitoring Reader** role](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) on the namespace to the managed identity or service principal that the transport uses. `TenantId`, `ClientId`, and `ClientSecret` are not needed, and ServiceControl ignores them if they are set. With a fully qualified namespace, ServiceControl uses [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet), so the identity can also be a service principal that authenticates with a [certificate credential](https://learn.microsoft.com/en-us/entra/identity-platform/certificate-credentials) or a [federated identity credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation), configured through [environment variables](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet#environment-variables).
+**When the transport uses Microsoft Entra ID authentication**, [assign the **Monitoring Reader** role](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal) on the namespace to the managed identity or service principal that the transport uses. `TenantId`, `ClientId`, and `ClientSecret` are not needed, and ServiceControl ignores them if they are set. With a fully qualified namespace, ServiceControl uses [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet), so the identity can also be a service principal that authenticates with a [certificate credential](https://learn.microsoft.com/en-us/entra/identity-platform/certificate-credentials) or a [federated identity credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation), configured through [environment variables](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/identity-readme?view=azure-dotnet#environment-variables). For step-by-step certificate instructions, see [Enabling Certificate Authentication](/servicecontrol/transports.md#azure-service-bus-enabling-certificate-authentication).
 
 **When the transport uses a shared access signature (SAS)**, create a separate service principal for ServiceControl:
 
@@ -85,7 +85,7 @@ az ad sp create --id $applicationId
 # Add a client secret (SAS only). The output shows the ClientSecret (password) and TenantId (tenant)
 az ad app credential reset --id $applicationId --append
 
-# Store who gets the role: the app registration (SAS), or the transport's managed identity principal ID
+# Store who gets the role: the app registration's ID, or the principal ID of the managed identity the transport uses
 $assigneeId = $applicationId
 
 # List subscription ID
