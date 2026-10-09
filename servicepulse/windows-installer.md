@@ -52,7 +52,7 @@ To install ServicePulse 2.12.0 and configure it to:
 
 Then the command will be:
 ```
->Particular.ServicePulse-2.12.0.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:67890/api/ INST_SC_MONITORING_URI=http://localhost:23456/
+Particular.ServicePulse-2.12.0.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33334/api/ INST_SC_MONITORING_URI=http://localhost:23456/
 ```
 
 ## Configuring ServicePulse
