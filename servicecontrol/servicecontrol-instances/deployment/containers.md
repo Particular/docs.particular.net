@@ -87,6 +87,16 @@ include: servicecontrol-container-license
 
 `33333` is the canonical port exposed by the error instance API within the container, though this port can be mapped to any desired external port.
 
+## Health checks
+
+The container image has a health check that calls `/health`. This endpoint allows anonymous requests, also when authentication is enabled. It reports if the process is running.
+
+`/health/ready` also reports if the instance ingests failed messages.
+
+Use these endpoints for health probes: `/health` for liveness probes, and `/health/ready` for readiness probes and load balancers. Do not restart the container because `/health/ready` fails. A health probe only checks if the instance is available. Do not use other API endpoints for health probes: the API is for ServicePulse only, and the other endpoints require a valid token when [authentication](/servicecontrol/security/configuration/authentication.md) is enabled.
+
+Both endpoints are available from version 6.20.
+
 ## Volumes
 
 The Error instance is stateless and does not require any mounted volumes.

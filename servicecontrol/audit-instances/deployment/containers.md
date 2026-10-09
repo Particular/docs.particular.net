@@ -68,6 +68,12 @@ include: servicecontrol-container-license
 
 `44444` is the canonical port exposed by the audit instance API within the container, though this port can be mapped to any desired external port.
 
+## Health checks
+
+The container image has a health check that calls `/api/configuration`. This endpoint allows anonymous requests, also when authentication is enabled.
+
+Use this endpoint for health probes, for example Kubernetes liveness probes or load balancer health checks. A health probe only checks if the instance is available. Do not use other API endpoints for health probes: the API is for ServicePulse only, and the other endpoints require a valid token when [authentication](/servicecontrol/security/configuration/authentication.md) is enabled.
+
 ## Volumes
 
 The Audit instance is stateless and does not require any mounted volumes.
