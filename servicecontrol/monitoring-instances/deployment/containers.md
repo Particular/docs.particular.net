@@ -66,6 +66,15 @@ include: servicecontrol-container-license
 
 `33633` is the canonical port exposed by the monitoring instance API within the container, though this port can be mapped to any desired external port.
 
+## Health checks
+
+The container image has a health check that calls the root endpoint (`/`). This endpoint allows anonymous requests, also when authentication is enabled.
+
+Use this endpoint for health probes, for example Kubernetes liveness probes or load balancer health checks. A health probe only checks if the instance is available. Do not use other API endpoints for health probes: the API is for ServicePulse only, and the other endpoints require a valid token when [authentication](/servicecontrol/security/configuration/authentication.md) is enabled.
+
+> [!NOTE]
+> Before version 6.21.2, the container image called `/connection`. That endpoint requires a valid token when authentication is enabled. Probes that call `/connection` must call `/` instead.
+
 ## Volumes
 
 The monitoring instance is stateless and does not require any mounted volumes.
