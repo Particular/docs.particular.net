@@ -1,10 +1,9 @@
 ---
-title: Security Advisory 2026-10-XX
+title: Security Advisory 2026-10-09
 summary: ServiceControl API accepts requests without a valid token, and returns the stored SMTP password
 reviewed: 2026-10-09
 ---
 
-<!-- DRAFT. Do not publish before the fixed ServiceControl version is released. TODO before publishing: replace 2026-10-XX with the publication date, confirm the fixed version (6.21.2). -->
 
 This advisory discloses two security vulnerabilities that have been found in [ServiceControl](/servicecontrol/) and fixed in ServiceControl 6.21.2.
 
