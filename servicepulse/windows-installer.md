@@ -48,7 +48,7 @@ To install ServicePulse 2.12.0 and configure it to:
 - create a log file at C:\temp\servicepulse-installer.log
 - use the port 12345
 - connect to ServiceControl on port 33334
-- connect to ServiceControl Monitoring at the port 23456
+- connect to ServiceControl Monitoring on port 23456
 
 Then the command will be:
 ```
