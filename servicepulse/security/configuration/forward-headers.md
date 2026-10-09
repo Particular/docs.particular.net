@@ -135,7 +135,7 @@ The following examples show common forward header configurations for different d
 
 When running behind a single reverse proxy with a known IP address:
 
-#### Container:
+#### Container
 
 ```bash
 docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
@@ -145,7 +145,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
            particular/servicepulse:latest
 ```
 
-#### Windows Service:
+#### Windows Service
 
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=false --forwardedheadersknownproxies=10.0.0.5
@@ -155,7 +155,7 @@ ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallp
 
 When running behind multiple proxies (e.g. load balancer and application gateway):
 
-#### Container:
+#### Container
 
 ```bash
 docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
@@ -165,7 +165,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
            particular/servicepulse:latest
 ```
 
-#### Windows Service:
+#### Windows Service
 
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=false --forwardedheadersknownproxies=10.0.0.5,10.0.0.6
@@ -187,7 +187,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
 
 For development or fully trusted environments (not recommended for production):
 
-#### Container:
+#### Container
 
 ```bash
 docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
@@ -196,7 +196,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
            particular/servicepulse:latest
 ```
 
-#### Windows Service:
+#### Windows Service
 
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=true
