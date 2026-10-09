@@ -2,7 +2,7 @@
 title: Error Instance Configuration Settings
 summary: Categorized list of ServiceControl Error instance configuration settings.
 component: ServiceControl
-reviewed: 2025-10-22
+reviewed: 2026-10-09
 redirects:
  - servicecontrol/creating-config-file
 ---
@@ -1121,6 +1121,23 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus)
 
+### LicensingComponent/ASB/SubscriptionId
+
+Version: 5.4.0+
+
+The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription) that contains the Azure Service Bus namespace.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
+| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
+
+| Type | Default value |
+| --- | --- |
+| string | the first subscription the identity can access |
+
+Setting this is recommended. If it is not set and the namespace is in a different subscription from the first one the identity can access, ServiceControl will report that it cannot find the namespace.
+
 ### LicensingComponent/ASB/ServiceBusName
 
 Version: 5.4.0+
@@ -1149,22 +1166,7 @@ The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-s
 
 | Type | Required |
 | --- | --- |
-| string | yes |
-
-### LicensingComponent/ASB/SubscriptionId
-
-Version: 5.4.0+
-
-The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
-| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
-
-| Type | Required |
-| --- | --- |
-| string | yes |
+| string | yes, unless the transport connection string [uses Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) |
 
 ### LicensingComponent/ASB/ClientId
 
@@ -1179,7 +1181,7 @@ The Client ID (aka Application ID) for an [Azure service principal](https://lear
 
 | Type | Required |
 | --- | --- |
-| string | yes |
+| string | yes, unless the transport connection string [uses Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) |
 
 Example Client ID from an Azure App Registration:
 ![Screenshot showing where the Client ID appears in an App Registration](/servicecontrol/asb-app-service-principal.png)
@@ -1197,10 +1199,10 @@ The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/ho
 
 | Type | Required |
 | --- | --- |
-| string | yes |
+| string | yes, unless the transport connection string [uses Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) |
 
 > [!NOTE]
-> Certificates and federated credentials are not supported at this time.
+> The `ClientId` and `ClientSecret` settings support only a [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that authenticates with a client secret. To use a [managed identity](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity), or a service principal that authenticates with a [certificate](/servicecontrol/transports.md#azure-service-bus-enabling-certificate-authentication) or a [federated identity credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation), configure the transport to connect with it instead. ServiceControl then reads metrics with the same identity. See [usage reporting setup](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus).
 
 ### LicensingComponent/ASB/ManagementUrl
 
