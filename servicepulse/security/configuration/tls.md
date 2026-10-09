@@ -8,16 +8,16 @@ related:
 - servicecontrol/security/configuration/tls
 ---
 
-> [!NOTE]
+> [!IMPORTANT]
 > This page is **not** relevant if:
 > - [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) is used. Integrated ServicePulse will use [the TLS configuration of the ServiceControl Error instance](/servicecontrol/security/configuration/tls.md) that hosts it.
-> - the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/installation.md) hosting options provided. If using [authentication](/servicepulse/security/configuration/authentication.md), it is recommended to use TLS encryption.
+> - the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/windows-installer.md) hosting options provided. If using [authentication](/servicepulse/security/configuration/authentication.md), it is recommended to use TLS encryption.
 
 ServicePulse can be configured to use HTTPS directly, enabling encrypted connections without relying on a reverse proxy for SSL termination.
 
 ## Configuration
 
-There are two hosting options for ServicePulse: [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
+On this document only two hosting options for ServicePulse will be considered, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/windows-installer.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
 
 ### Container
 
@@ -69,7 +69,7 @@ The following examples show common TLS configurations for different deployment s
 
 When ServicePulse handles TLS directly using a PFX certificate:
 
-**Container:**
+#### Container
 
 > [!NOTE]
 > The following is a docker compose snippet. For full examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
@@ -107,7 +107,7 @@ servicepulse:
 > [!NOTE]
 > When containers communicate with each other over HTTPS, they use the Docker service names (like `servicecontrol`, `servicecontrol-audit`) as hostnames, and TLS validation will fail if the certificate doesn't include these names in its Subject Alternative Names (SANs).
 
-**Windows Service:**
+#### Windows Service
 
 The Windows service uses Windows HttpListener which requires SSL certificate binding at the OS level:
 
