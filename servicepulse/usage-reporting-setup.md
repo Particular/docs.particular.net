@@ -30,7 +30,7 @@ Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 ServiceControl reads the message counts for each queue from the namespace's [metrics in Azure Monitor](https://learn.microsoft.com/en-us/azure/service-bus-messaging/monitor-service-bus-reference). This requires a Microsoft Entra identity, either a [managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) or a [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals), that has the [**Monitoring Reader**](https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/roles-permissions-security#monitoring-reader) role on the namespace. For a minimal permission set, see [Minimum permissions](#connection-setup-azure-service-bus-minimum-permissions).
 
-Azure Service Bus supports two ways to authenticate: [Microsoft Entra ID and shared access signatures (SAS)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization). The one the transport connection string uses determines which identity ServiceControl uses to read the metrics:
+Azure Service Bus supports two methods to authenticate: [Microsoft Entra ID and shared access signatures (SAS)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization). The method that the transport connection string uses determines which identity ServiceControl uses to read the metrics:
 
 | Transport connection string | Identity used to read the metrics | Settings required |
 | --- | --- | --- |
