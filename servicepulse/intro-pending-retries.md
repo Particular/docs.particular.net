@@ -1,7 +1,7 @@
 ---
 title: Pending Retries Message Management
 summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or deleting them.
-reviewed: 2025-02-20
+reviewed: 2026-10-09
 ---
 
 The pending retries view shows failed messages that have been requested to be retried but have not completed yet. Pending retries messages can be found by navigating to the pending retries screen.
@@ -12,18 +12,18 @@ A pending retry message that is retried will remain in the pending retry list un
 
 
 > [!NOTE]
-> Supported in ServicePulse versions 1.6.6 and above.
+> Supported in ServicePulse versions 1.6.7 and above.
 
 ## Enabling the Pending Retries view
 
 To make it visible, follow the steps according to the ServicePulse version that is used.
 
 > [!NOTE]
-> In ServicePulse version 1.7.0 and above, the Pending Retries screen is hidden by default. 
+> In ServicePulse version 1.7.0 and above, the Pending Retries screen is hidden by default.
 
 ### Containers
 
-Add the environment variable `SHOW_PENDING_RETRIES=true` to the container configuration.
+Set the [`SHOW_PENDING_RETRY`](/servicepulse/containerization/#settings-show-pending-retries) environment variable to `true` in the container configuration.
 
 ### Windows Service
 
@@ -31,7 +31,7 @@ Add the environment variable `SHOW_PENDING_RETRIES=true` to the container config
 
 Add a `showPendingRetry` value in `<path-to-ServicePulse-installation>\app\js\app.constants.js` set to `true`:
 
-```
+```js
 window.defaultConfig = {
     default_route: '/dashboard',
     version: '1.2.0',
@@ -41,11 +41,11 @@ window.defaultConfig = {
 };
 ```
 
-#### ServicePulse version 1.7.0 to 1.20.0 
+#### ServicePulse versions 1.7.0 to 1.20.0
 
 Change the following value in `<path-to-ServicePulse-installation>\app\js\app.constants.js` to `true`:
 
-```
+```js
 .constant('showPendingRetry', true)
 ```
 
@@ -74,19 +74,19 @@ Detailed information about the message, such as the failure timestamp, endpoint,
 > [!WARNING]
 > Failed messages that are currently in the pending status can be retried; however this feature should be used with care. Retrying pending messages can cause the same message to be processed multiple times. Do not retry a message if it has been processed by the endpoint. In this context "processed" includes both the successful handling of the message and the failure state of it being sent to the error queue.
 
-To retry a message that is pending a retry, select the failed message(s) in the list and click the `Retry Selected` button.
+To retry a message that is pending a retry, select the failed message(s) in the list and click the `Retry` button.
 
-Alternatively a queue can be selected and the `Retry All` option can be used to retry all messages that are targeted for the queue.
+Alternatively a queue can be selected and the `Retry all` option can be used to retry all messages that are targeted for the queue.
 
 Retrying a message will use [message redirects](redirect.md) if the original endpoint has been redirected in ServicePulse.
 
 > [!WARNING]
 > A pending retry message that is retried will remain in the pending retry list until it is resolved or fails again.
 
-### Mark as complete
+### Mark as resolved
 
 Retried messages are moved to the `Processed` state as soon as ServiceControl receives and processes the retry confirmation from the endpoint.
 
 > [!NOTE]
-> Systems running NServiceBus version 7.4 (or earlier) and ServiceControl version 4.19 (or earlier) require [auditing to be enabled both on the endpoint](/nservicebus/operations/auditing.md) and in ServiceControl. Otherwise, the failed message will show as *retry pending* indefinitely even after the message has been successfully processed by the endpoint. In this scenario, use the `Mark as complete` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
+> Systems running NServiceBus version 7.4 (or earlier) or ServiceControl version 4.19 (or earlier) require [auditing to be enabled both on the endpoint](/nservicebus/operations/auditing.md) and in ServiceControl. Otherwise, the failed message will show as *retry pending* indefinitely even after the message has been successfully processed by the endpoint. In this scenario, use the `Mark as resolved` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
 
