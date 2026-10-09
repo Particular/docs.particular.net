@@ -1136,7 +1136,7 @@ The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal
 | --- | --- |
 | string | the first subscription the identity can access |
 
-Setting this is recommended. If it is not set and the namespace is in a different subscription from the first one the identity can access, ServiceControl reports that it cannot find the namespace.
+Setting this is recommended. If it is not set and the namespace is in a different subscription from the first one the identity can access, ServiceControl will report that it cannot find the namespace.
 
 ### LicensingComponent/ASB/ServiceBusName
 
