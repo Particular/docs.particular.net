@@ -27,7 +27,7 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 1. Open ServiceInsight and take note of the connection urls.
   ![ServiceInsight connection urls](images/si-migration-si-connections.png 'width=400')
 
-2. Get ServicePulse running and configured with the connection URL [using containers](/servicepulse/containerization/) (recommended) or by [installing to a Windows machine](/servicepulse/installation.md).
+2. Get ServicePulse running and configured with the connection URL [using containers](/servicepulse/containerization/) (recommended) or by [installing to a Windows machine](/servicepulse/windows-installer.md).
 
     Each method provides a way to configure the URL during setup, but it can also be configured in the ServicePulse UI afterwards:
 
