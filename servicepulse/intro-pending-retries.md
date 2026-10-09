@@ -1,7 +1,7 @@
 ---
 title: Pending Retries Message Management
 summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or deleting them.
-reviewed: 2025-02-20
+reviewed: 2026-10-09
 ---
 
 The pending retries view shows failed messages that have been requested to be retried but have not completed yet. Pending retries messages can be found by navigating to the pending retries screen.
@@ -19,11 +19,11 @@ A pending retry message that is retried will remain in the pending retry list un
 To make it visible, follow the steps according to the ServicePulse version that is used.
 
 > [!NOTE]
-> In ServicePulse version 1.7.0 and above, the Pending Retries screen is hidden by default. 
+> In ServicePulse version 1.7.0 and above, the Pending Retries screen is hidden by default.
 
 ### Containers
 
-Add the environment variable `SHOW_PENDING_RETRIES=true` to the container configuration.
+Set the [`SHOW_PENDING_RETRY`](/servicepulse/containerization/#settings-show-pending-retries) environment variable to `true` in the container configuration.
 
 ### Windows Service
 
@@ -31,21 +31,21 @@ Add the environment variable `SHOW_PENDING_RETRIES=true` to the container config
 
 Add a `showPendingRetry` value in `<path-to-ServicePulse-installation>\app\js\app.constants.js` set to `true`:
 
-```
+```js
 window.defaultConfig = {
     default_route: '/dashboard',
-    version: '1.2.0',
+    version: '1.20.0',
     service_control_url: 'http://localhost:33333/api/',
     monitoring_urls: ['http://localhost:33633/'],
     showPendingRetry: true
 };
 ```
 
-#### ServicePulse version 1.7.0 to 1.20.0 
+#### ServicePulse version 1.7.0 up to 1.20.0
 
 Change the following value in `<path-to-ServicePulse-installation>\app\js\app.constants.js` to `true`:
 
-```
+```js
 .constant('showPendingRetry', true)
 ```
 
