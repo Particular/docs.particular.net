@@ -33,7 +33,7 @@ Once complete, the RabbitMQ administration can be reached via [http://localhost:
 
 The code consists of a single NServiceBus endpoint project, which simulates receiving duplicated messages (normally received due to at-least-once delivery guarantees of the message broker) and processing them under three different circumstances.
 
-1. Without protection, resulting in duplicated processing of messages.
+1. No deduplication of messages, which leads to the same message getting processed more than once.
 2. Using the Outbox but with a maximum message concurrency of `1`.
 3. Using the Outbox but with multiple messages being processed simultaneously, relying on the concurrency exception thrown by the database to ensure exactly-once successful processing of messages.
 
@@ -42,7 +42,7 @@ Selecting each step is accomplished via commenting and uncommenting code in the 
 snippet: SampleSteps
 
 
-### Step 1: No protection
+### Step 1: No deduplication
 
 First, run the sample as-is. It's easy to see from the console output that each MessageId is processed twice. The endpoint has no way to know that it's handling duplicated messages.
 
