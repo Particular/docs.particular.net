@@ -1,7 +1,7 @@
 ---
 title: Near Real-Time Occasionally-Connected Clients
 summary: How to relay NServiceBus events to occasionally-connected clients via SignalR.
-reviewed: 2025-03-05
+reviewed: 2026-10-09
 component: Core
 related:
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
