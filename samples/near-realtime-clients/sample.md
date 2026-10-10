@@ -15,22 +15,33 @@ One of the key features of message queuing is the ability for the receiving endp
 
 One way to prevent this is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) when shutting down. However, this approach is unreliable since a crash could prevent the unsubscribe from happening.
 
-A better solution is to avoid implementing each client as an NServiceBus endpoint. Instead, use a push-based technology like [SignalR](https://signalr.net/) to only send updates when clients are connected.
+A better solution is to avoid implementing each client as an NServiceBus endpoint. Instead, use a push-based technology like [SignalR](https://dotnet.microsoft.com/en-us/apps/aspnet/signalr) to only send updates when clients are connected.
 
 This sample demonstrates how to use a SignalR server that also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
 
 > [!NOTE]
-> SignalR can be used in many different ways. For general guidance, check out the official [SignalR tutorials](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-6.0) and [SignalR samples](https://github.com/aspnet/SignalR-samples). This guide specifically focuses on how to relay NServiceBus events to SignalR clients.
+> SignalR can be used in many different ways. For general guidance, see the official [ASP.NET Core SignalR tutorial](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr). This guide specifically focuses on how to relay NServiceBus events to SignalR clients.
 
 ## Solution structure
 
 Before running the sample, review the solution structure, the projects, and the classes.
 
 Projects in the solution:
+
 - `Publisher`: command-line application that hosts an instance of NServiceBus.
 - `ClientHub`: command-line application that hosts an instance of NServiceBus and a SignalR server.
 - `Client`: command-line application that hosts a SignalR client.
-- `StockEvents`: contains the `StockTick` message class
+- `StockEvents`: contains the `StockTick` message class.
+
+## Running the sample
+
+1. Start `ClientHub` and wait for the console to report that the SignalR server is running.
+2. Start `Publisher`. Press a key at its first prompt to start the NServiceBus endpoint, then wait at the "Press any key to start publishing" prompt.
+3. Start one or more instances of `Client` and press a key in each to connect to the hub.
+4. Press a key in `Publisher` to start publishing. Each connected client displays stock updates with a symbol and timestamp.
+5. Press a key in a client to disconnect it. Leave the publisher running, then restart the client and press a key to reconnect. The client receives new updates; updates sent while it was disconnected are not replayed.
+
+To stop the sample, close the clients, press Escape in `Publisher`, and press a key in `ClientHub`.
 
 ## Sharing message types with SignalR
 
@@ -42,11 +53,11 @@ snippet: MessageConventionsForNonNSB
 
 The `ClientHub` project subscribes to the `StockTick` event published by `Publisher`.
 
-`StockTickHub` defines an `async` method - `PushStockTick` - that sends the `StockTick` message to the connected SignalR clients.
+`StockTicksHub` is a strongly typed SignalR hub. Its `IEmitStockTicks` interface declares the `PushStockTick` callback that clients receive.
 
 snippet: StockTickHub
 
-When the `StockTick` event is handled, it invokes the `PushStockTick` method on the `StockTickHub`.
+`StockTickHandler` uses `IHubContext<StockTicksHub>` to broadcast the event to all connected clients through `Clients.All.SendAsync("PushStockTick", message, context.CancellationToken)`.
 
 snippet: StockTickHandler
 
@@ -76,7 +87,7 @@ NP[NSB Publisher]
       CC(SignalR Client C)
       CD(SignalR Client D)
    end
-   BP{"SignalR Backplane<br/>(Redis/ASB/SQL)"}
+   BP{"SignalR Redis Backplane"}
 NP -->|NSB Event|NS1
 NS1-->|Forward|SS1
 NS2-->|Forward|SS2
