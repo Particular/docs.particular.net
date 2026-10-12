@@ -64,6 +64,18 @@ If the original message is not published as an event, but rather [sent](/nservic
 
 By default, message handlers are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for all registration options.
 
+## Timeouts for external operations
+
+NServiceBus does not limit how long a handler can run. Each message being processed occupies one of the endpoint's [concurrency slots](/nservicebus/operations/tuning.md) until all of its handlers complete. A handler that waits indefinitely on an external resource, such as an HTTP API, an SFTP or SMTP server, a database, or a socket the remote side has closed without notice, holds its slot indefinitely. When every slot is held this way, the endpoint stops processing messages without logging any errors, and only restarting the process recovers it.
+
+To prevent this, apply a timeout to every operation that calls an external resource:
+
+partial: external-operation-timeouts
+
+When a library does not accept a `CancellationToken`, or ignores it during blocking calls, configure the library's own connect, read, and operation timeouts. Many clients wait indefinitely by default.
+
+When a timeout elapses, the operation throws an `OperationCanceledException`, and the message is retried according to the endpoint's [recoverability policy](/nservicebus/recoverability). Keep the total time a handler can take within the time the transport keeps the message locked; otherwise, the message can be delivered again while the first attempt is still running.
+
 ## Unit testing
 
 Unit testing handlers is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-handler).
