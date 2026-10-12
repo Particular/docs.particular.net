@@ -190,6 +190,12 @@ This keeps the forwarded message correlated to its original sender instead of th
 
 Custom `RecoverabilityAction` and `AuditAction` implementations that forward the received message get the same behavior: the headers are dispatched as they were received, so the trace stays intact without any additional work.
 
+### Span status
+
+NServiceBus leaves the span status `Unset` when an operation completes without an error, and sets it to `Error` when the operation fails. It does not set `Ok`. This follows the [OpenTelemetry trace API specification](https://opentelemetry.io/docs/specs/otel/trace/api/#set-status), which reserves `Ok` for application code and operators.
+
+`Ok` is final: once it is set, later attempts to change the status are ignored. Because NServiceBus does not set it, application code, such as a pipeline behavior or an OpenTelemetry processor, can set the status of a span after NServiceBus has completed the operation.
+
 ### Failed spans and the error.type tag
 
 When a span fails, NServiceBus sets the span status to `Error` and adds an `error.type` tag containing the fully qualified exception type name. This tag is set on the innermost span where the exception was thrown.
