@@ -1,8 +1,10 @@
 ---
-title: Topology
+title: Azure Service Bus Transport Topology
 component: ASBS
+summary: How Azure Service Bus transport routes events using topics, subscriptions, and forwarding, including topology limits and message contract evolution.
 related:
-reviewed: 2025-03-14
+ - transports/azure-service-bus/configuration
+reviewed: 2026-10-12
 ---
 
 Messaging topology is a specific arrangement of messaging entities, such as queues, topics, subscriptions, and rules.
