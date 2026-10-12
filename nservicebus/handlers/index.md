@@ -66,7 +66,7 @@ By default, message handlers are discovered via assembly scanning. They can also
 
 ## Timeouts for external operations
 
-NServiceBus does not limit how long a handler can run. Each message being processed occupies one of the endpoint's [concurrency slots](/nservicebus/operations/tuning.md) until all of its handlers complete. A handler that waits indefinitely on an external resource, such as an HTTP API, an SFTP or SMTP server, a database, or a socket the remote side has closed without notice, holds its slot indefinitely. When every slot is held this way, the endpoint stops processing messages without logging any errors, and only restarting the process recovers it.
+NServiceBus does not limit how long a handler can run. Each message being processed occupies one of the endpoint's [concurrency slots](/nservicebus/operations/tuning.md) until all of its handlers complete. A handler that waits indefinitely on an external resource, such as an HTTP API, a database, or a socket the remote side has closed without notice, holds its slot indefinitely. When every slot is held this way, the endpoint stops processing messages without logging any errors, and only restarting the process recovers it.
 
 To prevent this, apply a timeout to every operation that calls an external resource:
 
