@@ -20,6 +20,19 @@ public class Metrics
         #endregion
     }
 
+    public static void EnableMetricsV11()
+    {
+        #region opentelemetry-enablemeters-v11
+
+        var meterProviderProvider = Sdk.CreateMeterProviderBuilder()
+            .AddMeter("NServiceBus.Core")
+            // ... Add other meters
+            // ... Add exporters
+            .Build();
+
+        #endregion
+    }
+
     public static void FilterMetrics(MeterProviderBuilder metrics)
     {
         #region opentelemetry-metrics-filter-view

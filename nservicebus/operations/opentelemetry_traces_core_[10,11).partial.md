@@ -53,6 +53,7 @@ The switch enables all of these changes:
 | Span names | generic, for example `process message` | operation and target, for example `process orders` |
 | Trace context and baggage propagation | custom propagator | `System.Diagnostics.DistributedContextPropagator` |
 | `Start dispatching` and `Finished dispatching` span events | emitted | not emitted |
+| Meter name and version | `NServiceBus.Core.Pipeline.Incoming`, `0.4.0` | `NServiceBus.Core`, `1.0.0` |
 | `execution.result` metric tag | emitted | not emitted |
 | `otel.status_code`, `otel.status_description` and `exception.escaped` | emitted on failures | not emitted |
 | Outbox deduplication span tag | `nservicebus.outbox.deduplicate-message` | `nservicebus.outbox.deduplicated_message` |
@@ -61,7 +62,7 @@ The switch enables all of these changes:
 `PublishTraceMode` is not part of the switch. It stays configurable in version 11; only its default changes. See *Publish operations* below.
 
 > [!WARNING]
-> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on the `execution.result` metric tag, or on the span tags above must be updated. The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
+> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, as described under *Meter name* in the meters section. The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
 
 In version 11 these behaviors are the only behaviors, and the switch is removed.
 
@@ -335,6 +336,6 @@ The effective instrumentation options are written to the `OpenTelemetry` section
 }
 ```
 
-`UseV11Behavior` shows whether the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch is enabled. The switch turns on the version 11 tracing behaviors described in [Version 11 behavior opt-in](#traces-version-11-behavior-opt-in). It does not change the `PublishTraceMode` default, which stays `StartNew` until version 11.
+`UseV11Behavior` shows whether the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch is enabled. The switch turns on the version 11 behaviors described in [Version 11 behavior opt-in](#traces-version-11-behavior-opt-in). It does not change the `PublishTraceMode` default, which stays `StartNew` until version 11.
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
