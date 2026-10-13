@@ -2,7 +2,7 @@
 title: ServiceControl Hosting Options
 summary: Hosting options for running ServiceControl instances
 component: ServiceControl
-reviewed: 2025-03-20
+reviewed: 2026-10-12
 ---
 
 ServiceControl instances can be hosted on:
@@ -20,7 +20,7 @@ Deployment options:
 
 Instances can be installed on Windows Server (virtual) machines using:
 
-- Terminal: ServiceControl Powershell Module
+- Terminal: ServiceControl PowerShell Module
 - Management UI: ServiceControl Management Utility
 
 ### Supported editions
@@ -30,11 +30,11 @@ Instances can be installed on Windows Server (virtual) machines using:
 
 ### Supported versions
 
-The supported Windows Server versions are aligned with the [Microsoft Mainstream support end date for Windows Server](https://learn.microsoft.com/en-us/windows-server/get-started/windows-server-release-info).
+The supported Windows Server versions are aligned with the [Microsoft Mainstream support end date for Windows Server](https://learn.microsoft.com/en-us/windows/release-health/windows-server-release-info).
 
 ## Containers
 
-That Particular Platform images are OCI compliant and can be used in various environments:
+The ServiceControl container images comply with the Open Container Initiative (OCI) standards and can be used in various environments:
 
 - Docker
 - Kubernetes
