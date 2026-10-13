@@ -5,8 +5,6 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region HandlerExternalOperationTimeout
-
     public class ExternalOperationTimeoutHandler :
         IHandleMessages<MyMessage>
     {
@@ -17,6 +15,8 @@
             this.remoteFileServer = remoteFileServer;
         }
 
+        #region HandlerExternalOperationTimeout
+
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             using (var timeoutTokenSource = new CancellationTokenSource(TimeSpan.FromSeconds(30)))
@@ -24,9 +24,9 @@
                 await remoteFileServer.Download(message.Data, timeoutTokenSource.Token);
             }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 
     public class RemoteFileServer
     {
