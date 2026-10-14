@@ -10,7 +10,7 @@ related:
  - servicecontrol/upgrades/support-policy
 ---
 
-This page lists the supported versions and the recently supported versions of ServiceControl, according to the [support policy](support-policy.md).
+This page lists the versions of ServiceControl and their support status, according to the [support policy](support-policy.md).
 
 include: supported-versions-servicecontrol
 
