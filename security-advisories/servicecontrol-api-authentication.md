@@ -1,7 +1,7 @@
 ---
 title: Security Advisory 2026-10-09
 summary: ServiceControl API accepts requests without a valid token, and returns the stored SMTP password
-reviewed: 2026-10-09
+reviewed: 2026-10-14
 ---
 
 
@@ -16,6 +16,8 @@ If there are any questions or concerns regarding this advisory, send an email to
 ## ServiceControl API accepts requests without a valid token
 
 A vulnerability has been fixed in the ServiceControl error, audit, and monitoring instances. When authentication is enabled and role-based authorization is disabled, the API accepts requests without a bearer token, with an invalid token, or with an expired token.
+
+This vulnerability is tracked as [GHSA-gqfq-8749-hgcf](https://github.com/Particular/ServiceControl/security/advisories/GHSA-gqfq-8749-hgcf).
 
 ### Impact
 
@@ -37,7 +39,10 @@ ServiceControl versions 6.18.0 to 6.21.1 are affected. Versions 6.11.0 to 6.17.x
 
 ### Risk mitigation
 
-If it is not possible to immediately upgrade ServiceControl, enable [role-based authorization](/servicecontrol/security/configuration/authorization.md#how-to-enable-role-based-access-control) on every instance as a **temporary workaround**. Before enabling it, make sure that the identity provider assigns a role to every user, because users without a role are denied access.
+If it is not possible to immediately upgrade ServiceControl, use role-based authorization as a **temporary workaround**:
+
+1. Make sure that the identity provider assigns a role to every user. Users without a role are denied access.
+1. Enable [role-based authorization](/servicecontrol/security/configuration/authorization.md#how-to-enable-role-based-access-control) on every instance.
 
 ### Fix
 
@@ -52,9 +57,14 @@ After the upgrade, requests without a valid token are rejected with `401 Unautho
 
 A vulnerability has been fixed in the ServiceControl error instance. The API that returns the email notification settings also returns the stored SMTP password.
 
+This vulnerability is tracked as [GHSA-vw2m-7w4j-7jj6](https://github.com/Particular/ServiceControl/security/advisories/GHSA-vw2m-7w4j-7jj6).
+
 ### Impact
 
 An attacker can read the password of the SMTP account that ServiceControl uses to send email notifications. With that password, the attacker can send email through the SMTP account.
+
+> [!CAUTION]
+> Treat the SMTP password of every affected instance as leaked. The password must be changed.
 
 ### Exploitability
 
@@ -73,14 +83,19 @@ ServiceControl versions 4.17.0 to 6.21.1 are affected.
 
 If it is not possible to immediately upgrade ServiceControl:
 
-- Change the password of the SMTP account, and limit what the account can send. See [securing the SMTP account](/servicecontrol/security/smtp-account.md).
+- Change the password of the SMTP account.
 - If email notifications are not needed, remove the SMTP account and password from the email notification settings.
+- If email notifications are needed, limit what the SMTP account can send. See [securing the SMTP account](/servicecontrol/security/smtp-account.md). The API can still return the new password until the upgrade. Change the password again after the upgrade.
 
 ### Fix
 
 Upgrade the ServiceControl error instance to version 6.21.2 or later. From this version, the API does not return the stored SMTP password.
 
-After the upgrade, change the password of the SMTP account if the ServiceControl API was reachable by untrusted callers.
+There is no patch release for versions 5.x and 4.x. To upgrade from version 5.x, see the [upgrade guide from version 5 to 6](/servicecontrol/upgrades/5to6.md).
+
+[Versions 5.x and 4.x are end of life](/servicecontrol/upgrades/support-policy.md#end-of-life). Customers on version 5.x that cannot upgrade can contact [security@particular.net](mailto:security@particular.net) to see how Particular Software can best support them.
+
+After the upgrade, change the password of the SMTP account. Then enter the new password in the email notification settings.
 
 ## Contact info
 
