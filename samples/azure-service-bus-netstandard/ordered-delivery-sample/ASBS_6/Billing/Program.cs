@@ -1,0 +1,20 @@
+﻿var builder = Host.CreateApplicationBuilder(args);
+
+builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+builder.Logging.AddConsole();
+
+var endpointConfiguration = new EndpointConfiguration("Billing");
+
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
+endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default));
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+// Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
+endpointConfiguration.EnableInstallers();
+
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+
+var host = builder.Build();
+
+await host.RunAsync();
