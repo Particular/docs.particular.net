@@ -10,20 +10,13 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessa
 
         var sessionState = context.GetSessionState();
 
-        var orderState = await sessionState.Get<OrderState>(context.CancellationToken) ?? new OrderState();
+        var orderState = await sessionState.Get<OrderState>(context.CancellationToken);
 
-        orderState?.Sum += 1;
-
-        await sessionState.Set(orderState, context.CancellationToken);
+        var numberOfItems = orderState?.ItemCount ?? 0;
 
         var publishOptions = new PublishOptions();
         publishOptions.SetSessionId(message.OrderId.ToString());
 
-        await context.Publish(new OrderPlaced { OrderId = message.OrderId }, publishOptions);
-    }
-
-    public class OrderState
-    {
-        public int Sum { get; set; }
+        await context.Publish(new OrderPlaced { OrderId = message.OrderId , NumberOfItems = numberOfItems}, publishOptions);
     }
 }
