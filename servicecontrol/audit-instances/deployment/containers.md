@@ -1,11 +1,11 @@
 ---
 title: Deploying ServiceControl Audit instances using containers
-reviewed: 2026-04-10
+reviewed: 2026-06-01
 component: ServiceControl
 versions: '[5.3, )'
 ---
 
-ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
+ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit). The following minimal example uses `docker run` with RavenDB storage, assuming a RabbitMQ container named `rabbitmq`:
 
 ```shell
 docker run -d --name audit -p 44444:44444 \
@@ -14,6 +14,12 @@ docker run -d --name audit -p 44444:44444 \
     -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
     particular/servicecontrol-audit:latest
 ```
+
+#if-version [7,)
+
+See [Storage selection](#required-settings-storage-selection) for other supported storage providers. When using SQL Server or PostgreSQL, replace the `RAVENDB_CONNECTIONSTRING` environment variable with the settings described in the [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) configuration guide.
+
+#end-if
 
 include: platform-container-examples
 
@@ -52,7 +58,7 @@ Using `--setup-and-run` removes the need to repeat a setup process when the cont
 The following environment settings are required to run a ServiceControl audit instance.
 
 include: servicecontrol-container-transport
-include: servicecontrol-container-ravenconnectionstring
+include: servicecontrol-container-storage
 include: servicecontrol-container-license
 
 ## Ports
@@ -61,7 +67,17 @@ include: servicecontrol-container-license
 
 ## Volumes
 
+#if-version (,7)
+
 The Audit instance is stateless and does not require any mounted volumes.
+
+#end-if
+
+#if-version [7,)
+
+A RavenDB Audit instance does not require a mounted data volume. A mounted volume may be required for a [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate). Audit instances do not use external message body storage, so no body-store volume is required for any storage provider.
+
+#end-if
 
 ## Additional settings
 

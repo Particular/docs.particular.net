@@ -25,11 +25,11 @@ Choose a provider for each instance. Follow the linked configuration guide to pr
 
 #if-version [7,)
 
-| Storage | 🍅Availability | Configuration |
-| --- | --- | --- |
-| RavenDB | Default for Error and Audit instances | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
-| SQL Server | Error and Audit instances from ServiceControl 7; requires an existing database and schema | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
-| PostgreSQL | Error and Audit instances from ServiceControl 7; requires an existing database and schema | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
+| Storage | Availability | External message body storage | Configuration |
+| --- | --- | --- | --- |
+| RavenDB | Default for Error and Audit instances | Not required | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
+| SQL Server | Error and Audit instances from ServiceControl 7; requires an existing database and schema | Required for Error; not required for Audit | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
+| PostgreSQL | Error and Audit instances from ServiceControl 7; requires an existing database and schema | Required for Error; not required for Audit | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 
 Configure SQL storage separately for each [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#storage) and [Audit instance](/servicecontrol/audit-instances/configuration.md#storage).
 
