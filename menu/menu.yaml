@@ -1750,6 +1750,15 @@
       Url: servicecontrol/storage/sqlserver
     - Title: PostgreSQL
       Url: servicecontrol/storage/postgresql
+    - Title: External message body storage
+      Url: servicecontrol/storage/external-body
+      Articles:
+      - Title: File system
+        Url: servicecontrol/storage/external-body/file
+      - Title: Azure Blob Storage
+        Url: servicecontrol/storage/external-body/azure-blob
+      - Title: Amazon S3
+        Url: servicecontrol/storage/external-body/amazon-s3
     - Title: RavenDB
       Url: servicecontrol/storage/ravendb
       Articles:
