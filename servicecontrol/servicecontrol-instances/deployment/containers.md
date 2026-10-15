@@ -9,7 +9,7 @@ redirects:
   - samples/platformtools-docker-compose
 ---
 
-ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
+ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol). The following minimal example uses `docker run` with RavenDB storage, assuming a RabbitMQ container named `rabbitmq`:
 
 ```shell
 docker run -d --name servicecontrol -p 33333:33333 \
@@ -20,6 +20,12 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e ENABLEINTEGRATEDSERVICEPULSE="true" \
     particular/servicecontrol:latest
 ```
+
+#if-version [7,)
+
+See [Storage selection](#required-settings-storage-selection) for other supported storage providers. When using SQL Server or PostgreSQL, replace the `RAVENDB_CONNECTIONSTRING` environment variable with the settings described in the [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) configuration guide.
+
+#end-if
 
 include: platform-container-examples
 
@@ -64,10 +70,10 @@ docker run --rm {OPTIONS} particular/servicecontrol --setup --skip-queue-creatio
 
 ## Required settings
 
-The following environment settings are required to run a ServiceControl error instance.🍅
+The following environment settings are required to run a ServiceControl error instance.
 
 include: servicecontrol-container-transport
-include: servicecontrol-container-ravenconnectionstring
+include: servicecontrol-container-storage
 
 ### Remote instances
 
@@ -99,7 +105,19 @@ Both endpoints are available from version 6.20.
 
 ## Volumes
 
+#if-version (,7)
+
 The Error instance is stateless and does not require any mounted volumes.
+
+#end-if
+
+#if-version [7,)
+
+A RavenDB Error instance does not require a mounted data volume. A mounted volume may be required for a [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
+
+A SQL-backed Error instance using file system message body storage requires a durable volume mounted to the path specified by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Azure Blob Storage and Amazon S3 body stores do not require a mounted volume. See the [external message body storage guide](/servicecontrol/storage/external-body/file.md) for details.
+
+#end-if
 
 ## Additional settings
 
