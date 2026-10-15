@@ -12,20 +12,8 @@ public class Metrics
         #region opentelemetry-enablemeters
 
         var meterProviderProvider = Sdk.CreateMeterProviderBuilder()
-            .AddMeter("NServiceBus.Core.Pipeline.Incoming")
-            // ... Add other meters
-            // ... Add exporters
-            .Build();
-
-        #endregion
-    }
-
-    public static void EnableMetricsV11()
-    {
-        #region opentelemetry-enablemeters-v11
-
-        var meterProviderProvider = Sdk.CreateMeterProviderBuilder()
-            .AddMeter("NServiceBus.Core")
+            // Matches NServiceBus.Core.Pipeline.Incoming, NServiceBus.Core, and the other NServiceBus meters
+            .AddMeter("NServiceBus.*")
             // ... Add other meters
             // ... Add exporters
             .Build();

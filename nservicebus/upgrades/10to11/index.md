@@ -457,9 +457,9 @@ Version 11 adds six new histograms to the `NServiceBus.Core` meter source:
 
 These metrics are emitted automatically when the meter source is subscribed. No additional configuration is required. See [OpenTelemetry metrics](/nservicebus/operations/opentelemetry.md#meters-emitted-meters) for the full tag reference.
 
-#### Meter renamed to NServiceBus.Core
+#### Meter name and version changed
 
-In version 10, NServiceBus Core emits its metrics from the `NServiceBus.Core.Pipeline.Incoming` meter, version `0.4.0`. In version 11, the meter is named `NServiceBus.Core` and reports version `1.0.0`. The instruments also cover outgoing serialization, sagas, the outbox, and persistence, so the incoming-pipeline name no longer described them. The version matches the version the ActivitySources report.
+In version 10, NServiceBus Core emits its metrics from the `NServiceBus.Core.Pipeline.Incoming` meter, version `0.4.0`. In version 11, the meter is renamed to `NServiceBus.Core` and its version changes to `1.0.0`. The instruments also cover outgoing serialization, sagas, the outbox, and persistence, so the incoming-pipeline name no longer described them. The version matches the version the ActivitySources report.
 
 The instrument names are unchanged. The old meter is not emitted in version 11, and both meters are never emitted together.
 
@@ -475,7 +475,7 @@ Sdk.CreateMeterProviderBuilder()
 > [!WARNING]
 > A `MeterProvider` that still subscribes to `NServiceBus.Core.Pipeline.Incoming` collects no NServiceBus core metrics after the upgrade, and reports no error. On version 10, change the `AddMeter` call in the same deployment that enables the `UseV11Behavior` switch.
 
-A wildcard subscription such as `AddMeter("NServiceBus.Core*")` matches both names and needs no change.
+A wildcard subscription such as `AddMeter("NServiceBus.*")` matches both names and needs no change.
 
 The meter name is exported as the instrumentation scope. Update anything that selects on it:
 

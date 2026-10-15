@@ -62,7 +62,7 @@ The switch enables all of these changes:
 `PublishTraceMode` is not part of the switch. It stays configurable in version 11; only its default changes. See *Publish operations* below.
 
 > [!WARNING]
-> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, as described under *Meter name* in the meters section. The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
+> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, or use a wildcard, as described under [Meter name and version](#meters-meter-name-and-version). The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
 
 In version 11 these behaviors are the only behaviors, and the switch is removed.
 
