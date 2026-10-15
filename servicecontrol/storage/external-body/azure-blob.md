@@ -17,20 +17,19 @@ Azure Blob Storage supports two mutually exclusive authentication methods. Confi
 
 ## Required settings
 
-| App config key | Environment variable | Default | Required |
-| --- | --- | --- | --- |
-| `ServiceControl/MessageBody/Azure/ConnectionString` | `SERVICECONTROL_MESSAGEBODY_AZURE_CONNECTIONSTRING` | None | One of the two auth methods |
-| `ServiceControl/MessageBody/Azure/ServiceUri` | `SERVICECONTROL_MESSAGEBODY_AZURE_SERVICEURI` | None | One of the two auth methods |
+include: sc-error-messagebody-azure-connectionstring
+
+include: sc-error-messagebody-azure-serviceuri
 
 `ServiceUri` must be an absolute URI.
 
 ## Optional settings
 
-| App config key | Environment variable | Default | Notes |
-| --- | --- | --- | --- |
-| `ServiceControl/MessageBody/Azure/ContainerName` | `SERVICECONTROL_MESSAGEBODY_AZURE_CONTAINERNAME` | `error-bodies` | The blob container used for message bodies. |
-| `ServiceControl/MessageBody/Azure/ManagedIdentityClientId` | `SERVICECONTROL_MESSAGEBODY_AZURE_MANAGEDIDENTITYCLIENTID` | None | Client ID of a user-assigned managed identity. When not set, the default Azure credential chain is used. |
-| `ServiceControl/MessageBody/Azure/AuthorityHost` | `SERVICECONTROL_MESSAGEBODY_AZURE_AUTHORITYHOST` | None | Azure authority host URI for sovereign clouds. When not set, the SDK uses `AZURE_AUTHORITY_HOST` or its default authority host. |
+include: sc-error-messagebody-azure-containername
+
+include: sc-error-messagebody-azure-managedidentityclientid
+
+include: sc-error-messagebody-azure-authorityhost
 
 ## Setup and runtime
 

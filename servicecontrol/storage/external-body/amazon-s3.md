@@ -17,19 +17,19 @@ Amazon S3 supports two authentication methods:
 
 ## Required settings
 
-| App config key | Environment variable | Default | Required |
-| --- | --- | --- | --- |
-| `ServiceControl/MessageBody/S3/BucketName` | `SERVICECONTROL_MESSAGEBODY_S3_BUCKETNAME` | None | Yes |
+include: sc-error-messagebody-s3-bucketname
 
 ## Optional settings
 
-| App config key | Environment variable | Default | Notes |
-| --- | --- | --- | --- |
-| `ServiceControl/MessageBody/S3/KeyPrefix` | `SERVICECONTROL_MESSAGEBODY_S3_KEYPREFIX` | `error-bodies/` | Prefix applied to all body object keys. |
-| `ServiceControl/MessageBody/S3/Region` | `SERVICECONTROL_MESSAGEBODY_S3_REGION` | None | AWS region. When not set, the AWS SDK default is used. |
-| `ServiceControl/MessageBody/S3/ServiceUrl` | `SERVICECONTROL_MESSAGEBODY_S3_SERVICEURL` | None | Endpoint URL for S3-compatible storage. Forces path-style addressing. |
-| `ServiceControl/MessageBody/S3/AccessKeyId` | `SERVICECONTROL_MESSAGEBODY_S3_ACCESSKEYID` | None | Access key ID. Must be paired with `SecretAccessKey`. |
-| `ServiceControl/MessageBody/S3/SecretAccessKey` | `SERVICECONTROL_MESSAGEBODY_S3_SECRETACCESSKEY` | None | Secret access key. Must be paired with `AccessKeyId`. |
+include: sc-error-messagebody-s3-keyprefix
+
+include: sc-error-messagebody-s3-region
+
+include: sc-error-messagebody-s3-serviceurl
+
+include: sc-error-messagebody-s3-accesskeyid
+
+include: sc-error-messagebody-s3-secretaccesskey
 
 ## Setup and runtime
 

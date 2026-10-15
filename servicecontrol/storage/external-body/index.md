@@ -22,16 +22,15 @@ Choose one provider per Error instance and follow its configuration guide.
 
 Configure the body store alongside [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage. Use the same settings during setup and normal operation.
 
+include: sc-error-messagebody-storagetype
+
 ## Inline storage and compression
 
-`ServiceControl/MaxBodySizeToStore` controls the maximum body size stored inline in the SQL database. The default is `102400` bytes (100 KB). Larger bodies use the external store.
+Bodies larger than the inline size limit use the external store. Bodies in the external store are compressed above the minimum compression size.
 
-`ServiceControl/MessageBody/MinCompressionSize` controls the minimum size at which external bodies are compressed. The default is `4096` bytes (4 KB).
+include: sc-error-maxbodysizetostore
 
-| App config key | Environment variable | Default |
-| --- | --- | --- |
-| `ServiceControl/MaxBodySizeToStore` | `SERVICECONTROL_MAXBODYSIZETOSTORE` | `102400` bytes |
-| `ServiceControl/MessageBody/MinCompressionSize` | `SERVICECONTROL_MESSAGEBODY_MINCOMPRESSIONSIZE` | `4096` bytes |
+include: sc-error-messagebody-mincompressionsize
 
 See the [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) for the complete reference.
 
