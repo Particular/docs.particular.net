@@ -27,20 +27,28 @@ The sample contains four executable projects:
 1. The `Sales` endpoint must be running before the `Client` to ensure that the input queue for `Sales` has been created before the `Client` sends the commands. The `Billing` and `Inventory` endpoint can be run in any arbitrary order.
 2. The `Client` endpoint sends three `AddItem` commands and a `PlaceOrder` command.
 
-## Client 
+### Client 
 
 The Client application is a send-only NServiceBus endpoint. The endpoint defines a `OrderId` and sends three `AddItem` commands and a `PlaceOrder` command using the `OrderId` as the session id.
 
-## Sales
+### Sales
 
 The `Sales` endpoint is an ordered endpoint. The endpoint handles the `AddItem` and `PlaceOrder` commands in the order in which they are delivered to the endpoint by the broker. The `Sales` endpoint publishes an `OrderPlaced` event when an order is created.
 
 Note that the session id of the `OrderPlaced` event published by the endpoint is not `OrderId`. It uses a fixed session id - "Sales". This is intentional. An endpoint that processes `OrderPlaced` events in order should handle them in the sequence they are delivered by the broker. If the session ID were set to `OrderId`, it would create high cardinality and could cause `OrderPlaced` events for different orders to be processed in parallel, depending on the endpoint’s concurrency settings. This parallelism could break the required processing order. For example, if `Inventory` must reserve stock based on the order in which orders were placed, processing events out of order could lead to incorrect behavior.
 
-## Inventory
+### Inventory
 
 The `Inventory` endpoint is an ordered endpoint. The endpoint handles the `OrderPlaced` event. It is assumed that the endpoint must reserve stock based on the order in which orders were placed.
 
-## Billing
+### Billing
 
 The `Billing` endpoint handles the `OrderPlaced` event to bill the customer. The endpoint is not ordered.
+
+## Usage of SessionState API
+
+The `Sales` endpoint also demonstrates how to use the Azure Service Bus transport’s `SessionState` API to implement a lightweight saga.
+
+Each time the `AddItemHandler` handles an `AddItem` message, it creates or updates an `OrderState` object in session state, incrementing its `ItemCount` property by one.
+
+When the `PlaceOrderHandler` handles a `PlaceOrder` message, it retrieves the `OrderState` through the `SessionState` API and includes it in the `OrderPlaced` event.
