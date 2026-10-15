@@ -12,10 +12,10 @@ public class AddItemHandler(ILogger<AddItemHandler> logger) : IHandleMessages<Ad
 
         var orderState = await sessionState.Get<OrderState>(context.CancellationToken) ?? new OrderState();
 
-        orderState?.ItemCount += 1;
+        orderState.ItemCount += 1;
 
         await sessionState.Set(orderState, context.CancellationToken);
 
-        logger.LogInformation("Order {OrderId} now has {ItemCount} item(s)", message.OrderId, orderState?.ItemCount);
+        logger.LogInformation("Order {OrderId} now has {ItemCount} item(s)", message.OrderId, orderState.ItemCount);
     }
 }

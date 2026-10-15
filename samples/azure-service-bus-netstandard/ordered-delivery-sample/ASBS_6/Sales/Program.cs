@@ -3,7 +3,7 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
 builder.Logging.AddConsole();
 
-var endpointConfiguration = new EndpointConfiguration("Sales");
+var endpointConfiguration = new EndpointConfiguration("Samples.OrderedDelivery.Sales");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
 endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default)

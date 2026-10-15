@@ -3,7 +3,7 @@
 builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
 builder.Logging.AddConsole();
 
-var endpointConfiguration = new EndpointConfiguration("Inventory");
+var endpointConfiguration = new EndpointConfiguration("Samples.OrderedDelivery.Inventory");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
 endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default)
