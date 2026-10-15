@@ -8,6 +8,9 @@ versions: '[7,)'
 
 From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of the default [RavenDB storage](/servicecontrol/storage/ravendb/). Select PostgreSQL when an instance should use an existing PostgreSQL deployment. Storage is configured separately for each instance.
 
+> [!IMPORTANT]
+> When using PostgreSQL [external message body storage](/servicecontrol/storage/external-body/) is required in addition to the database, even when message bodies fit inline.
+
 ## Prepare the database
 
 Create a database and schema before configuring the instance 🍅 (link to `--install` guidance). The default schema is `public`(🍅 is it?). ServiceControl does not create the database or schema; both must exist before setup runs. Schema names can contain letters, digits, and underscores, must start with a letter or underscore, and are limited to 63 characters.
