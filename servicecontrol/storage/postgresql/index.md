@@ -13,7 +13,7 @@ From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of t
 
 ## Prepare the database
 
-Create a database and schema before configuring the instance 🍅 (link to `--install` guidance). The default schema is `public`(🍅 is it?). ServiceControl does not create the database or schema; both must exist before setup runs. Schema names can contain letters, digits, and underscores, must start with a letter or underscore, and are limited to 63 characters.
+Create a database and schema before configuring the instance 🍅 (link to `--install` guidance). The default schema is `public`(🍅 is it?). ServiceControl does not create the database or schema; both must exist before setup runs.
 
 PostgreSQL full-text search uses a built-in `tsvector` GIN index and message body search is always enabled for PostgreSQL storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
 
@@ -23,9 +23,15 @@ The ServiceControl installer does not yet create SQL-backed Audit instances; con
 
 ## Error instance configuration
 
-1. Set `ServiceControl/PersistenceType` to `PostgreSQL` and `ServiceControl/Database/ConnectionString` to the database connection string. If using a custom schema, set `ServiceControl/Database/Schema`.
-2. Configure an [external message body store](/servicecontrol/storage/external-body/). This is required even if most bodies fit inline in the database.
-3. Set [`ServiceControl/ErrorRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod) to between five and 45 days.
+Set the persistence type to `PostgreSQL`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database.
+
+include: sc-error-persistencetype
+
+include: sc-error-database-connectionstring
+
+include: sc-error-database-schema
+
+include: sc-error-errorretentionperiod
 
 Set these variables in the Error instance's environment to use file system body storage. Replace the connection string placeholder with credentials supplied by the deployment environment. These storage settings supplement the instance's transport and other required settings.
 
@@ -41,12 +47,23 @@ See the [Error instance settings reference](/servicecontrol/servicecontrol-insta
 
 ## Audit instance configuration
 
-1. Set `ServiceControl.Audit/PersistenceType` to `PostgreSQL` and `ServiceControl.Audit/Database/ConnectionString` to the database connection string. If using a custom schema, set `ServiceControl.Audit/Database/Schema`.
-2. Set [`ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod) to between one and 90 days.
+Set the persistence type to `PostgreSQL`, provide the database connection string, and configure the retention period.
+
+include: sc-audit-persistencetype
+
+include: sc-audit-database-connectionstring
+
+include: sc-audit-database-schema
+
+include: sc-audit-auditretentionperiod
 
 PostgreSQL-backed Audit instances are partitioned by day. The runtime provisions and drops daily partitions automatically.
 
-Audit instances do not require an external body store; eligible text bodies are stored inline in the database. [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) is a hard cap for Audit instances. Message bodies larger than the configured limit, or bodies that are not text, are not stored at all.
+Audit instances do not require an external body store; eligible text bodies are stored inline in the database.
+
+include: sc-audit-maxbodysizetostore
+
+`ServiceControl.Audit/MaxBodySizeToStore` is a hard cap for Audit instances. Message bodies larger than the configured limit, or bodies that are not text, are not stored at all.
 
 SQL-backed Audit instances do not support maintenance mode.
 

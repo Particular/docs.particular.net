@@ -10,15 +10,11 @@ File system storage saves message bodies to a local directory. Set `ServiceContr
 
 ## Required settings
 
-| App config key | Environment variable | Default | Required |
-| --- | --- | --- | --- |
-| `ServiceControl/MessageBody/FileSystem/StoragePath` | `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH` | None | Yes |
+include: sc-error-messagebody-filesystem-storagepath
 
 ## Optional settings
 
-| App config key | Environment variable | Default | Notes |
-| --- | --- | --- | --- |
-| `ServiceControl/MessageBody/FileSystem/DataSpaceRemainingThreshold` | `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_DATASPACEREMAININGTHRESHOLD` | `15` | Percentage of free disk space that must remain available. Must be between `0` and `100`. |
+include: sc-error-messagebody-filesystem-dataspaceremainingthreshold
 
 ## Setup and runtime
 
