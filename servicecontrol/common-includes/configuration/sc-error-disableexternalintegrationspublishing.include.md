@@ -1,6 +1,8 @@
 ### ServiceControl/DisableExternalIntegrationsPublishing
 
-[ServiceControl publishes integration events](/servicecontrol/contracts.md), if no subscribers exist this can be disabled.
+Controls whether ServiceControl publishes [integration events](/servicecontrol/contracts.md). Set to `false` to enable publishing or `true` to disable it.
+
+Publishing is disabled by default in ServiceControl version 7 and later. If subscribers use these events, explicitly set this setting to `false`.
 
 | Context | Name |
 | --- | --- |
@@ -10,4 +12,4 @@
 
 | Type | Default value |
 | --- | --- |
-| bool | False |
+| bool | `True` in version 7 and later; `False` in earlier versions |
