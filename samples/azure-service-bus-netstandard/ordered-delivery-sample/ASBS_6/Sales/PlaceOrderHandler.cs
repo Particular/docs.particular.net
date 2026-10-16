@@ -15,7 +15,8 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessa
         var numberOfItems = orderState?.ItemCount ?? 0;
 
         var publishOptions = new PublishOptions();
-        publishOptions.SetSessionId("Sales");
+        // Set the sessionid to a value that correlates to all the messages you want to have ordered
+        publishOptions.SetSessionId(message.OrderId.ToString());
 
         await context.Publish(new OrderPlaced { OrderId = message.OrderId , NumberOfItems = numberOfItems}, publishOptions);
     }

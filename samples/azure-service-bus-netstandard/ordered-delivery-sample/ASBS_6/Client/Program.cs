@@ -32,6 +32,7 @@ var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 var orderId = Guid.NewGuid();
 var sendOptions = new SendOptions();
+// Set the sessionid to a value that correlates to all the messages you want to have ordered
 sendOptions.SetSessionId(orderId.ToString());
 
 await messageSession.Send(new AddItem { OrderId = orderId, Name = "Coffee" }, sendOptions);
