@@ -459,7 +459,7 @@ These metrics are emitted automatically when the meter source is subscribed. No 
 
 #### Meter name and version changed
 
-In version 10, NServiceBus Core emits its metrics from the `NServiceBus.Core.Pipeline.Incoming` meter, version `0.4.0`. In version 11, the meter is renamed to `NServiceBus.Core` and its version changes to `1.0.0`. The instruments also cover outgoing serialization, sagas, the outbox, and persistence, so the incoming-pipeline name no longer described them. The version matches the version the ActivitySources report.
+In version 10, NServiceBus Core emits its metrics from the `NServiceBus.Core.Pipeline.Incoming` meter, version `0.4.0`. In version 11, the meter is renamed to `NServiceBus.Core` and its version changes to `1.0.0`. The version matches the version the ActivitySources report.
 
 The instrument names are unchanged. The old meter is not emitted in version 11, and both meters are never emitted together.
 
@@ -467,7 +467,7 @@ Update every `MeterProvider` that subscribes to the old name:
 
 ```csharp
 Sdk.CreateMeterProviderBuilder()
-    .AddMeter("NServiceBus.Core")
+    .AddMeter("NServiceBus.*")
     // ...
     .Build();
 ```
@@ -477,13 +477,12 @@ Sdk.CreateMeterProviderBuilder()
 
 A wildcard subscription such as `AddMeter("NServiceBus.*")` matches both names and needs no change.
 
-The meter name is exported as the instrumentation scope. Update anything that selects on it:
+The meter name is exported as the instrumentation scope. Update anything that depends on it:
 
 - Dashboards, recording rules, and alerts that filter on the scope name or version, such as the `otel_scope_name` and `otel_scope_version` labels in Prometheus
 - OpenTelemetry views that match on `instrument.Meter.Name` or use `MeterName` in an instrument selector
 - OpenTelemetry Collector processors that filter or route on the instrumentation scope
 
-A scope filter fails silently: the query returns no data instead of an error.
 
 #### execution.result tag is removed
 
