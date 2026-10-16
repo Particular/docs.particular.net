@@ -1643,7 +1643,7 @@
       Url: servicecontrol/servicecontrol-in-practice
     - Title: Hardware Considerations
       Url: servicecontrol/servicecontrol-instances/hardware
-    - Title: Capacity planning
+    - Title: Capacity planning for RavenDB storage
       Url: servicecontrol/capacity-and-planning
     - Title: Security
       Url: servicecontrol/securing-servicecontrol
@@ -1814,10 +1814,10 @@
         Url: servicecontrol/migrations/replacing-audit-instances/powershell
       - Title: using Containers
         Url: servicecontrol/migrations/replacing-audit-instances/containers
-    - Title: RavenDB to SQL storage
-      Url: servicecontrol/migrations/ravendb-to-sql
     - Title: New persistence format
       Url: servicecontrol/migrations/new-persistence
+    - Title: RavenDB to SQL storage
+      Url: servicecontrol/migrations/ravendb-to-sql
   - Title: Troubleshooting
     Articles:
     - Title: ServiceControl troubleshooting

@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Audit instances
 summary: Information about ServiceControl Audit instances
-reviewed: 2026-04-24
+reviewed: 2026-06-01
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/persistence
@@ -36,7 +36,15 @@ Data about audit messages is exposed via an HTTP API from a ServiceControl Error
 
 ## Persistence
 
-Each ServiceControl Audit instance stores message data in a RavenDB database.🍅 For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/storage/ravendb/containers.md).
+RavenDB is the default storage for ServiceControl Audit instances. See the [storage overview](/servicecontrol/storage/) for the available storage options.
+
+#if-version [7,)
+
+ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details.
+
+#end-if
+
+When using RavenDB, each ServiceControl Audit instance stores message data in a RavenDB database. For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/storage/ravendb/containers.md).
 
 By default, audit data is retained for 7 days. [This retention period can be customized](/servicecontrol/audit-instances/configuration.md#data-retention).
 
@@ -44,7 +52,7 @@ include: ravendb-exclusive-use-warning
 
 ### RavenDB versions used
 
-🍅 Move to another page about embedded raven?
+This section applies only to instances using RavenDB storage.
 
 In ServiceControl.Audit version 4.26 and above new instances use RavenDB version 5. Instances created by version 4.25 and below use RavenDB version 3.5.
 
