@@ -13,4 +13,14 @@ public static class ExceptionRecording
 
         #endregion
     }
+
+    public static void ConfigureSpanAndLogs(EndpointConfiguration endpointConfiguration)
+    {
+        #region opentelemetry-exception-recording-span-and-logs
+
+        var options = endpointConfiguration.Tracing();
+        options.ExceptionRecordingMode = ExceptionRecordingMode.SpanAndLogs;
+
+        #endregion
+    }
 }

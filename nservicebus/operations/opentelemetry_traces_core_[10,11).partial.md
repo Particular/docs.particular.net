@@ -278,7 +278,7 @@ When a span fails, NServiceBus sets the span status to `Error` and adds an `erro
 When a span fails, NServiceBus must decide where to record the exception details - the type, message, and stack trace. The `ExceptionRecordingMode` property on `InstrumentationOptions` controls this behavior.
 
 > [!NOTE]
-> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving away from span events toward log records as the canonical signal for exception details. NServiceBus follows this transition path. The `Logs` mode is the future direction; `SpanAndLogs` is provided for backward compatibility during the migration period.
+> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving away from span events toward log records as the canonical signal for exception details. NServiceBus follows this transition path. In version 10, `SpanAndLogs` is the default and `Logs` is opt-in, in code or through the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable. In version 11, `Logs` becomes the default, and the environment variable is no longer read.
 
 #### SpanAndLogs mode (default)
 
@@ -314,7 +314,7 @@ This also gives ops teams independent control over observability behavior in eac
 | `logs` | `Logs` |
 | `logs/dup` | `SpanAndLogs` |
 
-When the environment variable is not set, the value configured in code is used, defaulting to `SpanAndLogs` if not explicitly configured.
+When the environment variable is not set, the value configured in code is used, defaulting to `SpanAndLogs` if not explicitly configured. Any other value is ignored without a warning, and the value configured in code is used as well. Check `ExceptionRecordingMode` in the [startup diagnostics](#traces-startup-diagnostics) to confirm the mode an endpoint runs with.
 
 ### Startup diagnostics
 
