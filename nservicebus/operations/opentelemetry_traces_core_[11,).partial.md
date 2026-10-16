@@ -203,7 +203,7 @@ When a span fails, NServiceBus must decide where to record the exception details
 
 #### Logs mode (default)
 
-In the default `Logs` mode, NServiceBus logs the exception exactly once, at the point where the exception was thrown - on the innermost span where the failure originated. Recoverability decisions (immediate retry, delayed retry, move to error queue, discard) are still logged, but those log entries contain only the action metadata such as message ID, destination queue, and retry delay. The exception details are not repeated, and no exception event is added to the span.
+In the default `Logs` mode, NServiceBus logs the exception exactly once, at the point where the recoverability decision is made. 
 
 This is the mode recommended by the OpenTelemetry semantic conventions, which define exceptions as log records rather than span events. It is a good fit when:
 
