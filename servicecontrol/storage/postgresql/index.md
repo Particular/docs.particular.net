@@ -9,15 +9,15 @@ versions: '[7,)'
 From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of the default [RavenDB storage](/servicecontrol/storage/ravendb/). Select PostgreSQL when an instance should use an existing PostgreSQL deployment. Storage is configured separately for each instance.
 
 > [!IMPORTANT]
-> When using PostgreSQL [external message body storage](/servicecontrol/storage/external-body/) is required in addition to the database, even when message bodies fit inline.
+> When using PostgreSQL, Error instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline. Audit instances do not require it.
 
 ## Prepare the database
 
-Create a database and schema before configuring the instance 🍅 (link to `--install` guidance). The default schema is `public`(🍅 is it?). ServiceControl does not create the database or schema; both must exist before setup runs.
+Create a database before configuring the instance. If `Database/Schema` is not set, ServiceControl uses the connection's default `search_path`, which is normally `public`. A configured schema must already exist and the instance's database user must have rights on it. ServiceControl does not create the database or schema.
 
 PostgreSQL full-text search uses a built-in `tsvector` GIN index and message body search is always enabled for PostgreSQL storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
 
-Run the instance setup process before normal operation. For Error instances, setup applies database migrations and provisions the external message body store. For Audit instances, database migrations run at every startup and daily partitions are provisioned automatically, so the runtime identity must have permissions to modify the schema and manage partitions (create and alter tables, create and drop partitions). See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+Run the instance setup process (`--setup`) before normal operation. For Error instances, setup applies database migrations and provisions the external message body store. For Audit instances, database migrations run at every startup and daily partitions are provisioned automatically, so the runtime identity must have permissions to modify the schema and manage partitions (create and alter tables, create and drop partitions). See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
 
 The ServiceControl installer does not yet create SQL-backed Audit instances; configure their settings using environment variables or the application configuration file.
 
@@ -63,7 +63,7 @@ Audit instances do not require an external body store; eligible text bodies are 
 
 include: sc-audit-maxbodysizetostore
 
-`ServiceControl.Audit/MaxBodySizeToStore` is a hard cap for Audit instances. Message bodies larger than the configured limit, or bodies that are not text, are not stored at all.
+`ServiceControl.Audit/MaxBodySizeToStore` is a hard cap for Audit instances. Message bodies larger than the configured limit, or bodies that are not text, are not available for viewing.
 
 SQL-backed Audit instances do not support maintenance mode.
 

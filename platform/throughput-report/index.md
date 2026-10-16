@@ -1,7 +1,7 @@
 ---
 title: Usage Report Requirements
 summary: Minimal setup required for generating a usage report for licensing of the Particular Service Platform.
-reviewed: 2026-08-14
+reviewed: 2026-06-01
 related:
   - nservicebus/licensing
   - servicepulse/usage-reporting-with-servicepulse
@@ -46,25 +46,27 @@ The following methods can be used to install these requirements:
 
 ## Container Installation
 
-When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), the default configuration includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers with the default RavenDB storage, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
 
-The containers required for generating a usage report are:
+The following example uses the default RavenDB storage. The containers required for generating a usage report are:
 
-- [RavenDB](/servicecontrol/storage/ravendb/containers.md) 🍅
+- [RavenDB](/servicecontrol/storage/ravendb/containers.md)
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/storage/ravendb/containers.md#basic-usage-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
 - [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse))
 
+From ServiceControl 7, an Error instance can instead use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage with an [external message body store](/servicecontrol/storage/external-body/) rather than RavenDB.
+
 ### Cloud environments
 
-When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS. 🍅
+When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS.
 In hosting environments where the RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is recommended to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation
 
 ### ServiceControl
 
-ServiceControl is installed as a Windows service, and starts automatically. It includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use).
+ServiceControl is installed as a Windows service, and starts automatically. By default, it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use).
 
 #### ServiceControl Management Utility (SCMU)
 

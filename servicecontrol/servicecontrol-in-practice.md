@@ -1,11 +1,9 @@
 ---
 title: Optimizing ServiceControl for use in different environments
 summary: Optimize ServiceControl installation and deployment for better performance; hardware, message throughput, plugin and performance considerations
-reviewed: 2025-04-03
+reviewed: 2026-06-01
 isLearningPath: true
 ---
-
-> 🍅🍅 This guide needs to be re-thought and perhaps broken down to a per-persistence format 🍅🍅
 
 ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional plugins into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
@@ -62,9 +60,12 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 ## Anti-virus checks
 
-Exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Both ServiceControl Error and ServiceControl Audit instances use an embedded RavenDB database and produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+When using the default embedded RavenDB database, exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Embedded RavenDB databases produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
 
 ### Database directories
+
+> [!NOTE]
+> This section applies to instances using an embedded RavenDB database. SQL Server and PostgreSQL storage have no local database directory; for SQL-backed Error instances using file system message body storage, apply the same antivirus considerations to the body storage path.
 
 > [!NOTE]
 > For container deployments, the database location differs. See [ServiceControl container deployment](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [ServiceControl Audit container deployment](/servicecontrol/audit-instances/deployment/containers.md) for details.
@@ -114,9 +115,7 @@ For more information, see the [RavenDB embedded deployment guidance](https://rav
 
 ## Version downgrades
 
-> 🍅 There's actually instructions for downgrading, this section conflicts with [that advice](/servicecontrol/upgrades/#downgrading-servicecontrol) 🍅
-
-Do not downgrade releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
+Do not downgrade releases of ServiceControl without the supervision of Particular Software support, as described in the [downgrading guidance](/servicecontrol/upgrades/#downgrading-servicecontrol). Changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
 
 ## Server monitoring
 

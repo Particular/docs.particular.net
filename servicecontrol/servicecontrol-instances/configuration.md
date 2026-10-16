@@ -43,6 +43,9 @@ include: sc-error-remoteinstances
 include: sc-error-shutdowntimeout
 
 
+include: sc-error-enableexternalintegrationspublishing
+
+
 include: sc-error-disableexternalintegrationspublishing
 
 
