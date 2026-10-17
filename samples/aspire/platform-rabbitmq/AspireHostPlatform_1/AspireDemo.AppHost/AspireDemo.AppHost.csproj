@@ -22,4 +22,8 @@
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="MessagePack" Version="2.*" />
+  </ItemGroup>
+
 </Project>

@@ -26,4 +26,8 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.*" />
+  </ItemGroup>
+
 </Project>
