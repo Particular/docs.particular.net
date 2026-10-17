@@ -21,7 +21,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 
 |Feature                    |   |
 |:---                       |---
-|Transactions |None, ReceiveOnly, SendsAtomicWithReceive
+|Transactions |None(unsupported for ordered processing), ReceiveOnly, SendsAtomicWithReceive
 |Pub/Sub                    |Native
 |Timeouts                   |Native
 |Large message bodies       | with Premium tier or data bus
@@ -32,6 +32,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Message sessions           |Not supported
 |Case Sensitive             |No
 |Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-azure-service-bus)
+|Support for ordered delivery| [Yes](ordered-processing)
 
 > [!NOTE]
 > The Azure Service Bus transport only supports the Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
