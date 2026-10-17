@@ -23,4 +23,8 @@
     <PackageReference Include="Amazon.CDK.Lib" Version="2.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="MessagePack" Version="2.*" />
+  </ItemGroup>
+
 </Project>

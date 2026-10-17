@@ -9,4 +9,7 @@
     <PackageReference Include="NServiceBus.Gateway" Version="6.*" />
     <PackageReference Include="NServiceBus.Gateway.Sql" Version="4.*" />
   </ItemGroup>
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.*" />
+  </ItemGroup>
 </Project>
