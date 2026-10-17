@@ -10,7 +10,7 @@ related:
 
 Integrates the [RabbitMQ Server transport](/transports/rabbitmq/) with [Cosmos DB persistence](/persistence/cosmosdb/).
 
-This sample demonstrates how the [Outbox](/nservicebus/outbox/) uses Cosmos DB persistence to detect duplicate messages and skip their handlers. The handler logs message IDs; it does not write business data or send outgoing messages.
+This sample demonstrates how the [Outbox](/nservicebus/outbox/) feature works to ensure the atomic processing of a message in Cosmos DB, ensuring that messages sent and received are kept consistent with any modifications made to business data in a database.
 
 This sample uses [Docker Compose](https://docs.docker.com/compose/) to provide dependencies. It is not necessary to have installed instances of RabbitMQ or Cosmos DB.
 
