@@ -7,7 +7,10 @@ public static class Helper
 {
     public static async Task CreateContainerAndDbIfNotExists(string connectionString)
     {
-        var cosmosClient = new CosmosClient(connectionString);
+        using var cosmosClient = new CosmosClient(connectionString, new CosmosClientOptions
+        {
+            ConnectionMode = ConnectionMode.Gateway
+        });
         Database database = await cosmosClient.CreateDatabaseIfNotExistsAsync("Samples.Database.Demo");
         Container container = await database.CreateContainerIfNotExistsAsync(
             id: "Outbox",
@@ -15,7 +18,7 @@ public static class Helper
         );
     }
 
-    public static Task SendDuplicates<TMessage>(IMessageSession context, TMessage message, int totalCount)
+    public static Task SendDuplicates<TMessage>(IMessageSession context, TMessage message, int totalCount) where TMessage : notnull
     {
         var duplicatedMessageId = Guid.NewGuid().ToString();
 

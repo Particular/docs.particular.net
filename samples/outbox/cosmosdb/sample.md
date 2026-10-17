@@ -1,31 +1,35 @@
 ---
-title: Using Outbox with CosmosDB
-summary: Demonstrates how the Outbox handles duplicate messages using RabbitMQ and CosmosDb hosted in Docker containers.
-reviewed: 2025-02-24
+title: Using Outbox with Cosmos DB
+summary: Demonstrates how the Outbox handles duplicate messages using RabbitMQ and Cosmos DB hosted in Docker containers.
+reviewed: 2026-10-16
 component: Core
 related:
 - transports/rabbitmq
 - persistence/cosmosdb
 ---
 
-Integrates the [RabbitMQ Server transport](/transports/rabbitmq/) with [CosmosDb persistence](/persistence/cosmosdb/).
+Integrates the [RabbitMQ Server transport](/transports/rabbitmq/) with [Cosmos DB persistence](/persistence/cosmosdb/).
 
-This sample demonstrates how the Outbox feature works to ensure the atomic processing of a message in CosmosDb, ensuring that messages sent and received are kept consistent with any modifications made to business data in a database.
+This sample demonstrates how the [Outbox](/nservicebus/outbox/) uses Cosmos DB persistence to detect duplicate messages and skip their handlers. The handler logs message IDs; it does not write business data or send outgoing messages.
 
-This sample uses [Docker Compose](https://docs.docker.com/compose/) to provide dependencies. It is not necessary to have installed instances of RabbitMQ or SQL Server.
+This sample uses [Docker Compose](https://docs.docker.com/compose/) to provide dependencies. It is not necessary to have installed instances of RabbitMQ or Cosmos DB.
 
 downloadbutton
 
 ## Prerequisites
 
-1. Install [Docker](https://www.docker.com/products/docker-desktop).
+The Cosmos DB emulator image used by this sample requires an x64 machine. It [does not support Apple silicon or Microsoft ARM chips](https://learn.microsoft.com/en-us/azure/cosmos-db/emulator#differences-between-the-emulator-and-cloud-service).
+
+1. Install [Docker](https://www.docker.com/products/docker-desktop/).
 2. Install [Docker Compose](https://docs.docker.com/compose/install/).
-3. If running Docker on Windows, [set Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
-4. In the sample directory, execute the following to set up the RabbitMQ and CosmosDb emulator instances:
+3. If running Docker on Windows, [set Docker to use Linux containers](https://docs.docker.com/desktop/features/wsl/).
+4. In the sample directory, execute the following to set up the RabbitMQ and Cosmos DB emulator instances:
 
 ```shell
 > docker compose up --detach
 ```
+
+Wait for the emulator to finish starting, then [import its TLS/SSL certificate](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-develop-emulator#import-the-emulators-tlsssl-certificate) into the host certificate store before running the sample.
 
 Once complete, the RabbitMQ administration can be reached via [http://localhost:15672/](http://localhost:15672/) with username `rabbitmq` and password `rabbitmq`.
 
@@ -62,21 +66,6 @@ Processing MessageId 1333e38d-b076-41e1-92d6-a2b7a699f62f
 Press any key to exit
 ```
 
-The message handler also writes the received MessageId to the **BusinessObject** table in the database, as a simulation of writing business data. To see it, execute `select * from BusinessObject` when connected to the database:
-
-| Id | MessageId |
-|----|--------------------------------------|
-| 1 | f4589be7-efaa-4d7b-8fc7-414ac6e5ddfa |
-| 2 | f4589be7-efaa-4d7b-8fc7-414ac6e5ddfa |
-| 3 | 78c4be6d-02f1-4dc6-9aa0-e1298dcb28f9 |
-| 4 | 78c4be6d-02f1-4dc6-9aa0-e1298dcb28f9 |
-| 5 | 96ed249b-ac80-4eea-be16-eede5f368b09 |
-| 6 | 96ed249b-ac80-4eea-be16-eede5f368b09 |
-| 7 | 95c6f325-22e2-4832-8a2a-0988ce318f40 |
-| 8 | 95c6f325-22e2-4832-8a2a-0988ce318f40 |
-| 9 | 1333e38d-b076-41e1-92d6-a2b7a699f62f |
-| 10 | 1333e38d-b076-41e1-92d6-a2b7a699f62f |
-
 ### Step 2: Outbox, 1 message at a time
 
 Next, uncomment the line in **Program.cs** commented as Step 2, which enables the Outbox feature.
@@ -94,16 +83,11 @@ Processing MessageId 247706a4-c231-441c-b5fd-9f2defe6bb6f
 Press any key to exit
 ```
 
-The same is true in CosmosDb:
+### Step 3: Outbox with concurrent processing
 
-| Id | MessageId |
-|----|--------------------------------------|
-| 11 | 4d9b207b-f7e3-48f3-a8a9-8bf00afe0bd5 |
-| 12 | cfda075b-2ebd-4256-b127-20fbf719873c |
-| 13 | 48cb433c-2cda-4835-a40c-1f06e7c4ace5 |
-| 14 | 93132c07-e39d-4eb1-9d34-db4dee493f17 |
-| 15 | 247706a4-c231-441c-b5fd-9f2defe6bb6f |
+Keep the Outbox enabled and comment out `LimitMessageProcessingConcurrencyTo(1)` in **Program.cs**, then run the sample again. Duplicate messages may enter the handler concurrently, so the same message ID may appear more than once in the console. Only one attempt can commit its Outbox record; conflicting attempts are retried and then skipped once the record exists.
 
+Console output is not transactional and cannot be rolled back. For an example that also writes business data in the shared transaction, see [Using Cosmos DB transactions](/samples/cosmosdb/transactions/).
 
 ## Code walk-through
 
@@ -111,7 +95,7 @@ In **Program.cs**, an NServiceBus endpoint is created and configured to use the 
 
 snippet: ConfigureTransport
 
-Next, [CosmosDb Persistence](/persistence/cosmosdb/) is configured to connect to the local CosmosDb emulator instance hosted in Docker.
+Next, [Cosmos DB persistence](/persistence/cosmosdb/) is configured to connect to the local Cosmos DB emulator instance hosted in Docker. Both Cosmos DB clients use gateway mode to connect through the exposed HTTPS port, `8081`.
 
 snippet: ConfigurePersistence
 
@@ -119,17 +103,15 @@ snippet: ConfigurePersistence
 
 snippet: Handler
 
-The message handler:
-
-1. Logs the `MessageId` to the console.
+The message handler logs the `MessageId` to the console.
 
 > [!NOTE]
-> It's absolutely essential that business data is manipulated using the same connection and transaction that NServiceBus opens to manage the Outbox data. The Outbox feature relies on combining the manipulation of Outbox and business data in the same local database transaction to guarantee consistency between messaging operations and database manipulations within the scope of processing a message.
+> When adding business-data writes, use the [shared Cosmos DB transaction](/persistence/cosmosdb/transactions.md#sharing-the-transaction). Business data and Outbox records must be stored in the same container and partition to commit atomically.
 
 
 ## Cleaning up
 
-Once finished with the sample, the RabbitMQ and local CosmosDb instances can be cleaned up using:
+Once finished with the sample, the RabbitMQ and local Cosmos DB instances can be cleaned up using:
 
 ```shell
 > docker compose down

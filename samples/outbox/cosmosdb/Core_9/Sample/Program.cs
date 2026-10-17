@@ -32,9 +32,11 @@ class Program
 
         var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
 
-        endpointConfiguration.UsePersistence<CosmosPersistence>()
-                    .CosmosClient(new CosmosClient(connectionString))
-                    .DatabaseName("Samples.Database.Demo");
+        persistence.CosmosClient(new CosmosClient(connectionString, new CosmosClientOptions
+        {
+            ConnectionMode = ConnectionMode.Gateway
+        }));
+        persistence.DatabaseName("Samples.Database.Demo");
 
         persistence.DefaultContainer("Outbox", "/messageId");
         #endregion
@@ -43,15 +45,15 @@ class Program
 
         #region SampleSteps
 
-        // STEP 1: Run code as is, duplicates can be observed in console and database
+        // STEP 1: Run code as is, duplicates can be observed in the console
         var transactionInformation = persistence.TransactionInformation();
         transactionInformation.ExtractPartitionKeyFromHeader("PartitionKeyHeader");
 
         // STEP 2: Uncomment this line to enable the Outbox. Duplicates will be suppressed.
-       // endpointConfiguration.EnableOutbox();
+        // endpointConfiguration.EnableOutbox();
 
-        // STEP 3: Comment out this line to allow concurrent processing. Concurrency exceptions will
-        // occur in the console window, but only 5 entries will be made in the database.
+        // STEP 3: Comment out this line to allow concurrent processing. Duplicate handler executions
+        // may be logged, but only one Outbox record per message ID will be committed.
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
 
         #endregion
