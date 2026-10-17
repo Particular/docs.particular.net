@@ -97,6 +97,37 @@ As load on a system increases, this can be a good metric to monitor for [scaling
 > [!NOTE]
 > The queue length metric is measured centrally by the [ServiceControl Monitoring instance](/servicecontrol/monitoring-instances) for all transports except MSMQ, which uses a [custom plugin installed at the endpoint](/monitoring/metrics/msmq-queue-length.md). As a result, the NServiceBus.Metrics package does not contain a probe for this metric.
 
+### Active messages
+
+This metric tracks the number of messages the endpoint is processing at the moment.
+
+### Deserialization time
+
+Deserialization time is the amount of time it takes to deserialize an incoming message.
+
+### Serialization time
+
+Serialization time is the amount of time it takes to serialize an outgoing message.
+
+### Saga fetch time
+
+Saga fetch time is the amount of time it takes to load saga data from the [saga persister](/persistence/).
+
+### Outbox metrics
+
+When the [outbox](/nservicebus/outbox/) is enabled, the following metrics are captured:
+
+- Duplicates - number of incoming messages that the outbox identified as duplicates and did not process again
+- Fetch time - how long it took to query the outbox storage for deduplication
+- Store time - how long it took to store the outgoing messages in the outbox storage
+
+### Storage session commit time
+
+Storage session commit time is the amount of time it takes to complete the [synchronized storage session](/nservicebus/handlers/accessing-data.md#synchronized-storage-session).
+
+> [!NOTE]
+> Active messages, deserialization time, serialization time, saga fetch time, the outbox metrics, and storage session commit time are captured through [OpenTelemetry](/nservicebus/operations/opentelemetry.md) only, starting with NServiceBus version 10.
+
 ### Transactional Session metrics
 
 There are metrics that measure various spects of the [transactional session operations](/nservicebus/transactional-session/#how-it-works):
