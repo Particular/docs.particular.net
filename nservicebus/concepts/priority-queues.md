@@ -10,7 +10,7 @@ One common idea for dealing with this situation is to have those important messa
 
 Another approach that works with regular queues is to subdivide the endpoint, routing those higher-priority messages to a different queue that a separate host processes.
 
-Before reaching for either of these solutions, we recommend taking some time to think through some additional considerations:
+Before reaching for either of these solutions, take some time to think through some additional considerations:
 
 ## Different business process
 
