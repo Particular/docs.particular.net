@@ -21,6 +21,14 @@ Run the instance setup process (`--setup`) before normal operation. For Error in
 
 The ServiceControl installer does not yet create SQL-backed Audit instances; configure their settings using environment variables or the application configuration file.
 
+## Authentication
+
+Configure database authentication in the connection string for each Error or Audit instance. This is separate from the transport connection string.
+
+ServiceControl uses `Microsoft.Data.SqlClient`. Microsoft Entra ID authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication), including managed identity and service principal authentication.
+
+Choose an authentication method suitable for an unattended service. Ensure the selected identity is available to the ServiceControl host and has the database permissions required for setup and normal operation.
+
 ## Error instance configuration
 
 Set the persistence type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database.
