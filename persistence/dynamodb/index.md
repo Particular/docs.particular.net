@@ -2,7 +2,7 @@
 title: AWS DynamoDB persistence
 summary: How to use NServiceBus with AWS DynamoDB
 component: DynamoDB
-reviewed: 2025-04-10
+reviewed: 2026-10-15
 related:
 - samples/aws/dynamodb-simple
 - samples/aws/dynamodb-transactions
@@ -58,6 +58,15 @@ snippet: DynamoDBCustomClientProvider
 and then registered on the container
 
 snippet: DynamoDBCustomClientProviderRegistration
+
+## Global tables
+
+DynamoDB persistence can be used with [global tables](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html) configured for multi-Region eventual consistency (MREC), which is the default consistency mode.
+
+> [!WARNING]
+> Global tables configured for [multi-Region strong consistency (MRSC)](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html#V2globaltables_HowItWorks.consistency-modes.mrsc) are not supported. MRSC tables [reject transaction operations](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html#global-tables-transactions), which the persistence uses to commit saga and outbox changes, and [do not support time-to-live](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html#global-tables-ttl), which the outbox requires. The consistency mode of a global table cannot be changed after creation.
+
+On MREC global tables, transactions are atomic only within the Region where they are committed. Replicas in other Regions might briefly observe partially applied saga and outbox changes.
 
 ## Permissions
 
