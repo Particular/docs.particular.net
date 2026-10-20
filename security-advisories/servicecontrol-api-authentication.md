@@ -93,7 +93,7 @@ Upgrade the ServiceControl error instance to version 6.21.2 or later. From this 
 
 There is no patch release for versions 5.x and 4.x. To upgrade from version 5.x, see the [upgrade guide from version 5 to 6](/servicecontrol/upgrades/5to6.md).
 
-[Versions 5.x and 4.x are end of life](/servicecontrol/upgrades/support-policy.md#end-of-life). Customers on version 5.x that cannot upgrade can contact [security@particular.net](mailto:security@particular.net) to see how Particular Software can best support them.
+[Versions 5.x and 4.x have reached end of life](/servicecontrol/upgrades/support-policy.md#end-of-life). Customers on version 5.x that cannot upgrade can contact [security@particular.net](mailto:security@particular.net) to see how Particular Software can best support them.
 
 After the upgrade, change the password of the SMTP account. Then enter the new password in the email notification settings.
 
