@@ -35,6 +35,7 @@ If the application is using the [publish/subscribe capabilities of NServiceBus](
 When the application is running, NServiceBus can log the user account name that its process is currently running under. This data can be captured when logging infrastructure is set to the INFO level and the [MSMQ transport](/transports/msmq) is being used.
 
 #### Message bodies
+
 Although not standard, it is possible that an application's [message bodies will be logged](/nservicebus/logging/#logging-message-contents) along with the PII that they contain. NServiceBus logs the result of a message's `ToString()` method when sending at `DEBUG` level or lower. Overriding this method can expose PII in logs. Application code and custom logging integrations may also log message contents at other levels.
 
 
