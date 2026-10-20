@@ -141,7 +141,7 @@ The Outbox record uses the message ID as its `id` and is stored in the same part
 
 Keep the Outbox enabled and comment out `LimitMessageProcessingConcurrencyTo(1)` in **Program.cs**, then run the sample again.
 
-Duplicate messages may now enter the handler concurrently, so the same MessageId may appear more than once in the console. Only one attempt can commit. Cosmos DB rejects the transactional batch of the other attempt because its Outbox record already exists, so none of its business data is stored. The rejected message is retried, finds the Outbox record and is skipped.
+Duplicate messages may now enter the handler concurrently, so the same MessageId may appear more than once in the console. Only one attempt can commit. Cosmos DB rejects the transactional batch of the other attempt because its Outbox record already exists, so none of its business data is stored. The rejected message is retried, finds the Outbox record, and is skipped.
 
 ```
 Endpoint started. Press Enter to send 5 sets of duplicate messages...
