@@ -1230,7 +1230,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.1.0)| **Current** | 2026-06-16     | Active            | Ineligible |
+| [1.1.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.1.1)| **Current** | 2026-06-16     | Active            | Ineligible |
 | [~~1.0.x~~](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.0.1)| ~~Unsupported~~ | ~~2026-06-09~~ | ~~2026-09-16~~    | ~~Ineligible~~ |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)

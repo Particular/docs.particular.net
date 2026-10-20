@@ -602,7 +602,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.1.0)| **Current** | 2026-06-16     | Active            | Ineligible |
+| [1.1.x](https://www.nuget.org/packages/Particular.Aspire.Hosting.ServicePlatform/1.1.1)| **Current** | 2026-06-16     | Active            | Ineligible |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
