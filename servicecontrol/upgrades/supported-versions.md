@@ -14,7 +14,7 @@ This page lists the versions of ServiceControl and their support status, accordi
 
 include: supported-versions-servicecontrol
 
-Versions that are not in this table are [end of life](support-policy.md#end-of-life). This includes all 4.x versions and earlier. Version 5.x became end of life on 2025-10-17.
+Versions that are not in this table have reached [end of life](support-policy.md#end-of-life). This includes all 4.x versions and earlier. Version 5.x reached end of life on October 17, 2025.
 
 ## NServiceBus compatibility
 
