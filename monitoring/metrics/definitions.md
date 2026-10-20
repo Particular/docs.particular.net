@@ -99,7 +99,7 @@ As load on a system increases, this can be a good metric to monitor for [scaling
 
 ### Transactional Session metrics
 
-There are metrics that measure various spects of the [transactional session operations](/nservicebus/transactional-session/#how-it-works):
+There are metrics that measure various aspects of the [transactional session operations](/nservicebus/transactional-session/#how-it-works):
 
 - Commit duration - how long it took to commit the transaction and (optionally) dispatch the control message
 - Dispatch druation - how long it took to dispatch the control message
