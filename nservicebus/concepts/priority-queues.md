@@ -6,7 +6,7 @@ reviewed: 2025-10-08
 
 An endpoint is a collection of code and configuration that processes a specific set of message types. The thing is, some of the incoming messages might be more important than others. As queues generally work according to the First In, First Out (FIFO) principle, those important messages could end up waiting until all earlier messages are processed.
 
-One common idea for dealing with this situation is to have those important messages to 'jump the queue' and bypass all those other messages. Some messaging technology has support for this through a special type of queue called a "priority queue".
+A common approach to this situation is to let important messages 'jump the queue', bypassing all other messages. Some messaging technologies support this through a special type of queue called a "priority queue".
 
 Another approach that works with regular queues is to subdivide the endpoint, routing those higher-priority messages to a different queue that a separate host processes.
 
