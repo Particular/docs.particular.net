@@ -45,6 +45,21 @@ The `Download Report` button is disabled if there is less than 24 hours worth of
 
 The report file must be provided to Particular Software on request; it is **not** automatically uploaded or sent. Once Particular Software receives the report, the reported queues and throughput are analyzed to determine licensing needs.
 
+## What the report contains
+
+The usage report includes information used to determine licensing requirements, along with a summary of the ServiceControl environment and feature configuration:
+
+- **Endpoints and throughput:** detected endpoints and broker queues, message throughput, and the endpoint-type selections made in ServicePulse.
+- **Feature configuration:** whether features such as message editing, error forwarding, external integration event publishing, email notifications, and integrated ServicePulse are enabled. These values indicate configuration, not how frequently the features are used.
+- **Deployment environment:** ServiceControl and ServicePulse versions, operating system and .NET runtime, hosting information, processor count, and available memory.
+- **Storage, transport, and operational configuration:** storage and transport types, database hosting and version information, and selected settings for retention, message ingestion, heartbeat monitoring, and recoverability.
+
+Configuration details are summarized rather than copied from configuration files. Feature switches are reported as `Enabled` or `Disabled`. Settings such as the ServicePulse monitoring URL and database schema are reported as `Default`, `Custom`, or `Configured`, rather than including the URL or schema name. Database hosting is reported as a category, such as `SelfHosted` or `AzureSql`, rather than the database host name. Connection strings and credentials are not included in this configuration summary.
+
+Not all reported values are categories: numeric settings such as retention periods, batch sizes, and explicitly configured timeouts can include their actual values. Versions, resource information, and counts are also reported as values.
+
+The information included depends on the ServiceControl version and configuration. Endpoint and queue names can still appear in the throughput data; specified [report masks](usage-reporting-setup.md#report-masks) are applied when the report is generated.
+
 ## Endpoint type indicators
 
 The following endpoint type indicators are available to help categorize endpoints appropriately:
