@@ -41,9 +41,7 @@ other.
 
 Immediate retries are supported and does not break processing order.
 
-Delayed retries can break the processing order. So sessions-enabled endpoint must disable delayed retries.
-
-snippet: DisableDelayedRetries
+Delayed retries can break the processing order. So sessions-enabled endpoint must [disable delayed retries](/nservicebus/recoverability/configure-delayed-retries#disabling-through-code).
 
 When immediate retries are exhausted, messages are moved into the error queue. This can break the processing order. Retrying a message from the error queue or the DLQ does not guarantee that the message will be enqueued in its original position before it was moved to the error queue.
 
@@ -57,6 +55,10 @@ When immediate retries are exhausted, messages are moved into the error queue. T
 Session state can be obtained using the `Get()` method and can be set using the `Set()` method.
 
 snippet: session-state-usage
+
+### Saga
+
+As a best practice, the saga `CorrelationId` must match the `SessionId` of the messages being processed.
 
 ### Endpoint set up and licensing
 
