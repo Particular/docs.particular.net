@@ -196,33 +196,11 @@ When a span fails, NServiceBus sets the span status to `Error` and adds an `erro
 
 ### Exception recording
 
-When a span fails, NServiceBus must decide where to record the exception details - the type, message, and stack trace. The `ExceptionRecordingMode` property on `InstrumentationOptions` controls this behavior.
+When a span fails, NServiceBus records the exception details - the type, message, and stack trace - in the log, not as an event on the span. This follows the [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/), which define exceptions as log records rather than span events.
 
-> [!NOTE]
-> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving away from span events toward log records as the canonical signal for exception details. NServiceBus follows this transition path. `Logs` is the default; `SpanAndLogs` is available for backward compatibility.
+NServiceBus logs the exception exactly once, at the point where the recoverability decision is made. The failed span still has the `Error` status and the `error.type` tag, so trace backends show which operation failed.
 
-#### Logs mode (default)
-
-In the default `Logs` mode, NServiceBus logs the exception exactly once, at the point where the recoverability decision is made.
-
-This is the mode recommended by the OpenTelemetry semantic conventions, which define exceptions as log records rather than span events. It is a good fit when:
-
-- Log aggregation (such as structured logging sent to Elasticsearch or Azure Monitor) is the primary tool for investigating failures.
-- Span event storage is expensive or not supported in the observability backend being used.
-- Teams prefer a single, authoritative log entry per failure rather than exception details appearing in both trace and log outputs.
-
-#### SpanAndLogs mode
-
-To also record exception details as span events, as version 10 does by default, configure `ExceptionRecordingMode` to `SpanAndLogs`:
-
-snippet: opentelemetry-exception-recording-span-and-logs
-
-In `SpanAndLogs` mode, NServiceBus records exception details in two places:
-
-- **As a span event** on the activity that failed. The event includes the `exception.type`, `exception.message`, and `exception.stacktrace` attributes. This makes exception details visible directly in trace backends such as Jaeger or Zipkin without needing to correlate with log output.
-- **In log output**, when a recoverability decision is made. Log entries are written for immediate retries, delayed retries, moves to the error queue, and discards, and each includes the full exception.
-
-This mode is appropriate when trace backends are the primary tool for investigating failures. It corresponds to the `logs/dup` value defined in the OpenTelemetry [transition guidance](https://opentelemetry.io/docs/specs/semconv/exceptions/).
+To see the exception details next to the trace, use a logging provider that attaches the trace context to each log record, such as the OpenTelemetry logging provider for `Microsoft.Extensions.Logging`.
 
 ### Startup diagnostics
 
