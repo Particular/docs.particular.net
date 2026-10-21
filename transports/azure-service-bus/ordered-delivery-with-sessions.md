@@ -5,6 +5,7 @@ summary: How Azure Service Bus transport supports ordered delivery through the u
 related:
  - transports/azure-service-bus/configuration
 reviewed: 2026-10-16
+versions: '[6,)'
 ---
 
 ## Ordered delivery
