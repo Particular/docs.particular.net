@@ -278,7 +278,7 @@ When a span fails, NServiceBus sets the span status to `Error` and adds an `erro
 When a span fails, NServiceBus must decide where to record the exception details - the type, message, and stack trace. The `ExceptionRecordingMode` property on `InstrumentationOptions` controls this behavior.
 
 > [!NOTE]
-> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving away from span events toward log records as the canonical signal for exception details. NServiceBus follows this transition path. In version 10, `SpanAndLogs` is the default and `Logs` is opt-in, in code or through the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable. In version 11, `Logs` becomes the default, and the environment variable is no longer read.
+> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving away from span events toward log records as the canonical signal for exception details. NServiceBus follows this transition path. `SpanAndLogs` is the default, and `Logs` is opt-in, in code or through the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable.
 
 #### SpanAndLogs mode (default)
 
@@ -295,7 +295,7 @@ To record exception details only via logging and not as span events, configure `
 
 snippet: opentelemetry-exception-recording-logs
 
-In `Logs` mode, NServiceBus logs the exception exactly once, at the point where the exception was thrown - on the innermost span where the failure originated. Recoverability decisions (immediate retry, delayed retry, move to error queue, discard) are still logged, but those log entries contain only the action metadata such as message ID, destination queue, and retry delay. The exception details are not repeated.
+In `Logs` mode, NServiceBus logs the exception exactly once, at the point where the recoverability decision is made.
 
 This is the mode recommended by the OpenTelemetry semantic conventions, which define exceptions as log records rather than span events. It is a good fit when:
 

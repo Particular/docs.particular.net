@@ -203,7 +203,7 @@ When a span fails, NServiceBus must decide where to record the exception details
 
 #### Logs mode (default)
 
-In the default `Logs` mode, NServiceBus logs the exception exactly once, at the point where the recoverability decision is made. 
+In the default `Logs` mode, NServiceBus logs the exception exactly once, at the point where the recoverability decision is made.
 
 This is the mode recommended by the OpenTelemetry semantic conventions, which define exceptions as log records rather than span events. It is a good fit when:
 
