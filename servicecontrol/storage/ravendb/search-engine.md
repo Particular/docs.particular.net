@@ -147,7 +147,7 @@ On version 6.21.1 and later:
 
 On versions 6.20.0 and 6.21.0:
 
-1. Stop the instance. For a Windows deployment, use [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
+1. Stop the instance. For a Windows deployment, use [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
 2. Keep the migrated index unlocked and delete the `ReplacementOf/<index>` index in RavenDB Studio. Do the delete before the lock: while the migrated index is locked, the delete can have no effect.
 3. On Windows, restart RavenDB before you continue. RavenDB can keep files of a deleted replacement index open until it restarts. For a Windows deployment, stop maintenance mode and start it again right away. Do not start the instance in between.
 4. Make sure that `ReplacementOf/<index>` is not in the list.
