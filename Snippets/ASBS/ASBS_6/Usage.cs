@@ -218,7 +218,7 @@ class Usage
         var orderState = await sessionState.Get<OrderState>(context.CancellationToken) ?? new OrderState();
         orderState.ItemCount += 1;
         await sessionState.Set(orderState, context.CancellationToken);
-        
+
         #endregion
     }
 
