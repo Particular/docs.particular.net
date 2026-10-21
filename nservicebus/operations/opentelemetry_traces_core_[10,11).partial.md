@@ -53,6 +53,7 @@ The switch enables all of these changes:
 | Span names | generic, for example `process message` | operation and target, for example `process orders` |
 | Trace context and baggage propagation | custom propagator | `System.Diagnostics.DistributedContextPropagator` |
 | `Start dispatching` and `Finished dispatching` span events | emitted | not emitted |
+| Meter name and version | `NServiceBus.Core.Pipeline.Incoming`, `0.4.0` | `NServiceBus.Core`, `1.0.0` |
 | Span status on success | `Ok` | `Unset` |
 | `execution.result` metric tag | emitted | not emitted |
 | `otel.status_code`, `otel.status_description` and `exception.escaped` | emitted on failures | not emitted |
@@ -62,7 +63,7 @@ The switch enables all of these changes:
 `PublishTraceMode` is not part of the switch. It stays configurable in version 11; only its default changes. See *Publish operations* below.
 
 > [!WARNING]
-> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on a span status of `Ok`, on the `execution.result` metric tag, or on the span tags above must be updated. The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
+> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on a span status of `Ok`, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, or use a wildcard, as described under [Meter name and version](#meters-meter-name-and-version). The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
 
 In version 11 these behaviors are the only behaviors, and the switch is removed.
 
@@ -275,7 +276,7 @@ In version 10, NServiceBus sets the span status to `Ok` when an operation comple
 
 When the version 11 behavior is enabled, the status of a successful span is left `Unset`, and version 11 never sets `Ok`. The [OpenTelemetry trace API specification](https://opentelemetry.io/docs/specs/otel/trace/api/#set-status) asks instrumentation libraries to leave the status unset unless there is an error. `Unset` means the operation completed without an error.
 
-`Ok` is final: once it is set, later attempts to change the status are ignored. With the status left `Unset`, application code, such as a pipeline behavior or an OpenTelemetry processor, can still set the status of a span after NServiceBus has completed the operation.
+Setting `Ok` overwrites any status a handler or behavior set during the operation. With the version 11 behavior, that status is kept.
 
 ### Failed spans and the error.type tag
 
