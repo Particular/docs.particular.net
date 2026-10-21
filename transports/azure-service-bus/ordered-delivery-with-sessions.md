@@ -41,7 +41,7 @@ other.
 
 Immediate retries are supported and does not break processing order.
 
-Delayed retries can break the processing order. So sessions-enabled endpoint must [disable delayed retries](/nservicebus/recoverability/configure-delayed-retries#disabling-through-code).
+Delayed retries can break the processing order. So sessions-enabled endpoint must [disable delayed retries](/nservicebus/recoverability/configure-delayed-retries.md#disabling-through-code).
 
 When immediate retries are exhausted, messages are moved into the error queue. This can break the processing order. Retrying a message from the error queue or the DLQ does not guarantee that the message will be enqueued in its original position before it was moved to the error queue.
 
@@ -50,7 +50,7 @@ When immediate retries are exhausted, messages are moved into the error queue. T
 
 ### Session State
 
-[Session state](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions#message-session-state) can be used to create lightweight workflows.
+[Session state](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions.md#message-session-state) can be used to create lightweight workflows.
 
 Session state can be obtained using the `Get()` method and can be set using the `Set()` method.
 
