@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Azure.Identity;
 using NServiceBus;
 using NServiceBus.Transport;
@@ -14,14 +15,17 @@ class Usage
     {
         #region azure-service-bus-for-dotnet-standard
 
-        var transport = new AzureServiceBusTransport("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", TopicTopology.Default);
+        var transport = new AzureServiceBusTransport(
+            "Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]",
+            TopicTopology.Default);
         endpointConfiguration.UseTransport(transport);
 
         #endregion
 
         #region token-credentials
 
-        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net", new DefaultAzureCredential(), TopicTopology.Default);
+        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net",
+            new DefaultAzureCredential(), TopicTopology.Default);
         endpointConfiguration.UseTransport(transportWithTokenCredentials);
 
         #endregion
@@ -45,6 +49,7 @@ class Usage
         #endregion
 
 #pragma warning disable CS0618 // Type or member is obsolete
+
         #region asb-sanitization-compatibility
 
         var migrationTopology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -53,6 +58,7 @@ class Usage
         migrationTopology.EventToMigrate<MyEvent>("ShortenedRuleName");
 
         #endregion
+
 #pragma warning restore CS0618 // Type or member is obsolete
 
         #region asb-options-validation-disable
@@ -64,38 +70,50 @@ class Usage
         #region asb-options-options-loading
 
         using var stream = File.OpenRead("topology-options.json");
-        var options = JsonSerializer.Deserialize<TopologyOptions>(stream, TopologyOptionsSerializationContext.Default.Options);
+        var options =
+            JsonSerializer.Deserialize<TopologyOptions>(stream, TopologyOptionsSerializationContext.Default.Options);
         var jsonTopology = TopicTopology.FromOptions(options);
 
         #endregion
 
         var topology = TopicTopology.Default;
+
         #region asb-interface-based-inheritance
+
         topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderAccepted");
+
         #endregion
 
         #region asb-interface-based-inheritance-declined
+
         topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderAccepted");
         topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderDeclined");
+
         #endregion
 
         #region asb-versioning-subscriber-mapping
+
         topology.SubscribeTo<IOrderAccepted>("Shipping.OrderAccepted");
         topology.SubscribeTo<IOrderAccepted>("Shipping.OrderAcceptedV2");
+
         #endregion
 
         #region asb-interface-based-inheritance-publisher
+
         topology.PublishTo<OrderAccepted>("Shipping.IOrderStatusChanged");
         topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged");
+
         #endregion
 
         #region asb-versioning-publisher-mapping
 
         topology.PublishTo<OrderAccepted>("Shipping.OrderAccepted");
         topology.PublishTo<OrderAcceptedV2>("Shipping.OrderAccepted");
+
         #endregion
 
         #region asb-versioning-publisher-customization
+
         transport.OutgoingNativeMessageCustomization = (operation, message) =>
         {
             if (operation is MulticastTransportOperation multicastTransportOperation)
@@ -104,21 +122,29 @@ class Usage
                 message.Subject = multicastTransportOperation.MessageType.FullName;
             }
         };
+
         #endregion
 
         #region azure-service-bus-usewebsockets
+
         transport.UseWebSockets = true;
+
         #endregion
 
         #region azure-service-bus-websockets-proxy
+
         transport.WebProxy = new System.Net.WebProxy("http://myproxy:8080");
+
         #endregion
 
         #region azure-service-bus-TimeToWaitBeforeTriggeringCircuitBreaker
+
         transport.TimeToWaitBeforeTriggeringCircuitBreaker = TimeSpan.FromMinutes(2);
+
         #endregion
 
         #region azure-service-bus-RetryPolicyOptions
+
         var azureAsbRetryOptions = new Azure.Messaging.ServiceBus.ServiceBusRetryOptions
         {
             Mode = Azure.Messaging.ServiceBus.ServiceBusRetryMode.Exponential,
@@ -127,51 +153,121 @@ class Usage
             MaxDelay = TimeSpan.FromSeconds(15)
         };
         transport.RetryPolicyOptions = azureAsbRetryOptions;
+
         #endregion
 
         #region azure-service-bus-entitymaximumsize
+
         transport.EntityMaximumSize = 5;
+
         #endregion
 
         #region azure-service-bus-enablepartitioning
+
         transport.EnablePartitioning = true;
+
         #endregion
 
         #region azure-service-bus-hierarchynamespace-options
+
         transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
+
         #endregion
+
         #region azure-service-bus-hierarchynamespace-escape
+
         // exclude only a concrete type
         transport.HierarchyNamespaceOptions.ExcludeMessageType<MyExcludedMessage>();
         // exclude all types that inherit an interface or base type
         transport.HierarchyNamespaceOptions.ExcludeMessageType<IAmExcludedFromTheHierarchy>();
+
         #endregion
 
         #region enable-dlq-auto-forwarding
+
         transport.AutoForwardDeadLetteredMessagesToErrorQueue = true;
+
+        #endregion
+
+        #region enable-sessions
+
+        transport.EnableSessions = true;
+
+        #endregion
+
+        #region sending-set-session-id
+
+        var sendOptions = new SendOptions();
+        sendOptions.SetSessionId("my-session-id");
+
+        #endregion
+
+        #region publishing-set-session-id
+
+        var publishOptions = new PublishOptions();
+        publishOptions.SetSessionId("my-session-id");
+
+        #endregion
+    }
+
+    async Task SessionStateUsageHandler(IMessageHandlerContext context)
+    {
+        #region session-state-usage
+        var sessionState = context.GetSessionState();
+        var orderState = await sessionState.Get<OrderState>(context.CancellationToken) ?? new OrderState();
+        orderState.ItemCount += 1;
+        await sessionState.Set(orderState, context.CancellationToken);
         #endregion
     }
 
 
     #region azure-service-bus-hierarchynamespace-excluded-message-types
-    public class MyExcludedMessage {}
 
-    public interface IAmExcludedFromTheHierarchy {}
+    public class OrderState
+    {
+        public int ItemCount { get; set; }
+    }
 
-    public class MyExcludedMessageByInterface : IAmExcludedFromTheHierarchy { }
+    public class MyExcludedMessage
+    {
+    }
 
-    public class MyOtherExcludedMessageByInterface : IAmExcludedFromTheHierarchy {}
+    public interface IAmExcludedFromTheHierarchy
+    {
+    }
+
+    public class MyExcludedMessageByInterface : IAmExcludedFromTheHierarchy
+    {
+    }
+
+    public class MyOtherExcludedMessageByInterface : IAmExcludedFromTheHierarchy
+    {
+    }
+
     #endregion
+
     class MyEvent;
 }
 
 namespace Shipping
 {
-    interface IOrderAccepted : IEvent { }
-    interface IOrderStatusChanged : IEvent { }
+    interface IOrderAccepted : IEvent
+    {
+    }
 
-    class OrderAccepted : IOrderAccepted, IOrderStatusChanged { }
-    class OrderDeclined : IOrderAccepted, IOrderStatusChanged { }
+    interface IOrderStatusChanged : IEvent
+    {
+    }
 
-    class OrderAcceptedV2 : IOrderAccepted, IOrderStatusChanged { }
+    class OrderAccepted : IOrderAccepted, IOrderStatusChanged
+    {
+    }
+
+    class OrderDeclined : IOrderAccepted, IOrderStatusChanged
+    {
+    }
+
+    class OrderAcceptedV2 : IOrderAccepted, IOrderStatusChanged
+    {
+    }
 }
