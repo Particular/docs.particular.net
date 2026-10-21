@@ -56,11 +56,12 @@ When immediate retries are exhausted, messages are moved into the error queue. T
 
 Session state can be obtained using the `Get()` method and can be set using the `Set()` method.
 
-snippet:session-state-usage
+snippet: session-state-usage
 
-### Endpoint licensing
+### Endpoint set up and licensing
 
-If there's a need to have part of a logical endpoint's message types 
-processed in order, and part of the message types to be processed out of order, then the logical endpoint should be split into two endpoints. One endpoint should be sessions enabled, and the other endpoint should be sessions disabled.
+If a logical endpoint needs to process some message types in order while allowing others to be processed without ordering, it should be split into two  endpoints: one with sessions enabled and the other with sessions disabled.
 
-The two endpoints should be named differently, e.g. `Sales.Ordered` and `Sales.Unordered`, but will be treated as a single logical endpoint and will therefore be licensed as a single endpoint.
+The two endpoints can also be [hosted in one process](/nservicebus/hosting/core-hosting#hosting-multiple-endpoints).
+
+These endpoints should have distinct names, such as `Sales.Ordered` and `Sales.Unordered`. However, they will be treated as a single logical endpoint for licensing purposes and will count as one licensed endpoint.
