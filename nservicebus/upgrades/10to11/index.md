@@ -452,7 +452,7 @@ To retain custom trace state, ensure it is a comma-separated list of `key=value`
 
 #### New performance metrics
 
-Version 11 adds six new histograms to the `NServiceBus.Core.Pipeline.Incoming` meter source:
+Version 11 adds six new histograms to the `NServiceBus.Core` meter source:
 
 | Metric | Description |
 |---|---|
@@ -465,9 +465,32 @@ Version 11 adds six new histograms to the `NServiceBus.Core.Pipeline.Incoming` m
 
 These metrics are emitted automatically when the meter source is subscribed. No additional configuration is required. See [OpenTelemetry metrics](/nservicebus/operations/opentelemetry.md#meters-emitted-meters) for the full tag reference.
 
-#### Meter source version
+#### Meter name and version changed
 
-The `NServiceBus.Core.Pipeline.Incoming` meter source version has been updated to `0.4.0`. If any monitoring configuration references this version string explicitly, update it accordingly.
+In version 10, NServiceBus Core emits its metrics from the `NServiceBus.Core.Pipeline.Incoming` meter, version `0.4.0`. In version 11, the meter is renamed to `NServiceBus.Core` and its version changes to `1.0.0`. The version matches the version the ActivitySources report.
+
+The instrument names are unchanged. The old meter is not emitted in version 11, and both meters are never emitted together.
+
+Update every `MeterProvider` that subscribes to the old name:
+
+```csharp
+Sdk.CreateMeterProviderBuilder()
+    .AddMeter("NServiceBus.*")
+    // ...
+    .Build();
+```
+
+> [!WARNING]
+> A `MeterProvider` that still subscribes to `NServiceBus.Core.Pipeline.Incoming` collects no NServiceBus core metrics after the upgrade, and reports no error. On version 10, change the `AddMeter` call in the same deployment that enables the `UseV11Behavior` switch.
+
+A wildcard subscription such as `AddMeter("NServiceBus.*")` matches both names and needs no change.
+
+The meter name is exported as the instrumentation scope. Update anything that depends on it:
+
+- Dashboards, recording rules, and alerts that filter on the scope name or version, such as the `otel_scope_name` and `otel_scope_version` labels in Prometheus
+- OpenTelemetry views that match on `instrument.Meter.Name` or use `MeterName` in an instrument selector
+- OpenTelemetry Collector processors that filter or route on the instrumentation scope
+
 
 #### execution.result tag is removed
 
