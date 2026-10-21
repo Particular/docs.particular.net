@@ -258,7 +258,7 @@ If an endpoint must keep a specific host identifier beyond version 11, configure
 
 Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. Span names, the span status on success, the parent of the process span, some span attributes, the baggage wire format, the meter name and one metric tag all change. These changes break dashboards, alerts and queries that match on the old output.
 
-Version 10 keeps the version 10 output. Every change below is available on version 10 behind a single opt-in switch, so the new output can be adopted and verified before the upgrade to version 11.
+The new behavior can be turned on via a single opt-in switch, except for the exception recording mode that is controlled by a dedicated option, described in [Exceptions are no longer recorded as span events](#opentelemetry-exceptions-are-no-longer-recorded-as-span-events).
 
 ### Adopting the version 11 behavior on version 10
 
@@ -499,3 +499,26 @@ The `execution.result` tag, which carries `"success"` or `"failure"`, is removed
 The tag duplicated information that is already available: `nservicebus.messaging.successes` and `nservicebus.messaging.failures` are separate instruments, and the histograms carry `error.type` when the operation fails. Removing the tag also lowers metric cardinality and ingestion cost.
 
 Update any dashboard or alert that groups or filters on `execution.result`. Use the separate success and failure instruments, or `error.type`, instead.
+
+### Exceptions are no longer recorded as span events
+
+In version 10, the default `ExceptionRecordingMode` is `SpanAndLogs`: exception details are added as an `exception` event on the failed span and are also written to the log. In version 11, exception details are written to the log only, as the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) recommend, and failed spans no longer carry an `exception` event. Failed spans still have the `Error` status and the `error.type` tag.
+
+`ExceptionRecordingMode.SpanAndLogs` is obsolete in version 11 and cannot be selected. The `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable is no longer read.
+
+`ExceptionRecordingMode` is not part of the `UseV11Behavior` switch. To adopt the version 11 behavior on version 10, set `ExceptionRecordingMode` to `Logs` in code:
+
+```csharp
+var options = endpointConfiguration.Tracing();
+options.ExceptionRecordingMode = ExceptionRecordingMode.Logs;
+```
+
+Or set the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable to `logs`. The environment variable takes precedence over the value configured in code.
+
+Before upgrading:
+
+- Switch dashboards, alerts, and queries that read the `exception` span event to the log records.
+- Remove code that sets `ExceptionRecordingMode.SpanAndLogs`; it no longer compiles in version 11.
+- Remove the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable from the deployment configuration. A `logs/dup` value no longer keeps the span events.
+
+See [exception recording](/nservicebus/operations/opentelemetry.md#traces-exception-recording) for details.
