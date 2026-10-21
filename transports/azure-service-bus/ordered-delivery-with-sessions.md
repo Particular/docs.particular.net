@@ -64,6 +64,6 @@ As a best practice, the saga `CorrelationId` must match the `SessionId` of the m
 
 If a logical endpoint needs to process some message types in order while allowing others to be processed without ordering, it should be split into two  endpoints: one with sessions enabled and the other with sessions disabled.
 
-The two endpoints can also be [hosted in one process](/nservicebus/hosting/core-hosting#hosting-multiple-endpoints).
+The two endpoints can also be [hosted in one process](/nservicebus/hosting/core-hosting.md#hosting-multiple-endpoints).
 
 These endpoints should have distinct names, such as `Sales.Ordered` and `Sales.Unordered`. However, they will be treated as a single logical endpoint for licensing purposes and will count as one licensed endpoint.
