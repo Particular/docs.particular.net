@@ -11,7 +11,8 @@ builder.Logging.AddConsole();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.OrderedDelivery.Client");
 
-var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
+var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString")
+                       ?? throw new Exception("Please set up connection string using environment variable 'AzureServiceBus_ConnectionString'");
 var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.SendOnly();

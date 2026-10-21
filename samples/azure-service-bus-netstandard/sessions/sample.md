@@ -15,11 +15,12 @@ The appsettings.json file in each project must be updated with the connection st
 
 ## Code walk-through
 
-The sample contains four executable projects:
+The sample contains five executable projects:
 
 - `Client` - An NServiceBus endpoint that sends the `AddItem` and `PlaceOrder` commands
 - `Sales` - An NServiceBus endpoint that handles the `AddItem` and `PlaceOrder` commands. The endpoint publishes an `OrderPlaced` event and is an ordered endpoint.
 - `Inventory` - An NServiceBus endpoint that handles the `OrderPlaced` events. The endpoint is an ordered endpoint.
+- `InventoryMainframe` - An NServiceBus endpoint that pretends to be a legacy mainframe application that expects a series of messages arriving in specific order
 - `Billing` - An NServiceBus endpoint that handles the `OrderPlaced` events. The endpoint is not ordered.
 
 ## Running the sample
@@ -27,7 +28,7 @@ The sample contains four executable projects:
 1. The `Sales` endpoint must be running before the `Client` to ensure that the input queue for `Sales` has been created before the `Client` sends the commands. The `Billing` and `Inventory` endpoint can be run in any arbitrary order.
 2. The `Client` endpoint sends three `AddItem` commands and a `PlaceOrder` command.
 
-### Client 
+### Client
 
 The Client application is a send-only NServiceBus endpoint. The endpoint defines a `OrderId` and sends three `AddItem` commands and a `PlaceOrder` command using the `OrderId` as the session id.
 
@@ -39,7 +40,7 @@ Note that the session id of the `OrderPlaced` event published by the endpoint is
 
 ### Inventory
 
-The `Inventory` endpoint is an ordered endpoint. The endpoint handles the `OrderPlaced` event. It is assumed that the endpoint must reserve stock based on the order in which orders were placed.
+The `Inventory` endpoint is an ordered endpoint. The endpoint handles the `OrderPlaced` event and sends a series of commands to `InventoryMainframe`: one `BeginTransaction` message followed by a number of `Reserve` messages and ending with `CompleteTransaction` message. The legacy application expects these messages to arrive in that order to be able to process them.
 
 ### Billing
 
