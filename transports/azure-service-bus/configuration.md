@@ -2,7 +2,7 @@
 title: Configuration
 summary: Explains the configuration options
 component: ASBS
-reviewed: 2025-03-21
+reviewed: 2026-10-21
 related:
  - transports/azure-service-bus/operational-scripting
  - samples/azure-service-bus-netstandard/options
@@ -71,7 +71,7 @@ partial: lockrenewal
 > [!NOTE]
 > The following approaches may be considered to minimize or avoid the occurrence of message lock renewals:
 >
-> - Optimise the message handlers to reduce their execution time.
-> - Reduce the prefetch count. All messages are locked on peek, so when they are prefetched, they remain locked until they are all processed.
+> - Optimize the message handlers to reduce their execution time.
+> - Reduce the prefetch count. All messages are locked on peek. As a result, when they are prefetched, they remain locked until they are all processed.
 
 partial: dead-lettering
