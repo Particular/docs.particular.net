@@ -13,15 +13,11 @@ Azure Service Bus supports ordered delivery through the use of sessions.
 
 In order to leverage the session support in Azure Service Bus, the transport needs to be configured to use sessions. This can be done by setting the `EnableSessions` property on the transport configuration.
 
-This will ensure that, when installers are enabled, the transport will
-create the relevant queues, topics and subscriptions with sessions enabled.
+This will ensure that, when installers are enabled, the transport will create the relevant queues, topics and subscriptions with sessions enabled.
 
 snippet: enable-sessions
 
-When sessions are enabled, the transport will create a session for each
-message sent to the queue or topic, based on the session ID. The session ID
-can be set using the `SendOptions` or `PublishOptions`, depending on the
-operation used, using the `SessionId` property.
+When sessions are enabled, the transport will create a session for each message sent to the queue or topic, based on the session ID. The session ID can be set using the `SendOptions` or `PublishOptions`, depending on the operation used, using the `SessionId` property.
 
 To send a message to a session-enabled queue:
 
