@@ -60,7 +60,7 @@ snippet:session-state-usage
 
 ### Endpoint licensing
 
-If there's a need to have part of a logical endpoint's message types to be
-processed in order, and part of the message types to be processed out of order, then the logical endpoint should be split into two physical endpoints. One physical endpoint should be sessions enabled, and the other physical endpoint should be sessions disabled.
+If there's a need to have part of a logical endpoint's message types 
+processed in order, and part of the message types to be processed out of order, then the logical endpoint should be split into two endpoints. One endpoint should be sessions enabled, and the other endpoint should be sessions disabled.
 
-The two endpoints should be named differently e.g. `Sales.Ordered` and `Sales.Unordered`, but will be treated as a single logical endpoint and will therefore be licensed as a single endpoint.
+The two endpoints should be named differently, e.g. `Sales.Ordered` and `Sales.Unordered`, but will be treated as a single logical endpoint and will therefore be licensed as a single endpoint.
