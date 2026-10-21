@@ -299,6 +299,15 @@ include: sc-error-trackinstancesinitialvalue
 include: sc-error-maximumconcurrencylevel
 
 
+include: sc-error-erroringestionbatchsize
+
+
+include: sc-error-erroringestionmaxparallelwriters
+
+
+include: sc-error-erroringestionbatchtimeout
+
+
 include: sc-error-enablefulltextsearchonbodies
 
 

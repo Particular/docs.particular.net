@@ -122,6 +122,28 @@ Updating the full-text index requires a considerable amount of CPU and disk spac
 - Turn off the 'FULL TEXT SEARCH ON MESSAGE BODIES' in the settings configuration of ServiceControl Management Utility
 - Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file
 
+#if-version [7,)
+
+### Tune ingestion concurrency and writers
+
+Ingestion throughput depends on the transport, storage, and message mix, so there is no universal setting that is guaranteed to be faster. Test changes with a representative load, and monitor CPU, RAM, disk, network, and index lag before and after each change.
+
+The following example raises the concurrency level and the number of parallel writers. Error instances support concurrent writers only with SQL Server and PostgreSQL storage; RavenDB error instances always use one writer.
+
+```bash
+# Error instance (SQL Server or PostgreSQL storage only)
+SERVICECONTROL_MAXIMUMCONCURRENCYLEVEL=100
+SERVICECONTROL_ERRORINGESTIONMAXPARALLELWRITERS=4
+
+# Audit instance
+SERVICECONTROL_AUDIT_MAXIMUMCONCURRENCYLEVEL=100
+SERVICECONTROL_AUDIT_AUDITINGESTIONMAXPARALLELWRITERS=4
+```
+
+The batch size is not set, so each writer uses a batch size of `25` (concurrency divided by writers), and the batch timeout keeps its default of 100 milliseconds. More concurrency and writers increase resource pressure on the server and storage. Custom message enrichers must be thread-safe when multiple writers are used. See the [Error instance performance settings](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning) and [Audit instance performance settings](/servicecontrol/audit-instances/configuration.md#performance-tuning) for details.
+
+#end-if
+
 ### Disable RavenDB document prefetching
 
 ## Persistently high disk I/O levels on audit instances

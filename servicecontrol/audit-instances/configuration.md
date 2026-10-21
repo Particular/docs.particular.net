@@ -219,6 +219,15 @@ include: sc-audit-maxbodysizetostore
 include: sc-audit-maximumconcurrencylevel
 
 
+include: sc-audit-auditingestionbatchsize
+
+
+include: sc-audit-auditingestionmaxparallelwriters
+
+
+include: sc-audit-auditingestionbatchtimeout
+
+
 include: sc-audit-enablefulltextsearchonbodies
 
 
