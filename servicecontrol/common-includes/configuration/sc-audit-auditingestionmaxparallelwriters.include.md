@@ -1,7 +1,7 @@
 #if-version [7,)
 ### ServiceControl.Audit/AuditIngestionMaxParallelWriters
 
-The maximum number of batches that are written to storage in parallel. Concurrent writers are supported with RavenDB, SQL Server, and PostgreSQL storage.
+The maximum number of batches that are written to storage in parallel. Concurrent writers are supported only with SQL Server and PostgreSQL storage. RavenDB storage always uses `1` writer.
 
 | Context | Name |
 | --- | --- |
@@ -11,7 +11,7 @@ The maximum number of batches that are written to storage in parallel. Concurren
 
 | Type | Default value |
 | --- | --- |
-| int | `2` |
+| int | `2` with SQL Server or PostgreSQL storage<br/>`1` with RavenDB storage |
 
 The allowed range is `1` to `16`. More writers increase CPU, memory, and storage load; increase the value only if there are no verified bottlenecks.
 
