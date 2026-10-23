@@ -272,11 +272,7 @@ In version 10, NServiceBus uses a custom propagator. Propagation moves to the bu
 
 ### Span status
 
-In version 10, NServiceBus sets the span status to `Ok` when an operation completes without an error. This applies to the process span, the handler spans, and the send, publish, reply, subscribe, and unsubscribe spans.
-
-When the version 11 behavior is enabled, the status of a successful span is left `Unset`, and version 11 never sets `Ok`. The [OpenTelemetry trace API specification](https://opentelemetry.io/docs/specs/otel/trace/api/#set-status) asks instrumentation libraries to leave the status unset unless there is an error. `Unset` means the operation completed without an error.
-
-Setting `Ok` overwrites any status a handler or behavior set during the operation. With the version 11 behavior, that status is kept.
+NServiceBus sets the span status to `Ok` when an operation completes without an error. 
 
 ### Failed spans and the error.type tag
 
