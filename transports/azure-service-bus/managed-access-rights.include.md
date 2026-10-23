@@ -13,7 +13,22 @@ To avoid running with elevated privileges:
 #if-version [5,)
 - [Turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription)
 
-Subscribing to an event creates a subscription on each topic the event is mapped to. Creating a subscription requires `Manage` rights, even when the subscription already exists. Without them, the subscribe operation fails and an error is logged, but the endpoint still starts. If the subscription already exists, events continue to arrive through it. With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), the filter rule for each event must also already exist, because the transport doesn't add rules when creating the subscription fails. If the subscription or rule doesn't exist, the endpoint doesn't receive the events that depend on it. Events published before the subscription or rule is created are never delivered to the endpoint.
+#### Subscribing without Manage rights
 
-With filtered routing, unsubscribing from an event deletes only the event's filter rule, which doesn't require `Manage` rights. Otherwise, unsubscribing deletes the subscription. Without `Manage` rights, the transport leaves the subscription in place and logs the failure at `Info` level. Events published to that topic continue to arrive in the endpoint's input queue and are processed as before. If the endpoint is stopped or decommissioned, these events accumulate in its input queue. To stop the events, remove the subscription using [operational scripting](/transports/azure-service-bus/operational-scripting.md).
+Subscribing to an event creates a subscription on each topic the event is mapped to. Creating a subscription requires `Manage` rights, even when the subscription already exists. Without them, the subscribe operation fails and an error is logged, but the endpoint still starts. What the endpoint receives depends on what was provisioned:
+
+- If the subscription exists, events continue to arrive through it.
+- With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), the filter rule for each event must also exist. The transport doesn't add rules when creating the subscription fails.
+- If the subscription or rule is missing, the endpoint doesn't receive the events that depend on it. Events published before it's created are never delivered to the endpoint.
+
+#### Unsubscribing without Manage rights
+
+With filtered routing, unsubscribing from an event deletes only the event's filter rule, which doesn't require `Manage` rights.
+
+Otherwise, unsubscribing deletes the subscription. Without `Manage` rights, the transport leaves the subscription in place and logs the failure at `Info` level:
+
+- Events published to that topic continue to arrive in the endpoint's input queue and are processed as before.
+- If the endpoint is stopped or decommissioned, these events accumulate in its input queue.
+
+To stop the events, remove the subscription using [operational scripting](/transports/azure-service-bus/operational-scripting.md).
 #end-if
