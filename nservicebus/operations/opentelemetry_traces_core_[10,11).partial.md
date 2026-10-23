@@ -54,6 +54,7 @@ The switch enables all of these changes:
 | Trace context and baggage propagation | custom propagator | `System.Diagnostics.DistributedContextPropagator` |
 | `Start dispatching` and `Finished dispatching` span events | emitted | not emitted |
 | Meter name and version | `NServiceBus.Core.Pipeline.Incoming`, `0.4.0` | `NServiceBus.Core`, `1.0.0` |
+| Span status on success | `Ok` | `Unset` |
 | `execution.result` metric tag | emitted | not emitted |
 | `otel.status_code`, `otel.status_description` and `exception.escaped` | emitted on failures | not emitted |
 | Outbox deduplication span tag | `nservicebus.outbox.deduplicate-message` | `nservicebus.outbox.deduplicated_message` |
@@ -62,7 +63,7 @@ The switch enables all of these changes:
 `PublishTraceMode` is not part of the switch. It stays configurable in version 11; only its default changes. See *Publish operations* below.
 
 > [!WARNING]
-> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, or use a wildcard, as described under [Meter name and version](#meters-meter-name-and-version). The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
+> The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on a span status of `Ok`, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, or use a wildcard, as described under [Meter name and version](#meters-meter-name-and-version). The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
 
 In version 11 these behaviors are the only behaviors, and the switch is removed.
 
@@ -268,6 +269,10 @@ This keeps the forwarded message correlated to its original sender instead of th
 Custom `RecoverabilityAction` and `AuditAction` implementations that forward the received message get the same behavior: the headers are dispatched as they were received, so the trace stays intact without any additional work.
 
 In version 10, NServiceBus uses a custom propagator. Propagation moves to the built-in .NET `DistributedContextPropagator` when the version 11 behavior is enabled, and the custom propagator is removed in version 11. The `baggage` header format changes with it. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for the serialization details and for the effect on a rolling upgrade.
+
+### Span status
+
+NServiceBus sets the span status to `Ok` when an operation completes without an error. 
 
 ### Failed spans and the error.type tag
 

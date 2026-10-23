@@ -256,7 +256,7 @@ If an endpoint must keep a specific host identifier beyond version 11, configure
 
 ## OpenTelemetry
 
-Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. This includes trace structure, span names and attributes, the baggage wire format, metrics scope, and exception recording. These changes might require changes to dashboards, alerts, and queries.
+Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. Span names, the span status on success, the parent of the process span, some span attributes, the baggage wire format, the meter name and one metric tag all change. These changes break dashboards, alerts and queries that match on the old output.
 
 The new behavior can be turned on via a single opt-in switch, except for the exception recording mode that is controlled by a dedicated option, described in [Exceptions are no longer recorded as span events](#opentelemetry-exceptions-are-no-longer-recorded-as-span-events).
 
@@ -350,6 +350,14 @@ In version 10, span names are generic, such as `process message` and `publish ev
 Message type names are short names, not full type names. A subscribe span for several event types lists the type names separated by spaces.
 
 Alerts, dashboards and trace searches that match on a span name must be updated. A name match fails silently: the query returns no results instead of an error.
+
+### Span status on success
+
+In version 10, NServiceBus sets the span status to `Ok` when an operation completes without an error. This applies to the process span, the handler spans, and the send, publish, reply, subscribe, and unsubscribe spans. In version 11, the status of a successful span is left `Unset`. Failed spans are unchanged: the status is `Error`.
+
+The [OpenTelemetry trace API specification](https://opentelemetry.io/docs/specs/otel/trace/api/#set-status) asks instrumentation libraries to leave the status unset unless there is an error, and reserves `Ok` for application code and operators. In version 10, setting `Ok` overwrites any status a handler or behavior set. In version 11, that status is kept.
+
+Update any dashboard, alert, query, or sampling rule that selects successful NServiceBus spans by a status of `Ok`. Select on the absence of an `Error` status instead. A status match fails silently: the query returns no results instead of an error.
 
 ### Renamed span attributes
 
