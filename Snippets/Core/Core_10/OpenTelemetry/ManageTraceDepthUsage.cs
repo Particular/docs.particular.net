@@ -25,6 +25,16 @@ public static class ManageTraceDepthUsage
         #endregion
     }
 
+    async static Task RequestStartNewTraceOnPublish(IPipelineContext context)
+    {
+        #region opentelemetry-publishoptions-start-new-trace
+        var options = new PublishOptions();
+        options.StartNewTraceOnReceive();
+        var message = new MyEvent();
+        await context.Publish(message, options);
+        #endregion
+    }
+
     class MyMessage
     {
     }
