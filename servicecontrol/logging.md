@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: Understand about ServiceControl logs; change log location and customize logging 
-reviewed: 2026-07-17
+reviewed: 2026-06-01
 redirects:
 - servicecontrol/setting-custom-log-location
 ---
@@ -35,10 +35,10 @@ It is recommended to actively monitor the ServiceControl `logfile.txt` log file 
 
 ## Customize logging
 
-By default, ServiceControl logs to the event log and filesystem. The active ServiceControl log file is named `logfile.txt`, while the RavenDB log file names have the format `yyyy-MM-dd-HH-mm.###.log`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any destination.
+By default, ServiceControl logs to the event log and filesystem. The active ServiceControl log file is named `logfile.txt`. When using RavenDB storage, the embedded RavenDB server writes its own log files (see [RavenDB logging](#ravendb-logging)). ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any destination.
 
 > [!NOTE]
-> Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
+> Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel` when using RavenDB storage) are ignored when overriding the NLog configuration.
 
 Example:
 ```xml
@@ -126,7 +126,11 @@ When forwarding to Elasticsearch through the [OpenTelemetry Collector](https://o
 
 ## RavenDB Logging
 
-ServiceControl stores data in an embedded RavenDB database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The current RavenDB embedded log file is named `<date>-<time>.<sequence>.txt`. The date is written in the `yyyy-MM-dd` format and the time is in 24 hour format `HH:mm`. The sequence number is 3 digits long and starts at `000`.
+This section applies only to instances using RavenDB storage.
+
+<!-- Follow-up: the RavenDB log file name format is documented inconsistently (yyyy-MM-dd-HH-mm.###.log versus <date>-<time>.<sequence>.txt). Verify against a running instance before documenting a format. -->
+
+When using an embedded RavenDB database, the database generates its own log messages into a different log file. This file is co-located with the ServiceControl logs.
 
 The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
 
@@ -138,4 +142,4 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 ## Critical Exception Logging
 
-If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](/servicecontrol/db-compaction.md).
+If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](/servicecontrol/storage/ravendb/compaction.md).

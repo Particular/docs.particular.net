@@ -130,7 +130,7 @@ The ServiceControl Error instance continues to query both instances, but the ori
 
 As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed. The following steps describe how to determine when an audit instance is empty:
 
-1. [Access the database directly](/servicecontrol/ravendb/accessing-database.md)
+1. [Access the database directly](/servicecontrol/storage/ravendb/accessing-database.md)
 2. Launch RavenDB Management Studio with a browser.
 3. If the instance is using RavenDB 3.5 for persistence, go to the `<system>` database. If the instance is using RavenDB 5, go to the `audit` database.
 4. Check the document count in the `ProcessedMessages` collection.

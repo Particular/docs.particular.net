@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2026-06-19
+reviewed: 2026-06-01
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -100,4 +100,6 @@ To avoid this situation, it is important to properly decommission an endpoint th
 
 ## Disabling integration 
 
-In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. This can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
+In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. In ServiceControl versions before 7, publishing is enabled by default and can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
+
+In ServiceControl version 7 and later, publishing is disabled by default. To publish events, set [`EnableExternalIntegrationsPublishing` to `true`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableexternalintegrationspublishing).

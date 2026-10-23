@@ -24,1435 +24,384 @@ The following documents should be reviewed prior to modifying configuration sett
 * [Setting a Custom Hostname](/servicecontrol/setting-custom-hostname.md) for guidance and details.
 * [Securing ServiceControl](/servicecontrol/securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
-### ServiceControl/InstanceName
 
-_Added in version 5.5.0_
+include: sc-error-instancename
 
-The name to be used by the error instance and the name of the input queue.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_INSTANCENAME` |
-| **App config key** | `ServiceControl/InstanceName` |
-| **SCMU field** | Instance/Queue Name |
+include: sc-error-hostname
 
-| Type | Default value |
-| --- | --- |
-| string | `Particular.ServiceControl` |
 
-> [!NOTE]
-> In versions prior to 5.5.0, the `InternalQueueName` setting can be used instead.
+include: sc-error-port
 
-### ServiceControl/HostName
 
-The hostname to bind the embedded HTTP API server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com` and make the machine remotely accessible.
+include: sc-error-virtualdirectory
 
-This field can also contain a `*` as a wildcard to allow remote connections that use any hostname.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HOSTNAME` |
-| **App config key** | `ServiceControl/HostName` |
-| **SCMU field** | `HOST NAME` |
+include: sc-error-remoteinstances
 
-| Type | Default value |
-| --- | --- |
-| string | `localhost` |
 
-> [!WARNING]
-> If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
+include: sc-error-shutdowntimeout
 
-#if-version [5,)
-> [!NOTE]
-> Changing the `ServiceControl/HostName` setting does not affect how the embedded RavenDB database is exposed. The embedded RavenDB database remains accessible only via `localhost`.
-#end-if
 
-### ServiceControl/Port
+include: sc-error-enableexternalintegrationspublishing
 
-The port to bind the embedded HTTP API server.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_PORT` |
-| **App config key** | `ServiceControl/Port` |
-| **SCMU field** | `PORT NUMBER` |
+include: sc-error-disableexternalintegrationspublishing
 
-| Type | Default value |
-| --- | --- |
-| int | `33333` |
 
-> [!WARNING]
-> If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
-
-### ServiceControl/DatabaseMaintenancePort
-
-The port to expose the RavenDB database.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DATABASEMAINTENANCEPORT` |
-| **App config key** | `ServiceControl/DatabaseMaintenancePort` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | `33334` |
-
-> [!NOTE]
-> This setting is not relevant when running an error instance in a container.
-
-### ServiceControl/VirtualDirectory
-
-The virtual directory to bind the embedded HTTP server to; modify this setting to bind to a specific virtual directory.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_VIRTUALDIRECTORY` |
-| **App config key** | `ServiceControl/VirtualDirectory` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | _None_ |
-
-### ServiceControl/RemoteInstances
-
-A configuration that specifies one or more attached Audit instances. See also [ServiceControl Remote Instances](remotes.md).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_REMOTEINSTANCES` |
-| **App config key** | `ServiceControl/RemoteInstances` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | None |
-
-### ServiceControl/ShutdownTimeout
-
-_Added in version 6.5.0_
-
-The maximum allowed time for the process to complete the shutdown.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_SHUTDOWNTIMEOUT` |
-| **App config key** | `ServiceControl/ShutdownTimeout` |
-| **SCMU field** | N/A |
-
-| Environment/Installation type            | Type     | Default value |
-|---|---|---|
-| Containers | TimeSpan | `00:00:05` (5 seconds) |
-| Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
-| Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
-
-### ServiceControl/MaintenanceMode
-
-Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_MAINTENANCEMODE` |
-| **App config key** | `ServiceControl/MaintenanceMode` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| boolean | `False` |
-
-### ServiceControl/DisableExternalIntegrationsPublishing
-
-[ServiceControl publishes integration events](/servicecontrol/contracts.md), if no subscribers exist this can be disabled.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DISABLEEXTERNALINTEGRATIONSPUBLISHING` |
-| **App config key** | `ServiceControl/DisableExternalIntegrationsPublishing` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | False |
-
-### ServiceControl/EnableIntegratedServicePulse
-
-_Added in version 6.13.0_
-
-Set to `true` to enable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) included in ServiceControl versions 6.13 and above.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_ENABLEINTEGRATEDSERVICEPULSE` |
-| **App config key** | `ServiceControl/EnableIntegratedServicePulse` |
-| **SCMU field** | `ENABLE INTEGRATED SERVICEPULSE` |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` (SCMU dropdown defaults to `On`) |
+include: sc-error-enableintegratedservicepulse
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
 These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
 
-### ServiceControl/Authentication.Enabled
 
-_Added in version 6.11.0_
+include: sc-error-authenticationenabled
 
-Enables or disables authentication. This is a **global switch** and all other authentication settings are ignored unless this is `true`.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_ENABLED` |
-| **App config key** | `ServiceControl/Authentication.Enabled` |
-| **SCMU field** | N/A |
+include: sc-error-authenticationauthority
 
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
 
-### ServiceControl/Authentication.Authority
+include: sc-error-authenticationaudience
 
-_Added in version 6.11.0_
 
-The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
+include: sc-error-authenticationvalidateissuer
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_AUTHORITY` |
-| **App config key** | `ServiceControl/Authentication.Authority` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| string | None |
+include: sc-error-authenticationvalidateaudience
 
-### ServiceControl/Authentication.Audience
 
-_Added in version 6.11.0_
+include: sc-error-authenticationvalidatelifetime
 
-The expected audience value in the JWT token, typically the application ID or URI of the API.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_AUDIENCE` |
-| **App config key** | `ServiceControl/Authentication.Audience` |
-| **SCMU field** | N/A |
+include: sc-error-authenticationvalidateissuersigningkey
 
-| Type | Default value |
-| --- | --- |
-| string | None |
 
-> [!NOTE]
-> ServicePulse will also use this ServiceControl audience setting.
+include: sc-error-authenticationrequirehttpsmetadata
 
-### ServiceControl/Authentication.ValidateIssuer
 
-_Added in version 6.11.0_
+include: sc-error-authenticationservicepulseclientid
 
-Controls whether the token issuer is validated against the authority.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATEISSUER` |
-| **App config key** | `ServiceControl/Authentication.ValidateIssuer` |
-| **SCMU field** | N/A |
+include: sc-error-authenticationservicepulseauthority
 
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
 
-### ServiceControl/Authentication.ValidateAudience
+include: sc-error-authenticationservicepulseapiscopes
 
-_Added in version 6.11.0_
 
-Controls whether the token audience is validated.
+include: sc-error-authenticationservicepulseofflineaccessscopeenabled
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATEAUDIENCE` |
-| **App config key** | `ServiceControl/Authentication.ValidateAudience` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
+include: sc-error-authenticationrolebasedauthorizationenabled
 
-### ServiceControl/Authentication.ValidateLifetime
 
-_Added in version 6.11.0_
+include: sc-error-authenticationrolesclaim
 
-Controls whether the token expiration is validated.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATELIFETIME` |
-| **App config key** | `ServiceControl/Authentication.ValidateLifetime` |
-| **SCMU field** | N/A |
+include: sc-error-authenticationsubjectidclaim
 
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
 
-### ServiceControl/Authentication.ValidateIssuerSigningKey
-
-_Added in version 6.11.0_
-
-Controls whether the token signing key is validated.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATEISSUERSIGNINGKEY` |
-| **App config key** | `ServiceControl/Authentication.ValidateIssuerSigningKey` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
-
-### ServiceControl/Authentication.RequireHttpsMetadata
-
-_Added in version 6.11.0_
-
-Controls whether HTTPS is required when retrieving metadata from the authority.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_REQUIREHTTPSMETADATA` |
-| **App config key** | `ServiceControl/Authentication.RequireHttpsMetadata` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
-
-> [!WARNING]
-> Setting this to `false` is not recommended for production environments. Disabling this setting allows metadata to be retrieved over unencrypted HTTP connections, which could expose sensitive configuration information to attackers.
-
-### ServiceControl/Authentication.ServicePulse.ClientId
-
-_Added in version 6.11.0_
-
-The client ID for ServicePulse to use when authenticating with the identity provider.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_CLIENTID` |
-| **App config key** | `ServiceControl/Authentication.ServicePulse.ClientId` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | None |
-
-### ServiceControl/Authentication.ServicePulse.Authority
-
-_Added in version 6.11.0_
-
-The URL of the OpenID Connect authority for ServicePulse to use when authenticating users.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_AUTHORITY` |
-| **App config key** | `ServiceControl/Authentication.ServicePulse.Authority` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | None |
-
-### ServiceControl/Authentication.ServicePulse.ApiScopes
-
-_Added in version 6.11.0_
-
-The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings, e.g. `["api://{app-id}/api.access"]`
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_APISCOPES` |
-| **App config key** | `ServiceControl/Authentication.ServicePulse.ApiScopes` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string (JSON array) | None |
-
-### ServiceControl/Authentication.ServicePulse.OfflineAccessScopeEnabled
-
-_Added in version 6.18.3_
-
-Whether ServicePulse should request the `offline_access` scope. ServiceControl composes the complete scope string ServicePulse uses to sign in from `ServicePulse.ApiScopes` plus the fixed `openid profile email` scopes and, unless this setting is `false`, `offline_access`.
-
-Some identity providers reject the entire authorization request if a client requests a scope it isn't permitted to use. If the client/app registration used by ServicePulse isn't allowed to request `offline_access`, set this to `false` so ServicePulse omits it instead of failing to reach the login page. Leave this at its default in all other cases: without `offline_access`, some identity providers don't issue a refresh token, so ServicePulse falls back to a hidden-iframe silent renew that depends on third-party cookies, which browsers like Safari and Brave restrict. When that fallback fails, ServicePulse re-authenticates with a full-page redirect at every token expiry instead of renewing silently.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_OFFLINEACCESSSCOPEENABLED` |
-| **App config key** | `ServiceControl/Authentication.ServicePulse.OfflineAccessScopeEnabled` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
-
-### ServiceControl/Authentication.RoleBasedAuthorizationEnabled
-
-_Added in version 6.18.0_
-
-Enables [role-based access control](/servicecontrol/security/configuration/authorization.md). When `false`, every authenticated user is granted every permission. Requires `Authentication.Enabled` to be `true`; the instance refuses to start if this is enabled while authentication is disabled.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_ROLEBASEDAUTHORIZATIONENABLED` |
-| **App config key** | `ServiceControl/Authentication.RoleBasedAuthorizationEnabled` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
-
-### ServiceControl/Authentication.RolesClaim
-
-_Added in version 6.18.0_
-
-The token claim from which user roles are read. Supports a flat claim name (for example `roles`) or a dotted path into a nested JSON object claim (for example `realm_access.roles`). See [reading roles from the token](/servicecontrol/security/configuration/authorization.md#reading-roles-from-the-token).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_ROLESCLAIM` |
-| **App config key** | `ServiceControl/Authentication.RolesClaim` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | `roles` |
-
-### ServiceControl/Authentication.SubjectIdClaim
-
-_Added in version 6.18.0_
-
-The token claim used as the stable user identifier in the [authorization audit log](/servicecontrol/security/configuration/authorization.md#authorization-audit-log). Requests are rejected if this claim is missing from the token.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SUBJECTIDCLAIM` |
-| **App config key** | `ServiceControl/Authentication.SubjectIdClaim` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | `sub` |
-
-### ServiceControl/Authentication.SubjectNameClaim
-
-_Added in version 6.18.0_
-
-The token claim used as the human-readable display name in the [authorization audit log](/servicecontrol/security/configuration/authorization.md#authorization-audit-log). Requests are rejected if this claim is missing from the token.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SUBJECTNAMECLAIM` |
-| **App config key** | `ServiceControl/Authentication.SubjectNameClaim` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | `preferred_username` |
+include: sc-error-authenticationsubjectnameclaim
 
 ## [TLS](/servicecontrol/security/configuration/tls.md)
 
 These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
 
-### ServiceControl/Https.Enabled
 
-_Added in version 6.11.0_
+include: sc-error-httpsenabled
 
-Enables Kestrel HTTPS with a certificate.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_ENABLED` |
-| **App config key** | `ServiceControl/Https.Enabled` |
-| **SCMU field** | N/A |
+include: sc-error-httpscertificatepath
 
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
 
-### ServiceControl/Https.CertificatePath
+include: sc-error-httpscertificatepassword
 
-_Added in version 6.11.0_
 
-The path to the PFX or PEM certificate file. If hosting as a container, the certificate file can also be volume-mounted to the container:
+include: sc-error-httpsredirecthttptohttps
 
-```text
--v certificate.pfx:/usr/share/ParticularSoftware/certificate.pfx
-```
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_CERTIFICATEPATH` |
-| **App config key** | `ServiceControl/Https.CertificatePath` |
-| **SCMU field** | N/A |
+include: sc-error-httpsport
 
-| Type | Default value |
-| --- | --- |
-| string | None |
 
-### ServiceControl/Https.CertificatePassword
+include: sc-error-httpsenablehsts
 
-_Added in version 6.11.0_
 
-The password for the certificate file, if required.
+include: sc-error-httpshstsmaxageseconds
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_CERTIFICATEPASSWORD` |
-| **App config key** | `ServiceControl/Https.CertificatePassword` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| string | None |
-
-### ServiceControl/Https.RedirectHttpToHttps
-
-_Added in version 6.11.0_
-
-Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_REDIRECTHTTPTOHTTPS` |
-| **App config key** | `ServiceControl/Https.RedirectHttpToHttps` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
-
-> [!NOTE]
-> When running ServiceControl directly without a reverse proxy, the application only listens on a single protocol (HTTP or HTTPS). This setting is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
-
-### ServiceControl/Https.Port
-
-_Added in version 6.11.0_
-
-The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is enabled in reverse proxy scenarios.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_PORT` |
-| **App config key** | `ServiceControl/Https.Port` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | None |
-
-### ServiceControl/Https.EnableHsts
-
-_Added in version 6.11.0_
-
-Enables HTTP Strict Transport Security (HSTS).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_ENABLEHSTS` |
-| **App config key** | `ServiceControl/Https.EnableHsts` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
-
-> [!NOTE]
-> Review the implications of [enabling HSTS](/servicecontrol/security/configuration/tls.md#security-considerations-hsts) before doing so.
-
-### ServiceControl/Https.HstsMaxAgeSeconds
-
-_Added in version 6.11.0_
-
-The max-age value in seconds for the HSTS header.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_HSTSMAXAGESECONDS` |
-| **App config key** | `ServiceControl/Https.HstsMaxAgeSeconds` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | `31536000` (1 year) |
-
-### ServiceControl/Https.HstsIncludeSubDomains
-
-_Added in version 6.11.0_
-
-Includes subdomains in the HSTS policy.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPS_HSTSINCLUDESUBDOMAINS` |
-| **App config key** | `ServiceControl/Https.HstsIncludeSubDomains` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
+include: sc-error-httpshstsincludesubdomains
 
 ## [Forwarded headers](/servicecontrol/security/configuration/forward-headers.md)
 
 These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [forward headers configuration examples](/servicecontrol/security/configuration/forward-headers.md#configuration-examples) for additional information.
 
-### ServiceControl/ForwardedHeaders.Enabled
 
-_Added in version 6.11.0_
+include: sc-error-forwardedheadersenabled
 
-Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc.).
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_ENABLED` |
-| **App config key** | `ServiceControl/ForwardedHeaders.Enabled` |
-| **SCMU field** | N/A |
+include: sc-error-forwardedheaderstrustallproxies
 
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
 
-### ServiceControl/ForwardedHeaders.TrustAllProxies
+include: sc-error-forwardedheadersknownproxies
 
-_Added in version 6.11.0_
 
-Trusts forwarded headers from any source. This setting is overwritten to `false` when using `KnownProxies` or `KnownNetworks`.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_TRUSTALLPROXIES` |
-| **App config key** | `ServiceControl/ForwardedHeaders.TrustAllProxies` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
-
-> [!WARNING]
-> For production environments behind a reverse proxy, set this to `false` and configure `KnownProxies` or `KnownNetworks` to restrict which proxies are trusted.
-
-### ServiceControl/ForwardedHeaders.KnownProxies
-
-_Added in version 6.11.0_
-
-A comma-separated list of trusted proxy IP addresses, e.g. `10.0.0.5,10.0.0.6`
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_KNOWNPROXIES` |
-| **App config key** | `ServiceControl/ForwardedHeaders.KnownProxies` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | None |
-
-### ServiceControl/ForwardedHeaders.KnownNetworks
-
-_Added in version 6.11.0_
-
-A comma-separated list of trusted CIDR network ranges, e.g. `10.0.0.0/24,192.168.1.0/24`
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_KNOWNNETWORKS` |
-| **App config key** | `ServiceControl/ForwardedHeaders.KnownNetworks` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | None |
+include: sc-error-forwardedheadersknownnetworks
 
 ## [CORS](/servicecontrol/security/configuration/cors.md)
 
 These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
 
-### ServiceControl/Cors.AllowAnyOrigin
 
-_Added in version 6.11.0_
+include: sc-error-corsallowanyorigin
 
-Allows requests from any origin.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_CORS_ALLOWANYORIGIN` |
-| **App config key** | `ServiceControl/Cors.AllowAnyOrigin` |
-| **SCMU field** | N/A |
+include: sc-error-corsallowedorigins
 
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
+## Storage
 
-> [!WARNING]
-> For production environments, set this to `false` and configure `AllowedOrigins` to restrict which origins can access the API.
+RavenDB is the default ServiceControl storage type. ServiceControl 7 and later can also use SQL Server or PostgreSQL storage.
 
-### ServiceControl/Cors.AllowedOrigins
 
-_Added in version 6.11.0_
+include: sc-error-storage-sql-intro
 
-A comma-separated list of allowed origins, e.g. `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_CORS_ALLOWEDORIGINS` |
-| **App config key** | `ServiceControl/Cors.AllowedOrigins` |
-| **SCMU field** | N/A |
+include: sc-error-persistencetype
 
-| Type | Default value |
-| --- | --- |
-| string | None |
 
-## Embedded database
+include: sc-error-database-connectionstring
 
-These settings are not valid for ServiceControl instances hosted in a container.
 
-### ServiceControl/DbPath
+include: sc-error-database-schema
 
-The path where the internal RavenDB is located.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DBPATH` |
-| **App config key** | `ServiceControl/DbPath` |
-| **SCMU field** | `Database Path` |
+include: sc-error-database-commandtimeout
 
-| Type | Default value |
-| --- | --- |
-| string | `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB` |
 
-> [!NOTE]
-> This setting is not relevant when running an error instance in a container.
+include: sc-error-storage-sql-interstitial
 
-### ServiceControl/RavenDBLogLevel
 
-Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
+include: sc-error-messagebody-storagetype
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_RAVENDBLOGLEVEL` |
-| **App config key** | `ServiceControl/RavenDBLogLevel` |
-| **SCMU field** | N/A |
 
-#if-version [5,)
-| Type | Default value |
-| --- | --- |
-| string | `Operations` |
+include: sc-error-maxbodysizetostore
 
-Valid settings are: `None`, `Information`, `Operations`.
-#end-if
-#if-version [,5)
-| Type | Default value |
-| --- | --- |
-| string | `Info` |
 
-Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+include: sc-error-messagebody-filesystem-storagepath
 
-#end-if
 
-#if-version [,5)
+include: sc-error-messagebody-filesystem-dataspaceremainingthreshold
 
-### Raven/IndexStoragePath
 
-The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
+include: sc-error-messagebody-azure-connectionstring
 
-> [!NOTE]
-> Only supported on RavenDB 3.5 storage engine (prior version 5). Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
-The path for the indexes on disk.
+include: sc-error-messagebody-azure-serviceuri
 
-Type: string
 
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
+include: sc-error-messagebody-azure-managedidentityclientid
 
-### Raven/Esent/LogsPath
 
-The path for the Esent logs on disk.
+include: sc-error-messagebody-azure-authorityhost
 
-Type: string
 
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
+include: sc-error-messagebody-azure-containername
 
-#end-if
+
+include: sc-error-messagebody-s3-bucketname
+
+
+include: sc-error-messagebody-s3-keyprefix
+
+
+include: sc-error-messagebody-s3-region
+
+
+include: sc-error-messagebody-s3-serviceurl
+
+
+include: sc-error-messagebody-s3-accesskeyid
+
+
+include: sc-error-messagebody-s3-secretaccesskey
+
+
+include: sc-error-messagebody-mincompressionsize
+
+
+The following settings apply only when using RavenDB storage.
+
+
+include: sc-error-databasemaintenanceport
+
+
+include: sc-error-maintenancemode
+
+
+include: sc-error-dataspaceremainingthreshold
+
+
+include: sc-error-minimumstorageleftrequiredforingestion
+
+The following embedded RavenDB settings are not valid for ServiceControl instances hosted in a container.
+
+
+include: sc-error-dbpath
+
+
+include: sc-error-ravendbloglevel
+
+
+include: sc-error-indexstoragepath
+
+
+include: sc-error-esent-logspath
+
 
 ## Logging
 
-### ServiceControl/LogPath
 
-The path for the ServiceControl logs.
+include: sc-error-logpath
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_LOGPATH` |
-| **App config key** | `ServiceControl/LogPath` |
-| **SCMU field** | `LOG PATH` |
 
-| Type | Default value |
-| --- | --- |
-| string | `%LOCALAPPDATA%\Particular\ServiceControl\logs` |
-
-> [!NOTE]
-> %LOCALAPPDATA% is a user-specific path on Windows.
->
-> When hosted on containers, logs are sent to **stdout** and this setting is ignored.
-
-### ServiceControl/LogLevel
-
-Controls the LogLevel of the ServiceControl logs.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_LOGLEVEL` |
-| **App config key** | `ServiceControl/LogLevel` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | `Info` |
+include: sc-error-loglevel
 
 ## Recoverability
 
-### ServiceControl/TimeToRestartErrorIngestionAfterFailure
 
-Controls the maximum time delay to wait before restarting the error ingestion pipeline after detecting a connection problem.
+include: sc-error-timetorestarterroringestionafterfailure
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_TIMETORESTARTAUDITINGESTIONAFTERFAILURE` |
-| **App config key** | `ServiceControl/TimeToRestartAuditIngestionAfterFailure` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| timespan | 60 seconds |
+include: sc-error-ingesterrormessages
 
-Valid settings are between 5 seconds and 1 hour.
 
-### ServiceControl/IngestErrorMessages
-
-Version: 4.33.0+
-
-Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_INGESTERRORMESSAGES` |
-| **App config key** | `ServiceControl/IngestErrorMessages` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `true` |
-
-### ServiceControl/AllowMessageEditing
-
-Set to `true` to enable message editing when retrying messages.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_ALLOWMESSAGEEDITING` |
-| **App config key** | `ServiceControl/AllowMessageEditing` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
+include: sc-error-allowmessageediting
 
 ## Data retention
 
-### ServiceControl/ExpirationProcessTimerInSeconds
 
-The number of seconds to wait between checking for expired messages.
+include: sc-error-expirationprocesstimerinseconds
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_EXPIRATIONPROCESSTIMERINSECONDS` |
-| **App config key** | `ServiceControl/ExpirationProcessTimerInSeconds` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| int | `600` (10 minutes) |
+include: sc-error-expirationprocessbatchsize
 
-Valid range is `0` to `10800` (3 Hours).
 
-Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding.
+include: sc-error-errorretentionperiod
 
-#if-version [,5)
-### ServiceControl/ExpirationProcessBatchSize
 
-This controls the batch size used when deleting error messages that have exceeded the error retention period after they have been successfully retried or manually archived.
+include: sc-error-eventretentionperiod
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_EXPIRATIONPROCESSBATCHSIZE` |
-| **App config key** | `ServiceControl/ExpirationProcessBatchSize` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| int | `65512` |
-
-The minimum allowed value for this setting is `10240`; there is no hard-coded maximum as this is dependent on system performance.
-
-#end-if
-### ServiceControl/ErrorRetentionPeriod
-
-The grace period that errored messages are kept before they are deleted.
-
-For a message to be considered for deletion, it needs to have a status of either `Archived`, `RetryIssued`, or `Resolved`.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_ERRORRETENTIONPERIOD` |
-| **App config key** | `ServiceControl/ErrorRetentionPeriod` |
-| **SCMU field** | `ERROR RETENTION PERIOD` |
-
-| Type | Default value |
-| --- | --- |
-| timespan | None (required) (SCMU slider defaults to `15 Days`) |
-
-Valid range for this setting is between 5 days and 45 days.
-
-### ServiceControl/EventRetentionPeriod
-
-The grace period to keep event logs before they are deleted.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_EVENTRETENTIONPERIOD` |
-| **App config key** | `ServiceControl/EventRetentionPeriod` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| timespan | 14 days |
-
-Valid range for this setting is from 1 hour to 200 days.
-
-### ServiceControl/TrackInstancesInitialValue
-
-The default value for whether to `Track` or `Do not Track` endpoint instance on newly discovered endpoints.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_TRACKINSTANCESINITIALVALUE` |
-| **App config key** | `ServiceControl/TrackInstancesInitialValue` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | `true` (`Track`) |
+include: sc-error-trackinstancesinitialvalue
 
 ## Performance tuning
 
-### ServiceControl/MaximumConcurrencyLevel
 
-This setting controls how many messages can be processed concurrently (in parallel) by ServiceControl. The default value is 10.
+include: sc-error-maximumconcurrencylevel
 
-In some cases, the ingestion rate can be too high and the underlying database cannot keep up with indexing the new messages. In this case, consider lowering the maximum concurrency level to a value that still allows a suitable ingestion rate while easing the pressure on the database.
 
-> [!WARNING]
-> The maximum concurrency level should be incremented only if there are no verified bottlenecks in CPU, RAM, network I/O, storage I/O, and storage index lag.
+include: sc-error-erroringestionbatchsize
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_MAXIMUMCONCURRENCYLEVEL` |
-| **App config key** | `ServiceControl/MaximumConcurrencyLevel` |
-| **SCMU field** | N/A |
 
-| Type | Default value |
-| --- | --- |
-| int | `10` |
+include: sc-error-erroringestionmaxparallelwriters
 
-### ServiceControl/EnableFullTextSearchOnBodies
 
-Use this setting to configure whether the bodies of processed error messages should be full-text indexed for searching.
+include: sc-error-erroringestionbatchtimeout
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_ENABLEFULLTEXTSEARCHONBODIES` |
-| **App config key** | `ServiceControl/EnableFullTextSearchOnBodies` |
-| **SCMU field** | `FULL TEXT SEARCH ON MESSAGE BODIES` |
 
-| Type | Default value |
-| --- | --- |
-| bool | `true` (SCMU dropdown defaults to `On`) |
+include: sc-error-enablefulltextsearchonbodies
 
-> [!NOTE]
-> Changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
 
-#if-version [6.20,)
-### ServiceControl/QueryTimeoutInSeconds
+include: sc-error-querytimeoutinseconds
 
-Configures the maximum duration, in seconds, that a failed message view query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This protects the database server from queries over very large data sets that would otherwise run for a long time and consume large amounts of temporary disk space. Values larger than one hour fall back to the default. Applies to all persisters. On the SQL Server and PostgreSQL persisters, the database commands issued by these queries use this value as their command timeout, so `Database/CommandTimeout` does not apply to them.
-
-A query that runs out of its allowed time is answered with HTTP status `504 Gateway Timeout` and a problem details body that names this setting.
-
-When the instance gathers a message view from its own database and the configured [audit instances](/servicecontrol/audit-instances/), a timed-out or unreachable instance does not fail the request. The response contains the data of the instances that did answer, carries no `ETag`, and lists the missing instances in the `X-Particular-Incomplete-Results` header as `instanceId:reason` entries, where the reason is `timeout`, `unavailable` or `error`. Only when no instance answered, and at least one of them timed out, is the request answered with `504 Gateway Timeout`.
-
-The instance waits for an audit instance's answer for at most this duration, so it also bounds the whole query when an audit instance is slow, unresponsive, or configured with a larger `ServiceControl.Audit/QueryTimeoutInSeconds`. An audit instance that has not answered in time is reported as missing; its own limit still ends the query on its side.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_QUERYTIMEOUTINSECONDS` |
-| **App config key** | `ServiceControl/QueryTimeoutInSeconds` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | `60` (1 minute) |
-
-#end-if
 
 ## Transport
 
-### ServiceControl/TransportType
 
-The transport type to run ServiceControl with.
+include: sc-error-transporttype
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_TRANSPORTTYPE` or `TRANSPORTTYPE` |
-| **App config key** | `ServiceControl/TransportType` |
-| **SCMU field** | `TRANSPORT` |
 
-| Type | Default value |
-| --- | --- |
-| string | None |
+include: sc-error-transport
 
-Valid values are documented in the [ServiceControl transport configuration documentation](/servicecontrol/transports.md).
 
-### NServiceBus/Transport
+include: sc-error-errorqueue
 
-The connection string for the transport. This setting must be entered in the `connectionStrings` section of the configuration file when configured using the app config.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_CONNECTIONSTRING` or `CONNECTIONSTRING` |
-| **App config key** | `NServiceBus/Transport` in `connectionStrings` |
-| **SCMU field** | `TRANSPORT CONNECTION STRING` |
+include: sc-error-forwarderrormessages
 
-| Type | Default value |
-| --- | --- |
-| string | None |
 
-Valid values are documented in the [ServiceControl transport configuration documentation](/servicecontrol/transports.md).
-
-### ServiceBus/ErrorQueue
-
-The name of the error queue to ingest messages from.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICEBUS_ERRORQUEUE` |
-| **App config key** | `ServiceBus/ErrorQueue` |
-| **SCMU field** | `ERROR QUEUE NAME` |
-
-| Type | Default value |
-| --- | --- |
-| string | `error` |
-
-### ServiceControl/ForwardErrorMessages
-
-Use this setting to configure whether processed error messages are forwarded to another queue or not. This entry should be set to `false` if there is no external process reading messages from the [`ServiceBus/ErrorLogQueue`](#transport-servicecontrolforwarderrormessages).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_FORWARDERRORMESSAGES` |
-| **App config key** | `ServiceControl/ForwardErrorMessages` |
-| **SCMU field** | `ERROR FORWARDING` |
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` (Off) |
-
-This entry should be set to `false` if there is no external process reading messages from the `Error Forwarding Queue`.
-
-### ServiceBus/ErrorLogQueue
-
-The error queue name to use for forwarding error messages. This setting is ignored unless `ServiceControl/ForwardErrorMessages` is enabled.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICEBUS_ERRORLOGQUEUE` |
-| **App config key** | `ServiceBus/ErrorLogQueue` |
-| **SCMU field** | `ERROR FORWARDING QUEUE NAME` |
-
-| Type | Default value |
-| --- | --- |
-| string | `<ErrorQueue>.log` |
-
-> [!NOTE]
-> Changing the configuration file or environment value directly will not result in the queue being created. If you are using the ServiceControl Management utility to manage your ServiceControl error instance changing the value will create the forwarding queue if it has not been created.
+include: sc-error-errorlogqueue
 
 ## Usage Reporting when using ServiceControl
 
-### LicensingComponent/ServiceControlThroughputDataQueue
 
-Version: 5.4.0+
-
-The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/configuration.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
-
-In most instances these settings do not need to be modified.
-
-If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances), then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
-
-If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_SERVICECONTROLTHROUGHPUTDATAQUEUE` |
-| **App config key** | `LicensingComponent/ServiceControlThroughputDataQueue` |
-
-| Type | Default value |
-| --- | --- |
-| string | `ServiceControl.ThroughputData` |
+include: sc-error-servicecontrolthroughputdataqueue
 
 ## Usage Reporting when using the Azure Service Bus transport
 
 The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus)
 
-### LicensingComponent/ASB/SubscriptionId
+include: sc-error-asb-subscriptionid
 
-Version: 5.4.0+
 
-The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription) that contains the Azure Service Bus namespace.
+include: sc-error-asb-servicebusname
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
-| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
 
-| Type | Default value |
-| --- | --- |
-| string | the first subscription the identity can access |
+include: sc-error-asb-tenantid
 
-Setting this is recommended. If it is not set and the namespace is in a different subscription from the first one the identity can access, ServiceControl will report that it cannot find the namespace.
 
-### LicensingComponent/ASB/ServiceBusName
+include: sc-error-asb-clientid
 
-Version: 5.4.0+
 
-The Azure ServiceBus name.
+include: sc-error-asb-clientsecret
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_SERVICEBUSNAME` |
-| **App config key** | `LicensingComponent/ASB/ServiceBusName` |
 
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
-
-### LicensingComponent/ASB/TenantId
-
-Version: 5.4.0+
-
-The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_TENANTID` |
-| **App config key** | `LicensingComponent/ASB/TenantId` |
-
-| Type | Required |
-| --- | --- |
-| string | yes, unless the transport connection string [uses Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) |
-
-### LicensingComponent/ASB/ClientId
-
-Version: 5.4.0+
-
-The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_CLIENTID` |
-| **App config key** | `LicensingComponent/ASB/ClientId` |
-
-| Type | Required |
-| --- | --- |
-| string | yes, unless the transport connection string [uses Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) |
-
-Example Client ID from an Azure App Registration:
-![Screenshot showing where the Client ID appears in an App Registration](/servicecontrol/asb-app-service-principal.png)
-
-### LicensingComponent/ASB/ClientSecret
-
-Version: 5.4.0+
-
-The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_CLIENTSECRET` |
-| **App config key** | `LicensingComponent/ASB/ClientSecret` |
-
-| Type | Required |
-| --- | --- |
-| string | yes, unless the transport connection string [uses Microsoft Entra ID authentication](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) |
-
-> [!NOTE]
-> The `ClientId` and `ClientSecret` settings support only a [service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that authenticates with a client secret. To use a [managed identity](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity), or a service principal that authenticates with a [certificate](/servicecontrol/transports.md#azure-service-bus-enabling-certificate-authentication) or a [federated identity credential](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation), configure the transport to connect with it instead. ServiceControl then reads metrics with the same identity. See [usage reporting setup](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus).
-
-### LicensingComponent/ASB/ManagementUrl
-
-Version: 5.4.0+
-
-The Azure ManagementUrl URL.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_ASB_MANAGEMENTURL` |
-| **App config key** | `LicensingComponent/ASB/ManagementUrl` |
-
-| Type | Default value |
-| --- | --- |
-| string | https://management.azure.com/ |
-
-This setting only needs to be configured if not using the public AzureCloud environment.
-For other environments:
-
-- AzureGermanCloud - https://management.microsoftazure.de/
-- AzureUSGovernment - https://management.usgovcloudapi.net/
-- AzureChinaCloud - https://management.chinacloudapi.cn/
+include: sc-error-asb-managementurl
 
 ## Usage Reporting when using the Amazon SQS transport
 
-### LicensingComponent/AmazonSQS/AccessKey
 
-Version: 5.4.0+
+include: sc-error-amazonsqs-accesskey
 
-The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_ACCESSKEY` |
-| **App config key** | `LicensingComponent/AmazonSQS/AccessKey` |
+include: sc-error-amazonsqs-secretkey
 
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
 
-### LicensingComponent/AmazonSQS/SecretKey
+include: sc-error-amazonsqs-profile
 
-Version: 5.4.0+
 
-The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+include: sc-error-amazonsqs-region
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_SECRETKEY` |
-| **App config key** | `LicensingComponent/AmazonSQS/SecretKey` |
 
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
-
-### LicensingComponent/AmazonSQS/Profile
-
-Version: 5.4.0+
-
-The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_PROFILE` |
-| **App config key** | `LicensingComponent/AmazonSQS/Profile` |
-
-| Type | Default value |
-| --- | --- |
-| string | |
-
-### LicensingComponent/AmazonSQS/Region
-
-Version: 5.4.0+
-
-The AWS region to use when accessing AWS services.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_REGION` |
-| **App config key** | `LicensingComponent/AmazonSQS/Region` |
-
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
-
-### LicensingComponent/AmazonSQS/Prefix
-
-Version: 5.4.0+
-
-Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_PREFIX` |
-| **App config key** | `LicensingComponent/AmazonSQS/Prefix` |
-
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
+include: sc-error-amazonsqs-prefix
 
 ## Usage Reporting when using the RabbitMQ transport
 
 > [!NOTE]
 > Begining with version 6.5.0, these configuration settings are no longer used. Access to the management API is configured using [connection string options](/servicecontrol/transports.md#rabbitmq). See the [ServiceControl 6.4 to 6.5 upgrade guide](/servicecontrol/upgrades/6.4to6.5.md) for more information.
 
-### LicensingComponent/RabbitMQ/ApiUrl
 
-Version: 5.4.0 to 6.4.0
+include: sc-error-rabbitmq-apiurl
 
-The RabbitMQ management URL.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_APIURL` |
-| **App config key** | `LicensingComponent/RabbitMQ/ApiUrl` |
+include: sc-error-rabbitmq-username
 
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
 
-### LicensingComponent/RabbitMQ/UserName
-
-Version: 5.4.0 to 6.4.0
-
-The username to access the RabbitMQ management interface.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_USERNAME` |
-| **App config key** | `LicensingComponent/RabbitMQ/UserName` |
-
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
-
-### LicensingComponent/RabbitMQ/Password
-
-Version: 5.4.0 to 6.4.0
-
-The password to access the RabbitMQ management interface.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_PASSWORD` |
-| **App config key** | `LicensingComponent/RabbitMQ/Password` |
-
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
+include: sc-error-rabbitmq-password
 
 ## Usage Reporting when using the SqlServer transport
 
-### LicensingComponent/SqlServer/ConnectionString
 
-Version: 5.4.0+
+include: sc-error-sqlserver-connectionstring
 
-The connection string that will provide at least read access to all queue tables.
 
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_SQLSERVER_CONNECTIONSTRING` |
-| **App config key** | `LicensingComponent/SqlServer/ConnectionString` |
-
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
-
-### LicensingComponent/SqlServer/AdditionalCatalogs
-
-Version: 5.4.0+
-
-Specifies any additional databases on the same server that also contain NServiceBus message queues.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_SQLSERVER_ADDITIONALCATALOGS` |
-| **App config key** | `LicensingComponent/SqlServer/AdditionalCatalogs` |
-
-| Type | Default value |
-| --- | --- |
-| string | |
+include: sc-error-sqlserver-additionalcatalogs
 
 ## Usage Reporting when using the PostgreSQL transport
 
-### LicensingComponent/PostgreSQL/ConnectionString
 
-Version: 5.10.0+
-
-The connection string that will provide at least read access to all queue tables.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_POSTGRESQL_CONNECTIONSTRING` |
-| **App config key** | `LicensingComponent/PostgreSQL/ConnectionString` |
-
-| Type | Default value |
-| --- | --- |
-| string | obtained from ServiceControl |
+include: sc-error-postgresql-connectionstring
 
 ## Plugin-specific
 
-### ServiceControl/HeartbeatGracePeriod
 
-The period that defines whether an endpoint is considered alive or not since the last received heartbeat.
-
-Type: timespan
-
-Default: `00:00:40` (40 secs)
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HEARTBEATGRACEPERIOD` |
-| **App config key** | `ServiceControl/HeartbeatGracePeriod` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| timespan | `00:00:40` (40 secs) |
-
-When configuring the heartbeat grace period, make sure it is greater than the [heartbeat interval defined by the plugin](/monitoring/heartbeats/install-plugin.md).
-
-> [!NOTE]
-> When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
-
-## Troubleshooting
-
-### ServiceControl/DataSpaceRemainingThreshold
-
-The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DATASPACEREMAININGTHRESHOLD` |
-| **App config key** | `ServiceControl/DataSpaceRemainingThreshold` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | 20 (percent) |
-
-### ServiceControl/MinimumStorageLeftRequiredForIngestion
-
-This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_MINIMUMSTORAGELEFTREQUIREDFORINGESTION` |
-| **App config key** | `ServiceControl/MinimumStorageLeftRequiredForIngestion` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| int | 5 (percent) |
+include: sc-error-heartbeatgraceperiod
