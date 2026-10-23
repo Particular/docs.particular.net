@@ -12,6 +12,8 @@ related:
 
 Ensure an instance of RabbitMQ is running and accessible.
 
+For local development, consider running the [Docker container](https://hub.docker.com/_/rabbitmq#how-to-use-this-image)
+
 
 ## Code walk-through
 
