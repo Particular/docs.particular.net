@@ -2,7 +2,7 @@
 title: Controlling What Is Subscribed
 summary: When applying the publish-subscribe pattern, there are several ways to control what messages are subscribed to
 component: Core
-reviewed: 2025-05-09
+reviewed: 2026-10-23
 ---
 
 ## Automatic subscriptions
@@ -57,7 +57,7 @@ snippet: ExplicitSubscribe
 
 `Subscribe` and `Unsubscribe` are accessible via the `IMessageSession` or within a [feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).
 
-## Decomissioning event handlers
+## Decommissioning event handlers
 
 An event is not automatically unsubscribed when a message handler is removed. The subscription remains active until it is unsubscribed.
 
@@ -66,9 +66,11 @@ Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For exam
 ```c#
 public sealed class UnsubscribeService(IMessageSession messageSession) : BackgroundService
 {
-	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await messageSession.Unsubscribe<MyEvent>();
     }
 }
 ```
+
+The service runs every time the endpoint starts. Unsubscribing from an event that is not subscribed has no effect, so the code is safe to keep. Once the endpoint has started with it in every environment where the subscription existed, the code can be removed.
