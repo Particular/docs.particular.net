@@ -1,7 +1,7 @@
 ---
 title: Reading and writing message headers
 summary: Access and manipulate the built-in NServiceBus headers or add custom headers
-reviewed: 2025-01-17
+reviewed: 2026-08-10
 component: Core
 redirects:
 - nservicebus/how-do-i-get-technical-information-about-a-message
@@ -16,49 +16,41 @@ related:
 
 NServiceBus provides multiple ways to read and write the headers associated with each message. The same approach is used for [built-in NServiceBus headers](/nservicebus/messaging/headers.md) and for custom headers.
 
-Custom headers are useful for storing infrastructure-level information not directly related to the business message. Instead of forcing all message types to inherit from a base class or implement a specific interface in order to force the existence of certain properties, instead consider moving this information into message headers.
+Custom headers are useful for storing infrastructure-level information not directly related to the business message. Instead of forcing all message types to inherit from a base class or implement a specific interface to ensure the existence of certain properties, consider moving this information into message headers.
 
 Message headers are best manipulated through [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md), however they can be accessed and modified from message handlers and saga handlers as well.
 
 Depending on the [message transport](/transports/), headers are stored with the message either as native headers (if supported) or via a serialized collection of key/value pairs within the message body itself.
 
-This article covers the various ways of manipulating the message headers.
-
+This article covers the various ways to manipulate message headers.
 
 ## Reading incoming headers
 
 Headers can be read for an incoming message.
 
-
 ### From a behavior
 
 snippet: header-incoming-behavior
-
 
 ### From a mutator
 
 snippet: header-incoming-mutator
 
-
 ### From a handler
 
 snippet: header-incoming-handler
-
 
 ## Writing outgoing headers
 
 Headers can be written for an outgoing message.
 
-
 ### From a behavior
 
 snippet: header-outgoing-behavior
 
-
 ### From a mutator
 
 snippet: header-outgoing-mutator
-
 
 ### From a handler
 
@@ -66,7 +58,6 @@ snippet: header-outgoing-mutator
 > SendOptions is meant for custom headers - changes to NServiceBus headers may be overwritten.
 
 snippet: header-outgoing-handler
-
 
 ### For all outgoing messages
 

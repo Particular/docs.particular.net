@@ -1,3 +1,3 @@
-The name of the table and the schema where the table is placed can be customized using the following API:
+Use the following API to customize the table name and schema:
 
 snippet: OutboxNHibernateCustomTableNameConfig

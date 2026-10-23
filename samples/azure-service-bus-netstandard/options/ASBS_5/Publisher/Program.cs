@@ -1,12 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
+﻿using NServiceBus.Transport.AzureServiceBus;
 using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -20,6 +12,7 @@ var endpointConfiguration = new EndpointConfiguration("Samples.AzureServiceBus.O
 var section = builder.Configuration.GetSection("AzureServiceBus");
 var topologyOptions = section.GetSection("Topology").Get<TopologyOptions>()!;
 var topology = TopicTopology.FromOptions(topologyOptions);
+
 var transport = new AzureServiceBusTransport(section["ConnectionString"]!, topology)
 {
     Topology =
@@ -28,6 +21,7 @@ var transport = new AzureServiceBusTransport(section["ConnectionString"]!, topol
         OptionsValidator = new TopologyOptionsDisableValidationValidator()
     }
 };
+
 endpointConfiguration.UseTransport(transport);
 #endregion
 

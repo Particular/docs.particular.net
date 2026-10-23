@@ -1,8 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.Logging.AddConsole();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
-Console.Title = "NativeIntegration";
+﻿Console.Title = "NativeIntegration";
 
 #region EndpointName
 

@@ -16,10 +16,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "10.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "10.1",
           "SupportLevel": "Mainstream"
         },
@@ -42,10 +38,6 @@
         },
         {
           "Minor": "8.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "9.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -80,10 +72,6 @@
         },
         {
           "Minor": "3.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -346,10 +334,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "4.1",
           "SupportLevel": "Mainstream"
         }
@@ -368,10 +352,6 @@
         },
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -396,10 +376,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
@@ -415,10 +391,6 @@
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
-        },
-        {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
         },
         {
           "Minor": "5.1",
@@ -529,10 +501,6 @@
         },
         {
           "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -654,10 +622,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "11.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "11.1",
           "SupportLevel": "Mainstream"
         }
@@ -676,10 +640,6 @@
         },
         {
           "Minor": "10.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "11.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -778,6 +738,10 @@
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -798,6 +762,10 @@
         },
         {
           "Minor": "4.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -845,14 +813,6 @@
         },
         {
           "Minor": "2.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -953,10 +913,6 @@
           "SupportLevel": "Extended"
         },
         {
-          "Minor": "9.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "10.1",
           "SupportLevel": "Mainstream"
         },
@@ -976,10 +932,6 @@
         {
           "Minor": "8.2",
           "SupportLevel": "Extended"
-        },
-        {
-          "Minor": "9.1",
-          "SupportLevel": "Mainstream"
         },
         {
           "Minor": "10.1",
@@ -1071,10 +1023,6 @@
           "SupportLevel": "Extended"
         },
         {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "6.0",
           "SupportLevel": "Mainstream"
         },
@@ -1094,10 +1042,6 @@
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
-        },
-        {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
         },
         {
           "Minor": "6.0",
@@ -1138,10 +1082,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "10.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
@@ -1160,10 +1100,6 @@
         },
         {
           "Minor": "3.4",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1188,15 +1124,11 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.3",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "6.4",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.5",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1214,10 +1146,6 @@
         },
         {
           "Minor": "13.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "14.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1266,14 +1194,23 @@
       ]
     },
     {
+      "PackageId": "NServiceBus.Transport.NonDurable",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "1.1",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
       "PackageId": "NServiceBus.Transport.PostgreSql",
       "Versions": [
         {
           "Minor": "8.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "9.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1295,10 +1232,6 @@
         },
         {
           "Minor": "8.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "9.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1379,10 +1312,6 @@
       "PackageId": "Particular.Aspire.Hosting.ServicePlatform",
       "Versions": [
         {
-          "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "1.1",
           "SupportLevel": "Mainstream"
         }
@@ -1410,7 +1339,7 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "6.18",
+          "Minor": "6.21",
           "SupportLevel": "Mainstream"
         }
       ]

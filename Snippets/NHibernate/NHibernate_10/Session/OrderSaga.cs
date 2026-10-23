@@ -23,9 +23,7 @@ namespace NHibernate_10.Session
         }
 
         public class SagaData :
-            ContainSagaData
-        {
-        }
+            ContainSagaData;
     }
 
 }

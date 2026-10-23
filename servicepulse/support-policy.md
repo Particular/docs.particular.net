@@ -1,7 +1,7 @@
 ---
 title: ServicePulse support policy
 summary: Versions of ServicePulse that are currently supported
-reviewed: 2024-12-31
+reviewed: 2026-08-10
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/all-versions

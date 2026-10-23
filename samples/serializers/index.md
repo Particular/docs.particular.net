@@ -1,6 +1,6 @@
 ---
 title: Serializer Samples
-reviewed: 2025-02-03
+reviewed: 2026-09-02
 related:
  - nservicebus/serialization
 ---

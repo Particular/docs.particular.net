@@ -1,7 +1,7 @@
 ---
 title: Selecting a transport
 summary: A guide for selecting the right NServicebus transport
-reviewed: 2026-01-20
+reviewed: 2026-07-31
 isLearningPath: true
 ---
 
@@ -29,6 +29,7 @@ Each of the following sections describes the advantages and disadvantages of eac
 * [PostgreSQL](#postgresql)
 * [MSMQ](#msmq)
 * [Learning Transport](#learning)
+* [Non-Durable Transport](#non-durable-transport)
 
 For transports that use a cloud-hosted queueing technology, the quality of the network connection between the applications and the cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running in the same data center as the queueing technology, this risk is mitigated.
 
@@ -42,7 +43,11 @@ Q-->|No|N{<center>Is interop<br/>with existing<br/>systems needed?</center>}
 Y-->|Azure/no preferences|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
 Y-->|Amazon|Y2[Amazon SQS]
 N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
-N-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
+N-->|No|P{<center>Is this only a PoC,<br/>spike, or learning<br/>exercise?</center>}
+P-->|Yes|L[Learning Transport]
+P-->|No|SP{<center>Can all endpoints<br/>run in one process<br/>and tolerate message loss<br/>on process termination?</center>}
+SP-->|Yes|NDT[Non-Durable Transport]
+SP-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
 NY-->|Yes|NYY[SQL Server]
 NY-->|No|NYN[<center>RabbitMQ/<br/>SQL Server</center>]
 NN-->|Yes|NNY[<center>RabbitMQ</center>]
@@ -57,6 +62,32 @@ NNN-->|No|NNNN[<center>RabbitMQ/<br/>SQL Server</center>]
 The learning transport should not be used in production.
 
 This transport is intended for learning how to work with NServiceBus. It does not require installing queueing technology and works "out of the box". This is done by storing sent and received messages as files on disk.
+
+## Non-Durable Transport
+
+The Non-Durable Transport exchanges messages in memory without requiring external infrastructure. It is intended for endpoints that run in the same process and can accept message loss when the process ends.
+
+### Advantages
+
+- Extremely fast because messages are exchanged in memory without I/O overhead
+- No external infrastructure or broker to install and maintain
+- Suitable for automated testing and local development
+- Supports inline execution for mediator-like behavior and gradual adoption of asynchronous messaging
+- Supports atomic message handling with [Non-Durable Persistence](/persistence/non-durable) when using `SendsAtomicWithReceive`
+
+### Disadvantages
+
+- All messages are lost when the process ends
+- All endpoints must run in the same process
+- Message size and queue capacity are limited by available process memory
+- Does not provide native integration with external systems; use the [NServiceBus Messaging Bridge](/nservicebus/bridge) to connect to endpoints using a durable transport
+
+### When to select this transport
+
+- When endpoints run in the same process and losing messages on process termination is acceptable
+- When high throughput is required without the overhead of a persistent queueing system
+- For automated testing, local development, or scenarios that benefit from inline execution
+- When integrating with webhooks by acknowledging the HTTP request and dispatching work to a local, non-durable queue
 
 ## Azure Service Bus
 

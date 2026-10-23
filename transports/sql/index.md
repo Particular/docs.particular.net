@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport
 summary: An overview of the NServiceBus SQL Server transport.
-reviewed: 2025-01-30
+reviewed: 2026-09-03
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/usage
@@ -15,10 +15,10 @@ related:
  - samples/sqltransport/native-integration
 ---
 
-The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/). It provides support for sending messages using SQL Server tables. It does **not** make use of a [service broker](https://technet.microsoft.com/en-us/library/ms166104.aspx).
+The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/). It provides support for sending messages using SQL Server tables. It does **not** make use of a [Service Broker](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-service-broker).
 
 > [!WARNING]
-> Although this transport will run on the free version of the engine, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that support agreements are in place from [Microsoft Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), or another third party support provider.
+> Although this transport will run on the free version of the engine, i.e. [SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that support agreements are in place from Microsoft or another third-party support provider.
 
 ## Transport at a glance
 
@@ -55,9 +55,9 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 
  * No additional licensing and training costs; many Microsoft stack organizations have SQL Server installed and have the knowledge required to manage it.
  * Mature tooling, such as [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
- * Free to start with the [SQL Server Express edition](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express).
+ * Free to start with the [SQL Server Express edition](https://www.microsoft.com/en-us/sql-server/sql-server-downloads).
  * Queues support competing consumers.
- * Supports [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx), but can also use only single shared database transaction. Can also be paired with [SQL Persistence](/persistence/sql/) using a single local database transaction. ([Sample](/samples/sqltransport-sqlpersistence/))
+ * Supports [Microsoft Distributed Transaction Coordinator (MSDTC)](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ms681291(v=vs.85)), but can also use only single shared database transaction. Can also be paired with [SQL Persistence](/persistence/sql/) using a single local database transaction. ([Sample](/samples/sqltransport-sqlpersistence/))
 
 
 ## Disadvantages

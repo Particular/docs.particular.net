@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
-Console.Title = "Endpoint2";
+﻿Console.Title = "Endpoint2";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
 endpointConfiguration.EnableInstallers();

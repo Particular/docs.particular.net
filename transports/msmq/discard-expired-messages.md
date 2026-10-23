@@ -1,7 +1,7 @@
 ---
 title: Discarding expired messages
 summary: Using native MSMQ features to discard messages not processed within a specified time window.
-reviewed: 2025-05-19
+reviewed: 2026-08-27
 component: MsmqTransport
 related:
   - nservicebus/messaging/discard-old-messages

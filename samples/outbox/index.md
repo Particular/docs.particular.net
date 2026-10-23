@@ -1,6 +1,6 @@
 ---
 title: Outbox Samples
-reviewed: 2025-01-30
+reviewed: 2026-08-27
 related:
  - nservicebus/outbox
 ---

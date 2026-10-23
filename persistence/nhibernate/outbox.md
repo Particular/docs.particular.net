@@ -3,18 +3,18 @@ title: Outbox with NHibernate Persistence
 summary: How to use the outbox with NHibernate
 versions: '[6.0,)'
 component: NHibernate
-reviewed: 2025-02-03
+reviewed: 2026-09-03
 related:
 - nservicebus/outbox
 redirects:
  - nservicebus/nhibernate/outbox
 ---
 
-The [outbox](/nservicebus/outbox) feature requires persistent storage in order to store the messages and enable deduplication.
+The [outbox](/nservicebus/outbox) feature requires persistent storage to store outgoing messages and enable deduplication.
 
 ## Table
 
-To keep track of duplicate messages, the NHibernate implementation of the outbox requires the creation of an `OutboxRecord` table.
+To track duplicate messages, NHibernate Persistence requires an `OutboxRecord` table.
 
 partial: table-name
 
@@ -24,32 +24,32 @@ partial: transactionisolation
 
 ## Customizing outbox record persistence
 
-By default the outbox records are persisted in the following way:
+By default, NHibernate Persistence maps outbox records as follows:
 
 - The table has an auto-incremented integer primary key.
 - The `MessageId` column has a unique index.
-- There are indices on `Dispatched` and `DispatchedAt` columns.
+- The `Dispatched` and `DispatchedAt` columns have indexes.
 
-The following API can be used to provide a different mapping of outbox data to the underlying storage:
+Use the following API to map outbox data differently:
 
 snippet: OutboxNHibernateCustomMappingConfig
 
 snippet: OutboxNHibernateCustomMapping
 
-If custom mapping is required, the following characteristics of the original mapping must be preserved:
+When using a custom mapping, the following characteristics of the default mapping must be preserved:
 
-- Values stored in the `MessageId` column must be unique and an attempt to insert a duplicate entry must cause an exception.
-- Querying by `Dispatched` and `DispatchedAt` columns must be efficient because these columns are used by the cleanup process to remove outdated records.
+- Values in the `MessageId` column must be unique. Attempting to insert a duplicate value must cause an exception.
+- Queries using the `Dispatched` and `DispatchedAt` columns must be efficient. The cleanup process uses these columns to remove outdated records.
 
 ## Deduplication record lifespan
 
-By default, the NHibernate implementation keeps deduplication records for seven days and checks for purgeable records every minute.
+By default, NHibernate Persistence keeps deduplication records for seven days and checks for outdated records every minute.
 
-Specify different values in the config file using [timestamp strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings):
+Specify different values in the configuration file using [timestamp strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings):
 
 snippet: OutboxNHibernateTimeToKeep
 
-By specifying a value of `-00:00:00.001` (i.e. -1 millisecond, the value of `Timeout.InfiniteTimeSpan`) for the `NServiceBus/Outbox/NHibernate/FrequencyToRunDeduplicationDataCleanup` app settings, the cleanup task is disabled. This is useful when an endpoint is scaled out and instances are competing to run the cleanup task.
+To disable the cleanup task, set the `NServiceBus/Outbox/NHibernate/FrequencyToRunDeduplicationDataCleanup` app setting to `-00:00:00.001`. This value represents -1 millisecond and is equivalent to `Timeout.InfiniteTimeSpan`. Disabling cleanup on the majority of instances avoids competition when an endpoint is scaled out.
 
 > [!NOTE]
-> It is advised to run the cleanup task on only one NServiceBus endpoint instance per database. Disable the cleanup task on all other NServiceBus endpoint instances for the most efficient cleanup execution.
+> Run the cleanup task on only one NServiceBus endpoint instance per database. For the most efficient cleanup, disable the task on all other endpoint instances that use the database.

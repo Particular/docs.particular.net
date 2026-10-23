@@ -1,7 +1,5 @@
-﻿using System;
-
-public class EventTwo
+﻿public class EventTwo
 {
-    public string Content { get; set; }
+    public required string Content { get; set; }
     public DateTime PublishedOnUtc { get; set; }
 }

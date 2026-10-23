@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Dependency Injection Integration
 component: Extensions.Hosting
-reviewed: 2025-01-14
+reviewed: 2026-08-10
 related:
  - nservicebus/dependency-injection
 ---
@@ -16,7 +16,7 @@ When the sample is run, a web application is started. All web requests received 
 
 snippet: RequestHandling
 
-Message handlers will have dependencies injected at runtime by the configured Inversion of Control container:
+Message handlers will have dependencies injected at runtime by the configured Inversion of Control (IoC) container:
 
 snippet: InjectingDependency
 

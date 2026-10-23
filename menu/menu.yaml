@@ -1,7 +1,10 @@
 - Name: Getting Started
+  LlmsRoot: get-started
   Topics:
   - Url: get-started
     Title: Overview
+  - Url: get-started/mcp-server
+    Title: MCP Server overview
   - Title: Quickstart Tutorial
     Articles:
     - Url: tutorials/quickstart
@@ -125,6 +128,7 @@
         Url: architecture/aws/observability
 
 - Name: Service Platform
+  LlmsRoot: platform
   Topics:
   - Title: Introduction
     Url: platform
@@ -568,6 +572,8 @@
       Title: Custom
   - Title: Message Envelopes
     Articles:
+    - Url: nservicebus/messaging/envelope-handlers
+      Title: Envelope Handlers
     - Url: nservicebus/cloudevents
       Title: CloudEvents
   - Title: Dependency Injection
@@ -620,6 +626,8 @@
       Title: Dependency Vulnerabilities
   - Title: Operations
     Articles:
+    - Url: nservicebus/operations
+      Title: About operations
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
     - Url: nservicebus/operations/opentelemetry
@@ -630,8 +638,6 @@
       Title: Auditing Messages
     - Url: nservicebus/security/property-encryption
       Title: Message Property Encryption
-    - Url: nservicebus/operations/configuring-aws
-      Title: NServiceBus in AWS
     - Url: nservicebus/operations/dotnet-framework-version-requirements
       Title: .NET Framework requirements
     - Url: nservicebus/operations/installers
@@ -817,6 +823,14 @@
       Title: Learning transport
     - Url: transports/learning/viewing-messages
       Title: Viewing content
+  - Title: Non-Durable
+    Articles:
+    - Url: transports/non-durable
+      Title: Non-Durable transport
+    - Url: transports/non-durable/simulation
+      Title: Simulation and rate limiting
+    - Url: transports/non-durable/observability
+      Title: Observability
   - Title: Azure Service Bus
     Articles:
     - Url: transports/azure-service-bus
@@ -1291,10 +1305,13 @@
       Title: Transactions
     - Url: nservicebus/aws/local-development
       Title: Local development
+    - Url: persistence/dynamodb/table-creation
+      Title: Table creation
     - Url: persistence/dynamodb/capacity-planning
       Title: Capacity planning
 
 - Name: Hosting
+  LlmsRoot: nservicebus
   Topics:
   - Title: General
     Articles:
@@ -1517,8 +1534,8 @@
           Title: Hosting
         - Url: servicepulse/how-to-configure-endpoints-for-monitoring
           Title: Monitoring endpoints
-        - Url: servicepulse/usage-config
-          Title: Usage Setup
+        - Url: servicepulse/usage-reporting-setup
+          Title: Usage Reporting Setup
         - Url: servicepulse/install-servicepulse-in-iis
           Title: Install in IIS
         - Url: servicepulse/troubleshooting
@@ -1553,8 +1570,10 @@
           Title: Health check notifications
         - Url: servicepulse/endpoint-connection
           Title: Endpoint connection settings
-        - Url: servicepulse/usage
-          Title: Measuring system usage
+        - Url: servicepulse/usage-reporting-with-servicepulse
+          Title: Usage Reporting with ServicePulse
+        - Url: servicepulse/platform-health
+          Title: Platform Health
 
 - Name: ServiceControl
   Topics:
@@ -1576,6 +1595,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 6.19 to 6.20
+      Url: servicecontrol/upgrades/6.19to6.20
     - Title: Version 6.4 to 6.5
       Url: servicecontrol/upgrades/6.4to6.5
     - Title: Version 6.3 to 6.4
@@ -1733,6 +1754,8 @@
       Url: servicecontrol/db-compaction
     - Title: Move database location
       Url: servicecontrol/move-database-location
+    - Title: RavenDB search engine
+      Url: servicecontrol/ravendb/search-engine
   - Title: Integration
     Articles:
     - Title: Integration events

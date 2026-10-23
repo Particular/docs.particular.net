@@ -1,24 +1,13 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-using Shared;
+﻿using Shared;
 
-namespace Sender
+namespace Sender;
+
+public class PongHandler(ILogger<PongHandler> logger) : IHandleMessages<Pong>
 {
-    public class PongHandler : IHandleMessages<Pong>
+    public Task Handle(Pong message, IMessageHandlerContext context)
     {
-        private readonly ILogger<PongHandler> logger;
+        logger.LogInformation("Processing Pong message: {Acknowledgement}", message.Acknowledgement);
 
-        public PongHandler(ILogger<PongHandler> logger)
-        {
-            this.logger = logger;
-        }
-
-        public Task Handle(Pong message, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Processing Pong message: {Acknowledgement}", message.Acknowledgement);
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }

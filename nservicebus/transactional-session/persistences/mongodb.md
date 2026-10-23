@@ -2,7 +2,7 @@
 title: Transactional Session with MongoDB Persistence
 summary: How to configure the transactional session with MongoDB Persistence
 component: TransactionalSession.MongoDB
-reviewed: 2025-01-24
+reviewed: 2026-08-17
 redirects:
 related:
 - persistence/mongodb

@@ -1,77 +1,60 @@
 ---
-title: Installing ServicePulse
-summary: Describes how ServicePulse is installed - and its basic requirements
+title: Installing ServicePulse on Windows using the standalone installer
+summary: Describes how to install ServicePulse
 component: ServicePulse
-reviewed: 2025-02-19
+reviewed: 2026-10-01
 related:
 - servicepulse/troubleshooting
 ---
 
-> [!NOTE]
-> This guide explains how to install ServicePulse using the standalone installer package. It is also possible to run ServicePulse [in ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) or in a [container](containerization).
+> [!IMPORTANT]
+> This guide explains how to install ServicePulse on Windows using the standalone installer. It is also possible to run ServicePulse [in ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) or in a [container](containerization).
 
 ## Prerequisites
 
- * .NET Framework 4.5 or later
- * A currently-supported version of:
+ - A Windows machine
+ - .NET Framework 4.8 or later
+ - A supported version of:
      - Microsoft Edge
      - Chrome
      - Firefox
      - Safari
- * A running instance of [ServiceControl](/servicecontrol)
+ - A running instance of [ServiceControl](/servicecontrol)
 
-> [!NOTE]
-> Internet Explorer (IE) is NOT supported
 
 ## Installation
 
- 1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
- 1. Download and install [ServicePulse](https://github.com/Particular/ServicePulse/releases)
- 1. After accepting the license terms and conditions, click "Install" (the installer will require elevated privileges)
- 1. The installation process installs the "Particular ServicePulse" Windows service and opens the ServicePulse web application using the default browser.
- 1. After installing ServicePulse, see the following sections to configure the existing endpoints to be monitored via ServicePulse.
+ 1. Download the latest version of [ServicePulse](https://github.com/Particular/ServicePulse/releases).
+ 1. Run the installer using elevated privileges.
+ 1. After accepting the license terms and conditions, click "Install" 
+ 1. The installation process creates the `Particular ServicePulse` Windows service and opens the `ServicePulse` web application using the default browser.
 
 ### Available installation parameters
 
-- `Quiet`
-Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
-- `Log [file location]`
-Provides the location on disk for the logfile to be generated.
-- `INST_PORT_PULSE [port number]`
-Provides the port number that ServicePulse web application will run on.
-Default : 9090
-- `INST_URI [uri]`
-Provides location of the ServiceControl Instance API
-Default : `http://localhost:33333/api/`
-- `INST_SC_MONITORING_URI [uri]`
-Provides location of the Monitoring Instance API
-Default : `http://localhost:33633/`
+The executable accepts some parameters to customize the installation experience. All of them are optional.
 
-Example
+- `Quiet`: Allows ServicePulse to be installed in the background. The installation user interface will be unavailable.
+- `Log [file location]`: To provide the location on disk for the log file to be generated.
+- `INST_PORT_PULSE [port number]`: To provide the port number that ServicePulse web application will run on. The default value is 9090.
+- `INST_URI [uri]`: To provide the URL of the ServiceControl API. The default value is: `http://localhost:33333/api/`.
+- `INST_SC_MONITORING_URI [uri]`: To provide the URL of the ServiceControl Monitoring API. The default value is: `http://localhost:33633/`.
+
+For example:
 ```
 .\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/ INST_SC_MONITORING_URI=http://localhost:33633/
 ```
 
 ## Configuring ServicePulse
 
-ServicePulse connects to and relies on ServiceControl and optionally ServiceControl Monitoring as its data source.
-For details on ServiceControl, ServiceControl Monitoring and ServicePulse configuration options, see:
+See [connection configuration in ServicePulse](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for ServicePulse configuration options.
 
- * [Configuring ServiceControl](/servicecontrol/servicecontrol-instances/configuration.md)
- * [ServiceControl Guidance](/servicecontrol)
- * [Configuring ServiceControl Monitoring](/servicecontrol/monitoring-instances/configuration.md)
- * [ServiceControl Monitoring Guidance](/servicecontrol/monitoring-instances)
- * [Connection Configuration in ServicePulse](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
+## Moving ServicePulse to a new location
 
-> [!NOTE]
-> ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
+ServicePulse does not store any message data, so the only information that needs to be moved is its configuration.
+By default, ServicePulse is installed in `C:\Program Files (x86)\Particular Software\ServicePulse` and its configuration values are stored in the file `\app\js\app.constants.js` relative to the installation folder. 
 
-## Migrating / Moving
-
-ServicePulse does not contain any message data; it has only a few configuration values stored in the following file `\app\js\app.constants.js`. By default ServicePulse is installed in `C:\Program Files (x86)\Particular Software\ServicePulse`.
-
-Run the ServicePulse installer on the new server manually or via [scripting powershell or a batch file](#installation-available-installation-parameters) and copy the `\app\js\app.constants.js` to the new location.
+In order to move ServicePulse to a new location, the ServicePulse installer must be run there and then the `\app\js\app.constants.js` file should be copied over.
 
 ## ServicePulse license
 
-ServicePulse will check the current licensing status by querying the ServiceControl API, located by default at `http://localhost:33333/api`. If ServicePulse indicates that the license is invalid or has expired, then the [license must be updated in ServiceControl](/servicecontrol/license.md).
+ServicePulse will check the current licensing status by querying the connected ServiceControl API. If ServicePulse indicates that the license is invalid or has expired, then the [license must be updated in ServiceControl](/servicecontrol/license.md).

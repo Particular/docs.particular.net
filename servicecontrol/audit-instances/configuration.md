@@ -293,7 +293,7 @@ Controls whether HTTPS is required when retrieving metadata from the authority.
 
 _Added in version 6.18.0_
 
-Enables [role-based access control](/servicecontrol/security/configuration/authorization.md) on the Audit instance. When `false`, every authenticated user is granted every permission. Has no effect unless `Authentication.Enabled` is `true`.
+Enables [role-based access control](/servicecontrol/security/configuration/authorization.md) on the Audit instance. When `false`, every authenticated user is granted every permission. Requires `Authentication.Enabled` to be `true`; the instance refuses to start if this is enabled while authentication is disabled.
 
 | Context | Name |
 | --- | --- |
@@ -875,6 +875,25 @@ Configures the maximum duration, in seconds, for processing a batch of audited m
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_BULKINSERTCOMMITTIMEOUTINSECONDS` |
 | **App config key** | `ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `60` (1 minute) |
+
+#end-if
+
+#if-version [6.20,)
+### ServiceControl.Audit/QueryTimeoutInSeconds
+
+Configures the maximum duration, in seconds, that an audit message query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This protects the RavenDB server from queries over very large data sets that would otherwise run for a long time and consume large amounts of temporary disk space. Values larger than one hour fall back to the default.
+
+A query that runs out of its allowed time is answered with HTTP status `504 Gateway Timeout` and a problem details body that names this setting. The error instance treats that answer as a missing instance rather than as an instance with no data. The maximum duration the error instance will wait for an audit instance is bounded by its own [`ServiceControl/QueryTimeoutInSeconds`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrol-querytimeoutinseconds), independently of this value.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_QUERYTIMEOUTINSECONDS` |
+| **App config key** | `ServiceControl.Audit/QueryTimeoutInSeconds` |
 | **SCMU field** | N/A |
 
 | Type | Default value |

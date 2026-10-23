@@ -2,7 +2,7 @@
 title: MSMQ Transport
 summary: MSMQ is a solid durable communications technology available on the Windows platform.
 component: MsmqTransport
-reviewed: 2025-01-30
+reviewed: 2026-08-27
 redirects:
  - nservicebus/msmq-information
  - nservicebus/msmq

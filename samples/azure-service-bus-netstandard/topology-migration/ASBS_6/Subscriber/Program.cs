@@ -1,9 +1,5 @@
 ﻿#pragma warning disable CS0618 // Type or member is obsolete
 
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
 using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);

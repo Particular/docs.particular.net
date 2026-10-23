@@ -2,7 +2,7 @@
 title: Amazon SQS Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQS transport
 component: Sqs
-reviewed: 2025-01-17
+reviewed: 2026-08-21
 versions: '[4,]'
 ---
 

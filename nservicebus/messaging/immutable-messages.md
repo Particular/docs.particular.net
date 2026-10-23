@@ -1,30 +1,34 @@
 ---
 title: Immutable Messages
-reviewed: 2025-02-19
+reviewed: 2026-09-29
 component: Core
 related:
 - samples/immutable-messages
 ---
 
-Usually messages are designed as [DTOs](https://en.wikipedia.org/wiki/Data_transfer_object), i.e. a plain class with public properties. This model is simple and will always work. Immutable messages are sometimes considered from a coding philosophy that messages should not be able to be changed after they are created.
+Messages are usually designed as [DTOs](https://en.wikipedia.org/wiki/Data_transfer_object), i.e. a plain class with public properties that can be read and changed. This model is simple and will always work. An alternative is immutable messages, which follow the coding philosophy that a message should not change once it has been created.
 
 > [!NOTE]
-> Serialized messages are immutable once on the wire, changing property values will not result in a message that is forwarded to an error or audit queue to contain a different value.
+> Serialized messages are immutable once they have been sent. Changing a property value on the message object afterwards does not change the serialized copy that is forwarded to an error or audit queue.
 
 Message objects can be made immutable at runtime by:
 
-1. Using [record types](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records)
-2. Creating properties with only public getters and initializing these properties via constructor initialization.
-3. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
+1. Using [record types](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records).
+2. Using properties with only public getters and initializing them via constructors.
+3. Using a regular message class with public getters and setters on the sender side, which implements an interface that has only public getters. Receivers reference only the interface.
 
 
 ## Record types
+
+Record types are the simplest way to create an immutable message. Their properties are set when the record is created and cannot be changed afterward.
 
 ```c#
 public record CancelOrder(int OrderId);
 ```
 
 ## Properties with only public getters
+
+Properties can be made read-only from outside the class by giving them a public getter and a private setter, with values set through the constructor.
 
 > [!NOTE]
 > Not all serializers [support deserialization to private setters](/nservicebus/serialization/#immutable-message-types).
@@ -43,7 +47,7 @@ public class CancelOrder : ICommand
 
 ## Classes with public setters, interfaces with only getters
 
-Using private setters is not supported by all serializers. An alternative is to make use of NServiceBus's support for [multiple inheritance and polymorphic dispatch](/nservicebus/messaging/messages-as-interfaces.md). In this case, a message contract is defined through an interface containing getters only, which is used by the message handler. An implementation of the message contract, which exposes public setters, is used to create the message and pass it to `Send` or `Publish`.
+Using private setters is not supported by all serializers. An alternative is to make use of NServiceBus's support for [multiple inheritance and polymorphic dispatch](/nservicebus/messaging/messages-as-interfaces.md). With this approach, the message contract is defined as an interface that contains only getters, and the message handler uses that interface. The sender creates the message using a class that implements the interface and exposes public setters, then passes it to `Send` or `Publish`.
 
 > [!NOTE]
 > Not all transport configurations support polymorphic dispatch.
@@ -58,7 +62,6 @@ public class CancelOrder : ICancelOrder
 
     public int OrderId { get; set; } // Public setter
 }
-
 
 public interface ICancelOrder : IMessage
 {

@@ -1,29 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-using Shared;
+﻿using Shared;
 
-namespace Receiver
+namespace Receiver;
+
+public class PingHandler(ILogger<PingHandler> logger) : IHandleMessages<Ping>
 {
-    public class PingHandler : IHandleMessages<Ping>
+    public async Task Handle(Ping message, IMessageHandlerContext context)
     {
-        private readonly ILogger<PingHandler> logger;
+        logger.LogInformation("Processing Ping message {@Round}", message.Round);
 
-        public PingHandler(ILogger<PingHandler> logger)
-        {
-            this.logger = logger;
-        }
+        var reply = new Pong { Acknowledgement = $"Ping #{message.Round} processed at {DateTimeOffset.UtcNow:s}" };
 
-        public async Task Handle(Ping message, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Processing Ping message {@Round}", message.Round);
+        await context.Reply(reply);
 
-            var reply = new Pong { Acknowledgement = $"Ping #{message.Round} processed at {DateTimeOffset.UtcNow:s}" };
-
-            await context.Reply(reply);
-
-            // throw new Exception("BOOM");
-        }
+        // throw new Exception("BOOM");
     }
 }

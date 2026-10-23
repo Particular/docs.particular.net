@@ -23,7 +23,5 @@ public class OrderSaga :
     }
 
     public class SagaData :
-        ContainSagaData
-    {
-    }
+        ContainSagaData;
 }

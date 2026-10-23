@@ -1,0 +1,232 @@
+---
+title: Usage Reporting Setup
+summary: How to set up ServicePulse for usage reporting
+component: ServicePulse
+reviewed: 2026-02-11
+related:
+  - servicepulse/usage-reporting-with-servicepulse
+redirects:
+  - servicepulse/usage-config
+---
+
+This document describes the settings required for collecting usage data to generate a [usage report](usage-reporting-with-servicepulse.md) in ServicePulse.
+
+> [!NOTE]
+> The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
+
+## Connection setup
+
+In most scenarios, existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
+
+![usage-setup-connections](images/usage-setup-connection.png "width=600")
+
+If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/servicecontrol-instances/configuration.md) file.
+
+The Usage Setup tab provides easy copy/paste functionality to obtain the required settings in the correct format, based on configuration type.
+
+Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
+
+### Azure Service Bus
+
+Steps:
+
+1. Create an **ApplicationId (aka ClientId)** for ServiceControl
+2. Assign it the **Monitoring Reader** role
+3. Configure for the ServiceControl instance at minimum:
+    - `TenantId`
+    - `SubscriptionId`
+    - `ClientId`
+    - `ClientSecret`
+
+The setup can be done via the [portal](#connection-setup-azure-service-bus-using-azure-portal) or [CLI](#connection-setup-azure-service-bus-using-azure-cli).
+
+#### Using Azure Portal
+
+To use the Azure Portal:
+
+1. Create App
+    - Native to: **Home > App registrations**
+    - Select **➕ New registration**
+2. Assign application to role:
+    - Navigate to: **Home > Service Bus > {service bus namespace} > Access control (IAM)**
+    - Select: **➕ Add**
+    - Enter:
+      - Role: `Monitoring Reader`
+      - Members: Select **➕ Select Members > {application name}**
+    - Select: **Review and Assign**
+
+#### Using Azure CLI
+
+To use the Azure CLI or scripting:
+
+```ps1
+# Set context first
+az account set --subscription "YourAzureSubscriptionName"
+
+# Create ApplicationId (ClientId)
+az ad app create --display-name ServiceControlUsageReporting
+
+# Store your ApplicationId (ClientId)
+$applicationId = "<Your Application ID>"
+
+# List subscription ID
+az servicebus namespace list
+
+# Store your Subscription ID
+$subscriptionId = "<Your Subscription ID>"
+
+# List resource group
+az group list
+
+# Store resource group name
+$resourceGroupName = "<Your Resource Group Name>"
+
+# Assign role to resource group
+$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+
+# or to specific resource in resource group
+$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName"
+# end alternative
+
+# assign Monitoring Reader role to ApplicationId
+New-AzRoleAssignment -ApplicationId $applicationId -RoleDefinitionName "Monitoring Reader" -Scope $scope
+```
+
+#### Settings
+
+Refer to the [Usage Reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
+
+#### Minimum Permissions
+
+The built-in role [`Monitoring Reader`](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
+
+To restrict permissions to the minimal required set, create a custom role with the following permissions:
+
+```json
+{
+    "properties": {
+        "roleName": "myrolename",
+        "description": "",
+        "assignableScopes": [
+            "/subscriptions/xxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.ServiceBus/namespaces/read",
+                    "Microsoft.ServiceBus/namespaces/providers/Microsoft.Insights/metricDefinitions/read",
+                    "Microsoft.ServiceBus/namespaces/queues/read",
+                    "Microsoft.Resources/subscriptions/read",
+                    "Microsoft.Resources/subscriptions/resources/read",
+                    "Microsoft.Insights/Metrics/Read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+```
+
+The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription. The `Microsoft.Insights/Metrics/Read` permissions are required to find the available metrics.
+
+### Amazon SQS
+
+#### Settings
+
+Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
+
+#### Minimum Permissions
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "cloudwatch:GetMetricStatistics",
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "sqs:ListQueues",
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+### SQL Server
+
+#### Settings
+
+Refer to the [Usage Reporting when using the SqlServer transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
+
+#### Minimum Permissions
+
+User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
+
+### PostgreSQL
+
+#### Settings
+
+Refer to the [Usage Reporting when using the PostgreSQL transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-postgresql-transport) section of the ServiceControl config file for an explanation of the PostgreSQL Server-specific settings.
+
+#### Minimum Permissions
+
+User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
+
+### RabbitMQ
+
+#### Settings
+
+Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
+
+Querying of metrics from RabbitMQ requires access to the management API. If it is not possible to access the management API, e.g. due to security considerations, then use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
+#### Minimum permissions
+
+User with monitoring tag and read permission.
+
+### MSMQ
+
+MSMQ does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
+### IBM MQ
+
+IBM MQ does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
+### Azure Storage Queues
+
+Azure Storage Queues does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
+
+## Audit and monitoring data
+
+For transports that do not support querying broker-side metrics, ServiceControl generates the usage report from data collected by the Audit and/or Monitoring instances. To enable this:
+
+- Auditing
+  - install the [Audit](./../servicecontrol/audit-instances) instance
+  - configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints
+- Monitoring
+  - install the [Monitoring](./../monitoring) instance
+  - configure [metrics](./../monitoring/metrics) on all NServiceBus endpoints
+
+## Diagnostics
+
+The Diagnostics tab helps to diagnose any connection issues to the broker, as well as the audit and monitoring instances.
+
+![usage-setup-diagnostics](images/usage-setup-diagnostics.png "width=600")
+
+After making any setting changes, press the `Refresh Connection Test` button to verify whether the problem is resolved.
+If unable to resolve the issue, open a [non-critical support case](https://particular.net/support) and include the diagnostic output.
+
+## Report masks
+
+Sensitive information can be anonymized in the usage report. Endpoint, queue, and machine names sometimes contain customer, project, or product names; any such word can be masked so that it is redacted (obfuscated) before the report is generated and never leaves the environment.
+
+Specify the words to anonymize in the `Mask Report Data` tab, one word per line. Every occurrence of a listed word is replaced in the generated report.
+
+![usage-setup-masks](images/usage-setup-masks.png "width=600")

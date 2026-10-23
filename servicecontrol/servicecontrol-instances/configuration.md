@@ -185,11 +185,11 @@ Set to `true` to enable [integrated ServicePulse](/servicecontrol/servicecontrol
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_ENABLEINTEGRATEDSERVICEPULSE` |
 | **App config key** | `ServiceControl/EnableIntegratedServicePulse` |
-| **SCMU field** | `Enable integrated ServicePulse` |
+| **SCMU field** | `ENABLE INTEGRATED SERVICEPULSE` |
 
 | Type | Default value |
 | --- | --- |
-| bool | `false` |
+| bool | `false` (SCMU dropdown defaults to `On`) |
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
@@ -399,7 +399,7 @@ Some identity providers reject the entire authorization request if a client requ
 
 _Added in version 6.18.0_
 
-Enables [role-based access control](/servicecontrol/security/configuration/authorization.md). When `false`, every authenticated user is granted every permission. Has no effect unless `Authentication.Enabled` is `true`.
+Enables [role-based access control](/servicecontrol/security/configuration/authorization.md). When `false`, every authenticated user is granted every permission. Requires `Authentication.Enabled` to be `true`; the instance refuses to start if this is enabled while authentication is disabled.
 
 | Context | Name |
 | --- | --- |
@@ -852,6 +852,20 @@ Set to `false` to disable ingesting new error messages. Useful in some upgrade s
 | --- | --- |
 | bool | `true` |
 
+### ServiceControl/AllowMessageEditing
+
+Set to `true` to enable message editing when retrying messages.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_ALLOWMESSAGEEDITING` |
+| **App config key** | `ServiceControl/AllowMessageEditing` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
 ## Data retention
 
 ### ServiceControl/ExpirationProcessTimerInSeconds
@@ -904,7 +918,7 @@ For a message to be considered for deletion, it needs to have a status of either
 
 | Type | Default value |
 | --- | --- |
-| timespan | None (required) |
+| timespan | None (required) (SCMU slider defaults to `15 Days`) |
 
 Valid range for this setting is between 5 days and 45 days.
 
@@ -967,14 +981,37 @@ Use this setting to configure whether the bodies of processed error messages sho
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_ENABLEFULLTEXTSEARCHONBODIES` |
 | **App config key** | `ServiceControl/EnableFullTextSearchOnBodies` |
+| **SCMU field** | `FULL TEXT SEARCH ON MESSAGE BODIES` |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` (SCMU dropdown defaults to `On`) |
+
+> [!NOTE]
+> Changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
+
+#if-version [6.20,)
+### ServiceControl/QueryTimeoutInSeconds
+
+Configures the maximum duration, in seconds, that a failed message view query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This protects the database server from queries over very large data sets that would otherwise run for a long time and consume large amounts of temporary disk space. Values larger than one hour fall back to the default. Applies to all persisters. On the SQL Server and PostgreSQL persisters, the database commands issued by these queries use this value as their command timeout, so `Database/CommandTimeout` does not apply to them.
+
+A query that runs out of its allowed time is answered with HTTP status `504 Gateway Timeout` and a problem details body that names this setting.
+
+When the instance gathers a message view from its own database and the configured [audit instances](/servicecontrol/audit-instances/), a timed-out or unreachable instance does not fail the request. The response contains the data of the instances that did answer, carries no `ETag`, and lists the missing instances in the `X-Particular-Incomplete-Results` header as `instanceId:reason` entries, where the reason is `timeout`, `unavailable` or `error`. Only when no instance answered, and at least one of them timed out, is the request answered with `504 Gateway Timeout`.
+
+The instance waits for an audit instance's answer for at most this duration, so it also bounds the whole query when an audit instance is slow, unresponsive, or configured with a larger `ServiceControl.Audit/QueryTimeoutInSeconds`. An audit instance that has not answered in time is reported as missing; its own limit still ends the query on its side.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_QUERYTIMEOUTINSECONDS` |
+| **App config key** | `ServiceControl/QueryTimeoutInSeconds` |
 | **SCMU field** | N/A |
 
 | Type | Default value |
 | --- | --- |
-| bool | `true` |
+| int | `60` (1 minute) |
 
-> [!NOTE]
-> Changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
+#end-if
 
 ## Transport
 
@@ -990,7 +1027,7 @@ The transport type to run ServiceControl with.
 
 | Type | Default value |
 | --- | --- |
-| string | `MSMQ` |
+| string | None |
 
 Valid values are documented in the [ServiceControl transport configuration documentation](/servicecontrol/transports.md).
 
@@ -1082,7 +1119,7 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 ## Usage Reporting when using the Azure Service Bus transport
 
-The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-config.md#connection-setup-azure-service-bus)
+The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-reporting-setup.md#connection-setup-azure-service-bus)
 
 ### LicensingComponent/ASB/ServiceBusName
 

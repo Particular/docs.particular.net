@@ -66,7 +66,7 @@ While the source generation simplifies registering multiple handlers or sagas to
 
 Roslyn analyzers help to ensure that handlers or sagas don't accidentally escape identification, causing them to remain unregistered accidentally:
 
-- **NSB0034**: Mark convention-based handlers with HandlerAttribute to enable source generation
+- **NSB0022**: Mark convention-based handlers with HandlerAttribute to enable source generation
 - **NSB0025**: Mark sagas with SagaAttribute to enable source generation
 
 These diagnostics default to `DiagnosticSeverity.Info` but can be upgraded to ensure handlers and sagas are not missed.
@@ -77,7 +77,7 @@ The following `.editorconfig` settings will upgrade both diagnostics to errors s
 [*.cs]
 
 # Ensure message handlers are decorated with [Handler] to enable source generation
-dotnet_diagnostic.NSB0034.severity = error
+dotnet_diagnostic.NSB0022.severity = error
 # Ensure sagas are decorated with [Saga] to enable source generation
 dotnet_diagnostic.NSB0025.severity = error
 ```

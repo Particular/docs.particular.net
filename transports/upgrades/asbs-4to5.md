@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 4 to 5
 summary: Instructions on how to upgrade Azure Service Bus transport from version 4 to 5
-reviewed: 2025-02-07
+reviewed: 2026-08-05
 component: ASBS
 related:
  - transports/azure-service-bus
@@ -15,6 +15,15 @@ Upgrading Azure Service Bus transport from version 4 to version 5 is a major upg
 
 > [!NOTE]
 > Version 6.4 introduces additional features such as the [fallback topic](/transports/azure-service-bus/topology.md#subscription-rule-matching-fallback-topic) and [built-in topic routing modes](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic) that simplify polymorphic dispatch and selective consumption on multiplexed topics. These features are available when upgrading to the latest version of the transport.
+
+## Choosing a migration path
+
+Version 5 offers two paths to the topic-per-event topology. The right choice depends on how many events you handle and whether your namespace is under entity-quota pressure.
+
+- **Migrate event by event.** Use the [migration topology](#topologies-migration-topology) and follow the [migration steps](#migrating-existing-endpoints) to move one event at a time while staying backward compatible with endpoints still on the previous single-topic topology. This path provisions one topic per migrated event. Choose it when you can afford a topic for each event type.
+- **Skip the migration topology.** Go straight to `TopicTopology.Default` and point a [fallback topic](/transports/azure-service-bus/topology.md#subscription-rule-matching-fallback-topic) at your existing single topic. Unmapped events keep flowing through the shared topic, and you carve out dedicated topics only where you need them. This avoids per-event mapping work and keeps topic count low. It requires version 6.4 or later of the transport, so it may mean migrating from version 4 directly to version 6 rather than to version 5. Choose it when the namespace is near its entity cap or most events are low-volume. See [Blending topic-per-event with a fallback topic](#blending-topic-per-event-with-a-fallback-topic).
+
+Both paths end at the topic-per-event topology. They differ in how much you do during the migration and how soon you spend entity headroom.
 
 ## Polymorphic dispatch
 
@@ -300,3 +309,48 @@ static string HashName(string input)
     return new Guid(hashBytes).ToString();
 }
 ```
+
+## Blending topic-per-event with a fallback topic
+
+A full topic-per-event migration provisions one topic per migrated event. For a namespace near its entity cap (for example, a single messaging-unit Premium namespace limited to 1,000 entities with several hundred event types), that migration can spend the headroom it was meant to preserve.
+
+The blended topology uses the fallback topic and routing modes, which require version 6.4 or later of the transport (NServiceBus 10). This guide covers the version 4 to 5 upgrade, and the recommended approach is to upgrade one major version at a time. For a namespace near its entity cap, though, the per-event headroom cost of a full migration may make the intermediate step unattractive. In that case, migrate directly from version 4 to version 6, skipping the intermediate major, and apply the blended topology from the start. If the endpoint has already been upgraded to version 5, the same approach is available once it continues to version 6.4 or later.
+
+With the blended topology, you skip the migration topology and move straight to `TopicTopology.Default`, pointing the fallback topic at your existing single topic (for example `bundle-1`). Unmapped events keep flowing through the shared topic, and only the events you explicitly map get dedicated topics.
+
+```csharp
+var topology = TopicTopology.Default;
+
+// Route the long tail of low-volume events through the existing shared topic.
+// SqlLikeFilter matches the EnclosedMessageTypes header every publisher sets,
+// so it stays compatible with existing SQL-filter subscriptions on that topic.
+topology.UseFallbackTopic("bundle-1", TopicRoutingMode.SqlLikeFilter);
+
+// Carve out dedicated topics only where volume or fan-out warrants it.
+topology.PublishTo<OrderAccepted>("Shipping.OrderAccepted");
+```
+
+This "inverse" approach has a few practical advantages during a migration:
+
+- You avoid writing `EventToMigrate` and `MigratedX` mappings for every event.
+- Topic count grows with the few events you carve out, not with your total event-type count.
+- The existing shared topic keeps carrying traffic, so there is no drain window before you switch.
+
+> [!NOTE]
+> The fallback topic is available only on the topic-per-event topology, so this path does not use the migration topology at all. Use `SqlLikeFilter` for the fallback mode so the subscriptions the transport provisions (`LIKE '%TypeName%'`) stay compatible with any endpoints still on the existing single topic. Deploy the subscriptions with installers, the [operational scripting tool](/transports/azure-service-bus/operational-scripting.md), or infrastructure-as-code.
+
+### When to choose this path
+
+- The namespace is near its entity cap and pure topic-per-event would exceed it.
+- Most event types are low-volume and a shared topic is acceptable for them.
+- Only a subset of events justify dedicated topics for isolation or scale.
+
+In short, choose this path when the per-event mapping and sequencing effort of the migration topology would buy little because few events actually benefit from a dedicated topic.
+
+### Trade-offs
+
+- **Rule count is the dominant cost, not filter type.** Every message published to a shared topic is evaluated against every rule on every subscription. Event inheritance can quietly multiply rules: a concrete type plus its interfaces can mean several rules per subscription per event. Treat rule count as an operational metric: subscriptions per topic, rules per subscription, and rules compared per published message. Watch topic depth and CPU as event hierarchy depth grows.
+- **Start with `SqlLikeFilter`; postpone `CorrelationFilter` unless you need it.** `SqlLikeFilter` matches on the always-present `EnclosedMessageTypes` header, so new subscriptions coexist with existing single-topic endpoints without extra coordination, the least-effort choice during a migration. `CorrelationFilter` is cheaper per evaluation and has a higher quota (roughly 100,000 correlation-filter rules versus about 2,000 SQL filter rules per topic), but it requires every publisher on the shared topic to stamp the correlation properties, and a large number of correlation rules still pressures the topic. The quota is the largest supported configuration, not its runtime cost. Pick the cheapest filter that expresses the condition, keep rule count low, and reach for `CorrelationFilter` later only if rule count or per-evaluation cost becomes a real problem.
+- **Keep the shared topic on the low-volume tail.** Carve high-volume or high-fan-out events onto dedicated topics, where the hot path has no filter evaluation, and reserve the fallback topic for the low-volume long tail so the per-message routing cost is amortized over low volume.
+- **Fallback mode is a global contract.** All publishers and subscribers must agree on the fallback topic name and mode. Changing the mode retroactively changes the effective routing of every event riding the fallback.
+- **Shared-topic limits still apply.** The fallback topic shares a single quota (5 GB default, up to 80 GB on Premium) and a single failure domain, and monitoring granularity is coarser for the events that share it.

@@ -1,5 +1,6 @@
 namespace Core.OpenTelemetry;
 
+using System;
 using global::OpenTelemetry;
 using global::OpenTelemetry.Trace;
 using NServiceBus;
@@ -26,6 +27,17 @@ public static class TraceConfiguration
         // Default: StartNew - subscribers start a new trace linked to the publish span.
         // Set to ContinueExisting to continue the publisher's trace in the subscriber.
         options.PublishTraceMode = TraceMode.ContinueExisting;
+
+        #endregion
+    }
+
+    public static void ConfigurePublishTraceModeStartNew(EndpointConfiguration endpointConfiguration)
+    {
+        #region opentelemetry-trace-mode-publish-start-new
+
+        var options = endpointConfiguration.Tracing();
+        // Set to StartNew to make every subscriber start a new trace linked to the publish span.
+        options.PublishTraceMode = TraceMode.StartNew;
 
         #endregion
     }
@@ -58,44 +70,12 @@ public static class TraceConfiguration
         #endregion
     }
 
-    public static void EnableHandlerActivitySource()
+    public static void EnableV11Behavior()
     {
-        #region opentelemetry-handler-activity-source-switch
+        #region opentelemetry-v11-behavior-switch
 
-        // Must be set before the endpoint starts.
+        // Must be set before the endpoint starts. Enables every version 11 OpenTelemetry behavior.
         AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseV11Behavior", true);
-
-        #endregion
-    }
-
-    public static void UseDestinationInSpanNames(EndpointConfiguration endpointConfiguration)
-    {
-        #region opentelemetry-span-names-destination
-
-        var options = endpointConfiguration.Tracing();
-        options.UseMessageDestinationInSpanNames = true;
-
-        #endregion
-    }
-
-    public static void DisableDispatchingEvents(EndpointConfiguration endpointConfiguration)
-    {
-        #region opentelemetry-dispatching-events-disable
-
-        var options = endpointConfiguration.Tracing();
-        options.EmitMessageDispatchingEvents = false;
-
-        #endregion
-    }
-
-    public static void EnableDistributedContextPropagator()
-    {
-        #region opentelemetry-distributed-context-propagator-switch
-
-        // Must be set before the endpoint starts.
-        // Opts in to W3C DistributedContextPropagator-based trace context propagation.
-        // This becomes the default in version 11.
-        AppContext.SetSwitch("NServiceBus.Core.OpenTelemetry.UseDistributedContextPropagator", true);
 
         #endregion
     }

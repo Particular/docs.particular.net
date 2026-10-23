@@ -2,7 +2,7 @@
 title: Transactional Session with DynamoDB Persistence
 summary: How to configure a transactional session with DynamoDB persistence
 component: TransactionalSession.DynamoDB
-reviewed: 2025-01-20
+reviewed: 2026-08-20
 redirects:
 related:
 - persistence/dynamodb
