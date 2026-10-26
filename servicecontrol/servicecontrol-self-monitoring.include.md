@@ -20,8 +20,26 @@ When ServiceControl has difficulty connecting to the configured transport, the e
 
 #### Message database storage space
 
-ServiceControl stores messages in an embedded database. If the drive containing the database runs out of storage space, message ingestion fails and the ServiceControl instance stops. This may cause instability in the database, even after storage space is increased. The remaining storage space on the drive is monitored. The check reports a failure if the drive has less than 20% remaining of its total capacity. This threshold is controlled by the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontroldataspaceremainingthreshold) setting.
+When using RavenDB storage with an embedded database, ServiceControl stores messages in that database. If the drive containing the database runs out of storage space, message ingestion fails and the ServiceControl instance stops. This may cause instability in the database, even after storage space is increased. The remaining storage space on the drive is monitored. The check reports a failure if the drive has less than 20% remaining of its total capacity. This check applies only to RavenDB storage. This threshold is controlled by the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldataspaceremainingthreshold) setting.
 
 #### Critical message database storage space
 
-This is similar to the [Message database storage space check](#notifications-health-monitoring-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
+This check applies only to RavenDB storage. It is similar to the [Message database storage space check](#notifications-health-monitoring-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
+
+#if-version [7,)
+
+#### SQL storage retention
+
+SQL Server and PostgreSQL storage use periodic retention sweeps to delete expired data. If three consecutive sweeps fail, a failure is reported. The check clears when a sweep succeeds. Check the instance logs for the cause of the failures.
+
+- **ServiceControl Retention**: Reported by error instances using SQL storage.
+- **Audit retention**: Reported by audit instances using SQL storage. A sweep also counts as failed if it leaves expired rows because the tables are too busy.
+
+#### Audit partition provisioning
+
+Audit instances using PostgreSQL storage store audit data in time-based partitions. The **Audit partition provisioning** check reports a failure if partitions are not provisioned at least 12 hours ahead. Check the instance logs for the cause, and run setup if required.
+
+#### Message body storage space
+
+Error instances using SQL storage and file system message body storage monitor the remaining space on the drive containing the body storage path. The **ServiceControl body storage** check reports a failure if the drive has 15% or less of its total capacity remaining. The threshold is controlled by the [ServiceControl/MessageBody/FileSystem/DataSpaceRemainingThreshold](/servicecontrol/storage/external-body/file.md#optional-settings-servicecontrolmessagebodyfilesystemdataspaceremainingthreshold) setting. This check does not apply to other message body storage types or to audit instances.
+#end-if

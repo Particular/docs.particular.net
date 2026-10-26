@@ -1,3 +1,4 @@
+#if-version [6.20,)
 ### ServiceControl/QueryTimeoutInSeconds
 
 Configures the maximum duration, in seconds, that a failed message view query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This protects the database server from queries over very large data sets that would otherwise run for a long time and consume large amounts of temporary disk space. Values larger than one hour fall back to the default. Applies to all persisters. On the SQL Server and PostgreSQL persisters, the database commands issued by these queries use this value as their command timeout, so `Database/CommandTimeout` does not apply to them.
@@ -17,3 +18,4 @@ The instance waits for an audit instance's answer for at most this duration, so 
 | Type | Default value |
 | --- | --- |
 | int | `60` (1 minute) |
+#end-if

@@ -1,6 +1,6 @@
 ### ServiceControl/MaintenanceMode
 
-Run [ServiceControl error instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) in order to do database maintenance.
+Run [ServiceControl error instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) to perform database maintenance.
 
 | Context | Name |
 | --- | --- |

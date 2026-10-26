@@ -1,7 +1,7 @@
 ---
 title: Configuring a Non-Privileged Account
 summary: Using a low privilege account for ServiceControl
-reviewed: 2025-07-11
+reviewed: 2026-06-01
 ---
 
 To use a low-privileged accounts for ServiceControl instances, the following should be considered:
@@ -50,15 +50,38 @@ The service account running ServiceControl instance requires following filesyste
 |------|--------|
 | Executables (e.g.  `C:\Program Files (x86)\Particular Software\Particular.ServiceControl`) | Read |
 | Logs (e.g. `C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\Logs`)      |   Write     |
-| Database (e.g `C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB`) | Write|
-| Database volume (e.g. `C:`) | Read Attributes|
+
+### RavenDB embedded database
+
+Instances using an embedded RavenDB database also require:
+
+| Path | Rights |
+|------|--------|
+| Database (e.g `C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB`) | Write |
+| Database volume (e.g. `C:`) | Read Attributes |
 
 > [!NOTE]
 > The database volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.
 
+### SQL Server and PostgreSQL storage
+
+From ServiceControl 7, instances using SQL Server or PostgreSQL storage do not use a local database path or volume. Access to the database is controlled by the database connection string and database permissions.
+
+Error instances using file system message body storage also require the following rights on the [body storage path](/servicecontrol/storage/external-body/file.md):
+
+| Path | Rights |
+|------|--------|
+| Body storage path (the `ServiceControl/MessageBody/FileSystem/StoragePath` setting) | Read, write, and delete at runtime. The identity that runs setup must also be able to create the directory. |
+| Body storage volume (e.g. `D:`) | Read Attributes |
+
+> [!NOTE]
+> The body storage volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.
+
+Audit instances using SQL storage require neither a local database path nor an external body storage path.
+
 ## Performance counters
 
-ServiceControl requires access to Windows performance counter infrastructure. <!-- TODO: Is that still true? --> As a result the service account needs to be a member of [Performance Monitor Users](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
+Error instances using the [MSMQ transport](/servicecontrol/transports.md#msmq) read the MSMQ transactional dead letter queue message count from the Windows performance counter infrastructure. As a result, the service account for these instances needs to be a member of [Performance Monitor Users](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
 
 
 ## Testing the configuration

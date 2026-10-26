@@ -1,3 +1,4 @@
+#if-version [,5)
 ### Raven/IndexStoragePath
 
 The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
@@ -10,3 +11,4 @@ The path for the indexes on disk.
 Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
+#end-if

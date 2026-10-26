@@ -14,5 +14,6 @@ The grace period to keep an audit message before it is deleted.
 
 Valid range for this setting is from 1 hour to 365 days.
 
-> [!NOTE]
-> Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
+#if-version [7,)
+For PostgreSQL storage, the retention period must be between one and 90 days.
+#end-if
