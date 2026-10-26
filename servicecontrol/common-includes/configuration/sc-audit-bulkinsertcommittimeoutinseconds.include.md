@@ -1,3 +1,4 @@
+#if-version [5,)
 ### ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds
 
 Configures the maximum duration, in seconds, for processing a batch of audited messages.
@@ -11,3 +12,4 @@ Configures the maximum duration, in seconds, for processing a batch of audited m
 | Type | Default value |
 | --- | --- |
 | int | `60` (1 minute) |
+#end-if

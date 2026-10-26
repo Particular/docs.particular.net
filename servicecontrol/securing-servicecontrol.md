@@ -10,7 +10,7 @@ related:
 
 ServiceControl serves as the back-end service for ServicePulse, supplying these client applications with the information required for their functionality. It does so by exposing an HTTP API that can be accessed by these and other third-party tools.
 
-The information gathered, stored, and exposed by ServiceControl contains all the messages audited and forwarded to the audit and error queues (including their metadata, headers, and body). This requires unlimited access to the ServiceControl embedded database and to all the information contained within the system's audited messages.
+The information gathered, stored, and exposed by ServiceControl contains all the messages audited and forwarded to the audit and error queues (including their metadata, headers, and body). This requires unlimited access to the ServiceControl database (for example, the embedded RavenDB database or the SQL database and message body store) and to all the information contained within the system's audited messages.
 
 It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServicePulse), and accessing directly through the HTTP API.
 
@@ -57,8 +57,16 @@ An example of how to set encryption for specific message properties can be viewe
 
 ### Accessing the embedded RavenDB database
 
-ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.
+When using RavenDB storage with the default installation, ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.
 
 Access to the location of the database files enables full access to the database contents, so take great care to ensure the database location is secure from unauthorized access and tampering.
 
 Similarly, when backing up the ServiceControl embedded database, ensure the database backup is located in a secure location.
+
+### Accessing SQL storage
+
+From ServiceControl version 7, instances can store data in [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/). Anyone with access to the database can read and modify the stored messages, so restrict database access to the ServiceControl instance identity and to administrators, and protect the connection string credentials.
+
+Error instances also store message bodies in an [external body store](/servicecontrol/storage/external-body/). Restrict access to the file system path, Azure Blob container, or S3 bucket in the same way as the database.
+
+Ensure database and message body backups are stored in a secure location.

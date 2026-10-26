@@ -3,12 +3,12 @@ title: RavenDB search engine
 summary: Selecting Corax or Lucene as the search engine for ServiceControl and how to migrate existing indexes between them
 reviewed: 2026-10-05
 component: ServiceControl
+redirects:
+  - servicecontrol/ravendb/search-engine
 related:
 - servicecontrol/storage/ravendb/accessing-database
 - servicecontrol/troubleshooting
 - servicecontrol/upgrades/6.19to6.20
-redirects:
-  - servicecontrol/ravendb/search-engine
 ---
 
 RavenDB supports two search engines for indexes: [Corax](https://docs.ravendb.net/indexes/search-engine/corax) and [Lucene](https://lucene.apache.org/). The selected engine determines how RavenDB builds and queries an index. The choice of engine is made when creating a database or index, and while it can be changed later, doing so triggers a full index rebuild.
@@ -86,7 +86,7 @@ Other indexes can be migrated using the same procedure. Migrate one index at a t
 
 ### 1. Access the RavenDB Studio
 
-- **Windows deployment**: Start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
+- **Windows deployment**: start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
 - **Container deployment**: Stop the ServiceControl container and open RavenDB Studio on port `8080` of the [database container](/servicecontrol/storage/ravendb/containers.md).
 - **External RavenDB server**: Open RavenDB Studio for the server that hosts the ServiceControl database.
 

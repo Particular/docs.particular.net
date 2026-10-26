@@ -1,22 +1,22 @@
 ---
-title: ServiceControl capacity planning
-summary: Outlines the ServiceControl capacity, throughput, and storage considerations for planning and supporting production environments
-reviewed: 2026-07-24
+title: Capacity planning for RavenDB storage
+summary: Capacity, throughput, and storage considerations for ServiceControl Error and Audit instances using RavenDB storage
+reviewed: 2026-06-01
 isLearningPath: true
 ---
 
-ServiceControl is a monitoring tool for production environments. As with other production monitoring tools, it is important to plan its deployment to ensure it remains performant over time.
+This article covers capacity planning for ServiceControl Error and Audit instances using RavenDB storage. Plan the deployment to ensure it remains performant over time. For other storage options, see the [storage overview](/servicecontrol/storage/).
 
-The primary job of ServiceControl is to collect information on system behavior in production. It does so by collecting error, audit, and health messages from dedicated queues. ServiceControl reads messages flowing into those queues and stores them in its embedded database. In a production environment (and to a lesser degree in development, staging, and testing environments), ServiceControl may have significant impact on the performance and capacity of the disk where its data is stored, and its throughput capacity must be considered with regard to the overall system load and throughput.
+The primary job of ServiceControl is to collect information on system behavior in production. It does so by collecting error, audit, and health messages from dedicated queues. ServiceControl reads messages flowing into those queues and stores them in RavenDB. In a production environment (and to a lesser degree in development, staging, and testing environments), ServiceControl may have significant impact on the performance and capacity of the disk where its data is stored, and its throughput capacity must be considered with regard to the overall system load and throughput.
 
 ## Storage
 
 ### Location
 
-Each ServiceControl instance stores its data in a [RavenDB](https://ravendb.net) instance.
+Each ServiceControl Error and Audit instance using [RavenDB](https://ravendb.net) storage stores its data in its own database.
 
-- For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
-- For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/storage/ravendb/containers.md).
+- For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the RavenDB database is run via an [embedded RavenDB server](/servicecontrol/storage/ravendb/configure-ravendb-location.md).
+- For ServiceControl instances deployed via Containers the RavenDB database is run via a [dedicated container](/servicecontrol/storage/ravendb/containers.md).
 
 The location of the database has a significant impact on overall system performance and throughput. The database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
 
@@ -28,9 +28,9 @@ ServiceControl provides "recent-history" storage to support ServicePulse monitor
 
 ServiceControl is configured with default expiration policies that delete old messages after predefined time periods. The expiration policies may be customized to decrease or increase the amount of time that data is retained, which impacts the storage requirements of ServiceControl.
 
-To limit the rate at which the database grows, the body of an audit messages may be truncated if it exceeds a configurable threshold.
+To limit the rate at which the database grows, the body of an audit message may be truncated if it exceeds a configurable threshold.
 
-See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md).
+See also: [Automatic Expiration of ServiceControl Data](/servicecontrol/how-purge-expired-data.md).
 
 **NOTE**
 
@@ -41,7 +41,7 @@ See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.m
 
 From a performance perspective, ServiceControl is similar to a database installation. It requires a significant amount of disk and network I/O due to process audit, error and monitoring messages. Each of these message-processing operations requires disk I/O. The higher the message throughput of an environment, the higher the required disk I/O.
 
-For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations. Indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If full-text indexing is enabled, messages are added to full-text search, which requires the CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl error or audit instances can be configured in the ServiceControl Management Utility.
+For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations. RavenDB indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If full-text indexing is enabled, messages are added to full-text search, which requires the CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl Error or Audit instances can be configured in the ServiceControl Management Utility.
 
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 

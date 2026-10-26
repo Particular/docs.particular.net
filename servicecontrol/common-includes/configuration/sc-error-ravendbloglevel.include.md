@@ -21,5 +21,4 @@ Valid settings are: `None`, `Information`, `Operations`.
 | string | `Info` |
 
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-
 #end-if

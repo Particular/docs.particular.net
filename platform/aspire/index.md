@@ -53,9 +53,11 @@ If you are using the Particular Service Platform with Aspire today and would lik
 
 This is the database that backs the ServiceControl instances. It is separate from the [persistence](/persistence/) an NServiceBus endpoint uses for sagas, outbox, and subscriptions, which the integration does not manage.
 
-| Database                             | Status    |
-| ------------------------------------ | --------- |
-| [RavenDB](/servicecontrol/storage/ravendb/)  | Supported |
+| Database                                          | Status            |
+| ------------------------------------------------- | ----------------- |
+| [RavenDB](/servicecontrol/storage/ravendb/)       | Supported         |
+| [SQLServer](/servicecontrol/storage/sqlserver/)   | Not yet supported |
+| [PostgreSQL](/servicecontrol/storage/postgresql/) | Not yet supported |
 
 ## Prerequisites
 

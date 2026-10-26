@@ -73,7 +73,7 @@ This gives `https://servicepulse.example.com` and combines with the TLS certific
 Before changing the port, check that:
 
 - nothing else on the machine already uses it, IIS in particular, which usually claims `443`
-- the [`ServiceControl/DbPath`](configuration.md#embedded-database-servicecontroldbpath) warning above is satisfied, because the default database folder name includes the port as well as the host name
+- the [`ServiceControl/DbPath`](configuration.md#storage-servicecontroldbpath) warning above is satisfied, because the default database folder name includes the port as well as the host name
 - any other tools or scripts calling the API directly are updated, along with the [`ServiceControl/RemoteInstances`](configuration.md#host-settings-servicecontrolremoteinstances) configuration of any *other* Error instance configured to read from this one, which only applies to federated setups
 
 Alternatively, leave ServiceControl's port alone and put a [reverse proxy](#using-a-reverse-proxy-instead) in front to publish it on `443`.
