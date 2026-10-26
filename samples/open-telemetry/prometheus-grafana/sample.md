@@ -3,7 +3,7 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2026-08-31
+reviewed: 2026-10-26
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
@@ -36,6 +36,21 @@ Opt into a specific metric, either by name or by wildcard:
 snippet: enable-opentelemetry-metrics
 
 For the full list of available metrics, tags, and configuration options, see the [OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md#meters).
+
+#if-version [10,)
+## Identifying the endpoint
+
+An OpenTelemetry [resource](https://opentelemetry.io/docs/concepts/resources/) describes the process that produces telemetry, and it applies to all metrics, traces, and logs from that process. The sample sets the endpoint name as the `service.name` resource attribute, along with a unique `service.instance.id` for each run:
+
+snippet: opentelemetry-resource
+
+NServiceBus does not add the endpoint name as a tag on its metrics. The service name belongs to the resource, which the application sets when it configures the OpenTelemetry SDK. Adding an endpoint name tag would repeat the same value on every measurement. Metrics still carry the `nservicebus.queue` tag, which correlates each measurement with the queue that the endpoint receives from.
+
+> [!NOTE]
+> The resource is shared by everything in the process, so the service name identifies the endpoint only when the process hosts a single endpoint. When a process hosts multiple endpoints, use the `nservicebus.queue` tag to tell them apart.
+
+When the endpoint runs as a project in [Aspire](/samples/hosting/aspire/), `AddProject` sets the `OTEL_SERVICE_NAME` environment variable to the project name. `ResourceBuilder.CreateDefault()` reads that variable, so the service name does not need to be set in code.
+#end-if
 
 ## Exporting metrics
 
