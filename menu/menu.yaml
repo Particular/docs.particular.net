@@ -1685,7 +1685,7 @@
       - Title: Configure the URI
         Url: servicecontrol/setting-custom-hostname
       - Title: RavenDB location
-        Url: servicecontrol/configure-ravendb-location
+        Url: servicecontrol/storage/ravendb/configure-ravendb-location
       - Title: Logging
         Url: servicecontrol/logging
       - Title: Forwarding queues
@@ -1714,7 +1714,7 @@
         - Title: Configure the URI
           Url: servicecontrol/setting-custom-hostname
         - Title: RavenDB location
-          Url: servicecontrol/configure-ravendb-location
+          Url: servicecontrol/storage/ravendb/configure-ravendb-location
         - Title: Logging
           Url: servicecontrol/logging
         - Title: Forwarding queues
@@ -1746,18 +1746,23 @@
     Articles:
     - Title: Data expiration
       Url: servicecontrol/how-purge-expired-data
-    - Title: Accessing ServiceControl database
-      Url: servicecontrol/ravendb/accessing-database
-    - Title: Backup
-      Url: servicecontrol/backup-sc-database
-    - Title: Containers
-      Url: servicecontrol/ravendb/containers
-    - Title: Compacting the database
-      Url: servicecontrol/db-compaction
-    - Title: Move database location
-      Url: servicecontrol/move-database-location
-    - Title: RavenDB search engine
-      Url: servicecontrol/ravendb/search-engine
+    - Title: RavenDB
+      Url: servicecontrol/storage/ravendb
+      Articles:
+      - Title: RavenDB location
+        Url: servicecontrol/storage/ravendb/configure-ravendb-location
+      - Title: Accessing ServiceControl database
+        Url: servicecontrol/storage/ravendb/accessing-database
+      - Title: Containers
+        Url: servicecontrol/storage/ravendb/containers
+      - Title: Compacting the database
+        Url: servicecontrol/storage/ravendb/compaction
+      - Title: Backup
+        Url: servicecontrol/storage/ravendb/backup-sc-database
+      - Title: Move database location
+        Url: servicecontrol/storage/ravendb/move-database-location
+      - Title: RavenDB search engine
+        Url: servicecontrol/storage/ravendb/search-engine
   - Title: Integration
     Articles:
     - Title: Integration events

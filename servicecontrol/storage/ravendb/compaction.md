@@ -4,6 +4,7 @@ summary: How to compact the RavenDB database backing ServiceControl for RavenDB 
 reviewed: 2026-04-20
 component: ServiceControl
 redirects:
+  - servicecontrol/db-compaction
   - servicecontrol/db-compaction-v5
 ---
 
@@ -13,7 +14,7 @@ If a ServiceControl instance's retention period, message throughput, or average 
 
 The following applies to all databases used with ServiceControl version 5 and above, as well as audit instances that were originally created with ServiceControl 4.26.0 or later.
 
-ServiceControl's RavenDB 5 database can be compacted by [accessing the database](/servicecontrol/ravendb/accessing-database.md), then following the [RavenDB process for compacting a database](https://docs.ravendb.net/5.4/studio/database/stats/storage-report).
+ServiceControl's RavenDB 5 database can be compacted by [accessing the database](/servicecontrol/storage/ravendb/accessing-database.md), then following the [RavenDB process for compacting a database](https://docs.ravendb.net/5.4/studio/database/stats/storage-report).
 
 ## RavenDB 3.5 databases
 
@@ -88,7 +89,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 #### Step 1: Start ServiceControl in maintenance mode
 
-* Start the ServiceControl instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
+* Start the ServiceControl instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
 
 #### Step 2: Export the current database
 
