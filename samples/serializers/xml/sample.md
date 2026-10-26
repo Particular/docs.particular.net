@@ -1,7 +1,7 @@
 ---
 title: XML Serializer sample
-summary: NServiceBus sample that shows how to use the default NServiceBus XML serializer
-reviewed: 2025-03-31
+summary: NServiceBus sample that shows how to use the built-in NServiceBus XML serializer
+reviewed: 2026-10-26
 component: Xml
 related:
 - nservicebus/serialization
@@ -26,21 +26,8 @@ snippet: message
 
 ## Output
 
+The serializer writes the body as a single line, so the value below is exactly what the mutator logs. The `xmlns` value is derived from the message's CLR namespace as `http://tempuri.net/{namespace}`; since the sample's message types are declared in the global namespace, it ends with a trailing slash.
+
 ```xml
-<?xml version="1.0" ?>
-<CreateOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/XmlSample">
- <OrderId>9</OrderId>
- <Date>2015-09-15T13:33:28.7186624+10:00</Date>
- <CustomerId>12</CustomerId>
- <OrderItems>
-  <OrderItem>
-   <ItemId>6</ItemId>
-   <Quantity>2</Quantity>
-  </OrderItem>
-  <OrderItem>
-   <ItemId>5</ItemId>
-   <Quantity>4</Quantity>
-  </OrderItem>
- </OrderItems>
-</CreateOrder>
+<?xml version="1.0"?><CreateOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/"><OrderId>9</OrderId><Date>2026-10-26T08:13:11.7341761+01:00</Date><CustomerId>12</CustomerId><OrderItems><OrderItem><ItemId>6</ItemId><Quantity>2</Quantity></OrderItem><OrderItem><ItemId>5</ItemId><Quantity>4</Quantity></OrderItem></OrderItems></CreateOrder>
 ```
