@@ -4,9 +4,11 @@ summary: Selecting Corax or Lucene as the search engine for ServiceControl and h
 reviewed: 2026-10-05
 component: ServiceControl
 related:
-- servicecontrol/ravendb/accessing-database
+- servicecontrol/storage/ravendb/accessing-database
 - servicecontrol/troubleshooting
 - servicecontrol/upgrades/6.19to6.20
+redirects:
+  - servicecontrol/ravendb/search-engine
 ---
 
 RavenDB supports two search engines for indexes: [Corax](https://docs.ravendb.net/indexes/search-engine/corax) and [Lucene](https://lucene.apache.org/). The selected engine determines how RavenDB builds and queries an index. The choice of engine is made when creating a database or index, and while it can be changed later, doing so triggers a full index rebuild.
@@ -64,7 +66,7 @@ Migrate as soon as possible when the instance shows one or more of the following
 Instances without these symptoms should be migrated in the next planned maintenance window. Because the rebuild requires downtime or degraded ingestion, plan the migration separately for each environment. Migrate development and test instances first to estimate the rebuild duration for production. The `Error Database Search Engine` or `Audit Database Search Engine` custom check continues to fail until all indexes use Lucene.
 
 > [!WARNING]
-> Before migrating, [back up the database](/servicecontrol/backup-sc-database.md) and estimate the rebuild duration. The rebuild has to process every document in the database. Extrapolate from a smaller instance, or from the time the last [database upgrade](/servicecontrol/upgrades/) took, and schedule the migration in a maintenance window. Consider temporarily adding CPU and RAM to the host until the rebuild completes.
+> Before migrating, [back up the database](/servicecontrol/storage/ravendb/backup-sc-database.md) and estimate the rebuild duration. The rebuild has to process every document in the database. Extrapolate from a smaller instance, or from the time the last [database upgrade](/servicecontrol/upgrades/) took, and schedule the migration in a maintenance window. Consider temporarily adding CPU and RAM to the host until the rebuild completes.
 
 ## Migrating existing indexes to Lucene
 
@@ -84,8 +86,8 @@ Other indexes can be migrated using the same procedure. Migrate one index at a t
 
 ### 1. Access the RavenDB Studio
 
-- **Windows deployment**: Start the instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
-- **Container deployment**: Stop the ServiceControl container and open RavenDB Studio on port `8080` of the [database container](/servicecontrol/ravendb/containers.md).
+- **Windows deployment**: Start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
+- **Container deployment**: Stop the ServiceControl container and open RavenDB Studio on port `8080` of the [database container](/servicecontrol/storage/ravendb/containers.md).
 - **External RavenDB server**: Open RavenDB Studio for the server that hosts the ServiceControl database.
 
 Running the migration while the instance is stopped (maintenance mode) is recommended. It avoids ingestion competing with the rebuild for CPU and I/O and prevents the instance from resetting the index before it has been locked. Messages will accumulate in the error and audit queues while the instance is stopped; ensure the queues have enough capacity for the expected duration.
@@ -145,7 +147,7 @@ On version 6.21.1 and later:
 
 On versions 6.20.0 and 6.21.0:
 
-1. Stop the instance. For a Windows deployment, use [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
+1. Stop the instance. For a Windows deployment, use [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
 2. Keep the migrated index unlocked and delete the `ReplacementOf/<index>` index in RavenDB Studio. Do the delete before the lock: while the migrated index is locked, the delete can have no effect.
 3. On Windows, restart RavenDB before you continue. RavenDB can keep files of a deleted replacement index open until it restarts. For a Windows deployment, stop maintenance mode and start it again right away. Do not start the instance in between.
 4. Make sure that `ReplacementOf/<index>` is not in the list.

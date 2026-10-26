@@ -1,6 +1,6 @@
 ### ServiceControl.Audit/MaintenanceMode
 
-Run [ServiceControl audit instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
+Run [ServiceControl audit instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) in order to do database maintenance.
 
 | Context | Name |
 | --- | --- |
