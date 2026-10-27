@@ -1,7 +1,7 @@
 #if-version [7,)
 ### ServiceControl/MaxBodySizeToStore
 
-The maximum message body size, in bytes, stored inline in the SQL database. Larger message bodies are stored using the configured external storage provider.
+The maximum size, in bytes, of a text message body stored inline in the SQL database. Larger text bodies, and binary bodies of any size, are stored using the configured external storage provider. A larger text body also keeps its first `MaxBodySizeToStore` bytes in the database for full-text search. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression).
 
 | Context | Name |
 | --- | --- |

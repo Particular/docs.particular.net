@@ -44,7 +44,7 @@ An Error instance and an Audit instance can use the same SQL Server or PostgreSQ
 
 ## External message body storage
 
-SQL-backed Error instances also require an external message body store. Bodies up to the configured inline size limit are stored in the database; larger bodies use the selected external store. SQL-backed Audit instances do not require an external message body store.
+SQL-backed Error instances also require an external message body store. Small text bodies are stored in the database; larger bodies and all binary bodies use the selected external store. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression). SQL-backed Audit instances do not require an external message body store.
 
 | External body storage | Use when | Configuration |
 | --- | --- | --- |

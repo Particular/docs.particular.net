@@ -6,7 +6,7 @@ component: ServiceControl
 versions: '[7,)'
 ---
 
-SQL Server and PostgreSQL storage separate large message bodies from the Error instance's database. The database stores message metadata and smaller bodies; an external store holds bodies that exceed the inline size limit. Configure an external store even if most messages have small bodies.
+SQL Server and PostgreSQL storage separate large message bodies from the Error instance's database. The database stores message metadata and small text bodies; an external store holds larger bodies and every binary body. Configure an external store even if most messages have small bodies.
 
 This configuration applies only to SQL-backed Error instances. SQL-backed Audit instances do not require an external body store. RavenDB manages message body storage itself.
 
@@ -26,7 +26,15 @@ include: sc-error-messagebody-storagetype
 
 ## Inline storage and compression
 
-Bodies larger than the inline size limit use the external store. Bodies in the external store are compressed above the minimum compression size.
+A message body is stored in the database only when it is text and no larger than `ServiceControl/MaxBodySizeToStore`. The following bodies go to the external store, whatever their size:
+
+- Bodies whose `NServiceBus.ContentType` header is missing, or does not contain `text/`, `xml`, or `json`, or contains `binary`
+- Bodies that have a `Content-Encoding` header, such as compressed payloads
+- Bodies that are not valid UTF-8 text, or that contain NUL characters
+
+A text body larger than the limit is also stored externally, and its first `MaxBodySizeToStore` bytes are kept in the database so that full-text search can match it. When endpoints use a binary serializer, plan for every message body to be in the external store.
+
+Bodies in the external store are compressed when they are at least `MessageBody/MinCompressionSize` bytes.
 
 include: sc-error-maxbodysizetostore
 
