@@ -33,7 +33,12 @@ include: sc-error-messagebody-s3-secretaccesskey
 
 ## Setup and runtime
 
-Setup creates the configured bucket if it does not exist. The identity used for setup needs permission to check whether the bucket exists and create it if needed. The runtime identity needs read, write, and delete permissions on objects in the bucket. The retention sweeper deletes body objects before removing the corresponding database records.
+Setup creates the configured bucket if it does not exist. To check for the bucket, setup reads the bucket's access control list, so the identity used for setup needs `s3:GetBucketAcl` and, to create the bucket, `s3:CreateBucket`. If setup cannot read the access control list, it assumes the bucket exists and does not create it; create the bucket in advance when the setup identity lacks these permissions.
+
+The runtime identity needs `s3:GetObject`, `s3:PutObject`, and `s3:DeleteObject` on objects in the bucket, and `s3:ListBucket` on the bucket itself. The retention sweeper deletes body objects before removing the corresponding database records.
+
+> [!WARNING]
+> Grant `s3:ListBucket` to the runtime identity. Before storing a body, ServiceControl checks whether the object already exists. Without `s3:ListBucket`, Amazon S3 answers that check for a missing object with `403 Forbidden` instead of `404 Not Found`, and every message body that goes to the external store fails to be stored.
 
 For S3-compatible storage, set `ServiceUrl` to the endpoint URL. ServiceControl uses path-style addressing when a service URL is configured. Leave `ServiceUrl` unset when using Amazon S3.
 
