@@ -1,7 +1,7 @@
 ---
 title: Securing ServiceControl
 summary: How security is addressed in ServiceControl and how to limit access to ServiceControl data.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 related:
 - servicecontrol/servicecontrol-instances/configuration
 - servicecontrol/storage/ravendb/configure-ravendb-location

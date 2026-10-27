@@ -1,7 +1,7 @@
 ---
 title: Upgrade Tips
 summary: Tips for upgrading to newer versions of ServiceControl.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 related:
 ---
 

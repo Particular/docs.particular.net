@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControlContracts
 isLearningPath: true
 redirects:

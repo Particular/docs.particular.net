@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: Understand about ServiceControl logs; change log location and customize logging 
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 redirects:
 - servicecontrol/setting-custom-log-location
 ---

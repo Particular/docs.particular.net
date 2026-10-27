@@ -1,7 +1,7 @@
 ---
 title: ServiceControl RavenDB Storage
 summary: RavenDB storage for ServiceControl Error and Audit instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Capacity planning for RavenDB storage
 summary: Capacity, throughput, and storage considerations for ServiceControl Error and Audit instances using RavenDB storage
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 isLearningPath: true
 ---
 
