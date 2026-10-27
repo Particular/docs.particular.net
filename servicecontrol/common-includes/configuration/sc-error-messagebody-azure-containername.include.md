@@ -7,7 +7,7 @@ The Azure Blob Storage container used to store message bodies.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_CONTAINERNAME` |
 | **App config key** | `ServiceControl/MessageBody/Azure/ContainerName` |
-| **SCMU field** | N/A |
+| **SCMU field** | `CONTAINER NAME (OPTIONAL, DEFAULTS TO error-bodies)` |
 
 | Type | Default value |
 | --- | --- |

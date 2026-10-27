@@ -7,7 +7,7 @@ The Amazon S3 bucket used to store message bodies when `StorageType` is `S3`.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_BUCKETNAME` |
 | **App config key** | `ServiceControl/MessageBody/S3/BucketName` |
-| **SCMU field** | N/A |
+| **SCMU field** | `BUCKET NAME` |
 
 | Type | Default value |
 | --- | --- |

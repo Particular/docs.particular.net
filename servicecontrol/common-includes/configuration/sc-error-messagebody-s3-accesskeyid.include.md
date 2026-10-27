@@ -7,7 +7,7 @@ The access key ID used to authenticate with S3. Configure this setting together 
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_ACCESSKEYID` |
 | **App config key** | `ServiceControl/MessageBody/S3/AccessKeyId` |
-| **SCMU field** | N/A |
+| **SCMU field** | `ACCESS KEY ID (OPTIONAL)` |
 
 | Type | Default value |
 | --- | --- |

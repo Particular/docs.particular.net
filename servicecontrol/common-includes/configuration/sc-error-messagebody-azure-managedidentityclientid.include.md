@@ -7,7 +7,7 @@ The client ID of the user-assigned managed identity used to access Azure Blob St
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_MANAGEDIDENTITYCLIENTID` |
 | **App config key** | `ServiceControl/MessageBody/Azure/ManagedIdentityClientId` |
-| **SCMU field** | N/A |
+| **SCMU field** | `MANAGED IDENTITY CLIENT ID (OPTIONAL)` |
 
 | Type | Default value |
 | --- | --- |

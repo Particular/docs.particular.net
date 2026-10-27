@@ -7,7 +7,7 @@ The storage implementation used by the Audit instance.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_PERSISTENCETYPE` |
 | **App config key** | `ServiceControl.Audit/PersistenceType` |
-| **SCMU field** | N/A |
+| **SCMU field** | `STORAGE TYPE` |
 
 | Type | Default value |
 | --- | --- |

@@ -7,7 +7,7 @@ The service URL for an S3-compatible storage provider. Leave this setting empty 
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_SERVICEURL` |
 | **App config key** | `ServiceControl/MessageBody/S3/ServiceUrl` |
-| **SCMU field** | N/A |
+| **SCMU field** | `SERVICE URL (OPTIONAL, FOR S3-COMPATIBLE STORAGE)` |
 
 | Type | Default value |
 | --- | --- |

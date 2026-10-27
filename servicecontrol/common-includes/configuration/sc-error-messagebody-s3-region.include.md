@@ -7,7 +7,7 @@ The AWS region containing the S3 bucket. When this setting is not specified, the
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_REGION` |
 | **App config key** | `ServiceControl/MessageBody/S3/Region` |
-| **SCMU field** | N/A |
+| **SCMU field** | `REGION (OPTIONAL)` |
 
 | Type | Default value |
 | --- | --- |

@@ -7,7 +7,7 @@ The ServiceControl storage implementation used by the instance.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_PERSISTENCETYPE` |
 | **App config key** | `ServiceControl/PersistenceType` |
-| **SCMU field** | N/A |
+| **SCMU field** | `STORAGE TYPE` |
 
 | Type | Default value |
 | --- | --- |

@@ -25,8 +25,12 @@ Message body search is always enabled for SQL Server storage, regardless of the 
 
 Setup applies database migrations for both Error and Audit instances, so the identity that runs setup must have permissions to modify the schema (create and alter tables, indexes, and full-text catalogs), and to create the schema if it does not exist yet (`CREATE SCHEMA`). For Error instances, setup also provisions the external message body store. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
 
-> [!NOTE]
-> The ServiceControl Management Utility and the PowerShell module create only RavenDB instances. Configure SQL Server storage in environment variables or the application configuration file.
+The ServiceControl Management Utility (SCMU) and the PowerShell module can create SQL Server-backed Error and Audit instances:
+
+- **SCMU:** choose `SQL Server` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings.
+- **PowerShell:** pass `-PersistenceType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+
+Neither tool sets `Database/Schema`, so instances they create use the default schema.
 
 ## Authentication
 

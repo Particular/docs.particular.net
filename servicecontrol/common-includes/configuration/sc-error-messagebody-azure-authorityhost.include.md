@@ -7,7 +7,7 @@ The Microsoft Entra authority host URI used for managed identity authentication 
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_AUTHORITYHOST` |
 | **App config key** | `ServiceControl/MessageBody/Azure/AuthorityHost` |
-| **SCMU field** | N/A |
+| **SCMU field** | `AUTHORITY HOST (OPTIONAL)` |
 
 | Type | Default value |
 | --- | --- |

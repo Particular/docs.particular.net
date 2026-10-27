@@ -7,7 +7,7 @@ The Azure Storage connection string used to authenticate with shared key or shar
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_CONNECTIONSTRING` |
 | **App config key** | `ServiceControl/MessageBody/Azure/ConnectionString` |
-| **SCMU field** | N/A |
+| **SCMU field** | `AZURE STORAGE CONNECTION STRING` |
 
 | Type | Default value |
 | --- | --- |

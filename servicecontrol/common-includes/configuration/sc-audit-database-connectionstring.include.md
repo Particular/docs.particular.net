@@ -7,7 +7,7 @@ The connection string for the SQL Server or PostgreSQL database. The database mu
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_DATABASE_CONNECTIONSTRING` |
 | **App config key** | `ServiceControl.Audit/Database/ConnectionString` |
-| **SCMU field** | N/A |
+| **SCMU field** | `DATABASE CONNECTION STRING` |
 
 | Type | Default value |
 | --- | --- |

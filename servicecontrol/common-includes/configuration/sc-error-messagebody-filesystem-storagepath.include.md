@@ -7,7 +7,7 @@ The directory where message bodies are stored when `StorageType` is `FileSystem`
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH` |
 | **App config key** | `ServiceControl/MessageBody/FileSystem/StoragePath` |
-| **SCMU field** | N/A |
+| **SCMU field** | `MESSAGE BODY PATH` |
 
 | Type | Default value |
 | --- | --- |

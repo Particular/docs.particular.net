@@ -29,8 +29,12 @@ Setup applies database migrations for both Error and Audit instances, so the ide
 > [!WARNING]
 > While running, Audit instances create daily partitions up to 48 hours ahead and drop expired ones. PostgreSQL only lets the owner of a partitioned table create partitions of it. Setup creates the Audit tables, so they are owned by the role that runs setup. Run setup and normal operation as the same role, or grant the setup role to the runtime role so that the runtime role counts as the owner. Otherwise the **Audit partition provisioning** custom check fails, and Audit ingestion stops when the provisioned partitions run out, within about two days of the last successful provisioning.
 
-> [!NOTE]
-> The ServiceControl Management Utility and the PowerShell module create only RavenDB instances. Configure PostgreSQL storage in environment variables or the application configuration file.
+The ServiceControl Management Utility (SCMU) and the PowerShell module can create PostgreSQL-backed Error and Audit instances:
+
+- **SCMU:** choose `PostgreSQL` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings.
+- **PowerShell:** pass `-PersistenceType PostgreSQL` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+
+Neither tool sets `Database/Schema`, so instances they create use the default schema.
 
 ## Error instance configuration
 

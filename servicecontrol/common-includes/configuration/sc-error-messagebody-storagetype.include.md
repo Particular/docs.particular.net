@@ -7,7 +7,7 @@ The external storage provider used for message bodies.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_STORAGETYPE` |
 | **App config key** | `ServiceControl/MessageBody/StorageType` |
-| **SCMU field** | N/A |
+| **SCMU field** | `MESSAGE BODY STORAGE` |
 
 | Type | Default value |
 | --- | --- |

@@ -7,7 +7,7 @@ The Azure Blob Storage service URI used with managed identity when `StorageType`
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_AZURE_SERVICEURI` |
 | **App config key** | `ServiceControl/MessageBody/Azure/ServiceUri` |
-| **SCMU field** | N/A |
+| **SCMU field** | `BLOB SERVICE URI` |
 
 | Type | Default value |
 | --- | --- |

@@ -1,0 +1,3 @@
+To use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage, pass `-PersistenceType` and `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. Choose where large message bodies are stored with `-MessageBodyStorageType`: `FileSystem` (the default, with `-MessageBodyPath`), `AzureBlob` (with the `-AzureBlob*` parameters), or `S3` (with the `-S3*` parameters). See [external message body storage](/servicecontrol/storage/external-body/) for what each setting does.
+
+snippet: ps-new-error-instance-sqlserver
