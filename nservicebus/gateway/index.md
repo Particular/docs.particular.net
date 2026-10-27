@@ -26,7 +26,6 @@ Use the gateway only when sites cannot share a transport, for example because se
  * If the sites use different transports but can reach each other's infrastructure, use the [Messaging Bridge](/nservicebus/bridge/).
  * Don't use the gateway as a disaster recovery mechanism between sites. In that scenario all sites are exact replicas: logically a single application, replicated in multiple locations. Use the existing support infrastructure, such as database or storage replication, to keep the sites synchronized.
 
-
 ## How the gateway works
 
 The gateway is not a separate service. It is a feature enabled in an NServiceBus endpoint, and it runs inside that endpoint's process. It sends messages over HTTP(S) as a client, and receives them by listening on an HTTP(S) address called a channel. Every site that receives messages through the gateway needs a channel address that the sending sites can reach, which usually means allowing inbound HTTP(S) traffic into that site.
