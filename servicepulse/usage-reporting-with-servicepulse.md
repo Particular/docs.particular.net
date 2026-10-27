@@ -56,6 +56,8 @@ The usage report includes information used to determine licensing requirements, 
 
 Configuration details are summarized rather than copied from configuration files. Feature switches are reported as `Enabled` or `Disabled`. Settings such as the ServicePulse monitoring URL and database schema are reported as `Default`, `Custom`, or `Configured`, rather than including the URL or schema name. Database hosting is reported as a category, such as `SelfHosted` or `AzureSql`, rather than the database host name. Connection strings and credentials are not included in this configuration summary.
 
+The report includes no security configuration: nothing about how callers or connections are authenticated, whether traffic is encrypted, how certificates or tokens are validated, or how access is restricted.
+
 Not all reported values are categories: numeric settings such as retention periods, batch sizes, and explicitly configured timeouts can include their actual values. Versions, resource information, and counts are also reported as values.
 
 The information included depends on the ServiceControl version and configuration. Endpoint and queue names can still appear in the throughput data; specified [report masks](usage-reporting-setup.md#report-masks) are applied when the report is generated.

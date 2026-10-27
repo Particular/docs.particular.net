@@ -79,6 +79,8 @@ Error instances using file system message body storage also require the followin
 
 Audit instances using SQL storage require neither a local database path nor an external body storage path.
 
+When a PostgreSQL connection authenticates as the service account, that account must own the Audit tables, or be a member of the role that owns them, because the instance creates and drops daily partitions while running. See [Prepare the database](/servicecontrol/storage/postgresql/#prepare-the-database) for the PostgreSQL role requirements.
+
 ## Performance counters
 
 Error instances using the [MSMQ transport](/servicecontrol/transports.md#msmq) read the MSMQ transactional dead letter queue message count from the Windows performance counter infrastructure. As a result, the service account for these instances needs to be a member of [Performance Monitor Users](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.

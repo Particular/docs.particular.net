@@ -2,7 +2,7 @@
 title: Audit Instance Configuration Settings
 summary: Categorized list of ServiceControl Audit instance configuration settings.
 component: ServiceControl
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 redirects:
  - servicecontrol/audit-instances/creating-config-file
 ---

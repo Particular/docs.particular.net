@@ -1,7 +1,7 @@
 ---
 title: ServiceControl PostgreSQL Storage
 summary: Configure PostgreSQL storage for ServiceControl Error and Audit instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -17,13 +17,20 @@ PostgreSQL 18 or later is recommended for ServiceControl storage. PostgreSQL 18 
 
 ## Prepare the database
 
-Create a database before configuring the instance. If `Database/Schema` is not set, ServiceControl uses the connection's default `search_path`, which is normally `public`. A configured schema must already exist and the instance's database user must have rights on it. ServiceControl does not create the database or schema.
+Create a database before configuring the instance as ServiceControl does not create the database. Setup creates the instance's schema if it does not exist. If the identity that runs setup cannot create schemas, create the schema in advance and grant that identity rights on it. Error and Audit instances can use the same database but not the same schema; see [sharing a database](/servicecontrol/storage/#sharing-a-database).
 
 PostgreSQL full-text search uses a built-in `tsvector` GIN index and message body search is always enabled for PostgreSQL storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
 
-Run the instance setup process (`--setup`) before normal operation. For Error instances, setup applies database migrations and provisions the external message body store. For Audit instances, database migrations run at every startup and daily partitions are provisioned automatically, so the runtime identity must have permissions to modify the schema and manage partitions (create and alter tables, create and drop partitions). See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+> [!IMPORTANT]
+> Run the instance setup process (`--setup`) before first use and after every upgrade. Setup applies the database migrations; the instance does not apply them at startup.
 
-The ServiceControl installer does not yet create SQL-backed Audit instances; configure their settings using environment variables or the application configuration file.
+Setup applies database migrations for both Error and Audit instances, so the identity that runs setup must have permissions to modify the schema (create and alter tables and indexes), and to create the schema if it does not exist yet (`CREATE` on the database). For Error instances, setup also provisions the external message body store. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+
+> [!WARNING]
+> While running, Audit instances create daily partitions up to 48 hours ahead and drop expired ones. PostgreSQL only lets the owner of a partitioned table create partitions of it. Setup creates the Audit tables, so they are owned by the role that runs setup. Run setup and normal operation as the same role, or grant the setup role to the runtime role so that the runtime role counts as the owner. Otherwise the **Audit partition provisioning** custom check fails, and Audit ingestion stops when the provisioned partitions run out, within about two days of the last successful provisioning.
+
+> [!NOTE]
+> The ServiceControl Management Utility and the PowerShell module create only RavenDB instances. Configure PostgreSQL storage in environment variables or the application configuration file.
 
 ## Error instance configuration
 
@@ -61,17 +68,20 @@ include: sc-audit-database-schema
 
 include: sc-audit-auditretentionperiod
 
-PostgreSQL-backed Audit instances are partitioned by day. The runtime provisions and drops daily partitions automatically.
+PostgreSQL-backed Audit instances are partitioned by day. The instance creates and drops daily partitions automatically, which requires the runtime role to own the Audit tables; see [Prepare the database](#prepare-the-database).
 
 Audit instances do not require an external body store; eligible text bodies are stored inline in the database.
 
 include: sc-audit-maxbodysizetostore
 
-`ServiceControl.Audit/MaxBodySizeToStore` is a hard cap for Audit instances. Message bodies larger than the configured limit, or bodies that are not text, are not available for viewing.
+> [!NOTE]
+> Audit instances using SQL storage store only text message bodies, up to `ServiceControl.Audit/MaxBodySizeToStore`. Binary bodies and larger bodies cannot be viewed in ServicePulse.
 
-SQL-backed Audit instances do not support maintenance mode.
+> [!NOTE]
+> SQL Server and PostgreSQL storage do not support maintenance mode. An instance with `MaintenanceMode` set to `true` does not start.
 
-Connect to PostgreSQL directly or through a session-mode connection pooler. Transaction-mode poolers break the advisory lock that the retention process holds, which stops retention from running.
+> [!WARNING]
+> Connect to PostgreSQL directly or through a connection pooler in session mode. A pooler in transaction mode, such as PgBouncer with `pool_mode = transaction`, breaks the advisory lock that the retention process holds, and retention stops running.
 
 Example environment variables for an Audit instance:
 

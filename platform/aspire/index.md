@@ -1,7 +1,7 @@
 ---
 title: Aspire
 summary: Describes how to orchestrate the Particular Platform via an Aspire AppHost
-reviewed: 2026-06-10
+reviewed: 2026-10-27
 component: AspireHostPlatform
 related:
 - samples/aspire/platform

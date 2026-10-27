@@ -15,5 +15,6 @@ The maximum number of batches that are written to storage in parallel. Concurren
 
 The allowed range is `1` to `16`. More writers increase CPU, memory, and storage load; increase the value only if there are no verified bottlenecks.
 
-Custom `IEnrichImportedErrorMessages` implementations must be thread-safe, because they can be invoked concurrently when more than one writer is used.
+> [!WARNING]
+> Custom `IEnrichImportedErrorMessages` implementations must be thread-safe. They are called concurrently whenever more than one writer is used, which is the default with SQL Server and PostgreSQL storage.
 #end-if

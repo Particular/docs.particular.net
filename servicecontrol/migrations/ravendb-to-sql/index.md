@@ -2,7 +2,7 @@
 title: Migrating from RavenDB to SQL storage
 summary: Availability of migration from RavenDB to PostgreSQL or SQL Server storage
 isUpgradeGuide: true
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 ---
 

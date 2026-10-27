@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Audit instances using containers
-reviewed: 2026-10-07
+reviewed: 2026-10-27
 component: ServiceControl
 versions: '[5.3, )'
 ---

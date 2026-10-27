@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Error instances
 summary: A guide to ServiceControl Error Instances. Learn how ServiceControl stores message data and about the available health monitoring options.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 related:
 - servicecontrol/import-failed-messages

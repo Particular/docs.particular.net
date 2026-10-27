@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Storage Message Body Storage
 summary: Configure Azure Blob Storage for message bodies in SQL-backed ServiceControl Error instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 versions: '[7,)'
 ---

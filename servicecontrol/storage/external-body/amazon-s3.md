@@ -1,7 +1,7 @@
 ---
 title: Amazon S3 Message Body Storage
 summary: Configure Amazon S3 storage for message bodies in SQL-backed ServiceControl Error instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 versions: '[7,)'
 ---

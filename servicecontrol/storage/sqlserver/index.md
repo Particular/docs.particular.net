@@ -1,7 +1,7 @@
 ---
 title: ServiceControl SQL Server Storage
 summary: Configure SQL Server storage for ServiceControl Error and Audit instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -13,13 +13,20 @@ From ServiceControl 7, Error and Audit instances can use SQL Server instead of t
 
 ## Prepare the database
 
-Create a database before configuring the instance. If `Database/Schema` is not set, ServiceControl uses the database provider's default schema. A configured schema must already exist and the instance's database user must have rights on it. ServiceControl does not create the database or schema.
+Create a database before configuring the instance as ServiceControl does not create the database. Setup creates the instance's schema if it does not exist. If the identity that runs setup cannot create schemas, create the schema in advance and grant that identity rights on it. Error and Audit instances can use the same database but not the same schema; see [sharing a database](/servicecontrol/storage/#sharing-a-database).
 
-SQL Server Full-Text Search must be installed for both Error and Audit instances. Error instance setup and Audit instance startup fail if the feature is not present on the server. Message body search is always enabled for SQL Server storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
+> [!IMPORTANT]
+> SQL Server Full-Text Search must be installed on the server. Error and Audit instance setup fail without it. The `mcr.microsoft.com/mssql/server` container images do not include it.
 
-Run the instance setup process (`--setup`) before normal operation. For Error instances, setup applies database migrations and provisions the external message body store. For Audit instances, database migrations run at every startup, so the runtime identity must have permissions to modify the schema (create and alter tables, indexes). See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+Message body search is always enabled for SQL Server storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
 
-The ServiceControl installer does not yet create SQL-backed Audit instances; configure their settings using environment variables or the application configuration file.
+> [!IMPORTANT]
+> Run the instance setup process (`--setup`) before first use and after every upgrade. Setup applies the database migrations; the instance does not apply them at startup.
+
+Setup applies database migrations for both Error and Audit instances, so the identity that runs setup must have permissions to modify the schema (create and alter tables, indexes, and full-text catalogs), and to create the schema if it does not exist yet (`CREATE SCHEMA`). For Error instances, setup also provisions the external message body store. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+
+> [!NOTE]
+> The ServiceControl Management Utility and the PowerShell module create only RavenDB instances. Configure SQL Server storage in environment variables or the application configuration file.
 
 ## Authentication
 
@@ -69,9 +76,11 @@ Audit instances do not require an external body store; eligible text bodies are 
 
 include: sc-audit-maxbodysizetostore
 
-`ServiceControl.Audit/MaxBodySizeToStore` is a hard cap for Audit instances. Message bodies larger than the configured limit, or bodies that are not text, are not available for viewing.
+> [!NOTE]
+> Audit instances using SQL storage store only text message bodies, up to `ServiceControl.Audit/MaxBodySizeToStore`. Binary bodies and larger bodies cannot be viewed in ServicePulse.
 
-SQL-backed Audit instances do not support maintenance mode.
+> [!NOTE]
+> SQL Server and PostgreSQL storage do not support maintenance mode. An instance with `MaintenanceMode` set to `true` does not start.
 
 Example environment variables for an Audit instance:
 

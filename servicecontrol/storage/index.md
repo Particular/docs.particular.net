@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Storage
 summary: Storage options for ServiceControl Error and Audit instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 redirects:
   - servicecontrol/ravendb
@@ -28,10 +28,19 @@ Choose a provider for each instance. Follow the linked configuration guide to pr
 | Storage | Availability | External message body storage | Configuration |
 | --- | --- | --- | --- |
 | RavenDB | Default for Error and Audit instances | Not required | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
-| SQL Server | Error and Audit instances from ServiceControl 7; requires an existing database and schema | Required for Error; not required for Audit | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
-| PostgreSQL | Error and Audit instances from ServiceControl 7; requires an existing database and schema | Required for Error; not required for Audit | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
+| SQL Server | Error and Audit instances from ServiceControl 7; requires an existing database | Required for Error; not required for Audit | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
+| PostgreSQL | Error and Audit instances from ServiceControl 7; requires an existing database | Required for Error; not required for Audit | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 
 Configure SQL storage separately for each [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#storage) and [Audit instance](/servicecontrol/audit-instances/configuration.md#storage).
+
+## Sharing a database
+
+Keep Error and Audit data apart, either in separate databases or in separate schemas of one database. Separation keeps each instance's permissions apart, and separate databases also let each instance's data be backed up, restored, and sized independently.
+
+- **Separate databases:** each database can have its own storage and server. Audit data is usually much larger than Error data and is often less critical to recover, so this is the more flexible choice for production.
+- **Separate schemas in one database:** simpler to provision, and permissions can still be scoped to each schema. SQL Server backs up and restores whole databases, not schemas, so restoring returns both instances' data to the same point in time. PostgreSQL `pg_dump` and `pg_restore` can select one schema with `-n`, but point-in-time recovery still restores the whole server.
+
+An Error instance and an Audit instance can use the same SQL Server or PostgreSQL database, but each needs its own schema. The default settings already do this: the Error instance uses the connection's default schema, and the Audit instance uses `sc_audit`. Setup fails if an Error instance and an Audit instance are configured to use the same schema.
 
 ## External message body storage
 
@@ -47,8 +56,14 @@ See the [external message body storage overview](/servicecontrol/storage/externa
 
 ## Backup and restore
 
-Back up and monitor each instance's database and, for SQL-backed Error instances, its external message body store. Restoring only the database or only the external bodies can leave message records without their bodies. Use the database and body-store providers' backup and availability guidance; the [RavenDB backup procedure](/servicecontrol/storage/ravendb/backup-sc-database.md) does not apply to SQL storage.
+Back up and monitor each instance's database and, for SQL-backed Error instances, its external message body store. Use the database and body-store providers' backup and availability guidance; the [RavenDB backup procedure](/servicecontrol/storage/ravendb/backup-sc-database.md) does not apply to SQL storage.
+
+> [!WARNING]
+> Back up and restore the database and the external message body store together. Restoring only one leaves messages whose bodies are missing, or bodies that no message refers to.
+
+## Changing the storage provider
+
+> [!WARNING]
+> Changing `PersistenceType` on an existing instance does not move its data. The instance starts with empty storage. See [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
 
 #end-if
-
-Changing the storage provider of an existing instance is not the same as configuring a new instance. Do not use the provider settings as a data migration procedure.

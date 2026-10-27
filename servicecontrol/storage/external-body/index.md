@@ -1,7 +1,7 @@
 ---
 title: External Message Body Storage
 summary: Choose and configure external message body storage for SQL-backed ServiceControl Error instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-27
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -36,10 +36,11 @@ See the [Error instance storage settings](/servicecontrol/servicecontrol-instanc
 
 ## Operations
 
-Treat the database and external body store as a pair. Back up and restore both together; restoring only one can leave database records without their message bodies. Monitor body-store capacity and availability as well as database health.
+Treat the database and external body store as a pair, and [back up and restore them together](/servicecontrol/storage/#backup-and-restore). Monitor body-store capacity and availability as well as database health.
 
 ServiceControl's retention sweeper deletes external bodies before removing their database records. If body deletion fails, the affected records remain for a later sweep. The runtime identity therefore needs delete access as well as read and write access.
 
-Keep stored bodies available for as long as ServiceControl retains the corresponding messages. Do not apply independent cleanup policies that delete bodies before ServiceControl no longer needs them.
+> [!WARNING]
+> Do not add storage cleanup rules, such as S3 Lifecycle rules or Azure Blob Storage lifecycle management policies, to the body store. ServiceControl deletes bodies itself when it removes their messages; rules that run on their own schedule delete bodies that ServiceControl still needs.
 
 Changing the provider, directory, container, or bucket does not move existing message bodies. Do not use configuration changes as a migration procedure. For database choices, see the [storage overview](/servicecontrol/storage/).

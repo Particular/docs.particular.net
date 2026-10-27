@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Authentication Configuration
 summary: How to enable and configure authentication for ServiceControl
-reviewed: 2026-10-16
+reviewed: 2026-10-27
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide

@@ -2,7 +2,7 @@
 title: Error Instance Configuration Settings
 summary: Categorized list of ServiceControl Error instance configuration settings.
 component: ServiceControl
-reviewed: 2026-10-09
+reviewed: 2026-10-27
 redirects:
  - servicecontrol/creating-config-file
 ---

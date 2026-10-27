@@ -15,5 +15,6 @@ The grace period to keep an audit message before it is deleted.
 Valid range for this setting is from 1 hour to 365 days.
 
 #if-version [7,)
-For PostgreSQL storage, the retention period must be between one and 90 days.
+> [!NOTE]
+> With PostgreSQL storage, the retention period must be between 1 and 90 days. ServiceControl does not start with a longer period.
 #end-if
