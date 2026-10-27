@@ -1,8 +1,8 @@
 ---
 title: Outbox with DynamoDB persistence
-summary: How to configure Outbox persistence in DynamoDB
+summary: Configure the DynamoDB Outbox table, its required time-to-live attribute, and how long deduplication data is kept.
 component: DynamoDB
-reviewed: 2025-04-08
+reviewed: 2026-10-26
 related:
 - persistence/dynamodb
 - nservicebus/outbox
@@ -17,7 +17,7 @@ snippet: DynamoOutboxTableConfiguration
 > [!NOTE]
 > When using the same table for Saga and Outbox data, use the [shared table configuration API](/persistence/dynamodb/#usage-customizing-the-table-used) instead.
 
-The Outbox uses [time-to-live](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) to ensure cleanup of successfully processed message, therefore, the Outbox table requires a `TableConfiguration.TimeToLiveAttributeName` value to be set. When installers are enabled, NServiceBus will create the table with the proper time-to-live configuration, otherwise users will need to ensure that the table is properly configured.
+The Outbox uses [time-to-live](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) to clean up records of successfully processed messages, so the Outbox table requires a `TableConfiguration.TimeToLiveAttributeName` value. When installers are enabled, NServiceBus creates the table with the correct time-to-live configuration. Otherwise, the table must be [created and configured](/persistence/dynamodb/table-creation.md) before the endpoint starts.
 
 ## Outbox cleanup
 
@@ -27,4 +27,6 @@ snippet: DynamoDBOutboxCleanup
 
 > [!NOTE]
 > Increasing the deduplication timeframe increases the amount of data stored in the Outbox table.
+
+For the read and write capacity the Outbox consumes per message, see [capacity planning](/persistence/dynamodb/capacity-planning.md#outbox).
 

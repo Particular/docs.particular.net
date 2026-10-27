@@ -3,7 +3,7 @@ title: Transaction Support
 summary: A description of the transaction modes supported by the Azure Storage Queues transport
 component: ASQ
 versions: '[6,]'
-reviewed: 2025-03-31
+reviewed: 2026-10-26
 redirects:
  - nservicebus/azure-storage-queues/transaction-support
 ---
@@ -16,7 +16,7 @@ The following [`TransportTransactionMode` levels](/transports/transactions.md) a
 
 ## Transport transaction - receive only
 
-Azure Storage Queues use a `Peek-Lock` model to overcome the lack of transactions. The message is not removed from the queue directly after it is received, but it is hidden for 30 seconds. This prevents other instances from picking it up. If the receiver fails to process the message within that timeframe or if it explicitly abandons the message, the message will become visible again and other instances will be able to pick it up. `ReceiveOnly` **[transport transaction mode](/transports/transactions.md)** provides an `at-least-once` delivery model.
+Azure Storage Queues use `VisibilityTimeout` (a `Peek-Lock` model) to overcome the lack of transactions. The message is not removed from the queue directly after it is received, but it is hidden for 30 seconds. This prevents other instances from picking it up. If the receiver fails to process the message within that timeframe or if it explicitly abandons the message, the message will become visible again and other instances will be able to pick it up. `ReceiveOnly` **[transport transaction mode](/transports/transactions.md)** provides an `at-least-once` delivery model.
 
 
 ## Unreliable (transactions disabled)
