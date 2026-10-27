@@ -74,7 +74,7 @@ include: sc-audit-auditretentionperiod
 
 PostgreSQL-backed Audit instances are partitioned by day. The instance creates and drops daily partitions automatically, which requires the runtime role to own the Audit tables; see [Prepare the database](#prepare-the-database).
 
-Audit instances do not require an external body store; eligible text bodies are stored inline in the database.
+Audit instances do not use an external message body store; they store text message bodies in the database.
 
 include: sc-audit-maxbodysizetostore
 

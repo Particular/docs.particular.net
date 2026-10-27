@@ -36,6 +36,9 @@ A text body larger than the limit is also stored externally, and its first `MaxB
 
 Bodies in the external store are compressed when they are at least `MessageBody/MinCompressionSize` bytes.
 
+> [!NOTE]
+> Audit instances have a setting with the same name, [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore), that works differently. For Audit instances it is a hard limit: larger bodies cannot be viewed. For Error instances, bodies larger than `ServiceControl/MaxBodySizeToStore` are still stored, in the external message body store.
+
 include: sc-error-maxbodysizetostore
 
 include: sc-error-messagebody-mincompressionsize

@@ -76,7 +76,7 @@ include: sc-audit-database-schema
 
 include: sc-audit-auditretentionperiod
 
-Audit instances do not require an external body store; eligible text bodies are stored inline in the database.
+Audit instances do not use an external message body store; they store text message bodies in the database.
 
 include: sc-audit-maxbodysizetostore
 
