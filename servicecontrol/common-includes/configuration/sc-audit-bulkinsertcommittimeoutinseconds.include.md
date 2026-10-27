@@ -13,3 +13,7 @@ Configures the maximum duration, in seconds, for processing a batch of audited m
 | --- | --- |
 | int | `60` (1 minute) |
 #end-if
+#if-version [7,)
+
+This setting applies only to RavenDB storage. For SQL Server and PostgreSQL storage, see [`Database/CommandTimeout`](/servicecontrol/audit-instances/configuration.md#storage-servicecontrol-auditdatabasecommandtimeout).
+#end-if
