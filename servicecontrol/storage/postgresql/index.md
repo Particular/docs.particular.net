@@ -50,6 +50,15 @@ An Error instance with no `Database/Schema` uses the connection's current schema
 
 When the same connection string is used for setup and normal operation, as the ServiceControl Management Utility and PowerShell do, that role needs the setup rights.
 
+## Authentication
+
+Configure database authentication in the connection string for each Error or Audit instance. This is separate from the transport connection string.
+
+ServiceControl uses [Npgsql](https://www.npgsql.org/doc/connection-string-parameters.html) and passes the connection string to it unchanged. Methods configured entirely in the connection string work, such as a user name and password, a password file (`Passfile`), a client certificate, or Kerberos.
+
+> [!WARNING]
+> Token-based authentication, such as Microsoft Entra ID for Azure Database for PostgreSQL or IAM database authentication for Amazon RDS, is not supported. ServiceControl has no way to refresh a token, so a token placed in the connection string as the password stops working when it expires, and the instance can no longer open connections.
+
 ## Error instance configuration
 
 Set the persistence type to `PostgreSQL`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database.
