@@ -11,12 +11,16 @@ From ServiceControl 7, Error and Audit instances can use SQL Server instead of t
 > [!IMPORTANT]
 > When using SQL Server, Error instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline. Audit instances do not require it.
 
+## Supported SQL Server versions
+
+ServiceControl supports the SQL Server versions that are in mainstream support; see the [SQL Server lifecycle](https://learn.microsoft.com/en-us/lifecycle/products/?products=sql-server). Full-Text Search must be installed; see [Prepare the database](#prepare-the-database).
+
 ## Prepare the database
 
 Create a database before configuring the instance as ServiceControl does not create the database. Setup creates the instance's schema if it does not exist. If the identity that runs setup cannot create schemas, create the schema in advance and grant that identity rights on it. Error and Audit instances can use the same database but not the same schema; see [sharing a database](/servicecontrol/storage/#sharing-a-database).
 
 > [!IMPORTANT]
-> SQL Server Full-Text Search must be installed on the server. Error and Audit instance setup fail without it. The `mcr.microsoft.com/mssql/server` container images do not include it.
+> SQL Server Full-Text Search must be installed on the server. Error and Audit instance setup fail without it. The `mcr.microsoft.com/mssql/server` container images do not include it; on Linux, including custom container images, install the `mssql-server-fts` package as described in [Install SQL Server Full-Text Search on Linux](https://learn.microsoft.com/en-us/sql/linux/install-upgrade/setup-full-text-search).
 
 Message body search is always enabled for SQL Server storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
 

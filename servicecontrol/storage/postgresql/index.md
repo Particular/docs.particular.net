@@ -11,9 +11,11 @@ From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of t
 > [!IMPORTANT]
 > When using PostgreSQL, Error instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline. Audit instances do not require it.
 
-## Recommended PostgreSQL version
+## Supported PostgreSQL versions
 
-PostgreSQL 18 or later is recommended for ServiceControl storage. PostgreSQL 18 supports [parallel GIN index builds](https://www.postgresql.org/docs/18/sql-createindex.html), which significantly improved ServiceControl performance in testing by Particular Software. Use the latest minor release for the selected PostgreSQL major version.
+ServiceControl supports the PostgreSQL major versions that are currently supported by the PostgreSQL Global Development Group; see the [PostgreSQL versioning policy](https://www.postgresql.org/support/versioning/). Use the latest minor release of the chosen major version.
+
+PostgreSQL 18 or later is recommended. PostgreSQL 18 can [build GIN indexes in parallel](https://www.postgresql.org/docs/18/release-18.html), which greatly reduces the time needed to build the full-text search indexes that ServiceControl uses for message search.
 
 ## Prepare the database
 
