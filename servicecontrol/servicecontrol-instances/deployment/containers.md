@@ -115,7 +115,10 @@ The Error instance is stateless and does not require any mounted volumes.
 
 A RavenDB Error instance does not require a mounted data volume. A mounted volume may be required for a [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
 
-A SQL-backed Error instance using file system message body storage requires a durable volume mounted to the path specified by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Azure Blob Storage and Amazon S3 body stores do not require a mounted volume. See the [external message body storage guide](/servicecontrol/storage/external-body/file.md) for details.
+A SQL-backed Error instance using file system message body storage requires a durable volume mounted to the path specified by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Azure Blob Storage and Amazon S3 body stores do not require a mounted volume. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md) for details.
+
+> [!WARNING]
+> The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and storing message bodies then fails at runtime. Give the volume suitable ownership or permissions before running setup.
 
 #end-if
 
