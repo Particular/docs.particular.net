@@ -25,11 +25,23 @@ Choose a provider for each instance. Follow the linked configuration guide to pr
 
 #if-version [7,)
 
-| Storage | Availability | External message body storage | Configuration |
+Each Error and Audit instance uses one storage provider, chosen when the instance is created. Instances can use different providers; for example, an Error instance can use SQL Server while its Audit instances use RavenDB.
+
+- **RavenDB** is the default. PowerShell and ServiceControl Management Utility deployments embed it, so no separate database server is needed. It suits teams that do not already run SQL Server or PostgreSQL.
+- **SQL Server** and **PostgreSQL** suit teams that already run, monitor, and back up one of these database servers and want ServiceControl data managed with the same tools.
+
+Before choosing SQL Server or PostgreSQL, check how they differ from RavenDB:
+
+- Error instances also need an [external message body store](#external-message-body-storage).
+- Audit instances store only text message bodies; binary bodies cannot be viewed in ServicePulse.
+- SQL Server must have Full-Text Search installed.
+- Existing RavenDB instances cannot yet be [migrated to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
+
+| Provider | `PersistenceType` value | Requirements | Configuration |
 | --- | --- | --- | --- |
-| RavenDB | Default for Error and Audit instances | Not required | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
-| SQL Server | Error and Audit instances from ServiceControl 7; requires an existing database | Required for Error; not required for Audit | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
-| PostgreSQL | Error and Audit instances from ServiceControl 7; requires an existing database | Required for Error; not required for Audit | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
+| RavenDB (default) | `RavenDB` | None for embedded deployments; a RavenDB container for container deployments | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
+| SQL Server | `SQLServer` | An existing database on a server with Full-Text Search; an external message body store for Error instances | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
+| PostgreSQL | `PostgreSQL` | An existing database; an external message body store for Error instances | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 
 Configure SQL storage separately for each [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#storage) and [Audit instance](/servicecontrol/audit-instances/configuration.md#storage).
 
