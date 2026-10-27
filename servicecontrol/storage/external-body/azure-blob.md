@@ -33,7 +33,10 @@ include: sc-error-messagebody-azure-authorityhost
 
 ## Setup and runtime
 
-Setup creates the configured container if it does not exist. The identity used for setup needs permission to create the container. The runtime identity needs read, write, and delete permissions on blobs in the container. The retention sweeper deletes body blobs before removing the corresponding database records.
+Setup creates the configured container if it does not exist. The identity used for setup needs permission to create the container, and the runtime identity needs read, write, and delete permissions on blobs in the container:
+
+- **Service URI with Microsoft Entra ID:** assign the `Storage Blob Data Contributor` role on the storage account, or on the container if it is created in advance. This role covers both setup and normal operation.
+- **Connection string:** the account key, or the shared access signature's permissions, must allow creating the container during setup, and reading, writing, and deleting blobs at runtime. Setup always sends a create request, even when the container already exists, so a SAS scoped to a single container cannot be used for setup; use the account key or an account SAS that allows creating containers. The retention sweeper deletes body blobs before removing the corresponding database records.
 
 Set these variables in the instance's environment to use a connection string. Replace the account and credential placeholders with values supplied by the deployment environment:
 

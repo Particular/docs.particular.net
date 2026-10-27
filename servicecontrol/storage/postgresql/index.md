@@ -24,7 +24,7 @@ PostgreSQL full-text search uses a built-in `tsvector` GIN index and message bod
 > [!IMPORTANT]
 > Run the instance setup process (`--setup`) before first use and after every upgrade. Setup applies the database migrations; the instance does not apply them at startup.
 
-Setup applies database migrations for both Error and Audit instances, so the identity that runs setup must have permissions to modify the schema (create and alter tables and indexes), and to create the schema if it does not exist yet (`CREATE` on the database). For Error instances, setup also provisions the external message body store. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+Setup applies database migrations for both Error and Audit instances. For Error instances, setup also provisions the external message body store. See [database permissions](#database-permissions) for the rights setup and normal operation need. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
 
 > [!WARNING]
 > While running, Audit instances create daily partitions up to 48 hours ahead and drop expired ones. PostgreSQL only lets the owner of a partitioned table create partitions of it. Setup creates the Audit tables, so they are owned by the role that runs setup. Run setup and normal operation as the same role, or grant the setup role to the runtime role so that the runtime role counts as the owner. Otherwise the **Audit partition provisioning** custom check fails, and Audit ingestion stops when the provisioned partitions run out, within about two days of the last successful provisioning.
@@ -35,6 +35,20 @@ The ServiceControl Management Utility (SCMU) and the PowerShell module can creat
 - **PowerShell:** pass `-PersistenceType PostgreSQL` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
 
 Neither tool sets `Database/Schema`, so instances they create use the default schema.
+
+## Database permissions
+
+Grant each role the following rights:
+
+| Role | Required rights |
+| --- | --- |
+| The role that runs setup | `CREATE` on the database, so that setup can create the schema. If the schema already exists, `USAGE` and `CREATE` on it instead. Setup creates the tables and indexes, and for Audit instances the first daily partitions, so this role owns them. |
+| The role an Error instance runs as | `USAGE` on the schema, and `SELECT`, `INSERT`, `UPDATE`, and `DELETE` on the tables in it. No sequence privileges are needed. |
+| The role an Audit instance runs as | Ownership of the Audit tables: the same role that runs setup, or a member of it. See the warning above. |
+
+An Error instance with no `Database/Schema` uses the connection's current schema, usually `public`. From PostgreSQL 15, only the database owner can create objects in `public` unless `CREATE` on it is granted, so the setup role needs `CREATE` on `public` or ownership of the database.
+
+When the same connection string is used for setup and normal operation, as the ServiceControl Management Utility and PowerShell do, that role needs the setup rights.
 
 ## Error instance configuration
 
