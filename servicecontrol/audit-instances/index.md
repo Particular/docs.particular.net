@@ -36,9 +36,15 @@ Data about audit messages is exposed via an HTTP API from a ServiceControl Error
 
 ## Persistence
 
-RavenDB is the default storage for ServiceControl Audit instances. See the [storage overview](/servicecontrol/storage/) for the available storage options.
+#if-version (,7)
+
+Each ServiceControl Audit instance stores its data in a RavenDB database.
+
+#end-if
 
 #if-version [7,)
+
+RavenDB is the default storage for ServiceControl Audit instances. See the [storage overview](/servicecontrol/storage/) for the available storage options.
 
 ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details.
 

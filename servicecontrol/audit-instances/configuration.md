@@ -143,6 +143,8 @@ include: sc-audit-corsallowanyorigin
 
 include: sc-audit-corsallowedorigins
 
+#if-version [7,)
+
 ## Storage
 
 RavenDB is the default Audit instance storage type.
@@ -164,6 +166,8 @@ include: sc-audit-database-commandtimeout
 
 
 include: sc-audit-storage-sql-outro
+
+#end-if
 
 
 ## Embedded database

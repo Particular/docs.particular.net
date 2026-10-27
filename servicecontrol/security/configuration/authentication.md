@@ -182,4 +182,4 @@ The following endpoints remain accessible without authentication to support API 
 | `/` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints/{endpoint}/audit-count` | GET | Audit | Service-to-service request |
-| `/api/environment` | GET | Audit | Service-to-service request |
+| `/api/environment` | GET | Audit | Service-to-service request, from ServiceControl 7 only |
