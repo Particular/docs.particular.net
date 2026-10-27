@@ -79,7 +79,7 @@ Error instances using file system message body storage also require the followin
 
 Audit instances using SQL storage require neither a local database path nor an external body storage path.
 
-When a PostgreSQL connection authenticates as the service account, that account must own the Audit tables, or be a member of the role that owns them, because the instance creates and drops daily partitions while running. See [Prepare the database](/servicecontrol/storage/postgresql/#prepare-the-database) for the PostgreSQL role requirements.
+When a PostgreSQL connection authenticates as the service account, that account must own the Audit tables, or be a member of the role that owns them, because the instance creates and drops daily partitions while running. See [database permissions](/servicecontrol/storage/postgresql/#database-permissions) for the PostgreSQL role requirements.
 
 ## Performance counters
 

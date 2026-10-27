@@ -24,18 +24,6 @@ Create a database before configuring the instance as ServiceControl does not cre
 
 Message body search is always enabled for SQL Server storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
 
-> [!IMPORTANT]
-> Run the instance setup process (`--setup`) before first use and after every upgrade. Setup applies the database migrations; the instance does not apply them at startup.
-
-Setup applies database migrations for both Error and Audit instances. For Error instances, setup also provisions the external message body store. See [database permissions](#database-permissions) for the rights setup and normal operation need. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
-
-The ServiceControl Management Utility (SCMU) and the PowerShell module can create SQL Server-backed Error and Audit instances:
-
-- **SCMU:** choose `SQL Server` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings.
-- **PowerShell:** pass `-PersistenceType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
-
-Neither tool sets `Database/Schema`, so instances they create use the default schema.
-
 ## Database permissions
 
 Grant each identity the following rights on the instance's database:
@@ -111,6 +99,35 @@ SERVICECONTROL_AUDIT_AUDITRETENTIONPERIOD=30
 
 See the [Audit instance settings reference](/servicecontrol/audit-instances/configuration.md#storage) for the complete reference.
 
-## Message bodies and operations
+## Run setup
 
-See the [external body storage overview](/servicecontrol/storage/external-body/) for Error-instance inline size, compression, and body retention settings. Follow the [storage backup and restore guidance](/servicecontrol/storage/#backup-and-restore) for database and message body backups; RavenDB-specific procedures do not apply.
+> [!IMPORTANT]
+> Run the instance setup process (`--setup`) before first use and after every upgrade. Setup applies the database migrations; the instance does not apply them at startup.
+
+Setup applies database migrations for both Error and Audit instances. For Error instances, setup also provisions the external message body store. See [database permissions](#database-permissions) for the rights setup and normal operation need. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+
+The ServiceControl Management Utility (SCMU) and the PowerShell module run setup when they create or upgrade an instance, and can create SQL Server-backed Error and Audit instances:
+
+- **SCMU:** choose `SQL Server` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings.
+- **PowerShell:** pass `-PersistenceType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+
+Neither tool sets `Database/Schema`, so instances they create use the default schema.
+
+## Verify the setup
+
+Setup logs `SQL Server database migration completed` for an Error instance, or `Audit database migration completed` for an Audit instance, and exits without an error. After the instance starts, check that no storage [custom checks](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring) report a failure in ServicePulse.
+
+## Troubleshooting
+
+- **Setup fails with "ServiceControl requires the SQL Server Full-Text Search feature":** install Full-Text Search on the server, then run setup again.
+- **Setup fails with a permission error:** grant the rights in [database permissions](#database-permissions), or create the schema in advance.
+- **Setup fails because "A primary instance and an audit instance cannot share a schema":** set a different `Database/Schema` for one of the instances. See [sharing a database](/servicecontrol/storage/#sharing-a-database).
+- **The instance does not start with "Maintenance mode is not supported":** set `MaintenanceMode` to `false`. Maintenance mode is only available with RavenDB storage.
+- **The ServiceControl Retention custom check fails:** check the instance log. A body store that refuses deletes stops failed-message retention; see [external message body storage operations](/servicecontrol/storage/external-body/#operations).
+- **Messages show without their bodies after a restore:** restore the database and the external message body store from the same point in time. See [backup and restore](/servicecontrol/storage/#backup-and-restore).
+
+## Next steps
+
+- For Error instances, [choose and configure an external message body store](/servicecontrol/storage/external-body/).
+- Plan [backup and restore](/servicecontrol/storage/#backup-and-restore) of the database and the message bodies together; RavenDB-specific procedures do not apply.
+- To deploy in containers, see the [Error instance](/servicecontrol/servicecontrol-instances/deployment/containers.md) and [Audit instance](/servicecontrol/audit-instances/deployment/containers.md) container guides.
