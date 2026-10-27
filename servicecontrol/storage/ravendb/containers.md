@@ -85,5 +85,5 @@ To apply the bundled license to the existing data, run the following command, re
 docker exec servicecontrol-db sh -c 'curl -s -X POST http://localhost:8080/admin/license/activate -H "Content-Type: application/json" --data-binary @/usr/lib/ravendb/servicecontrol-license.json'
 ```
 
-Then restart the Error and Audit instances. RavenDB stores the license with the data in the volume, so the license remains in place when the database container is restarted or replaced.
+Then restart the Error and Audit instances. RavenDB stores the license with the data in the volume, so the license remains in place when the database container is restarted or replaced by a new container that uses the same volume.
 #end-if
