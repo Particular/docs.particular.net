@@ -128,9 +128,7 @@ When forwarding to Elasticsearch through the [OpenTelemetry Collector](https://o
 
 This section applies only to instances using RavenDB storage.
 
-<!-- Follow-up: the RavenDB log file name format is documented inconsistently (yyyy-MM-dd-HH-mm.###.log versus <date>-<time>.<sequence>.txt). Verify against a running instance before documenting a format. -->
-
-When using an embedded RavenDB database, the database generates its own log messages into a different log file. This file is co-located with the ServiceControl logs.
+When using an embedded RavenDB database, the database generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. From ServiceControl 5, which embeds RavenDB 5 or later, the RavenDB log files are named `yyyy-MM-dd-HH-mm.###.log`, where `###` is a three-digit sequence number that starts at `000`.
 
 The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
 
