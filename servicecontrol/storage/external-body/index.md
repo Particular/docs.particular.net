@@ -46,7 +46,7 @@ See the [Error instance storage settings](/servicecontrol/servicecontrol-instanc
 
 Treat the database and external body store as a pair, and [back up and restore them together](/servicecontrol/storage/#backup-and-restore). Monitor body-store capacity and availability as well as database health.
 
-ServiceControl's retention sweeper deletes external bodies before removing their database records. If body deletion fails, the affected records remain for a later sweep. The runtime identity therefore needs delete access as well as read and write access.
+ServiceControl's retention process deletes a message's external body before it deletes the message's database record, starting with the oldest expired message. If a body cannot be deleted, the retention pass for failed messages stops at that message, and it and every newer expired failed message stay in the database until the next hourly run tries again from the same point. A body that keeps failing, for example because of a missing delete permission, stops failed-message retention entirely and the database keeps growing. After three failed runs in a row, the [**ServiceControl Retention**](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-sql-storage-retention) custom check reports the failure in ServicePulse. The identity the instance runs as needs read, write, and delete access to the body store.
 
 > [!WARNING]
 > Do not add storage cleanup rules, such as S3 Lifecycle rules or Azure Blob Storage lifecycle management policies, to the body store. ServiceControl deletes bodies itself when it removes their messages; rules that run on their own schedule delete bodies that ServiceControl still needs.
