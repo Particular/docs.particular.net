@@ -40,7 +40,6 @@ A message sent from headquarters to a store travels as follows:
 
 ![](gateway-headquarter-to-site-a.png "Physical view")
 
-
 ## Logically different sites
 
 Sites are _logically different_ when each site differs in behavior from others. In fact, they might also serve completely different business purposes.
@@ -72,7 +71,6 @@ The gateway supports the following features:
  * HTTP/HTTPS channel implementation.
  * Creation of additional channel types.
  * Listening to multiple channels of different types.
-
 
 ## Using the gateway
 
