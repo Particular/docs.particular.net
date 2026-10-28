@@ -16,7 +16,7 @@ Patches for components to update their dependencies to avoid references that hav
 |NServiceBus.Transport.PostgreSql|9.1.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.1)|
 |NServiceBus.Transport.SqlServer|9.1.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.1)|
 |ServiceControl|6.21.3|[The Download Page](https://particular.net/downloads)|
-|Particular.ServiceControl.Management|6.21.3|Update-Module -Name Particular.ServiceControl.Management -RequiredVersion 6.21.3|
+|Particular.ServiceControl.Management|6.21.3|`Update-Module -Name Particular.ServiceControl.Management -RequiredVersion 6.21.3`|
 |servicecontrol|6.21.3|[Docker Hub](https://hub.docker.com/r/particular/servicecontrol) or `docker pull particular/servicecontrol:6.21.3`|
 |servicecontrol-audit|6.21.3|[Docker Hub](https://hub.docker.com/r/particular/servicecontrol-audit) or `docker pull particular/servicecontrol-audit:6.21.3`|
 |servicecontrol-monitoring|6.21.3|[Docker Hub](https://hub.docker.com/r/particular/servicecontrol-monitoring) or `docker pull particular/servicecontrol-monitoring:6.21.3`|
