@@ -26,18 +26,13 @@ The minimal installation required to generate the usage report is:
 
 The following methods can be used to install these requirements:
 
-- [Installation options](#installation-options)
-- [Container Installation](#container-installation)
-  - [Cloud environments](#cloud-environments)
-- [Windows Installation](#windows-installation)
-  - [ServiceControl](#servicecontrol)
-    - [ServiceControl Management Utility (SCMU)](#servicecontrol-management-utility-scmu)
-    - [Powershell](#powershell)
-  - [ServicePulse](#servicepulse)
-    - [Integrated into ServiceControl Management Utility (SCMU)](#integrated-into-servicecontrol-management-utility-scmu)
-      - [New installations](#new-installations)
-      - [Upgrades](#upgrades)
-    - [Standalone](#standalone)
+- [Linux, Windows or cloud environments via Containers](#container-installation)
+  - ServiceControl and ServicePulse through [Containers](#container-installation)
+- [Windows Only](#windows-installation)
+  - ServiceControl through [ServiceControl Management Utility](#windows-installation-servicecontrol-servicecontrol-management-utility-scmu)
+  - ServiceControl through [Powershell](#windows-installation-servicecontrol-powershell)
+  - ServicePulse running in [an integrated mode from within ServiceControl Management Utility](#windows-installation-servicepulse-integrated-into-servicecontrol-management-utility-scmu)
+  - ServicePulse as a [standalone Windows service](#windows-installation-servicepulse-standalone)
 
 > [!NOTE]
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
