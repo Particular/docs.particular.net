@@ -1,7 +1,5 @@
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Logging.AddConsole();
-
 var endpointConfiguration = new EndpointConfiguration("Receiver");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");

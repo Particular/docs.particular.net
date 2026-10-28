@@ -2,8 +2,6 @@ using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Logging.AddConsole();
-
 var endpointConfiguration = new EndpointConfiguration("Sender");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
