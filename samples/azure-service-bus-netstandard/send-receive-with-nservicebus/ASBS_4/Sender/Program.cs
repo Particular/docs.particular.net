@@ -35,7 +35,7 @@ using (var cts = new CancellationTokenSource())
 
     try
     {
-        var number = 0;
+        var number = 1;
 
         while (true)
         {
