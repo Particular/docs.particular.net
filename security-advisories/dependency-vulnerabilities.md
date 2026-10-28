@@ -3,6 +3,9 @@ title: Dependency Vulnerabilities
 reviewed: 2026-07-31
 suppressRelated: true
 ---
+
+* [GHSA-2fmv-rv2c-59x7 (2026-10-28)](ghsa-2fmv-rv2c-59x7.md)
+  * Microsoft Security Advisory CVE-2026-70162 - .NET Denial of Service Vulnerability
 * [GHSA-23rf-6693-g89p (2026-07-30)](ghsa-23rf-6693-g89p.md)
   * Microsoft Security Advisory CVE-2026-50648 – .NET Denial of Service Vulnerability
 * [GHSA-8q5v-6pqq-x66h (2026-07-30)](ghsa-8q5v-6pqq-x66h.md)
