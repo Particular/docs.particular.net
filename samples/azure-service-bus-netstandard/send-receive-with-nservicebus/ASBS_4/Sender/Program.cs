@@ -41,9 +41,11 @@ using (var cts = new CancellationTokenSource())
 
         while (true)
         {
-            await messageSession.Send(new Ping { Round = number++ });
+            await messageSession.Send(new Ping { Round = number });
 
             Console.WriteLine($"Sent message #{number}");
+
+            number++;
 
             await Task.Delay(1_000, cts.Token);
         }
