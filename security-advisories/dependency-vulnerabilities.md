@@ -4,6 +4,8 @@ reviewed: 2026-07-31
 suppressRelated: true
 ---
 
+* [GHSA-846f-f764-76mx (2026-10-28)](ghsa-846f-f764-76mx.md)
+  * Microsoft Security Advisory CVE-2026-84008 - .NET Denial of Service Vulnerability
 * [GHSA-2fmv-rv2c-59x7 (2026-10-28)](ghsa-2fmv-rv2c-59x7.md)
   * Microsoft Security Advisory CVE-2026-70162 - .NET Denial of Service Vulnerability
 * [GHSA-23rf-6693-g89p (2026-07-30)](ghsa-23rf-6693-g89p.md)
