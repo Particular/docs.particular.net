@@ -13,7 +13,7 @@ redirects:
 Requires [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) (or higher) **or** [.NET Framework Version 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) (or higher).
 
 > [!NOTE]
-> [NServiceBus 8 is the last major version that supports .NET Framework](../upgrades/support-policy.md#extended-support).
+> [NServiceBus 8 is the last major version that supports .NET Framework](/nservicebus/upgrades/support-policy.md#extended-support).
 
 ## NServiceBus version 7.x
 
