@@ -6,13 +6,13 @@ component: Core
 versions: 'Core:[10.3,)'
 ---
 
-The Particular Service Platform collects usage information about running endpoints from a variety of sources.
+The Particular Service Platform collects usage information about running endpoints from a variety of sources:
 
-- **Broker**: For Azure Service Bus, Amazon SQS, SQL Server, PostgreSQL, and RabbitMQ transports the messaging infrastructure is queried directly
+- **Broker**: For Azure Service Bus, Amazon SQS, SQL Server, PostgreSQL, or RabbitMQ transports the messaging infrastructure is queried directly
 - **Audit**: When the installation includes a ServiceControl Audit instance, and endpoints are configured to audit processed messages
 - **Monitoring**: When the installation includes a ServiceControl Monitoring instance, and endpoints are configured to report monitoring data
 
-Endpoints running NServiceBus version 10.3 and above can be configured to track usage information and periodically report it directly to the Particular Service Platform. When information from this source is available, it is preferred over information from other sources.
+Endpoints running NServiceBus version 10.3 and above can also be configured to track usage information and periodically report it directly to the Particular Service Platform. When information from this source is available, it is preferred over information from other sources.
 
 To configure an NServiceBus endpoint to report usage information to the Particular Service Platform:
 
@@ -23,7 +23,7 @@ endpointConfiguration.ReportUsageInformationToServiceControl();
 > [!IMPORTANT]
 >This requires a ServiceControl Error instance running version 6.22 or above to process usage information sent by endpoints.
 
-By default, NServiceBus uses the default ServiceControl queue name: `Particular.ServiceControl`. If a different queue name is required:
+By default, NServiceBus uses the default ServiceControl queue name: `Particular.ServiceControl`. If ServiceControl uses a different [input queue](/servicecontrol/servicecontrol-instances/configuration#host-settings-servicecontrolinstancename) to the default then the endpoint can be configured using the following:
 
 ```csharp
 endpointConfiguration.ServiceControlErrorInstanceQueue("My.ServiceControl");
@@ -35,7 +35,7 @@ These messages contain:
 
 - A timestamp
 - The name of the endpoint
-- A count of successfully processed messages
+- A count of **successfully processed** messages
 
 ServiceControl aggregates this information for all endpoints and includes it in the usage report that is downloaded from ServicePulse at renewal time.
 
