@@ -1,7 +1,7 @@
 ---
 title: Accessing the ServiceControl database
 summary: How to get direct access to the database used by ServiceControl Error and Audit instances
-reviewed: 2026-04-20
+reviewed: 2026-06-01
 component: ServiceControl
 redirects:
   - servicecontrol/ravendb/accessing-database
@@ -46,7 +46,11 @@ In these versions, ServiceControl serves the database in-process and only expose
 
 When running in Maintenance Mode, a Windows ServiceControl instance will only run the database. The API will not be available, and messages will not be ingested from any queues. This is useful to be able to inspect and perform administrative functions on the database without any modifications from the application being possible.
 
-To enable maintenance mode:
+#if-version [7,)
+Maintenance mode is supported only with embedded RavenDB, where ServiceControl manages the database process. Error and Audit instances using an external RavenDB server do not start in maintenance mode. Stop the ServiceControl instance and access the external database directly instead, leaving the database server running.
+#end-if
+
+To enable maintenance mode with embedded RavenDB:
 
 1. Launch ServiceControl Management.
 2. Click the wrench <kbd> :wrench: </kbd> icon to open Advanced Options.
@@ -60,4 +64,8 @@ To enable maintenance mode:
 
 When deployed using containers, the database runs in a separate container than the ServiceControl instance. The database can be accessed at any time on port `8080` of the database container.
 
-The container equivalent of [maintenance mode](#windows-deployment-maintenance-mode) can be achieved by stopping the ServiceControl container while leaving the database container running.
+To perform database maintenance without ServiceControl modifying the database, stop the ServiceControl container while leaving the database container running.
+
+#if-version [7,)
+Do not enable `MaintenanceMode` on the ServiceControl container. Maintenance mode is not supported with an external RavenDB server, including one running in a separate container, and prevents the ServiceControl instance from starting.
+#end-if

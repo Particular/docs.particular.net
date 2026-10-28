@@ -1,7 +1,7 @@
 ---
 title: ServiceControl SQL Server Storage
 summary: Configure SQL Server storage for ServiceControl Error and Audit instances.
-reviewed: 2026-10-27
+reviewed: 2026-06-01
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -122,7 +122,7 @@ Setup logs `SQL Server database migration completed` for an Error instance, or `
 - **Setup fails with "ServiceControl requires the SQL Server Full-Text Search feature":** install Full-Text Search on the server, then run setup again.
 - **Setup fails with a permission error:** grant the rights in [database permissions](#database-permissions), or create the schema in advance.
 - **Setup fails because "A primary instance and an audit instance cannot share a schema":** set a different `Database/Schema` for one of the instances. See [sharing a database](/servicecontrol/storage/#sharing-a-database).
-- **The instance does not start with "Maintenance mode is not supported":** set `MaintenanceMode` to `false`. Maintenance mode is only available with RavenDB storage.
+- **The instance does not start with "Maintenance mode is not supported":** set `MaintenanceMode` to `false`. Maintenance mode is only available with embedded RavenDB storage. To perform database maintenance, stop the ServiceControl instance and access SQL Server directly.
 - **The ServiceControl Retention custom check fails:** check the instance log. A body store that refuses deletes stops failed-message retention; see [external message body storage operations](/servicecontrol/storage/external-body/#operations).
 - **Messages show without their bodies after a restore:** restore the database and the external message body store from the same point in time. See [backup and restore](/servicecontrol/storage/#backup-and-restore).
 

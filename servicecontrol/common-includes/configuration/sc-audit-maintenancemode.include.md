@@ -13,5 +13,5 @@ Run a RavenDB-backed [ServiceControl audit instance in maintenance mode](/servic
 | boolean | `False` |
 
 #if-version [7,)
-SQL Server and PostgreSQL storage do not support maintenance mode. An instance using either with this setting set to `true` does not start.
+Maintenance mode is supported only with embedded RavenDB. An instance using external RavenDB, SQL Server, or PostgreSQL with this setting set to `true` does not start. To perform database maintenance, stop the ServiceControl instance and access the external database directly.
 #end-if
