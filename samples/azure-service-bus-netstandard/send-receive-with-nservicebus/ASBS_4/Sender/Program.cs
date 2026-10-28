@@ -24,7 +24,7 @@ await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
-Console.WriteLine("Publishing messages... Press [Ctrl] + [C] to cancel");
+Console.WriteLine("Sending messages... Press [Ctrl] + [C] to cancel");
 
 using (var cts = new CancellationTokenSource())
 {
