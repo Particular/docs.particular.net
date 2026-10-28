@@ -6,7 +6,7 @@ builder.Logging.AddConsole();
 var endpointConfiguration = new EndpointConfiguration("Receiver");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
-var transport = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default));
+endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 endpointConfiguration.AuditProcessedMessagesTo("audit");
