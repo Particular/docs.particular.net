@@ -64,6 +64,8 @@ The `--setup-and-run` argument runs the setup process when the container starts,
 
 Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
+Do not use `--setup` or `--setup-and-run` with an [ingestion-only worker](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md). Run setup once using the normal instance.
+
 ### Skipping queue creation
 
 include: servicecontrol-container-skip-queue-creation

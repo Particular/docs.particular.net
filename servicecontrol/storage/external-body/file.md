@@ -24,6 +24,9 @@ include: sc-audit-messagebody-filesystem-dataspaceremainingthreshold
 Setup creates the configured directory if it does not exist. The setup identity must be able to create the directory. The runtime identity needs read, write, and delete permissions on it. The retention sweeper deletes body files before removing the corresponding database records.
 
 > [!WARNING]
+> When [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) run alongside the Error instance, the path must be a shared mount. The Error instance and every worker need permission to read, write, and delete message body files there. Otherwise, use Azure Blob Storage or Amazon S3.
+
+> [!WARNING]
 > Use a durable directory or volume. Message bodies stored on a temporary or ephemeral file system are lost when it is reset, for example when a container restarts.
 
 Setup does not check that the directory is writable: if the directory already exists but the runtime identity cannot write to it, setup succeeds and the instance fails to start up. In a container, the instance runs as a non-root user; see the container volume requirements for [Error instances](/servicecontrol/servicecontrol-instances/deployment/containers.md#volumes) and [Audit instances](/servicecontrol/audit-instances/deployment/containers.md#volumes).
