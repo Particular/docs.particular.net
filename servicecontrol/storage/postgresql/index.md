@@ -1,7 +1,7 @@
 ---
 title: ServiceControl PostgreSQL Storage
 summary: Configure PostgreSQL storage for ServiceControl Error and Audit instances.
-reviewed: 2026-06-01
+reviewed: 2026-10-29
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -72,6 +72,8 @@ SERVICECONTROL_ERRORRETENTIONPERIOD=15
 ```
 
 See the [Error instance settings reference](/servicecontrol/servicecontrol-instances/configuration.md#storage) for the complete reference.
+
+To share the ingestion load across several processes, see [Scaling out error ingestion](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md). Workers use this instance's database, schema, and message body store, and only this instance runs setup.
 
 ## Audit instance configuration
 
