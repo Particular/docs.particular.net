@@ -1,7 +1,7 @@
 ---
 title: Optimizing ServiceControl for use in different environments
 summary: Optimize ServiceControl installation and deployment for better performance; hardware, message throughput, plugin and performance considerations
-reviewed: 2025-04-03
+reviewed: 2026-10-28
 isLearningPath: true
 ---
 
@@ -13,7 +13,7 @@ Each capability and plugin should be considered carefully for each environment t
 
 Here are some considerations when installing and deploying ServiceControl for better performance.
 
-## Hardware & installation considerations:
+## Hardware & installation considerations
 
 Read the [general hardware recommendations](/servicecontrol/servicecontrol-instances/hardware.md) for more details.
 
@@ -25,7 +25,7 @@ In addition:
 
 ## Message throughput considerations
 
-Depending on the number of endpoints and message volume, audit messages can have a significant impact on performance. Turn off [message auditing](/nservicebus/operations/auditing.md) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServicePulse. If ServicePulse message visualizations are not in use, turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others.
+Depending on the number of endpoints and message volume, audit messages can have a significant impact on performance. Turn off [message auditing](/nservicebus/operations/auditing.md) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServicePulse. If ServicePulse message visualizations are not in use, turn off message auditing for each endpoint. Message auditing may be important for some endpoints but not others.
 
 > [!NOTE]
 > If message auditing is required without the use of ServicePulse, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl must be cleaned up manually.
@@ -34,11 +34,11 @@ Turn off [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it
 
 ## Plugin considerations
 
-Plugins are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
+Plugins are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue, which can delay the processing of each message and make ServiceControl less responsive.
 
 ### Heartbeats
 
-Not all endpoints are mission critical and need to be monitored with [heartbeats](/monitoring/heartbeats/) using the same SLA. For endpoints that are less critical, [adjust the heartbeat interval](/monitoring/heartbeats/install-plugin.md). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/servicecontrol-instances/configuration.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
+Not all endpoints are mission-critical and need to be monitored with [heartbeats](/monitoring/heartbeats/) using the same SLA. For endpoints that are less critical, [adjust the heartbeat interval](/monitoring/heartbeats/install-plugin.md). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/servicecontrol-instances/configuration.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts.
 
@@ -87,7 +87,7 @@ Microsoft recommends excluding database process executables from active antiviru
 - `ServiceControl.exe`
 - `ServiceControl.Audit.exe`
 
-The exclusion should be applied also to the `<InstallationPath>.old` and `<InstallationPath>.new` folders which are temporary locations created and deleted during ServiceControl instance upgrade process.
+The exclusion should also be applied to the `<InstallationPath>.old` and `<InstallationPath>.new` folders which are temporary locations created and deleted during ServiceControl instance upgrade process.
 
 > [!NOTE]
 > On Windows systems using Microsoft Defender, process exclusions apply to child processes. Since RavenDB runs as a subprocess in embedded mode, excluding the ServiceControl executable also excludes the embedded database process.
@@ -124,7 +124,7 @@ It is recommended to monitor the following metrics on the server hosting the Ser
 * Disk queue length
 * Disk read/write/total IO
 
-These metrics can be viewed using *Resource Monitor* but it is advised to use server monitoring since it stores historic data in a durable format.
+These metrics can be viewed using *Resource Monitor*, but it is advised to use server monitoring since it stores historic data in a durable format.
 
 ## Automated OS patching
 
