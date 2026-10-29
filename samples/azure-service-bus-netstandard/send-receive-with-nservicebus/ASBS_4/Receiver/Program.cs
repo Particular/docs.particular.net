@@ -2,7 +2,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Receiver");
 
-var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
 endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

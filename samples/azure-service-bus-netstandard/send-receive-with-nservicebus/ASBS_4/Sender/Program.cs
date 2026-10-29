@@ -4,7 +4,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Sender");
 
-var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
 var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
@@ -16,7 +16,7 @@ endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 
