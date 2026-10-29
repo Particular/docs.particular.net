@@ -56,6 +56,12 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
    8. [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) can be confirmed as on or off.
 
+#if-version [7,)
+
+Error and audit instances also have a **STORAGE TYPE** setting. `RavenDB` stores data in an embedded database on the server. `SQL Server` and `PostgreSQL` need a **DATABASE CONNECTION STRING** to an existing database, and an error instance also needs a **MESSAGE BODY STORAGE** choice: `File system`, `Azure Blob Storage`, or `Amazon S3`. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
+
+#end-if
+
 A monitoring instance differs from error and audit instances in its configuration:
 
 1. There is no configuration for storage as it only stores data in memory.

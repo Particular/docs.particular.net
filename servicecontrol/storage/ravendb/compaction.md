@@ -4,8 +4,8 @@ summary: How to compact the RavenDB database backing ServiceControl for RavenDB 
 reviewed: 2026-04-20
 component: ServiceControl
 redirects:
-  - servicecontrol/db-compaction
   - servicecontrol/db-compaction-v5
+  - servicecontrol/db-compaction
 ---
 
 If a ServiceControl instance's retention period, message throughput, or average message size have been reduced, it may be possible to compact the database. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.

@@ -1,3 +1,4 @@
+#if-version [,5)
 ### Raven/Esent/LogsPath
 
 
@@ -8,3 +9,4 @@ The path for the Esent logs on disk.
 | Type | Default value |
 | --- | --- |
 | string | `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs` |
+#end-if

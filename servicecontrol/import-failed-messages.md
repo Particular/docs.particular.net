@@ -1,7 +1,7 @@
 ---
 title: Re-processing messages that failed to be imported
 summary: How to attempt to re-process messages that failed to be imported
-reviewed: 2026-07-24
+reviewed: 2026-10-27
 redirects:
 - servicecontrol/import-failed-audit-messages
 - servicecontrol/import-failed-audits
@@ -17,13 +17,13 @@ Messages can fail to be imported into the ServiceControl database for the follow
 > [!NOTE]
 > Messages with corrupt (i.e. unreadable, not deserializable) header data will not be processed and will move to ServiceControl's 'error' queue.
 
-Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections.
+Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` tables (SQL Server), the `failed_audit_imports` and `failed_error_imports` tables (PostgreSQL), or the `FailedAuditImports` and `FailedErrorImports` collections (RavenDB).
 
 In addition, a log with the failure reason is written for the message in the `%ServiceControl/LogPath%` ([error instances](/servicecontrol/servicecontrol-instances/configuration.md#logging-servicecontrollogpath)/[audit instances](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditlogpath)) `\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServicePulse.
 
 ## Failed message custom check
 
-When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/) is marked as failed to bring the failed import(s) to the administrator's attention.
+When a failed import is detected in the ServiceControl database, the **Error Message Ingestion** (error instances) or **Audit Message Ingestion** (audit instances) [custom check](/servicecontrol/servicecontrol-instances/) is marked as failed to bring the failed import(s) to the administrator's attention.
 
 ## How to reimport
 
@@ -74,6 +74,23 @@ ServiceControl.Audit.exe --import-failed-audits
 
 ## Modify message data
 
-If the message still fails to import, it usually means that the message is malformed, and ServiceControl won't be able to ingest it. It may be possible to correct the message data manually to allow ServiceControl to import the message. To review the malformed messages, [access the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md) and inspect the `FailedAuditImports` or `FailedErrorImports` collection. Review the import failure logs to determine why the import continues to fail. If modifying the audit message data can resolve the issue, make the necessary changes to the message document to allow ServiceControl to import the message.
+If the message still fails to import, it usually means that the message is malformed, and ServiceControl won't be able to ingest it. Reimporting alone does not correct malformed message content. Review the import failure logs to determine why the import continues to fail.
+
+### RavenDB storage
+
+With RavenDB storage, it may be possible to correct the message data manually to allow ServiceControl to import the message. To review the malformed messages, [access the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md) and inspect the `FailedAuditImports` or `FailedErrorImports` collection. If modifying the message data can resolve the issue, make the necessary changes to the message document to allow ServiceControl to import the message.
 
 Once the data has been modified, the message can be [reimported again](#how-to-reimport).
+
+### SQL Server and PostgreSQL storage
+
+It may be possible to correct the message data manually to allow ServiceControl to import the message. The SQL database is managed externally; this guide does not describe how to access it. Failed import messages are stored in these tables:
+
+| Storage | Error instances | Audit instances |
+| --- | --- | --- |
+| SQL Server | `FailedErrorImports` | `FailedAuditImports` |
+| PostgreSQL | `failed_error_imports` | `failed_audit_imports` |
+
+Review the import failure logs to determine what needs to be corrected. For error instances, the message body may also be stored in the external body store. [Contact support](https://particular.net/support) for guidance on correcting the data.
+
+Once the data has been corrected, the message can be [reimported again](#how-to-reimport).

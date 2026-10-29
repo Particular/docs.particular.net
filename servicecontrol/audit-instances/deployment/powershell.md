@@ -30,6 +30,8 @@ Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/ser
 
 snippet: ps-new-audit-instance
 
+partial: sqlstorage
+
 include: powershell-new-configuration
 
 include: powershell-skip-queue-creation

@@ -1595,6 +1595,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 6 to 7
+      Url: servicecontrol/upgrades/6to7
     - Title: Version 6.19 to 6.20
       Url: servicecontrol/upgrades/6.19to6.20
     - Title: Version 6.4 to 6.5
@@ -1643,7 +1645,7 @@
       Url: servicecontrol/servicecontrol-in-practice
     - Title: Hardware Considerations
       Url: servicecontrol/servicecontrol-instances/hardware
-    - Title: Capacity planning
+    - Title: Capacity planning for RavenDB storage
       Url: servicecontrol/capacity-and-planning
     - Title: Security
       Url: servicecontrol/securing-servicecontrol
@@ -1682,10 +1684,10 @@
         Url: servicecontrol/servicecontrol-instances/configuration
       - Title: Transport configuration
         Url: servicecontrol/transports
+      - Title: Storage configuration
+        Url: servicecontrol/storage
       - Title: Configure the URI
         Url: servicecontrol/setting-custom-hostname
-      - Title: RavenDB location
-        Url: servicecontrol/storage/ravendb/configure-ravendb-location
       - Title: Logging
         Url: servicecontrol/logging
       - Title: Forwarding queues
@@ -1711,10 +1713,10 @@
           Url: servicecontrol/audit-instances/configuration
         - Title: Transport configuration
           Url: servicecontrol/transports
+        - Title: Storage configuration
+          Url: servicecontrol/storage
         - Title: Configure the URI
           Url: servicecontrol/setting-custom-hostname
-        - Title: RavenDB location
-          Url: servicecontrol/storage/ravendb/configure-ravendb-location
         - Title: Logging
           Url: servicecontrol/logging
         - Title: Forwarding queues
@@ -1746,6 +1748,19 @@
     Articles:
     - Title: Data expiration
       Url: servicecontrol/how-purge-expired-data
+    - Title: SQL Server
+      Url: servicecontrol/storage/sqlserver
+    - Title: PostgreSQL
+      Url: servicecontrol/storage/postgresql
+    - Title: External message body storage
+      Url: servicecontrol/storage/external-body
+      Articles:
+      - Title: File system
+        Url: servicecontrol/storage/external-body/file
+      - Title: Azure Blob Storage
+        Url: servicecontrol/storage/external-body/azure-blob
+      - Title: Amazon S3
+        Url: servicecontrol/storage/external-body/amazon-s3
     - Title: RavenDB
       Url: servicecontrol/storage/ravendb
       Articles:
@@ -1803,6 +1818,8 @@
         Url: servicecontrol/migrations/replacing-audit-instances/containers
     - Title: New persistence format
       Url: servicecontrol/migrations/new-persistence
+    - Title: RavenDB to SQL storage
+      Url: servicecontrol/migrations/ravendb-to-sql
   - Title: Troubleshooting
     Articles:
     - Title: ServiceControl troubleshooting

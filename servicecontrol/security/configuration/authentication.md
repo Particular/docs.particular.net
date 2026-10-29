@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Authentication Configuration
 summary: How to enable and configure authentication for ServiceControl
-reviewed: 2026-05-27
+reviewed: 2026-10-27
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide
@@ -182,3 +182,4 @@ The following endpoints remain accessible without authentication to support API 
 | `/` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints/{endpoint}/audit-count` | GET | Audit | Service-to-service request |
+| `/api/environment` | GET | Audit | Service-to-service request, from ServiceControl 7 only |

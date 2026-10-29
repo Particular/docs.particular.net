@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2026-06-19
+reviewed: 2026-10-27
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -30,7 +30,13 @@ Once a message arrives in the error queue, ServiceControl will publish a `Messag
  * The endpoint that received the message
  * The cause of the failure (i.e. the exception type and message)
  * The original message headers
- * The original message body (only if it is non-binary, smaller than 85 KB and full-text body indexing is enabled)
+ * The original message body, in some cases (see below)
+
+With RavenDB storage, the body is included only if it is non-binary, smaller than 85 KB, and full-text body indexing is enabled.
+
+#if-version [7,)
+With SQL Server or PostgreSQL storage, the body is included when it is a text body stored in the database. A text body larger than [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmaxbodysizetostore) is truncated to its first `MaxBodySizeToStore` bytes. Binary bodies are not included. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression).
+#end-if
 
 ### Subscribe
 
@@ -100,4 +106,6 @@ To avoid this situation, it is important to properly decommission an endpoint th
 
 ## Disabling integration 
 
-In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. This can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
+In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. In ServiceControl versions before 7, publishing is enabled by default and can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
+
+In ServiceControl version 7 and later, publishing is disabled by default. To publish events, set [`EnableExternalIntegrationsPublishing` to `true`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableexternalintegrationspublishing).

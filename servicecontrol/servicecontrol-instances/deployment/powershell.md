@@ -30,6 +30,8 @@ Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error
 
 snippet: ps-new-error-instance
 
+partial: sqlstorage
+
 include: powershell-new-configuration
 
 include: powershell-skip-queue-creation

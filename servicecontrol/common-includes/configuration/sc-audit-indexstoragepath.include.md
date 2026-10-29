@@ -1,3 +1,4 @@
+#if-version [,5)
 ### Raven/IndexStoragePath
 > [!NOTE]
 > Only supported on the RavenDB 3.5 storage engine. Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
@@ -16,3 +17,4 @@ The path for the indexes on disk.
 
 > [!NOTE]
 > This setting is not relevant when running an audit instance in a container.
+#end-if
