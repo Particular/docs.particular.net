@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Error instances
 summary: A guide to ServiceControl Error Instances. Learn how ServiceControl stores message data and about the available health monitoring options.
-reviewed: 2026-10-27
+reviewed: 2026-10-29
 component: ServiceControl
 related:
 - servicecontrol/import-failed-messages
@@ -28,7 +28,7 @@ Each ServiceControl Error instance stores its data in a RavenDB database.
 
 RavenDB is the default storage for ServiceControl Error instances. See the [storage overview](/servicecontrol/storage/) for the available storage options.
 
-ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. SQL storage requires external storage for message bodies. See [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) for configuration details.
+ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. SQL storage requires external storage for message bodies. See [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) for configuration details. With SQL storage, ingestion can also be [scaled out with ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md).
 
 #end-if
 

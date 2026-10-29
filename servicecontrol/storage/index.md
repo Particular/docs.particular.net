@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Storage
 summary: Storage options for ServiceControl Error and Audit instances.
-reviewed: 2026-10-27
+reviewed: 2026-10-29
 component: ServiceControl
 redirects:
   - servicecontrol/ravendb
@@ -53,6 +53,8 @@ Keep Error and Audit data apart, either in separate databases or in separate sch
 - **Separate schemas in one database:** simpler to provision, and permissions can still be scoped to each schema. SQL Server backs up and restores whole databases, not schemas, so restoring returns both instances' data to the same point in time. PostgreSQL `pg_dump` and `pg_restore` can select one schema with `-n`, but point-in-time recovery still restores the whole server.
 
 An Error instance and an Audit instance can use the same SQL Server or PostgreSQL database, but each needs its own schema. The default settings already do this: the Error instance uses the connection's default schema, and the Audit instance uses `sc_audit`. Setup fails if an Error instance and an Audit instance are configured to use the same schema.
+
+The schema rule applies to independent instances. Ingestion-only [workers for an Error instance](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) use that Error instance's schema and must not be given a schema of their own.
 
 ## External message body storage
 
