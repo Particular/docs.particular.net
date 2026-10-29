@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Storage Message Body Storage
 summary: Configure Azure Blob Storage for message bodies in SQL-backed ServiceControl Error instances.
-reviewed: 2026-10-27
+reviewed: 2026-10-29
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -26,6 +26,9 @@ include: sc-error-messagebody-azure-serviceuri
 ## Optional settings
 
 include: sc-error-messagebody-azure-containername
+
+> [!WARNING]
+> Audit instances with different retention periods must use separate containers, even when they share an Azure Storage account. Audit instances use the same default container name, so explicitly configure a different `ServiceControl.Audit/MessageBody/Azure/ContainerName` for each instance. Retention cleanup deletes blobs by time prefix across the container. An instance with shorter retention can delete bodies that another instance still needs, leaving message records visible but their bodies unavailable.
 
 include: sc-error-messagebody-azure-managedidentityclientid
 

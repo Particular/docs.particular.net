@@ -1,14 +1,14 @@
 ---
 title: External Message Body Storage
 summary: Choose and configure external message body storage for SQL-backed ServiceControl Error instances.
-reviewed: 2026-10-27
+reviewed: 2026-10-29
 component: ServiceControl
 versions: '[7,)'
 ---
 
 SQL Server and PostgreSQL storage separate large message bodies from the Error instance's database. The database stores message metadata and small text bodies; an external store holds larger bodies and every binary body. Configure an external store even if most messages have small bodies.
 
-This configuration applies only to SQL-backed Error instances. SQL-backed Audit instances do not require an external body store. RavenDB manages message body storage itself.
+The settings below use the Error instance configuration prefix. For Audit instances using external body storage, see the storage isolation guidance under [Operations](#operations). RavenDB manages message body storage itself.
 
 ## Storage providers
 
@@ -37,7 +37,7 @@ A text body larger than the limit is also stored externally, and its first `MaxB
 Bodies in the external store are compressed when they are at least `MessageBody/MinCompressionSize` bytes.
 
 > [!NOTE]
-> Audit instances have a setting with the same name, [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore), that works differently. For Audit instances it is a hard limit: larger bodies cannot be viewed. For Error instances, bodies larger than `ServiceControl/MaxBodySizeToStore` are still stored, in the external message body store.
+> Audit instances have a setting with the same name, [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore), that works differently. For Audit instances without an external body store, it is a hard limit: larger bodies cannot be viewed. For Error instances, bodies larger than `ServiceControl/MaxBodySizeToStore` are still stored, in the external message body store.
 
 include: sc-error-maxbodysizetostore
 
@@ -48,6 +48,9 @@ See the [Error instance storage settings](/servicecontrol/servicecontrol-instanc
 ## Operations
 
 Treat the database and external body store as a pair, and [back up and restore them together](/servicecontrol/storage/#backup-and-restore). Monitor body-store capacity and availability as well as database health.
+
+> [!WARNING]
+> Audit instances with different retention periods must not share an external body storage location. Retention cleanup deletes bodies by time prefix across the configured location, so an instance with shorter retention can delete bodies that another instance still needs. Message records can remain visible after their bodies are deleted. Configure a separate [Azure Blob Storage container](/servicecontrol/storage/external-body/azure-blob.md) or [S3 key prefix](/servicecontrol/storage/external-body/amazon-s3.md) for each Audit instance; the defaults do not isolate Audit instances from each other.
 
 ServiceControl's retention process deletes a message's external body before it deletes the message's database record, starting with the oldest expired message. If body deletion fails, the affected records remain for a later sweep. The runtime identity therefore needs delete access as well as read and write access. After three failed runs in a row, the [**ServiceControl Retention**](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-sql-storage-retention) custom check reports the failure in ServicePulse.
 

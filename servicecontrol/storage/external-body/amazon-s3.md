@@ -1,7 +1,7 @@
 ---
 title: Amazon S3 Message Body Storage
 summary: Configure Amazon S3 storage for message bodies in SQL-backed ServiceControl Error instances.
-reviewed: 2026-10-27
+reviewed: 2026-10-29
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -22,6 +22,9 @@ include: sc-error-messagebody-s3-bucketname
 ## Optional settings
 
 include: sc-error-messagebody-s3-keyprefix
+
+> [!WARNING]
+> Audit instances with different retention periods must use separate key prefixes when they share an S3 bucket. Audit instances use the same default key prefix, so explicitly configure a different `ServiceControl.Audit/MessageBody/S3/KeyPrefix` for each instance. Retention cleanup deletes objects by time prefix across the configured key prefix. An instance with shorter retention can delete bodies that another instance still needs, leaving message records visible but their bodies unavailable.
 
 include: sc-error-messagebody-s3-region
 
