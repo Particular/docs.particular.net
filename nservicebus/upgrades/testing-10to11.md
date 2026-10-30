@@ -33,7 +33,7 @@ Not affected: tests that only check whether a timeout fires and tests with sagas
 
 Before: `AdvanceTime` handled only the timeouts that were already scheduled when the call started and due by the end of the advanced time. A timeout requested by a timeout handler was never handled in the same call, even when it was due within the advanced time. It waited for the next call.
 
-After: `AdvanceTime` keeps handling timeouts until none is due by the end of the advanced time. A timeout requested by a timeout handler is scheduled from the due time of the timeout that requested it and handled in the same call when it is due.
+After: `AdvanceTime` keeps handling timeouts until none are due by the end of the advanced time. A timeout requested by a timeout handler is scheduled from the due time of the timeout that requested it and handled in the same call when it is due.
 
 For a saga that requests a new 10-minute reminder from each reminder, the three `AdvanceTime` calls in the following test return 1, 1, and 1 results in version 10, and 6, 0, and 0 results in version 11:
 
