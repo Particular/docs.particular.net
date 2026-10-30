@@ -12,7 +12,7 @@ To share the clock with other test doubles or to start at a specific time, creat
 
 snippet: TestableSagaCtorSharedTimeProvider
 
-The provider is available as `TestableSaga.TimeProvider`, and `CurrentTime` reads from it. While `AdvanceTime` handles a timeout, the provider reports the due time of that timeout. When all timeouts are handled, the provider is at the requested end time:
+The provider is available as `TestableSaga.TimeProvider`, and `CurrentTime` reads from it. While `AdvanceTime` handles a timeout, the provider reports the due time of that timeout, or the current time for an overdue timeout. When all timeouts are handled, the provider is at the requested end time:
 
 snippet: TestableSagaTimeProviderDueTime
 

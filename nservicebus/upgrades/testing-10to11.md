@@ -16,22 +16,22 @@ NServiceBus.Testing version 11 changes how `TestableSaga` handles time. The chan
 | Scenario | Affected | What to do |
 | --- | --- | --- |
 | Tests that chain timeouts, such as a recurring reminder saga, and assert the number of results of each `AdvanceTime` call | Yes | Update the expected counts, or [advance time in smaller steps](#chained-timeouts-are-handled-in-the-same-advancetime-call) |
-| Tests that only check whether a timeout fires, use a single `AdvanceTime` call, or do not chain timeouts | No | Nothing |
+| Tests that only check whether a timeout fires and do not chain timeouts | No | Nothing |
 | Tests with timeouts requested for a time in the past | Yes | Expect the timeout to be handled at `CurrentTime`, and follow-up timeouts to count from then |
 | Tests that pass a negative `TimeSpan` to `AdvanceTime` | Yes | Remove the call. It now throws `ArgumentOutOfRangeException` |
 | Tests that assert `TargetInvocationException` for a saga handler that throws synchronously | Yes | Assert the original exception type |
 | Tests that depend on timeouts being lost after a canceled `AdvanceTime` call or a failing timeout handler | Yes | Expect the remaining timeouts in the next `AdvanceTime` call |
 | Timeout handlers that keep requesting timeouts that are already due | Yes | Fix the handler or the test. The call now throws `InvalidOperationException` |
-| Projects that reference an older version of `Microsoft.Extensions.TimeProvider.Testing` | Yes | [Update the package](#time-provider-package-dependency) to version 10.11.0 or later |
+| Projects that reference an older version of `NServiceBus` or `Microsoft.Extensions.TimeProvider.Testing` | Yes | [Update the packages](#package-dependencies) to the minimum versions |
 | Tests of handlers, behaviors, and message session operations | No | Nothing |
 
 ## Chained timeouts are handled in the same AdvanceTime call
 
 Affected: scenario tests in which a timeout handler requests another timeout, and that assert the number of results returned by `AdvanceTime`. A saga that requests the next reminder from each reminder is a typical example.
 
-Not affected: tests that only check whether a timeout fires, tests that call `AdvanceTime` once, and tests with sagas that do not chain timeouts.
+Not affected: tests that only check whether a timeout fires and tests with sagas that do not chain timeouts. Calling `AdvanceTime` only once does not avoid the change, because the chained timeouts are now handled in that call.
 
-Before: `AdvanceTime` handled only the timeouts that were due when the call started. A timeout requested by a timeout handler was never handled in the same call, even when it was due within the advanced time. It waited for the next call.
+Before: `AdvanceTime` handled only the timeouts that were already scheduled when the call started and due by the end of the advanced time. A timeout requested by a timeout handler was never handled in the same call, even when it was due within the advanced time. It waited for the next call.
 
 After: `AdvanceTime` keeps handling timeouts until none is due by the end of the advanced time. A timeout requested by a timeout handler is scheduled from the due time of the timeout that requested it and handled in the same call when it is due.
 
@@ -91,13 +91,13 @@ Affected: tests that cancel `AdvanceTime` or let a timeout handler throw, and th
 
 Before: `AdvanceTime` removed all due timeouts from storage before it handled the first one. When the call was canceled or a timeout handler threw, the timeouts that had not been handled were lost. Later calls never handled them.
 
-After: each timeout is removed right before it is handled. The remaining timeouts stay stored, and the next `AdvanceTime` call handles them when they are due. A timeout whose handler threw is not retried. After a cancellation or a failure, `CurrentTime` stays at the due time of the last timeout that started.
+After: each timeout is removed right before it is handled. The remaining timeouts stay stored, and the next `AdvanceTime` call handles them when they are due. A timeout whose handler threw is not retried. After a cancellation or a failure, `CurrentTime` stays at the time the last timeout that started was handled. For an overdue timeout, that is the current time and not its due time.
 
 To update a test that relied on lost timeouts, expect the remaining timeouts in the results of the next `AdvanceTime` call. To start with no stored timeouts, create a new `TestableSaga`.
 
 ## Runaway timeouts throw an exception
 
-Affected: tests with timeout handlers that keep requesting timeouts that are already due, for example with a zero delay.
+Affected: tests with timeout handlers that keep requesting timeouts that are already due, for example with a zero delay. Tests that schedule more than 1,000 timeouts for the same time are also affected, even when no handler requests a timeout.
 
 Before: such a handler produced one result per `AdvanceTime` call.
 
@@ -105,15 +105,19 @@ After: `AdvanceTime` handles the new timeouts in the same call and throws an `In
 
 To update a test, fix the handler so that it stops requesting due timeouts, or use a delay greater than zero.
 
-## Time provider package dependency
+## Package dependencies
+
+NServiceBus.Testing version 11 requires NServiceBus version 10.2.9 or later. Version 10 required 10.2.0 or later.
 
 `TestableSaga` is backed by a `FakeTimeProvider`. NServiceBus.Testing version 11 depends on the [`Microsoft.Extensions.TimeProvider.Testing`](https://www.nuget.org/packages/Microsoft.Extensions.TimeProvider.Testing) package, version 10.11.0 or later. The package is restored as a transitive dependency, so no package reference is needed to use `TestableSaga`. Projects that reference an older version of the package, for example through central package management, must update it. Tests that create their own `FakeTimeProvider` use the same package.
 
 ## New TestableSaga members
 
-The following additions do not break existing tests:
+The following additions are source compatible with existing tests, with one exception that follows the list:
 
 - A `TestableSaga` constructor that takes a `Func<TimeProvider, TSaga>` factory and an optional `FakeTimeProvider`.
 - A `TestableSaga.TimeProvider` property.
 
-The existing constructor and `CurrentTime` keep working. `CurrentTime` now reads from the time provider. See [using a time provider](/nservicebus/testing/saga-scenario-testing.md#using-a-time-provider) for details.
+A call that passes a `null` literal as the only constructor argument no longer compiles, because the call is ambiguous (CS0121). Omit the argument or cast it to `Func<TSaga>`.
+
+The existing constructor and `CurrentTime` keep working. `CurrentTime` now reads from the time provider. See [saga scenario testing](/nservicebus/testing/saga-scenario-testing.md) for details.
