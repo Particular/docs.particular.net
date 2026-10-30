@@ -222,14 +222,14 @@ This command takes only the [common options](#common-options).
 
 ### `queue validate-delivery-limit`
 
-Use this command to validate that a queue is correctly configured to have an unlimited delivery limit, and attempt to create a policy if it is not.
+Use this command to validate that a quorum queue has the delivery limit of `100000` that the transport expects, and attempt to create a policy if it does not.
 
 ```bash
 rabbitmq-transport queue validate-delivery-limit <queueName> [options]
 ```
 
 > [!NOTE]
-> The credentials used for the management API need [policymaker permissions](https://www.rabbitmq.com/docs/management#permissions) to create the policy, and creating it requires RabbitMQ version 4.0 or above. See [delivery limit validation](connection-settings.md#delivery-limit-validation) for background on why the limit matters.
+> The credentials used for the management API need [policymaker permissions](https://www.rabbitmq.com/docs/management#permissions) to create the policy, and creating it requires RabbitMQ version 4.0 or above. Because the command only needs these permissions when it creates a policy, it can be run from a deployment pipeline so that the endpoints themselves can use [read-only management API access](connection-settings.md#configuring-rabbitmq-management-api-access-minimum-management-api-permissions). See [delivery limit validation](connection-settings.md#delivery-limit-validation) for background on why the limit matters.
 
 #### Arguments
 
