@@ -74,3 +74,5 @@ public sealed class UnsubscribeService(IMessageSession messageSession) : Backgro
 ```
 
 The service runs every time the endpoint starts. Unsubscribing from an event the subscriber isn't subscribed to has no effect, so the code is safe to keep. Once the endpoint has started in every environment where the subscription existed, you can remove the code.
+
+Unsubscribing prevents future events from being sent to the subscriber's input queue, but it cannot remove any messages that have already been send to the input queue. So, before removing the handler, consider what to do with events in the input queue that haven't been processed yet.
