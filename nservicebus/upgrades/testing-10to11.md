@@ -9,9 +9,6 @@ related:
 isUpgradeGuide: true
 ---
 
-> [!TIP]
-> This is an upgrade guide for a version of NServiceBus.Testing that has not yet been released. It describes the changes in version 11.0.0-alpha.1.
-
 NServiceBus.Testing version 11 changes how `TestableSaga` handles time. The changes can make existing [saga scenario tests](/nservicebus/testing/saga-scenario-testing.md) fail even though the saga itself is correct. Handler, behavior, and message session tests are not affected.
 
 ## Scenario impact summary
@@ -110,7 +107,7 @@ To update a test, fix the handler so that it stops requesting due timeouts, or u
 
 ## Time provider package dependency
 
-`TestableSaga` is backed by a `FakeTimeProvider`. NServiceBus.Testing version 11 depends on the `Microsoft.Extensions.TimeProvider.Testing` package, version 10.11.0 or later. The package is restored as a transitive dependency. Projects that reference an older version of the package must update it.
+`TestableSaga` is backed by a `FakeTimeProvider`. NServiceBus.Testing version 11 depends on the [`Microsoft.Extensions.TimeProvider.Testing`](https://www.nuget.org/packages/Microsoft.Extensions.TimeProvider.Testing) package, version 10.11.0 or later. The package is restored as a transitive dependency, so no package reference is needed to use `TestableSaga`. Projects that reference an older version of the package, for example through central package management, must update it. Tests that create their own `FakeTimeProvider` use the same package.
 
 ## New TestableSaga members
 

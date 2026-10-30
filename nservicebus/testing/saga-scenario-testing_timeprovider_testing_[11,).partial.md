@@ -2,6 +2,8 @@
 
 A saga that reads the current time should take a `TimeProvider` as a dependency instead of calling `DateTime.UtcNow`. `TestableSaga` is backed by a [`FakeTimeProvider`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.time.testing.faketimeprovider) from the `Microsoft.Extensions.TimeProvider.Testing` package, so the time the saga reads is the time that `AdvanceTime` moves. Timers that other code creates on the same provider fire in order as time advances.
 
+NServiceBus.Testing depends on `Microsoft.Extensions.TimeProvider.Testing`, version 10.11.0 or later, which is restored as a transitive dependency. A test project only needs its own reference to the package when it must pin a different version, for example with central package management.
+
 The factory overload receives the `FakeTimeProvider` that the testable saga creates. It starts at `DateTimeOffset.UtcNow`:
 
 snippet: TestableSagaCtorTimeProvider
