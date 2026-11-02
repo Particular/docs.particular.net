@@ -32,7 +32,7 @@ When audit messages are spread across [multiple audit instances](/servicecontrol
 
 1. Pick an audit instance and [disable audit message ingestion](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrol-auditingestauditmessages) by setting `ServiceControl.Audit/IngestAuditMessages` to `false`. The instance keeps serving its data to ServicePulse but no longer adds documents to its database and indexes. With competing consumers, the other audit instances keep ingesting from the audit queue.
 1. Upgrade the instance. At start-up, RavenDB starts building the replacement indexes.
-1. Wait until the rebuild completes. In RavenDB Studio, the **List of Indexes** must no longer show `ReplacementOf/<index>` entries, and the [stale indexes](/servicecontrol/troubleshooting.md#stale-indexes) custom check must pass. See [accessing the ServiceControl database](/servicecontrol/ravendb/accessing-database.md) for how to open RavenDB Studio.
+1. Wait until the rebuild completes. In RavenDB Studio, the **List of Indexes** must no longer show `ReplacementOf/<index>` entries, and the [stale indexes](/servicecontrol/troubleshooting.md#stale-indexes) custom check must pass. See [accessing the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md) for how to open RavenDB Studio.
 1. Enable ingestion again by setting `ServiceControl.Audit/IngestAuditMessages` to `true`, or by removing the setting, and restart the instance.
 1. Repeat with the next audit instance.
 
@@ -40,7 +40,7 @@ Start with the smallest instance to estimate how long the rebuild takes on the l
 
 ### Reducing the database size before rebuilding a locked index
 
-When the index is [locked](/servicecontrol/ravendb/search-engine.md#migrating-existing-indexes-to-lucene-lock-the-index), the upgrade does not apply the new definition and the index is not rebuilt until it is unlocked. As an alternative to the procedure above, the rebuild can be postponed until a large part of the database has been purged, which makes the rebuild shorter. For each audit instance, one at a time:
+When the index is [locked](/servicecontrol/storage/ravendb/search-engine.md#migrating-existing-indexes-to-lucene-lock-the-index), the upgrade does not apply the new definition and the index is not rebuilt until it is unlocked. As an alternative to the procedure above, the rebuild can be postponed until a large part of the database has been purged, which makes the rebuild shorter. For each audit instance, one at a time:
 
 1. [Disable audit message ingestion](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrol-auditingestauditmessages) by setting `ServiceControl.Audit/IngestAuditMessages` to `false`, and upgrade the instance.
 1. Wait until a significant amount of audit messages has been purged because their [retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod) expired. Expired messages are deleted while ingestion is disabled.
@@ -50,7 +50,7 @@ When the index is [locked](/servicecontrol/ravendb/search-engine.md#migrating-ex
 1. Enable ingestion again by setting `ServiceControl.Audit/IngestAuditMessages` to `true`, or by removing the setting, and restart the instance.
 1. Repeat with the next audit instance.
 
-The instance is not ingesting for a longer time, up to the full retention period. Messages that have been purged are no longer available in ServicePulse. On versions 6.20.0 and 6.21.0, the rebuild resets an index that was migrated to Lucene to Corax, see [Index reset to Corax after unlocking](/servicecontrol/ravendb/search-engine.md#index-reset-to-corax-after-unlocking).
+The instance is not ingesting for a longer time, up to the full retention period. Messages that have been purged are no longer available in ServicePulse. On versions 6.20.0 and 6.21.0, the rebuild resets an index that was migrated to Lucene to Corax, see [Index reset to Corax after unlocking](/servicecontrol/storage/ravendb/search-engine.md#index-reset-to-corax-after-unlocking).
 
 > [!NOTE]
 > When each audit instance ingests from its own audit queue, for example with [split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues), messages build up in the queue of the instance that has ingestion disabled until ingestion is enabled again. Ensure the queue does not run out of storage space. The same applies to an environment with a single audit instance.
