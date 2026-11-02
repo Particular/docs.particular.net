@@ -113,8 +113,6 @@ An event will also be published and displayed in the ServicePulse dashboard with
 
 To avoid this situation, it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this, [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe from all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
 
-## Disabling integration
+## Enabling publishing
 
-In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. In ServiceControl versions before 7, publishing is enabled by default and can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
-
-In ServiceControl version 7 and later, publishing is disabled by default. To publish events, set [`EnableExternalIntegrationsPublishing` to `true`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableexternalintegrationspublishing).
+In ServiceControl version 7 and later, publishing is disabled by default. To publish events, set [`EnableExternalIntegrationsPublishing` to `true`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableexternalintegrationspublishing). Leave publishing disabled in systems that have no subscribers for ServiceControl events, to avoid unneeded traffic to the broker.
