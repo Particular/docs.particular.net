@@ -1,7 +1,7 @@
 ---
 title: Saga scenario testing
 summary: Develop service layers and long-running processes using test-driven development.
-reviewed: 2025-05-30
+reviewed: 2026-10-30
 component: Testing
 versions: '[7.4,)'
 related:
@@ -79,6 +79,10 @@ snippet: TestableSagaAdvanceTime
 Need custom `TestableMessageHandlerContext` per timeout? Use the overload:
 
 snippet: TestableSagaAdvanceTimeParams
+
+partial: advancetime
+
+partial: timeprovider
 
 ## Simulating external handlers
 
