@@ -56,14 +56,6 @@ By default, audit data is retained for 7 days. [This retention period can be cus
 
 include: ravendb-exclusive-use-warning
 
-### RavenDB versions used
-
-This section applies only to instances using RavenDB storage.
-
-In ServiceControl.Audit version 4.26 and above new instances use RavenDB version 5. Instances created by version 4.25 and below use RavenDB version 3.5.
-
-Upgrading ServiceControl.Audit instances to version 4.26 or higher does not change the database version. Instances using RavenDB version 3.5, when upgraded to the newest version, will still use RavenDB version 3.5. For more details see [upgrade guide to new persistence format](/servicecontrol/migrations/new-persistence.md)
-
 ## Notifications
 
 Each ServiceControl Audit instance sends notification messages to a ServiceControl Error instance.

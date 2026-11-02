@@ -228,9 +228,6 @@ include: sc-audit-dbpath
 include: sc-audit-ravendbloglevel
 
 
-include: sc-audit-indexstoragepath
-
-
 ## Logging
 
 
@@ -254,9 +251,6 @@ include: sc-audit-servicecontrol-ingestauditmessages
 
 
 include: sc-audit-expirationprocesstimerinseconds
-
-
-include: sc-audit-expirationprocessbatchsize
 
 
 include: sc-audit-auditretentionperiod
@@ -317,6 +311,3 @@ include: sc-audit-dataspaceremainingthreshold
 
 
 include: sc-audit-minimumstorageleftrequiredforingestion
-
-
-include: sc-audit-esent-logspath

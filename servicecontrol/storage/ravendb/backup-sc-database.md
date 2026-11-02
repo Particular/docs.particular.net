@@ -5,43 +5,7 @@ reviewed: 2026-09-18
 redirects:
   - servicecontrol/backup-sc-database
 ---
-ServiceControl uses RavenDB for data storage. To backup or restore the database instance, follow these procedures:
-
-## Instances using RavenDB 5
-
-> [!NOTE]
-> Applies to ServiceControl 4.26.0 or newer instances using the RavenDB 5 engine
-
-For ServiceControl instances using RavenDB 5, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
-
-## Instances using RavenDB 3.5
-
-> [!NOTE]
-> Applies to:
-> * ServiceControl 4.26.0 or newer instances using the RavenDB 3.5 engine
-> * ServiceControl 4.25.x or lower
-
-### Backup
-
-For ServiceControl instances using RavenDB 3.5, the following steps outline how to perform a data backup:
-
- 1. Open ServiceControl Management to view the list of ServiceControl service instances
- 1. Stop the service using the action icons
-   - For extra safety consider temporarily Disabling the service in the Windows Services Management Console (Run `services.msc`)
- 1. Click the link under data path to go to the data directory
- 1. Copy or archive the contents of the data directory
- 1. Start the service again once the copy is complete
-   - If the services was temporarily disabled restore it Automatic in the Windows Services Management Console (Run `services.msc`)
-
-### Restore
-
- 1. Open ServiceControl Management to view the list of ServiceControl service instances
- 1. Stop the service from the action icons
-   - For extra safety consider temporarily Disabling the service in the Windows Services Management Console (Run `services.msc`)
- 1. Click the link under data path to go to the data directory
- 1. Replace the contents of this directory with the previously copied data
- 1. Start the service again once the copy is complete
-   - If the services was temporarily disabled restore it Automatic in the Windows Services Management Console (Run `services.msc`)
+To back up or restore the RavenDB database used by ServiceControl, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
 
 ## Important notes and restrictions
 

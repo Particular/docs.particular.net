@@ -257,12 +257,6 @@ include: sc-error-dbpath
 include: sc-error-ravendbloglevel
 
 
-include: sc-error-indexstoragepath
-
-
-include: sc-error-esent-logspath
-
-
 ## Logging
 
 
@@ -286,9 +280,6 @@ include: sc-error-allowmessageediting
 
 
 include: sc-error-expirationprocesstimerinseconds
-
-
-include: sc-error-expirationprocessbatchsize
 
 
 include: sc-error-errorretentionperiod

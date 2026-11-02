@@ -75,23 +75,6 @@ Some transports have access controls built into them. Ensure the instance has su
  1. The service account has the logon as a service privilege.
  1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
 
-## Service fails to start: EsentInstanceUnavailableException
-
-_ServiceControl 4.x and below only._
-
-If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](storage/ravendb/configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
-
-## Service fails to start: EsentDatabaseDirtyShutdownException
-
-_ServiceControl 4.x and below only._
-
-If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
-
- 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](storage/ravendb/configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
- 1. Run `esentutl /r RVN /l "logs"` to run Recovery (bringing all databases to a clean-shutdown state) and wait for it to finish
- 1. Run `esentutl /p Data` to run Repair (Repairs a corrupted or damaged database) and wait for it to finish
- 1. Restart ServiceControl
-
 ## Service fails to start: SqlException certificate chain not trusted
 
 If ServiceControl fails to start and the logs contain the following exception, then ServiceControl is not able to connect to the SQL Server instance.

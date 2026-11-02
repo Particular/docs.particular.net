@@ -37,7 +37,7 @@ In order to continue using the single-topic topology, the topic name has to be s
 
 The new topology uses the event type's full name as the topic name to which an event is published, e.g., `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in JSON](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Topology` application setting or `ServiceControl_Transport_ASBS_Topology` environment variable.
 
-Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint), the following ServiceControl-specific options are available in versions 4.4 and above:
+Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint), the following ServiceControl-specific options are available:
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
@@ -46,7 +46,7 @@ The `QueueLengthQueryDelayInterval` option, which applies only to the Monitoring
 
 ### Enabling Managed Identity
 
-As of version 4.21.8 of ServiceControl, the following options can be used to enable [Managed Identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
+The following options can be used to enable [Managed Identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
 * Setting the connection string to a [fully-qualified namespace](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusclient.fullyqualifiednamespace) (eg. `my-namespace.servicebus.windows.net`)
   * With this setting, a [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) will be used.
@@ -108,7 +108,7 @@ Usage reporting uses the certificate only when the transport connection string i
 
 ### Enabling Partitioned Entities
 
-As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entities can be enabled by adding the following connection string parameter:
+Support for partitioned entities can be enabled by adding the following connection string parameter:
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
@@ -174,7 +174,7 @@ RabbitMQ contains different `TransportType` options based on the topology and qu
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.ClassicConventionalRouting` |
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.ClassicDirectRouting` |
 
-In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md), the following options are available in versions 4.4 and above:
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md), the following options are available:
 
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-certificate-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
@@ -221,7 +221,7 @@ Data Source=<SQLInstance>;Initial Catalog=nservicebus;Integrated Security=True;Q
 
 ## PostgreSQL
 
-In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration), the following ServiceControl-specific options are available in versions 5.10 and above:
+In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration), the following ServiceControl-specific options are available:
 
 * `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.

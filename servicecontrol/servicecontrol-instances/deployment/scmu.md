@@ -14,10 +14,6 @@ include: portable-application-note
 
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
-#if-version [,5)
-After installation, there is no ServiceControl instance running yet. Instances can be installed, upgraded, and removed using the ServiceControl Management Utility. This utility is launched as the final step in the installation process and is also available via the Windows start menu.
-#end-if
-
 ## Planning
 
 > [!NOTE]
@@ -133,14 +129,3 @@ If the option to delete the database/log folders was not selected when removing 
 
 > [!NOTE]
 > If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
-
-#if-version [,5)
-
-### Uninstall the ServiceControl Management Utility
-
-To uninstall the ServiceControl Management Utility, use the `Apps & features` settings in Windows.
-
-> [!NOTE]
-> Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
-
-#end-if

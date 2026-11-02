@@ -92,19 +92,7 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 
 Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath), it's possible to store the embedded RavenDB index files on a separate disk.
 
-#if-version [5,)
-
 Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
-
-#end-if
-#if-version [,5)
-
-> [!NOTE]
-> Only applies to instances that use the RavenDB 3.5 storage engine
-
-Use the [`Raven/IndexStoragePath`](/servicecontrol/servicecontrol-instances/configuration.md?version=servicecontrol_4#storage-ravenindexstoragepath) setting to change the index storage location.
-
-#end-if
 
 ### Azure disk limitations
 

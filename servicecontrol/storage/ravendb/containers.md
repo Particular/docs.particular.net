@@ -2,7 +2,6 @@
 title: Managing ServiceControl RavenDB instances via Containers
 reviewed: 2026-10-27
 component: ServiceControl
-versions: '[5,)'
 redirects:
   - servicecontrol/ravendb/containers
   - servciecontrol/ravendb/deployment/containers
@@ -22,22 +21,12 @@ The NServiceBus license covers the license for the embedded RavenDB that ships w
 
 This minimal example creates a database container using `docker run`:
 
-#if-version [5, 6)
-```shell
-docker run -d --name servicecontrol-db \
-    -v db-config:/opt/RavenDB/config \
-    -v db-data:/opt/RavenDB/Server/RavenData \
-    particular/servicecontrol-ravendb:latest
-```
-#end-if
-#if-version [6, )
 ```shell
 docker run -d --name servicecontrol-db \
     -v db-config:/etc/ravendb \
     -v db-data:/var/lib/ravendb/data \
     particular/servicecontrol-ravendb:latest
 ```
-#end-if
 
 Once the database container is running, the connection string `http://servicecontrol-db:8080` can be used for the `RAVENDB_CONNECTIONSTRING` value for an [Error instance](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [Audit instance](/servicecontrol/audit-instances/deployment/containers.md).
 
@@ -53,12 +42,7 @@ Set this variable on the Error or Audit container to the URL of its RavenDB serv
 
 ## Required settings
 
-#if-version [5, 6)
-A volume must be mounted to `/opt/RavenDB/Server/RavenData` to provide persistent storage for database contents between container updates. Failure to specify a path for the volume will result in loss of all data when the container is removed.
-#end-if
-#if-version [6,)
 A volume must be mounted to `/var/lib/ravendb/data` to provide persistent storage for database contents between container updates. Failure to specify a path for the volume will result in loss of all data when the container is removed.
-#end-if
 
 > [!NOTE]
 > RavenDB has specific requirements about the types of storage it supports. See the [RavenDB deployment storage considerations documentation](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) for more information.

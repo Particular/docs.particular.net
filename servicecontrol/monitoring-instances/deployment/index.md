@@ -3,7 +3,6 @@ title: ServiceControl Monitoring instances deployment options
 reviewed: 2026-04-03
 component: ServiceControl
 ---
-partial: prereqs
 
 ## Deployment options
 

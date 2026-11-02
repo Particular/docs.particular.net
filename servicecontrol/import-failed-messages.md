@@ -33,9 +33,6 @@ The custom check will no longer be displayed once all failed imports have been s
 
 While in import mode, ServiceControl and ServiceControl Audit will not process their input queues. 
 
-> [!NOTE]
-> Older, unsupported versions of ServiceControl (prior to 5.5.0) require a `--serviceName` command line option. The value to use for `--serviceName` is the instance name. It is available in the Windows Service information and ServiceControl Management Utility. 
-
 ### ServiceControl deployed using a container
 
 1. Stop the container for the instance. Note the options and tag used.
