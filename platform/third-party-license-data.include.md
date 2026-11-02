@@ -108,7 +108,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/NHibernate" target="_blank">NHibernate</a> | <a href="https://www.nuget.org/packages/NHibernate/5.7.0/license" target="_blank">LGPL-2.1-only</a> | <a href="https://nhibernate.info/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/NHibernate" target="_blank">NHibernate</a> | <a href="https://www.nuget.org/packages/NHibernate/5.7.1/license" target="_blank">LGPL-2.1-only</a> | <a href="https://nhibernate.info/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Ninject
 
