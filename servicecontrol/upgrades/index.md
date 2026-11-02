@@ -21,7 +21,7 @@ related:
 
 Some ServiceControl versions change the definition of one or more RavenDB indexes. The [upgrade guide](/servicecontrol/upgrades/) for the version notes when this happens. At the first start-up after the upgrade, ServiceControl deploys the new definition and RavenDB builds it as a side-by-side replacement index, listed as `ReplacementOf/<index>` in RavenDB Studio. The existing index keeps serving queries while the replacement is built. Once the replacement has caught up with all documents and is no longer stale, RavenDB swaps it in and deletes the old index.
 
-The rebuild has to process every document in the database. On large databases it can take a long time and it competes with message ingestion for CPU, RAM, and storage I/O. While ingestion continues, the rebuild takes longer, ingestion and indexing rates are degraded, and the replacement index might never be reported as non-stale, which prevents the automatic swap.
+The rebuild has to process every document in the database. On large databases, it can take a long time, and it competes with message ingestion for CPU, RAM, storage I/O, and space. While ingestion continues, the rebuild takes longer, ingestion and indexing rates are degraded, and the replacement index might never be reported as non-stale, which prevents the automatic swap.
 
 > [!WARNING]
 > Until the swap, the database stores both the existing index and its replacement. The replacement usually requires at least as much storage as the index it replaces. Before upgrading, check the index sizes in RavenDB Studio and ensure the database drive has enough free space for both. If the drive runs low on storage, ServiceControl [stops ingesting messages](/servicecontrol/troubleshooting.md#low-on-storage-space).
