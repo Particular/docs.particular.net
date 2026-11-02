@@ -9,38 +9,29 @@ redirects:
   - samples/platformtools-docker-compose
 ---
 
-ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol). The following minimal example uses `docker run` with RavenDB storage, assuming a RabbitMQ container named `rabbitmq`:
+ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol).
 
-#if-version [7,)
+The following minimal example uses `docker run` to host an Error instance on AWS, with [Amazon SQS](/servicecontrol/transports.md#amazon-sqs) as the transport, Amazon RDS for [PostgreSQL storage](/servicecontrol/storage/postgresql/), and [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) for message bodies:
 
 ```shell
 docker run -d --name servicecontrol -p 33333:33333 \
-    -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=rabbitmq" \
-    -e STORAGETYPE=RavenDB \
-    -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
+    -e AWS_REGION=us-east-1 \
+    -e TRANSPORTTYPE=AmazonSQS \
+    -e CONNECTIONSTRING="Region=us-east-1" \
+    -e STORAGETYPE=PostgreSQL \
+    -e DATABASE_CONNECTIONSTRING="Host=my-db.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=...;Password=...;SSL Mode=Require" \
+    -e MESSAGEBODY_STORAGETYPE=S3 \
+    -e MESSAGEBODY_S3_BUCKETNAME=my-servicecontrol-bodies \
     -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
     -e ENABLEINTEGRATEDSERVICEPULSE="true" \
     particular/servicecontrol:latest
 ```
 
-The `STORAGETYPE` environment variable is required. See [Storage selection](#required-settings-storage-selection) for other supported storage providers. When using SQL Server or PostgreSQL, set `STORAGETYPE` to `SQLServer` or `PostgreSQL` and replace the `RAVENDB_CONNECTIONSTRING` environment variable with the settings described in the [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) configuration guide.
+The example contains no AWS keys. SQS and S3 use the AWS SDK default credential chain, such as an IAM role attached to the host or task, and the region set in `AWS_REGION`.
 
-#end-if
+The `STORAGETYPE` environment variable is required. SQL Server and PostgreSQL storage also require an [external message body store](/servicecontrol/storage/external-body/), selected with `MESSAGEBODY_STORAGETYPE`: [file system](/servicecontrol/storage/external-body/file.md), [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md), or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md). For SQL Server, set `STORAGETYPE` to `SQLServer` and use a [SQL Server connection string](/servicecontrol/storage/sqlserver/). For RavenDB, set `STORAGETYPE` to `RavenDB` and replace the database and message body variables with `RAVENDB_CONNECTIONSTRING`, as described in [RavenDB container setup](/servicecontrol/storage/ravendb/containers.md). See [Storage selection](#required-settings-storage-selection).
 
-#if-version (,7)
-
-```shell
-docker run -d --name servicecontrol -p 33333:33333 \
-    -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=rabbitmq" \
-    -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
-    -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
-    -e ENABLEINTEGRATEDSERVICEPULSE="true" \
-    particular/servicecontrol:latest
-```
-
-#end-if
+SQL Server and PostgreSQL storage, and the `STORAGETYPE` setting, are available from ServiceControl 7. Earlier versions support only RavenDB storage: leave out `STORAGETYPE` and the database and message body variables, and set `RAVENDB_CONNECTIONSTRING` instead.
 
 include: platform-container-examples
 
@@ -120,22 +111,13 @@ Both endpoints are available from version 6.20.
 
 ## Volumes
 
-#if-version (,7)
+The Error instance container keeps no data of its own. With RavenDB storage, the data is in the RavenDB database. With SQL Server or PostgreSQL storage, the data is in the database and in the message body store. A mounted volume is needed only in these cases:
 
-The Error instance is stateless and does not require any mounted volumes.
-
-#end-if
-
-#if-version [7,)
-
-A RavenDB Error instance does not require a mounted data volume. A mounted volume may be required for a [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
-
-A SQL-backed Error instance using file system message body storage requires a durable volume mounted to the path specified by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Azure Blob Storage and Amazon S3 body stores do not require a mounted volume. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md) for details.
+- **File system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md). Azure Blob Storage and Amazon S3 need no volume.
+- **RavenDB client certificate file:** to connect to RavenDB with a client certificate stored in a file, mount the file and point `RAVENDB_CLIENTCERTIFICATEPATH` to it. A certificate supplied as a Base64-encoded environment variable needs no volume. See [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
 
 > [!WARNING]
 > The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and the instance then fails to start up. Give the volume suitable ownership or permissions before starting the instance.
-
-#end-if
 
 ## Additional settings
 
@@ -152,10 +134,10 @@ Not all settings are relevant to error instances running in a container. For exa
 A ServiceControl error instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded. For example:
 
 ```shell
-docker stop error
-docker rm error
+docker stop servicecontrol
+docker rm servicecontrol
 docker pull particular/servicecontrol:latest
-docker run -rm {OPTIONS} particular/servicecontrol:latest --setup
+docker run --rm {OPTIONS} particular/servicecontrol:latest --setup
 docker run -d {OPTIONS} particular/servicecontrol:latest
 ```
 

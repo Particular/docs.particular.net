@@ -97,7 +97,7 @@ A ServiceControl monitoring instance is upgraded by removing the container for t
 docker stop monitoring
 docker rm monitoring
 docker pull particular/servicecontrol-monitoring:latest
-docker run -rm {OPTIONS} particular/servicecontrol-monitoring:latest --setup
+docker run --rm {OPTIONS} particular/servicecontrol-monitoring:latest --setup
 docker run -d {OPTIONS} particular/servicecontrol-monitoring:latest
 ```
 

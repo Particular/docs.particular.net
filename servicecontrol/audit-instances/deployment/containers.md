@@ -2,37 +2,28 @@
 title: Deploying ServiceControl Audit instances using containers
 reviewed: 2026-11-02
 component: ServiceControl
-versions: '[5.3, )'
 ---
 
-ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit). The following minimal example uses `docker run` with RavenDB storage, assuming a RabbitMQ container named `rabbitmq`:
+ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit).
 
-#if-version [7,)
-
-```shell
-docker run -d --name audit -p 44444:44444 \
-    -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=rabbitmq" \
-    -e STORAGETYPE=RavenDB \
-    -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
-    particular/servicecontrol-audit:latest
-```
-
-The `STORAGETYPE` environment variable is required. See [Storage selection](#required-settings-storage-selection) for other supported storage providers. When using SQL Server or PostgreSQL, set `STORAGETYPE` to `SQLServer` or `PostgreSQL` and replace the `RAVENDB_CONNECTIONSTRING` environment variable with the settings described in the [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) configuration guide.
-
-#end-if
-
-#if-version (,7)
+The following minimal example uses `docker run` to host an Audit instance on Azure, with [Azure Service Bus](/servicecontrol/transports.md#azure-service-bus) as the transport, Azure SQL Database for [SQL Server storage](/servicecontrol/storage/sqlserver/), and [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md) for message bodies:
 
 ```shell
 docker run -d --name audit -p 44444:44444 \
-    -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=rabbitmq" \
-    -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
+    -e TRANSPORTTYPE=NetStandardAzureServiceBus \
+    -e CONNECTIONSTRING="Endpoint=sb://my-namespace.servicebus.windows.net/;SharedAccessKeyName=...;SharedAccessKey=..." \
+    -e STORAGETYPE=SQLServer \
+    -e DATABASE_CONNECTIONSTRING="Server=tcp:my-server.database.windows.net,1433;Database=ServiceControl.Audit;User ID=...;Password=...;Encrypt=True" \
+    -e MESSAGEBODY_STORAGETYPE=AzureBlob \
+    -e MESSAGEBODY_AZURE_CONNECTIONSTRING="DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=...;EndpointSuffix=core.windows.net" \
     particular/servicecontrol-audit:latest
 ```
 
-#end-if
+Each of these services can also use [managed identity](/servicecontrol/transports.md#azure-service-bus-enabling-managed-identity) instead of the keys and passwords shown; see [SQL Server authentication](/servicecontrol/storage/sqlserver/#authentication) and [Azure Blob Storage authentication](/servicecontrol/storage/external-body/azure-blob.md#authentication).
+
+The `STORAGETYPE` environment variable is required. SQL Server and PostgreSQL storage also require an [external message body store](/servicecontrol/storage/external-body/), selected with `MESSAGEBODY_STORAGETYPE`: [file system](/servicecontrol/storage/external-body/file.md), [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md), or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md). For PostgreSQL, set `STORAGETYPE` to `PostgreSQL` and use a [PostgreSQL connection string](/servicecontrol/storage/postgresql/). For RavenDB, set `STORAGETYPE` to `RavenDB` and replace the database and message body variables with `RAVENDB_CONNECTIONSTRING`, as described in [RavenDB container setup](/servicecontrol/storage/ravendb/containers.md). See [Storage selection](#required-settings-storage-selection).
+
+SQL Server and PostgreSQL storage, and the `STORAGETYPE` setting, are available from ServiceControl 7. Earlier versions support only RavenDB storage: leave out `STORAGETYPE` and the database and message body variables, and set `RAVENDB_CONNECTIONSTRING` instead.
 
 include: platform-container-examples
 
@@ -95,22 +86,13 @@ Use this endpoint for health probes, for example Kubernetes liveness probes or l
 
 ## Volumes
 
-#if-version (,7)
+The Audit instance container keeps no data of its own. With RavenDB storage, the data is in the RavenDB database. With SQL Server or PostgreSQL storage, the data is in the database and in the message body store. A mounted volume is needed only in these cases:
 
-The Audit instance is stateless and does not require any mounted volumes.
-
-#end-if
-
-#if-version [7,)
-
-A RavenDB Audit instance does not require a mounted data volume. A mounted volume may be required for a [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
-
-A SQL-backed Audit instance using file system message body storage requires a durable volume mounted to the path specified by `SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. Azure Blob Storage and Amazon S3 body stores do not require a mounted volume. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md) for details.
+- **File system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md). Azure Blob Storage and Amazon S3 need no volume.
+- **RavenDB client certificate file:** to connect to RavenDB with a client certificate stored in a file, mount the file and point `RAVENDB_CLIENTCERTIFICATEPATH` to it. A certificate supplied as a Base64-encoded environment variable needs no volume. See [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
 
 > [!WARNING]
 > The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and the instance then fails to start up. Give the volume suitable ownership or permissions before starting the instance.
-
-#end-if
 
 ## Additional settings
 
@@ -130,7 +112,7 @@ A ServiceControl audit instance is upgraded by removing the container for the ol
 docker stop audit
 docker rm audit
 docker pull particular/servicecontrol-audit:latest
-docker run -rm {OPTIONS} particular/servicecontrol-audit:latest --setup
+docker run --rm {OPTIONS} particular/servicecontrol-audit:latest --setup
 docker run -d {OPTIONS} particular/servicecontrol-audit:latest
 ```
 
