@@ -1,4 +1,4 @@
-### Message type detection
+## Message type detection
 
 include: native-integration-messagetypedetection-intro
 

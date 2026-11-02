@@ -1,7 +1,7 @@
 ---
 title: Installation
 summary: How to install the NServiceBus.Host as a Windows service
-reviewed: 2025-05-02
+reviewed: 2026-11-02
 ---
 
 include: host-deprecated-warning
@@ -74,7 +74,7 @@ To set the description shown in the Windows Service Manager, specify
 
 ### EndpointConfigurationType
 
-Specify the type implementing `IConfigureThisEndpoint` that should be used by using the `/endpointConfigurationType` parameter. The provided value must be the [assembly qualified type name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx).
+Specify the type implementing `IConfigureThisEndpoint` that should be used by using the `/endpointConfigurationType` parameter. The provided value must be the [assembly qualified type name](https://learn.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname?view=netframework-4.8.1).
 
 
 ### EndpointName
@@ -93,10 +93,10 @@ NServiceBus.Host.exe /install
 /scannedAssemblies:"My.Endpoint.Assembly"
 ```
 
-The host loads the assemblies by invoking the [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and its dependent assemblies will also be loaded.
+The host loads the assemblies by invoking the [`Assembly.Load`](https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly.load?view=netframework-4.8.1) method. This approach ensures that the specified assembly and its dependent assemblies will also be loaded.
 
 > [!NOTE]
-> When using the `/scannedAssemblies` parameter, be sure to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugins. There is no need to include `NServiceBus.Core`in the list since it is referenced by `NServiceBus.Host`.
+> When using the `/scannedAssemblies` parameter, be sure to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugins. There is no need to include `NServiceBus.Core` in the list since it is referenced by `NServiceBus.Host`.
 
 
 ### DependsOn
@@ -122,14 +122,14 @@ To specify the account the service runs under, pass in the username of that acco
 > [!NOTE]
 > When installing the host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If the user needs to be changed at a later time, uninstall the host and re-install it in order to guarantee that the new user is correctly setup. The created privileges and `Performance Monitor Users` are not removed by the host when uninstalling and must be managed by the administrator.
 
-NServiceBus version 7 and above supports [Group Managed Service Accounts (GMSA)](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/).  When specifying a GMSA,  the `/username` command line switch should include the trailing dollar sign e.g. `/username:"corp\gmsaaccount$"` and the `/password` command line switch should be omitted.
+NServiceBus.Host version 7 and above supports [Group Managed Service Accounts (GMSA)](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview). When specifying a GMSA, the `/username` command line switch should include the trailing dollar sign e.g. `/username:"corp\gmsaaccount$"` and the `/password` command line switch should be omitted.
 
 
 ### Password
 
 If the specified account which runs the Windows service requires a password, set it using the `/password:"<password>"` parameter.
 
-This parameter should be omitted when specifying a [Group Managed Service Account (GMSA)](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/) for the `/username`.
+This parameter should be omitted when specifying a [Group Managed Service Account (GMSA)](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview) for the `/username`.
 
 
 ### Profile
@@ -148,7 +148,7 @@ NServiceBus.Host.exe /uninstall
 If a service name is specified when installing a service, be sure to pass it to the uninstall command:
 
 ```shell
-NServiceBus.Host.exe /uninstall  [/serviceName]
+NServiceBus.Host.exe /uninstall [/serviceName:<string>]
 ```
 
 For example:
