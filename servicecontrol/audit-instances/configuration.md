@@ -164,6 +164,53 @@ include: sc-audit-database-schema
 
 include: sc-audit-database-commandtimeout
 
+When using SQL Server or PostgreSQL storage, message bodies that are not text or are larger than [`ServiceControl.Audit/MaxBodySizeToStore`](#performance-tuning-servicecontrol-auditmaxbodysizetostore) are stored in the file system, Azure Blob Storage, or Amazon S3. See [external message body storage](/servicecontrol/storage/external-body/).
+
+
+include: sc-audit-messagebody-storagetype
+
+
+include: sc-audit-messagebody-filesystem-storagepath
+
+
+include: sc-audit-messagebody-filesystem-dataspaceremainingthreshold
+
+
+include: sc-audit-messagebody-azure-connectionstring
+
+
+include: sc-audit-messagebody-azure-serviceuri
+
+
+include: sc-audit-messagebody-azure-managedidentityclientid
+
+
+include: sc-audit-messagebody-azure-authorityhost
+
+
+include: sc-audit-messagebody-azure-containername
+
+
+include: sc-audit-messagebody-s3-bucketname
+
+
+include: sc-audit-messagebody-s3-keyprefix
+
+
+include: sc-audit-messagebody-s3-region
+
+
+include: sc-audit-messagebody-s3-serviceurl
+
+
+include: sc-audit-messagebody-s3-accesskeyid
+
+
+include: sc-audit-messagebody-s3-secretaccesskey
+
+
+include: sc-audit-messagebody-mincompressionsize
+
 
 include: sc-audit-storage-sql-outro
 

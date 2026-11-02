@@ -12,7 +12,7 @@ Selects the storage provider for the instance. Follow the provider's configurati
 | SQL Server | `SQLServer` | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
 | PostgreSQL | `PostgreSQL` | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 
-The chosen storage configuration must be present during both setup and runtime. Follow the linked provider guide for database preparation and permissions requirements. See the [storage overview](/servicecontrol/storage/#storage-providers) for external message body storage requirements that apply to SQL-backed Error instances.
+The chosen storage configuration must be present during both setup and runtime. Follow the linked provider guide for database preparation and permissions requirements. See the [storage overview](/servicecontrol/storage/#storage-providers) for external message body storage requirements that apply to SQL-backed Error and Audit instances.
 
 #end-if
 

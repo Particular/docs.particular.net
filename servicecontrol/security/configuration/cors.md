@@ -13,7 +13,7 @@ Cross-Origin Resource Sharing (CORS) controls which web applications can make re
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Authentication](authentication.md), [TLS](tls.md), and [Forward Headers](forward-headers.md) configuration settings in a scenario based format.
 
-- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#cors)
+- [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#cors)
 - [Audit Instance](/servicecontrol/audit-instances/configuration.md#cors)
 - [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#cors)
 
@@ -35,7 +35,7 @@ CORS configuration is *not* required when:
 
 ## Configuration examples
 
-To restrict access to only your ServicePulse domain, using the primary ServiceControl instance:
+To restrict access to only your ServicePulse domain, using the ServiceControl Error instance:
 
 ```xml
 <appSettings>

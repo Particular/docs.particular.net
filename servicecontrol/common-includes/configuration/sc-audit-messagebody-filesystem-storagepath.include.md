@@ -1,0 +1,15 @@
+#if-version [7,)
+### ServiceControl.Audit/MessageBody/FileSystem/StoragePath
+
+The directory where message bodies are stored when `StorageType` is `FileSystem`. Use a separate directory for each instance; do not share it with another Audit instance or an Error instance.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH` |
+| **App config key** | `ServiceControl.Audit/MessageBody/FileSystem/StoragePath` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for file system storage) |
+#end-if

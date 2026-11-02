@@ -67,6 +67,6 @@ Similarly, when backing up the ServiceControl embedded database, ensure the data
 
 From ServiceControl version 7, instances can store data in [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/). Anyone with access to the database can read and modify the stored messages, so restrict database access to the ServiceControl instance identity and to administrators, and protect the connection string credentials.
 
-Error instances also store message bodies in an [external body store](/servicecontrol/storage/external-body/). Restrict access to the file system path, Azure Blob container, or S3 bucket in the same way as the database.
+Error and Audit instances also store message bodies in an [external body store](/servicecontrol/storage/external-body/). Restrict access to the file system path, Azure Blob container, or S3 bucket in the same way as the database.
 
 Ensure database and message body backups are stored in a secure location.

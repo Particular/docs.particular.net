@@ -15,7 +15,7 @@ This article provides recommendations and performance benchmarks to help select 
 * A dedicated, non-virtual and non-ephemeral, pre-allocated SSD for ServiceControl RavenDB databases (not the disk where the operating system is installed).
 
 > [!NOTE]
-> Database disk, path, index, and compaction guidance in this article applies to RavenDB storage. For SQL Server and PostgreSQL storage, size and monitor the database server and, for Error instances, the [external message body store](/servicecontrol/storage/external-body/). The disk performance figures in this article were not measured with SQL storage.
+> Database disk, path, index, and compaction guidance in this article applies to RavenDB storage. For SQL Server and PostgreSQL storage, size and monitor the database server and the [external message body store](/servicecontrol/storage/external-body/). The disk performance figures in this article were not measured with SQL storage.
 
 
 > [!IMPORTANT]
@@ -88,7 +88,7 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 > This section applies only to RavenDB storage. SQL Server and PostgreSQL storage keep their indexes inside the database.
 
 > [!NOTE]
-> This suggestion applies to ServiceControl primary instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
+> This suggestion applies to ServiceControl Error instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
 
 Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath), it's possible to store the embedded RavenDB index files on a separate disk.
 

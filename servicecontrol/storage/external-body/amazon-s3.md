@@ -1,12 +1,12 @@
 ---
 title: Amazon S3 Message Body Storage
-summary: Configure Amazon S3 storage for message bodies in SQL-backed ServiceControl Error instances.
+summary: Configure Amazon S3 storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
 reviewed: 2026-10-29
 component: ServiceControl
 versions: '[7,)'
 ---
 
-Amazon S3 storage saves message bodies in an S3 bucket. Set `ServiceControl/MessageBody/StorageType` to `S3` on a [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) Error instance.
+Amazon S3 storage saves message bodies in an S3 bucket. Set `ServiceControl/MessageBody/StorageType` on an Error instance, or `ServiceControl.Audit/MessageBody/StorageType` on an Audit instance, to `S3` when the instance uses [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage.
 
 ## Authentication
 
@@ -19,20 +19,32 @@ Amazon S3 supports two authentication methods:
 
 include: sc-error-messagebody-s3-bucketname
 
+include: sc-audit-messagebody-s3-bucketname
+
 ## Optional settings
 
 include: sc-error-messagebody-s3-keyprefix
+
+include: sc-audit-messagebody-s3-keyprefix
 
 > [!WARNING]
 > Audit instances with different retention periods must use separate key prefixes when they share an S3 bucket. Audit instances use the same default key prefix, so explicitly configure a different `ServiceControl.Audit/MessageBody/S3/KeyPrefix` for each instance. Retention cleanup deletes objects by time prefix across the configured key prefix. An instance with shorter retention can delete bodies that another instance still needs, leaving message records visible but their bodies unavailable.
 
 include: sc-error-messagebody-s3-region
 
+include: sc-audit-messagebody-s3-region
+
 include: sc-error-messagebody-s3-serviceurl
+
+include: sc-audit-messagebody-s3-serviceurl
 
 include: sc-error-messagebody-s3-accesskeyid
 
+include: sc-audit-messagebody-s3-accesskeyid
+
 include: sc-error-messagebody-s3-secretaccesskey
+
+include: sc-audit-messagebody-s3-secretaccesskey
 
 ## Setup and runtime
 
@@ -61,6 +73,15 @@ Example environment variables using ambient credentials:
 SERVICECONTROL_MESSAGEBODY_STORAGETYPE=S3
 SERVICECONTROL_MESSAGEBODY_S3_BUCKETNAME=servicecontrol-bodies
 SERVICECONTROL_MESSAGEBODY_S3_REGION=us-east-1
+```
+
+Audit instances use the same settings with the `SERVICECONTROL_AUDIT_` prefix. Set a key prefix for each Audit instance that uses the same bucket:
+
+```text
+SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=S3
+SERVICECONTROL_AUDIT_MESSAGEBODY_S3_BUCKETNAME=servicecontrol-bodies
+SERVICECONTROL_AUDIT_MESSAGEBODY_S3_KEYPREFIX=audit-instance1/
+SERVICECONTROL_AUDIT_MESSAGEBODY_S3_REGION=us-east-1
 ```
 
 See the [external message body storage overview](/servicecontrol/storage/external-body/) for shared configuration, retention, and backup guidance.

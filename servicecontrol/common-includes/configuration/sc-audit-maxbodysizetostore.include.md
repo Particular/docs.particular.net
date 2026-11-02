@@ -3,7 +3,7 @@
 The largest message body, in bytes, that the Audit instance stores. Larger bodies cannot be viewed in ServicePulse.
 
 #if-version [7,)
-With SQL Server and PostgreSQL storage, only text bodies are stored. A body counts as text when it has no `Content-Encoding` header, its `NServiceBus.ContentType` header is missing or contains `text/`, `xml`, or `json` but not `binary`, and it is valid UTF-8 with no NUL characters. Other bodies cannot be viewed, whatever their size. For a text body larger than this limit, the first `MaxBodySizeToStore` bytes are kept so that full-text search can match it, but the body cannot be viewed.
+This applies to RavenDB storage. With SQL Server and PostgreSQL storage, this setting is the maximum size, in bytes, of a text message body stored inline in the database. Larger text bodies, and bodies that are not text, are stored in the [external message body store](/servicecontrol/storage/external-body/) and can be viewed in ServicePulse. A larger text body also keeps its first `MaxBodySizeToStore` bytes in the database for full-text search. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression).
 #end-if
 
 | Context | Name |

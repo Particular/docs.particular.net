@@ -65,7 +65,7 @@ When using the default embedded RavenDB database, exclude the ServiceControl and
 ### Database directories
 
 > [!NOTE]
-> This section applies to instances using an embedded RavenDB database. SQL Server and PostgreSQL storage have no local database directory; for SQL-backed Error instances using file system message body storage, apply the same antivirus considerations to the body storage path.
+> This section applies to instances using an embedded RavenDB database. SQL Server and PostgreSQL storage have no local database directory; for SQL-backed Error and Audit instances using file system message body storage, apply the same antivirus considerations to the body storage path.
 
 > [!NOTE]
 > For container deployments, the database location differs. See [ServiceControl container deployment](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [ServiceControl Audit container deployment](/servicecontrol/audit-instances/deployment/containers.md) for details.

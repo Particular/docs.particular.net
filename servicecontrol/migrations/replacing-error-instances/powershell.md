@@ -37,7 +37,7 @@ Perform a **Forced upgrade** for the old Error instance.
 > This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover.
 
 ```ps1
-# List existing error/primary instances
+# List existing Error instances
 Get-ServiceControlInstances | Select Name, Version
 # For each instance
 Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force

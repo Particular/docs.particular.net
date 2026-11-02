@@ -59,8 +59,10 @@ From ServiceControl 7, an Error instance can instead use [SQL Server](/serviceco
 
 ### Cloud environments
 
-When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS.
-In hosting environments where the RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is recommended to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
+Where the database runs in a cloud environment depends on the storage option:
+
+- **RavenDB:** In Kubernetes on AKS or EKS, RavenDB can run in a container using the storage the cloud provider recommends; see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment). Where RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
+- **SQL Server or PostgreSQL:** Use a managed SQL Server or PostgreSQL service from the cloud provider. Use [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md) or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) as the external message body store.
 
 ## Windows Installation
 

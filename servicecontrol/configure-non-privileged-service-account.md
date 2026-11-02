@@ -67,19 +67,17 @@ Instances using an embedded RavenDB database also require:
 
 From ServiceControl 7, instances using SQL Server or PostgreSQL storage do not use a local database path or volume. Access to the database is controlled by the database connection string and database permissions.
 
-Error instances using file system message body storage also require the following rights on the [body storage path](/servicecontrol/storage/external-body/file.md):
+Error and Audit instances using [file system message body storage](/servicecontrol/storage/external-body/file.md) also require the following rights on the [body storage path](/servicecontrol/storage/external-body/file.md#required-settings-servicecontrolmessagebodyfilesystemstoragepath):
 
 | Path | Rights |
 |------|--------|
-| Body storage path (the `ServiceControl/MessageBody/FileSystem/StoragePath` setting) | Read, write, and delete at runtime. The identity that runs setup must also be able to create the directory. |
+| Body storage path (the `ServiceControl/MessageBody/FileSystem/StoragePath` or `ServiceControl.Audit/MessageBody/FileSystem/StoragePath` setting) | Read, write, and delete at runtime. The identity that runs setup must also be able to create the directory. |
 | Body storage volume (e.g. `D:`) | Read Attributes |
 
 > [!NOTE]
 > The body storage volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.
 
-Audit instances using SQL storage require neither a local database path nor an external body storage path.
-
-When a PostgreSQL connection authenticates as the service account, that account must own the Audit tables, or be a member of the role that owns them, because the instance creates and drops daily partitions while running. See [database permissions](/servicecontrol/storage/postgresql/#database-permissions) for the PostgreSQL role requirements.
+When a PostgreSQL connection authenticates as the service account, that account must own the Audit tables, or be a member of the role that owns them, because the instance creates and drops daily [partitions](https://www.postgresql.org/docs/current/ddl-partitioning.html) while running. See [database permissions](/servicecontrol/storage/postgresql/#database-permissions) for the PostgreSQL role requirements.
 
 ## Performance counters
 

@@ -32,11 +32,20 @@ Once a message arrives in the error queue, ServiceControl will publish a `Messag
  * The original message headers
  * The original message body, in some cases (see below)
 
-With RavenDB storage, the body is included only if it is non-binary, smaller than 85 KB, and full-text body indexing is enabled.
+Whether the event includes the body depends on the storage the Error instance uses and on the body itself:
 
-#if-version [7,)
-With SQL Server or PostgreSQL storage, the body is included when it is a text body stored in the database. A text body larger than [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmaxbodysizetostore) is truncated to its first `MaxBodySizeToStore` bytes. Binary bodies are not included. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression).
-#end-if
+| Storage | Message body | Included in the event |
+| --- | --- | --- |
+| RavenDB | Text, smaller than 85 KB, with full-text body indexing enabled | The full body |
+| RavenDB | Any other body | No body |
+| SQL Server or PostgreSQL | Text, up to [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmaxbodysizetostore) bytes | The full body |
+| SQL Server or PostgreSQL | Text, larger than `MaxBodySizeToStore` bytes | The start of the body, truncated to at most `MaxBodySizeToStore` bytes |
+| SQL Server or PostgreSQL | Not text, such as binary or compressed bodies | No body |
+
+See [which bodies count as text](/servicecontrol/storage/external-body/#inline-storage-and-compression) for SQL Server and PostgreSQL storage.
+
+> [!NOTE]
+> Handlers must allow for a missing or truncated body. The event does not indicate whether the body was truncated, and a truncated JSON or XML body is not valid and cannot be deserialized.
 
 ### Subscribe
 
@@ -104,7 +113,7 @@ An event will also be published and displayed in the ServicePulse dashboard with
 
 To avoid this situation, it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this, [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe from all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
 
-## Disabling integration 
+## Disabling integration
 
 In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. In ServiceControl versions before 7, publishing is enabled by default and can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
 

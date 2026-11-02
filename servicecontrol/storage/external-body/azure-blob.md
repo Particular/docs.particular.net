@@ -1,12 +1,12 @@
 ---
 title: Azure Blob Storage Message Body Storage
-summary: Configure Azure Blob Storage for message bodies in SQL-backed ServiceControl Error instances.
+summary: Configure Azure Blob Storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
 reviewed: 2026-10-29
 component: ServiceControl
 versions: '[7,)'
 ---
 
-Azure Blob Storage saves message bodies in a blob container. Set `ServiceControl/MessageBody/StorageType` to `AzureBlob` on a [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) Error instance.
+Azure Blob Storage saves message bodies in a blob container. Set `ServiceControl/MessageBody/StorageType` on an Error instance, or `ServiceControl.Audit/MessageBody/StorageType` on an Audit instance, to `AzureBlob` when the instance uses [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage.
 
 ## Authentication
 
@@ -19,7 +19,11 @@ Azure Blob Storage supports two mutually exclusive authentication methods. Confi
 
 include: sc-error-messagebody-azure-connectionstring
 
+include: sc-audit-messagebody-azure-connectionstring
+
 include: sc-error-messagebody-azure-serviceuri
+
+include: sc-audit-messagebody-azure-serviceuri
 
 `ServiceUri` must be an absolute URI.
 
@@ -27,12 +31,18 @@ include: sc-error-messagebody-azure-serviceuri
 
 include: sc-error-messagebody-azure-containername
 
+include: sc-audit-messagebody-azure-containername
+
 > [!WARNING]
 > Audit instances with different retention periods must use separate containers, even when they share an Azure Storage account. Audit instances use the same default container name, so explicitly configure a different `ServiceControl.Audit/MessageBody/Azure/ContainerName` for each instance. Retention cleanup deletes blobs by time prefix across the container. An instance with shorter retention can delete bodies that another instance still needs, leaving message records visible but their bodies unavailable.
 
 include: sc-error-messagebody-azure-managedidentityclientid
 
+include: sc-audit-messagebody-azure-managedidentityclientid
+
 include: sc-error-messagebody-azure-authorityhost
+
+include: sc-audit-messagebody-azure-authorityhost
 
 ## Setup and runtime
 
@@ -53,6 +63,14 @@ Example environment variables using a service URI with managed identity:
 ```text
 SERVICECONTROL_MESSAGEBODY_STORAGETYPE=AzureBlob
 SERVICECONTROL_MESSAGEBODY_AZURE_SERVICEURI=https://storageaccount.blob.core.windows.net
+```
+
+Audit instances use the same settings with the `SERVICECONTROL_AUDIT_` prefix. Set a container name for each Audit instance that uses the same storage account:
+
+```text
+SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=AzureBlob
+SERVICECONTROL_AUDIT_MESSAGEBODY_AZURE_SERVICEURI=https://storageaccount.blob.core.windows.net
+SERVICECONTROL_AUDIT_MESSAGEBODY_AZURE_CONTAINERNAME=audit-bodies-instance1
 ```
 
 See the [external message body storage overview](/servicecontrol/storage/external-body/) for shared configuration, retention, and backup guidance.

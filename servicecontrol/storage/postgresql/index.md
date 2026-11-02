@@ -9,7 +9,7 @@ versions: '[7,)'
 From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of the default [RavenDB storage](/servicecontrol/storage/ravendb/). Select PostgreSQL when an instance should use an existing PostgreSQL deployment. Storage is configured separately for each instance.
 
 > [!IMPORTANT]
-> When using PostgreSQL, Error instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline. Audit instances do not require it.
+> When using PostgreSQL, Error and Audit instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline.
 
 ## Supported PostgreSQL versions
 
@@ -38,7 +38,7 @@ An Error instance with no `Database/Schema` uses the connection's current schema
 When the same connection string is used for setup and normal operation, as the ServiceControl Management Utility and PowerShell do, that role needs the setup rights.
 
 > [!WARNING]
-> While running, Audit instances create daily partitions up to 48 hours ahead and drop expired ones. PostgreSQL only lets the owner of a partitioned table create partitions of it. Setup creates the Audit tables, so they are owned by the role that runs setup. Run setup and normal operation as the same role, or grant the setup role to the runtime role so that the runtime role counts as the owner. Otherwise the **Audit partition provisioning** custom check fails, and Audit ingestion stops when the provisioned partitions run out, within about two days of the last successful provisioning.
+> While running, Audit instances create daily partitions up to 48 hours ahead and drop expired ones. PostgreSQL only lets the owner of a [partitioned table](https://www.postgresql.org/docs/current/ddl-partitioning.html) create partitions of it. Setup creates the Audit tables, so they are owned by the role that runs setup. Run setup and normal operation as the same role, or grant the setup role to the runtime role so that the runtime role counts as the owner. Otherwise the **Audit partition provisioning** custom check fails, and Audit ingestion stops when the provisioned partitions run out, within about two days of the last successful provisioning.
 
 ## Authentication
 
@@ -75,7 +75,7 @@ See the [Error instance settings reference](/servicecontrol/servicecontrol-insta
 
 ## Audit instance configuration
 
-Set the persistence type to `PostgreSQL`, provide the database connection string, and configure the retention period.
+Set the persistence type to `PostgreSQL`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module do not configure it for Audit instances; add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
 
 include: sc-audit-persistencetype
 
@@ -87,12 +87,7 @@ include: sc-audit-auditretentionperiod
 
 PostgreSQL-backed Audit instances are partitioned by day. The instance creates and drops daily partitions automatically, which requires the runtime role to own the Audit tables; see [database permissions](#database-permissions).
 
-Audit instances do not use an external message body store; they store text message bodies in the database.
-
 include: sc-audit-maxbodysizetostore
-
-> [!NOTE]
-> Audit instances using SQL storage store only text message bodies, up to `ServiceControl.Audit/MaxBodySizeToStore`. Binary bodies and larger bodies cannot be viewed in ServicePulse.
 
 > [!NOTE]
 > SQL Server and PostgreSQL storage do not support maintenance mode. An instance with `MaintenanceMode` set to `true` does not start.
@@ -100,11 +95,13 @@ include: sc-audit-maxbodysizetostore
 > [!WARNING]
 > Connect to PostgreSQL directly or through a connection pooler in session mode. A pooler in transaction mode, such as PgBouncer with `pool_mode = transaction`, breaks the advisory lock that the retention process holds, and retention stops running.
 
-Example environment variables for an Audit instance:
+Example environment variables for an Audit instance using file system body storage:
 
 ```text
 SERVICECONTROL_AUDIT_PERSISTENCETYPE=PostgreSQL
 SERVICECONTROL_AUDIT_DATABASE_CONNECTIONSTRING="Host=postgres;Database=ServiceControl.Audit;Username=sc;Password=..."
+SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=FileSystem
+SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/audit-bodies
 SERVICECONTROL_AUDIT_AUDITRETENTIONPERIOD=30
 ```
 
@@ -115,12 +112,12 @@ See the [Audit instance settings reference](/servicecontrol/audit-instances/conf
 > [!IMPORTANT]
 > Run the instance setup process (`--setup`) before first use and after every upgrade. Setup applies the database migrations; the instance does not apply them at startup.
 
-Setup applies database migrations for both Error and Audit instances. For Error instances, setup also provisions the external message body store. See [database permissions](#database-permissions) for the rights setup and normal operation need. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
+Setup applies database migrations for both Error and Audit instances. Setup also provisions the external message body store. See [database permissions](#database-permissions) for the rights setup and normal operation need. See the [Error container setup](/servicecontrol/servicecontrol-instances/deployment/containers.md#initial-setup) or [Audit container setup](/servicecontrol/audit-instances/deployment/containers.md#initial-setup) instructions when deploying in containers.
 
 The ServiceControl Management Utility (SCMU) and the PowerShell module run setup when they create or upgrade an instance, and can create PostgreSQL-backed Error and Audit instances:
 
-- **SCMU:** choose `PostgreSQL` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings.
-- **PowerShell:** pass `-PersistenceType PostgreSQL` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+- **SCMU:** choose `PostgreSQL` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings. For an Audit instance, add the [message body storage settings](/servicecontrol/audit-instances/configuration.md#storage) to the instance's configuration file.
+- **PowerShell:** pass `-PersistenceType PostgreSQL` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. `New-ServiceControlAuditInstance` has no message body storage parameters; add the settings to the Audit instance's configuration file. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
 
 Neither tool sets `Database/Schema`, so instances they create use the default schema.
 
@@ -139,6 +136,6 @@ Setup logs `PostgreSQL database migration completed` for an Error instance, or `
 
 ## Next steps
 
-- For Error instances, [choose and configure an external message body store](/servicecontrol/storage/external-body/).
+- [Choose and configure an external message body store](/servicecontrol/storage/external-body/) for each instance.
 - Plan [backup and restore](/servicecontrol/storage/#backup-and-restore) of the database and the message bodies together; RavenDB-specific procedures do not apply.
 - To deploy in containers, see the [Error instance](/servicecontrol/servicecontrol-instances/deployment/containers.md) and [Audit instance](/servicecontrol/audit-instances/deployment/containers.md) container guides.
