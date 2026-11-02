@@ -39,7 +39,7 @@ In NServiceBus version 6 and above, it is possible to subscribe to messages not 
 
 ## When a subscriber stops or uninstalls
 
-A subscriber will not auto unsubscribe when it stops; it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
+A subscriber will not unsubscribe automatically when it stops; it remains registered with the publisher to receive events. The publisher still sends events to the stopped subscriber's input queue. When the subscriber starts, it will consume messages from its queue. The subscriber will never lose an event.
 
 
 ## Disabling auto-subscription
@@ -51,7 +51,7 @@ snippet: DisableAutoSubscribe
 
 ## Manually subscribing to a message
 
-Events can manually be subscribed and unsubscribed to:
+Events can be manually subscribed and unsubscribed to:
 
 snippet: ExplicitSubscribe
 
@@ -73,4 +73,6 @@ public sealed class UnsubscribeService(IMessageSession messageSession) : Backgro
 }
 ```
 
-The service runs every time the endpoint starts. Unsubscribing from an event that is not subscribed has no effect, so the code is safe to keep. Once the endpoint has started with it in every environment where the subscription existed, the code can be removed.
+The service runs every time the endpoint starts. Unsubscribing from an event the subscriber isn't subscribed to has no effect, so the code is safe to keep. Once the endpoint has started in every environment where the subscription existed, you can remove the code.
+
+Unsubscribing prevents future events from being sent to the subscriber's input queue, but it cannot remove any messages that have already been sent to the input queue. So, before removing the handler, consider what to do with events in the input queue that haven't been processed yet.
