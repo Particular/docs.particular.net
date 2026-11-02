@@ -60,7 +60,7 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 ## Anti-virus checks
 
-When using the default embedded RavenDB database, exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Embedded RavenDB databases produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+When using an embedded RavenDB database, exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Embedded RavenDB databases produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
 
 ### Database directories
 

@@ -1,7 +1,7 @@
 #if-version [7,)
 ### ServiceControl/MessageBody/Azure/ConnectionString
 
-The Azure Storage connection string used to authenticate with shared key or shared access signature (SAS) credentials when `StorageType` is `AzureBlob`. Configure either this setting or `ServiceControl/MessageBody/Azure/ServiceUri`, but not both.
+The Azure Storage connection string used to authenticate with shared key or shared access signature (SAS) credentials when `MessageBody/StorageType` is `AzureBlob`. Configure either this setting or `ServiceControl/MessageBody/Azure/ServiceUri`, but not both.
 
 | Context | Name |
 | --- | --- |

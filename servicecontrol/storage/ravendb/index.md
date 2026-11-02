@@ -5,11 +5,11 @@ reviewed: 2026-10-27
 component: ServiceControl
 ---
 
-RavenDB is the default storage for ServiceControl Error and Audit instances. Use this page to find RavenDB-specific deployment and maintenance guidance.
+ServiceControl Error and Audit instances can store their data in RavenDB. Use this page to find RavenDB-specific deployment and maintenance guidance.
 
 #if-version [7,)
 
-From ServiceControl 7, new Error and Audit instances can also select [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/); see the [storage overview](/servicecontrol/storage/) for the differences.
+From ServiceControl 7, each Error and Audit instance must select its storage type; there is no default. Set it to `RavenDB` to use RavenDB storage. Instances can instead use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/); see the [storage overview](/servicecontrol/storage/) for the differences.
 
 #end-if
 

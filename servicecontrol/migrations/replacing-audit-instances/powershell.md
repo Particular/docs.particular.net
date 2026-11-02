@@ -30,6 +30,12 @@ New-ServiceControlAuditInstance `
   -ServiceControlQueueAddress "Particular.ServiceControl"
 ```
 
+#if-version [7,)
+
+`-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Audit instance](/servicecontrol/audit-instances/deployment/powershell.md#audit-instance-cmdlets-and-aliases-deploying-an-audit-instance).
+
+#end-if
+
 ## Add the instance to RemoteInstances
 
 The new instance needs to be added to the Error instance's collection of remotes. Execute the following on the machine hosting the ServiceControl Error instance:

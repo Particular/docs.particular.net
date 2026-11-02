@@ -68,6 +68,7 @@ services:
     environment:
       TRANSPORTTYPE: RabbitMQ.QuorumConventionalRouting
       CONNECTIONSTRING: "host=rabbitmq"
+      STORAGETYPE: "RavenDB"
       RAVENDB_CONNECTIONSTRING: "http://ravendb:8080"
 
       # --- Authentication (OIDC) + role-based access control ---

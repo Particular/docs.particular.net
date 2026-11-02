@@ -1,7 +1,7 @@
 #if-version [7,)
 ### ServiceControl.Audit/MessageBody/Azure/ServiceUri
 
-The Azure Blob Storage service URI used with managed identity when `StorageType` is `AzureBlob`. Configure either this setting or `ServiceControl.Audit/MessageBody/Azure/ConnectionString`, but not both.
+The Azure Blob Storage service URI used with managed identity when `MessageBody/StorageType` is `AzureBlob`. Configure either this setting or `ServiceControl.Audit/MessageBody/Azure/ConnectionString`, but not both.
 
 | Context | Name |
 | --- | --- |

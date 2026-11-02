@@ -28,7 +28,7 @@ include: powershell-help
 
 Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance:
 
-snippet: ps-new-error-instance
+partial: newinstance
 
 partial: sqlstorage
 

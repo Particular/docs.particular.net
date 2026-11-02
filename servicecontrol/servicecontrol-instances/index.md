@@ -26,9 +26,9 @@ Each ServiceControl Error instance stores its data in a RavenDB database.
 
 #if-version [7,)
 
-RavenDB is the default storage for ServiceControl Error instances. See the [storage overview](/servicecontrol/storage/) for the available storage options.
+ServiceControl Error instances store their data in RavenDB, SQL Server, or PostgreSQL. Each instance must select one with the required [`ServiceControl/StorageType`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolstoragetype) setting; there is no default. See the [storage overview](/servicecontrol/storage/) to choose a storage type.
 
-ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. SQL storage requires external storage for message bodies. See [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) for configuration details.
+SQL storage requires external storage for message bodies. See [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) for configuration details.
 
 #end-if
 

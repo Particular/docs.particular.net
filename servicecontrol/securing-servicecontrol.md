@@ -57,7 +57,7 @@ An example of how to set encryption for specific message properties can be viewe
 
 ### Accessing the embedded RavenDB database
 
-When using RavenDB storage with the default installation, ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.
+When using RavenDB storage with a PowerShell or ServiceControl Management Utility deployment, ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.
 
 Access to the location of the database files enables full access to the database contents, so take great care to ensure the database location is secure from unauthorized access and tampering.
 

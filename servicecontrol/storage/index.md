@@ -9,7 +9,9 @@ redirects:
 
 ServiceControl Error and Audit instances store the messages they ingest so that ServicePulse can display and search them. Storage is selected per instance; a Monitoring instance does not need a database.
 
+#if-version (,7)
 [RavenDB](/servicecontrol/storage/ravendb/) is the default for Error and Audit instances. It is embedded when deploying with PowerShell or the ServiceControl Management Utility and runs separately for container deployments.
+#end-if
 
 ## Storage providers
 
@@ -25,9 +27,9 @@ Choose a provider for each instance. Follow the linked configuration guide to pr
 
 #if-version [7,)
 
-Each Error and Audit instance uses one storage provider, chosen when the instance is created. Instances can use different providers; for example, an Error instance can use SQL Server while its Audit instances use RavenDB.
+Each Error and Audit instance uses one storage provider, selected with the required `StorageType` setting when the instance is created. There is no default. Instances can use different providers; for example, an Error instance can use SQL Server while its Audit instances use RavenDB.
 
-- **RavenDB** is the default. PowerShell and ServiceControl Management Utility deployments embed it, so no separate database server is needed. It suits teams that do not already run SQL Server or PostgreSQL.
+- **RavenDB** needs no separate database server when deploying with PowerShell or the ServiceControl Management Utility, which embed it. It suits teams that do not already run SQL Server or PostgreSQL.
 - **SQL Server** and **PostgreSQL** suit teams that already run, monitor, and back up one of these database servers and want ServiceControl data managed with the same tools.
 
 Before choosing SQL Server or PostgreSQL, check how they differ from RavenDB:
@@ -36,9 +38,9 @@ Before choosing SQL Server or PostgreSQL, check how they differ from RavenDB:
 - SQL Server must have Full-Text Search installed.
 - Existing RavenDB instances cannot yet be [migrated to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
 
-| Provider | `PersistenceType` value | Requirements | Configuration |
+| Provider | `StorageType` value | Requirements | Configuration |
 | --- | --- | --- | --- |
-| RavenDB (default) | `RavenDB` | None for embedded deployments; a RavenDB container for container deployments | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
+| RavenDB | `RavenDB` | None for embedded deployments; a RavenDB container for container deployments | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
 | SQL Server | `SQLServer` | An existing database on a server with Full-Text Search; an external message body store | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
 | PostgreSQL | `PostgreSQL` | An existing database; an external message body store | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 
@@ -75,6 +77,6 @@ Back up and monitor each instance's database and, for SQL-backed instances, its 
 ## Changing the storage provider
 
 > [!WARNING]
-> Changing `PersistenceType` on an existing instance does not move its data. The instance starts with empty storage. See [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
+> Changing `StorageType` on an existing instance does not move its data. The instance starts with empty storage. See [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
 
 #end-if

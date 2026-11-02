@@ -62,6 +62,7 @@ servicecontrol:
     ports:
       - "33333:33333"
     environment:
+      STORAGETYPE: RavenDB
       RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
       REMOTEINSTANCES: '[{"api_uri":"https://servicecontrol-audit:44444/api"}]'
       SERVICECONTROL_HTTPS_ENABLED: "true"

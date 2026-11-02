@@ -6,7 +6,7 @@ component: ServiceControl
 versions: '[7,)'
 ---
 
-From ServiceControl 7, Error and Audit instances can use SQL Server instead of the default [RavenDB storage](/servicecontrol/storage/ravendb/). Select SQL Server when an instance should use an existing SQL Server deployment. Storage is configured separately for each instance.
+From ServiceControl 7, Error and Audit instances can use SQL Server instead of [RavenDB storage](/servicecontrol/storage/ravendb/). Select SQL Server when an instance should use an existing SQL Server deployment. Storage is configured separately for each instance.
 
 > [!IMPORTANT]
 > When using SQL Server, Error and Audit instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline.
@@ -45,9 +45,9 @@ Choose an authentication method suitable for an unattended service. Ensure the s
 
 ## Error instance configuration
 
-Set the persistence type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database.
 
-include: sc-error-persistencetype
+include: sc-error-storagetype
 
 include: sc-error-database-connectionstring
 
@@ -58,7 +58,7 @@ include: sc-error-errorretentionperiod
 Set these variables in the Error instance's environment to use file system body storage. Replace the connection string placeholder with credentials supplied by the deployment environment. These storage settings supplement the instance's transport and other required settings.
 
 ```text
-SERVICECONTROL_PERSISTENCETYPE=SQLServer
+SERVICECONTROL_STORAGETYPE=SQLServer
 SERVICECONTROL_DATABASE_CONNECTIONSTRING="Server=sqlserver;Database=ServiceControl;User Id=sc;Password=..."
 SERVICECONTROL_MESSAGEBODY_STORAGETYPE=FileSystem
 SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/bodies
@@ -69,9 +69,9 @@ See the [Error instance settings reference](/servicecontrol/servicecontrol-insta
 
 ## Audit instance configuration
 
-Set the persistence type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module do not configure it for Audit instances; add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module do not configure it for Audit instances; add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
 
-include: sc-audit-persistencetype
+include: sc-audit-storagetype
 
 include: sc-audit-database-connectionstring
 
@@ -87,7 +87,7 @@ include: sc-audit-maxbodysizetostore
 Example environment variables for an Audit instance using file system body storage:
 
 ```text
-SERVICECONTROL_AUDIT_PERSISTENCETYPE=SQLServer
+SERVICECONTROL_AUDIT_STORAGETYPE=SQLServer
 SERVICECONTROL_AUDIT_DATABASE_CONNECTIONSTRING="Server=sqlserver;Database=ServiceControl.Audit;User Id=sc;Password=..."
 SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=FileSystem
 SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/audit-bodies
@@ -106,7 +106,7 @@ Setup applies database migrations for both Error and Audit instances. Setup also
 The ServiceControl Management Utility (SCMU) and the PowerShell module run setup when they create or upgrade an instance, and can create SQL Server-backed Error and Audit instances:
 
 - **SCMU:** choose `SQL Server` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings. For an Audit instance, add the [message body storage settings](/servicecontrol/audit-instances/configuration.md#storage) to the instance's configuration file.
-- **PowerShell:** pass `-PersistenceType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. `New-ServiceControlAuditInstance` has no message body storage parameters; add the settings to the Audit instance's configuration file. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+- **PowerShell:** pass `-StorageType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. `New-ServiceControlAuditInstance` has no message body storage parameters; add the settings to the Audit instance's configuration file. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
 
 Neither tool sets `Database/Schema`, so instances they create use the default schema.
 

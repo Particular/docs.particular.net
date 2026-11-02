@@ -7,7 +7,7 @@ $serviceControlInstance = New-ServiceControlInstance `
   -Transport MSMQ `
   -ErrorQueue error1 `
   -ErrorRetentionPeriod 10:00:00:00 `
-  -PersistenceType SQLServer `
+  -StorageType SQLServer `
   -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True" `
   -MessageBodyStorageType FileSystem `
   -MessageBodyPath C:\ServiceControl\Bodies
@@ -24,6 +24,6 @@ $auditInstance = New-ServiceControlAuditInstance `
   -AuditRetentionPeriod 10:00:00:00 `
   -ForwardAuditMessages:$false `
   -ServiceControlQueueAddress Test.ServiceControl `
-  -PersistenceType SQLServer `
+  -StorageType SQLServer `
   -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True"
 # endcode

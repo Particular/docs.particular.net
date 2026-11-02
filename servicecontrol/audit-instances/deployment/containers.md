@@ -7,6 +7,23 @@ versions: '[5.3, )'
 
 ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit). The following minimal example uses `docker run` with RavenDB storage, assuming a RabbitMQ container named `rabbitmq`:
 
+#if-version [7,)
+
+```shell
+docker run -d --name audit -p 44444:44444 \
+    -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
+    -e CONNECTIONSTRING="host=rabbitmq" \
+    -e STORAGETYPE=RavenDB \
+    -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
+    particular/servicecontrol-audit:latest
+```
+
+The `STORAGETYPE` environment variable is required. See [Storage selection](#required-settings-storage-selection) for other supported storage providers. When using SQL Server or PostgreSQL, set `STORAGETYPE` to `SQLServer` or `PostgreSQL` and replace the `RAVENDB_CONNECTIONSTRING` environment variable with the settings described in the [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) configuration guide.
+
+#end-if
+
+#if-version (,7)
+
 ```shell
 docker run -d --name audit -p 44444:44444 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
@@ -14,10 +31,6 @@ docker run -d --name audit -p 44444:44444 \
     -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
     particular/servicecontrol-audit:latest
 ```
-
-#if-version [7,)
-
-See [Storage selection](#required-settings-storage-selection) for other supported storage providers. When using SQL Server or PostgreSQL, replace the `RAVENDB_CONNECTIONSTRING` environment variable with the settings described in the [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) configuration guide.
 
 #end-if
 

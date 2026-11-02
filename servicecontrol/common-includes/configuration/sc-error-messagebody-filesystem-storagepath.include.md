@@ -1,7 +1,7 @@
 #if-version [7,)
 ### ServiceControl/MessageBody/FileSystem/StoragePath
 
-The directory where message bodies are stored when `StorageType` is `FileSystem`.
+The directory where message bodies are stored when `MessageBody/StorageType` is `FileSystem`.
 
 | Context | Name |
 | --- | --- |

@@ -1,7 +1,7 @@
 #if-version [7,)
 ### ServiceControl.Audit/MessageBody/S3/BucketName
 
-The Amazon S3 bucket used to store message bodies when `StorageType` is `S3`.
+The Amazon S3 bucket used to store message bodies when `MessageBody/StorageType` is `S3`.
 
 | Context | Name |
 | --- | --- |

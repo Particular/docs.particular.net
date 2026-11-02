@@ -147,13 +147,13 @@ include: sc-audit-corsallowedorigins
 
 ## Storage
 
-RavenDB is the default Audit instance storage type.
+Each Audit instance must select its storage type with `ServiceControl.Audit/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default.
 
 
 include: sc-audit-storage-sql-intro
 
 
-include: sc-audit-persistencetype
+include: sc-audit-storagetype
 
 
 include: sc-audit-database-connectionstring

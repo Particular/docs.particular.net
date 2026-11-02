@@ -44,9 +44,9 @@ Each ServiceControl Audit instance stores its data in a RavenDB database.
 
 #if-version [7,)
 
-RavenDB is the default storage for ServiceControl Audit instances. See the [storage overview](/servicecontrol/storage/) for the available storage options.
+ServiceControl Audit instances store their data in RavenDB, SQL Server, or PostgreSQL. Each instance must select one with the required [`ServiceControl.Audit/StorageType`](/servicecontrol/audit-instances/configuration.md#storage-servicecontrol-auditstoragetype) setting; there is no default. See the [storage overview](/servicecontrol/storage/) to choose a storage type.
 
-ServiceControl 7 and later can instead store data in SQL Server or PostgreSQL. SQL storage requires external storage for message bodies. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details.
+SQL storage requires external storage for message bodies. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details.
 
 #end-if
 

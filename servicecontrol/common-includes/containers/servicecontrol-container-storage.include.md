@@ -2,13 +2,13 @@
 
 #if-version [7,)
 
-_Environment variable:_ `PERSISTENCETYPE`
+_Environment variable:_ `STORAGETYPE`
 
-Selects the storage provider for the instance. Follow the provider's configuration guide to prepare the storage before running setup.
+Selects the storage provider for the instance. This setting is required; there is no default. Follow the provider's configuration guide to prepare the storage before running setup.
 
-| Provider | `PersistenceType` value | Configuration |
+| Provider | `STORAGETYPE` value | Configuration |
 | --- | --- | --- |
-| RavenDB (default) | `RavenDB` | [RavenDB container setup](/servicecontrol/storage/ravendb/containers.md) |
+| RavenDB | `RavenDB` | [RavenDB container setup](/servicecontrol/storage/ravendb/containers.md) |
 | SQL Server | `SQLServer` | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
 | PostgreSQL | `PostgreSQL` | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 

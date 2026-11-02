@@ -159,13 +159,19 @@ include: sc-error-corsallowedorigins
 
 ## Storage
 
-RavenDB is the default ServiceControl storage type. ServiceControl 7 and later can also use SQL Server or PostgreSQL storage.
+#if-version (,7)
+ServiceControl stores its data in RavenDB.
+#end-if
+
+#if-version [7,)
+Each Error instance must select its storage type with `ServiceControl/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default.
+#end-if
 
 
 include: sc-error-storage-sql-intro
 
 
-include: sc-error-persistencetype
+include: sc-error-storagetype
 
 
 include: sc-error-database-connectionstring

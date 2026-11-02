@@ -28,7 +28,7 @@ include: powershell-help
 
 Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet:
 
-snippet: ps-new-audit-instance
+partial: newinstance
 
 partial: sqlstorage
 

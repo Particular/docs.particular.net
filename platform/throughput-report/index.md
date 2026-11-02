@@ -46,9 +46,9 @@ The following methods can be used to install these requirements:
 
 ## Container Installation
 
-When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), the default configuration includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers with the default RavenDB storage, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), RavenDB storage uses an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers with RavenDB storage, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
 
-The following example uses the default RavenDB storage. The containers required for generating a usage report are:
+The following example uses RavenDB storage. From ServiceControl 7, the storage type has no default, so set the `STORAGETYPE` environment variable to `RavenDB` on the ServiceControl container. The containers required for generating a usage report are:
 
 - [RavenDB](/servicecontrol/storage/ravendb/containers.md)
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/storage/ravendb/containers.md#basic-usage-ravendb-connection-string) must be supplied when installing ServiceControl
@@ -68,7 +68,7 @@ Where the database runs in a cloud environment depends on the storage option:
 
 ### ServiceControl
 
-ServiceControl is installed as a Windows service, and starts automatically. By default, it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use).
+ServiceControl is installed as a Windows service, and starts automatically. With RavenDB storage, it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). From ServiceControl 7, the storage type has no default and must be selected when creating the instance.
 
 #### ServiceControl Management Utility (SCMU)
 
@@ -78,6 +78,7 @@ ServiceControl is installed as a Windows service, and starts automatically. By d
     ![Add new ServiceControl Instance](scmu-1.png 'width=500')
 - Choose your transport and supply the connection string
     ![Choose transport](scmu-3.png 'width=500')
+- From ServiceControl 7, choose a **STORAGE TYPE**. `RavenDB` needs no separate database server.
 - Click 'Add'
 
 #### Powershell
@@ -85,7 +86,7 @@ ServiceControl is installed as a Windows service, and starts automatically. By d
 - Ensure you meet the [prerequisites](/servicecontrol/servicecontrol-instances/deployment/powershell.md#prerequisites)
 - Install and import the [Particular.ServiceControl.Management module](/servicecontrol/servicecontrol-instances/deployment/powershell.md#installing-and-using-the-powershell-module)
 - Run the [New-ServiceControlInstance cmdlet](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance)
-  - Most parameters can remain as shown in the example, with the `-Transport` and `-ConnectionString` values set according to your environment.
+  - Most parameters can remain as shown in the example, with the `-Transport` and `-ConnectionString` values set according to your environment. From ServiceControl 7, `-StorageType` is also required; `RavenDB` needs no separate database server.
 
 ### ServicePulse
 
