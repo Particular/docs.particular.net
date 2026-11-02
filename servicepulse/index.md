@@ -1,7 +1,7 @@
 ---
 title: ServicePulse
 summary: Monitor the health of an NServiceBus system real-time using ServicePulse
-reviewed: 2025-04-15
+reviewed: 2026-11-02
 component: ServicePulse
 isLearningPath: true
 redirects:
@@ -13,16 +13,16 @@ related:
 
 include: servicepulse
 
-#### Pre-requisites
+## Prerequisites
 
 ServicePulse uses information provided by ServiceControl. To use ServicePulse, first set up [ServiceControl](/servicecontrol/).
   - For failed message viewing and retries, only the base [error instance](/servicecontrol/servicecontrol-instances/) is required.
-  - For message flow visualisation and viewing successful messages, one or more [audit instances](/servicecontrol/audit-instances/) are required.
+  - For message flow visualization and viewing successful messages, one or more [audit instances](/servicecontrol/audit-instances/) are required.
   - For monitoring throughput and other metrics, a [monitoring instance](/servicecontrol/monitoring-instances/) is required.
 
 [ServiceControl version 6.13 and above include integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md).
 
-#### Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
+## Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
 
 ```mermaid
 graph RL
@@ -38,7 +38,9 @@ SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
 
 ## ServicePulse views
 
-ServicePulse provides a variety of views to help monitor and manage the health of an NServiceBus system. These views offer insights into system status, endpoint health, real-time metrics, and message processing. Each view is designed to give users actionable information to ensure smooth operation and quick resolution of issues. The following views are available in ServicePulse,
+ServicePulse provides a variety of views to help monitor and manage the health of an NServiceBus system. These views offer insights into system status, endpoint health, real-time metrics, and message processing.
+
+When [role-based access control](/servicepulse/security/configuration/authorization.md) is enabled, ServicePulse shows only the views that the signed-in user's role permits.
 
 ![ServicePulse](images/servicepulse-overview.png 'width=500')
 
@@ -49,8 +51,6 @@ youtube: https://www.youtube.com/watch?v=OVUqOoPZEW4
 ### Dashboard
 
 The dashboard provides a visual overview of the current state of the monitored NServiceBus system. This includes unhealthy endpoints, failed messages and failing custom checks. It also provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
-
-
 
 **Learn more:**
 
@@ -119,3 +119,20 @@ This dedicated events page shows all events captured within ServiceControl.
 **Learn more:**
 
  * [ServicePulse events](/servicepulse/event-types.md).
+
+### Platform health
+
+The "Platform health" view lists the installed Particular Platform components with their versions, available upgrades, and health status. It can also export a snapshot of the installation to attach to a support case.
+
+**Learn more:**
+
+ * [Platform Health](/servicepulse/platform-health.md)
+
+### Usage
+
+The "Usage" view shows the messaging throughput of each detected endpoint queue and generates the usage report needed for licensing.
+
+**Learn more:**
+
+ * [Usage reporting with ServicePulse](/servicepulse/usage-reporting-with-servicepulse.md)
+ * [Usage reporting setup](/servicepulse/usage-reporting-setup.md)
