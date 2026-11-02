@@ -10,29 +10,22 @@ related:
 
 The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a process needs to be run that queries the transport broker for up to 24 hours, and a report generated from this data to be sent to Particular.
 
-The minimal installation required to generate the usage report is:
+The minimal installation required to generate the usage report is a single [ServiceControl error instance](/servicecontrol/servicecontrol-instances/) running ServicePulse in [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md):
 
-- [ServiceControl](/servicecontrol/). For most transports, only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic. Certain transports [cannot query the broker directly](/servicepulse/usage-reporting-setup.md#audit-and-monitoring-data); for these an audit or monitoring instance will also be required and all endpoints will need to be configured to send data to these instances.
-- [ServicePulse](/servicepulse/). This is the UI that interfaces with the ServiceControl service to allow users to specify which endpoints are NServiceBus related and generate the usage report to send to Particular.
+- The error instance contains the broker querying logic.
+- ServicePulse is the UI used to specify which endpoints are NServiceBus related and to generate the usage report to send to Particular. In integrated mode, ServicePulse runs inside the error instance, so no separate installation is required. Integrated mode is available in ServiceControl 6.13 and later.
 
-> [!NOTE]
-> ServicePulse can run in an [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and be started from within ServiceControl, in which case no additional installation is required.
-> This [can be enabled](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse) when installing via the ServiceControl Management Utility as well as when running via Containers.
+Certain transports [cannot query the broker directly](/servicepulse/usage-reporting-setup.md#audit-and-monitoring-data); for these an audit or monitoring instance will also be required and all endpoints will need to be configured to send data to these instances.
 
 ## Installation options
 
 > [!WARNING]
 > By default, the ServiceControl instance will immediately start reading from the `error` queue when it starts. If this is not desired, e.g. if you have another process that monitors the error queue, then set the [`SERVICECONTROL_INGESTERRORMESSAGES`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) environment variable to `false` in any of the following installation options. This variable needs to be set for the account under which the ServiceControl instance is running or on the container.
 
-The following methods can be used to install these requirements:
+ServiceControl can be installed in the following ways, each running ServicePulse in integrated mode:
 
-- [Linux, Windows or cloud environments via Containers](#container-installation)
-  - ServiceControl and ServicePulse through [Containers](#container-installation)
-- [Windows Only](#windows-installation)
-  - ServiceControl through [ServiceControl Management Utility](#windows-installation-servicecontrol-servicecontrol-management-utility-scmu)
-  - ServiceControl through [Powershell](#windows-installation-servicecontrol-powershell)
-  - ServicePulse running in [an integrated mode from within ServiceControl Management Utility](#windows-installation-servicepulse-integrated-into-servicecontrol-management-utility-scmu)
-  - ServicePulse as a [standalone Windows service](#windows-installation-servicepulse-standalone)
+- [Containers](#container-installation), on Linux, Windows, or in cloud environments
+- [Windows](#windows-installation), using the ServiceControl Management Utility or PowerShell
 
 > [!NOTE]
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
@@ -46,31 +39,20 @@ The following methods can be used to install these requirements:
 
 ## Container Installation
 
-When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), RavenDB storage uses an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers with RavenDB storage, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+Run a [ServiceControl container](/servicecontrol/servicecontrol-instances/deployment/containers.md) with the [`ENABLEINTEGRATEDSERVICEPULSE`](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-enable-integrated-servicepulse) environment variable set to `true`, and provide a database for its data.
 
-The following example uses RavenDB storage. From ServiceControl 7, the storage type has no default, so set the `STORAGETYPE` environment variable to `RavenDB` on the ServiceControl container. The containers required for generating a usage report are:
+### Storage
 
-- [RavenDB](/servicecontrol/storage/ravendb/containers.md)
-  - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/storage/ravendb/containers.md#basic-usage-ravendb-connection-string) must be supplied when installing ServiceControl
-- [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
-- [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse))
+From ServiceControl 7, the ServiceControl container must select its storage with the [`STORAGETYPE`](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-storage-selection) environment variable; there is no default. Versions before 7 support only RavenDB.
 
-From ServiceControl 7, an Error instance can instead use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage with an [external message body store](/servicecontrol/storage/external-body/) rather than RavenDB.
-
-### Cloud environments
-
-Where the database runs in a cloud environment depends on the storage option:
-
-- **RavenDB:** In Kubernetes on AKS or EKS, RavenDB can run in a container using the storage the cloud provider recommends; see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment). Where RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
-- **SQL Server or PostgreSQL:** Use a managed SQL Server or PostgreSQL service from the cloud provider. Use [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md) or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) as the external message body store.
+- **SQL Server or PostgreSQL:** Set `STORAGETYPE` to `SQLServer` or `PostgreSQL` and point ServiceControl at an existing database, such as a managed SQL Server or PostgreSQL service from the cloud provider. These options also need an [external message body store](/servicecontrol/storage/external-body/), such as [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md) or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md). See [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/).
+- **RavenDB:** Set `STORAGETYPE` to `RavenDB` and run a [RavenDB container](/servicecontrol/storage/ravendb/containers.md), or supply the [connection string](/servicecontrol/storage/ravendb/containers.md#basic-usage-ravendb-connection-string) of another RavenDB server. Examples are available in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples), including [Kubernetes manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for AKS or EKS. Where RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation
 
-### ServiceControl
+ServiceControl is installed as a Windows service and starts automatically. From ServiceControl 7, choose a storage type when creating the instance. RavenDB runs embedded in ServiceControl, so it needs no separate database server, while [SQL Server](/servicecontrol/storage/sqlserver/) and [PostgreSQL](/servicecontrol/storage/postgresql/) use an existing database. Versions before 7 always use embedded RavenDB.
 
-ServiceControl is installed as a Windows service, and starts automatically. With RavenDB storage, it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). From ServiceControl 7, the storage type has no default and must be selected when creating the instance.
-
-#### ServiceControl Management Utility (SCMU)
+### ServiceControl Management Utility (SCMU)
 
 - [Download](https://particular.net/start-servicecontrol-download) the latest SCMU
 - Run the executable. This will require Admin privileges.
@@ -78,34 +60,19 @@ ServiceControl is installed as a Windows service, and starts automatically. With
     ![Add new ServiceControl Instance](scmu-1.png 'width=500')
 - Choose your transport and supply the connection string
     ![Choose transport](scmu-3.png 'width=500')
-- From ServiceControl 7, choose a **STORAGE TYPE**. `RavenDB` needs no separate database server.
+- From ServiceControl 7, choose a **STORAGE TYPE**
+- Leave **ENABLE INTEGRATED SERVICEPULSE** set to `On`
 - Click 'Add'
 
-#### Powershell
+Once the instance is installed and running, SCMU shows a link to launch ServicePulse.
+![ServicePulse link](scmu-5.png 'width=500')
+
+When upgrading an existing instance from an older version of ServiceControl, click the `Enable Integrated ServicePulse` option.
+![Enable integrated ServicePulse](scmu-6.png 'width=500')
+
+### PowerShell
 
 - Ensure you meet the [prerequisites](/servicecontrol/servicecontrol-instances/deployment/powershell.md#prerequisites)
 - Install and import the [Particular.ServiceControl.Management module](/servicecontrol/servicecontrol-instances/deployment/powershell.md#installing-and-using-the-powershell-module)
 - Run the [New-ServiceControlInstance cmdlet](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance)
-  - Most parameters can remain as shown in the example, with the `-Transport` and `-ConnectionString` values set according to your environment. From ServiceControl 7, `-StorageType` is also required; `RavenDB` needs no separate database server.
-
-### ServicePulse
-
-ServicePulse can be installed separately as a Windows service, or it can run in an [integrated mode](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) from within the ServiceControl Management Utility (SCMU).
-
-#### Integrated into ServiceControl Management Utility (SCMU)
-
-This is the easiest and recommended way to run ServicePulse for generating usage reports.
-
-##### New installations
-
-When installing a new instance of ServiceControl via SCMU, once the service is installed and running, a link to launch an integrated version of ServicePulse will be visible in SCMU.
-![ServicePulse link](scmu-5.png 'width=500')
-
-##### Upgrades
-
-When upgrading from an older version of ServiceControl via SCMU, ensure you click the `Enable Integrated ServicePulse` option.
-![Enable integrated ServicePulse](scmu-6.png 'width=500')
-
-#### Standalone
-
-Follow the [installation instructions](/servicepulse/windows-installer.md) and ensure ServicePulse is [configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to point to the port of the ServiceControl instance installed above.
+  - Most parameters can remain as shown in the example, which includes `-EnableIntegratedServicePulse`, with the `-Transport` and `-ConnectionString` values set according to your environment. From ServiceControl 7, `-StorageType` is also required.
