@@ -3,7 +3,6 @@ title: ServiceControl SQL Server Storage
 summary: Configure SQL Server storage for ServiceControl Error and Audit instances.
 reviewed: 2026-06-01
 component: ServiceControl
-versions: '[7,)'
 ---
 
 From ServiceControl 7, Error and Audit instances can use SQL Server instead of [RavenDB storage](/servicecontrol/storage/ravendb/). Select SQL Server when an instance should use an existing SQL Server deployment. Storage is configured separately for each instance.

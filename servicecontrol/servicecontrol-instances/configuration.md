@@ -46,9 +46,6 @@ include: sc-error-shutdowntimeout
 include: sc-error-enableexternalintegrationspublishing
 
 
-include: sc-error-disableexternalintegrationspublishing
-
-
 include: sc-error-enableintegratedservicepulse
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
@@ -159,13 +156,7 @@ include: sc-error-corsallowedorigins
 
 ## Storage
 
-#if-version (,7)
-ServiceControl stores its data in RavenDB.
-#end-if
-
-#if-version [7,)
-Each Error instance must select its storage type with `ServiceControl/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default.
-#end-if
+Each Error instance must select its storage type with `ServiceControl/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default. SQL Server and PostgreSQL storage, and the `StorageType` setting, are available from ServiceControl 7. Earlier versions store data in RavenDB.
 
 
 include: sc-error-storage-sql-intro

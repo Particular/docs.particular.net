@@ -143,11 +143,10 @@ include: sc-audit-corsallowanyorigin
 
 include: sc-audit-corsallowedorigins
 
-#if-version [7,)
 
 ## Storage
 
-Each Audit instance must select its storage type with `ServiceControl.Audit/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default.
+Each Audit instance must select its storage type with `ServiceControl.Audit/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default. SQL Server and PostgreSQL storage, and the `StorageType` setting, are available from ServiceControl 7. Earlier versions store data in RavenDB.
 
 
 include: sc-audit-storage-sql-intro
@@ -213,8 +212,6 @@ include: sc-audit-messagebody-mincompressionsize
 
 
 include: sc-audit-storage-sql-outro
-
-#end-if
 
 
 ## Embedded database

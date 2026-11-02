@@ -9,25 +9,11 @@ redirects:
 
 ServiceControl Error and Audit instances store the messages they ingest so that ServicePulse can display and search them. Storage is selected per instance; a Monitoring instance does not need a database.
 
-#if-version (,7)
-[RavenDB](/servicecontrol/storage/ravendb/) is the default for Error and Audit instances. It is embedded when deploying with PowerShell or the ServiceControl Management Utility and runs separately for container deployments.
-#end-if
-
 ## Storage providers
 
 Choose a provider for each instance. Follow the linked configuration guide to prepare its storage and configure ServiceControl.
 
-#if-version (,7)
-
-| Storage | Availability | Configuration |
-| --- | --- | --- |
-| RavenDB | Default for Error and Audit instances | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
-
-#end-if
-
-#if-version [7,)
-
-Each Error and Audit instance uses one storage provider, selected with the required `StorageType` setting when the instance is created. There is no default. Instances can use different providers; for example, an Error instance can use SQL Server while its Audit instances use RavenDB.
+Each Error and Audit instance uses one storage provider, selected with the required `StorageType` setting when the instance is created. There is no default. Instances can use different providers; for example, an Error instance can use SQL Server while its Audit instances use RavenDB. SQL Server and PostgreSQL storage, and the `StorageType` setting, are available from ServiceControl 7. Earlier versions support only RavenDB, which is their default.
 
 - **RavenDB** needs no separate database server when deploying with PowerShell or the ServiceControl Management Utility, which embed it. It suits teams that do not already run SQL Server or PostgreSQL.
 - **SQL Server** and **PostgreSQL** suit teams that already run, monitor, and back up one of these database servers and want ServiceControl data managed with the same tools.
@@ -78,5 +64,3 @@ Back up and monitor each instance's database and, for SQL-backed instances, its 
 
 > [!WARNING]
 > Changing `StorageType` on an existing instance does not move its data. The instance starts with empty storage. See [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
-
-#end-if

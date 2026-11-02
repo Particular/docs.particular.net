@@ -6,6 +6,4 @@ The percentage threshold for the [Message database storage space](/servicecontro
 | --- | --- |
 | int | `20` |
 
-#if-version [7,)
 This setting applies only to RavenDB storage.
-#end-if

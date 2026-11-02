@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/Azure/ManagedIdentityClientId
+
+_Added in version 7.0.0_
 
 The client ID of the user-assigned managed identity used to access Azure Blob Storage. When this setting is not specified, the default Azure credential chain is used.
 
@@ -12,4 +13,3 @@ The client ID of the user-assigned managed identity used to access Azure Blob St
 | Type | Default value |
 | --- | --- |
 | string | None |
-#end-if

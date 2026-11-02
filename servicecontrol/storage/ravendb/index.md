@@ -7,11 +7,7 @@ component: ServiceControl
 
 ServiceControl Error and Audit instances can store their data in RavenDB. Use this page to find RavenDB-specific deployment and maintenance guidance.
 
-#if-version [7,)
-
 From ServiceControl 7, each Error and Audit instance must select its storage type; there is no default. Set it to `RavenDB` to use RavenDB storage. Instances can instead use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/); see the [storage overview](/servicecontrol/storage/) for the differences.
-
-#end-if
 
 When deploying with PowerShell or the ServiceControl Management Utility, ServiceControl uses an embedded RavenDB database. For containers, use the [ServiceControl RavenDB container](/servicecontrol/storage/ravendb/containers.md) or a compatible external RavenDB server. Configure the connection for each [Error instance](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [Audit instance](/servicecontrol/audit-instances/deployment/containers.md) separately.
 
@@ -26,8 +22,4 @@ When deploying with PowerShell or the ServiceControl Management Utility, Service
 
 These procedures apply only to RavenDB storage.
 
-#if-version [7,)
-
 Configuring a different provider for an existing instance is not a data migration procedure.
-
-#end-if

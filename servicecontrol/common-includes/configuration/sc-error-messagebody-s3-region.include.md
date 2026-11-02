@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/MessageBody/S3/Region
+
+_Added in version 7.0.0_
 
 The AWS region containing the S3 bucket. When this setting is not specified, the AWS SDK resolves the region from its default configuration chain.
 
@@ -12,4 +13,3 @@ The AWS region containing the S3 bucket. When this setting is not specified, the
 | Type | Default value |
 | --- | --- |
 | string | None |
-#end-if

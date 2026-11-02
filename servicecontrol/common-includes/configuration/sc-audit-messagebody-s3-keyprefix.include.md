@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/S3/KeyPrefix
+
+_Added in version 7.0.0_
 
 The prefix applied to message body object keys in Amazon S3. Every Audit instance has the same default, so set a different key prefix for each Audit instance that uses the same bucket.
 
@@ -12,4 +13,3 @@ The prefix applied to message body object keys in Amazon S3. Every Audit instanc
 | Type | Default value |
 | --- | --- |
 | string | `audit-bodies/` |
-#end-if

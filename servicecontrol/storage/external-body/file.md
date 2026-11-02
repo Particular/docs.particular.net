@@ -3,7 +3,6 @@ title: File System Message Body Storage
 summary: Configure file system storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
 reviewed: 2026-11-02
 component: ServiceControl
-versions: '[7,)'
 ---
 
 File system storage saves message bodies to a local directory. Set `ServiceControl/MessageBody/StorageType` on an Error instance, or `ServiceControl.Audit/MessageBody/StorageType` on an Audit instance, to `FileSystem` when the instance uses [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage.

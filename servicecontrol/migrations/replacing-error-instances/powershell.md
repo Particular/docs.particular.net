@@ -64,11 +64,7 @@ $serviceControlInstance = New-ServiceControlInstance `
   -ErrorRetentionPeriod 10:00:00:00
 ```
 
-#if-version [7,)
-
-`-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance).
-
-#end-if
+From ServiceControl 7, `-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance).
 
 Now that the instance is created, the configuration must be modified so that the Error instance can communicate with the same Audit instances as the previous Error instance. In this example, the Audit instance at `http://localhost:4444` is added.
 

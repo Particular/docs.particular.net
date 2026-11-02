@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/MessageBody/FileSystem/StoragePath
+
+_Added in version 7.0.0_
 
 The directory where message bodies are stored when `MessageBody/StorageType` is `FileSystem`.
 
@@ -12,4 +13,3 @@ The directory where message bodies are stored when `MessageBody/StorageType` is 
 | Type | Default value |
 | --- | --- |
 | string | None (required for file system storage) |
-#end-if

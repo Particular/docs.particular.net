@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/S3/AccessKeyId
+
+_Added in version 7.0.0_
 
 The access key ID used to authenticate with S3. Configure this setting together with `ServiceControl.Audit/MessageBody/S3/SecretAccessKey`, or leave both empty to use the AWS SDK default credential chain.
 
@@ -12,4 +13,3 @@ The access key ID used to authenticate with S3. Configure this setting together 
 | Type | Default value |
 | --- | --- |
 | string | None |
-#end-if

@@ -3,7 +3,6 @@ title: External Message Body Storage
 summary: Choose and configure external message body storage for SQL-backed ServiceControl Error and Audit instances.
 reviewed: 2026-10-29
 component: ServiceControl
-versions: '[7,)'
 ---
 
 SQL Server and PostgreSQL storage separate large message bodies from the instance's database. The database stores message metadata and small text bodies; an external store holds larger bodies and every binary body. Configure an external store even if most messages have small bodies.

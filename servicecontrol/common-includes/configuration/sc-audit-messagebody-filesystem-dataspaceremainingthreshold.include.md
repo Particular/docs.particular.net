@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/FileSystem/DataSpaceRemainingThreshold
+
+_Added in version 7.0.0_
 
 The percentage of disk space that must remain available on the drive containing the message body storage directory. The value must be between `0` and `100`.
 
@@ -12,4 +13,3 @@ The percentage of disk space that must remain available on the drive containing 
 | Type | Default value |
 | --- | --- |
 | int | `15` (percent) |
-#end-if

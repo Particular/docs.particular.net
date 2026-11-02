@@ -15,6 +15,4 @@ The port to expose the RavenDB database.
 > [!NOTE]
 > This setting is not relevant when running an audit instance in a container.
 
-#if-version [7,)
 This setting applies only to RavenDB storage.
-#end-if

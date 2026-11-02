@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/MessageBody/StorageType
+
+_Added in version 7.0.0_
 
 The external storage provider used for message bodies.
 
@@ -14,4 +15,3 @@ The external storage provider used for message bodies.
 | string | None (required for SQL Server and PostgreSQL storage) |
 
 Valid values are `FileSystem`, `AzureBlob`, and `S3`.
-#end-if

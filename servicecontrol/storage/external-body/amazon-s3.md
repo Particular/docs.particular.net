@@ -3,7 +3,6 @@ title: Amazon S3 Message Body Storage
 summary: Configure Amazon S3 storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
 reviewed: 2026-10-29
 component: ServiceControl
-versions: '[7,)'
 ---
 
 Amazon S3 storage saves message bodies in an S3 bucket. Set `ServiceControl/MessageBody/StorageType` on an Error instance, or `ServiceControl.Audit/MessageBody/StorageType` on an Audit instance, to `S3` when the instance uses [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage.

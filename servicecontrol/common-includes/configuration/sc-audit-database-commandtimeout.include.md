@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/Database/CommandTimeout
+
+_Added in version 7.0.0_
 
 The command timeout, in seconds, for SQL database operations.
 
@@ -12,4 +13,3 @@ The command timeout, in seconds, for SQL database operations.
 | Type | Default value |
 | --- | --- |
 | int | `30` |
-#end-if

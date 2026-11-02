@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/Database/Schema
+
+_Added in version 7.0.0_
 
 The schema that contains the Audit instance tables. If the schema does not exist, setup creates it, which requires permission to create schemas. Changing this setting does not move existing data; an instance that already has data must keep using the schema that contains it.
 
@@ -12,4 +13,3 @@ The schema that contains the Audit instance tables. If the schema does not exist
 | Type | Default value |
 | --- | --- |
 | string | `sc_audit` |
-#end-if

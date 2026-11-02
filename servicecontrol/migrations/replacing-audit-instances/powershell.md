@@ -30,11 +30,7 @@ New-ServiceControlAuditInstance `
   -ServiceControlQueueAddress "Particular.ServiceControl"
 ```
 
-#if-version [7,)
-
-`-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Audit instance](/servicecontrol/audit-instances/deployment/powershell.md#audit-instance-cmdlets-and-aliases-deploying-an-audit-instance).
-
-#end-if
+From ServiceControl 7, `-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Audit instance](/servicecontrol/audit-instances/deployment/powershell.md#audit-instance-cmdlets-and-aliases-deploying-an-audit-instance).
 
 ## Add the instance to RemoteInstances
 

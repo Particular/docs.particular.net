@@ -28,9 +28,13 @@ include: powershell-help
 
 Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet:
 
-partial: newinstance
+The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required; leave it out for earlier versions.
 
-partial: sqlstorage
+snippet: ps-new-audit-instance-ravendb
+
+From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. SQL-backed Audit instances also require [external message body storage](/servicecontrol/storage/external-body/), which `New-ServiceControlAuditInstance` does not configure. Add the [`ServiceControl.Audit/MessageBody` settings](/servicecontrol/audit-instances/configuration.md#storage) to the instance's configuration file before starting it. The following example uses the same database as the Error instance; the Audit instance's tables go in the `sc_audit` schema by default.
+
+snippet: ps-new-audit-instance-sqlserver
 
 include: powershell-new-configuration
 

@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/MessageBody/S3/KeyPrefix
+
+_Added in version 7.0.0_
 
 The prefix applied to message body object keys in Amazon S3.
 
@@ -12,4 +13,3 @@ The prefix applied to message body object keys in Amazon S3.
 | Type | Default value |
 | --- | --- |
 | string | `error-bodies/` |
-#end-if

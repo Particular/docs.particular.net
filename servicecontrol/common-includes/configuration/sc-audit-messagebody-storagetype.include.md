@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/StorageType
+
+_Added in version 7.0.0_
 
 The external storage provider used for message bodies.
 
@@ -14,4 +15,3 @@ The external storage provider used for message bodies.
 | string | None (required for SQL Server and PostgreSQL storage) |
 
 Valid values are `FileSystem`, `AzureBlob`, and `S3`. The ServiceControl Management Utility and the PowerShell module do not set this setting or the provider settings; add them to the instance's configuration file or environment.
-#end-if

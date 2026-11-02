@@ -52,11 +52,7 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
    8. [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) can be confirmed as on or off.
 
-#if-version [7,)
-
-Error and audit instances also have a required **STORAGE TYPE** setting, which has no default. `RavenDB` stores data in an embedded database on the server. `SQL Server` and `PostgreSQL` need a **DATABASE CONNECTION STRING** to an existing database, and an error instance also needs a **MESSAGE BODY STORAGE** choice: `File system`, `Azure Blob Storage`, or `Amazon S3`. A SQL-backed audit instance also requires message body storage, which is not set in ServiceControl Management; add the [`ServiceControl.Audit/MessageBody` settings](/servicecontrol/audit-instances/configuration.md#storage) to the audit instance's configuration file. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
-
-#end-if
+From ServiceControl 7, error and audit instances also have a required **STORAGE TYPE** setting, which has no default. `RavenDB` stores data in an embedded database on the server. `SQL Server` and `PostgreSQL` need a **DATABASE CONNECTION STRING** to an existing database, and an error instance also needs a **MESSAGE BODY STORAGE** choice: `File system`, `Azure Blob Storage`, or `Amazon S3`. A SQL-backed audit instance also requires message body storage, which is not set in ServiceControl Management; add the [`ServiceControl.Audit/MessageBody` settings](/servicecontrol/audit-instances/configuration.md#storage) to the audit instance's configuration file. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
 
 A monitoring instance differs from error and audit instances in its configuration:
 

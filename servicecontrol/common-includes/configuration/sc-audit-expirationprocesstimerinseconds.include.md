@@ -16,6 +16,4 @@ Valid range is `0` to `10800` (3 Hours).
 
 Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding.
 
-#if-version [7,)
 This setting applies only to RavenDB storage. SQL Server and PostgreSQL storage check for expired messages once an hour, and the interval cannot be changed.
-#end-if

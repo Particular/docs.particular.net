@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/Azure/ContainerName
+
+_Added in version 7.0.0_
 
 The Azure Blob Storage container used to store message bodies. Every Audit instance has the same default, so set a different container name for each Audit instance that uses the same storage account.
 
@@ -12,4 +13,3 @@ The Azure Blob Storage container used to store message bodies. Every Audit insta
 | Type | Default value |
 | --- | --- |
 | string | `audit-bodies` |
-#end-if

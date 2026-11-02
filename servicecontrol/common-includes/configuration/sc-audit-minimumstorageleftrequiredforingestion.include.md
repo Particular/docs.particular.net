@@ -6,6 +6,4 @@ The percentage threshold for the [Critical message database storage space](/serv
 | --- | --- |
 | int | `5` |
 
-#if-version [7,)
 This setting applies only to RavenDB storage. SQL Server and PostgreSQL storage do not stop ingestion based on free disk space.
-#end-if

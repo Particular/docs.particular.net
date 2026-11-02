@@ -1,3 +1,1 @@
-#if-version [7,)
 SQL Server and PostgreSQL storage require an existing database and external storage for message bodies. The ServiceControl Management Utility and the PowerShell module can create SQL-backed Audit instances but do not configure message body storage; add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file before starting it. See [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/).
-#end-if

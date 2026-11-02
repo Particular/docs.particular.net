@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/MessageBody/Azure/AuthorityHost
+
+_Added in version 7.0.0_
 
 The Microsoft Entra authority host URI used for managed identity authentication in sovereign clouds. When this setting is not specified, the Azure SDK uses the `AZURE_AUTHORITY_HOST` environment variable or its default authority host.
 
@@ -12,4 +13,3 @@ The Microsoft Entra authority host URI used for managed identity authentication 
 | Type | Default value |
 | --- | --- |
 | string | None |
-#end-if

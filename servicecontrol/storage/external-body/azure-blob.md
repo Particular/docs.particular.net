@@ -3,7 +3,6 @@ title: Azure Blob Storage Message Body Storage
 summary: Configure Azure Blob Storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
 reviewed: 2026-10-29
 component: ServiceControl
-versions: '[7,)'
 ---
 
 Azure Blob Storage saves message bodies in a blob container. Set `ServiceControl/MessageBody/StorageType` on an Error instance, or `ServiceControl.Audit/MessageBody/StorageType` on an Audit instance, to `AzureBlob` when the instance uses [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage.

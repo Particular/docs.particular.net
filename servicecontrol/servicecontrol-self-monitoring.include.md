@@ -26,8 +26,6 @@ When using RavenDB storage with an embedded database, ServiceControl stores mess
 
 This check applies only to RavenDB storage. It is similar to the [Message database storage space check](#notifications-health-monitoring-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
 
-#if-version [7,)
-
 #### SQL storage retention
 
 SQL Server and PostgreSQL storage use periodic retention sweeps to delete expired data. If three consecutive sweeps fail, a failure is reported. The check clears when a sweep succeeds. Check the instance logs for the cause of the failures.
@@ -42,4 +40,3 @@ Audit instances using PostgreSQL storage store audit data in time-based partitio
 #### Message body storage space
 
 Error and Audit instances using SQL storage and file system message body storage monitor the remaining space on the drive containing the body storage path. The **ServiceControl body storage** check reports a failure if the drive has 15% or less of its total capacity remaining. The threshold is controlled by the [ServiceControl/MessageBody/FileSystem/DataSpaceRemainingThreshold](/servicecontrol/storage/external-body/file.md#optional-settings-servicecontrolmessagebodyfilesystemdataspaceremainingthreshold) (for the error instance) and [ServiceControl.Audit/MessageBody/FileSystem/DataSpaceRemainingThreshold](/servicecontrol/storage/external-body/file.md#optional-settings-servicecontrol-auditmessagebodyfilesystemdataspaceremainingthreshold) (for the audit instance) settings. This check does not apply to other message body storage types.
-#end-if

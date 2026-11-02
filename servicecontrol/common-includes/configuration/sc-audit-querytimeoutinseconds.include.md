@@ -1,5 +1,6 @@
-#if-version [6.20,)
 ### ServiceControl.Audit/QueryTimeoutInSeconds
+
+_Added in version 6.20.0_
 
 Configures the maximum duration, in seconds, that an audit message query (for example, a message search or a conversation lookup issued by ServicePulse) is allowed to run before it is cancelled. This prevents long-running queries from consuming resources. With RavenDB, queries over very large data sets can consume large amounts of temporary disk space. Values larger than one hour fall back to the default.
 
@@ -14,4 +15,3 @@ A query that runs out of its allowed time is answered with HTTP status `504 Gate
 | Type | Default value |
 | --- | --- |
 | int | `60` (1 minute) |
-#end-if

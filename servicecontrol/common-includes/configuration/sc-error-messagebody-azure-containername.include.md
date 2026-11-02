@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/MessageBody/Azure/ContainerName
+
+_Added in version 7.0.0_
 
 The Azure Blob Storage container used to store message bodies.
 
@@ -12,4 +13,3 @@ The Azure Blob Storage container used to store message bodies.
 | Type | Default value |
 | --- | --- |
 | string | `error-bodies` |
-#end-if

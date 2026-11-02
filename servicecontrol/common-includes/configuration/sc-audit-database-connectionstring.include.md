@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/Database/ConnectionString
+
+_Added in version 7.0.0_
 
 The connection string for the SQL Server or PostgreSQL database. The database must already exist.
 
@@ -12,4 +13,3 @@ The connection string for the SQL Server or PostgreSQL database. The database mu
 | Type | Default value |
 | --- | --- |
 | string | None (required for SQL Server and PostgreSQL storage) |
-#end-if

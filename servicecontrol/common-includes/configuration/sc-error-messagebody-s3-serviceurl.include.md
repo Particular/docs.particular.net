@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/MessageBody/S3/ServiceUrl
+
+_Added in version 7.0.0_
 
 The service URL for an S3-compatible storage provider. Leave this setting empty when using Amazon S3.
 
@@ -12,4 +13,3 @@ The service URL for an S3-compatible storage provider. Leave this setting empty 
 | Type | Default value |
 | --- | --- |
 | string | None |
-#end-if

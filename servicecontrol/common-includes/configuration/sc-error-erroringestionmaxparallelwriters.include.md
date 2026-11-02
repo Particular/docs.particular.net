@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl/ErrorIngestionMaxParallelWriters
+
+_Added in version 7.0.0_
 
 The maximum number of batches that are written to storage in parallel. Concurrent writers are supported only with SQL Server and PostgreSQL storage. RavenDB storage always uses `1` writer and logs a warning if a value greater than `1` is explicitly configured.
 
@@ -17,4 +18,3 @@ The allowed range is `1` to `16`. More writers increase CPU, memory, and storage
 
 > [!WARNING]
 > Custom `IEnrichImportedErrorMessages` implementations must be thread-safe. They are called concurrently whenever more than one writer is used, which is the default with SQL Server and PostgreSQL storage.
-#end-if

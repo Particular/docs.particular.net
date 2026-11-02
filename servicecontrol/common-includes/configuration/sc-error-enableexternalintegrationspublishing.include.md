@@ -1,6 +1,6 @@
-#if-version [7,)
-
 ### ServiceControl/EnableExternalIntegrationsPublishing
+
+_Added in version 7.0.0_
 
 Controls whether ServiceControl publishes [integration events](/servicecontrol/contracts.md). Set to `true` to enable publishing. Publishing is disabled by default.
 
@@ -13,4 +13,3 @@ Controls whether ServiceControl publishes [integration events](/servicecontrol/c
 | Type | Default value |
 | --- | --- |
 | bool | `false` |
-#end-if

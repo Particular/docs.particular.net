@@ -1,5 +1,6 @@
-#if-version [7,)
 ### ServiceControl.Audit/AuditIngestionMaxParallelWriters
+
+_Added in version 7.0.0_
 
 The maximum number of batches that are written to storage in parallel.
 
@@ -14,4 +15,3 @@ The maximum number of batches that are written to storage in parallel.
 | int | `2` |
 
 The allowed range is `1` to `16`. More writers increase CPU, memory, and storage load; increase the value only if there are no verified bottlenecks.
-#end-if

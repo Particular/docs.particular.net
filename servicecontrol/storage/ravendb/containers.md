@@ -30,10 +30,7 @@ docker run -d --name servicecontrol-db \
 
 Once the database container is running, the connection string `http://servicecontrol-db:8080` can be used for the `RAVENDB_CONNECTIONSTRING` value for an [Error instance](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [Audit instance](/servicecontrol/audit-instances/deployment/containers.md).
 
-#if-version [7,)
-Also set [`STORAGETYPE`](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-storage-selection) to `RavenDB` on the Error or Audit container, as the storage type has no default.
-#end-if
-
+From ServiceControl 7, also set [`STORAGETYPE`](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-storage-selection) to `RavenDB` on the Error or Audit container, as the storage type has no default.
 ### RavenDB connection string
 
 _Environment variable:_ `RAVENDB_CONNECTIONSTRING`
