@@ -1,7 +1,7 @@
 ---
 title: AmazonSQS native integration
 summary: Considerations when integrating NServiceBus endpoints with native Amazon SQS publishers and consumers.
-reviewed: 2025-04-16
+reviewed: 2026-11-02
 component: sqs
 versions: '[5,]'
 related:
@@ -23,6 +23,10 @@ partial: messagetypedetection
 
 ## Retrying failed messages
 
-Native messages that failed processing can be retried using ServicePulse and ServiceControl but the native message attributes that might have been present in the original message are lost when the message is retried.
+Native messages that failed processing can be retried using ServicePulse and ServiceControl, but the native message attributes that might have been present in the original message are lost when the message is retried.
+
+#if-version [7,)
+Because the transport [promotes native message attributes to headers](#native-message-attributes-promotion), their values are still available as message headers when the retried message is processed.
+#end-if
 
 partial: native-message-attributes-promotion
