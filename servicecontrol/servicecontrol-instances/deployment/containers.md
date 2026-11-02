@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
 summary: A guide to setting up and deploying ServiceControl Error instances using Containers
-reviewed: 2026-10-27
+reviewed: 2026-11-02
 component: ServiceControl
 versions: '[5.3, )'
 redirects:
@@ -133,7 +133,7 @@ A RavenDB Error instance does not require a mounted data volume. A mounted volum
 A SQL-backed Error instance using file system message body storage requires a durable volume mounted to the path specified by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Azure Blob Storage and Amazon S3 body stores do not require a mounted volume. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md) for details.
 
 > [!WARNING]
-> The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and storing message bodies then fails at runtime. Give the volume suitable ownership or permissions before running setup.
+> The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and the instance then fails to start up. Give the volume suitable ownership or permissions before starting the instance.
 
 #end-if
 

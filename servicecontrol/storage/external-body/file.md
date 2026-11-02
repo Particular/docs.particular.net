@@ -1,7 +1,7 @@
 ---
 title: File System Message Body Storage
 summary: Configure file system storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
-reviewed: 2026-10-27
+reviewed: 2026-11-02
 component: ServiceControl
 versions: '[7,)'
 ---
@@ -27,7 +27,7 @@ Setup creates the configured directory if it does not exist. The setup identity 
 > [!WARNING]
 > Use a durable directory or volume. Message bodies stored on a temporary or ephemeral file system are lost when it is reset, for example when a container restarts.
 
-Setup does not check that the directory is writable: if the directory already exists but the runtime identity cannot write to it, setup succeeds and storing message bodies fails at runtime. In a container, the instance runs as a non-root user; see the container volume requirements for [Error instances](/servicecontrol/servicecontrol-instances/deployment/containers.md#volumes) and [Audit instances](/servicecontrol/audit-instances/deployment/containers.md#volumes).
+Setup does not check that the directory is writable: if the directory already exists but the runtime identity cannot write to it, setup succeeds and the instance fails to start up. In a container, the instance runs as a non-root user; see the container volume requirements for [Error instances](/servicecontrol/servicecontrol-instances/deployment/containers.md#volumes) and [Audit instances](/servicecontrol/audit-instances/deployment/containers.md#volumes).
 
 Set these variables in an Error instance's environment:
 
