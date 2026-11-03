@@ -1,7 +1,7 @@
 ---
 title: ServiceControl PostgreSQL Storage
 summary: Configure PostgreSQL storage for ServiceControl Error and Audit instances.
-reviewed: 2026-06-01
+reviewed: 2026-11-03
 component: ServiceControl
 ---
 
@@ -47,11 +47,11 @@ ServiceControl uses [Npgsql](https://www.npgsql.org/doc/connection-string-parame
 
 ### Token authentication
 
-Azure Database for PostgreSQL and Amazon RDS for PostgreSQL, including Aurora PostgreSQL, can sign in with short-lived access tokens instead of a password. To use them, add `Token Authentication` to the connection string, set `Username` to the database role the token signs in as, and leave out `Password` and `Passfile`. ServiceControl gets a token when it starts and refreshes it every five minutes.
+Azure Database for PostgreSQL and Amazon RDS for PostgreSQL, including Aurora PostgreSQL, can sign in with short-lived access tokens instead of a password. To use them, add `Token Authentication` to the connection string, set `Username` to the database role the token signs in as, and leave out `Password` and `Passfile`.
 
 | `Token Authentication` value | Database | Credentials |
 | --- | --- | --- |
-| `AzureEntraId` | Azure Database for PostgreSQL with Microsoft Entra authentication | The Azure SDK's `DefaultAzureCredential`, such as a managed identity. To select a user-assigned managed identity, set the `AZURE_CLIENT_ID` environment variable. |
+| `AzureEntraId` | Azure Database for PostgreSQL with Microsoft Entra authentication | The Azure SDK's `DefaultAzureCredential`. See [Microsoft Entra ID](#authentication-token-authentication-microsoft-entra-id). |
 | `AwsRdsIam` | Amazon RDS for PostgreSQL or Aurora PostgreSQL with IAM database authentication | The AWS SDK default credential chain, such as an IAM role. The region comes from the `AWS_REGION` environment variable or the AWS profile. |
 
 ```text
@@ -59,12 +59,41 @@ Host=my-server.postgres.database.azure.com;Database=ServiceControl;Username=serv
 Host=my-cluster.cluster-xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=servicecontrol;Token Authentication=AwsRdsIam;SSL Mode=Require
 ```
 
-- **Microsoft Entra ID:** ServiceControl works out the token scope from host names in the Azure public cloud, Azure Government, and Azure China. For other host names, such as a custom DNS alias, add `Token Scope` with the server's Microsoft Entra scope, for example `Token Scope=https://ossrdbms-aad.database.windows.net/.default`.
-- **AWS IAM:** the connection string must list exactly one host. Grant the database user the `rds_iam` role, and give the identity ServiceControl runs as `rds-db:connect` permission for that user. A user with `rds_iam` can no longer sign in with a password.
+ServiceControl uses a token each time it opens a new database connection:
 
-If ServiceControl cannot get a new token, it logs an error and tries again every 10 seconds. New connections keep using the previous token until it expires.
+- **AWS IAM:** ServiceControl signs a new token for every connection.
+- **Microsoft Entra ID:** ServiceControl reuses a token until two minutes before it expires, then gets a new one. If getting a new token fails while the current one is still valid, ServiceControl logs a warning, keeps using the current token, and tries again 10 seconds later.
+
+If ServiceControl cannot get a valid token, opening the connection fails with `Could not get a database access token for user <user> on host <host>, database <database>.` The inner exception contains the error from the credential. Neither the error nor the warning includes the token.
 
 The same keywords work in the [PostgreSQL transport connection string](/servicecontrol/transports.md#postgresql).
+
+#### Microsoft Entra ID
+
+ServiceControl gets Microsoft Entra tokens from the Azure SDK's [`DefaultAzureCredential`](https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication/credential-chains#defaultazurecredential-overview). It supports the following identities:
+
+| Identity | Configuration |
+| --- | --- |
+| System-assigned managed identity | None |
+| User-assigned managed identity | Set `AZURE_CLIENT_ID` to the client ID of the identity. |
+| Service principal with a client secret | Set `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, and `AZURE_CLIENT_SECRET`. |
+| Service principal with a certificate | Set `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, and `AZURE_CLIENT_CERTIFICATE_PATH` to a PEM or PFX file that contains the certificate and its private key. For a password-protected PFX file, also set `AZURE_CLIENT_CERTIFICATE_PASSWORD`. |
+| Microsoft Entra Workload ID, for example on Azure Kubernetes Service | The environment variables that the workload identity webhook sets. |
+
+Set these environment variables for the ServiceControl process. See [`EnvironmentCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.environmentcredential) and [`ManagedIdentityCredential`](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) for the complete list of variables.
+
+`DefaultAzureCredential` tries a chain of credentials in order and uses the first one that returns a token: environment variables (service principals), workload identity, managed identity, and then developer tools such as Visual Studio, the Azure CLI, and Azure PowerShell. On a machine where more than one credential is available, such as a virtual machine with a managed identity where a user is also signed in to the Azure CLI, the first available credential in the chain is used.
+
+To use one credential only, set the `AZURE_TOKEN_CREDENTIALS` environment variable to its name, for example `ManagedIdentityCredential` or `EnvironmentCredential`. To exclude developer tool credentials, set it to `prod`. Setting `AZURE_TOKEN_CREDENTIALS` is recommended in production: the instance always signs in as the expected identity, and an authentication error comes from that credential instead of from the whole chain. See [use a specific credential](https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication/credential-chains#use-a-specific-credential) for the supported values.
+
+> [!NOTE]
+> These environment variables apply to the whole ServiceControl process. They also affect other components of the instance that use `DefaultAzureCredential`, such as [Azure Blob Storage message body storage](/servicecontrol/storage/external-body/azure-blob.md) with a service URI.
+
+ServiceControl works out the token scope from host names in the Azure public cloud, Azure Government, and Azure China. For other host names, such as a custom DNS alias, add `Token Scope` with the server's Microsoft Entra scope, for example `Token Scope=https://ossrdbms-aad.database.windows.net/.default`.
+
+#### AWS IAM
+
+The connection string must list exactly one host, because an IAM token is signed for a single host and port. Grant the database user the `rds_iam` role, and give the identity that ServiceControl runs as the `rds-db:connect` permission for that user. A user with `rds_iam` can no longer sign in with a password.
 
 ## Error instance configuration
 
@@ -151,6 +180,7 @@ Setup logs `PostgreSQL database migration completed` for an Error instance, or `
 - **The instance does not start with "Maintenance mode is not supported":** set `MaintenanceMode` to `false`. Maintenance mode is only available with embedded RavenDB storage. To perform database maintenance, stop the ServiceControl instance and access PostgreSQL directly.
 - **The ServiceControl Retention custom check fails:** check the instance log. A body store that refuses deletes stops failed-message retention; see [external message body storage operations](/servicecontrol/storage/external-body/#operations).
 - **The Audit partition provisioning custom check fails:** make sure the Audit instance runs as the role that owns its tables. See [database permissions](#database-permissions).
+- **Connections fail with "Could not get a database access token":** check the inner exception for the credential's error. For Microsoft Entra ID, set `AZURE_TOKEN_CREDENTIALS` to the credential the instance should use, so that the error comes from that credential; see [Microsoft Entra ID](#authentication-token-authentication-microsoft-entra-id). For AWS IAM, check that the identity has the `rds-db:connect` permission for the database user and that the region is set.
 - **Messages show without their bodies after a restore:** restore the database and the external message body store from the same point in time. See [backup and restore](/servicecontrol/storage/#backup-and-restore).
 
 ## Next steps
