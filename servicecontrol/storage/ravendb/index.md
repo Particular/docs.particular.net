@@ -22,4 +22,4 @@ When deploying with PowerShell or the ServiceControl Management Utility, Service
 
 These procedures apply only to RavenDB storage.
 
-Configuring a different provider for an existing instance is not a data migration procedure.
+Configuring a different provider for an existing instance is not a data migration procedure. To move data to SQL Server or PostgreSQL, see [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
