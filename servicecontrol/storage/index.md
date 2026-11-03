@@ -63,5 +63,7 @@ Back up and monitor each instance's database and, for SQL-backed instances, its 
 
 ## Changing the storage provider
 
+To move an existing RavenDB instance to SQL Server or PostgreSQL, including its data, see [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
+
 > [!WARNING]
-> Changing `StorageType` on an existing instance does not move its data. The instance starts with empty storage. See [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
+> Do not switch providers by changing `StorageType` on an existing instance. The data is not moved, and the instance starts with empty storage.
