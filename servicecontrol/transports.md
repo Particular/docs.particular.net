@@ -228,6 +228,8 @@ In addition to the [connection string options of the transport](/transports/post
   * *Optional* `Subscriptions Table=schema.tablename` - to specify the schema with a simple table name.
   * *Optional* `Subscriptions Table=schema.multi.table.name` - to specify the schema with a table name containing `.`.
   * *Optional* `Subscriptions Table==&quot;multi.table.name=&quot;` - to specify a table name containing `.` without a schema. In this case, `Queue Schema` will be used if specified, otherwise the default schema (`public`) will be used.
+* `Token Authentication=<AzureEntraId|AwsRdsIam>` - Signs in with a Microsoft Entra ID or AWS IAM access token instead of a password. Requires `Username` and no `Password`. See [PostgreSQL token authentication](/servicecontrol/storage/postgresql/#authentication-token-authentication).
+* `Token Scope=<scope>` - The Microsoft Entra scope of the server, for use with `Token Authentication=AzureEntraId` when ServiceControl cannot work it out from the host name.
 
 ### Example connection string
 

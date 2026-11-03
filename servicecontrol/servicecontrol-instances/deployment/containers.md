@@ -10,7 +10,7 @@ redirects:
 
 ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol).
 
-The following minimal example uses `docker run` to host an Error instance on AWS, with [Amazon SQS](/servicecontrol/transports.md#amazon-sqs) as the transport, Amazon RDS for [PostgreSQL storage](/servicecontrol/storage/postgresql/), and [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) for message bodies:
+The following minimal example uses `docker run` to host an Error instance on AWS, with [Amazon SQS](/servicecontrol/transports.md#amazon-sqs) as the transport, Amazon Aurora PostgreSQL for [PostgreSQL storage](/servicecontrol/storage/postgresql/), and [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) for message bodies:
 
 ```shell
 docker run -d --name servicecontrol -p 33333:33333 \
@@ -18,7 +18,7 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e TRANSPORTTYPE=AmazonSQS \
     -e CONNECTIONSTRING="Region=us-east-1" \
     -e STORAGETYPE=PostgreSQL \
-    -e DATABASE_CONNECTIONSTRING="Host=my-db.xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=...;Password=...;SSL Mode=Require" \
+    -e DATABASE_CONNECTIONSTRING="Host=my-cluster.cluster-xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=servicecontrol;Token Authentication=AwsRdsIam;SSL Mode=Require" \
     -e MESSAGEBODY_STORAGETYPE=S3 \
     -e MESSAGEBODY_S3_BUCKETNAME=my-servicecontrol-bodies \
     -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
@@ -26,7 +26,7 @@ docker run -d --name servicecontrol -p 33333:33333 \
     particular/servicecontrol:latest
 ```
 
-The example contains no AWS keys. SQS and S3 use the AWS SDK default credential chain, such as an IAM role attached to the host or task, and the region set in `AWS_REGION`.
+The example contains no AWS keys or database password. SQS, S3, and the [IAM database login](/servicecontrol/storage/postgresql/#authentication-token-authentication) use the AWS SDK default credential chain, such as an IAM role attached to the host or task, and the region set in `AWS_REGION`.
 
 The `STORAGETYPE` environment variable is required. SQL Server and PostgreSQL storage also require an [external message body store](/servicecontrol/storage/external-body/), selected with `MESSAGEBODY_STORAGETYPE`: [file system](/servicecontrol/storage/external-body/file.md), [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md), or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md). For SQL Server, set `STORAGETYPE` to `SQLServer` and use a [SQL Server connection string](/servicecontrol/storage/sqlserver/). For RavenDB, set `STORAGETYPE` to `RavenDB` and replace the database and message body variables with `RAVENDB_CONNECTIONSTRING`, as described in [RavenDB container setup](/servicecontrol/storage/ravendb/containers.md). See [Storage selection](#required-settings-storage-selection).
 

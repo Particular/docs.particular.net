@@ -14,8 +14,6 @@ From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of [
 
 ServiceControl supports the PostgreSQL major versions that are currently supported by the PostgreSQL Global Development Group; see the [PostgreSQL versioning policy](https://www.postgresql.org/support/versioning/). Use the latest minor release of the chosen major version.
 
-PostgreSQL 18 or later is recommended. PostgreSQL 18 can [build GIN indexes in parallel](https://www.postgresql.org/docs/18/release-18.html), which greatly reduces the time needed to build the full-text search indexes that ServiceControl uses for message search.
-
 ## Prepare the database
 
 Create a database before configuring the instance as ServiceControl does not create the database. Setup creates the instance's schema if it does not exist. If the identity that runs setup cannot create schemas, create the schema in advance and grant that identity rights on it. Error and Audit instances can use the same database but not the same schema; see [sharing a database](/servicecontrol/storage/#sharing-a-database).
@@ -43,10 +41,28 @@ When the same connection string is used for setup and normal operation, as the S
 
 Configure database authentication in the connection string for each Error or Audit instance. This is separate from the transport connection string.
 
-ServiceControl uses [Npgsql](https://www.npgsql.org/doc/connection-string-parameters.html) and passes the connection string to it unchanged. Methods configured entirely in the connection string work, such as a user name and password, a password file (`Passfile`), a client certificate, or Kerberos.
+ServiceControl uses [Npgsql](https://www.npgsql.org/doc/connection-string-parameters.html). Methods configured entirely in the connection string work, such as a user name and password, a password file (`Passfile`), a client certificate, or Kerberos.
 
-> [!WARNING]
-> Token-based authentication, such as Microsoft Entra ID for Azure Database for PostgreSQL or IAM database authentication for Amazon RDS, is not supported. ServiceControl has no way to refresh a token, so a token placed in the connection string as the password stops working when it expires, and the instance can no longer open connections.
+### Token authentication
+
+Azure Database for PostgreSQL and Amazon RDS for PostgreSQL, including Aurora PostgreSQL, can sign in with short-lived access tokens instead of a password. To use them, add `Token Authentication` to the connection string, set `Username` to the database role the token signs in as, and leave out `Password` and `Passfile`. ServiceControl gets a token when it starts and refreshes it every five minutes.
+
+| `Token Authentication` value | Database | Credentials |
+| --- | --- | --- |
+| `AzureEntraId` | Azure Database for PostgreSQL with Microsoft Entra authentication | The Azure SDK's `DefaultAzureCredential`, such as a managed identity. To select a user-assigned managed identity, set the `AZURE_CLIENT_ID` environment variable. |
+| `AwsRdsIam` | Amazon RDS for PostgreSQL or Aurora PostgreSQL with IAM database authentication | The AWS SDK default credential chain, such as an IAM role. The region comes from the `AWS_REGION` environment variable or the AWS profile. |
+
+```text
+Host=my-server.postgres.database.azure.com;Database=ServiceControl;Username=servicecontrol-identity;Token Authentication=AzureEntraId;SSL Mode=Require
+Host=my-cluster.cluster-xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=servicecontrol;Token Authentication=AwsRdsIam;SSL Mode=Require
+```
+
+- **Microsoft Entra ID:** ServiceControl works out the token scope from host names in the Azure public, US Government, and China clouds. For other host names, such as a custom DNS alias, add `Token Scope` with the server's Microsoft Entra scope, for example `Token Scope=https://ossrdbms-aad.database.windows.net/.default`.
+- **AWS IAM:** the connection string must list exactly one host. Grant the database user the `rds_iam` role, and give the identity ServiceControl runs as `rds-db:connect` permission for that user. A user with `rds_iam` can no longer sign in with a password.
+
+If ServiceControl cannot get a new token, it logs an error and tries again every 10 seconds. New connections keep using the previous token until it expires.
+
+The same keywords work in the [PostgreSQL transport connection string](/servicecontrol/transports.md#postgresql).
 
 ## Error instance configuration
 
