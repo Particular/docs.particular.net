@@ -6,7 +6,7 @@ reviewed: 2025-06-11
 ---
 
 > [!NOTE]
-> Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the minimum [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
+> Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md).
 
 ## Check configuration
 

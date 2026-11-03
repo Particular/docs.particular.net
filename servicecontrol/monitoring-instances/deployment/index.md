@@ -4,8 +4,6 @@ reviewed: 2026-04-03
 component: ServiceControl
 ---
 
-## Deployment options
-
 ServiceControl Monitoring instances can be deployed in multiple ways.
 
 - Instances can be deployed as [containers](containers.md)

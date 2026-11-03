@@ -4,8 +4,6 @@ reviewed: 2026-03-30
 component: ServiceControl
 ---
 
-## Deployment options
-
 ServiceControl Audit instances can be deployed in multiple ways.
 
 - Scripted deploys and upgrades can be done via the [ServiceControl Management PowerShell module](powershell.md).
