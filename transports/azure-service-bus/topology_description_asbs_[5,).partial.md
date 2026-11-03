@@ -54,6 +54,33 @@ When an endpoint subscribes to an event, it creates the corresponding topic if i
 
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
 
+##### Publishing to a missing topic
+
+Publishing an event whose topic doesn't exist is slow, and it slows down other operations on the same connection. Before a client can use a queue or topic, Azure Service Bus authorizes access to it. For a missing topic, that authorization fails. After each failure, Azure Service Bus delays the next authorization on the same connection by about one more second, up to about five seconds. A successful authorization resets the delay.
+
+As a result, while an endpoint keeps publishing an event that has no topic:
+
+- Each of those publishes takes up to about five seconds.
+- Any operation on the same connection that opens a new link waits just as long. Examples are the first send to a destination, a send to a destination that has been idle for 10 minutes, a reply, and accepting a session on a session-enabled endpoint.
+
+Operations on links that are already open aren't affected. Handlers in an endpoint that uses the `SendsAtomicWithReceive` transaction mode publish over the connection of the queue they receive from. All other publishes use the endpoint's shared connection.
+
+To avoid the delay, create the topics for events that can be published before any subscriber exists. Provision them together with the rest of the infrastructure, using infrastructure-as-code tooling such as Bicep or Terraform. Each topic is named after the most concrete event type, which is its full type name unless the topology [maps it to a different topic](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping). For example, in Bicep:
+
+```bicep
+resource topic 'Microsoft.ServiceBus/namespaces/topics@2024-01-01' = {
+  parent: serviceBusNamespace
+  name: 'MyNamespace.OrderAccepted'
+  properties: {
+    enableBatchedOperations: true
+    enablePartitioning: false
+    maxSizeInMegabytes: 5120
+  }
+}
+```
+
+The `serviceBusNamespace` resource represents the existing namespace. Set `enablePartitioning` and `maxSizeInMegabytes` to match the transport's [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings), so that the topic matches the ones the installers create. When a subscriber later starts with installers enabled, it adds its subscription to the existing topic. Until then, Azure Service Bus accepts the published events and discards them, because the topic has no subscriptions. See the [topic resource reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.servicebus/2024-01-01/namespaces/topics).
+
 #### Subscription rule matching
 
 In this topology, no SQL or Correlation filtering is required on the topic itself, because messages in a topic are all of the same event type. Subscriptions use a default “match-all” rule (`1=1`) on each topic subscription.
