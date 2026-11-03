@@ -8,10 +8,10 @@ The external storage provider used for message bodies.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_STORAGETYPE` |
 | **App config key** | `ServiceControl/MessageBody/StorageType` |
-| **SCMU field** | `MESSAGE BODY STORAGE` |
+| **SCMU field** | N/A |
 
 | Type | Default value |
 | --- | --- |
 | string | None (required for SQL Server and PostgreSQL storage) |
 
-Valid values are `FileSystem`, `AzureBlob`, and `S3`.
+Valid values are `FileSystem`, `AzureBlob`, and `S3`. The ServiceControl Management Utility and the PowerShell module set this to `FileSystem`; to use another provider, change it in the instance's configuration file or environment.

@@ -115,8 +115,10 @@ Setup applies database migrations for both Error and Audit instances. Setup also
 
 The ServiceControl Management Utility (SCMU) and the PowerShell module run setup when they create or upgrade an instance, and can create PostgreSQL-backed Error and Audit instances:
 
-- **SCMU:** choose `PostgreSQL` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**. For an Error instance, also choose the **MESSAGE BODY STORAGE** and fill in its settings. For an Audit instance, add the [message body storage settings](/servicecontrol/audit-instances/configuration.md#storage) to the instance's configuration file.
-- **PowerShell:** pass `-StorageType PostgreSQL` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. For an Error instance, `-MessageBodyStorageType` selects `FileSystem` (the default), `AzureBlob`, or `S3`. `New-ServiceControlAuditInstance` has no message body storage parameters; add the settings to the Audit instance's configuration file. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+- **SCMU:** choose `PostgreSQL` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**.
+- **PowerShell:** pass `-StorageType PostgreSQL` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+
+Both tools configure file system message body storage in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md), or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md), change the message body settings in the instance's configuration file. Bodies already stored are not moved, so make the change before the instance ingests messages.
 
 Neither tool sets `Database/Schema`, so instances they create use the default schema.
 

@@ -32,7 +32,7 @@ The following example uses RavenDB storage, which requires `-DBPath` and `-Datab
 
 snippet: ps-new-error-instance-ravendb
 
-From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. Choose where large message bodies are stored with `-MessageBodyStorageType`: `FileSystem` (the default, with `-MessageBodyPath`), `AzureBlob` (with the `-AzureBlob*` parameters), or `S3` (with the `-S3*` parameters). See [external message body storage](/servicecontrol/storage/external-body/) for what each setting does.
+From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. The instance stores message bodies on the file system, in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, Azure Blob Storage, or Amazon S3, change the [message body settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) in the instance's configuration file. See [external message body storage](/servicecontrol/storage/external-body/).
 
 snippet: ps-new-error-instance-sqlserver
 

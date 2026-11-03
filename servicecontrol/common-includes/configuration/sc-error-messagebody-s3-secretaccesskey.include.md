@@ -8,7 +8,7 @@ The secret access key used to authenticate with S3. Configure this setting toget
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_S3_SECRETACCESSKEY` |
 | **App config key** | `ServiceControl/MessageBody/S3/SecretAccessKey` |
-| **SCMU field** | `SECRET ACCESS KEY (OPTIONAL)` |
+| **SCMU field** | N/A |
 
 | Type | Default value |
 | --- | --- |

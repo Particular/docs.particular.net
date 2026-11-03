@@ -8,8 +8,10 @@ The directory where message bodies are stored when `MessageBody/StorageType` is 
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH` |
 | **App config key** | `ServiceControl/MessageBody/FileSystem/StoragePath` |
-| **SCMU field** | `MESSAGE BODY PATH` |
+| **SCMU field** | N/A |
 
 | Type | Default value |
 | --- | --- |
 | string | None (required for file system storage) |
+
+The ServiceControl Management Utility and the PowerShell module set this to `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`.

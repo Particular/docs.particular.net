@@ -8,9 +8,7 @@ $serviceControlInstance = New-ServiceControlInstance `
   -ErrorQueue error1 `
   -ErrorRetentionPeriod 10:00:00:00 `
   -StorageType SQLServer `
-  -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True" `
-  -MessageBodyStorageType FileSystem `
-  -MessageBodyPath C:\ServiceControl\Bodies
+  -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True"
 # endcode
 
 # startcode ps-new-audit-instance-sqlserver

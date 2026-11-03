@@ -13,3 +13,5 @@ The directory where message bodies are stored when `MessageBody/StorageType` is 
 | Type | Default value |
 | --- | --- |
 | string | None (required for file system storage) |
+
+The ServiceControl Management Utility and the PowerShell module set this to `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`.
