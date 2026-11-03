@@ -14,6 +14,8 @@ From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of [
 
 ServiceControl supports the PostgreSQL major versions that are currently supported by the PostgreSQL Global Development Group; see the [PostgreSQL versioning policy](https://www.postgresql.org/support/versioning/). Use the latest minor release of the chosen major version.
 
+PostgreSQL 18 or later is recommended. In testing by Particular Software, PostgreSQL 18 significantly improved ServiceControl performance. PostgreSQL 18 can [build GIN indexes in parallel](https://www.postgresql.org/docs/18/release-18.html), and ServiceControl uses GIN indexes for full-text message search.
+
 ## Prepare the database
 
 Create a database before configuring the instance as ServiceControl does not create the database. Setup creates the instance's schema if it does not exist. If the identity that runs setup cannot create schemas, create the schema in advance and grant that identity rights on it. Error and Audit instances can use the same database but not the same schema; see [sharing a database](/servicecontrol/storage/#sharing-a-database).
