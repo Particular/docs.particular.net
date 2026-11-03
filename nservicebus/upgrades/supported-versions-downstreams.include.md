@@ -77,14 +77,14 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.13)| Extended Support | 2023-08-28     | 2026-04-16        | 2028-04-16 |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8)| Extended Support | 2021-06-23     | 2024-11-17        | 2026-11-17 |
@@ -182,8 +182,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.5)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.6)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.4)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.8)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.5)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17 |
 
@@ -191,8 +191,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.5)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.6)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.4)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.8)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.5)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17 |
 
@@ -499,8 +499,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.1.0)| **Current** | 2026-06-11     | Active            | Active |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.5)| Mainstream Support | 2024-09-15     | 2028-01-29        | 2030-01-29 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.1.1)| **Current** | 2026-06-11     | Active            | Active |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.6)| Mainstream Support | 2024-09-15     | 2028-01-29        | 2030-01-29 |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.4)| Extended Support | 2024-09-05     | 2026-04-16        | 2028-04-16 |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
@@ -559,7 +559,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.Testing/10.1.0)| **Current** | 2026-05-21     | Active            | Active |
+| [11.0.x](https://www.nuget.org/packages/NServiceBus.Testing/11.0.0)| **Current** | 2026-11-02     | Active            | Active |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.Testing/10.1.0)| Mainstream Support | 2026-05-21     | 2027-11-02        | Ineligible |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.Testing/9.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.2)| Extended Support | 2023-06-19     | 2026-04-16        | 2028-04-16 |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2)| Extended Support | 2022-03-11     | 2024-11-17        | 2026-11-17 |

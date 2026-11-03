@@ -22,6 +22,9 @@ The following shows the minimum permissions needed for various endpoint features
 #if-version [,3)
 - `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 #end-if
+#if-version [5,)
+- `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
+#end-if
 - `Azure Service Bus Data Sender` is required for the audit queue when [auditing](/nservicebus/operations/auditing.md#configuring-auditing) is enabled.
 - `Azure Service Bus Data Sender` is required for the [transactional session remote processor](/nservicebus/transactional-session/#remote-processor) queue, when configured.
 - `Azure Service Bus Data Sender` is required for the metrics queue when ServiceControl [metrics](/monitoring/metrics/install-plugin.md#configuration) are enabled.

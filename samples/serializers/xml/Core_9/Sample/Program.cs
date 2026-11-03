@@ -21,7 +21,7 @@ builder.Services.AddSingleton<MessageBodyWriter>();
 var serviceProvider = builder.Services.BuildServiceProvider();
 var messageBodyWriter = serviceProvider.GetRequiredService<MessageBodyWriter>();
 
-// register the mutator so the the message on the wire is written
+// register the mutator so the message on the wire is written
 endpointConfiguration.RegisterMessageMutator(messageBodyWriter);
 
 #endregion

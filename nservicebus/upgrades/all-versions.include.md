@@ -259,7 +259,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.0.2)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-09-16~~    | ~~Ineligible~~ |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 
@@ -267,7 +267,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.0)| **Current** | 2026-06-16     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.0.2)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-09-16~~    | ~~Ineligible~~ |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |
@@ -444,8 +444,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.5)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.6)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.4)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.2.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-03-05~~    | ~~Ineligible~~ |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.1.2)| ~~Unsupported~~ | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |
@@ -477,8 +477,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.5)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.3)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.6)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.4)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.2.1)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-03-05~~    | ~~Ineligible~~ |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.1.2)| ~~Unsupported~~ | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |
@@ -1064,9 +1064,9 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.1.0)| **Current** | 2026-06-11     | Active            | Active |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.1.1)| **Current** | 2026-06-11     | Active            | Active |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.2)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-09-11~~    | ~~Ineligible~~ |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.5)| Mainstream Support | 2024-09-15     | 2028-01-29        | 2030-01-29 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.6)| Mainstream Support | 2024-09-15     | 2028-01-29        | 2030-01-29 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.2)| ~~Unsupported~~ | ~~2024-09-05~~ | ~~2025-09-15~~    | ~~Ineligible~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3)| ~~Unsupported~~ | ~~2024-04-18~~ | ~~2024-12-05~~    | ~~Ineligible~~ |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.4)| Extended Support | 2024-09-05     | 2026-04-16        | 2028-04-16 |
@@ -1148,7 +1148,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.Testing/10.1.0)| **Current** | 2026-05-21     | Active            | Active |
+| [11.0.x](https://www.nuget.org/packages/NServiceBus.Testing/11.0.0)| **Current** | 2026-11-02     | Active            | Active |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.Testing/10.1.0)| Mainstream Support | 2026-05-21     | 2027-11-02        | Ineligible |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.Testing/10.0.2)| ~~Unsupported~~ | ~~2026-01-29~~ | ~~2026-08-21~~    | ~~Ineligible~~ |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.Testing/9.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.2)| Extended Support | 2023-06-19     | 2026-04-16        | 2028-04-16 |
