@@ -24,7 +24,7 @@ include: sc-audit-messagebody-filesystem-dataspaceremainingthreshold
 Setup creates the configured directory if it does not exist. The setup identity must be able to create the directory. The runtime identity needs read, write, and delete permissions on it. The retention sweeper deletes body files before removing the corresponding database records.
 
 > [!WARNING]
-> When [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) run alongside the Error instance, the path must be a shared mount. The Error instance and every worker need permission to read, write, and delete message body files there. Otherwise, use Azure Blob Storage or Amazon S3.
+> When several processes write to the same database, the path must be a shared mount. This applies to [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) that run alongside an Error instance, and to [Audit instances that share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database). Every one of these processes needs permission to read, write, and delete message body files there. Otherwise, use Azure Blob Storage or Amazon S3.
 
 > [!WARNING]
 > Use a durable directory or volume. Message bodies stored on a temporary or ephemeral file system are lost when it is reset, for example when a container restarts.
@@ -38,7 +38,7 @@ SERVICECONTROL_MESSAGEBODY_STORAGETYPE=FileSystem
 SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/bodies
 ```
 
-Set these variables in an Audit instance's environment, using a different directory from any other instance:
+Set these variables in an Audit instance's environment, using a different directory from any other instance, except other Audit instances that [share its database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database):
 
 ```text
 SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=FileSystem

@@ -1709,6 +1709,8 @@
           Url: servicecontrol/audit-instances/deployment/powershell
         - Title: Using ServiceControl Management Utility
           Url: servicecontrol/audit-instances/deployment/scmu
+        - Title: Scaling out ingestion
+          Url: servicecontrol/audit-instances/scaling-out-ingestion
         - Title: Queues
           Url: servicecontrol/queues
       - Title: Configuration
