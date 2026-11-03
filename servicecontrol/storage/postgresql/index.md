@@ -57,7 +57,7 @@ Host=my-server.postgres.database.azure.com;Database=ServiceControl;Username=serv
 Host=my-cluster.cluster-xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=servicecontrol;Token Authentication=AwsRdsIam;SSL Mode=Require
 ```
 
-- **Microsoft Entra ID:** ServiceControl works out the token scope from host names in the Azure public, US Government, and China clouds. For other host names, such as a custom DNS alias, add `Token Scope` with the server's Microsoft Entra scope, for example `Token Scope=https://ossrdbms-aad.database.windows.net/.default`.
+- **Microsoft Entra ID:** ServiceControl works out the token scope from host names in the Azure public cloud, Azure Government, and Azure China. For other host names, such as a custom DNS alias, add `Token Scope` with the server's Microsoft Entra scope, for example `Token Scope=https://ossrdbms-aad.database.windows.net/.default`.
 - **AWS IAM:** the connection string must list exactly one host. Grant the database user the `rds_iam` role, and give the identity ServiceControl runs as `rds-db:connect` permission for that user. A user with `rds_iam` can no longer sign in with a password.
 
 If ServiceControl cannot get a new token, it logs an error and tries again every 10 seconds. New connections keep using the previous token until it expires.
