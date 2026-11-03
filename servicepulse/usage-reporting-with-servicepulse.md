@@ -56,6 +56,8 @@ The usage report includes information used to determine licensing requirements, 
 - **Operational statistics (ServiceControl 7 and later):** message ingestion rates, how busy ingestion is and how long storing each message takes, processing lag, failed import counts, how far retention is behind, storage size and message counts, the number of unresolved failed messages, and how many endpoint instances heartbeat monitoring knows about. Rates and lag are measured since the instance last started.
 - **Audit instances (ServiceControl 7 and later):** the same environment, storage, and ingestion information for the Audit instances, combined across them, and whether they share a machine or a database with the Error instance.
 
+Beyond licensing, Particular Software uses this information to understand how the Particular Platform is deployed and used in real systems. That insight is hard to get any other way, and it guides product decisions: which features to improve, which databases, transports, and hosting environments to support, and where performance work matters most. Each report helps improve the platform for the systems that depend on it.
+
 Configuration details are summarized rather than copied from configuration files. Feature switches are reported as `Enabled` or `Disabled`. Settings such as the ServicePulse monitoring URL and database schema are reported as `Default`, `Custom`, or `Configured`, rather than including the URL or schema name. Database hosting is reported as a category, such as `SelfHosted` or `AzureSql`, rather than the database host name. Connection strings and credentials are not included in this configuration summary.
 
 The report includes no security configuration: nothing about how callers or connections are authenticated, whether traffic is encrypted, how certificates or tokens are validated, or how access is restricted.
@@ -63,6 +65,8 @@ The report includes no security configuration: nothing about how callers or conn
 Not all reported values are categories: numeric settings such as retention periods, batch sizes, and explicitly configured timeouts can include their actual values. Versions, resource information, and counts are also reported as values.
 
 The information included depends on the ServiceControl version and configuration. Endpoint and queue names can still appear in the throughput data; specified [report masks](usage-reporting-setup.md#report-masks) are applied when the report is generated.
+
+For how Particular Software handles the information it receives, see the [privacy policy](https://particular.net/privacy) and the [GDPR privacy policy](https://particular.net/gdpr-privacy).
 
 ## Endpoint type indicators
 
