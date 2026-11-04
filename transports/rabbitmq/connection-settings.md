@@ -113,9 +113,15 @@ partial: delivery-limit-validation
 
 The transport uses the credentials from the connection string for all AMQP operations. RabbitMQ grants [configure, write, and read permissions](https://www.rabbitmq.com/docs/access-control) per virtual host, each as a regular expression that matches queue and exchange names. Configure permission covers declaring a queue or exchange. Write permission covers publishing to an exchange and being the destination of a binding. Read permission covers consuming from a queue and being the source of a binding.
 
-When [installers](/nservicebus/operations/installers.md) are enabled, the credentials also need configure permission on the queues and exchanges the transport creates, including the delayed delivery infrastructure. Creating bindings requires read permission on the source exchange and write permission on the destination queue or exchange. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
+### Installers
 
-### Sending
+When [installers](/nservicebus/operations/installers.md) are enabled, the credentials also need configure permission on the queues and exchanges the transport creates, including the delayed delivery infrastructure. Creating bindings requires read permission on the source exchange and write permission on the destination queue or exchange.
+
+### Runtime
+
+The endpoint needs the following permissions at runtime, even when installers are disabled and the broker resources already exist.
+
+#### Sending
 
 |Operation |Conventional topology |Direct topology
 |:--- |:--- |:---
@@ -124,11 +130,11 @@ When [installers](/nservicebus/operations/installers.md) are enabled, the creden
 
 These requirements also apply when sending to the error and audit queues.
 
-### Receiving
+#### Receiving
 
 The endpoint needs read permission on the queues it receives from, regardless of the routing topology.
 
-### Delayed delivery
+#### Delayed delivery
 
 The endpoint needs these permissions to send delayed messages, including delayed retries, regardless of the routing topology:
 
@@ -137,9 +143,9 @@ The endpoint needs these permissions to send delayed messages, including delayed
 |The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
 |The `nsb.v2.delay-delivery` exchange |Read
 
-The endpoint also needs the destination permissions listed under [Sending](#broker-permissions-sending).
+The endpoint also needs the destination permissions listed under [Sending](#broker-permissions-runtime-sending).
 
-### Conventional routing topology
+#### Conventional routing topology
 
 With the [conventional routing topology](routing-topology.md#conventional-routing-topology), an endpoint needs:
 
@@ -153,7 +159,7 @@ Unsubscribing removes the binding between the event exchange and the endpoint's 
 > [!WARNING]
 > When the endpoint publishes or subscribes to an event type for the first time in a process, the transport declares the exchanges for the type, its base classes, and its interfaces, and binds them together. RabbitMQ checks configure permission on every declaration, including a declaration of an exchange that already exists with the same arguments. The credentials therefore need configure permission on event exchanges even when every exchange already exists. Disabling installers does not remove this requirement.
 
-### Direct routing topology
+#### Direct routing topology
 
 With the [direct routing topology](routing-topology.md#direct-routing-topology), an endpoint needs:
 
