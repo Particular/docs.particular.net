@@ -4,6 +4,10 @@ The transport uses the credentials from the connection string for all AMQP opera
 
 When [installers](/nservicebus/operations/installers.md) are enabled, the transport also creates the endpoint's queues, exchanges, bindings, and delayed delivery infrastructure, so the credentials also need permission to create them. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
 
+### Receiving
+
+The endpoint needs read permission on the queues it receives from, regardless of the routing topology.
+
 ### Delayed delivery
 
 The endpoint needs these permissions to send delayed messages, including delayed retries, regardless of the routing topology:
@@ -24,7 +28,6 @@ With the [conventional routing topology](routing-topology.md#conventional-routin
 |Event exchanges, named `Namespace:TypeName`, for every event type the endpoint publishes or subscribes to, and for each base class and interface of that type |Configure, write, read |Publishing and subscribing
 |The endpoint's own exchange |Write |Subscribing and unsubscribing
 |Exchanges of the endpoints the endpoint sends to, including the error and audit queues |Write |Sending
-|Queues the endpoint receives from |Read |Receiving
 
 Unsubscribing removes a binding and needs only read permission on the event exchange.
 
@@ -40,7 +43,7 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 |The topic exchange, `amq.topic` by default |Write |Publishing
 |The topic exchange |Read |Subscribing and unsubscribing
 |A topic exchange other than `amq.topic` |Configure |Subscribing
-|Queues the endpoint receives from |Read, write |Receiving (read), subscribing and unsubscribing (write)
+|Queues the endpoint receives from |Write |Subscribing and unsubscribing
 |The default exchange, named `amq.default` for permission checks |Write |Sending
 
 > [!WARNING]
