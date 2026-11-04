@@ -132,23 +132,10 @@ The endpoint needs read permission on the queues it receives from, regardless of
 
 The endpoint needs these permissions to send delayed messages, including delayed retries, regardless of the routing topology:
 
-#if-version [,7)
-
-|Resource |Permissions
-|:--- |:---
-|The `nsb.delay-level-00` to `nsb.delay-level-27` exchanges |Write
-|The `nsb.delay-delivery` exchange |Read
-
-#end-if
-
-#if-version [7,)
-
 |Resource |Permissions
 |:--- |:---
 |The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
 |The `nsb.v2.delay-delivery` exchange |Read
-
-#end-if
 
 The endpoint also needs the destination permissions listed under [Sending](#broker-permissions-sending).
 
