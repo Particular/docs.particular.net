@@ -2,7 +2,7 @@
 title: Sagas with DynamoDB persistence
 summary: How to configure saga persistence in DynamoDB
 component: DynamoDB
-reviewed: 2025-04-24
+reviewed: 2026-11-04
 related:
 - persistence/dynamodb
 - nservicebus/sagas
