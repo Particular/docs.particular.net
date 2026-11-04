@@ -45,10 +45,6 @@ Disabling [installers](/nservicebus/operations/installers.md) stops the transpor
 
 ### Missing configure permission
 
-When the credentials lack configure permission on an event exchange, RabbitMQ refuses the declaration and closes the channel. The transport ignores the failed declaration, so the error surfaces on the next operation on that channel: a `RabbitMQ.Client.Exceptions.AlreadyClosedException` with a message that contains `ACCESS_REFUSED - configure access to exchange` and the exchange name. As a result:
+Missing configure permission on an event exchange causes publishing and subscribing to fail with `AlreadyClosedException` containing `ACCESS_REFUSED - configure access to exchange`. At startup, [AutoSubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions) logs `AutoSubscribe was unable to subscribe to an event`. The endpoint still starts, but without the subscription.
 
-- At startup, [AutoSubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions) logs `AutoSubscribe was unable to subscribe to an event` at the error level. The endpoint still starts, but without the subscription.
-- A call to `Subscribe` throws the exception.
-- Every attempt to publish the event throws the exception, and subscribers receive nothing.
-
-After granting the permission, restart the endpoint so that AutoSubscribe creates the missing subscriptions.
+Grant the runtime AMQP user configure permission on the affected event exchanges, then restart the endpoint to retry automatic subscriptions.
