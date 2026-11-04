@@ -37,7 +37,7 @@ With the [conventional routing topology](routing-topology.md#conventional-routin
 |Event exchanges, named `Namespace:TypeName`, for every event type the endpoint publishes or subscribes to, and for each base class and interface of that type |Configure, write, read |Publishing and subscribing
 |The endpoint's own exchange |Write |Subscribing and unsubscribing
 
-Unsubscribing removes a binding and needs only read permission on the event exchange.
+Unsubscribing removes the binding between the event exchange and the endpoint's exchange. RabbitMQ requires read permission on the source (the event exchange) and write permission on the destination (the endpoint's exchange) to remove this binding. Configure permission is not required.
 
 > [!WARNING]
 > When the endpoint publishes or subscribes to an event type for the first time in a process, the transport declares the exchanges for the type, its base classes, and its interfaces, and binds them together. RabbitMQ checks configure permission on every declaration, including a declaration of an exchange that already exists with the same arguments. The credentials therefore need configure permission on event exchanges even when every exchange already exists. Disabling installers does not remove this requirement.
