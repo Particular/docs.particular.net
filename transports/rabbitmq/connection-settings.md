@@ -113,7 +113,7 @@ partial: delivery-limit-validation
 
 The transport uses the credentials from the connection string for all AMQP operations. RabbitMQ grants [configure, write, and read permissions](https://www.rabbitmq.com/docs/access-control) per virtual host, each as a regular expression that matches queue and exchange names. Configure permission covers declaring a queue or exchange. Write permission covers publishing to an exchange and being the destination of a binding. Read permission covers consuming from a queue and being the source of a binding.
 
-When [installers](/nservicebus/operations/installers.md) are enabled, the transport also creates the endpoint's queues, exchanges, bindings, and delayed delivery infrastructure, so the credentials also need permission to create them. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
+When [installers](/nservicebus/operations/installers.md) are enabled, the credentials also need configure permission on the queues and exchanges the transport creates, including the delayed delivery infrastructure. Creating bindings requires read permission on the source exchange and write permission on the destination queue or exchange. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
 
 ### Sending
 
