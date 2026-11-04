@@ -109,7 +109,76 @@ partial: management-api-configuration
 
 partial: delivery-limit-validation
 
-partial: broker-permissions
+## Broker permissions
+
+The transport uses the credentials from the connection string for all AMQP operations. RabbitMQ grants [configure, write, and read permissions](https://www.rabbitmq.com/docs/access-control) per virtual host, each as a regular expression that matches queue and exchange names. Configure permission covers declaring a queue or exchange. Write permission covers publishing to an exchange and being the destination of a binding. Read permission covers consuming from a queue and being the source of a binding.
+
+When [installers](/nservicebus/operations/installers.md) are enabled, the transport also creates the endpoint's queues, exchanges, bindings, and delayed delivery infrastructure, so the credentials also need permission to create them. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
+
+### Sending
+
+|Operation |Conventional topology |Direct topology
+|:--- |:--- |:---
+|Sending messages |Write on the destination endpoint's exchange |Write on the default exchange (`amq.default` for permission checks)
+|Sending delayed messages |Write on the destination endpoint's exchange |Write on the destination queue
+
+These requirements also apply when sending to the error and audit queues.
+
+### Receiving
+
+The endpoint needs read permission on the queues it receives from, regardless of the routing topology.
+
+### Delayed delivery
+
+The endpoint needs these permissions to send delayed messages, including delayed retries, regardless of the routing topology:
+
+#if-version [,7)
+
+|Resource |Permissions
+|:--- |:---
+|The `nsb.delay-level-00` to `nsb.delay-level-27` exchanges |Write
+|The `nsb.delay-delivery` exchange |Read
+
+#end-if
+
+#if-version [7,)
+
+|Resource |Permissions
+|:--- |:---
+|The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
+|The `nsb.v2.delay-delivery` exchange |Read
+
+#end-if
+
+The endpoint also needs the destination permissions listed under [Sending](#broker-permissions-sending).
+
+### Conventional routing topology
+
+With the [conventional routing topology](routing-topology.md#conventional-routing-topology), an endpoint needs:
+
+|Resource |Permissions |Used for
+|:--- |:--- |:---
+|Event exchanges, named `Namespace:TypeName`, for every event type the endpoint publishes or subscribes to, and for each base class and interface of that type |Configure, write, read |Publishing and subscribing
+|The endpoint's own exchange |Write |Subscribing and unsubscribing
+
+Unsubscribing removes the binding between the event exchange and the endpoint's exchange. RabbitMQ requires read permission on the source (the event exchange) and write permission on the destination (the endpoint's exchange) to remove this binding. Configure permission is not required.
+
+> [!WARNING]
+> When the endpoint publishes or subscribes to an event type for the first time in a process, the transport declares the exchanges for the type, its base classes, and its interfaces, and binds them together. RabbitMQ checks configure permission on every declaration, including a declaration of an exchange that already exists with the same arguments. The credentials therefore need configure permission on event exchanges even when every exchange already exists. Disabling installers does not remove this requirement.
+
+### Direct routing topology
+
+With the [direct routing topology](routing-topology.md#direct-routing-topology), an endpoint needs:
+
+|Resource |Permissions |Used for
+|:--- |:--- |:---
+|The topic exchange, `amq.topic` by default |Write |Publishing
+|The topic exchange |Read |Subscribing and unsubscribing
+|A topic exchange other than `amq.topic` |Configure |Subscribing
+|Queues the endpoint receives from |Write |Subscribing and unsubscribing
+
+> [!WARNING]
+> Subscribing requires configure permission on a custom topic exchange, even when it already exists and installers are disabled. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
 
 ## Controlling the prefetch count
 
