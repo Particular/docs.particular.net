@@ -45,6 +45,11 @@ Disabling [installers](/nservicebus/operations/installers.md) stops the transpor
 
 ### Missing configure permission
 
-Missing configure permission on an event exchange causes publishing and subscribing to fail with `AlreadyClosedException` containing `ACCESS_REFUSED - configure access to exchange`. At startup, [AutoSubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions) logs `AutoSubscribe was unable to subscribe to an event`. The endpoint still starts, but without the subscription.
+Missing configure permission causes:
 
-Grant the runtime AMQP user configure permission on the affected event exchanges, then restart the endpoint to retry automatic subscriptions.
+- With the conventional topology, publishing and subscribing to fail.
+- With the direct topology, subscribing to fail when using a custom topic exchange. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
+
+Failures report `AlreadyClosedException` containing `ACCESS_REFUSED - configure access to exchange`. If AutoSubscribe fails, the endpoint still starts, but without the subscription.
+
+Grant the runtime AMQP user configure permission on the affected exchanges, then restart the endpoint to retry automatic subscriptions.
