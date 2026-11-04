@@ -14,8 +14,6 @@ With the [conventional routing topology](routing-topology.md#conventional-routin
 |The endpoint's own exchange |Write |Subscribing and unsubscribing
 |Exchanges of the endpoints the endpoint sends to, including the error and audit queues |Write |Sending
 |Queues the endpoint receives from |Read |Receiving
-|The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write |Sending delayed messages
-|The `nsb.v2.delay-delivery` exchange |Read |Sending delayed messages
 
 Unsubscribing removes a binding and needs only read permission on the event exchange.
 
@@ -33,11 +31,19 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 |A topic exchange other than `amq.topic` |Configure |Subscribing
 |Queues the endpoint receives from |Read, write |Receiving (read), subscribing and unsubscribing (write)
 |The default exchange, named `amq.default` for permission checks |Write |Sending
-|Queues the endpoint sends delayed messages to |Write |Sending delayed messages
-|The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write |Sending delayed messages
-|The `nsb.v2.delay-delivery` exchange |Read |Sending delayed messages
 
 Publishing declares no exchanges. Subscribing declares the topic exchange unless it is `amq.topic`.
+
+### Delayed delivery
+
+Both routing topologies require these permissions when sending delayed messages, including delayed retries:
+
+|Resource |Permissions
+|:--- |:---
+|The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
+|The `nsb.v2.delay-delivery` exchange |Read
+
+The endpoint also needs write permission on the destination endpoint's exchange with the conventional topology, or its queue with the direct topology.
 
 ### Installers and configure permission
 
