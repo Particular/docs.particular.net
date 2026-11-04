@@ -156,7 +156,7 @@ With the [conventional routing topology](routing-topology.md#conventional-routin
 
 Unsubscribing removes the binding between the event exchange and the endpoint's exchange. RabbitMQ requires read permission on the source (the event exchange) and write permission on the destination (the endpoint's exchange) to remove this binding. Configure permission is not required.
 
-> [!WARNING]
+> [!NOTE]
 > When the endpoint publishes or subscribes to an event type for the first time in a process, the transport declares the exchanges for the type, its base classes, and its interfaces, and binds them together. RabbitMQ checks configure permission on every declaration, including a declaration of an exchange that already exists with the same arguments. The credentials therefore need configure permission on event exchanges even when every exchange already exists. Disabling installers does not remove this requirement.
 
 #### Direct routing topology
@@ -170,7 +170,7 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 |A topic exchange other than `amq.topic` |Configure |Subscribing
 |Queues the endpoint receives from |Write |Subscribing and unsubscribing
 
-> [!WARNING]
+> [!NOTE]
 > Subscribing requires configure permission on a custom topic exchange, even when it already exists and installers are disabled. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
 
 ## Controlling the prefetch count
