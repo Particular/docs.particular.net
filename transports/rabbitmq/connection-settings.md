@@ -1,7 +1,7 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2025-04-08
+reviewed: 2026-11-04
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
@@ -147,7 +147,7 @@ Default: `00:00:10` (10 seconds)
 
 snippet: change-network-recovery-interval
 
-### TimeToWaitBeforeTriggering
+### TimeToWaitBeforeTriggeringCircuitBreaker
 
 Controls the amount of time the transport waits after a failure is detected before triggering the critical error action.
 
