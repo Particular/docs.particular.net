@@ -1,7 +1,7 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2025-04-08
+reviewed: 2026-11-04
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
@@ -108,6 +108,8 @@ partial: add-cluster-node
 partial: management-api-configuration
 
 partial: delivery-limit-validation
+
+partial: broker-permissions
 
 ## Controlling the prefetch count
 
