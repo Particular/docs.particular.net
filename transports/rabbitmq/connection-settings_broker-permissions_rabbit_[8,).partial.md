@@ -4,6 +4,17 @@ The transport uses the credentials from the connection string for all AMQP opera
 
 When [installers](/nservicebus/operations/installers.md) are enabled, the transport also creates the endpoint's queues, exchanges, bindings, and delayed delivery infrastructure, so the credentials also need permission to create them. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
 
+### Delayed delivery
+
+The endpoint needs these permissions to send delayed messages, including delayed retries, regardless of the routing topology:
+
+|Resource |Permissions
+|:--- |:---
+|The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
+|The `nsb.v2.delay-delivery` exchange |Read
+
+The endpoint also needs write permission on the destination endpoint's exchange with the conventional topology, or its queue with the direct topology.
+
 ### Conventional routing topology
 
 With the [conventional routing topology](routing-topology.md#conventional-routing-topology), an endpoint needs:
@@ -33,17 +44,6 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 |The default exchange, named `amq.default` for permission checks |Write |Sending
 
 Publishing declares no exchanges. Subscribing declares the topic exchange unless it is `amq.topic`.
-
-### Delayed delivery
-
-Both routing topologies require these permissions when sending delayed messages, including delayed retries:
-
-|Resource |Permissions
-|:--- |:---
-|The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
-|The `nsb.v2.delay-delivery` exchange |Read
-
-The endpoint also needs write permission on the destination endpoint's exchange with the conventional topology, or its queue with the direct topology.
 
 ### Installers and configure permission
 
