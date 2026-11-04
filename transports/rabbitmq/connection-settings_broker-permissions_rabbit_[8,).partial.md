@@ -4,6 +4,15 @@ The transport uses the credentials from the connection string for all AMQP opera
 
 When [installers](/nservicebus/operations/installers.md) are enabled, the transport also creates the endpoint's queues, exchanges, bindings, and delayed delivery infrastructure, so the credentials also need permission to create them. The tables below list the permissions an endpoint needs at runtime, after that infrastructure exists.
 
+### Sending
+
+|Operation |Conventional topology |Direct topology
+|:--- |:--- |:---
+|Sending messages |Write on the destination endpoint's exchange |Write on the default exchange (`amq.default` for permission checks)
+|Sending delayed messages |Write on the destination endpoint's exchange |Write on the destination queue
+
+These requirements also apply when sending to the error and audit queues.
+
 ### Receiving
 
 The endpoint needs read permission on the queues it receives from, regardless of the routing topology.
@@ -17,7 +26,7 @@ The endpoint needs these permissions to send delayed messages, including delayed
 |The `nsb.v2.delay-level-00` to `nsb.v2.delay-level-27` exchanges |Write
 |The `nsb.v2.delay-delivery` exchange |Read
 
-The endpoint also needs write permission on the destination endpoint's exchange with the conventional topology, or its queue with the direct topology.
+The endpoint also needs the destination permissions listed under [Sending](#broker-permissions-sending).
 
 ### Conventional routing topology
 
@@ -27,7 +36,6 @@ With the [conventional routing topology](routing-topology.md#conventional-routin
 |:--- |:--- |:---
 |Event exchanges, named `Namespace:TypeName`, for every event type the endpoint publishes or subscribes to, and for each base class and interface of that type |Configure, write, read |Publishing and subscribing
 |The endpoint's own exchange |Write |Subscribing and unsubscribing
-|Exchanges of the endpoints the endpoint sends to, including the error and audit queues |Write |Sending
 
 Unsubscribing removes a binding and needs only read permission on the event exchange.
 
@@ -44,7 +52,6 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 |The topic exchange |Read |Subscribing and unsubscribing
 |A topic exchange other than `amq.topic` |Configure |Subscribing
 |Queues the endpoint receives from |Write |Subscribing and unsubscribing
-|The default exchange, named `amq.default` for permission checks |Write |Sending
 
 > [!WARNING]
 > Subscribing requires configure permission on a custom topic exchange, even when it already exists and installers are disabled. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
