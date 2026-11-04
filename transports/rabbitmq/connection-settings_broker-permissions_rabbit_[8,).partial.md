@@ -45,7 +45,3 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 
 > [!WARNING]
 > Subscribing requires configure permission on a custom topic exchange, even when it already exists and installers are disabled. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
-
-### Installers and configure permission
-
-Disabling [installers](/nservicebus/operations/installers.md) stops the transport from creating queues, endpoint exchanges, and the delayed delivery infrastructure. It does not stop the transport from declaring event exchanges when the endpoint publishes or subscribes, so the credentials still need configure permission on those exchanges.
