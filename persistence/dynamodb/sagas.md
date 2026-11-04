@@ -47,3 +47,7 @@ When a client attempts to acquire a lease on a saga data record that is locked, 
 snippet: DynamoDBLeaseAcquisitionTimeout
 
 partial: consistency
+
+## Custom saga finders
+
+Custom saga finders are not supported.
