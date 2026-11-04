@@ -1,6 +1,6 @@
 # [ParticularDocs](https://docs.particular.net/)
 
-![VerifyMaster](https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml/badge.svg?branch=master) ![BuildProjects](https://github.com/Particular/docs.particular.net/actions/workflows/build-samples-and-snippets.yml/badge.svg?branch=master)
+![ValidateMaster](https://github.com/Particular/docs.particular.net/actions/workflows/validate-master.yml/badge.svg?branch=master) ![BuildProjects](https://github.com/Particular/docs.particular.net/actions/workflows/build-samples-and-snippets.yml/badge.svg?branch=master)
 
 ## How to Contribute
 
