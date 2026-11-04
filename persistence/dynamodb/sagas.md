@@ -2,7 +2,7 @@
 title: Sagas with DynamoDB persistence
 summary: How to configure saga persistence in DynamoDB
 component: DynamoDB
-reviewed: 2025-04-24
+reviewed: 2026-11-04
 related:
 - persistence/dynamodb
 - nservicebus/sagas
@@ -47,3 +47,7 @@ When a client attempts to acquire a lease on a saga data record that is locked, 
 snippet: DynamoDBLeaseAcquisitionTimeout
 
 partial: consistency
+
+## Custom saga finders
+
+Custom saga finders are not supported.
