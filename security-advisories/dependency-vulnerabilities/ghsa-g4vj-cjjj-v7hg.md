@@ -1,13 +1,12 @@
 ---
-title: "GHSA-g4vj-cjjj-v7hg"
+title: "Security Advisory ID: GHSA-g4vj-cjjj-v7hg"
 summary: "Defense in Depth update for NuGet Client"
 reviewed: "2026-05-13"
 ---
 
-## Security Advisory Id GHSA-g4vj-cjjj-v7hg
+This advisory discloses a security vulnerability.
 
-This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-g4vj-cjjj-v7hg](https://github.com/advisories/ghsa-g4vj-cjjj-v7hg) security advisory: Defense in Depth update for NuGet Client.
+Patches have been released for components to update their dependencies to avoid references that have the "Defense in Depth update for NuGet Client" security advisory ([GHSA-g4vj-cjjj-v7hg](https://github.com/advisories/ghsa-g4vj-cjjj-v7hg)).
 
 ### Patch releases
 

@@ -1,13 +1,12 @@
 ---
-title: "GHSA-4625-4j76-fww9"
-summary: "OpenTelemetry's disk retry default temp path enables local blob injection via OTLP Exporter"
-reviewed: "2026-05-13"
+title: "Security Advisory ID: GHSA-g94r-2vxg-569j"
+summary: "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers"
+reviewed: "2026-05-14"
 ---
 
-## Security Advisory Id GHSA-4625-4j76-fww9
+This advisory discloses a security vulnerability.
 
-This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-4625-4j76-fww9](https://github.com/advisories/ghsa-4625-4j76-fww9) security advisory: OpenTelemetry's disk retry default temp path enables local blob injection via OTLP Exporter.
+Patches have been released for components to update their dependencies to avoid references that have the "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers" security advisory ([GHSA-g94r-2vxg-569j](https://github.com/advisories/ghsa-g94r-2vxg-569j)).
 
 ### Patch releases
 

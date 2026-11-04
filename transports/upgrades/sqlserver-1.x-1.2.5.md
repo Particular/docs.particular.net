@@ -4,7 +4,7 @@ summary: Instructions on how to patch SQL injection vulnerability in SQL Server 
 reviewed: 2022-10-19
 component: SqlTransport
 related:
- - security-advisories/sqlserver-sqlinjection
+ - security-advisories/published-advisories/sqlserver-sqlinjection
 redirects:
  - nservicebus/upgrades/sqlserver-1.x-1.2.5
 isUpgradeGuide: true
@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 This document explains how to patch a system for [SQL injection vulnerability in the SQL Server transport](https://github.com/Particular/NServiceBus.SqlServer/issues/272) using hotfix release 1.2.5.
 
 > [!NOTE]
-> Detailed information about the vulnerability, its impact, available mitigation steps, and patching instructions can be found in the [security advisory](/security-advisories/sqlserver-sqlinjection.md).
+> Detailed information about the vulnerability, its impact, available mitigation steps, and patching instructions can be found in the [security advisory](/security-advisories/published-advisories/sqlserver-sqlinjection.md).
 
 
 ## Updating the NuGet package

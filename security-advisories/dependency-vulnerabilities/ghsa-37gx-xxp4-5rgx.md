@@ -1,13 +1,12 @@
 ---
-title: "GHSA-w3x6-4m5h-cxqf"
-summary: "Microsoft Security Advisory CVE-2026-26171 - .NET Denial of Service Vulnerability"
+title: "Security Advisory ID: GHSA-37gx-xxp4-5rgx"
+summary: "Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability"
 reviewed: "2026-05-13"
 ---
 
-## Security Advisory Id GHSA-w3x6-4m5h-cxqf
+This advisory discloses a security vulnerability.
 
-This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-w3x6-4m5h-cxqf](https://github.com/advisories/ghsa-w3x6-4m5h-cxqf) security advisory: Microsoft Security Advisory CVE-2026-26171 - .NET Denial of Service Vulnerability.
+Patches have been released for components to update their dependencies to avoid references that have the "Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability" security advisory ([GHSA-37gx-xxp4-5rgx](https://github.com/advisories/ghsa-37gx-xxp4-5rgx)).
 
 ### Patch releases
 
@@ -50,12 +49,15 @@ Patches for components to update their dependencies to avoid references that hav
 |NServiceBus.AwsLambda.SQS|4.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.AwsLambda.SQS/4.0.1)|
 |NServiceBus.AzureFunctions.InProcess.ServiceBus|5.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/5.0.2)|
 |NServiceBus.AzureFunctions.InProcess.ServiceBus|6.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/6.0.2)|
+|NServiceBus.AzureFunctions.Worker.ServiceBus|4.2.8|[NuGet](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.8)|
+|NServiceBus.AzureFunctions.Worker.ServiceBus|5.2.4|[NuGet](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.4)|
 |NServiceBus.AzureFunctions.Worker.ServiceBus|6.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.2)|
+|NServiceBus.AzureFunctions.Worker.ServiceBus|7.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.1)|
 |NServiceBus.Transport.AzureStorageQueues|12.0.6|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.6)|
 |NServiceBus.Transport.AzureStorageQueues|13.0.5|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/13.0.5)|
 |NServiceBus.Transport.AzureStorageQueues|14.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/14.0.1)|
-|NServiceBus.Callbacks|4.0.3|[NuGet](https://www.nuget.org/packages/NServiceBus.Callbacks/4.0.3)|
-|NServiceBus.Callbacks.Testing|4.0.3|[NuGet](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.3)|
+|NServiceBus.Callbacks|5.0.3|[NuGet](https://www.nuget.org/packages/NServiceBus.Callbacks/5.0.3)|
+|NServiceBus.Callbacks.Testing|5.0.3|[NuGet](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/5.0.3)|
 |NServiceBus.Callbacks|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Callbacks/6.0.1)|
 |NServiceBus.Callbacks.Testing|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/6.0.1)|
 |NServiceBus.ClaimCheck|1.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.ClaimCheck/1.0.2)|
@@ -71,27 +73,18 @@ Patches for components to update their dependencies to avoid references that hav
 |NServiceBus.Encryption.MessageProperty|6.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/6.0.2)|
 |NServiceBus.Envelope.CloudEvents|1.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Envelope.CloudEvents/1.0.1)|
 |NServiceBus.Extensions.Hosting|2.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/2.0.2)|
-|NServiceBus.Extensions.Hosting|3.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/3.0.2)|
-|NServiceBus.Extensions.Hosting|4.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/4.0.1)|
-|NServiceBus.Extensions.Logging|2.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/2.0.2)|
-|NServiceBus.Heartbeat|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Heartbeat/6.0.1)|
-|NServiceBus.MessagingBridge|2.3.4|[NuGet](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.4)|
-|NServiceBus.MessagingBridge.Msmq|2.3.4|[NuGet](https://www.nuget.org/packages/NServiceBus.MessagingBridge.Msmq/2.3.4)|
-|NServiceBus.MessagingBridge|4.0.5|[NuGet](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.5)|
-|NServiceBus.MessagingBridge.Msmq|4.0.5|[NuGet](https://www.nuget.org/packages/NServiceBus.MessagingBridge.Msmq/4.0.5)|
-|NServiceBus.MessagingBridge|5.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.2)|
-|NServiceBus.MessagingBridge.Msmq|5.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.MessagingBridge.Msmq/5.0.2)|
-|NServiceBus.Metrics|4.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics/4.0.2)|
-|NServiceBus.Metrics|5.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics/5.0.2)|
-|NServiceBus.Metrics|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics/6.0.1)|
-|NServiceBus.Metrics.PerformanceCounters|5.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/5.0.2)|
-|NServiceBus.Metrics.PerformanceCounters|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/6.0.1)|
 |NServiceBus.Metrics.PerformanceCounters|7.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/7.0.1)|
+|NServiceBus.Metrics.ServiceControl|4.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/4.0.2)|
+|NServiceBus.Metrics.ServiceControl|5.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/5.0.2)|
+|NServiceBus.Metrics.ServiceControl|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/6.0.1)|
+|NServiceBus.Metrics.ServiceControl.Msmq|4.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl.Msmq/4.0.2)|
 |NServiceBus.Newtonsoft.Json|3.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/3.0.2)|
 |NServiceBus.Newtonsoft.Json|4.1.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/4.1.1)|
 |NServiceBus.Newtonsoft.Json|5.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/5.0.1)|
-|NServiceBus.NHibernate|11.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.NHibernate/11.0.1)|
-|NServiceBus.NHibernate.TransactionalSession|11.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/11.0.1)|
+|NServiceBus.NHibernate|10.1.2|[NuGet](https://www.nuget.org/packages/NServiceBus.NHibernate/10.1.2)|
+|NServiceBus.NHibernate.TransactionalSession|10.1.2|[NuGet](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.1.2)|
+|NServiceBus.NHibernate|9.0.6|[NuGet](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.6)|
+|NServiceBus.NHibernate.TransactionalSession|9.0.6|[NuGet](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.6)|
 |NServiceBus.Persistence.AzureTable|6.1.3|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/6.1.3)|
 |NServiceBus.Persistence.AzureTable.TransactionalSession|6.1.3|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/6.1.3)|
 |NServiceBus.Persistence.AzureTable|7.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/7.0.2)|
@@ -110,6 +103,9 @@ Patches for components to update their dependencies to avoid references that hav
 |NServiceBus.Persistence.DynamoDB.TransactionalSession|3.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.2)|
 |NServiceBus.Persistence.DynamoDB|4.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/4.0.2)|
 |NServiceBus.Persistence.DynamoDB.TransactionalSession|4.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/4.0.2)|
+|NServiceBus.Persistence.NonDurable|1.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/1.0.2)|
+|NServiceBus.Persistence.NonDurable|2.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/2.0.2)|
+|NServiceBus.Persistence.NonDurable|3.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.NonDurable/3.0.1)|
 |NServiceBus.Persistence.Sql|7.0.8|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.8)|
 |NServiceBus.Persistence.Sql.CommandLine|7.0.8|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.CommandLine/7.0.8) or `dotnet tool update --g NServiceBus.Persistence.Sql.CommandLine --v 7.0.8`|
 |NServiceBus.Persistence.Sql.ScriptBuilder|7.0.8|[NuGet](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.ScriptBuilder/7.0.8)|
@@ -182,6 +178,10 @@ Patches for components to update their dependencies to avoid references that hav
 |NServiceBus.Transport.AzureServiceBus.CommandLine|6.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus.CommandLine/6.0.1) or `dotnet tool update --g NServiceBus.Transport.AzureServiceBus.CommandLine --v 6.0.1`|
 |NServiceBus.Transport.AzureServiceBus|6.1.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.1)|
 |NServiceBus.Transport.AzureServiceBus.CommandLine|6.1.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus.CommandLine/6.1.1) or `dotnet tool update --g NServiceBus.Transport.AzureServiceBus.CommandLine --v 6.1.1`|
+|NServiceBus.Transport.AzureServiceBus|6.2.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.2)|
+|NServiceBus.Transport.AzureServiceBus.CommandLine|6.2.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus.CommandLine/6.2.2) or `dotnet tool update --g NServiceBus.Transport.AzureServiceBus.CommandLine --v 6.2.2`|
+|NServiceBus.Transport.IBMMQ|1.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.IBMMQ/1.0.1)|
+|NServiceBus.Transport.IBMMQ.CommandLine|1.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.IBMMQ.CommandLine/1.0.1) or `dotnet tool update --g NServiceBus.Transport.IBMMQ.CommandLine --v 1.0.1`|
 |NServiceBus.Transport.Msmq|2.0.7|[NuGet](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.7)|
 |NServiceBus.UniformSession|3.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.UniformSession/3.0.2)|
 |NServiceBus.UniformSession.Testing|3.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/3.0.2)|
@@ -189,7 +189,6 @@ Patches for components to update their dependencies to avoid references that hav
 |NServiceBus.UniformSession.Testing|4.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/4.0.2)|
 |NServiceBus.UniformSession|5.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.UniformSession/5.0.1)|
 |NServiceBus.UniformSession.Testing|5.0.1|[NuGet](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/5.0.1)|
-|NServiceBus.Wcf|3.0.2|[NuGet](https://www.nuget.org/packages/NServiceBus.Wcf/3.0.2)|
 |ServiceControl|6.14.2|[The downloads page](https://particular.net/downloads)|
 |Particular.ServiceControl.Management|6.14.2|Update-Module -Name Particular.ServiceControl.Management -RequiredVersion 6.14.2|
 |servicecontrol|6.14.2|[Docker Hub](https://hub.docker.com/r/particular/servicecontrol) or `docker pull particular/servicecontrol:6.14.2`|
