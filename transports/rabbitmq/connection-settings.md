@@ -119,8 +119,6 @@ When [installers](/nservicebus/operations/installers.md) are enabled, the creden
 
 ### Runtime
 
-The endpoint needs the following permissions at runtime, even when installers are disabled and the broker resources already exist.
-
 #### Sending
 
 |Operation |Conventional topology |Direct topology
