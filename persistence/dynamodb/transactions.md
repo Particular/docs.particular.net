@@ -2,7 +2,7 @@
 title: DynamoDB persistence transactions
 summary: How to use transactions with DynamoDB persistence
 component: DynamoDB
-reviewed: 2025-04-28
+reviewed: 2026-11-04
 related:
 - persistence/dynamodb
 - samples/aws/dynamodb-transactions
@@ -16,7 +16,7 @@ Transactions can contain a maximum of 100 operations. This limit is shared with 
 
 ## Mapping
 
-The AWS SDK provides a built-in mechanism to map attribute values to custom types and vice-versa when using the [`DynamoDBContext`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DotNetDynamoDBContext.html). Unfortunately the `DynamoDBContext` comes with built-in assumptions on how classes should be annotated. On top of that, it tries to validate table structures in a synchronous and blocking way that can degrade the systems throughput. Additionally, the validation logic can make it difficult to use custom types stored together with the saga types in the same table when the single table design is preferred. To circumvent some of these issues, the persistence provides a custom mapper that supports all built-in data types and uses `System.Text.Json` under the covers.
+The AWS SDK provides a built-in mechanism to map attribute values to custom types and vice-versa when using the [`DynamoDBContext`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DotNetDynamoDBContext.html). Unfortunately, the `DynamoDBContext` comes with built-in assumptions on how classes should be annotated. On top of that, it tries to validate table structures in a synchronous and blocking way that can degrade the systems throughput. Additionally, the validation logic can make it difficult to use custom types stored together with the saga types in the same table when the single table design is preferred. To circumvent some of these issues, the persistence provides a custom mapper that supports all built-in data types and uses `System.Text.Json` under the covers.
 
 The following snippet shows how to use the mapper function together with the synchronized storage to map attribute values to custom types and back.
 
