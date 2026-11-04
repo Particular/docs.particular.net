@@ -28,8 +28,8 @@ With the [conventional routing topology](routing-topology.md#conventional-routin
 
 Unsubscribing removes a binding and needs only read permission on the event exchange.
 
-> [!NOTE]
-> When the endpoint publishes or subscribes to an event type for the first time in a process, the transport declares the exchanges for the type, its base classes, and its interfaces, and binds them together. RabbitMQ checks configure permission on every declaration, including a declaration of an exchange that already exists with the same arguments. The credentials therefore need configure permission on event exchanges even when every exchange already exists.
+> [!WARNING]
+> When the endpoint publishes or subscribes to an event type for the first time in a process, the transport declares the exchanges for the type, its base classes, and its interfaces, and binds them together. RabbitMQ checks configure permission on every declaration, including a declaration of an exchange that already exists with the same arguments. The credentials therefore need configure permission on event exchanges even when every exchange already exists. Disabling installers does not remove this requirement.
 
 ### Direct routing topology
 
@@ -43,17 +43,9 @@ With the [direct routing topology](routing-topology.md#direct-routing-topology),
 |Queues the endpoint receives from |Read, write |Receiving (read), subscribing and unsubscribing (write)
 |The default exchange, named `amq.default` for permission checks |Write |Sending
 
-Publishing declares no exchanges. Subscribing declares the topic exchange unless it is `amq.topic`.
+> [!WARNING]
+> Subscribing requires configure permission on a custom topic exchange, even when it already exists and installers are disabled. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
 
 ### Installers and configure permission
 
 Disabling [installers](/nservicebus/operations/installers.md) stops the transport from creating queues, endpoint exchanges, and the delayed delivery infrastructure. It does not stop the transport from declaring event exchanges when the endpoint publishes or subscribes, so the credentials still need configure permission on those exchanges.
-
-### Missing configure permission
-
-Missing configure permission causes:
-
-- With the conventional topology, publishing and subscribing to fail.
-- With the direct topology, subscribing to fail when using a custom topic exchange. Publishing does not require configure permission, nor does subscribing with the default `amq.topic` exchange.
-
-Grant the runtime AMQP user configure permission on the affected exchanges, then restart the endpoint to retry automatic subscriptions.
