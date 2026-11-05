@@ -6,7 +6,7 @@ reviewed: "2026-10-28"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "Microsoft Security Advisory CVE-2026-70162 - .NET Denial of Service Vulnerability" security advisory ([GHSA-2fmv-rv2c-59x7](https://github.com/advisories/ghsa-2fmv-rv2c-59x7)).
+Patches have been released for impacted components. The patches update dependencies to address references to "Microsoft Security Advisory CVE-2026-70162 - .NET Denial of Service Vulnerability" security advisory ([GHSA-2fmv-rv2c-59x7](https://github.com/advisories/ghsa-2fmv-rv2c-59x7)).
 
 ### Patch releases
 
