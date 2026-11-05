@@ -245,7 +245,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/5.0.1)| **Current** | 2026-01-29     | Active            | Active |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/5.0.2)| **Current** | 2026-01-29     | Active            | Active |
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/4.1.1)| Mainstream Support | 2025-03-18     | 2028-01-29        | 2030-01-29 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/3.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.4.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.4.0)| Extended Support | 2022-06-30     | 2024-11-17        | 2026-11-17 |
