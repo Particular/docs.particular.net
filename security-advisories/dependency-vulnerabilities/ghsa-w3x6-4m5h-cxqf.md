@@ -6,7 +6,7 @@ reviewed: "2026-05-13"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "Microsoft Security Advisory CVE-2026-26171 - .NET Denial of Service Vulnerability" security advisory ([GHSA-w3x6-4m5h-cxqf](https://github.com/advisories/ghsa-w3x6-4m5h-cxqf)).
+Patches have been released for impacted components. The patches update dependencies to address references to "Microsoft Security Advisory CVE-2026-26171 - .NET Denial of Service Vulnerability" security advisory ([GHSA-w3x6-4m5h-cxqf](https://github.com/advisories/ghsa-w3x6-4m5h-cxqf)).
 
 ### Patch releases
 
