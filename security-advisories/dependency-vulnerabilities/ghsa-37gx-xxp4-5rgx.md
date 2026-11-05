@@ -6,7 +6,7 @@ reviewed: "2026-05-13"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability" security advisory ([GHSA-37gx-xxp4-5rgx](https://github.com/advisories/ghsa-37gx-xxp4-5rgx)).
+Patches have been released for impacted components. The patches update dependencies to address references to "Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability" security advisory ([GHSA-37gx-xxp4-5rgx](https://github.com/advisories/ghsa-37gx-xxp4-5rgx)).
 
 ### Patch releases
 
