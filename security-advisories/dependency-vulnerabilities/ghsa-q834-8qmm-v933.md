@@ -6,7 +6,7 @@ reviewed: "2026-05-14"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies" security advisory ([GHSA-q834-8qmm-v933](https://github.com/advisories/ghsa-q834-8qmm-v933)).
+Patches have been released for impacted components. The patches update dependencies to address references to "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies" security advisory ([GHSA-q834-8qmm-v933](https://github.com/advisories/ghsa-q834-8qmm-v933)).
 
 ### Patch releases
 
