@@ -1,7 +1,7 @@
 ---
 title: ServiceControl PostgreSQL Storage
 summary: Configure PostgreSQL storage for ServiceControl Error and Audit instances.
-reviewed: 2026-11-03
+reviewed: 2026-06-01
 component: ServiceControl
 ---
 
@@ -121,7 +121,7 @@ See the [Error instance settings reference](/servicecontrol/servicecontrol-insta
 
 ## Audit instance configuration
 
-Set the storage type to `PostgreSQL`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module do not configure it for Audit instances; add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
+Set the storage type to `PostgreSQL`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module both configure it for Audit instances. For manual or container deployments, add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
 
 include: sc-audit-storagetype
 
