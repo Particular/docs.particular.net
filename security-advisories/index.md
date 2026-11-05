@@ -23,7 +23,7 @@ Where appropriate, temporary protective measures may also be taken, such as unli
 
 - Security fixes and related communications are coordinated so that remediation is available before or at the time of public disclosure.
 
-- Advisories are listed on the [Published Advisories](published-advisories.md) page and may be accompanied by additional customer communication when warranted.
+- Advisories are listed on the [Published Advisories](published-advisories) page and may be accompanied by additional customer communication when warranted.
 
 Public disclosures will typically include:
 
@@ -66,7 +66,7 @@ Dependency vulnerabilities are remediated through one or more of the following a
 
 For dependency vulnerabilities discovered through public advisories, the upstream advisory and CVE record are treated as the authoritative public source for the vulnerability.
 
-Dependency vulnerabilities that have been addressed in the platform are listed on the [Dependency Vulnerabilities](dependency-vulnerabilities.md) page.
+Dependency vulnerabilities that have been addressed in the platform are listed on the [Dependency Vulnerabilities](dependency-vulnerabilities) page.
 
 The following will be disclosed:
 
