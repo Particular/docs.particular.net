@@ -6,7 +6,7 @@ reviewed: "2026-05-14"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers" security advisory ([GHSA-g94r-2vxg-569j](https://github.com/advisories/ghsa-g94r-2vxg-569j)).
+Patches have been released for impacted components. The patches update dependencies to address references to "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers" security advisory ([GHSA-g94r-2vxg-569j](https://github.com/advisories/ghsa-g94r-2vxg-569j)).
 
 ### Patch releases
 
