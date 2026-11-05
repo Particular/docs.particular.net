@@ -6,7 +6,7 @@ reviewed: "2026-05-14"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling" security advisory ([GHSA-mr8r-92fq-pj8p](https://github.com/advisories/ghsa-mr8r-92fq-pj8p)).
+Patches have been released for impacted components. The patches update dependencies to address references to "OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling" security advisory ([GHSA-mr8r-92fq-pj8p](https://github.com/advisories/ghsa-mr8r-92fq-pj8p)).
 
 ### Patch releases
 
