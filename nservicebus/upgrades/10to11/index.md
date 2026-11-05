@@ -256,7 +256,7 @@ If an endpoint must keep a specific host identifier beyond version 11, configure
 
 ## OpenTelemetry
 
-Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. Span names, the span status on success, the parent of the process span, some span attributes, the baggage wire format, the meter name and one metric tag all change. These changes break dashboards, alerts and queries that match on the old output.
+Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. Span names, the span status on success, the parent of the process span, some span attributes, the baggage wire format, the meter name, several metric instruments with their units and histogram buckets, and one metric tag all change. These changes break dashboards, alerts and queries that match on the old output.
 
 The new behavior can be turned on via a single opt-in switch, except for the exception recording mode that is controlled by a dedicated option, described in [Exceptions are no longer recorded as span events](#opentelemetry-exceptions-are-no-longer-recorded-as-span-events).
 
@@ -452,7 +452,7 @@ To retain custom trace state, ensure it is a comma-separated list of `key=value`
 
 #### New performance metrics
 
-Version 11 adds six new histograms to the `NServiceBus.Core` meter source:
+NServiceBus version 10.3 adds six new histograms. They are emitted from the `NServiceBus.Core.Pipeline.Incoming` meter source in version 10, and from the `NServiceBus.Core` meter source in version 11:
 
 | Metric | Description |
 |---|---|
@@ -469,7 +469,7 @@ These metrics are emitted automatically when the meter source is subscribed. No 
 
 In version 10, NServiceBus Core emits its metrics from the `NServiceBus.Core.Pipeline.Incoming` meter, version `0.4.0`. In version 11, the meter is renamed to `NServiceBus.Core` and its version changes to `1.0.0`. The version matches the version the ActivitySources report.
 
-The instrument names are unchanged. The old meter is not emitted in version 11, and both meters are never emitted together.
+The old meter is not emitted in version 11, and both meters are never emitted together. Changes to the instruments are described in the following sections.
 
 Update every `MeterProvider` that subscribes to the old name:
 
@@ -492,13 +492,61 @@ The meter name is exported as the instrumentation scope. Update anything that de
 - OpenTelemetry Collector processors that filter or route on the instrumentation scope
 
 
+#### Message processing outcomes
+
+`nservicebus.messaging.successes`, `nservicebus.messaging.failures`, and `nservicebus.messaging.fetches` are replaced by a single counter, `nservicebus.messaging.processing_attempts`. It is recorded once per processing attempt, after the receive pipeline completes. Failed attempts carry the `error.type` tag and successful attempts do not, as the OpenTelemetry semantic conventions [recommend for recording errors on metrics](https://opentelemetry.io/docs/specs/semconv/general/recording-errors/#recording-errors-on-metrics).
+
+| Version 10 | Version 11 |
+|---|---|
+| `nservicebus.messaging.successes` | `nservicebus.messaging.processing_attempts` without `error.type` |
+| `nservicebus.messaging.failures` | `nservicebus.messaging.processing_attempts` with `error.type` |
+| `nservicebus.messaging.fetches` | `nservicebus.messaging.processing_attempts` |
+
+Two cases are counted differently than in version 10:
+
+- A message deduplicated by the [outbox](/nservicebus/outbox/) counts as a successful attempt. Version 10 did not count it as a success.
+- An attempt canceled because the endpoint is stopping counts as a failed attempt with `error.type` set to `System.OperationCanceledException`, whichever subtype of the exception was thrown. Version 10 counted these attempts only in `nservicebus.messaging.fetches`.
+
+Cancellations occur on every endpoint shutdown, for example during deployments. Exclude `System.OperationCanceledException` from error-rate queries and alerts that should only report processing failures. See [error rates](/nservicebus/operations/opentelemetry.md#meters-exporting-metrics-error-rates) for an example.
+
+#### Envelope unwrapping
+
+`nservicebus.envelope.unwrapped` is renamed to `nservicebus.envelope.unwrap_attempts`. It counts every envelope handler invocation and carries `error.type` on failed invocations. In version 10, the counter recorded zero for successful invocations, so its value was the number of failures.
+
+#### Units
+
+All counters declare a unit, using the curly-brace annotations of the [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/general/metrics/#instrument-units):
+
+| Instrument | Unit |
+|---|---|
+| `nservicebus.messaging.processing_attempts` | `{attempt}` |
+| `nservicebus.envelope.unwrap_attempts` | `{attempt}` |
+| `nservicebus.recoverability.immediate` | `{retry}` |
+| `nservicebus.recoverability.delayed` | `{retry}` |
+| `nservicebus.recoverability.error` | `{message}` |
+| `nservicebus.outbox.duplicates` | `{message}` |
+| `nservicebus.messaging.active_messages` | `{message}` |
+
+The duration histograms keep the unit `s`. Backends that convert names to the Prometheus format drop curly-brace annotations, so the units do not change exported metric names.
+
+#### Histogram bucket boundaries
+
+The duration histograms advise explicit bucket boundaries taken from the OpenTelemetry semantic conventions. Without advice, the OpenTelemetry .NET SDK applies its default boundaries (0, 5, 10, 25, … 10,000), which are intended for milliseconds, so nearly every value fell into the first bucket.
+
+| Instruments | Boundaries (seconds) |
+|---|---|
+| `nservicebus.messaging.serialize_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.outbox.fetch_time`, `nservicebus.outbox.store_time`, `nservicebus.sagas.fetch_time`, `nservicebus.persistence.commit_time` | 0.005, 0.01, 0.025, 0.05, 0.075, 0.1, 0.25, 0.5, 0.75, 1, 2.5, 5, 7.5, 10 ([source](https://opentelemetry.io/docs/specs/semconv/http/http-metrics/#metric-httpserverrequestduration)) |
+| `nservicebus.messaging.handler_time`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time` | 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 30, 60, 120, 300 ([source](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-kestrel-metrics/#metric-kestrelconnectionduration)) |
+
+The exported bucket series change. Queries that select a specific bucket must be updated; percentile queries continue to work. A configured view or the base2 exponential histogram aggregation takes precedence over the advice.
+
 #### execution.result tag is removed
 
 The `execution.result` tag, which carries `"success"` or `"failure"`, is removed in version 11. There is no option to keep it. In version 10 it is emitted on `nservicebus.messaging.successes`, `nservicebus.messaging.failures`, `nservicebus.messaging.processing_time`, `nservicebus.messaging.critical_time`, `nservicebus.messaging.handler_time`, `nservicebus.messaging.deserialize_time`, `nservicebus.messaging.serialize_time`, and `nservicebus.sagas.fetch_time`.
 
-The tag duplicated information that is already available: `nservicebus.messaging.successes` and `nservicebus.messaging.failures` are separate instruments, and the histograms carry `error.type` when the operation fails. Removing the tag also lowers metric cardinality and ingestion cost.
+The tag duplicated the `error.type` tag, which the instruments carry only when the operation fails. Removing the tag also lowers metric cardinality and ingestion cost.
 
-Update any dashboard or alert that groups or filters on `execution.result`. Use the separate success and failure instruments, or `error.type`, instead.
+Update any dashboard or alert that groups or filters on `execution.result` to use `error.type` instead. For message processing outcomes, see [message processing outcomes](#opentelemetry-metrics-message-processing-outcomes).
 
 ### Exceptions are no longer recorded as span events
 
