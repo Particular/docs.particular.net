@@ -6,7 +6,7 @@ reviewed: "2026-05-13"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "Snappier has an infinite loop during SnappyStream decompression with malformed framed input" security advisory ([GHSA-pggp-6c3x-2xmx](https://github.com/advisories/ghsa-pggp-6c3x-2xmx)).
+Patches have been released for impacted components. The patches update dependencies to address references to "Snappier has an infinite loop during SnappyStream decompression with malformed framed input" security advisory ([GHSA-pggp-6c3x-2xmx](https://github.com/advisories/ghsa-pggp-6c3x-2xmx)).
 
 ### Patch releases
 
