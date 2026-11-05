@@ -6,7 +6,7 @@ reviewed: "2026-01-14"
 
 This advisory discloses a security vulnerability.
 
-Patches have been released for components to update their dependencies to avoid references that have the "AWS SDK for .NET V4 adopted defense in depth enhancement for region parameter value" security advisory ([GHSA-9cvc-h2w8-phrp](https://github.com/advisories/ghsa-9cvc-h2w8-phrp)).
+Patches have been released for impacted components. The patches update dependencies to address references to "AWS SDK for .NET V4 adopted defense in depth enhancement for region parameter value" security advisory ([GHSA-9cvc-h2w8-phrp](https://github.com/advisories/ghsa-9cvc-h2w8-phrp)).
 
 ### Patch releases
 
