@@ -539,7 +539,7 @@ If a ServiceControl instance can't be found, email contact@particular.net for in
 
 To produce the list of endpoints, log into a production server, click through Computer Management > Services and Applications > Message Queuing > Private Queues and take screenshots of the list of queues:
 
-<img width="502" height="454" alt="image" src="https://github.com/user-attachments/assets/2e281183-0399-4836-b7b7-ed917fda0c35" />
+<img width="699" height="285" alt="Private queues list in MSMQ" src="https://github.com/user-attachments/assets/80a30e67-d94f-43f7-8bdc-534442ca46d5" />
 
 ## Frequently Asked Questions
 
