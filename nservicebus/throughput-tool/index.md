@@ -535,6 +535,12 @@ To find where a ServiceControl instance might be:
 
 If a ServiceControl instance can't be found, email contact@particular.net for instructions on how to estimate the number of endpoints and system throughput.
 
+#### For MSMQ only
+
+To produce the list of endpoints, log into a production server, click through Computer Management > Services and Applications > Message Queuing > Private Queues and take screenshots of the list of queues:
+
+<img width="699" height="285" alt="Private queues list in MSMQ" src="https://github.com/user-attachments/assets/80a30e67-d94f-43f7-8bdc-534442ca46d5" />
+
 ## Frequently Asked Questions
 
 ### What does the tool do
