@@ -33,7 +33,9 @@ As the table above illustrates, upgrading ServiceControl does not impact the sea
 
 From version 6.21.1, indexes that ServiceControl creates in an existing database also use Lucene. For example, this applies to an index that a new version adds, or to the audit message index that is created when [full-text search on message bodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) is turned on or off. Indexes that exist already keep their search engine.
 
-From version 6.22.2, an index that RavenDB rebuilds because its definition changed also uses Lucene. This includes an index that uses Corax. An existing Corax index therefore moves to Lucene at its next definition change, for example when a new ServiceControl version changes the index. Until then, the index keeps Corax and the custom check reports it. A Lucene index never changes back to Corax.
+Since version 6.22.2, RavenDB switches to Lucene indexes it rebuilds because their definitions changed. This includes an index that uses Corax.
+
+An existing Corax index therefore moves to Lucene when its definition changes, for example, when a new ServiceControl version changes the index. Until then, the index keeps Corax, and the custom check reports it. A Lucene index never changes back to Corax.
 
 > [!NOTE]
 > Monitoring instances do not use RavenDB and are not affected.
@@ -53,12 +55,12 @@ Both list the affected indexes and contain the following message:
 
 The search engine of an index can also be inspected in RavenDB Studio, on the **Configuration** tab of the index, or in the **Indexes** list where each index shows its engine.
 
-From version 6.22.2, the instance log also reports at every start-up:
+Since version 6.22.2, the instance log reports at every start-up:
 
 - the search engine setting of the database, or that none is set
 - the search engine of each index, and whether it is set on the index or inherited from the database
-- a warning for each index that RavenDB rebuilds because its definition changed, with the differences that cause the rebuild
-- a warning for each locked index, and an error when the definition of a locked index changed
+- a warning for each index that RavenDB rebuilds because its definition changed, with the differences causing the rebuild
+- a warning for each locked index, and an error when the definition of a locked index changed and, therefore, cannot be deployed
 
 ## Should existing indexes be migrated?
 
@@ -135,7 +137,7 @@ A locked index is left untouched when ServiceControl recreates its index definit
 > [!WARNING]
 > A locked index does not receive index definition changes from new ServiceControl versions. Check the upgrade guide of each new version for changes to the locked indexes. If an index definition changes, unlock the index, let ServiceControl update it, and do this migration again for it.
 >
-> On versions 6.20.0 to 6.22.1, the instance does not report a locked index. An index with lock mode `Locked (ignore)` keeps the old definition without a log message. An index with lock mode `Locked (error)` stops the start-up with a RavenDB exception that does not name the index. From version 6.22.2, the instance logs a warning for each locked index, and a locked index with a changed definition stops the start-up with an error that names the index. Unlock the index to continue. On version 6.21.1 and later, keep migrated indexes unlocked.
+> From version 6.20.0 to 6.22.1, instances don't report locked indexes. An index with lock mode `Locked (ignore)` keeps the old definition without a log message. An index with lock mode `Locked (error)` stops the start-up with a RavenDB exception that does not name the index. From version 6.22.2, the instance logs a warning for each locked index, and a locked index with a changed definition stops the start-up with an error that names the index. Unlock the index to continue and allow ServiceControl to update the index definition. Starting with version 6.21.1, keep migrated indexes unlocked.
 
 ### 5. Restart the instance
 
@@ -175,7 +177,7 @@ On versions 6.20.0 and 6.21.0:
 Instead of migrating indexes one by one, the database default can be changed so that all indexes, including future ones, use Lucene without locking:
 
 > [!IMPORTANT]
-> On ServiceControl versions 6.20.0 to 6.22.1, this procedure does not work when the default search engine of the RavenDB server is Lucene. RavenDB Studio removes a database setting that is equal to the server default. ServiceControl then adds the Corax setting again at the next start-up, and an index uses Corax again after a reset or a definition change. Upgrade to version 6.22.2 or later before you use this procedure. From version 6.22.2, ServiceControl does not write a search engine setting to an existing database.
+> On ServiceControl versions 6.20.0 to 6.22.1, this procedure does not work when the default search engine of the RavenDB server is Lucene. RavenDB Studio removes a database setting that matches the server default. ServiceControl then adds the Corax setting again at the next start-up, and an index uses Corax again after a reset or a definition change. Upgrade to version 6.22.2 or later before you use this procedure. From version 6.22.2, ServiceControl no longer writes a database-level search engine setting.
 
 1. In RavenDB Studio, open **Settings** > **Database Settings** for the ServiceControl database.
 2. Set both `Indexing.Static.SearchEngineType` and `Indexing.Auto.SearchEngineType` to `Lucene` and save.
