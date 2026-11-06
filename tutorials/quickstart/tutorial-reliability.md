@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quickstart: Recovering from failure"
-reviewed: 2026-02-06
+reviewed: 2026-11-02
 summary: "Part 2: Learn how NServiceBus handles transient and fatal failures: automatic retries, error queuing and guaranteed message delivery for resilient systems"
 extensions:
 - !!tutorial
@@ -90,8 +90,6 @@ First, let's simulate a systemic failure in the **Sales** endpoint:
 
 snippet: ThrowFatalException
 
-3. In the `Handle` method, comment out all the code past the `throw` statement so that Visual Studio doesn't show a warning about unreachable code.
-
 Next, let's enable the Particular Service Platform tools and see what they do.
 
 1. In the **PlatformLauncher** project, locate and open the **Program.cs** file.
@@ -105,7 +103,7 @@ Along with the windows from before, two new windows will now launch. The first i
 
 ![Particular Service Platform Launcher console app](platform-launcher-console-2.png "width=600")
 
-The purpose of this app is to host different tools within a sandbox environment, just for this solution. After a few seconds, the application launches ServicePulse in a new browser window:
+The purpose of this app is to host different tools within a sandbox environment, just for this solution. After a few seconds, the application opens ServicePulse in your default browser:
 
 ![Service Pulse: Dashboard View](pulse-dashboard.png)
 
@@ -119,10 +117,10 @@ For a more in-depth look at the monitoring capabilities, check out the [Monitori
 
 For now, let's focus on the **Failed Messages** view. It's not much to look at right now (and that's good!) so let's generate a systemic failure:
 
-1. Undock the ServicePulse browser tab into a new window to better see what's going on.
+1. Arrange the ServicePulse browser window so that you can see it alongside the **Sales** window.
 2. In the **ClientUI** window, send one message while watching the **Sales** window.
 
-Immediately, we see an exception flash past, followed by a INFO message similar to:
+Immediately, we see an exception flash past, followed by an INFO message similar to:
 
 ```
 INFO Immediate Retry is going to retry message 'ea962f05-7d82-4be1-926a-a9de01749767' because of an exception:
@@ -149,10 +147,10 @@ Once the stack trace appears, check out the **Failed Messages** view in the **Se
 
 ![ServicePulse: Failed Messages View](pulse-failed-messages.png)
 
-So what happened here? Due to the hard-coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retires after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of the retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for failed messages, so that other messages behind it can be processed.
+So what happened here? Due to the hard-coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retries after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of the retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for failed messages, so that other messages behind it can be processed.
 
 > [!NOTE]
-> By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints here have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
+> By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints here have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the message arrive in the error queue.
 
 Once the message entered the error queue, ServicePulse took over, displaying all failed messages grouped by exception type and the location it was thrown from.
 
@@ -164,11 +162,11 @@ No need to go digging through log files to find out what went wrong. ServicePuls
 
 Armed with this information, it should be much easier to track down and fix your bug, so let's do that:
 
-1. Close both browser windows and all console applications.
+1. Close the **ClientUI** and **ServicePulse** browser windows or tabs, and all console applications.
 1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
-1. Comment out the `throw` statement, and uncomment all the code below the **ThrowFatalException** region, returning the code to its original working state.
+1. Comment out the `throw` statement inside the **ThrowFatalException** region again, returning the code to its original working state.
 1. Start the solution again. It won't throw any exceptions so it's okay to attach the debugger this time.
-2. Once the **ServicePulse** window launches, navigate to the **Failed Messages** view.
+1. Once **ServicePulse** opens in the browser, navigate to the **Failed Messages** view.
 
 Now your system has been fixed, and you can give that failed message another chance.
 
