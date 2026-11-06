@@ -137,7 +137,7 @@ A locked index is left untouched when ServiceControl recreates its index definit
 > [!WARNING]
 > A locked index does not receive index definition changes from new ServiceControl versions. Check the upgrade guide of each new version for changes to the locked indexes. If an index definition changes, unlock the index, let ServiceControl update it, and do this migration again for it.
 >
-> From version 6.20.0 to 6.22.1, instances don't report locked indexes. An index with lock mode `Locked (ignore)` keeps the old definition without a log message. An index with lock mode `Locked (error)` stops the start-up with a RavenDB exception that does not name the index. From version 6.22.2, the instance logs a warning for each locked index, and a locked index with a changed definition stops the start-up with an error that names the index. Unlock the index to continue and allow ServiceControl to update the index definition. Starting with version 6.21.1, keep migrated indexes unlocked.
+> Prior to 6.22.2, instances don't report locked indexes. An index with lock mode `Locked (ignore)` keeps the old definition without a log message. An index with lock mode `Locked (error)` stops the start-up with a RavenDB exception that does not name the index. From version 6.22.2, the instance logs a warning for each locked index, and a locked index with a changed definition stops the start-up with an error that names the index. Unlock the index to continue and allow ServiceControl to update the index definition. Starting with version 6.21.1, keep migrated indexes unlocked.
 
 ### 5. Restart the instance
 
