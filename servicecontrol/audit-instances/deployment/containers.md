@@ -88,7 +88,7 @@ Use this endpoint for health probes, for example Kubernetes liveness probes or l
 
 The Audit instance container keeps no data of its own. With RavenDB storage, the data is in the RavenDB database. With SQL Server or PostgreSQL storage, the data is in the database and in the message body store. A mounted volume is needed only in these cases:
 
-- **File system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md). Azure Blob Storage and Amazon S3 need no volume.
+- **File system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance, unless the instances [share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database), in which case they must share the volume. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md). Azure Blob Storage and Amazon S3 need no volume.
 - **RavenDB client certificate file:** to connect to RavenDB with a client certificate stored in a file, mount the file and point `RAVENDB_CLIENTCERTIFICATEPATH` to it. A certificate supplied as a Base64-encoded environment variable needs no volume. See [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
 
 > [!WARNING]

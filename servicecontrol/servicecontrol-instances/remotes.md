@@ -47,7 +47,7 @@ class ServiceControlAudit ServiceControlRemote
 
 ### Sharding audit messages with competing consumers
 
-Two ServiceControl Audit instances ingest messages from the same audit queue. This approach can be used to scale out the ingestion of messages from high-volume audit queues.
+Two ServiceControl Audit instances ingest messages from the same audit queue. This approach can be used to scale out the ingestion of messages from high-volume audit queues. See [scaling out audit ingestion](/servicecontrol/audit-instances/scaling-out-ingestion.md) for the storage options.
 
 ```mermaid
 graph TD
@@ -77,7 +77,7 @@ class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 
 ### Sharding audit messages with split audit queues
 
-Endpoints are partitioned into groups. Each group sends messages to a different audit queue. Each audit queue is managed by a different ServiceControl Audit instance. This approach is useful if different audit retention periods are required for specific groups of endpoints.
+Endpoints are partitioned into groups. Each group sends messages to a different audit queue. Each audit queue is managed by a different ServiceControl Audit instance. This approach is useful if different audit retention periods are required for specific groups of endpoints. It can also be used to scale out audit ingestion; see [scaling out audit ingestion](/servicecontrol/audit-instances/scaling-out-ingestion.md) for the storage options.
 
 ```mermaid
 graph TD
@@ -270,3 +270,4 @@ To change the address of a remote instance to a new host and/or port number:
 - Multi-instance configuration is not possible with the ServiceControl Management utility.
 - Incorrect configuration may cause cyclical dependencies. For example, instance A may attempt to get data from instance B, and instance B may attempt to get data from instance A.
 - It is recommended to run _only one_ primary instance. Multiple primary instances are _not recommended_.
+- With SQL Server or PostgreSQL storage, several Audit instances can [share one database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database), whether they read from the same audit queue or from separate ones. Register only one of the instances that share a database as a remote. Each of them returns every audit message in the database, so registering more than one shows each audit message several times in ServicePulse.
