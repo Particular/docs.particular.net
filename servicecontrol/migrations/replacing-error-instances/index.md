@@ -25,13 +25,11 @@ Keeping this in mind, an Error instance that can't be upgraded can be replaced w
 
 ## Getting ready
 
-These steps should be followed before attempting to replace a ServiceControl Error instance:
+Before attempting to replace a ServiceControl Error instance, clean up all [failed messages](/servicepulse/intro-failed-messages.md) in ServicePulse:
 
-1. All ServiceControl instances must be running version 4.33.0 or later. _This is required to support the upgrade path that keeps all failed messages safe._
-2. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md).
-    * While not strictly necessary, a little "pre-cleaning" will ensure that fewer error messages need to be cared for during the upgrade, making the whole process go faster and more efficiently.
-    * It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
-    * It's best not to attempt this procedure during a failure incident when many error messages are incoming. Ideally, attempt the upgrade during a quiet period where no more than a handful of error messages are expected.
+* While not strictly necessary, a little "pre-cleaning" will ensure that fewer error messages need to be cared for during the upgrade, making the whole process go faster and more efficiently.
+* It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
+* It's best not to attempt this procedure during a failure incident when many error messages are incoming. Ideally, attempt the upgrade during a quiet period where no more than a handful of error messages are expected.
 
 ## Disable error message ingestion
 

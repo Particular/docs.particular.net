@@ -30,6 +30,8 @@ New-ServiceControlAuditInstance `
   -ServiceControlQueueAddress "Particular.ServiceControl"
 ```
 
+From ServiceControl 7, `-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Audit instance](/servicecontrol/audit-instances/deployment/powershell.md#audit-instance-cmdlets-and-aliases-deploying-an-audit-instance).
+
 ## Add the instance to RemoteInstances
 
 The new instance needs to be added to the Error instance's collection of remotes. Execute the following on the machine hosting the ServiceControl Error instance:
@@ -47,9 +49,6 @@ Configure the old audit instance so that it will no longer ingest new messages f
 1. Locate the `ServiceControl.Audit.exe.config` file.
 2. In the `appSettings` section, add a setting key for `ServiceControl/IngestAuditMessages` with a value of `false`.
 3. Restart the Audit instance for the changes to take effect.
-
-> [!NOTE]
-> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
 
 ## Decommission the old audit instance
 

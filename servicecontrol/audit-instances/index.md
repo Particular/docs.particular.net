@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Audit instances
 summary: Information about ServiceControl Audit instances
-reviewed: 2026-04-24
+reviewed: 2026-10-27
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/persistence
@@ -36,17 +36,15 @@ Data about audit messages is exposed via an HTTP API from a ServiceControl Error
 
 ## Persistence
 
-Each ServiceControl Audit instance stores message data in a RavenDB database. For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/storage/ravendb/containers.md).
+ServiceControl Audit instances store their data in RavenDB, SQL Server, or PostgreSQL. Each instance must select one with the required [`ServiceControl.Audit/StorageType`](/servicecontrol/audit-instances/configuration.md#storage-servicecontrol-auditstoragetype) setting; there is no default. See the [storage overview](/servicecontrol/storage/) to choose a storage type. SQL Server and PostgreSQL storage are available from ServiceControl 7; earlier versions store data in RavenDB.
+
+SQL storage requires external storage for message bodies. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details.
+
+When using RavenDB, each ServiceControl Audit instance stores message data in a RavenDB database. For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/storage/ravendb/containers.md).
 
 By default, audit data is retained for 7 days. [This retention period can be customized](/servicecontrol/audit-instances/configuration.md#data-retention).
 
 include: ravendb-exclusive-use-warning
-
-### RavenDB versions used
-
-In ServiceControl.Audit version 4.26 and above new instances use RavenDB version 5. Instances created by version 4.25 and below use RavenDB version 3.5.
-
-Upgrading ServiceControl.Audit instances to version 4.26 or higher does not change the database version. Instances using RavenDB version 3.5, when upgraded to the newest version, will still use RavenDB version 3.5. For more details see [upgrade guide to new persistence format](/servicecontrol/migrations/new-persistence.md)
 
 ## Notifications
 

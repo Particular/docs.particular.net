@@ -28,12 +28,7 @@ In addition, ServiceControl provides additional license management techniques:
 
 ServiceControl has a license user interface accessible in ServiceControl Management, which is a Windows only management utility.
 
-#if-version [,5)
-ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
-#end-if
-#if-version [5,)
 If the ServiceControl Management Utility was not retained after instance installation, a new version can be downloaded to manage license files. The Management Utility itself is not installed; it exists as a standalone application for managing ServiceControl instances.
-#end-if
 
 The selected license file will be stored in the [machine-wide license file location](/nservicebus/licensing/#license-management-machine-wide-license-location), so it is available to all instances of ServiceControl regardless of the service account used.
 

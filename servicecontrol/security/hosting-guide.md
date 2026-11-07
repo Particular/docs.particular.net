@@ -25,9 +25,9 @@ If you place IIS, nginx, or another web server in front of ServiceControl, it ac
 ## Deployment Scenarios
 
 > [!WARNING]
-> When authentication is enabled, all instances (Primary, Audit, Monitoring) must use the **same** Identity Provider (IdP) Authority and Audience settings. Client tokens are forwarded to remote instances during scatter-gather operations.
+> When authentication is enabled, all instances (Error, Audit, and Monitoring) must use the **same** Identity Provider (IdP) Authority and Audience settings. Client tokens are forwarded to remote instances during scatter-gather operations.
 
-The scenarios below assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [TLS](configuration/tls.md), and [Forward Headers](configuration/forward-headers.md).
+The scenarios below assume the use of `App.config` and only show the configuration for the ServiceControl Error instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [TLS](configuration/tls.md), and [Forward Headers](configuration/forward-headers.md).
 
 ### Scenario 0: Default / Backward Compatible Configuration
 

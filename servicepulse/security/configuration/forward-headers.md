@@ -61,7 +61,7 @@ When the proxy is **not** trusted (incorrect `KnownProxies`):
 
 ## Interaction with the Container Built-in Reverse Proxy
 
-ServicePulse includes a [built-in YARP reverse proxy with the Container](/servicepulse/containerization/#reverse-proxy) that forwards requests to ServiceControl Primary and Monitoring instances. The forwarded headers configuration does **not** affect this proxy.
+ServicePulse includes a [built-in YARP reverse proxy with the Container](/servicepulse/containerization/#reverse-proxy) that forwards requests to ServiceControl Error and Monitoring instances. The forwarded headers configuration does **not** affect this proxy.
 
 ```mermaid
 sequenceDiagram
