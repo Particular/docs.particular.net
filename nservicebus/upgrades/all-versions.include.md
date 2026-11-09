@@ -195,13 +195,13 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.5.0)| **Current** | 2026-08-07     | Active            | Active |
-| [6.4.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.4.3)| Mainstream Support | 2026-06-19     | 2026-11-07        | Ineligible |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.5.1)| **Current** | 2026-08-07     | Active            | Active |
+| [~~6.4.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.4.3)| ~~Unsupported~~ | ~~2026-06-19~~ | ~~2026-11-07~~    | ~~Ineligible~~ |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.3.2)| ~~Unsupported~~ | ~~2026-05-04~~ | ~~2026-09-19~~    | ~~Ineligible~~ |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.3)| ~~Unsupported~~ | ~~2026-03-18~~ | ~~2026-08-04~~    | ~~Ineligible~~ |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.1)| ~~Unsupported~~ | ~~2026-02-09~~ | ~~2026-06-18~~    | ~~Ineligible~~ |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.1)| ~~Unsupported~~ | ~~2026-01-29~~ | ~~2026-05-09~~    | ~~Ineligible~~ |
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.4)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.5)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.4)| ~~Unsupported~~ | ~~2025-02-26~~ | ~~2025-12-26~~    | ~~Ineligible~~ |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.5)| ~~Unsupported~~ | ~~2024-09-24~~ | ~~2026-02-26~~    | ~~Ineligible~~ |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.4)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-12-24~~    | ~~Ineligible~~ |
@@ -985,7 +985,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Envelope.CloudEvents/1.0.1)| **Current** | 2026-02-06     | Active            | Active |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Envelope.CloudEvents/1.0.2)| **Current** | 2026-02-06     | Active            | Active |
 
 #### [NServiceBus.Gateway](/nuget/NServiceBus.Gateway)
 
