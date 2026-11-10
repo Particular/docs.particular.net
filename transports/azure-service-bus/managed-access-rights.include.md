@@ -32,3 +32,9 @@ Otherwise, unsubscribing deletes the subscription. Without `Manage` rights, the 
 
 To stop the events, remove the subscription using [operational scripting](/transports/azure-service-bus/operational-scripting.md).
 #end-if
+#if-version [6.6,)
+
+#### Publishing with installers enabled
+
+With installers enabled, the first publish of each event checks whether its topic exists and [creates it if it doesn't](/transports/azure-service-bus/topology.md#topic-creation). Both operations require `Manage` rights. The endpoint already needs these rights to start with installers enabled. Without installers, publishing to an existing topic needs only `Send` rights, or the Azure Service Bus Data Sender role, on the topic.
+#end-if

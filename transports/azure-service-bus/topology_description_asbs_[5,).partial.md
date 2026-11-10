@@ -48,11 +48,24 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 #### Topic creation
 
+#if-version [5,6.6)
 In this topology, topics are created exclusively by subscribers.
 
 When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled and a subscription to that topic exists. If no endpoint subscribes to a given event, the topic for that event will *not* be created, even if another endpoint publishes it.
 
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
+#end-if
+#if-version [6.6,)
+In this topology, subscribers create topics, and so do publishers that run with installers enabled.
+
+When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled.
+
+NServiceBus doesn't tell the transport at startup which events an endpoint publishes. Instead, when an endpoint with installers enabled publishes an event for the first time, the transport checks whether the event's topic exists and creates it if it doesn't. The topic gets the same [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings) that subscribers use. Once a topic exists, the endpoint doesn't check it again while it runs, so a topic deleted while the endpoint runs isn't recreated until the endpoint restarts. A topic created this way has no subscriptions yet, so Azure Service Bus discards the events published to it until a subscriber adds one.
+
+If checking for or creating the topic fails, the publish throws before any message in the same dispatch is sent, and the next publish of that event checks again. Creating topics requires `Manage` rights; see [access rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights). If the topic still appears to be missing right after it was created, the publish throws a `ServiceBusException` with the reason `MessagingEntityNotFound`. Inside a handler, [recoverability](/nservicebus/recoverability/) retries it; code that publishes outside a handler must retry it.
+
+Publishers don't create topics when installers are disabled or `ThrowOnMissingTopicWhenPublishing` is enabled. Running only the installers, for example in a separate deployment step, doesn't create them either, because the transport creates a topic when the endpoint first publishes to it. In these cases, provision the topics in advance; see [publishing to a missing topic](#topic-creation-publishing-to-a-missing-topic).
+#end-if
 
 ##### Publishing to a missing topic
 
@@ -65,6 +78,10 @@ As a result, while an endpoint keeps publishing an event that has no topic:
 
 Operations on links that are already open aren't affected. Handlers in an endpoint that uses the `SendsAtomicWithReceive` transaction mode publish over the connection of the queue they receive from. All other publishes use the endpoint's shared connection.
 
+#if-version [6.6,)
+Publishers that run with installers enabled create a missing topic before they first publish to it, so they don't incur this delay.
+
+#end-if
 To avoid the delay, create the topics for events that can be published before any subscriber exists. Provision them together with the rest of the infrastructure, using infrastructure-as-code tooling such as Bicep or Terraform. Each topic is named after the most concrete event type, which is its full type name unless the topology [maps it to a different topic](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping). For example, in Bicep:
 
 ```bicep
