@@ -12,7 +12,7 @@ redirects:
  - nservicebus/pipeline/satellites
 ---
 
-Satellites are lightweight message processors that run in the same process as their owning endpoint. While they are mostly used by NServiceBus to implement infrastructure features like the Gateway, they can be used in scenarios where messages from additional queues other than the main input queue need to be processed. This is useful when the robustness of a separate queue is needed without having to create and set up a new endpoint and configure any message mappings.
+Satellites are lightweight message processors that run in the same process as their owning endpoint. While they are mostly used by NServiceBus to implement infrastructure features like the [Gateway](/nservicebus/gateway), they can be used in scenarios where messages from additional queues other than the main input queue need to be processed. This is useful when the robustness of a separate queue is needed without having to create and set up a new endpoint and configure any message mappings.
 
 
 ## Implementing a satellite
@@ -45,6 +45,6 @@ snippet: SatelliteRecoverability-ErrorQueue
 
 ### Raising a critical error
 
-In NServiceBus version 5 and below, the `IAdvancedSatellite` offers additional customization when receiving messages in the satellite queue by implementing the `GetReceiverCustomization()` method. For example, critical error processing or error handling customization, etc. In NServiceBus version 6 and 7, `CriticalError` can be resolved via the builder and be used to instruct the endpoint to shut down if a critical error occurs during the processing of a message. In NServiceBus 8 and above, `CriticalError` can be resolved from the `IServiceProvider` passed to the message callback.
+In NServiceBus version 5 and below, `IAdvancedSatellite` offers additional customization, such as error handling or critical error processing, when receiving messages in the satellite queue by implementing the `GetReceiverCustomization()` method. In NServiceBus version 6 and 7, `CriticalError` can be resolved via the builder and used to instruct the endpoint to shut down if a critical error occurs during the processing of a message. In NServiceBus 8 and above, `CriticalError` can be resolved from `IServiceProvider` passed to the message callback.
 
 snippet: AdvancedSatelliteFeatureSetup
