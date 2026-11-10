@@ -1,7 +1,7 @@
 ---
 title: Upgrade Tips
 summary: Tips for upgrading to newer versions of ServiceControl.
-reviewed: 2026-10-17
+reviewed: 2026-11-10
 related:
 ---
 
@@ -25,6 +25,23 @@ The rebuild has to process every document in the database. On large databases, i
 
 > [!WARNING]
 > Until the swap, the database stores both the existing index and its replacement. The replacement usually requires at least as much storage as the index it replaces. Before upgrading, check the index sizes in RavenDB Studio and ensure the database drive has enough free space for both. If the drive runs low on storage, ServiceControl [stops ingesting messages](/servicecontrol/troubleshooting.md#low-on-storage-space).
+
+### Unlock locked indexes before upgrading
+
+A [locked](/servicecontrol/storage/ravendb/search-engine.md#migrating-existing-indexes-to-lucene-lock-the-index) index does not receive a new index definition. From version 6.22.2, a locked index with a changed definition stops the start-up with an error that names the index.
+
+Before upgrading:
+
+1. Check the [release notes](https://github.com/Particular/ServiceControl/releases) and the [upgrade guides](/servicecontrol/upgrades/) of every version between the installed version and the target version for index definition changes.
+1. Open RavenDB Studio, see [accessing the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md), and check the lock mode of the changed indexes in the **List of Indexes**.
+1. Unlock each changed index that is locked by changing `🔒 Locked (ignore)` or `🔒 Locked (error)` to `🔓 Unlocked`.
+
+At the first start-up after the upgrade, RavenDB rebuilds the unlocked indexes with the new definition.
+
+If an instance does not start after the upgrade because a locked index changed:
+
+- **Windows deployment**: From version 6.x.x, start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode). In maintenance mode, the instance logs the error, does not deploy the locked index, and keeps the database running. Click **Launch RavenDB Studio**, unlock the index, then stop maintenance mode and start the instance.
+- **Container deployment**: Open RavenDB Studio on the database container, unlock the index, and start the ServiceControl container again.
 
 ### Upgrading audit instances one at a time
 
