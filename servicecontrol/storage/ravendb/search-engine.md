@@ -1,7 +1,7 @@
 ---
 title: RavenDB search engine
 summary: Selecting Corax or Lucene as the search engine for ServiceControl and how to migrate existing indexes between them
-reviewed: 2026-11-05
+reviewed: 2026-11-10
 component: ServiceControl
 related:
 - servicecontrol/storage/ravendb/accessing-database
@@ -135,7 +135,7 @@ While still in RavenDB Studio, click the `🔓 Unlocked` button of the migrated 
 A locked index is left untouched when ServiceControl recreates its index definitions at start-up, so the index stays on Lucene.
 
 > [!WARNING]
-> A locked index does not receive index definition changes from new ServiceControl versions. Check the upgrade guide of each new version for changes to the locked indexes. If an index definition changes, unlock the index, let ServiceControl update it, and do this migration again for it.
+> A locked index does not receive index definition changes from new ServiceControl versions. Before upgrading, check the release notes and the upgrade guide of each new version for changes to the locked indexes. If an index definition changes, unlock the index before upgrading, let ServiceControl update it, and do this migration again for it. See [Unlock locked indexes before upgrading](/servicecontrol/upgrades/#upgrades-that-rebuild-indexes-unlock-locked-indexes-before-upgrading).
 >
 > Prior to 6.22.2, instances don't report locked indexes. An index with lock mode `Locked (ignore)` keeps the old definition without a log message. An index with lock mode `Locked (error)` stops the start-up with a RavenDB exception that does not name the index. From version 6.22.2, the instance logs a warning for each locked index, and a locked index with a changed definition stops the start-up with an error that names the index. Unlock the index to continue and allow ServiceControl to update the index definition. Starting with version 6.21.1, keep migrated indexes unlocked.
 
