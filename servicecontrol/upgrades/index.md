@@ -40,7 +40,7 @@ At the first start-up after the upgrade, RavenDB rebuilds the unlocked indexes w
 
 If an instance does not start after the upgrade because a locked index changed, how to reach RavenDB Studio depends on where the database runs:
 
-- **Windows deployment**: The database is embedded in the instance and stops when the instance fails to start. From version 6.x.x, start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode). In maintenance mode, the instance logs the error, does not deploy the locked index, and keeps the database running. Click **Launch RavenDB Studio**, unlock the index, then stop maintenance mode and start the instance.
+- **Windows deployment**: The database is embedded in the instance and stops when the instance fails to start. [Maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) deploys the indexes too and stops with the same error. Contact [Particular support](https://particular.net/support) to unlock the index.
 - **Container deployment**: The database runs in its own container and keeps running. Open RavenDB Studio on port `8080` of the [database container](/servicecontrol/storage/ravendb/containers.md), unlock the index, and start the ServiceControl container again.
 - **External RavenDB server**: Open RavenDB Studio for the server that hosts the ServiceControl database, unlock the index, and start the instance again.
 
