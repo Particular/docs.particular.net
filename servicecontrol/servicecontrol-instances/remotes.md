@@ -16,11 +16,11 @@ One ServiceControl Error instance is designated as the _primary_ instance. All o
 > [!NOTE]
 > The term _remote_ refers to the fact that remote instances run in separate processes. The primary instance and one or more remote instances can run on the same machine.
 
-In ServiceControl version 4 and later, a ServiceControl Error instance can be configured with remote instances that are also [ServiceControl Error instances](/servicecontrol/servicecontrol-instances/) or are [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
+A ServiceControl Error instance can be configured with remote instances that are also [ServiceControl Error instances](/servicecontrol/servicecontrol-instances/) or are [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
 
 ### Default deployment
 
-In ServiceControl version 4 and above, the ServiceControl Management utility creates a primary ServiceControl Error instance and a remote ServiceControl Audit instance.
+The ServiceControl Management utility creates a primary ServiceControl Error instance and a remote ServiceControl Audit instance.
 
 ```mermaid
 graph TD
@@ -205,12 +205,10 @@ The remotes feature can be used to perform [zero downtime upgrades](/servicecont
 
 ## Configuration
 
-Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/servicecontrol-instances/configuration.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_uri` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
+Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/servicecontrol-instances/configuration.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_uri` property specifying the API URL of the remote instance.
 
 > [!NOTE]
 > Changes to the configuration file do not take effect until the primary instance is restarted.
-
-### Version 4 and later
 
 ```xml
 <configuration>
@@ -220,19 +218,9 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 </configuration>
 ```
 
-### Version 3 and earlier
-
-```xml
-<configuration>
-  <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;, &quot;queue_address&quot;:&quot;Particular.ServiceControl.Remote&quot;}]"/>
-  </appSettings>
-</configuration>
-```
-
 ## Managing remote instances using PowerShell
 
-The following cmdlets are available in ServiceControl version 4 and above, for the management of remote instances:
+The following cmdlets are available for the management of remote instances:
 
 | Alias                  | Cmdlet                                        |
 | ---------------------- | --------------------------------------------- |

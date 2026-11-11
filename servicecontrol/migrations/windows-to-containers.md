@@ -10,7 +10,7 @@ related:
   - servicecontrol/monitoring-instances/deployment/containers
 ---
 
-ServiceControl 5.3.0 adds the ability to host ServiceControl instances in Linux containers. This article describes how to migrate from ServiceControl hosted on Windows hosting to new ServiceControl instances hosted in containerized infrastructure.
+ServiceControl instances can be hosted in Linux containers. This article describes how to migrate from ServiceControl hosted on Windows hosting to new ServiceControl instances hosted in containerized infrastructure.
 
 Migration for ServiceControl instances is different for each instance type.
 

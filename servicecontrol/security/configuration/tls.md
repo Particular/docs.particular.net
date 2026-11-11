@@ -14,7 +14,7 @@ ServiceControl instances can be configured to use HTTPS directly, enabling encry
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
 
-- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#tls)
+- [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#tls)
 - [Audit Instance](/servicecontrol/audit-instances/configuration.md#tls)
 - [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#tls)
 
@@ -38,7 +38,7 @@ The `HTTPS_REDIRECTHTTPTOHTTPS` setting is intended for use with a reverse proxy
 
 ## Configuration examples
 
-The following examples show common TLS configurations for different deployment scenarios using the primary ServiceControl instance.
+The following examples show common TLS configurations for different deployment scenarios using the ServiceControl Error instance.
 
 ### Direct HTTPS with certificate
 
@@ -62,6 +62,7 @@ servicecontrol:
     ports:
       - "33333:33333"
     environment:
+      STORAGETYPE: RavenDB
       RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
       REMOTEINSTANCES: '[{"api_uri":"https://servicecontrol-audit:44444/api"}]'
       SERVICECONTROL_HTTPS_ENABLED: "true"

@@ -4,9 +4,6 @@ summary: Learn about the deployment options for ServiceControl Error instances. 
 reviewed: 2026-04-10
 component: ServiceControl
 ---
-partial: prereqs
-
-## Deployment options
 
 ServiceControl Error instances can be deployed in multiple ways.
 

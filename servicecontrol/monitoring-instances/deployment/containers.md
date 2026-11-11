@@ -2,7 +2,6 @@
 title: Deploying ServiceControl Monitoring instances using containers
 reviewed: 2026-10-07
 component: ServiceControl
-versions: '[5.3, )'
 ---
 
 ServiceControl Monitoring instances are deployed using the [`particular/servicecontrol-monitoring` image](https://hub.docker.com/r/particular/servicecontrol-monitoring), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
@@ -97,7 +96,7 @@ A ServiceControl monitoring instance is upgraded by removing the container for t
 docker stop monitoring
 docker rm monitoring
 docker pull particular/servicecontrol-monitoring:latest
-docker run -rm {OPTIONS} particular/servicecontrol-monitoring:latest --setup
+docker run --rm {OPTIONS} particular/servicecontrol-monitoring:latest --setup
 docker run -d {OPTIONS} particular/servicecontrol-monitoring:latest
 ```
 

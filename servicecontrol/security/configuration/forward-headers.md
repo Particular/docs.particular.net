@@ -14,7 +14,7 @@ When ServiceControl instances are deployed behind a reverse proxy that terminate
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Authentication](authentication.md) and [TLS](tls.md) configuration settings in a scenario based format.
 
-- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#forwarded-headers)
+- [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#forwarded-headers)
 - [Audit Instance](/servicecontrol/audit-instances/configuration.md#forwarded-headers)
 - [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#forwarded-headers)
 
@@ -84,7 +84,7 @@ For example, with `X-Forwarded-For: 203.0.113.50, 10.0.0.1, 192.168.1.1`:
 
 ## Configuration examples
 
-The following examples show common forwarded headers configurations for different deployment scenarios using the primary ServiceControl instance.
+The following examples show common forwarded headers configurations for different deployment scenarios using the ServiceControl Error instance.
 
 ### Single reverse proxy (known IP)
 
