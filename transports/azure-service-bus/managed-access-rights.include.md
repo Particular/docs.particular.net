@@ -10,9 +10,11 @@ To avoid running with elevated privileges:
 #if-version [,3)
 - [Turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription)
 #end-if
-#if-version [5,)
+#if-version [5,6.5)
 - [Turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription)
-
+#end-if
+#if-version [6.5,)
+- Follow the requirements for [subscribing without Manage rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights-subscribing-without-manage-rights).
 #end-if
 #if-version [5,6.5)
 #### Subscribing without Manage rights
