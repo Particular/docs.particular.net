@@ -56,7 +56,7 @@ When an endpoint subscribes to an event, it creates the corresponding topic if i
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
 #end-if
 #if-version [6.5,)
-In this topology, subscribers create topics. Starting with version 6.5.2, so do publishers that run with installers enabled, unless `ThrowOnMissingTopicWhenPublishing` is enabled.
+In this topology, subscribers create topics. So do publishers that run with installers enabled, unless `ThrowOnMissingTopicWhenPublishing` is enabled.
 
 When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled.
 
@@ -79,7 +79,7 @@ As a result, while an endpoint keeps publishing an event that has no topic:
 Operations on links that are already open aren't affected. Handlers in an endpoint that uses the `SendsAtomicWithReceive` transaction mode publish over the connection of the queue they receive from. All other publishes use the endpoint's shared connection.
 
 #if-version [6.5,)
-Starting with version 6.5.2, publishers that run with installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled create a missing topic before they first publish to it. Only that first publish waits, while the transport creates the topic.
+Publishers that run with installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled create a missing topic before they first publish to it. Only that first publish waits, while the transport creates the topic.
 
 #end-if
 To avoid the delay, create the topics for events that can be published before any subscriber exists. Provision them together with the rest of the infrastructure, using infrastructure-as-code tooling such as Bicep or Terraform. Each topic is named after the most concrete event type, which is its full type name unless the topology [maps it to a different topic](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping). For example, in Bicep:

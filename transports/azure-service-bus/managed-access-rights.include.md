@@ -27,7 +27,7 @@ Subscribing to an event creates a subscription on each topic the event is mapped
 
 #### Subscribing without Manage rights
 
-Subscribing to an event creates a subscription on each topic the event is mapped to. Creating a subscription requires `Manage` rights. Starting with version 6.5.2, subscribing doesn't need them when the subscription already exists:
+Subscribing to an event creates a subscription on each topic the event is mapped to. Creating a subscription requires `Manage` rights. Subscribing doesn't need them when the subscription already exists:
 
 - Without filtered routing, the transport tries to create the subscription. When that fails for lack of `Manage` rights, it checks whether the subscription exists, which needs only `Listen` rights. If it does, the transport logs this at `Info` level and continues.
 - With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), the transport adds the filter rules first, which doesn't require `Manage` rights, and creates the subscription only if it doesn't exist yet.
@@ -51,5 +51,5 @@ To stop the events, remove the subscription using [operational scripting](/trans
 
 #### Publishing with installers enabled
 
-Starting with version 6.5.2, with installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled, the first publish of each event checks whether its topic exists and [creates it if it doesn't](/transports/azure-service-bus/topology.md#topic-creation). Both operations require `Manage` rights. The endpoint already needs these rights to start with installers enabled. Without installers, publishing to an existing topic needs only `Send` rights, or the Azure Service Bus Data Sender role, on the topic.
+With installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled, the first publish of each event checks whether its topic exists and [creates it if it doesn't](/transports/azure-service-bus/topology.md#topic-creation). Both operations require `Manage` rights. The endpoint already needs these rights to start with installers enabled. Without installers, publishing to an existing topic needs only `Send` rights, or the Azure Service Bus Data Sender role, on the topic.
 #end-if
