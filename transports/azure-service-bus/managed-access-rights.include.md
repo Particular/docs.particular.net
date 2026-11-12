@@ -51,5 +51,5 @@ To stop the events, remove the subscription using [operational scripting](/trans
 
 #### Publishing with installers enabled
 
-With installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled, the first publish of each event checks whether its topic exists and [creates it if it doesn't](/transports/azure-service-bus/topology.md#topic-creation). Both operations require `Manage` rights. The endpoint already needs these rights to start with installers enabled. Without installers, publishing to an existing topic needs only `Send` rights, or the Azure Service Bus Data Sender role, on the topic.
+With installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled, the first publish to each topic through each `ServiceBusClient` checks whether the topic exists and [creates it if it doesn't](/transports/azure-service-bus/topology.md#topic-creation). Both operations require `Manage` rights. The endpoint already needs these rights to start with installers enabled. Without installers, publishing to an existing topic needs only `Send` rights, or the Azure Service Bus Data Sender role, on the topic.
 #end-if
