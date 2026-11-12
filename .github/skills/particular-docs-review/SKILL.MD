@@ -42,6 +42,17 @@ Commas for thousands (1,000). Periods for decimals (3.14). Spell 0-10 as words. 
 
 Write for experienced devs. Explain why before how. Start with overview. Define terms on first use. Concrete examples. One idea per paragraph. Sentences ~25 words max. Lists for 3+ items. Clear heading hierarchy.
 
+## User Focus
+
+Start with the reader's task or decision, not the implementation change.
+
+- Keep details that help users configure, operate, or troubleshoot the feature; explain what they need to do and why
+- Omit internal call sequences, caching, client lifetimes, and exception or logging mechanics unless they change user action or explain a documented symptom
+- Preserve prerequisites, defaults, permissions, failure outcomes, and data-loss warnings when simplifying
+- Keep behavior in one primary location and link from related pages rather than repeating the explanation
+
+For example, explain when publishers create topics and when users must provision them; omit per-client existence-check caching.
+
 ## Versioned Product Documentation
 
 Review from the reader's perspective for that version, not the transition that created the change.
@@ -129,7 +140,7 @@ ATX headers (`## Header`). Blank line before/after headers. Use `-` for lists, n
 
 Verify: API signatures correct, config syntax valid, versions current, deprecated APIs removed/marked, namespaces/packages correct.
 
-Docs must include: what feature does, when to use, how to use, config options, pitfalls/edge cases, troubleshooting.
+Include what the reader needs for the page's task: feature purpose, when and how to use it, relevant configuration, and actionable pitfalls or troubleshooting. Do not turn this into an exhaustive inventory of implementation behavior.
 
 ---
 
