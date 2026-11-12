@@ -2,7 +2,7 @@
 title: Azure Functions configuration
 component: AzureFunctions
 summary: Configuring Azure Functions-hosted NServiceBus endpoints.
-reviewed: 2026-06-04
+reviewed: 2026-11-12
 related:
   - nservicebus/hosting/azure/functions
   - transports/azure-service-bus/configuration
@@ -23,7 +23,7 @@ Parameters are matched by type against the properties of [`IHostApplicationBuild
 | [`IHostEnvironment`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostenvironment) | `builder.Environment` | Optional. Inspects the hosting environment, for example to differentiate development and production. |
 | [`IDictionary<object, object>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.idictionary-2) | `builder.Properties` | Optional. Shares state between host configuration and endpoint configuration. |
 
-Declare only the parameters needed, `EndpointConfiguration` must be first:
+Declare only the parameters needed. `EndpointConfiguration` must be first:
 
 > [!NOTE]
 > Because a single Functions app can host [multiple endpoints](/nservicebus/hosting/azure/functions/#hosting-multiple-endpoints), the `IServiceCollection` passed to the configure method is an adapted collection that scopes registrations to that endpoint. Services registered this way are resolvable only within the endpoint's message-handling pipeline (handlers, sagas, features, and installers). To resolve such a dependency outside the endpoint (for example, in an HTTP-triggered function), use [keyed services](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) with the endpoint name (the function name) as the key, or register the service on the global `IServiceCollection` in `Program.cs` instead. For more details, see [Endpoint-scoped dependencies](/nservicebus/hosting/core-hosting.md#hosting-multiple-endpoints-endpoint-scoped-dependencies).
@@ -68,7 +68,7 @@ The queue name supports [functions binding expressions](https://learn.microsoft.
 
 ## Transactions
 
-Azure Functions endpoints only supports [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only).
+Azure Functions endpoints only support [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only).
 
 ## Recoverability
 
