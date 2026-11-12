@@ -2,7 +2,7 @@
 title: Managed Entity Queue-Scoped Permissions for Endpoints
 summary: Explains queue-scoped permissions needed by an endpoint running in Azure Service Bus
 component: ASBS
-reviewed: 2025-10-17
+reviewed: 2026-11-12
 ---
 
 It is common practice to limit [Azure Service Bus connection permissions at the queue scope when using Managed Entities](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity#resource-scope). 
@@ -22,8 +22,11 @@ The following shows the minimum permissions needed for various endpoint features
 #if-version [,3)
 - `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 #end-if
-#if-version [5,)
+#if-version [5,6.5)
 - `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
+#end-if
+#if-version [6.5,)
+- `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required when [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) must create subscriptions. Pre-provisioned subscriptions don't require this permission; see [subscribing without Manage rights](#access-rights-subscribing-without-manage-rights) for the required access.
 #end-if
 - `Azure Service Bus Data Sender` is required for the audit queue when [auditing](/nservicebus/operations/auditing.md#configuring-auditing) is enabled.
 - `Azure Service Bus Data Sender` is required for the [transactional session remote processor](/nservicebus/transactional-session/#remote-processor) queue, when configured.
