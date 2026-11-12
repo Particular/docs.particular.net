@@ -27,10 +27,9 @@ Subscribing to an event creates a subscription on each topic the event is mapped
 
 #### Subscribing without Manage rights
 
-Subscribing to an event creates a subscription on each topic the event is mapped to. Creating a subscription requires `Manage` rights. Subscribing doesn't need them when the subscription already exists:
+To subscribe without `Manage` rights, provision the subscription on each topic the event is mapped to and grant `Listen` rights. This also supports [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 
-- Without filtered routing, the transport tries to create the subscription. When that fails for lack of `Manage` rights, it checks whether the subscription exists, which needs only `Listen` rights. If it does, the transport logs this at `Info` level and continues.
-- With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), the transport adds the filter rules first, which doesn't require `Manage` rights, and creates the subscription only if it doesn't exist yet.
+With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), the transport can add filter rules to existing subscriptions without `Manage` rights.
 
 If the subscription doesn't exist, the subscribe operation fails and the transport logs an error. With automatic subscriptions, the endpoint still starts; an explicit subscribe call throws instead. The endpoint doesn't receive the events that depend on the missing subscription, and events published before it's created are never delivered to the endpoint.
 #end-if
@@ -51,5 +50,5 @@ To stop the events, remove the subscription using [operational scripting](/trans
 
 #### Publishing with installers enabled
 
-With installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled, the first publish to each topic through each `ServiceBusClient` checks whether the topic exists and [creates it if it doesn't](/transports/azure-service-bus/topology.md#topic-creation). Both operations require `Manage` rights. The endpoint already needs these rights to start with installers enabled. Without installers, publishing to an existing topic needs only `Send` rights, or the Azure Service Bus Data Sender role, on the topic.
+Publishers running with installers enabled require `Manage` rights to [create topics](/transports/azure-service-bus/topology.md#topic-creation). To publish with only `Send` rights, or the Azure Service Bus Data Sender role, disable installers and provision topics in advance.
 #end-if

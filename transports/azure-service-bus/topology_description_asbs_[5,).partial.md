@@ -56,36 +56,20 @@ When an endpoint subscribes to an event, it creates the corresponding topic if i
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
 #end-if
 #if-version [6.5,)
-In this topology, subscribers create topics. So do publishers that run with installers enabled, unless `ThrowOnMissingTopicWhenPublishing` is enabled.
+With installers enabled, subscribers create topics when they subscribe to events. Publishers also create missing topics when they first publish, unless `ThrowOnMissingTopicWhenPublishing` is enabled. Topics use the configured [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings).
 
-When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled.
+Creating topics requires [`Manage` rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights). If the transport cannot check for or create a topic, publishing fails.
 
-NServiceBus doesn't tell the transport at startup which events an endpoint publishes. Instead, with installers enabled, the transport checks whether a topic exists on the first publish to it through each `ServiceBusClient` and creates it if it doesn't. The topic gets the same [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings) that subscribers use.
+If installers are disabled or `ThrowOnMissingTopicWhenPublishing` is enabled, [provision topics before publishing](#topic-creation-publishing-to-a-missing-topic). Running installers as a separate deployment step doesn't create topics for events the endpoint only publishes.
 
-Successful checks are cached per topic and client. That client doesn't check the topic again, even if it is later deleted. A different client can check again and recreate it. Handlers using `SendsAtomicWithReceive` publish through their receive queue's client; publishes outside handlers use the endpoint's shared client.
-
-A topic created this way has no subscriptions yet, so Azure Service Bus discards the events published to it until a subscriber adds one.
-
-If checking for or creating the topic fails, the publish throws before any message in the same dispatch is sent, and the next publish of that event checks again. Creating topics requires `Manage` rights; see [access rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights). If the topic still appears to be missing right after it was created, the publish throws a `ServiceBusException` with the reason `MessagingEntityNotFound`. If the exception propagates from a handler, the endpoint's configured [recoverability policy](/nservicebus/recoverability/) handles it. Retrying requires retries to be enabled and a [transaction mode](/transports/azure-service-bus/transaction-support.md) other than `None`. Code that publishes outside a handler must handle retries itself.
-
-Publishers don't create topics when installers are disabled or `ThrowOnMissingTopicWhenPublishing` is enabled. Running only the installers, for example in a separate deployment step, doesn't create them either, because the transport creates a topic when the endpoint first publishes to it. In these cases, provision the topics in advance; see [publishing to a missing topic](#topic-creation-publishing-to-a-missing-topic).
+> [!WARNING]
+> Creating a topic does not create subscriptions. Azure Service Bus discards events published before a subscription exists.
 #end-if
 
 ##### Publishing to a missing topic
 
-Publishing an event whose topic doesn't exist is slow, and it slows down other operations on the same connection. Before a client can use a queue or topic, Azure Service Bus authorizes access to it. For a missing topic, that authorization fails. After each failure, Azure Service Bus delays the next authorization on the same connection by about one more second, up to about five seconds. A successful authorization resets the delay.
+Publishing to a missing topic can delay each publish by up to about five seconds and slow other operations on the same connection.
 
-As a result, while an endpoint keeps publishing an event that has no topic:
-
-- Each of those publishes takes up to about five seconds.
-- Any operation on the same connection that opens a new link waits just as long. Examples are the first send to a destination, a send to a destination that has been idle for 10 minutes, a reply, and accepting a session on a session-enabled endpoint.
-
-Operations on links that are already open aren't affected. Handlers in an endpoint that uses the `SendsAtomicWithReceive` transaction mode publish over the connection of the queue they receive from. All other publishes use the endpoint's shared connection.
-
-#if-version [6.5,)
-Publishers that run with installers enabled and `ThrowOnMissingTopicWhenPublishing` disabled check for and create a missing topic before publishing to it. After a successful check, subsequent publishes to that topic through the same `ServiceBusClient` skip the check. A different client performs its own check on its first publish to the topic.
-
-#end-if
 To avoid the delay, create the topics for events that can be published before any subscriber exists. Provision them together with the rest of the infrastructure, using infrastructure-as-code tooling such as Bicep or Terraform. Each topic is named after the most concrete event type, which is its full type name unless the topology [maps it to a different topic](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping). For example, in Bicep:
 
 ```bicep
