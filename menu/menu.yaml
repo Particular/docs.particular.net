@@ -146,6 +146,8 @@
       Url: platform/connecting
     - Title: Configuration schema
       Url: platform/json-schema
+    - Title: Report usage data
+      Url: platform/reporting-usage-data
   - Title: Contributing
     Url: platform/contributing
   - Title: Release notifications
