@@ -50,4 +50,4 @@ partial: consistency
 
 ## Custom saga finders
 
-Custom saga finders are not supported.
+[Custom saga finders](/nservicebus/sagas/saga-finding.md) are not supported. To correlate on more than one message property, use a [message property expression](/nservicebus/sagas/message-correlation.md#message-property-expression).
