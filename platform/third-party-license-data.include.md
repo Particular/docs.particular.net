@@ -186,8 +186,8 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.13.0/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.50.8/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.14.0/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.50.9/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Snappier" target="_blank">Snappier</a> | <a href="https://www.nuget.org/packages/Snappier/1.3.1/license" target="_blank">BSD-3-Clause</a> | <a href="https://brantburnett.github.io/Snappier/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Testing
@@ -261,7 +261,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/9.3.4/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.1.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.1.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.RDS" target="_blank">AWSSDK.RDS</a> | <a href="https://www.nuget.org/packages/AWSSDK.RDS/4.1.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.1.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.1.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
