@@ -1185,10 +1185,6 @@
       "PackageId": "NServiceBus.Transport.NonDurable",
       "Versions": [
         {
-          "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "1.1",
           "SupportLevel": "Mainstream"
         },

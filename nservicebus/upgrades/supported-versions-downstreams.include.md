@@ -37,7 +37,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.5.1)| **Current** | 2026-08-07     | Active            | Active |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.5.2)| **Current** | 2026-08-07     | Active            | Active |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.5)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.9)| Extended Support | 2023-03-23     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.8)| Extended Support | 2021-10-19     | 2024-11-17        | 2026-11-17 |
@@ -70,7 +70,6 @@
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.NonDurable/1.2.0)| **Current** | 2026-10-22     | Active            | Active |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.NonDurable/1.1.0)| Mainstream Support | 2026-08-13     | 2027-01-22        | Ineligible |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.NonDurable/1.0.1)| Mainstream Support | 2026-08-03     | 2026-11-13        | Ineligible |
 
 #### [NServiceBus.Transport.PostgreSql](/nuget/NServiceBus.Transport.PostgreSql)
 
