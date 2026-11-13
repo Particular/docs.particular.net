@@ -11,10 +11,10 @@ NServiceBus versions 7 and above are designed to run on .NET Core, which means i
 
 While Visual Studio contains specific support for .NET projects, VS Code is a more lightweight editor for any language, so some configuration is necessary for VS Code to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
 
-## Prerequisities
+## Prerequisites
 
 * This article assumes knowledge of NServiceBus solutions.
-* VS Code must have the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) installed.
+* VS Code must have the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installed.
 
 ## Configuration files
 
@@ -63,7 +63,7 @@ The following **tasks.json** describes how to build the solution using `dotnet b
 
 For an NServiceBus solution, use the content above, and adjust the path of the `sln` file.
 
-For more information on **tasks.json**, see [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks).
+For more information on **tasks.json**, see [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/debugtest/tasks).
 
 ## launch.json
 
@@ -277,4 +277,4 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
 See the following articles for more information on debugging with VS Code:
 
 * [Configuring C# debugging](https://code.visualstudio.com/docs/csharp/debugger-settings)
-* [Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks)
+* [Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/debugtest/tasks)
