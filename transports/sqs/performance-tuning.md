@@ -1,6 +1,6 @@
 ---
 title: Performance Tuning
-summary: Guidance to tweak the performance of the SQS transport
+summary: Tune receive concurrency and HTTP connection limits for the Amazon SQS transport.
 component: SQS
 reviewed: 2025-05-06
 ---
@@ -8,19 +8,22 @@ reviewed: 2025-05-06
 > [!NOTE]
 > It is difficult to give performance tuning guidelines that will be generally applicable. Results may vary greatly depending on many factors such as bandwidth, latency, client version, and much more. As always with performance tuning: Measure, don't assume.
 
-The Amazon SQS transport uses HTTP/S connections to send and receive messages from the AWS web services. The performance of the operations performed by the transport are subjected to the latency of the connection between the endpoint and SQS.
+The Amazon SQS transport uses HTTP/S connections to send and receive messages from AWS services. Connection latency affects the performance of these operations.
 
 ## Parallel message retrieval
 
 It is possible to increase the maximum concurrency to increase the throughput of a single endpoint. For more information about how to tune the endpoint message processing, consult the [tuning guide](/nservicebus/operations/tuning.md).
 
-In Version 4 and higher, the transport will automatically increase the degree of parallelism by applying the following formula.
+The transport fetches up to ten messages per receive request. When the maximum concurrency is ten or less, it uses one receive pump and fetches up to that many messages. For higher concurrency, it fetches up to ten messages per request and increases the number of parallel receive pumps.
 
-```
-Degree of parallelism = Math.Ceiling(MaxConcurrency / NumberOfMessagesToFetch)
+The transport calculates receive parallelism using floating-point division:
+
+```text
+NumberOfMessagesToFetch = Math.Min(MaxConcurrency, 10)
+DegreeOfReceiveParallelism = Math.Ceiling((double)MaxConcurrency / NumberOfMessagesToFetch)
 ```
 
-The following examples illustrate how the formula is applied when the concurrency is greater or equal to 10.
+The following examples illustrate how the formula is applied.
 
 |`MaxConcurrency` | `DegreeOfReceiveParallelism` | `NumberOfMessagesToFetch` |
 | :-: |:-:|:-:|
@@ -45,29 +48,30 @@ Each parallel message retrieval requires one long polling connection.
 
 ## Number of connections
 
-A single endpoint requires multiple connections. Connections might be established or reused due to the connection pooling of the HTTP client infrastructure. By default, a single SQS client has a connection limit of 50 connections. When more than 50 connections are used, the endpoint connections will get queued up, and performance might decrease.
+A single endpoint requires multiple HTTP connections. When a connection limit is reached, additional requests wait for a connection, which can reduce throughput.
 
-It is possible to set the `ConnectionLimit` property on the client programmatically by overriding the [SQS client](/transports/sqs/configuration-options.md#sqs-client) or the [SNS client](/transports/sqs/configuration-options.md#sns-client) as needed, or by setting the `ServicePointManager.DefaultConnectionLimit` (recommended).
+On .NET Core and later, set `MaxConnectionsPerServer` on `AmazonSQSConfig` or `AmazonSimpleNotificationServiceConfig` before constructing the corresponding client. By default, the AWS SDK leaves this property unset and uses the HTTP handler's default of `int.MaxValue` connections per server.
 
-include: servicepoint-manager-connection-limit
+Provide the configured clients to the transport using the [SQS client](/transports/sqs/configuration-options.md#sqs-client) and [SNS client](/transports/sqs/configuration-options.md#sns-client) configuration options.
+
+#if-version (,7)
+
+### .NET Framework
+
+On .NET Framework, set `ConnectionLimit` on the AWS client configuration instead. The default is 50 connections unless `ServicePointManager.DefaultConnectionLimit` has been explicitly set, in which case the SDK uses that value. Configure these settings before constructing the client.
+
+#end-if
 
 ## Sending small messages
 
-If the endpoint is sending a lot of small messages (http message size < 1460 bytes) it might be beneficial to turn off the [NagleAlgorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm).
+On .NET Core and later, the AWS SDK uses `HttpClient`. Configuring Nagle's algorithm through `ServicePointManager` does not affect these connections.
 
-To disable Nagle for a specific endpoint URI use:
+#if-version (,7)
 
-```
-var servicePoint = ServicePointManager.FindServicePoint(new Uri("sqs-endpoint-uri"));
-servicePoint.UseNagleAlgorithm = false;
-```
+On .NET Framework, the AWS SDK disables Nagle's algorithm by default (`UseNagleAlgorithm = false`). No additional configuration is needed to disable it.
 
-To find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation. It is also possible to disable Nagle's Algorithm globally for the Application Domain by applying:
+#end-if
 
-```
-ServicePointManager.UseNagleAlgorithm = false;
-```
+## Known limitations
 
-## Known Limitations
-
-The transport uses a single client for all operations on SQS. The throughput of a single endpoint is thus limited to the number of connections a single client can handle.
+The transport shares an SQS client between receive, send, and delete operations. Each parallel receive request can hold a connection open while long polling. When setting a connection limit, allow capacity for sends and message deletions as well as parallel receives.
