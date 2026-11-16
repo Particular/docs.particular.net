@@ -2,29 +2,27 @@
 title: RabbitMQ Delayed Delivery
 summary: Describes the native delayed delivery implementation in the RabbitMQ transport
 component: Rabbit
-reviewed: 2025-05-02
+reviewed: 2026-11-16
 versions: '[4,]'
 redirects:
  - nservicebus/rabbitmq/delayed-delivery
 ---
 
-partial: v1-warning
-
-In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker, which can delay messages using native RabbitMQ features.
+The RabbitMQ transport implements [delayed delivery](/nservicebus/messaging/delayed-delivery.md) by creating infrastructure inside the broker that delays messages using native RabbitMQ features.
 
 ## How it works
 
 When an endpoint is started, the transport declares a set of topic exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. Exchanges and queues are grouped to provide 28 delay levels. There is one final delivery exchange in addition to the delay-level exchanges. When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is used as part of the routing key when the message is sent to the delay-level exchanges. The full routing key has the following format:
 
-```
+```text
 N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.N.destination
 ```
 
-Where `N` is either `0` or `1`, representing the delay value in binary, and `destination` is the name of endpoint the delayed message will be sent to.
+Where `N` is either `0` or `1`, representing the delay value in binary, and `destination` is the name of the endpoint the delayed message will be sent to.
 
 As an example, a delay of 10 seconds (`1010` in binary) on a message bound for the `destination` queue is encoded with a routing key of:
 
-```
+```text
 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.1.0.destination
 ```
 
@@ -35,14 +33,14 @@ Each exchange/queue pair that makes up a level represents one bit of the total d
 > [!NOTE]
 > With 28 total levels, the maximum delay value is 268,435,455 seconds, or about 8.5 years.
 
-A delay level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the delay level is declared with an [`x-message-ttl`](https://www.rabbitmq.com/ttl.html) value corresponding to `2^level` seconds. The queue is also declared with an [`x-dead-letter-exchange`](https://www.rabbitmq.com/dlx.html) value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
+A delay level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the delay level is declared with an [`x-message-ttl`](https://www.rabbitmq.com/docs/ttl) value corresponding to `2^level` seconds. The queue is also declared with an [`x-dead-letter-exchange`](https://www.rabbitmq.com/docs/dlx) value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
 
 The delay levels are connected in this manner, from highest (27) to lowest (0). Each delay level's routing key adds wildcards as needed so that each routing key is looking at the portion of the message's routing key that corresponds to its delay level.
 
 The following diagram illustrates the relationships between the exchanges and queues in the delay infrastructure, which are connected by bindings and `x-dead-letter-exchange` values. It's important to note the wildcard rules for RabbitMQ binding expressions, where *word* describes a dot-delimited segment:
 
-* `*` substitutes for exactly one word
-* `#` substitutes for 0 or more words
+- `*` substitutes for exactly one word
+- `#` substitutes for 0 or more words
 
 <style>
 .edgeLabel {
@@ -62,7 +60,7 @@ exchange26(Exchange: nsb.v2.delay-level-26)
 queue26[Queue: nsb.v2.delay-level-26]
 exchange25(Exchange: nsb.v2.delay-level-25)
 
-hiddenExchanges(Not Shown: nsb.v2.delay-level-24 through nsb.v2.delay-level-2)
+hiddenExchanges(Not Shown: nsb.v2.delay-level-24 through nsb.v2.delay-level-02)
 
 exchange1(Exchange: nsb.v2.delay-level-01)
 queue1(Queue: nsb.v2.delay-level-01)
@@ -100,8 +98,8 @@ end
 
 To avoid unnecessary traversal through the delay infrastructure, the message is published to the first applicable exchange by identifying the first level that will route to a queue, or in other words, the first `1` in the routing key. In the 10-second example (binary `1010`), the message would first be published to the `nsb.v2.delay-level-03` exchange, and all of that exchange's bindings are evaluated. Only two bindings exist for the exchange, so:
 
-* If the value is a `1`, the exchange will route the message to the `nsb.v2.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb.v2.delay-level-02` exchange.
-* If the value is a `0`, the exchange will route the message to the `nsb.v2.delay-level-02` exchange.
+- If the value is a `1`, the exchange will route the message to the `nsb.v2.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb.v2.delay-level-02` exchange.
+- If the value is a `0`, the exchange will route the message to the `nsb.v2.delay-level-02` exchange.
 
 ### Delivery
 
@@ -121,7 +119,7 @@ This example illustrates the delay mentioned above, showing a message sent with 
 |Level 00         |1.0.1.**0**.destination|     `0`     |Delivery Exchange|    -    |        -        |
 |Delivery Exchange|1.0.1.0.**destination**|`destination`|`destination`    |    -    |        -        |
 
-This example can be visualized using the following
+The following diagram visualizes this example:
 
 ```mermaid
 graph LR
@@ -165,24 +163,21 @@ class q1,q3 usedQueue
 end
 ```
 
-## Backwards compatibility
-
-### Non-native to native
-
-It is safe to operate a combination of native-delay and non-native-delay endpoints at the same time. Native endpoints can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. Native endpoints can continue to receive delayed messages from non-native endpoints as well.
-
-partial: timeout-manager
-
-#### Migrating timeouts to native delayed delivery
-
-To migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
-
-partial: v1-to-v2
-
 partial: disabledelayeddelivery
 
 ## RabbitMQ upgrade
 
 When upgrading the RabbitMQ cluster, it is recommended to use the [rolling (in-place)](https://www.rabbitmq.com/docs/upgrade#rolling-upgrade) method.
 
-Upgrading RabbitMQ by using [blue-green deployments](https://www.rabbitmq.com/docs/upgrade#blue-green-deployment) is more complicated because delayed messages cannot be moved with standard tools like the [shovel](https://www.rabbitmq.com/docs/shovel) which are not aware of the how the delay infrastructure is implemented. The [`delays transfer`](operations-scripting.md#delays-transfer) command should be used to move delayed messages from one broker to another.
+Upgrading RabbitMQ by using [blue-green deployments](https://www.rabbitmq.com/docs/upgrade#blue-green-deployment) is more complicated because standard tools, such as the [shovel](https://www.rabbitmq.com/docs/shovel), are not aware of how the delay infrastructure is implemented and cannot move delayed messages.
+
+#if-version [11,)
+
+Use the [`delays transfer`](operations-scripting.md#delays-transfer) command to move delayed messages from one broker to another.
+
+#end-if
+#if-version [,11)
+
+Contact [Particular support](https://customers.particular.net/request-support) for details on moving delayed messages from one broker to another.
+
+#end-if
