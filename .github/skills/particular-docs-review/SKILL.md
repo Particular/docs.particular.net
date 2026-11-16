@@ -1,7 +1,6 @@
 ---
 name: particular-docs-review
 description: Reviews Particular Platform documentation for en-US language standards, style consistency, technical accuracy, and quality. Use when reviewing or editing Particular Platform documentation.
-invocable: false
 ---
 
 # Particular Documentation Review
