@@ -125,38 +125,35 @@ Specify marker type when locating snippet code.
 
 # Supported Versions
 
-Content that only applies to unsupported versions is obsolete. MUST check every partial range, `#if-version` block, snippet version directory, and version qualifier in prose (for example "In versions 4.3 and above") against the versions the site supports. Being accurate for an old version does not make content current.
+Content that only applies to unsupported versions is obsolete, even if it is accurate for that version. MUST check every partial range, `#if-version` block, snippet version directory, and prose version qualifier (for example "In versions 4.3 and above") against the supported versions.
 
-**Source:** `nservicebus/upgrades/supported-versions.json` lists the supported minors for each NuGet package with a `SupportLevel` of `Mainstream` or `Extended`. Both levels count as supported. Automation refreshes this file; never edit it. End dates are in `supported-versions-nservicebus.include.md` and `supported-versions-downstreams.include.md` in the same folder. `all-versions.include.md` also lists unsupported versions.
+**Source:** `nservicebus/upgrades/supported-versions.json` lists the supported minors per NuGet package; `Mainstream` and `Extended` both count as supported. It is generated; never edit it. End dates are in `supported-versions-nservicebus.include.md` and `supported-versions-downstreams.include.md` in the same folder. `all-versions.include.md` also lists unsupported versions, so don't use it as the source.
 
-**Map the page to a package:** look up the frontmatter `component:` in `components/nugetAlias.txt` (for example `Rabbit: NServiceBus.RabbitMQ`). Partial file names use the same alias. Pages without `component:` have no version dropdown; check their version mentions against the package they name.
-
-The JSON lookup can run into the next package; read only up to that package's closing `]`.
+**Map the page to a package** via its frontmatter `component:` in `components/nugetAlias.txt` (for example `Rabbit: NServiceBus.RabbitMQ`); partial file names use the same alias. Pages without `component:` have no version dropdown; check their version mentions against the package they name.
 
 ```bash
+# Output can run into the next package; stop at this package's closing `]`
 grep -A30 '"PackageId": "NServiceBus.RabbitMQ"' nservicebus/upgrades/supported-versions.json
 grep -A12 '\[NServiceBus.RabbitMQ\]' nservicebus/upgrades/supported-versions-downstreams.include.md
 ```
 
-Support is per minor and can skip a major. The oldest supported major is the lowest major with any supported minor. Only versions below it are retired. Leave unsupported majors that sit between supported ones (for example NServiceBus.RabbitMQ 9, between 8 and 10) unless asked.
+Support is per minor and can skip a major. Only versions below the oldest supported major are retired; leave unsupported majors between supported ones (for example NServiceBus.RabbitMQ 9, between 8 and 10) unless asked.
 
 **In the page under review:**
 
 - Remove prose version qualifiers that every documented version already meets, and rewrite the sentence for the current reader
-- Delete partials and `#if-version` blocks whose range only covers versions with no snippet directory; they can no longer render
-- Before removing a heading, search for inbound links to its anchor (see Anchor Stability)
+- Delete partials and `#if-version` blocks whose range only covers versions without a snippet directory; they no longer render
+- Before removing a heading, check for inbound links to its anchor (see Anchor Stability)
 
-**Component-wide retirement:** a snippet directory for a version below the oldest supported major (for example `Snippets/Rabbit/Rabbit_6` when the oldest supported major is 7) keeps that version in the dropdown on every page for the component. Partials for that version keep rendering until the version is retired across the component. Report this as a follow-up with the affected files; do not do it inside a single-page review unless asked. Retiring a version (see commit `eb046ce1a6`, "Remove RabbitMQ 5.x docs") means:
+**Component-wide retirement:** a snippet directory below the oldest supported major (for example `Snippets/Rabbit/Rabbit_6` when the oldest is 7) keeps that version in the dropdown, and its partials rendering, on every page of the component. Report it as a follow-up with the affected files; don't do it in a single-page review unless asked. Retiring a version (see commit `eb046ce1a6`) means:
 
-- Delete the snippet directories and any sample version directories for that version, and remove the projects from the solution file
-- Delete partials and `#if-version` blocks that only covered the retired versions, on every page for the component
-- Widen or merge the remaining partials so their ranges still cover all documented versions without overlapping
+- Delete its snippet and sample version directories, and remove the projects from the solution file
+- Delete partials and `#if-version` blocks that only covered it, on every page of the component
+- Widen or merge the remaining partials so their ranges cover all documented versions without overlapping
 
-**Upcoming end of support:** if a supported version's "Extended Until" date is within 30 days, report the date and ask whether to retire it now.
+If a supported version's "Extended Until" date is within 30 days, report the date and ask whether to retire it now.
 
-**Exempt:** upgrade guides under `nservicebus/upgrades/` and `transports/upgrades/` describe old versions on purpose.
-
-Report obsolete version content under Technical Updates.
+Upgrade guides under `nservicebus/upgrades/` and `transports/upgrades/` are exempt; they describe old versions on purpose. Report obsolete version content under Technical Updates.
 
 ---
 
