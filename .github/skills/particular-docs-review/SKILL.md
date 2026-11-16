@@ -5,6 +5,7 @@ allowed-tools:
   - shell(docstool:*)
   - shell(dotnet tool install:*)
   - shell(dotnet tool update:*)
+  - shell(grep:*)
 ---
 
 # Particular Documentation Review
