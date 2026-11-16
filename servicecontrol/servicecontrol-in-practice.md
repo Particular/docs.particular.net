@@ -25,12 +25,12 @@ In addition:
 
 ## Message throughput considerations
 
-Depending on the number of endpoints and message volume, audit messages can have a significant impact on performance. Turn off [message auditing](/nservicebus/operations/auditing.md) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServicePulse. If ServicePulse message visualizations are not in use, turn off message auditing for each endpoint. Message auditing may be important for some endpoints but not others.
+ServicePulse uses audit data to visualize message flows. However, [message auditing](/nservicebus/operations/auditing.md) increases processing. Depending on the number of endpoints and message volume, it can noticeably impact performance, so only enable it for the endpoints that need it. 
 
 > [!NOTE]
-> If message auditing is required without the use of ServicePulse, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl must be cleaned up manually.
+> If message auditing is needed without using ServicePulse, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl must be cleaned up manually.
 
-Turn off [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it is not needed. ServiceControl sends a copy of each audited message to a configured audit forwarding queue. If these messages are not being used, turn this feature off.
+When [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) is enabled, ServiceControl sends a copy of each audited message to a configured audit forwarding queue. Disable this feature if these messages are not being used.
 
 ## Plugin considerations
 
