@@ -87,3 +87,7 @@ In AMQP, [the `delivery_mode`](https://www.rabbitmq.com/amqp-0-9-1-reference.htm
 > Any failure in transmission or issues in the broker will result in the message being lost.
 
 partial: nonpersistent
+
+## Non-durable queues
+
+[Transient aka non-durable queues](https://www.rabbitmq.com/docs/queues#durability) are not supported.
