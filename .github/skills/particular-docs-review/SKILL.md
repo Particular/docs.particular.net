@@ -99,7 +99,7 @@ find . -name "{key}.include.md"
 
 # Partials
 
-`partial: KEY` inserts version-specific content. MUST find and review every partial. Convention: `{filePrefix}_{key}_{nugetAlias}_{version}.partial.md` (same dir as document, filePrefix = document filename without .md). Search for `{filePrefix}_{key}_*.partial.md` and review all versions.
+`partial: KEY` inserts version-specific content. MUST find and review every partial. Convention: `{filePrefix}_{key}_{nugetAlias}_{version}.partial.md` (same dir as document, filePrefix = document filename without .md). Search for `{filePrefix}_{key}_*.partial.md` and review all versions. Check every partial's range against [Supported Versions](#supported-versions).
 
 ---
 
@@ -120,6 +120,43 @@ find . -name "{key}.include.md"
 | Docker / YAML | `# startcode KEY` | `# endcode` |
 
 Specify marker type when locating snippet code.
+
+---
+
+# Supported Versions
+
+Content that only applies to unsupported versions is obsolete. MUST check every partial range, `#if-version` block, snippet version directory, and version qualifier in prose (for example "In versions 4.3 and above") against the versions the site supports. Being accurate for an old version does not make content current.
+
+**Source:** `nservicebus/upgrades/supported-versions.json` lists the supported minors for each NuGet package with a `SupportLevel` of `Mainstream` or `Extended`. Both levels count as supported. Automation refreshes this file; never edit it. End dates are in `supported-versions-nservicebus.include.md` and `supported-versions-downstreams.include.md` in the same folder. `all-versions.include.md` also lists unsupported versions.
+
+**Map the page to a package:** look up the frontmatter `component:` in `components/nugetAlias.txt` (for example `Rabbit: NServiceBus.RabbitMQ`). Partial file names use the same alias. Pages without `component:` have no version dropdown; check their version mentions against the package they name.
+
+The JSON lookup can run into the next package; read only up to that package's closing `]`.
+
+```bash
+grep -A30 '"PackageId": "NServiceBus.RabbitMQ"' nservicebus/upgrades/supported-versions.json
+grep -A12 '\[NServiceBus.RabbitMQ\]' nservicebus/upgrades/supported-versions-downstreams.include.md
+```
+
+Support is per minor and can skip a major. The oldest supported major is the lowest major with any supported minor. Only versions below it are retired. Leave unsupported majors that sit between supported ones (for example NServiceBus.RabbitMQ 9, between 8 and 10) unless asked.
+
+**In the page under review:**
+
+- Remove prose version qualifiers that every documented version already meets, and rewrite the sentence for the current reader
+- Delete partials and `#if-version` blocks whose range only covers versions with no snippet directory; they can no longer render
+- Before removing a heading, search for inbound links to its anchor (see Anchor Stability)
+
+**Component-wide retirement:** a snippet directory for a version below the oldest supported major (for example `Snippets/Rabbit/Rabbit_6` when the oldest supported major is 7) keeps that version in the dropdown on every page for the component. Partials for that version keep rendering until the version is retired across the component. Report this as a follow-up with the affected files; do not do it inside a single-page review unless asked. Retiring a version (see commit `eb046ce1a6`, "Remove RabbitMQ 5.x docs") means:
+
+- Delete the snippet directories and any sample version directories for that version, and remove the projects from the solution file
+- Delete partials and `#if-version` blocks that only covered the retired versions, on every page for the component
+- Widen or merge the remaining partials so their ranges still cover all documented versions without overlapping
+
+**Upcoming end of support:** if a supported version's "Extended Until" date is within 30 days, report the date and ask whether to retire it now.
+
+**Exempt:** upgrade guides under `nservicebus/upgrades/` and `transports/upgrades/` describe old versions on purpose.
+
+Report obsolete version content under Technical Updates.
 
 ---
 
@@ -185,13 +222,13 @@ Example:
 
 **New docs:** technical correctness, completeness, clarity, working code samples.
 **Updated docs:** what changed, previous issues fixed, new problems, consistency with surrounding content.
-**Legacy docs:** technical currency, modernization opportunities, obsolete content removal, deprecated features.
+**Legacy docs:** technical currency, modernization opportunities, obsolete content removal (see [Supported Versions](#supported-versions)), deprecated features.
 
 ---
 
 # Conservative Change Philosophy
 
-Only suggest changes backed by rules in this file. If text is correct and understandable, leave it. Prefer consistency with existing docs. Avoid churn.
+Only suggest changes backed by rules in this file. If text is correct and understandable, leave it. Prefer consistency with existing docs. Avoid churn. Removing content that only applies to unsupported versions is not churn; do not downgrade it to a suggestion because the text is accurate for an old version.
 
 ---
 
