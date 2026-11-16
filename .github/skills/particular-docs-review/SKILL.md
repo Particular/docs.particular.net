@@ -238,9 +238,9 @@ Only suggest changes backed by rules in this file. If text is correct and unders
 
 Run `docstool test --no-version-check` from the repository root before submitting.
 
-If `docstool` is not on `PATH`, install it yourself. Cloud sandbox sessions do not run `.github/workflows/copilot-setup-steps.yml`, so the tool is only preinstalled when the session runs on GitHub Actions. `dotnet tool update` installs the tool when it is missing:
+If `docstool` is not on `PATH`, install it yourself. Cloud sandbox sessions do not run `.github/workflows/copilot-setup-steps.yml`, so the tool is only preinstalled when the session runs on GitHub Actions. `dotnet tool update` installs the tool when it is missing. Run it from the repository root so it picks up the Particular feed from `nuget.config`; `--add-source` fails because of the package source mapping:
 ```bash
-dotnet tool update -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+dotnet tool update -g Particular.DocsTool
 export PATH="$PATH:$HOME/.dotnet/tools"
 docstool test --no-version-check
 ```
