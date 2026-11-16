@@ -2,9 +2,8 @@
 name: particular-docs-review
 description: Reviews Particular Platform documentation for en-US language standards, style consistency, technical accuracy, and quality. Use when reviewing or editing Particular Platform documentation.
 allowed-tools:
-  - shell(docstool:*)
-  - shell(dotnet tool install:*)
-  - shell(dotnet tool update:*)
+  - shell(dotnet tool restore)
+  - shell(dotnet docstool:*)
   - shell(grep:*)
 ---
 
@@ -237,17 +236,16 @@ Only suggest changes backed by rules in this file. If text is correct and unders
 
 # Local Validation
 
-Run `docstool test --no-version-check` from the repository root before submitting.
-
-If `docstool` is not on `PATH`, install it yourself. Cloud sandbox sessions do not run `.github/workflows/copilot-setup-steps.yml`, so the tool is only preinstalled when the session runs on GitHub Actions. `dotnet tool update` installs the tool when it is missing. Run it from the repository root so it picks up the Particular feed from `nuget.config`; `--add-source` fails because of the package source mapping:
+Validate with the docstool version pinned in the repository's `.config/dotnet-tools.json`. Run from the repository root before submitting:
 ```bash
-dotnet tool update -g Particular.DocsTool
-export PATH="$PATH:$HOME/.dotnet/tools"
-docstool test --no-version-check
+dotnet tool restore
+dotnet docstool test --no-version-check
 ```
 
-If `dotnet` is missing or the Particular feed (`f.feedz.io`) is unreachable, report validation as blocked and recommend rerunning the task on GitHub Actions. Do not work around it.
+`dotnet tool restore` only restores the tools the repository declares; it does not install anything globally. Do not install docstool with `dotnet tool install -g` or `dotnet tool update -g`.
+
+If `dotnet` is missing, the restore fails, or the Particular feed (`f.feedz.io`) is unreachable, report validation as blocked and recommend rerunning the task on GitHub Actions. Do not work around it.
 
 If stale generated files cause failures, ask before running `git clean -dxf`; it deletes all untracked files.
 
-`docstool test` passing is necessary but not sufficient — it does not validate external links or content quality. Link validation and content review must be done manually.
+`dotnet docstool test` passing is necessary but not sufficient — it does not validate external links or content quality. Link validation and content review must be done manually.
