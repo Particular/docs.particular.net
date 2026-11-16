@@ -147,10 +147,11 @@ Support is per minor and can skip a major. Only versions below the oldest suppor
 **In the page under review:**
 
 - Remove prose version qualifiers that every documented version already meets, and rewrite the sentence for the current reader
-- Delete partials and `#if-version` blocks whose range only covers versions without a snippet directory; they no longer render
-- Before removing a heading, check for inbound links to its anchor (see Anchor Stability)
+- Delete partials and `#if-version` blocks whose range only covers versions below the oldest supported major, even when a snippet directory for that version still exists. Also delete empty sibling partials for the same key, and remove the `partial:` line when no sibling with content remains
+- Remove content that only helps readers migrate from, or interoperate with, a version below the oldest supported major, even when it sits in a partial whose range covers supported versions (for example the RabbitMQ v1 to v2 delay infrastructure migration). Check that the upgrade guide covers it first
+- Before removing a heading, search for inbound links to its anchor (see Anchor Stability)
 
-**Component-wide retirement:** a snippet directory below the oldest supported major (for example `Snippets/Rabbit/Rabbit_6` when the oldest is 7) keeps that version in the dropdown, and its partials rendering, on every page of the component. Report it as a follow-up with the affected files; don't do it in a single-page review unless asked. Retiring a version (see commit `eb046ce1a6`) means:
+**Component-wide retirement:** a snippet directory for a version below the oldest supported major (for example `Snippets/Rabbit/Rabbit_6` when the oldest supported major is 7) keeps that version in the dropdown on every page for the component. Removing that version's partials and content from the page under review is part of the review. Deleting the snippet directory and cleaning up the other pages for the component is not: report it as a follow-up with the affected files, and do not do it inside a single-page review unless asked. Retiring a version (see commit `eb046ce1a6`, "Remove RabbitMQ 5.x docs") means:
 
 - Delete its snippet and sample version directories, and remove the projects from the solution file
 - Delete partials and `#if-version` blocks that only covered it, on every page of the component
