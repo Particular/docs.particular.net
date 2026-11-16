@@ -1,6 +1,10 @@
 ---
 name: particular-docs-review
 description: Reviews Particular Platform documentation for en-US language standards, style consistency, technical accuracy, and quality. Use when reviewing or editing Particular Platform documentation.
+allowed-tools:
+  - shell(docstool:*)
+  - shell(dotnet tool install:*)
+  - shell(dotnet tool update:*)
 ---
 
 # Particular Documentation Review
@@ -231,13 +235,17 @@ Only suggest changes backed by rules in this file. If text is correct and unders
 
 # Local Validation
 
-Run `docstool test --no-version-check` before submitting.
+Run `docstool test --no-version-check` from the repository root before submitting.
+
+If `docstool` is not on `PATH`, install it yourself. Cloud sandbox sessions do not run `.github/workflows/copilot-setup-steps.yml`, so the tool is only preinstalled when the session runs on GitHub Actions. `dotnet tool update` installs the tool when it is missing:
 ```bash
-dotnet tool install -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
 dotnet tool update -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+export PATH="$PATH:$HOME/.dotnet/tools"
 docstool test --no-version-check
-git clean -dxf  # if stale files
 ```
 
+If `dotnet` is missing or the Particular feed (`f.feedz.io`) is unreachable, report validation as blocked and recommend rerunning the task on GitHub Actions. Do not work around it.
+
+If stale generated files cause failures, ask before running `git clean -dxf`; it deletes all untracked files.
+
 `docstool test` passing is necessary but not sufficient — it does not validate external links or content quality. Link validation and content review must be done manually.
-```
