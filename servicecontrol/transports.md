@@ -194,7 +194,7 @@ host=<HOSTNAME>;username=<USERNAME>;password=<PASSWORD>;DisableRemoteCertificate
 
 ### Exchange and queue durability
 
-ServiceControl declares durable exchanges and queues, and no setting changes that. It does not support systems whose endpoints use [non-durable exchanges and queues](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability). RabbitMQ rejects a declaration whose durability differs from an existing exchange or queue with the same name, so in such a system:
+ServiceControl declares durable exchanges and queues. It does not support systems whose endpoints use [non-durable exchanges and queues](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability). RabbitMQ rejects a declaration whose durability differs from an existing exchange or queue with the same name, so in such a system:
 
 * Instance setup fails if a queue that the instance creates already exists as non-durable, for example the `error` or `audit` queue, with `PRECONDITION_FAILED - inequivalent arg 'durable' for queue 'error'`. The Monitoring instance creates the queue set in `Monitoring/ErrorQueue`, which is `error` by default.
 * Endpoints with installers enabled fail to start if the `error` or `audit` queue already exists as durable.
