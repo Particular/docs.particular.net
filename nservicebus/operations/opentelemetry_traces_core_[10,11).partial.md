@@ -169,7 +169,24 @@ If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and
 
 ### Delayed messages
 
-When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is always started at delivery time. This reflects that the receive operation happens at a different moment in time than the send or retry decision.
+When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is started at delivery time by default. This reflects that the receive operation happens at a different moment in time than the send or retry decision.
+
+The trace behavior for each category of delayed message is configurable independently:
+
+```csharp
+var options = endpointConfiguration.Tracing();
+// Default for all three is StartNew (new linked trace at delivery time).
+// Set to ContinueExisting to continue the originating trace instead.
+options.DelayedDelivery.SendOperationTraceMode = TraceMode.ContinueExisting;
+options.DelayedDelivery.SagaTimeoutTraceMode = TraceMode.ContinueExisting;
+options.Recoverability.DelayedRetryTraceMode = TraceMode.ContinueExisting;
+```
+
+| Option | Default | Applies to |
+|---|---|---|
+| `DelayedDelivery.SendOperationTraceMode` | `StartNew` | `SendOptions.DelayDeliveryWith` / `DoNotDeliverBefore` |
+| `DelayedDelivery.SagaTimeoutTraceMode` | `StartNew` | Saga timeouts (`Saga.RequestTimeout`) |
+| `Recoverability.DelayedRetryTraceMode` | `StartNew` | Delayed retries driven by recoverability policy |
 
 ### Recoverability spans
 
