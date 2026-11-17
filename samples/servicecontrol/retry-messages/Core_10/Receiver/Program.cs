@@ -12,7 +12,7 @@ builder.Logging.AddConsole();
 
 var endpointConfiguration = new EndpointConfiguration("RetryFailedMessages.Receiver");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
 #region DisableRetries
 
