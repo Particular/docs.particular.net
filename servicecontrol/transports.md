@@ -1,7 +1,7 @@
 ---
 title: Transport configuration
 summary: ServiceControl can be configured to use one of the supported message transports, which are configured for each instance type
-reviewed: 2026-10-09
+reviewed: 2026-11-17
 component: ServiceControl
 ---
 
@@ -191,6 +191,16 @@ These options are available in version 6.5 and above:
 ```text
 host=<HOSTNAME>;username=<USERNAME>;password=<PASSWORD>;DisableRemoteCertificateValidation=<true|false(default)>;UseExternalAuthMechanism=<true|false(default)>;ValidateDeliveryLimits=<true(default)|false>;ManagementApiUrl=<SCHEME://HOST:PORT>;ManagementApiUserName=<USERNAME>;ManagementApiPassword=<PASSWORD>
 ```
+
+### Exchange and queue durability
+
+ServiceControl declares durable exchanges and queues, and no setting changes that. It does not support systems whose endpoints use [non-durable exchanges and queues](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability). RabbitMQ rejects a declaration whose durability differs from an existing exchange or queue with the same name, so in such a system:
+
+* Instance setup fails if a queue that the instance creates already exists as non-durable, for example the `error` or `audit` queue, with `PRECONDITION_FAILED - inequivalent arg 'durable' for queue 'error'`. The Monitoring instance creates the queue set in `Monitoring/ErrorQueue`, which is `error` by default.
+* Endpoints with installers enabled fail to start if the `error` or `audit` queue already exists as durable.
+* With the conventional routing topology, the error instance cannot publish [integration events](/servicecontrol/contracts.md) after an endpoint has subscribed to an event using non-durable exchanges. It logs `Failed dispatching external integration event` and drops the event.
+
+To use ServiceControl, configure the endpoints to use durable exchanges and queues. RabbitMQ cannot change the durability of an existing exchange or queue, so each one must be deleted and declared again.
 
 ## SQL
 
