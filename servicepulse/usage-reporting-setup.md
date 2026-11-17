@@ -205,7 +205,7 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
-Querying of metrics from RabbitMQ requires access to the management API. If it is not possible to access the management API, e.g. due to security considerations, then use [audit and monitoring data](#audit-and-monitoring-data) instead.
+Querying of metrics from RabbitMQ requires access to the management API and the broker version at least 3.10.0.
 
 #### Minimum permissions
 
