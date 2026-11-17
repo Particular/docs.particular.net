@@ -42,6 +42,8 @@ Dashboards, recording rules, and alerts that filter on the instrumentation scope
 
 ### Emitted meters
 
+NServiceBus metrics do not include an endpoint name tag. The endpoint is identified by the `service.name` attribute of the OpenTelemetry resource, which the application sets when it configures the OpenTelemetry SDK. The resource applies to the whole process, so this identifies the endpoint only when the process hosts a single endpoint. The `nservicebus.queue` tag correlates measurements with the queue that the endpoint receives from. See the [Prometheus and Grafana sample](/samples/open-telemetry/prometheus-grafana/#identifying-the-endpoint) for an example.
+
 #if-version [10,11)
 Meter source `NServiceBus.Core.Pipeline.Incoming`, version `0.4.0`, or `NServiceBus.Core`, version `1.0.0`, when the version 11 behavior is enabled:
 #end-if
