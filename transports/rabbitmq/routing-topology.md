@@ -85,9 +85,9 @@ The routing topologies provided by the transport create durable exchanges and qu
 
 snippet: rabbitmq-disable-durable-exchanges
 
-This setting is ignored when using classic queues. A warning is printed and the queue is created as a durable one:
+Quorum queues are always durable. With quorum queues, the transport declares the queues as durable regardless of this setting and logs a warning. Exchanges still follow the setting:
 
-```
+```text
 Quorum queues are always durable, so the non-durable setting is being ignored for queue declaration.
 ```
 
