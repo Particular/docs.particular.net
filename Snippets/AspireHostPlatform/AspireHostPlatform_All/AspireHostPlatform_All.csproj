@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="Aspire.Hosting" Version="13.*" />
     <PackageReference Include="MessagePack" Version="2.*" />
   </ItemGroup>
 
