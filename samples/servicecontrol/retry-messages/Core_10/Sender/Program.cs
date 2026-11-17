@@ -14,7 +14,7 @@ builder.Logging.AddConsole();
 var endpointConfiguration = new EndpointConfiguration("RetryFailedMessages.Sender");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(SimpleMessage), "RetryFailedMessages.Receiver");
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
