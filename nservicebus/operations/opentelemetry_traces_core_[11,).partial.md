@@ -150,7 +150,7 @@ When a message cannot be processed successfully, NServiceBus emits a recoverabil
 | `move_to_error` | Message is moved to the error queue |
 | `discard` | Message is discarded without further processing |
 
-Recoverability spans are children of the process span. To receive them, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
+A recoverability span covers the recoverability decision and carrying out the action. It is created from the trace context of the incoming message, in the same way as the process span, so it is not a child of the process span. It links to the innermost span that failed. The exception is logged under the recoverability span, see [exception recording](#traces-exception-recording). To receive recoverability spans, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
 
 ### Span names
 
@@ -198,13 +198,21 @@ A status set by a handler or behavior is kept.
 
 ### Failed spans and the error.type tag
 
-When a span fails, NServiceBus sets the span status to `Error` and adds an `error.type` tag containing the fully qualified exception type name. This tag is set on the innermost span where the exception was thrown.
+When an operation fails, NServiceBus sets the status of every span the exception passes through to `Error` and adds an `error.type` tag containing the fully qualified exception type name. For example, an exception thrown by a handler marks the handler span and the process span, and an exception from a send inside a handler also marks the send span. The status and the tag are not exception details, so marking every span does not record the exception more than once.
 
 ### Exception recording
 
-When a span fails, NServiceBus records the exception details - the type, message, and stack trace - in the log, not as an event on the span. This follows the [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/), which define exceptions as log records rather than span events.
+When an operation fails, NServiceBus records the exception details - the type, message, and stack trace - in the log, not as an event on the span. This follows the [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/), which define exceptions as log records rather than span events. The failed spans still have the `Error` status and the `error.type` tag, so trace backends show which operation failed.
 
-NServiceBus logs the exception exactly once, at the point where the recoverability decision is made. The failed span still has the `Error` status and the `error.type` tag, so trace backends show which operation failed.
+An exception is logged once, by the part of NServiceBus that knows the outcome:
+
+| Failure | Logged by | Log level |
+|---|---|---|
+| Processing an incoming message | The recoverability action that is carried out | `Info` for an immediate retry, `Warn` for a delayed retry, `Error` for a move to the error queue, `Info` for a discard |
+| An operation on the message session, outside of message processing, such as a send or publish | The operation | `Warn` |
+| Recoverability itself | The [critical error](/nservicebus/hosting/critical-errors.md) | `Fatal` |
+
+A failure while processing a message is not logged where the exception is thrown, because at that point it is not yet known whether the message will be retried or moved to the error queue. The recoverability log entry includes the full exception and is written under the recoverability span. A failed message session operation is logged under the span of that operation. The entries are also logged when tracing is not enabled. A custom `RecoverabilityAction` logs nothing unless it logs itself.
 
 To see the exception details next to the trace, use a logging provider that attaches the trace context to each log record, such as the OpenTelemetry logging provider for `Microsoft.Extensions.Logging`.
 

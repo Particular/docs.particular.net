@@ -219,7 +219,7 @@ When a message cannot be processed successfully, NServiceBus emits a recoverabil
 | `move_to_error` | Message is moved to the error queue |
 | `discard` | Message is discarded without further processing |
 
-Recoverability spans are children of the process span. To receive them, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
+A recoverability span covers the recoverability decision and carrying out the action. It is created from the trace context of the incoming message, in the same way as the process span, so it is not a child of the process span. It links to the innermost span that failed. The exception is logged under the recoverability span, see [exception recording](#traces-exception-recording). To receive recoverability spans, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
 
 ### Span names
 
@@ -276,50 +276,52 @@ NServiceBus sets the span status to `Ok` when an operation completes without an 
 
 ### Failed spans and the error.type tag
 
-When a span fails, NServiceBus sets the span status to `Error` and adds an `error.type` tag containing the fully qualified exception type name. This tag is set on the innermost span where the exception was thrown.
+When an operation fails, NServiceBus sets the status of every span the exception passes through to `Error` and adds an `error.type` tag containing the fully qualified exception type name. For example, an exception thrown by a handler marks the handler span and the process span, and an exception from a send inside a handler also marks the send span. The status and the tag are not exception details, so marking every span does not record the exception more than once.
 
 ### Exception recording
 
-When a span fails, NServiceBus must decide where to record the exception details - the type, message, and stack trace. The `ExceptionRecordingMode` property on `InstrumentationOptions` controls this behavior.
+NServiceBus reports each exception once in the log and, depending on the exception recording mode, once in the trace.
+
+#### Logging
+
+An exception is logged once, by the part of NServiceBus that knows the outcome:
+
+| Failure | Logged by | Log level |
+|---|---|---|
+| Processing an incoming message | The recoverability action that is carried out | `Info` for an immediate retry, `Warn` for a delayed retry, `Error` for a move to the error queue, `Info` for a discard |
+| An operation on the message session, outside of message processing, such as a send or publish | The operation | `Warn` |
+| Recoverability itself | The [critical error](/nservicebus/hosting/critical-errors.md) | `Fatal` |
+
+A failure while processing a message is not logged where the exception is thrown, because at that point it is not yet known whether the message will be retried or moved to the error queue. The recoverability log entry includes the full exception and is written under the recoverability span. A failed message session operation is logged under the span of that operation. The entries are logged in both exception recording modes, and also when tracing is not enabled. A custom `RecoverabilityAction` logs nothing unless it logs itself.
+
+To see the exception details next to the trace, use a logging provider that attaches the trace context to each log record, such as the OpenTelemetry logging provider for `Microsoft.Extensions.Logging`.
+
+#### Exception recording mode
+
+The `ExceptionRecordingMode` property on `InstrumentationOptions` controls whether the exception details are also recorded in the trace. It does not affect logging.
+
+| Mode | Exception details in the trace |
+|---|---|
+| `SpanAndLogs` (default) | An `exception` event with the `exception.type`, `exception.message`, and `exception.stacktrace` attributes, added once, on the innermost span the exception passed through |
+| `Logs` | None. The failed spans have the `Error` status and the `error.type` tag only |
 
 > [!NOTE]
-> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving away from span events toward log records as the canonical signal for exception details. NServiceBus follows this transition path. `SpanAndLogs` is the default, and `Logs` is opt-in, in code or through the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable.
+> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving exception details from span events to log records. NServiceBus follows this transition. In version 11, exception details are recorded only in the log. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
 
-#### SpanAndLogs mode (default)
-
-In the default `SpanAndLogs` mode, NServiceBus records exception details in two places:
-
-- **As a span event** on the activity that failed. The event includes the `exception.type`, `exception.message`, and `exception.stacktrace` attributes. This makes exception details visible directly in trace backends such as Jaeger or Zipkin without needing to correlate with log output.
-- **In log output**, when a recoverability decision is made. Log entries are written for immediate retries, delayed retries, moves to the error queue, and discards, and each includes the full exception.
-
-This mode preserves the behavior from earlier NServiceBus versions and is appropriate during a migration period, or when trace backends are the primary tool for investigating failures. It corresponds to the `logs/dup` value defined in the OpenTelemetry [transition guidance](https://opentelemetry.io/docs/specs/semconv/exceptions/).
-
-#### Logs mode
-
-To record exception details only via logging and not as span events, configure `ExceptionRecordingMode` to `Logs`:
+`Logs` mode avoids storing the exception details twice. It is a good fit when log aggregation is the primary tool for investigating failures, or when span event storage is expensive or not supported by the observability backend. To use it, configure `ExceptionRecordingMode`:
 
 snippet: opentelemetry-exception-recording-logs
 
-In `Logs` mode, NServiceBus logs the exception exactly once, at the point where the exception was thrown - on the innermost span where the failure originated. Recoverability decisions (immediate retry, delayed retry, move to error queue, discard) are still logged, but those log entries contain only the action metadata such as message ID, destination queue, and retry delay. The exception details are not repeated.
-
-This is the mode recommended by the OpenTelemetry semantic conventions, which define exceptions as log records rather than span events. It is a good fit when:
-
-- Log aggregation (such as structured logging sent to Elasticsearch or Azure Monitor) is the primary tool for investigating failures.
-- Span event storage is expensive or not supported in the observability backend being used.
-- Teams prefer a single, authoritative log entry per failure rather than exception details appearing in both trace and log outputs.
-
 #### Environment variable override
 
-The exception recording mode can also be set via the [`OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) environment variable, which is part of the standard OpenTelemetry transition mechanism for migrating from span events to log records. Because the environment variable takes precedence over any value configured in code, operators can drive the entire migration through deployment configuration - without requiring code changes at each step. For example, `logs/dup` can be set first to emit exceptions to both signals simultaneously, giving teams time to verify that their log aggregation pipeline captures exception details correctly before switching to `logs` to stop emitting span events entirely.
-
-This also gives ops teams independent control over observability behavior in each environment. If the application hardcodes `ExceptionRecordingMode.SpanAndLogs`, the `Logs` mode can be forced in production by setting the environment variable, without the need for a redeploy.
+The exception recording mode can also be set with the [`OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) environment variable, which is part of the standard OpenTelemetry transition mechanism from span events to log records. The environment variable takes precedence over the value configured in code, so operators can change the mode per environment through deployment configuration, without a code change or redeploy.
 
 | Environment variable value | Equivalent `ExceptionRecordingMode` |
 |---|---|
 | `logs` | `Logs` |
 | `logs/dup` | `SpanAndLogs` |
 
-When the environment variable is not set, the value configured in code is used, defaulting to `SpanAndLogs` if not explicitly configured. Any other value is ignored without a warning, and the value configured in code is used as well. Check `ExceptionRecordingMode` in the [startup diagnostics](#traces-startup-diagnostics) to confirm the mode an endpoint runs with.
+When the environment variable is not set, the value configured in code is used, defaulting to `SpanAndLogs`. Any other value is ignored without a warning, and the value configured in code is used. Check `ExceptionRecordingMode` in the [startup diagnostics](#traces-startup-diagnostics) to confirm the mode an endpoint runs with.
 
 ### Startup diagnostics
 

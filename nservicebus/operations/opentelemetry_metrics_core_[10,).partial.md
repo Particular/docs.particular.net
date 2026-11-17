@@ -36,6 +36,7 @@ When the [version 11 behavior](/nservicebus/operations/opentelemetry.md#traces-v
 - `nservicebus.envelope.unwrapped` is renamed to `nservicebus.envelope.unwrap_attempts` and counts every envelope handler invocation.
 - Counters declare a unit, such as `{attempt}`, `{retry}`, or `{message}`.
 - Duration histograms advise bucket boundaries in seconds.
+- Counters record 0 once when a receiving endpoint starts, so they exist in metrics backends before their first real measurement. The recorded 0 carries only the `nservicebus.queue` and `nservicebus.discriminator` tags. Histograms are not seeded.
 - The `execution.result` tag described above is not emitted.
 
 See the [upgrade guide](/nservicebus/upgrades/10to11/#opentelemetry-metrics) for details.
@@ -91,6 +92,12 @@ Meter source `NServiceBus.Core`, version `1.0.0`:
 - [`nservicebus.outbox.store_time`](/monitoring/metrics/definitions.md#metrics-captured-outbox-metrics) (Histogram, `s`) - The time for storing a message in the outbox storage. Tags: `nservicebus.queue`, `nservicebus.discriminator`
 - [`nservicebus.persistence.commit_time`](/monitoring/metrics/definitions.md#metrics-captured-storage-session-commit-time) (Histogram, `s`) - The time for completing the synchronized storage session. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.message_type`, `nservicebus.message_handler_types`
 - `nservicebus.envelope.unwrap_attempts` (Counter, `{attempt}`) - Number of envelope handler invocations. Failed invocations carry `error.type`. Tags: `nservicebus.queue`, `nservicebus.discriminator`, `nservicebus.envelope.unwrapper_type`, `error.type`
+
+#### Counters at startup
+
+When a receiving endpoint starts, it records 0 once on each counter above: `nservicebus.messaging.processing_attempts`, `nservicebus.messaging.active_messages`, `nservicebus.recoverability.immediate`, `nservicebus.recoverability.delayed`, `nservicebus.recoverability.error`, `nservicebus.outbox.duplicates`, and `nservicebus.envelope.unwrap_attempts`. A counter then exists in a metrics backend before its first real measurement, so it can be found and used in dashboards and alerts, and a counter that rarely fires, such as `nservicebus.recoverability.error`, reports 0 instead of no data.
+
+The recorded 0 carries only the `nservicebus.queue` and `nservicebus.discriminator` tags. Real measurements carry more tags and form their own series. Histograms are not seeded, because a 0 would be a real observation, and `error.type` is not seeded. Send-only endpoints record nothing at startup. A `MeterProvider` that subscribes after the endpoint has started does not see the recorded 0.
 #end-if
 
 Meter source `NServiceBus.TransactionalSession`:

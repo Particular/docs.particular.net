@@ -529,6 +529,14 @@ All counters declare a unit, using the curly-brace annotations of the [OpenTelem
 
 The duration histograms keep the unit `s`. Backends that convert names to the Prometheus format drop curly-brace annotations, so the units do not change exported metric names.
 
+#### Counters are reported at startup
+
+In version 11, a receiving endpoint records 0 once on each counter when it starts: `nservicebus.messaging.processing_attempts`, `nservicebus.messaging.active_messages`, `nservicebus.recoverability.immediate`, `nservicebus.recoverability.delayed`, `nservicebus.recoverability.error`, `nservicebus.outbox.duplicates`, and `nservicebus.envelope.unwrap_attempts`. In version 10, a counter has no data until its first real measurement.
+
+The recorded 0 carries only the `nservicebus.queue` and `nservicebus.discriminator` tags, so it forms a series of its own next to the series of real measurements. Histograms are not seeded, and send-only endpoints record nothing at startup.
+
+An alert that fires on the presence of a series, such as any data on `nservicebus.recoverability.error`, now fires on startup. Alert on the value or the rate instead.
+
 #### Histogram bucket boundaries
 
 The duration histograms advise explicit bucket boundaries taken from the OpenTelemetry semantic conventions. Without advice, the OpenTelemetry .NET SDK applies its default boundaries (0, 5, 10, 25, … 10,000), which are intended for milliseconds, so nearly every value fell into the first bucket.
