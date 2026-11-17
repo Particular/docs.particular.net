@@ -1,7 +1,7 @@
 ---
 title: Routing topology
 summary: Learn about the routing topology options in RabbitMQ and how they impact NServiceBus systems
-reviewed: 2025-08-14
+reviewed: 2026-11-17
 component: Rabbit
 versions: '[2,]'
 related:
@@ -91,7 +91,7 @@ Quorum queues are always durable. With quorum queues, the transport declares the
 Quorum queues are always durable, so the non-durable setting is being ignored for queue declaration.
 ```
 
-Non-durable queues are not supported by ServiceControl.
+ServiceControl requires durable exchanges and queues. See [ServiceControl transport configuration](/servicecontrol/transports.md#rabbitmq-exchange-and-queue-durability).
 
 
 ## Custom routing topology
