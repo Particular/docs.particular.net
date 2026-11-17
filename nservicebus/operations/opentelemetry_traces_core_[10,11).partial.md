@@ -60,6 +60,8 @@ The switch enables all of these changes:
 | Outbox deduplication span tag | `nservicebus.outbox.deduplicate-message` | `nservicebus.outbox.deduplicated_message` |
 | `nservicebus.event_types` and `nservicebus.enclosed_message_types` span tags | delimited string | array of type names |
 
+`PublishTraceMode` is not part of the switch. It stays configurable in version 11; only its default changes. See *Publish operations* below.
+
 > [!WARNING]
 > The switch changes what an OpenTelemetry consumer sees. Dashboards, alerts and queries that match on span names, on a span status of `Ok`, on the meter name, on the `execution.result` metric tag, or on the span tags above must be updated. A `MeterProvider` must subscribe to the meter name that matches the switch, or use a wildcard, as described under [Meter name and version](#meters-meter-name-and-version). The baggage wire format changes as well, which affects endpoints that exchange baggage with endpoints that do not have the switch enabled. Read the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) before the switch is enabled.
 
@@ -105,6 +107,10 @@ flowchart LR;
   NSBM1-. link .-PRM1;
 ```
 
+To change the default for all sends from an endpoint, set `SendTraceMode`:
+
+snippet: opentelemetry-trace-mode-send
+
 #### Publish operations
 
 A span is emitted for each message published by an NServiceBus endpoint. When the message is processed by a subscriber, a process span is created in a new trace, which is linked to the publish span.
@@ -144,6 +150,27 @@ flowchart LR;
   NSBM1--child--> PRM1
 ```
 
+To change the default for all publishes from an endpoint, set `PublishTraceMode`:
+
+snippet: opentelemetry-trace-mode-publish
+
+The opposite override is also available. Use it to keep the new trace for one event after the endpoint
+default was changed to `ContinueExisting`:
+
+snippet: opentelemetry-publishoptions-start-new-trace
+
+Or for all publishes from the endpoint:
+
+snippet: opentelemetry-trace-mode-publish-start-new
+
+> [!NOTE]
+> In version 10, `PublishTraceMode` defaults to `StartNew`. In version 11 the default becomes
+> `ContinueExisting`, so subscribers continue the publisher's trace unless the endpoint or the publish
+> opts out. `PublishTraceMode` is not governed by the version 11 behavior switch; only its default
+> changes with the major version.
+
+Per-message overrides (`StartNewTraceOnReceive`, `ContinueExistingTraceOnReceive`) always take precedence over the endpoint-level defaults.
+
 #### Transport SDK spans
 
 Some transport SDKs, such as the Azure Service Bus, RabbitMQ, and Amazon SQS clients, emit their own spans for the native send and receive operations. When the endpoint subscribes to the SDK's ActivitySource, the SDK receive span is the ambient `Activity.Current` at the moment NServiceBus starts processing a message.
@@ -169,7 +196,17 @@ If no listener is subscribed to the SDK's ActivitySource, no SDK span exists and
 
 ### Delayed messages
 
-When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is always started at delivery time. This reflects that the receive operation happens at a different moment in time than the send or retry decision.
+When a message is delayed - whether by explicit delay (`SendOptions.DelayDeliveryWith`), saga timeout, or delayed retry - a new linked trace is started at delivery time by default. This reflects that the receive operation happens at a different moment in time than the send or retry decision.
+
+The trace behavior for each category of delayed message is configurable independently:
+
+snippet: opentelemetry-trace-mode-delayed
+
+| Option | Default | Applies to |
+|---|---|---|
+| `DelayedDelivery.SendOperationTraceMode` | `StartNew` | `SendOptions.DelayDeliveryWith` / `DoNotDeliverBefore` |
+| `DelayedDelivery.SagaTimeoutTraceMode` | `StartNew` | Saga timeouts (`Saga.RequestTimeout`) |
+| `Recoverability.DelayedRetryTraceMode` | `StartNew` | Delayed retries driven by recoverability policy |
 
 ### Recoverability spans
 
@@ -182,7 +219,7 @@ When a message cannot be processed successfully, NServiceBus emits a recoverabil
 | `move_to_error` | Message is moved to the error queue |
 | `discard` | Message is discarded without further processing |
 
-Recoverability spans are children of the process span. To receive them, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
+A recoverability span covers the recoverability decision and carrying out the action. It is created from the trace context of the incoming message, in the same way as the process span, so it is not a child of the process span. It links to the innermost span that failed. The exception is logged under the recoverability span, see [exception recording](#traces-exception-recording). To receive recoverability spans, subscribe to the `NServiceBus.Core.Recoverability` ActivitySource.
 
 ### Span names
 
@@ -239,6 +276,73 @@ NServiceBus sets the span status to `Ok` when an operation completes without an 
 
 ### Failed spans and the error.type tag
 
-When a span fails, NServiceBus sets the span status to `Error` and adds an `error.type` tag containing the fully qualified exception type name. This tag is set on the innermost span where the exception was thrown.
+When an operation fails, NServiceBus sets the status of every span the exception passes through to `Error` and adds an `error.type` tag containing the fully qualified exception type name. For example, an exception thrown by a handler marks the handler span and the process span, and an exception from a send inside a handler also marks the send span. The status and the tag are not exception details, so marking every span does not record the exception more than once.
+
+### Exception recording
+
+NServiceBus reports each exception once in the log and, depending on the exception recording mode, once in the trace.
+
+#### Logging
+
+An exception is logged once, by the part of NServiceBus that knows the outcome:
+
+| Failure | Logged by | Log level |
+|---|---|---|
+| Processing an incoming message | The recoverability action that is carried out | `Info` for an immediate retry, `Warn` for a delayed retry, `Error` for a move to the error queue, `Info` for a discard |
+| An operation on the message session, outside of message processing, such as a send or publish | The operation | `Warn` |
+| Recoverability itself | The [critical error](/nservicebus/hosting/critical-errors.md) | `Fatal` |
+
+A failure while processing a message is not logged where the exception is thrown, because at that point it is not yet known whether the message will be retried or moved to the error queue. The recoverability log entry includes the full exception and is written under the recoverability span. A failed message session operation is logged under the span of that operation. The entries are logged in both exception recording modes, and also when tracing is not enabled. A custom `RecoverabilityAction` logs nothing unless it logs itself.
+
+To see the exception details next to the trace, use a logging provider that attaches the trace context to each log record, such as the OpenTelemetry logging provider for `Microsoft.Extensions.Logging`.
+
+#### Exception recording mode
+
+The `ExceptionRecordingMode` property on `InstrumentationOptions` controls whether the exception details are also recorded in the trace. It does not affect logging.
+
+| Mode | Exception details in the trace |
+|---|---|
+| `SpanAndLogs` (default) | An `exception` event with the `exception.type`, `exception.message`, and `exception.stacktrace` attributes, added once, on the innermost span the exception passed through |
+| `Logs` | None. The failed spans have the `Error` status and the `error.type` tag only |
+
+> [!NOTE]
+> The [OpenTelemetry semantic conventions for exceptions](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) are moving exception details from span events to log records. NServiceBus follows this transition. In version 11, exception details are recorded only in the log. See the [version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
+
+`Logs` mode avoids storing the exception details twice. It is a good fit when log aggregation is the primary tool for investigating failures, or when span event storage is expensive or not supported by the observability backend. To use it, configure `ExceptionRecordingMode`:
+
+snippet: opentelemetry-exception-recording-logs
+
+#### Environment variable override
+
+The exception recording mode can also be set with the [`OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN`](https://opentelemetry.io/docs/specs/semconv/exceptions/exceptions-logs/) environment variable, which is part of the standard OpenTelemetry transition mechanism from span events to log records. The environment variable takes precedence over the value configured in code, so operators can change the mode per environment through deployment configuration, without a code change or redeploy.
+
+| Environment variable value | Equivalent `ExceptionRecordingMode` |
+|---|---|
+| `logs` | `Logs` |
+| `logs/dup` | `SpanAndLogs` |
+
+When the environment variable is not set, the value configured in code is used, defaulting to `SpanAndLogs`. Any other value is ignored without a warning, and the value configured in code is used. Check `ExceptionRecordingMode` in the [startup diagnostics](#traces-startup-diagnostics) to confirm the mode an endpoint runs with.
+
+### Startup diagnostics
+
+The effective instrumentation options are written to the `OpenTelemetry` section of the [startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) file. Use this section to verify which trace modes and exception recording mode an endpoint runs with. `ExceptionRecordingMode` shows the value after the `OTEL_SEMCONV_EXCEPTION_SIGNAL_OPT_IN` environment variable override is applied.
+
+```json
+"OpenTelemetry": {
+  "SendTraceMode": "ContinueExisting",
+  "PublishTraceMode": "StartNew",
+  "ExceptionRecordingMode": "SpanAndLogs",
+  "Recoverability": {
+    "DelayedRetryTraceMode": "StartNew"
+  },
+  "DelayedDelivery": {
+    "SendOperationTraceMode": "StartNew",
+    "SagaTimeoutTraceMode": "StartNew"
+  },
+  "UseV11Behavior": false
+}
+```
+
+`UseV11Behavior` shows whether the `NServiceBus.Core.OpenTelemetry.UseV11Behavior` AppContext switch is enabled. The switch turns on the version 11 behaviors described in [Version 11 behavior opt-in](#traces-version-11-behavior-opt-in). It does not change the `PublishTraceMode` default, which stays `StartNew` until version 11.
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
