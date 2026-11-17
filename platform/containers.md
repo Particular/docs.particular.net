@@ -32,7 +32,7 @@ Audit and Monitoring instances are optional but recommended.
 
 Deploy the pieces in this order:
 
-1. **RavenDB**, one container per Error or Audit instance. See [Managing ServiceControl RavenDB instances via Containers](/servicecontrol/ravendb/containers.md).
+1. **RavenDB**, one container per Error or Audit instance. See [Managing ServiceControl RavenDB instances via Containers](/servicecontrol/storage/ravendb/containers.md).
 2. **ServiceControl Error instance**, the only required piece. Enable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) on this container so no separate ServicePulse container is needed. See [Deploying ServiceControl Error instances using Containers](/servicecontrol/servicecontrol-instances/deployment/containers.md).
 3. **ServiceControl Audit instance** (optional), if audit message history is needed. See [Deploying ServiceControl Audit instances using containers](/servicecontrol/audit-instances/deployment/containers.md).
 4. **ServiceControl Monitoring instance** (optional), if endpoint performance monitoring is needed. See [Deploying ServiceControl Monitoring instances using containers](/servicecontrol/monitoring-instances/deployment/containers.md).
