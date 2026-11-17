@@ -1,7 +1,7 @@
 ---
 title: Monitoring instances
 summary: Information about monitoring instances in ServiceControl
-reviewed: 2025-05-06
+reviewed: 2026-11-17
 component: ServiceControl
 ---
 
@@ -25,7 +25,7 @@ graph LR
 ```
 
 > [!NOTE]
-> Monitoring instances store data about each endpoint in memory for 10 minutes. Monitoring instances do not store data in a persistent store.
+> Monitoring instances store data about each endpoint in memory for one hour, which is the longest [reporting period](/monitoring/metrics/in-servicepulse.md#reporting-period) available in ServicePulse. Monitoring instances do not store data in a persistent store.
 > Restarting the monitoring instance will clear the in-memory cache.
 
 Each environment should have a single monitoring instance that all endpoints are configured to use.
