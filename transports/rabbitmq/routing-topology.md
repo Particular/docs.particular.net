@@ -91,8 +91,6 @@ Quorum queues are always durable. With quorum queues, the transport declares the
 Quorum queues are always durable, so the non-durable setting is being ignored for queue declaration.
 ```
 
-RabbitMQ 4.3.0 and later refuse to declare non-durable queues that are not exclusive, unless the broker configuration sets `deprecated_features.permit.transient_nonexcl_queues = true`. The transport's queues are not exclusive, so on these brokers an endpoint with non-durable queues fails to start with `Feature 'transient_nonexcl_queues' is deprecated`. RabbitMQ will remove the feature in a future major version. See [queue durability](https://www.rabbitmq.com/docs/queues#durability) in the RabbitMQ documentation.
-
 ServiceControl requires durable exchanges and queues. See [ServiceControl transport configuration](/servicecontrol/transports.md#rabbitmq-exchange-and-queue-durability).
 
 
