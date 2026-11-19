@@ -4,15 +4,15 @@ summary: Minimal setup required for generating a usage report for licensing of t
 reviewed: 2026-08-14
 related:
   - nservicebus/licensing
-  - servicepulse/usage
-  - servicepulse/usage-config
+  - servicepulse/usage-reporting-with-servicepulse
+  - servicepulse/usage-reporting-setup
 ---
 
 The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a process needs to be run that queries the transport broker for up to 24 hours, and a report generated from this data to be sent to Particular.
 
 The minimal installation required to generate the usage report is:
 
-- [ServiceControl](/servicecontrol/). For most transports, only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic. Certain transports [cannot query the broker directly](/servicepulse/usage-config.md#audit-and-monitoring-data); for these an audit or monitoring instance will also be required and all endpoints will need to be configured to send data to these instances.
+- [ServiceControl](/servicecontrol/). For most transports, only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic. Certain transports [cannot query the broker directly](/servicepulse/usage-reporting-setup.md#audit-and-monitoring-data); for these an audit or monitoring instance will also be required and all endpoints will need to be configured to send data to these instances.
 - [ServicePulse](/servicepulse/). This is the UI that interfaces with the ServiceControl service to allow users to specify which endpoints are NServiceBus related and generate the usage report to send to Particular.
 
 > [!NOTE]
@@ -32,7 +32,7 @@ The following methods can be used to install these requirements:
   - ServiceControl through [ServiceControl Management Utility](#windows-installation-servicecontrol-servicecontrol-management-utility-scmu)
   - ServiceControl through [Powershell](#windows-installation-servicecontrol-powershell)
   - ServicePulse running in [an integrated mode from within ServiceControl Management Utility](#windows-installation-servicepulse-integrated-into-servicecontrol-management-utility-scmu)
-  - ServicePulse as a [stand alone Windows service](#windows-installation-servicepulse-stand-alone)
+  - ServicePulse as a [standalone Windows service](#windows-installation-servicepulse-standalone)
 
 > [!NOTE]
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
@@ -50,7 +50,7 @@ When installing ServiceControl directly, through one of the [Windows installatio
 
 The containers required for generating a usage report are:
 
-- [RavenDB](/servicecontrol/ravendb/containers.md)
+- [RavenDB](/servicecontrol/storage/ravendb/containers.md)
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
 - [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse))
@@ -101,6 +101,6 @@ When installing a new instance of ServiceControl via SCMU, once the service is i
 When upgrading from an older version of ServiceControl via SCMU, ensure you click the `Enable Integrated ServicePulse` option.
 ![Enable integrated ServicePulse](scmu-6.png 'width=500')
 
-#### Stand alone
+#### Standalone
 
-Follow the [installation instructions](/servicepulse/installation.md) and ensure ServicePulse is [configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to point to the port of the ServiceControl instance installed above.
+Follow the [installation instructions](/servicepulse/windows-installer.md) and ensure ServicePulse is [configured](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to point to the port of the ServiceControl instance installed above.

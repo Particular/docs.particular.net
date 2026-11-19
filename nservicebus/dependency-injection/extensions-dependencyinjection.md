@@ -1,7 +1,7 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection
 summary: Integration with Microsoft.Extensions.DependencyInjection
-reviewed: 2025-05-13
+reviewed: 2026-11-17
 component: Extensions.DependencyInjection
 related:
  - samples/hosting/generic-host
@@ -26,9 +26,9 @@ The following snippet shows how to configure NServiceBus to use Microsoft's buil
 snippet: usecontainer-servicecollection
 
 
-## Usage with third party containers
+## Usage with third-party containers
 
-NServiceBus can be configured to work with any third party dependency injection container which implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third-party dependency injection container, pass the specific container's `IServiceProviderFactory` to the `UseContainer` configuration method.
+NServiceBus can be configured to work with any third-party dependency injection container that implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third-party dependency injection container, pass the specific container's `IServiceProviderFactory` to the `UseContainer` configuration method.
 
 ### Autofac
 
@@ -49,7 +49,7 @@ snippet: UnityUsage
 
 ## Configuring the container
 
-`UseContainer` provides a settings class which gives advanced configuration options:
+`UseContainer` provides a settings class that gives advanced configuration options:
 
 
 ### IServiceCollection access
@@ -61,7 +61,7 @@ snippet: settings-servicecollection
 
 ### ContainerBuilder
 
-Third-party container-native APIs can be accessed by with `ConfigureContainer`.
+Use `ConfigureContainer` to access the third-party container's native APIs.
 
 snippet: settings-configurecontainer
 
@@ -88,4 +88,4 @@ The package allows the container to be used in [externally managed mode](/nservi
 snippet: externally-managed-mode
 
 > [!WARNING]
-> `IServiceCollection` and `IServiceProvider` instances must not be shared across mutliple NServiceBus endpoints to avoid conflicting registration that might cause incorrect behavior or runtime errors.
+> `IServiceCollection` and `IServiceProvider` instances must not be shared across multiple NServiceBus endpoints to avoid conflicting registrations that might cause incorrect behavior or runtime errors.

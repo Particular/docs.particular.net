@@ -1,7 +1,7 @@
 ---
 title: Installing the Custom Checks Plugin
 summary: Enable Custom Checks in NServiceBus to track endpoint reliability, detect issues, and monitor endpoint health with ServiceControl and ServicePulse
-reviewed: 2025-04-30
+reviewed: 2026-11-05
 component: CustomChecks
 versions: 'CustomChecks:*'
 ---
@@ -21,4 +21,4 @@ It may not make sense to enable the custom checks plugin in all environments. Fo
 
 ### Time-To-Live (TTL)
 
-The `timeToLive` (TTL) parameter is optional and defaults to four times the interval for periodic checks or infinite for one-time checks. Some queue systems (e.g. MSMQ) handle TTL proactively by removing timed out messages from the queues. Others do it only when a message is about to be received. Running the custom checks plugin without ServiceControl installed may cause the destination queue to grow indefinitely and consume system resources.
+The optional `timeToLive` (TTL) parameter applies only to periodic checks and defaults to four times the check interval. Reports from one-time checks never expire. Some queue systems (e.g. MSMQ) handle TTL proactively by removing timed-out messages from the queues. Others do it only when a message is about to be received. Running the custom checks plugin without ServiceControl installed may cause the destination queue to grow indefinitely and consume system resources.

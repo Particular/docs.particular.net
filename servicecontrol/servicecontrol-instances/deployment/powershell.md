@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using PowerShell
 summary: A guide to setting up and deploying ServiceControl Error instances using PowerShell. Prerequisites, installation and deployment
-reviewed: 2026-04-10
+reviewed: 2026-10-07
 component: ServiceControl
 redirects:
 - servicecontrol/powershell
@@ -31,6 +31,8 @@ Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error
 snippet: ps-new-error-instance
 
 include: powershell-new-configuration
+
+include: powershell-skip-queue-creation
 
 ### Listing deployed instances
 

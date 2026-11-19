@@ -6,7 +6,7 @@ component: ServiceControl
 related:
     - servicecontrol/migrations/replacing-audit-instances
     - servicecontrol/migrations/replacing-error-instances
-    - servicecontrol/backup-sc-database
+    - servicecontrol/storage/ravendb/backup-sc-database
 redirects:
     - servicecontrol/data-migration
 ---
@@ -56,7 +56,7 @@ This strategy is an incremental approach to data retention. Data is retained by 
 
 ### Database backup and restore
 
-This strategy moves both audit and error data at the same time by [backing up the ServiceControl database](/servicecontrol/backup-sc-database.md) and restoring it to the new instance.
+This strategy moves both audit and error data at the same time by [backing up the ServiceControl database](/servicecontrol/storage/ravendb/backup-sc-database.md) and restoring it to the new instance.
 
 > [!WARNING]
-> The [restrictions](/servicecontrol/backup-sc-database.md#important-notes-and-restrictions) must be considered before moving forward with this approach.
+> The [restrictions](/servicecontrol/storage/ravendb/backup-sc-database.md#important-notes-and-restrictions) must be considered before moving forward with this approach.

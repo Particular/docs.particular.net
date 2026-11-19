@@ -69,7 +69,7 @@ snippet: CosmosDBCustomClientProviderRegistration
 
 ### Saga finding limitations
 
-Custom saga finders are not supported by Cosmos DB persistence. Use [message-property correlation](/nservicebus/sagas/message-correlation.md#message-property-expression) with a partition-aware mapping. If custom saga finders are required, [add a thumbs-up or share the use case on issue #378](https://github.com/Particular/NServiceBus.Persistence.CosmosDB/issues/378).
+[Custom saga finders](/nservicebus/sagas/saga-finding.md) are not supported by Cosmos DB persistence. Use [message-property correlation](/nservicebus/sagas/message-correlation.md#message-property-expression) with a partition-aware mapping. If custom saga finders are required, [add a thumbs-up or share the use case on issue #378](https://github.com/Particular/NServiceBus.Persistence.CosmosDB/issues/378).
 
 ## Capacity planning using request units (RU)
 

@@ -17,10 +17,10 @@ RavenDB's index could be disabled. This typically happens when disk space runs o
 
  1. Provision or free up disk space.
  1. If running on Windows:
-    1. Put ServiceControl in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
+    1. Put ServiceControl in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
     1. Open the [Raven Studio browser](http://localhost:33334/studio/index.html#databases/documents?&database=%3Csystem%3E). This assumes ServiceControl is using the default port and host name; adjust the url accordingly if this is not the case.
  1. If running in a container:
-    1. Follow the [container RavenDB access instructions](/servicecontrol/ravendb/accessing-database.md#container-deployment)
+    1. Follow the [container RavenDB access instructions](/servicecontrol/storage/ravendb/accessing-database.md#container-deployment)
  1. Navigate to the Indexes tab
  1. For each disabled index, set its state to Normal.
 

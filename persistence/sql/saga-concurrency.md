@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence saga concurrency
 component: SqlPersistence
-reviewed: 2025-03-18
+reviewed: 2026-10-15
 related:
  - nservicebus/sagas/concurrency
 redirects:

@@ -1,13 +1,21 @@
 ---
 title: Azure Table Persistence Using Saga IDs as Partition Keys
 summary: Using Saga IDs as partition keys in Azure Table Persistence to store sagas and outbox records atomically
-reviewed: 2025-03-06
+reviewed: 2026-10-09
 component: ASP
 related:
  - nservicebus/sagas
 ---
 
 This sample demonstrates a client/server scenario using saga and outbox persistences to store records atomically by leveraging transactions. The Saga ID is used as a partition key.
+
+## Prerequisites
+
+1. Install Docker.
+1. If running Docker on Windows, set Docker to use Linux containers.
+1. In the sample directory, execute the following to set up the Azurite Azure Storage emulator instance:
+
+> docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite
 
 ## Projects
 

@@ -2,7 +2,7 @@
 title: Self-Hosting in Azure WebJobs
 summary: Host an NServiceBus endpoint in Azure WebJobs.
 component: Core
-reviewed: 2025-03-06
+reviewed: 2026-10-09
 isLearningPath: true
 redirects:
 - samples/azure/self-host
@@ -13,8 +13,11 @@ This is an example of how an NServiceBus endpoint can be hosted using Azure WebJ
 
 ## Running in development mode
 
- 1. Start the [Azurite Storage Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite).
+ 1. Start a current release of the [Azurite Storage Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite).
  2. Run the solution.
+
+> [!NOTE]
+> If startup fails because an Azure Storage API version is not supported by Azurite, update the emulator. Alternatively, start Azurite with `--skipApiVersionCheck` to bypass its API-version check.
 
 ## Code walk-through
 
@@ -26,7 +29,17 @@ This sample contains one project:
 
 The receiver uses the self-hosting capability to start an endpoint inside a WebJob.
 
-The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) is used to configure and start the endpoint:
+#if-version [10, )
+
+Register the endpoint on the host's service collection with `AddNServiceBusEndpoint`. This [built-in hosting integration](/nservicebus/hosting/core-hosting.md) starts and stops the endpoint with the host:
+
+#end-if
+
+#if-version [, 10)
+
+The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) configures and starts the endpoint:
+
+#end-if
 
 snippet: WebJobHost_Start
 
@@ -37,4 +50,4 @@ A [critical error](/nservicebus/hosting/critical-errors.md) action must be defin
 
 snippet: WebJobHost_CriticalError
 
-When the WebJob host stops, the endpoint is automatically stopped with it by the hosting extension.
+When the WebJob host stops, the NServiceBus endpoint stops automatically.

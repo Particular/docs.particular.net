@@ -57,6 +57,10 @@ The following table describes the extended support status for all major versions
 
 include: extended-support-table
 
+### .NET Framework
+
+include: dotnet-framework-support
+
 [Reach out](https://particular.net/contact) for further information or inquiries.
 
 ## Compatibility guarantees

@@ -64,7 +64,7 @@ ServicePulse can be installed as a separate application from ServiceControl, alt
 
 ServicePulse can be installed using a dedicated [installation package](https://particular.net/downloads), which deploys ServicePulse as a Windows service host.
 
-ServicePulse can be installed more than once on a single machine, with each instance listening on its own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
+ServicePulse can be installed more than once on a single machine, with each instance listening on its own port. This is done by [specifying appropriate arguments during installation](/servicepulse/windows-installer.md#installation-available-installation-parameters).
 
 ##### Container (Linux only)
 

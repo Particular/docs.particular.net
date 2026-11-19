@@ -32,7 +32,9 @@ Broker transports include:
 - [Azure Service Bus](/transports/azure-service-bus/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
 - [SQL Server](/transports/sql/)
+- [PostgreSQL](/transports/postgresql/)
 - [RabbitMQ](/transports/rabbitmq/)
+- [IBM MQ](/transports/ibmmq/)
 
 ## Unicast-only transports
 
@@ -55,5 +57,7 @@ Multicast-enabled transports include:
 - [Azure Service Bus](/transports/azure-service-bus/)
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Server version 5 and above](/transports/sql/)
+- [PostgreSQL](/transports/postgresql/)
 - [Amazon SQS version 5 and above](/transports/sqs/)
 - [Azure Storage Queues version 10 and above](/transports/azure-storage-queues/)
+- [IBM MQ](/transports/ibmmq/)

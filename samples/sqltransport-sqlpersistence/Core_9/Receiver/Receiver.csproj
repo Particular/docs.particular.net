@@ -15,4 +15,7 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.*" />
+  </ItemGroup>
 </Project>

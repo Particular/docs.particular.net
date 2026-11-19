@@ -1,7 +1,7 @@
 ---
 title: XML Serializer sample
 summary: NServiceBus sample that shows how to use the default NServiceBus XML serializer
-reviewed: 2025-03-31
+reviewed: 2026-10-26
 component: Xml
 related:
 - nservicebus/serialization
@@ -28,7 +28,7 @@ snippet: message
 
 ```xml
 <?xml version="1.0" ?>
-<CreateOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/XmlSample">
+<CreateOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/">
  <OrderId>9</OrderId>
  <Date>2015-09-15T13:33:28.7186624+10:00</Date>
  <CustomerId>12</CustomerId>

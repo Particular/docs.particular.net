@@ -139,17 +139,6 @@ class Usage
         #endregion
     }
 
-    void EnableTimeoutManager(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-delay-enable-timeout-manager
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.EnableTimeoutManager();
-
-        #endregion
-    }
-
     void DisableRemoteCertificateValidation(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-remote-certificate-validation

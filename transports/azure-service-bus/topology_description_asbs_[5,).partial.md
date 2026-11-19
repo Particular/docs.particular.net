@@ -34,25 +34,57 @@ This design can dramatically reduce filtering overhead, boosting performance and
 A single Azure Service Bus topic [can hold up to 2,000 subscriptions, and each Premium namespace (with one messaging unit) can have up to 1,000 topics](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
 
 - Subscriptions per topic: 2,000 (Standard/Premium).
-- Topics per Premium namespace: 1,000 per messaging unit.
-- Topic size: 5 GB quota per topic.
+- Topics and queues per Premium namespace: 1,000 per messaging unit, up to 16,000 per namespace. Endpoint input queues also count toward this limit.
+- Topic size: the transport defaults to 5 GB via `EntityMaximumSize`. Azure limits depend on the tier and partitioning configuration; Premium supports up to 80 GB per topic. See [entity settings](configuration.md#entity-creation).
 
 By allocating a separate topic for each concrete event type, the overall system can scale more effectively:
 
 - Each topic is dedicated to one event type, so message consumption is isolated.
-- Failure domain size is reduced from the entire system to a single topic so if any single topic hits its 5 GB quota, only that event type is affected.
-- The maximum limit of 1,000 topics per messaging unit can comfortably support hundreds of event types, especially when factoring that not all event types are high-volume.
+- Separate topic size limits reduce the impact of one event type filling its topic. Namespace storage and throughput limits still affect all topics.
+- Plan capacity for both event topics and endpoint queues. Entity count limits apply regardless of message volume.
 
 > [!NOTE]
 > If the system has numerous event types beyond these limits, an architectural review is recommended. Additional messaging units or other partitioning strategies may be required.
 
 #### Topic creation
 
+#if-version [5,6.5)
 In this topology, topics are created exclusively by subscribers.
 
 When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled and a subscription to that topic exists. If no endpoint subscribes to a given event, the topic for that event will *not* be created, even if another endpoint publishes it.
 
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
+#end-if
+#if-version [6.5,)
+With installers enabled, subscribers create topics when they subscribe to events. Publishers also create missing topics when they first publish, unless `ThrowOnMissingTopicWhenPublishing` is enabled. Topics use the configured [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings).
+
+Creating topics requires [`Manage` rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights). If the transport cannot check for or create a topic, publishing fails.
+
+If installers are disabled or `ThrowOnMissingTopicWhenPublishing` is enabled, [provision topics before publishing](#topic-creation-publishing-to-a-missing-topic). Running installers as a separate deployment step doesn't create topics for events the endpoint only publishes.
+
+> [!WARNING]
+> Creating a topic does not create subscriptions. Azure Service Bus discards events published before a subscription exists.
+#end-if
+
+##### Publishing to a missing topic
+
+Publishing to a missing topic can delay each publish by up to about five seconds and slow other operations on the same connection.
+
+To avoid the delay, create the topics for events that can be published before any subscriber exists. Provision them together with the rest of the infrastructure, using infrastructure-as-code tooling such as Bicep or Terraform. Each topic is named after the most concrete event type, which is its full type name unless the topology [maps it to a different topic](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping). For example, in Bicep:
+
+```bicep
+resource topic 'Microsoft.ServiceBus/namespaces/topics@2024-01-01' = {
+  parent: serviceBusNamespace
+  name: 'MyNamespace.OrderAccepted'
+  properties: {
+    enableBatchedOperations: true
+    enablePartitioning: false
+    maxSizeInMegabytes: 5120
+  }
+}
+```
+
+The `serviceBusNamespace` resource represents the existing namespace. Set `enablePartitioning` and `maxSizeInMegabytes` to match the transport's [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings), so that the topic matches the ones the installers create. When a subscriber later starts with installers enabled, it adds its subscription to the existing topic. Until then, Azure Service Bus accepts the published events and discards them, because the topic has no subscriptions. See the [topic resource reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.servicebus/2024-01-01/namespaces/topics).
 
 #### Subscription rule matching
 
@@ -136,7 +168,7 @@ Depending on the desired use-cases it is possible to map in two ways:
 - Subscriber-side
 - Publisher-side
 
-On the subscriber-side the endpoint can be configure so that, although the type accepted by the handler is `IOrderStatusChanged`, the actual topics interested in are named after the derived types:
+On the subscriber side, the endpoint can be configured so that, although the type accepted by the handler is `IOrderStatusChanged`, the actual topics interested in are named after the derived types:
 
 snippet: asb-interface-based-inheritance-declined
 
@@ -149,7 +181,7 @@ Alternatively, the publisher can be configured to publish all its derived events
 
 snippet: asb-interface-based-inheritance-publisher
 
-This second option requires less entities on the broker side but forces the subscribers to all have handlers for all the multiplexed derived events that are and will be published to that topic since the subscription in this topology doesn't apply filtering by design.
+This second option requires fewer entities on the broker side but forces the subscribers to all have handlers for all the multiplexed derived events that are and will be published to that topic since the subscription in this topology doesn't apply filtering by design.
 
 ##### Evolution of the message contract
 
@@ -290,24 +322,27 @@ transport.OutgoingNativeMessageCustomization = (operation, message) =>
 };
 ```
 
-This property can then be used to define a `CorrelationFilter` (sample here uses bicep):
+For a subscription already configured to forward to the endpoint input queue, replace its default catch-all rule with a correlation filter. In Bicep, the `label` property matches the message's `Subject`:
 
 ```bicep
-resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2021-06-01-preview' = {
-  name: '${topic.name}/subscriber'
+resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2024-01-01' existing = {
+  parent: topic
+  name: 'subscriber'
+}
+
+resource rule 'Microsoft.ServiceBus/namespaces/topics/subscriptions/rules@2024-01-01' = {
+  parent: subscription
+  name: '$Default'
   properties: {
-    rule: {
-      name: 'CustomerUpdatedOnly'
-      filterType: 'CorrelationFilter'
-      correlationFilter: {
-        subject: 'MyNamespace.CustomerUpdated'
-      }
+    filterType: 'CorrelationFilter'
+    correlationFilter: {
+      label: 'MyNamespace.CustomerUpdated'
     }
   }
 }
 ```
 
-This configuration enables selective routing while using a shared topic, though it reintroduces filtering overhead and should be applied judiciously.
+The `topic` resource represents the existing shared topic. Remove any other catch-all rules and prevent the transport from recreating them, as described above. Otherwise, those rules will still deliver every event. See the [subscription rule resource reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.servicebus/2024-01-01/namespaces/topics/subscriptions/rules).
 
 
 ##### Subscriber-side aggregation
@@ -359,10 +394,10 @@ When a fallback topic is configured:
 
 #### Handling overflow and scaling
 
-In the single-topic model, a high volume of messages in one event type can degrade overall system performance for all events when the topic is saturated. With the topic-per-event model, each event type has its own 5 GB quota and its own topic partitioning. This provides a more localized failure domain:
+In the single-topic model, a high volume of messages in one event type can degrade overall system performance for all events when the topic is saturated. With the topic-per-event model, each event type has a separate topic size limit. Partitioning depends on the tier and configuration; Premium uses namespace-level partitioning. This provides more localized storage limits:
 
-- Failure isolation: If one event type experiences a surge, only that topic will be throttled or fill its quota.
-- Load distribution: The broker spreads load across multiple internal partitions, often improving throughput when compared to a single large topic.
+- Storage isolation: One event type can fill its topic without filling other topics. Namespace storage and throughput limits are still shared.
+- Capacity planning: Separate topics allow monitoring and sizing by event type, but adding topics does not increase namespace throughput capacity.
 
 #### Observability
 

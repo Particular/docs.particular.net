@@ -6,10 +6,7 @@
 # podman run --rm recoverabilitypolicytesting-core10
 # docker run --rm recoverabilitypolicytesting-core10
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0-preview AS build
-
-# Set environment variable for .NET 10 preview issue
-ENV DOTNET_SYSTEM_NET_SECURITY_NOREVOCATIONCHECKBYDEFAULT=true
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
 # Install expect and process management tools
 RUN apt-get update && apt-get install -y expect procps && rm -rf /var/lib/apt/lists/*
@@ -31,10 +28,7 @@ RUN dotnet build --no-restore
 # Run the tests in the build stage (only .NET 10 to avoid missing runtime issues)
 RUN dotnet test --no-build --logger:console --verbosity:normal --framework net10.0 Sample/Sample.csproj
 
-FROM mcr.microsoft.com/dotnet/runtime:10.0-preview AS runtime
-
-# Set environment variable for .NET 10 preview issue
-ENV DOTNET_SYSTEM_NET_SECURITY_NOREVOCATIONCHECKBYDEFAULT=true
+FROM mcr.microsoft.com/dotnet/runtime:10.0 AS runtime
 
 # This is a unit testing sample - tests are executed during the build stage
 # The runtime stage just provides confirmation that the tests passed

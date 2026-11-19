@@ -2,7 +2,7 @@
 title: Controlling What Is Subscribed
 summary: When applying the publish-subscribe pattern, there are several ways to control what messages are subscribed to
 component: Core
-reviewed: 2025-05-09
+reviewed: 2026-10-23
 ---
 
 ## Automatic subscriptions
@@ -39,7 +39,7 @@ In NServiceBus version 6 and above, it is possible to subscribe to messages not 
 
 ## When a subscriber stops or uninstalls
 
-A subscriber will not auto unsubscribe when it stops; it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
+A subscriber will not unsubscribe automatically when it stops; it remains registered with the publisher to receive events. The publisher still sends events to the stopped subscriber's input queue. When the subscriber starts, it will consume messages from its queue. The subscriber will never lose an event.
 
 
 ## Disabling auto-subscription
@@ -51,13 +51,13 @@ snippet: DisableAutoSubscribe
 
 ## Manually subscribing to a message
 
-Events can manually be subscribed and unsubscribed to:
+Events can be manually subscribed and unsubscribed to:
 
 snippet: ExplicitSubscribe
 
 `Subscribe` and `Unsubscribe` are accessible via the `IMessageSession` or within a [feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).
 
-## Decomissioning event handlers
+## Decommissioning event handlers
 
 An event is not automatically unsubscribed when a message handler is removed. The subscription remains active until it is unsubscribed.
 
@@ -66,9 +66,13 @@ Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For exam
 ```c#
 public sealed class UnsubscribeService(IMessageSession messageSession) : BackgroundService
 {
-	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await messageSession.Unsubscribe<MyEvent>();
     }
 }
 ```
+
+The service runs every time the endpoint starts. Unsubscribing from an event the subscriber isn't subscribed to has no effect, so the code is safe to keep. Once the endpoint has started in every environment where the subscription existed, you can remove the code.
+
+Unsubscribing prevents future events from being sent to the subscriber's input queue, but it cannot remove any messages that have already been sent to the input queue. So, before removing the handler, consider what to do with events in the input queue that haven't been processed yet.

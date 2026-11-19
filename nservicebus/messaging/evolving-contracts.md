@@ -1,16 +1,16 @@
 ---
 title: Evolving message contracts
 summary: Guidelines for choosing a strategy for evolving message contracts
-reviewed: 2025-05-13
+reviewed: 2026-11-17
 component: Core
 isLearningPath: true
 ---
 
 In message-based systems, the messages are part of the contract, which defines how services communicate with each other.
 
-Evolving contracts over time is not an easy task, and the appropriate strategy should be defined individually for each system. Generally, the problem can't be resolved at the infrastructure level; therefore, NServiceBus users must analyze their individual systems, consider how they are expected to evolve, and define the strategy which will make the most sense in their particular circumstances.
+Evolving contracts over time is not an easy task, and the appropriate strategy should be defined individually for each system. Generally, the problem can't be resolved at the infrastructure level; therefore, NServiceBus users must analyze their individual systems, consider how they are expected to evolve, and define the strategy that will make the most sense in their particular circumstances.
 
-This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
+This article presents basic guidelines for choosing a contract evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
 > [!NOTE]
 > Message contracts should also follow the [general message design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
@@ -30,7 +30,7 @@ Depending on the complexity of the change, the number of senders and receivers f
 Considering a scenario in which the data added to the contract is not required to successfully process a message:
 
 * Update the contract and release a new version.
-  * Instead of relying on .NET to set the default value for a field (like `int Age = 1`), it's better to use nullable types and represent missing values as `null`. This allows for message handlers to reliably verify if the data is available using the ´HasValue´-property.
+  * Instead of relying on .NET to set the default value for a missing field (for example, `0` for an `int`), it's better to use nullable types (for example, `int?`) and represent missing values as `null`. This allows message handlers to reliably verify if the data is available using the `HasValue` property.
 * Update senders to use the new contract version.
 * Update receivers to handle the new contract version.
   * This can be done gradually, endpoint by endpoint. Endpoints that are not upgraded and reference the previous contracts assembly will be unaware of the newly added data as it will be ignored during deserialization.
@@ -63,11 +63,14 @@ For receivers:
     * When the message is received, and the handler identifies that a part of the data is missing, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga.
     * When the data is retrieved, a new message containing all required information can be sent. This message will be handled by the same handler that processes the new message contract type, deferring the actual processing to a single handler.
 
+> [!NOTE]
+> When the new contract inherits from the previous contract, NServiceBus invokes the handlers for both types when a message of the new type is received. This is known as [dynamic dispatch](/nservicebus/messaging/dynamic-dispatch-and-routing.md). Ensure that the handler for the previous contract doesn't duplicate the work of the handler for the new contract.
+
 When all senders and receivers are updated and in-flight messages in the old format have been handled, the previous message contract can be marked as obsolete. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version. In the next major version of the assembly, the obsolete types may be removed.
 
 #### Removing data from a contract
 
-When the need rises to remove data from a contract, the easiest way to implement this change is to start from the receiver side.
+When the need arises to remove data from a contract, the easiest way to implement this change is to start from the receiver side.
 
 Adjust all receivers to not rely on the data that needs to be removed by:
 

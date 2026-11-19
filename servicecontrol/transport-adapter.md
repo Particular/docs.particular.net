@@ -6,7 +6,7 @@ reviewed: 2026-01-05
 ---
 
 > [!WARNING]
-> [ServiceControl.TransportAdapter](/nservicebus/upgrades/supported-versions.md#other-packages-servicecontrol-transportadapter) is obsolete. Use the [Messaging bridge](/nservicebus/bridge) instead.
+> `ServiceControl.TransportAdapter` is no longer supported. Use the [Messaging bridge](/nservicebus/bridge) instead.
 
 The ServiceControl Transport Adapter decouples ServiceControl from the specifics of the business endpoint's transport to support scenarios where the endpoint's transport uses physical routing features [not compatible with ServiceControl](#incompatible-features) or where endpoints use mixed transports or multiple instances of a message broker.
 

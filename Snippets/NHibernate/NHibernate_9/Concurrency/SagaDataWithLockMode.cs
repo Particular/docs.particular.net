@@ -8,6 +8,4 @@ public class SagaDataWithLockMode :
     #endregion
 
 {
-    [RowVersion]
-    public int MyVersion { get; set; }
 }

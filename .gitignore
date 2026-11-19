@@ -20,7 +20,6 @@ CommonAssemblyInfo.cs
 lib/sqlite/System.Data.SQLite.dll
 *.orig
 *.zip
-**/storage/*
 packages
 PrecompiledWeb
 tempstorage

@@ -8,8 +8,8 @@ public class MyHandler(ILogger<MyHandler> logger) : IHandleMessages<MyMessage>
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         logger.LogInformation($"Message received. Id: {message.Id}");
-        //throw new ArgumentNullException("Uh oh - something went wrong....");
-        //throw new DivideByZeroException("DivideByZeroException - something went wrong....");
+        //throw new System.ArgumentNullException("Uh oh - something went wrong....");
+        //throw new System.DivideByZeroException("DivideByZeroException - something went wrong....");
         return Task.CompletedTask;
     }
 }

@@ -19,7 +19,7 @@ snippet: saga-finder
 partial: mapping
 
 > [!NOTE]
-> Cosmos DB persistence does not support custom saga finders. Use [message-property correlation](/nservicebus/sagas/message-correlation.md#message-property-expression) with a partition-aware mapping. For more information, see [Cosmos DB saga finding limitations](/persistence/cosmosdb/#usage-saga-finding-limitations).
+> [Cosmos DB](/persistence/cosmosdb/#usage-saga-finding-limitations) and [DynamoDB](/persistence/dynamodb/sagas.md#custom-saga-finders) persistence do not support custom saga finders. Use [message-property correlation](/nservicebus/sagas/message-correlation.md#message-property-expression) instead. With Cosmos DB, the mapping must also be partition-aware.
 
 Many finders may exist for a given saga or message type. If a saga can't be found and the saga specifies that it should be started for that message type, NServiceBus will know to create a new saga instance.
 

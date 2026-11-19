@@ -1,4 +1,4 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.4.3">
+<Project Sdk="Aspire.AppHost.Sdk/13.6.5">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -21,6 +21,10 @@
 
   <ItemGroup Label="Pinned transitive dependencies">
     <PackageReference Include="Amazon.CDK.Lib" Version="2.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="MessagePack" Version="2.*" />
   </ItemGroup>
 
 </Project>

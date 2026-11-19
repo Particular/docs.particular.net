@@ -3,4 +3,6 @@
 >
 > In NServiceBus version 8, NServiceBus will no longer provide adapters for external dependency injection containers.
 >
+> As of NServiceBus version 10.2, [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) is built in, which includes `Microsoft.Extensions.DependencyInjection`.
+>
 > Visit the [dependency injection upgrade guide](/nservicebus/upgrades/7to8/dependency-injection.md) for further information.

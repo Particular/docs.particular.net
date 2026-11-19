@@ -103,6 +103,7 @@ For deployments that use a reverse proxy for TLS termination, or require end-to-
 - [Role-based access control](configuration/authorization.md)
 - [TLS configuration](configuration/tls.md)
 - [CORS configuration](configuration/cors.md)
+- [Securing the SMTP account for email notifications](smtp-account.md)
 - [Hosting guide](hosting-guide.md)
 - [Microsoft Entra ID guide](entra-id-authentication.md)
 - [ServicePulse security](/servicepulse/security)
@@ -113,5 +114,5 @@ For deployments that use a reverse proxy for TLS termination, or require end-to-
 
 Alternatives:
 
-1. **[Use ServicePulse](/servicepulse/installation.md)** - the recommended path; functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
+1. **[Use ServicePulse](/servicepulse/windows-installer.md)** - the recommended path; functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
 2. **Leave authentication disabled** on the relevant ServiceControl instance.

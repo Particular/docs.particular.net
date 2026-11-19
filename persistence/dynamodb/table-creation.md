@@ -2,7 +2,7 @@
 title: Table creation with DynamoDB persistence
 summary: How to create the table used by DynamoDB persistence instead of relying on installers
 component: DynamoDB
-reviewed: 2026-08-20
+reviewed: 2026-10-15
 related:
 - persistence/dynamodb
 - nservicebus/operations/installers
@@ -47,6 +47,8 @@ The names are configurable via `UseSharedTable`, or separately per feature via t
 Billing mode is not constrained by the persistence. Installers create the table as `PAY_PER_REQUEST`; a table created by the deployment process can use either mode. See [capacity planning](/persistence/dynamodb/capacity-planning.md) for choosing between them.
 
 [Time-to-live](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html) is required by the [outbox](/persistence/dynamodb/outbox.md). It is enabled by default so that the outbox can be enabled later without a migration. No secondary indexes are required.
+
+When creating a [global table](/persistence/dynamodb/#global-tables), use multi-Region eventual consistency (MREC). Multi-Region strong consistency (MRSC) does not support the transactions and time-to-live that the persistence requires.
 
 ## Create the table
 

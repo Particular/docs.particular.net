@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Send/Reply Sample
 summary: Demonstrates the send/reply pattern with Azure Service Bus
-reviewed: 2025-02-14
+reviewed: 2026-09-20
 component: ASBS
 related:
 - transports/azure-service-bus

@@ -1,10 +1,8 @@
-﻿using System;
-
-#region NativeMessage
+﻿#region NativeMessage
 
 public class NativeMessage
 {
-    public string Content { get; set; }
+    public required string Content { get; set; }
     public DateTime SentOnUtc { get; set; }
 }
 

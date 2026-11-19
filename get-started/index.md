@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 summary: Get started with NServiceBus and the Particular Service Platform using these step-by-step tutorials, videos, and technical guides.
-reviewed: 2026-06-15
+reviewed: 2026-09-18
 suppressRelated: true
 redirects:
 - get-started/high-level-content
@@ -16,6 +16,9 @@ The Particular Service Platform is a suite of tools for building and operating m
 * **[NServiceBus Sagas](/tutorials/nservicebus-sagas/)** - A follow-on tutorial that introduces stateful message handling. You'll learn how to coordinate longer-running business processes, wait for multiple messages, delay work with timeouts, and manage workflows that unfold over time.
 * **[NServiceBus Monitoring demo](/tutorials/monitoring-demo/)** - A downloadable demo that shows the monitoring features of the Particular Service Platform in ServicePulse. It includes pre-configured platform components and sample endpoints so you can explore slow handlers, message backlogs, and struggling endpoints in a running system.
 
+## AI tooling support
+
+This documentation site includes a [model context protocol (MCP)](mcp-server.md) to make documentation accessible to AI tools and language models.
 
 ## Learn more
 

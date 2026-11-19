@@ -2,7 +2,7 @@
 title: SQL Server transport SQL statements
 summary: Overview of the SQL statements used to manage the SQL Server transport
 component: SqlTransport
-reviewed: 2025-03-21
+reviewed: 2026-10-23
 versions: '[3,)'
 redirects:
 - nservicebus/sqlserver/runtime-sql

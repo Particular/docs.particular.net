@@ -17,4 +17,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="5.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.*" />
+  </ItemGroup>
+
 </Project>

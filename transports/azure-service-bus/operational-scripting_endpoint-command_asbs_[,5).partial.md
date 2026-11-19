@@ -1,4 +1,4 @@
-### asb-transport endpoint create
+### endpoint create
 
 Creates infrastructure for an endpoint: input queue, topic, and subscription.
 
@@ -29,7 +29,7 @@ asb-transport endpoint create name
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-### asb-transport endpoint subscribe
+### endpoint subscribe
 
 Creates a new subscription for an endpoint.
 
@@ -52,7 +52,7 @@ asb-transport endpoint subscribe name event-type
 
 `-r` | `--rule-name`: Rule name (defaults to event type)
 
-### asb-transport endpoint unsubscribe
+### endpoint unsubscribe
 
 Deletes a subscription for an endpoint.
 

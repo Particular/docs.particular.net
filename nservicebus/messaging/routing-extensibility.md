@@ -1,45 +1,45 @@
 ---
 title: Routing system extensibility points
-summary: How NServiceBus routing can be extended
-reviewed: 2025-04-03
+summary: Extend NServiceBus routing with custom route and publisher sources, such as a database or service discovery, and update them at runtime.
+reviewed: 2026-10-26
 component: Core
 related:
  - nservicebus/messaging/routing
 ---
 
-Extending the [NServiceBus routing subsystem](/nservicebus/messaging/routing.md) with a custom data source makes sense in following scenarios:
+Extending the [NServiceBus routing subsystem](/nservicebus/messaging/routing.md) with a custom data source makes sense in the following scenarios:
 
- * When centralizing all routing information in a database.
- * When dynamically calculating routes based on endpoint discovery protocol (similar to [UDDI](https://en.wikipedia.org/wiki/Web_Services_Discovery)).
- * When using a convention based on message naming.
+- When centralizing all routing information in a database.
+- When dynamically calculating routes using [service discovery](https://en.wikipedia.org/wiki/Service_discovery).
+- When routing by a convention based on message type names.
 
 ## Applying routing strategies
 
 Routing a message involves the following steps:
 
 - Select the routing strategy based on the [message intent](/nservicebus/messaging/messages-events-commands.md)
-- Determine the specific properties for the selected routing strategy based on the message type. e.g. as destination address in case of a command/[unicast](/transports/types.md#unicast-only-transports) strategy
+- Determine the properties for the selected routing strategy based on the message type, for example, the destination address for a command routed with the [unicast](/transports/types.md#unicast-only-transports) strategy
 
 ### Command routing
 
-To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the routing table on the `EndpointConfiguration` level or from the feature level:
+To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the routing table from `EndpointConfiguration` or from a [feature](/nservicebus/pipeline/features.md):
 
 snippet: RoutingExtensibility-RouteTableConfig
 
 > [!NOTE]
 > To access the `GetSettings` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
 
-The routing table can be modified in the feature set up phase or can be passed further, e.g. to a `FeatureStartupTask`, and updated periodically when the source of the routing information changes.
+The routing table can be modified in the feature setup phase or can be passed further, e.g. to a `FeatureStartupTask`, and updated periodically when the source of the routing information changes.
 
 snippet: RoutingExtensibility-StartupTaskRegistration
 
 snippet: RoutingExtensibility-StartupTask
 
-The source parameter is used as a unique key. When `AddOrReplaceRoutes` is called the first time with a given source key, the routes are added to the table. When it is called subsequently, the routes previously registered under that source key are replaced by the new routes.
+The `sourceKey` parameter is used as a unique key. When `AddOrReplaceRoutes` is called the first time with a given source key, the routes are added to the table. When it is called subsequently, the routes previously registered under that source key are replaced by the new routes.
 
 The routing table API is thread-safe and atomic, meaning either all the changes from the passed collection are successfully applied or none are.
 
-The routing system prevents route ambiguity. If new or replaced routes conflict with existing ones, an exception is thrown. It is up to the route extension to deal with the exception but usually it is a good practice to trigger the endpoint shutdown preventing the incorrect routing of messages.
+The routing system prevents route ambiguity. If new or replaced routes conflict with existing ones, `AddOrReplaceRoutes` throws an exception and the routing table stays unchanged. The route extension must handle the exception. Usually the safest option is to raise a [critical error](/nservicebus/hosting/critical-errors.md) so the endpoint stops instead of routing messages incorrectly. By default a critical error is only logged, so the endpoint needs a [critical error action](/nservicebus/hosting/critical-errors.md#what-if-i-need-to-override-the-default-behavior) that stops it.
 
 snippet: RoutingExtensibility-TriggerEndpointShutdown
 
@@ -51,7 +51,7 @@ Transports without that support rely on NServiceBus core routing for event deliv
 
 snippet: RoutingExtensibility-Publishers
 
-The source parameter has the same meaning and effect as in the routes collection.
+The `sourceKey` parameter has the same meaning and effect as for the routing table.
 
 The publishers collection is thread-safe, and all operations on that collection are atomic.
 
@@ -60,4 +60,4 @@ The publishers collection is thread-safe, and all operations on that collection 
 If there's a need to adjust the routing based on criteria other than the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
 
 > [!NOTE]
-> Be aware that this intercepts **all** messages that are dispatched, including messages that are not known NServiceBus message types, e.g. an audit message.
+> This intercepts **all** dispatched messages, including messages that aren't NServiceBus message types, such as audit messages and messages sent to the error queue.

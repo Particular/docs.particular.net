@@ -1,7 +1,7 @@
 ---
 title: Heartbeat plugin installation
 summary: Monitor endpoint health checks, and support scaled-out instances by installing NServiceBus Heartbeat plugin
-reviewed: 2025-04-08
+reviewed: 2026-10-27
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---

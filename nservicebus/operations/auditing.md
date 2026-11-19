@@ -11,7 +11,7 @@ redirects:
  - nservicebus/auditing-with-nservicebus
 ---
 
-The distributed nature of parallel, message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint
+The distributed nature of parallel, message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint.
 
 > [!NOTE]
 > By default, auditing is not enabled and must be configured for each endpoint where auditing is required.

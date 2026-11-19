@@ -4,11 +4,13 @@ summary: Why priority messages require more than just a queue
 reviewed: 2025-10-08
 ---
 
-An endpoint is a collection of handlers that process a specific message type. Some messages might be considered more important than others. As queues generally work according to the First In, First Out (FIFO) principle, those important messages must wait until all earlier messages are processed.
+An endpoint is a collection of code and configuration that processes a specific set of message types. The thing is, some of the incoming messages might be more important than others. As queues generally work according to the First In, First Out (FIFO) principle, those important messages could end up waiting until all earlier messages are processed.
 
-This behavior can potentially awaken the need for those important messages to 'jump the queue' and bypass all those other messages. This is regularly solved using priority queues. A special queue next to the regular queue holds messages that will be processed before messages in the regular queue.
+A common approach to this situation is to let important messages 'jump the queue', bypassing all other messages. Some messaging technologies support this through a special type of queue called a "priority queue".
 
-This article tries to explain a different type of solution.
+Another approach that works with regular queues is to subdivide the endpoint, routing those higher-priority messages to a different queue that a separate host processes.
+
+Before reaching for either of these solutions, take some time to think through some additional considerations:
 
 ## Different business process
 

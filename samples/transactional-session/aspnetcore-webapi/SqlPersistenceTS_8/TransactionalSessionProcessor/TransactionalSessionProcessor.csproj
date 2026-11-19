@@ -13,4 +13,9 @@
     <PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="8.*"/>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.*" />
+  </ItemGroup>
+
 </Project>

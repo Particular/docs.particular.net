@@ -1,21 +1,10 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
 using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
-builder.Logging.AddConsole();
-
 var endpointConfiguration = new EndpointConfiguration("Sender");
 
-var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString") ?? string.Empty;
 var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, TopicTopology.Default));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
@@ -27,13 +16,13 @@ endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-var host = builder.Build();
+using var host = builder.Build();
 
 await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
-Console.WriteLine("Publishing messages... Press [Ctrl] + [C] to cancel");
+Console.WriteLine("Sending messages... Press [Ctrl] + [C] to cancel");
 
 using (var cts = new CancellationTokenSource())
 {
@@ -46,13 +35,15 @@ using (var cts = new CancellationTokenSource())
 
     try
     {
-        var number = 0;
+        var number = 1;
 
         while (true)
         {
-            await messageSession.Send(new Ping { Round = number++ });
+            await messageSession.Send(new Ping { Round = number });
 
             Console.WriteLine($"Sent message #{number}");
+
+            number++;
 
             await Task.Delay(1_000, cts.Token);
         }

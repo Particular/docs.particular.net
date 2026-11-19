@@ -1,7 +1,7 @@
 ---
 title: Upgrade Tips
 summary: Tips for upgrading to newer versions of ServiceControl.
-reviewed: 2023-07-07
+reviewed: 2026-11-10
 related:
 ---
 
@@ -9,13 +9,71 @@ related:
 1. Updating ServiceControl will stop ingesting error/audit queue messages but does not affect the sending of messages between endpoints. While an update is in progress, it's not possible to trigger retries manually via ServicePulse. Consider [multiple (remote) instances](/servicecontrol/servicecontrol-instances/remotes.md) if uptime of ServicePulse is important.
 1. Compacting the database will not make the update run faster. Compacting should only be considered *after* upgrading.
 1. In-place updates are recommended over side-by-side updates as they have less complexity. Consider side-by-side if ServicePulse downtime must be minimized.
-1. [Backup the database](/servicecontrol/backup-sc-database.md) before upgrading.
+1. [Backup the database](/servicecontrol/storage/ravendb/backup-sc-database.md) before upgrading.
 1. Account for downtime of ServicePulse as failed messages cannot be retried when ServiceControl is not running.
 1. Account for queue storage size. While ServiceControl is down, messages are not ingested but they will still build up in the queue. If the system has a high message throughput the queues act as a buffer. Ensure queues will not run out of storage (quota) space as when queues are full no new messages can be added which will cause application outage.
 1. Analyze the storage size for each ServiceControl instance and update starting from the smallest to the largest. This helps understand how smaller migrations run and can be used to extrapolate how long updating the larger instances will take which can help decided whether a side-by-side upgrade is necessary.
 
 > [!NOTE]
 > Upgrading the ServiceControl will not upgrade each of the individual error, monitoring or audit instances. Each of those instances will need to be upgraded separately if desired.
+
+## Upgrades that rebuild indexes
+
+Some ServiceControl versions change the definition of one or more RavenDB indexes. The [upgrade guide](/servicecontrol/upgrades/) for the version notes when this happens. At the first start-up after the upgrade, ServiceControl deploys the new definition and RavenDB builds it as a side-by-side replacement index, listed as `ReplacementOf/<index>` in RavenDB Studio. The existing index keeps serving queries while the replacement is built. Once the replacement has caught up with all documents and is no longer stale, RavenDB swaps it in and deletes the old index.
+
+The rebuild has to process every document in the database. On large databases, it can take a long time, and it competes with message ingestion for CPU, RAM, storage I/O, and space. While ingestion continues, the rebuild takes longer, ingestion and indexing rates are degraded, and the replacement index might never be reported as non-stale, which prevents the automatic swap.
+
+> [!WARNING]
+> Until the swap, the database stores both the existing index and its replacement. The replacement usually requires at least as much storage as the index it replaces. Before upgrading, check the index sizes in RavenDB Studio and ensure the database drive has enough free space for both. If the drive runs low on storage, ServiceControl [stops ingesting messages](/servicecontrol/troubleshooting.md#low-on-storage-space).
+
+### Unlock locked indexes before upgrading
+
+A [locked](/servicecontrol/storage/ravendb/search-engine.md#migrating-existing-indexes-to-lucene-lock-the-index) index does not receive a new index definition. From version 6.22.2, a locked index with a changed definition stops the start-up with an error that names the index.
+
+Before upgrading:
+
+1. Check the [release notes](https://github.com/Particular/ServiceControl/releases) and the [upgrade guides](/servicecontrol/upgrades/) of every version between the installed version and the target version for index definition changes.
+1. Open RavenDB Studio, see [accessing the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md), and check the lock mode of the changed indexes in the **List of Indexes**.
+1. Unlock each changed index that is locked by changing `🔒 Locked (ignore)` or `🔒 Locked (error)` to `🔓 Unlocked`.
+
+At the first start-up after the upgrade, RavenDB rebuilds the unlocked indexes with the new definition.
+
+If an instance does not start after the upgrade because a locked index changed, how to reach RavenDB Studio depends on where the database runs:
+
+- **Windows deployment**: The database is embedded in the instance and stops when the instance fails to start. From version 6.22.3, start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode). In maintenance mode, the instance does not deploy indexes and keeps the database running. Click **Launch RavenDB Studio**, unlock the index, then stop maintenance mode and start the instance. In earlier versions, maintenance mode deploys the indexes too and stops with the same error. Contact [Particular support](https://particular.net/support) to unlock the index.
+- **Container deployment**: The database runs in its own container and keeps running. Open RavenDB Studio on port `8080` of the [database container](/servicecontrol/storage/ravendb/containers.md), unlock the index, and start the ServiceControl container again.
+- **External RavenDB server**: Open RavenDB Studio for the server that hosts the ServiceControl database, unlock the index, and start the instance again.
+
+### Upgrading audit instances one at a time
+
+When audit messages are spread across [multiple audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers), upgrade them one at a time so that the rebuild does not have to compete with ingestion and the environment keeps running:
+
+1. Pick an audit instance and [disable audit message ingestion](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrol-auditingestauditmessages) by setting `ServiceControl.Audit/IngestAuditMessages` to `false`. The instance keeps serving its data to ServicePulse but no longer adds documents to its database and indexes. With competing consumers, the other audit instances keep ingesting from the audit queue.
+1. Upgrade the instance. At start-up, RavenDB starts building the replacement indexes.
+1. Wait until the rebuild completes. In RavenDB Studio, the **List of Indexes** must no longer show `ReplacementOf/<index>` entries, and the [stale indexes](/servicecontrol/troubleshooting.md#stale-indexes) custom check must pass. See [accessing the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md) for how to open RavenDB Studio.
+1. Enable ingestion again by setting `ServiceControl.Audit/IngestAuditMessages` to `true`, or by removing the setting, and restart the instance.
+1. Repeat with the next audit instance.
+
+Start with the smallest instance to estimate how long the rebuild takes on the larger ones.
+
+### Reducing the database size before rebuilding a locked index
+
+When the index is [locked](/servicecontrol/storage/ravendb/search-engine.md#migrating-existing-indexes-to-lucene-lock-the-index), the upgrade does not apply the new definition and the index is not rebuilt until it is unlocked. As an alternative to the procedure above, the rebuild can be postponed until a large part of the database has been purged, which makes the rebuild shorter. For each audit instance, one at a time:
+
+1. [Disable audit message ingestion](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrol-auditingestauditmessages) by setting `ServiceControl.Audit/IngestAuditMessages` to `false`, and upgrade the instance.
+1. Wait until a significant amount of audit messages has been purged because their [retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod) expired. Expired messages are deleted while ingestion is disabled.
+1. Unlock the index in RavenDB Studio by changing `🔒 Locked (ignore)` to `🔓 Unlocked`.
+1. Restart the instance. At start-up, RavenDB starts building the replacement index.
+1. Wait until the rebuild completes, as described in step 3 of the procedure above.
+1. Enable ingestion again by setting `ServiceControl.Audit/IngestAuditMessages` to `true`, or by removing the setting, and restart the instance.
+1. Repeat with the next audit instance.
+
+The instance is not ingesting for a longer time, up to the full retention period. Messages that have been purged are no longer available in ServicePulse. On versions 6.20.0 and 6.21.0, the rebuild resets an index that was migrated to Lucene to Corax, see [Index reset to Corax after unlocking](/servicecontrol/storage/ravendb/search-engine.md#index-reset-to-corax-after-unlocking).
+
+> [!NOTE]
+> When each audit instance ingests from its own audit queue, for example with [split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues), messages build up in the queue of the instance that has ingestion disabled until ingestion is enabled again. Ensure the queue does not run out of storage space. The same applies to an environment with a single audit instance.
+
+For error instances, the equivalent setting is [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages). While error ingestion is disabled, failed messages build up in the error queue.
 
 ## Downgrading ServiceControl
 

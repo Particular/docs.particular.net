@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Audit instances using containers
-reviewed: 2026-04-10
+reviewed: 2026-10-07
 component: ServiceControl
 versions: '[5.3, )'
 ---
@@ -19,33 +19,16 @@ include: platform-container-examples
 
 ## Initial setup
 
-Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
+include: servicecontrol-container-setup-explanation
 
-The container image will run in setup mode by adding the `--setup` argument. For example:
+### Skipping queue creation
 
-```shell
-# Using docker run
-docker run --rm {OPTIONS} particular/servicecontrol-audit --setup
-```
-
-Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
-
-After setup is complete, the container will exit, and the `--rm` (or equivalent) option can be used to automatically remove it.
-
-The setup process should be repeated any time the container is [updated to a new version](#upgrading).
-
-### Simplified setup
-
-Instead of running `--setup` as a separate container, the setup and run operations can be combined using the `--setup-and-run` argument:
+include: servicecontrol-container-skip-queue-creation
 
 ```shell
 # Using docker run
-docker run {OPTIONS} particular/servicecontrol-audit --setup-and-run
+docker run --rm {OPTIONS} particular/servicecontrol-audit --setup --skip-queue-creation
 ```
-
-The `--setup-and-run` argument runs the setup process when the container starts, after which the application runs normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
-
-Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
 ## Required settings
 
@@ -59,6 +42,12 @@ include: servicecontrol-container-license
 
 `44444` is the canonical port exposed by the audit instance API within the container, though this port can be mapped to any desired external port.
 
+## Health checks
+
+The container image has a health check that calls `/api/configuration`. This endpoint allows anonymous requests, also when authentication is enabled.
+
+Use this endpoint for health probes, for example Kubernetes liveness probes or load balancer health checks. A health probe only checks if the instance is available. Do not use other API endpoints for health probes: the API is for ServicePulse only, and the other endpoints require a valid token when [authentication](/servicecontrol/security/configuration/authentication.md) is enabled.
+
 ## Volumes
 
 The Audit instance is stateless and does not require any mounted volumes.
@@ -71,18 +60,8 @@ When using tools such as Docker Compose that can share environment information a
 
 In the event of a naming collision, a fully qualified key such as `SERVICECONTROL_AUDIT_TRANSPORTTYPE` will be preferred over the shared `TRANSPORTTYPE` variant.
 
-Not all settings are relevant to audit instances running in a container. For example, HTTP hostname and port use standard values inside the container, and are mapped to real hosts and ports by infrastructure external to the container. Be sure to carefully review the documentation for each configuration setting to ensure it is relevant in a container context.
+include: servicecontrol-container-settings-caveat
 
 ## Upgrading
 
-A ServiceControl audit instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded. For example:
-
-```shell
-docker stop audit
-docker rm audit
-docker pull particular/servicecontrol-audit:latest
-docker run -rm {OPTIONS} particular/servicecontrol-audit:latest --setup
-docker run -d {OPTIONS} particular/servicecontrol-audit:latest
-```
-
-Note that Docker can cache the `latest` tag as well as the major/minor tags (such as `5` or `5.3`) unless the tag is pulled again. To be certain, use the full version tag.
+include: servicecontrol-container-upgrading-explanation

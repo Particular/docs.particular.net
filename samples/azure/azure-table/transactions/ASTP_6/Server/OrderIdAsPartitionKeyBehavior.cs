@@ -11,7 +11,7 @@ using NServiceBus.Sagas;
 
 class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 {
-    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId, ILogger<OrderIdHeaderAsPartitionKeyBehavior> logger)
+    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId, ILogger<OrderIdAsPartitionKeyBehavior> logger)
     {
         partitionKeyFromSagaId1 = partitionKeyFromSagaId;
         this.logger = logger;
@@ -38,7 +38,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             logger.LogInformation("Table Information: {TableName}", tableInformation.TableName);
         }
 
-        logger.LogInformation("Found partition key '{PartitionKey}' from '{Provider}'", context.Extensions.Get<TableEntityPartitionKey>().PartitionKey, nameof(IProvideOrderId));
+        logger.LogInformation("Using partition key '{PartitionKey}'", context.Extensions.Get<TableEntityPartitionKey>().PartitionKey);
 
         await next();
     }
@@ -51,7 +51,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
                 "Determines the PartitionKey from the logical message",
                 provider => new OrderIdAsPartitionKeyBehavior(
                     provider.GetRequiredService<IProvidePartitionKeyFromSagaId>(),
-                    provider.GetRequiredService<ILogger<OrderIdHeaderAsPartitionKeyBehavior>>()
+                    provider.GetRequiredService<ILogger<OrderIdAsPartitionKeyBehavior>>()
                     ))
         {
             InsertBefore(nameof(LogicalOutboxBehavior));
@@ -59,6 +59,6 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
     }
 
     IProvidePartitionKeyFromSagaId partitionKeyFromSagaId1;
-    private readonly ILogger<OrderIdHeaderAsPartitionKeyBehavior> logger;
+    private readonly ILogger<OrderIdAsPartitionKeyBehavior> logger;
 }
 #endregion

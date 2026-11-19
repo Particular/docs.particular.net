@@ -2,7 +2,7 @@
 title: Saga Diagram
 summary: The saga diagram illustrates how a saga is initiated, the messages it sends or handles, and details about saga data changes.
 component: ServicePulse
-reviewed: 2025-05-08
+reviewed: 2026-11-17
 related:
 - servicepulse/message-details
 ---
@@ -13,20 +13,24 @@ Sagas in NServiceBus coordinate long-running workflows by maintaining state, han
 
 ## Prerequisites
 
-The Saga Diagram relies on audit data collected via the `NServiceBus.SagaAudit` plugin, which tracks saga state changes and message relationships, sending them to ServiceControl. ServicePulse uses this data to generate saga visualizations.
+The Saga Diagram relies on audit data collected by the [`NServiceBus.SagaAudit` plugin](/nservicebus/sagas/saga-audit.md), which tracks saga state changes and message relationships and sends them to ServiceControl. ServicePulse uses this data to generate saga visualizations.
 
 To view saga diagrams in ServicePulse:
 
-1. Install the `NServiceBus.SagaAudit` package in all endpoints that are participating in the Saga:
-   ```
+1. Install the `NServiceBus.SagaAudit` package in all endpoints that participate in the saga:
+
+   ```powershell
    install-package NServiceBus.SagaAudit
    ```
 
 2. Configure saga auditing in the endpoint configuration:
-   ```
+
+   ```csharp
    endpointConfiguration.AuditSagaStateChanges(
-       serviceControlQueue: "particular.servicecontrol");
+       serviceControlQueue: "audit");
    ```
+
+   The `audit` queue applies to ServiceControl 4.13.0 and later. For earlier versions of ServiceControl, use `particular.servicecontrol`.
 
 ## How to Access the Saga Diagram
 
@@ -42,7 +46,7 @@ The "Saga Diagram" tab in ServicePulse appears when viewing a message involved i
 
 ## Saga Diagram Layout
 
-![Saga Diagram](images/saga-diagram.png 'width=800')
+![Saga Diagram Layout](images/saga-diagram.png 'width=800')
 
 The top of the diagram displays the following saga metadata:
 
@@ -65,7 +69,7 @@ The left column of the layout displays all messages that triggered a state chang
 
 **Example:** A `PlaceOrder` command message might be shown as the incoming message that initiated a saga.
 
-![Saga Diagram](images/saga-diagram-incoming.png 'width=800')
+![Saga Diagram Incoming Messages](images/saga-diagram-incoming.png 'width=800')
 
 ### Saga State Changes (Center Column)
 
@@ -79,7 +83,7 @@ The center column represents how saga data evolves after processing each message
 
 ![Saga Diagram Center View](images/saga-diagram-center-view.png 'width=800')
 
-- **State Changes View**: State transitions are shown using a diff view, highlighting properties that have changed. The left panel shows the previous state, and the right panel shows the current state. If no visible state changes appear, it’s likely because the message didn’t alter core business properties or only modified standard fields (e.g., `Id`, `Originator`, `OriginalMessageId`), which are filtered out. The diff view also has a maximize option to enable viewing the state changes in a larger modal popup.
+- **State Changes View**: State transitions are shown using a diff view, highlighting properties that have changed. The left panel shows the previous state, and the right panel shows the current state. If no visible state changes appear, it is likely because the message did not alter core business properties or only modified standard fields (e.g., `Id`, `Originator`, `OriginalMessageId`), which are filtered out. The diff view also has a maximize option to enable viewing the state changes in a larger modal popup.
 
 **Example:** After an `OrderBilled` event, the saga state is updated with new values for `RunningTotal` properties.
 
@@ -91,7 +95,7 @@ The right column of the saga diagram visualizes all outbound communications from
 
 - **Command Messages**: These are direct commands sent to specific handlers and are displayed with the command name and timestamp.
 - **Event Messages**: These are events published by the saga and are displayed with the event name and timestamp.
-- **Timeout Requests**: These are messages that are scheduled by the saga for a future time and are displayed with the timeout duration, which can be in seconds, minutes, hours, or days. When processed, it provides visual linkage to the corresponding incoming timeout message.
+- **Timeout Requests**: These are messages that are scheduled by the saga for a future time and are displayed with the timeout duration, which can be in seconds, minutes, hours, or days. Once the timeout is processed, the diagram links it to the corresponding incoming timeout message.
 
 **Example:** After updating its state, a saga might send a `ShipOrder` command and schedule a `CheckOrderStatus` timeout for 24 hours later.
 

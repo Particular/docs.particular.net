@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ transport native integration sample
 summary: Consuming messages published by non-NServiceBus endpoints
-reviewed: 2025-03-25
+reviewed: 2026-10-22
 component: Rabbit
 isLearningPath: true
 related:
@@ -11,7 +11,7 @@ related:
 
 ## Code walk-through
 
-The sample consists of two console applications: a simple receiver endpoint and a native sender. These endpoints demonstrate how to have senders on other platforms send messages to NServiceBus endpoints. While the .NET RabbitMQ client is used in this sample, the approach demonstrated can be used with any of the [official](https://www.rabbitmq.com/download.html) or [community](https://www.rabbitmq.com/devtools.html) native RabbitMQ client libraries.
+The sample consists of two console applications: a simple receiver endpoint and a native sender. These endpoints demonstrate how senders on other platforms send messages to NServiceBus endpoints. While the .NET RabbitMQ client is used in this sample, the approach demonstrated can be used with any of the [official](https://www.rabbitmq.com/download.html) or [community](https://www.rabbitmq.com/devtools.html) native RabbitMQ client libraries.
 
 ### Putting the message in the correct queue
 

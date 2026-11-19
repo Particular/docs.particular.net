@@ -8,7 +8,7 @@ Subscriptions are created under the topic, with one subscription entity per subs
 
 #### Quotas and limitations
 
-The `ForwardingTopology` is subject to [quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) of Azure Service Bus. A single topic supports up to 2000 subscriptions and 2000 filters/rules. For every logical endpoint, one subscription is created that contains one rule per event type subscribed, as shown on the topology overview.
+The `ForwardingTopology` is subject to [quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) of Azure Service Bus. A single topic supports up to 2,000 subscriptions and 2,000 SQL filters/rules. For every logical endpoint, one subscription is created that contains one rule per event type subscribed, as shown on the topology overview.
 
 For example, in larger systems, there may be dozens of event types for various business components to interact. Considering a system with 100 different event types, with every endpoint subscribing to 25% of the events, an endpoint would have to manage at least 25 rules. This means the `ForwardingTopology` can handle up to 80 different logical endpoints until it reaches its scaling limits. The more events there are and the more an endpoint is interested in subscribing to them, the fewer endpoints can be added to the system.
 
@@ -28,7 +28,7 @@ For example, a subscriber interested in the event `Shipping.OrderAccepted` will 
 [NServiceBus.EnclosedMessageTypes] LIKE '%Shipping.OrderAccepted%'
 ```
 
-The subscription rules uses `%` both at the beginning and at the end of the ` LIKE` clause to support the following scenarios:
+The subscription rules use `%` both at the beginning and at the end of the `LIKE` clause to support the following scenarios:
 
 - Interface-based inheritance
 - Evolution of the message contract
@@ -47,7 +47,7 @@ class OrderAccepted : IOrderAccepted, IOrderStatusChanged { }
 class OrderDeclined : IOrderAccepted, IOrderStatusChanged { }
 ```
 
-In this scenario, the [EnclosedMessageTypes headers](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) looks like the following when publishing the `OrderAccepted` event:
+In this scenario, the [EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) looks like the following when publishing the `OrderAccepted` event:
 
 ```
 Shipping.OrderAccepted, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=XYZ;Shipping.IOrderAccepted, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=XYZ;Shipping.IOrderStatusChanged, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=XYZ

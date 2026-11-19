@@ -1,6 +1,6 @@
 ---
 title: Logging in ServiceInsight
-reviewed: 2025-02-25
+reviewed: 2026-10-09
 summary: How logging works and how to access the log files
 component: ServiceInsight
 redirects:
@@ -17,8 +17,8 @@ All HTTP communications with ServiceControl are logged: the request being sent, 
 
 ![Log Window](images/008-log-window.png 'width=500')
 
-If more detailed log entries are required, they can be found at the following location and file format, stored on the machine:
+If more detailed log entries are required, they can be found at the following location and file format, stored on the local machine:
 
-```
+```text
 %LocalAppData%/Particular/ServiceInsight/log-{date}.txt
 ```

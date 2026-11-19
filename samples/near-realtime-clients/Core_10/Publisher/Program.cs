@@ -51,7 +51,7 @@ do
 {
     while (!Console.KeyAvailable)
     {
-        var stockSymbol = symbols[rand.Next(0, symbols.Length - 1)];
+        var stockSymbol = symbols[rand.Next(symbols.Length)];
 
         var stockTick = new StockTick
         {

@@ -2,7 +2,7 @@
 title: Azure Table Persistence Scripts
 summary: Collection of scripts for managing Azure Table Persistence
 component: ASP
-reviewed: 2025-03-18
+reviewed: 2026-10-16
 related:
  - nservicebus/operations
 redirects:
@@ -11,7 +11,9 @@ redirects:
 
 ## Removing subscriptions
 
-The following PowerShell script removes all subscriptions of a specific subscriber from the configured Azure storage account. Copy and paste the script to a PowerShell console and press <kbd>enter</kbd>:
+The following PowerShell script removes all subscriptions of a specific subscriber from the configured Azure storage account. It requires the `Az.Storage` PowerShell module. See the [Azure Table storage PowerShell prerequisites](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-how-to-use-powershell) for installation instructions.
+
+Copy and paste the script into a PowerShell console and press <kbd>Enter</kbd>:
 
 ```ps
 function Remove-Subscriptions(
@@ -21,17 +23,19 @@ function Remove-Subscriptions(
     [string] $transportAddressToRemove
     )
 {
+    Import-Module Az.Storage
+
     # create Context
-    $ctx = New-AzureStorageContext -StorageAccountName $accountStorageName -StorageAccountKey  $accountStorageKey
+    $ctx = New-AzStorageContext -StorageAccountName $accountStorageName -StorageAccountKey  $accountStorageKey
 
     # get table
-    $table = Get-AzureStorageTable -Name $subscriptionTableName -Context $ctx -ErrorAction Ignore
+    $table = Get-AzStorageTable -Name $subscriptionTableName -Context $ctx -ErrorAction Ignore
 
     # if exists
     if ($table -ne $null) {
 
         #Create a table query.
-        $query = New-Object Microsoft.WindowsAzure.Storage.Table.TableQuery
+        $query = New-Object Microsoft.Azure.Cosmos.Table.TableQuery
 
         #Define columns to select.
         $list = New-Object System.Collections.Generic.List[string]
@@ -48,7 +52,7 @@ function Remove-Subscriptions(
         $query.SelectColumns = $list
 
         #Execute the query.
-        $entries = $table.CloudTable.ExecuteQuery($query)
+        $entries = @($table.CloudTable.ExecuteQuery($query))
 
         Write-Host "Following subscriptions will be removed for " $transportAddressToRemove
 
@@ -60,7 +64,7 @@ function Remove-Subscriptions(
             #Delete entries
 
             foreach ($entry in $entries) {
-                $table.CloudTable.Execute([Microsoft.WindowsAzure.Storage.Table.TableOperation]::Delete($entry))
+                $table.CloudTable.Execute([Microsoft.Azure.Cosmos.Table.TableOperation]::Delete($entry))
             }
         } else {
             Write-Host 'Deletion aborted'
@@ -80,4 +84,6 @@ Where:
  * `<storageAccountName>` is the name of the storage account containing the subscription storage
  * `<storageAccountKey>` is a key to access the storage account
  * `<subscriptionTable>` is the configured subscription table. By default this is `Subscription`. This parameter is optional.
- * `<distributorAddress>` is the address of the subscriber which should be removed from the subscription storage
+ * `<subscriberAddress>` is the address of the subscriber which should be removed from the subscription storage
+
+For subscription storage settings, see [Azure Table Persistence configuration](configuration.md#subscription-configuration).
