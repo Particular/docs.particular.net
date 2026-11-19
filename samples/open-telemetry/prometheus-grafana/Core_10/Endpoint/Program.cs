@@ -11,6 +11,7 @@ public class Program
     {
         Console.Title = EndpointName;
 
+        #region opentelemetry-resource
         var attributes = new Dictionary<string, object>
         {
             ["service.name"] = EndpointName,
@@ -18,6 +19,7 @@ public class Program
         };
 
         var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
+        #endregion
 
         #region enable-opentelemetry-metrics
         var meterProviderBuilder = Sdk.CreateMeterProviderBuilder()
