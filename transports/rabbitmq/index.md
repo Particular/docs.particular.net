@@ -37,7 +37,7 @@ The transport has been confirmed to work with the following hosting providers:
 |Large message bodies       |Broker can handle arbitrary message size within available resources, very large messages via data bus
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Supported using `NServiceBus.Transport.RabbitMQ.CommandLine`
-|Installers                 |Mandatory
+|Installers                 |[Mandatory](connection-settings.md#broker-permissions)
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |Yes
 |Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-rabbitmq)
