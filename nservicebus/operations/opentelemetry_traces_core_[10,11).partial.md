@@ -260,21 +260,21 @@ When an operation fails, NServiceBus sets the status of every span the exception
 
 ### Exception recording
 
-NServiceBus reports each exception once in the log and, depending on the exception recording mode, once in the trace.
+NServiceBus logs each exception once and, depending on the exception recording mode, records it as an event on the failing span.
 
 #### Logging
 
-An exception is logged once, by the part of NServiceBus that knows the outcome:
+Every exception is logged once. When the log record is created and its severity depends on the scenario:
 
 | Failure | Logged by | Log level |
 |---|---|---|
 | Processing an incoming message | The recoverability action that is carried out | `Info` for an immediate retry, `Warn` for a delayed retry, `Error` for a move to the error queue, `Info` for a discard |
 | An operation on the message session, outside of message processing, such as a send or publish | The operation | `Warn` |
-| Recoverability itself | The [critical error](/nservicebus/hosting/critical-errors.md) | `Fatal` |
+| Recoverability logic execution | The [critical error](/nservicebus/hosting/critical-errors.md) | `Fatal` |
 
-A failure while processing a message is not logged where the exception is thrown, because at that point it is not yet known whether the message will be retried or moved to the error queue. The recoverability log entry includes the full exception and is written under the recoverability span. A failed message session operation is logged under the span of that operation. The entries are logged in both exception recording modes, and also when tracing is not enabled. A custom `RecoverabilityAction` logs nothing unless it logs itself.
+A failure while processing a message is not logged where the exception is thrown because, at that point, it is not yet known whether the message will be retried or moved to the error queue.
 
-To see the exception details next to the trace, use a logging provider that attaches the trace context to each log record, such as the OpenTelemetry logging provider for `Microsoft.Extensions.Logging`.
+Including trace information in the log entries enables correlating failing spans with exception details if a telemetry backend supports such functionality. 
 
 #### Exception recording mode
 
