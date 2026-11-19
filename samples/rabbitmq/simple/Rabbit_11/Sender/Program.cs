@@ -7,7 +7,6 @@ Console.Title = "SimpleSender";
 #region ConfigureRabbit
 var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleSender");
 
-
 var rabbitMqTransport = new RabbitMQTransport(
     routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
     connectionString: "host=localhost");
