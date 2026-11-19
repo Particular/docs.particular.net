@@ -2,9 +2,9 @@
 
 _Environment variable:_ `RAVENDB_CONNECTIONSTRING`
 
-Provides the URL to connect to the database container that stores the instance's data. The database container should be exclusive to the instance, and not shared by any other ServiceControl instances.
+Provides the URL to connect to the [database container](/servicecontrol/storage/ravendb/containers.md) that stores the instance's data. In production, the database container should be exclusive to the instance, and not shared by any other ServiceControl instances.
 
-If the [storage requirements for the RavenDB container](/servicecontrol/storage/ravendb/containers.md#required-settings) cannot be met by the container hosting infrastructure, especially in cloud-hosted environments, an externally-hosted and separately-licensed RavenDB instance can also be used starting with ServiceControl version 6.0.
+If the [storage requirements for the RavenDB container](/servicecontrol/storage/ravendb/containers.md#required-settings) cannot be met by the container hosting infrastructure, especially in cloud-hosted environments, an [independently hosted](/servicecontrol/storage/ravendb/containers.md#licensing) RavenDB server can also be used starting with ServiceControl version 6.0. An independently hosted RavenDB server requires a separate RavenDB license.
 
 In this case, the RavenDB Major.Minor version must match the version expected by ServiceControl as shown in this table:
 
