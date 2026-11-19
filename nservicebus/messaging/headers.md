@@ -271,12 +271,6 @@ partial: defer
 
 snippet: HeaderWriterDefer
 
-#if-version [10,)
-
-These example headers were captured without an active trace, so `NServiceBus.OpenTelemetry.StartNewTrace` is `False`. When the sending endpoint has an active trace, a deferred message also has a `traceparent` header, and [`NServiceBus.OpenTelemetry.StartNewTrace`](#opentelemetry-related-headers-nservicebus-opentelemetry-startnewtrace) is `True`.
-
-#end-if
-
 ## Diagnostic and informational headers
 
 Headers used to give visibility into the "where," "when," and "by whom" of a message. They are used by [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/).
