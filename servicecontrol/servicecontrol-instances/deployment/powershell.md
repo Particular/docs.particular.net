@@ -18,6 +18,8 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | sc-add                 | New-ServiceControlInstance                                 |
 | sc-delete              | Remove-ServiceControlInstance                              |
 | sc-instances           | Get-ServiceControlInstances                                |
+| sc-maintenance-off     | Disable-ServiceControlMaintenanceMode                      |
+| sc-maintenance-on      | Enable-ServiceControlMaintenanceMode                       |
 | sc-upgrade             | Invoke-ServiceControlInstanceUpgrade                       |
 
 include: powershell-general-cmdlets-and-aliases
@@ -45,6 +47,16 @@ snippet: ps-get-error-instances
 Use the `Remove-ServiceControlInstance` cmdlet to remove the instance and delete the database and logs:
 
 snippet: ps-remove-error-instance
+
+### Maintenance mode
+
+Use the `Enable-ServiceControlMaintenanceMode` cmdlet to stop ingestion while keeping the database available. The cmdlet stops the Windows service, enables [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) in the configuration file, and starts the service again:
+
+snippet: ps-enable-error-maintenance-mode
+
+Use the `Disable-ServiceControlMaintenanceMode` cmdlet to resume normal operation. Maintenance mode stays enabled until this cmdlet runs:
+
+snippet: ps-disable-error-maintenance-mode
 
 ### Upgrading a deployed instance
 

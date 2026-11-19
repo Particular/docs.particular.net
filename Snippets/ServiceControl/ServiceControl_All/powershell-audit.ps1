@@ -38,3 +38,11 @@ Invoke-ServiceControlAuditInstanceUpgrade -Name InstanceToUpgrade
 # startcode ps-get-audit-instances
 Get-ServiceControlAuditInstances | Select Name, Version
 # endcode
+
+# startcode ps-enable-audit-maintenance-mode
+Enable-ServiceControlAuditMaintenanceMode -Name Particular.ServiceControl.Audit
+# endcode
+
+# startcode ps-disable-audit-maintenance-mode
+Disable-ServiceControlAuditMaintenanceMode -Name Particular.ServiceControl.Audit
+# endcode

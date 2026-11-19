@@ -16,6 +16,8 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | audit-add              | New-ServiceControlAuditInstance               |
 | audit-delete           | Remove-ServiceControlAuditInstance            |
 | audit-instances        | Get-ServiceControlAuditInstances              |
+| audit-maintenance-off  | Disable-ServiceControlAuditMaintenanceMode    |
+| audit-maintenance-on   | Enable-ServiceControlAuditMaintenanceMode     |
 | audit-upgrade          | Invoke-ServiceControlAuditInstanceUpgrade     |
 
 include: powershell-remote-cmdlets-and-aliases
@@ -56,6 +58,16 @@ snippet: ps-remove-audit-remote
 Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance and delete the database and logs:
 
 snippet: ps-remove-audit-instance
+
+### Maintenance mode
+
+Use the `Enable-ServiceControlAuditMaintenanceMode` cmdlet to stop ingestion while keeping the database available. The cmdlet stops the Windows service, enables [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) in the configuration file, and starts the service again:
+
+snippet: ps-enable-audit-maintenance-mode
+
+Use the `Disable-ServiceControlAuditMaintenanceMode` cmdlet to resume normal operation. Maintenance mode stays enabled until this cmdlet runs:
+
+snippet: ps-disable-audit-maintenance-mode
 
 ### Upgrading an instance
 
