@@ -26,6 +26,14 @@ Invoke-ServiceControlInstanceUpgrade -Name InstanceToUpgrade
 Get-ServiceControlInstances | Select Name, Version
 # endcode
 
+# startcode ps-start-error-maintenance-mode
+Start-ServiceControlMaintenanceMode -Name Test.ServiceControl
+# endcode
+
+# startcode ps-stop-error-maintenance-mode
+Stop-ServiceControlMaintenanceMode -Name Test.ServiceControl
+# endcode
+
 # startcode ps-list-audit-remotes
 Get-ServiceControlRemotes -Name Particular.ServiceControl
 # endcode

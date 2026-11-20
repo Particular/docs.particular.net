@@ -55,6 +55,22 @@ To enable maintenance mode:
 
 ![Running in Maintenance Mode](/servicecontrol/maintenance-mode.gif)
 
+#### Scripted maintenance mode
+
+Maintenance mode can also be started and stopped from an elevated PowerShell session using the [ServiceControl Management PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management). See [Deploying ServiceControl Error instances using PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Deploying ServiceControl Audit instances using PowerShell](/servicecontrol/audit-instances/deployment/powershell.md) for installation and prerequisites.
+
+snippet: ps-start-error-maintenance-mode
+
+snippet: ps-start-audit-maintenance-mode
+
+Each command stops the Windows service, sets the maintenance mode setting in the instance's configuration file, and starts the service again. The setting stays in the configuration file until it is cleared. The stop commands stop the service and clear the setting, as **Stop Maintenance Mode** does in ServiceControl Management. The service stays stopped until it is started normally:
+
+snippet: ps-stop-error-maintenance-mode
+
+snippet: ps-stop-audit-maintenance-mode
+
+The `-Name` value is the Windows service name of the instance. The commands have the aliases `sc-maintenance-start`, `sc-maintenance-stop`, `audit-maintenance-start`, and `audit-maintenance-stop`.
+
 ## Container deployment
 
 When deployed using containers, the database runs in a separate container than the ServiceControl instance. The database can be accessed at any time on port `8080` of the database container.
