@@ -23,7 +23,7 @@ Where appropriate, temporary protective measures may also be taken, such as unli
 
 - Security fixes and related communications are coordinated so that remediation is available before or at the time of public disclosure.
 
-- Advisories are listed on the [Published Advisories](published-advisories) page and may be accompanied by additional customer communication when warranted.
+- Advisories are listed on the [Published Advisories](published-advisories) page, posted under the [security tag in our discussion group](https://discuss.particular.net/tag/security/89), and may be accompanied by additional customer communication when warranted.
 
 Public disclosures will typically include:
 
