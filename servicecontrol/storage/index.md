@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Storage
 summary: Storage options for ServiceControl Error and Audit instances.
-reviewed: 2026-10-27
+reviewed: 2026-10-29
 component: ServiceControl
 redirects:
   - servicecontrol/ravendb
@@ -42,9 +42,11 @@ Keep Error and Audit data apart, either in separate databases or in separate sch
 
 An Error instance and an Audit instance can use the same SQL Server or PostgreSQL database, but each needs its own schema. The default settings already do this: the Error instance uses the connection's default schema, and the Audit instance uses `sc_audit`. Setup fails if an Error instance and an Audit instance are configured to use the same schema.
 
+The schema rule applies to independent instances. Ingestion-only [workers for an Error instance](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) use that Error instance's schema and must not be given a schema of their own. Several Audit instances can also [share one database and schema](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) to scale out audit ingestion.
+
 ## External message body storage
 
-SQL-backed Error and Audit instances also require an external message body store. Small text bodies are stored in the database; larger bodies and all binary bodies use the selected external store. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression). Each instance needs its own directory, container, or key prefix.
+SQL-backed Error and Audit instances also require an external message body store. Small text bodies are stored in the database; larger bodies and all binary bodies use the selected external store. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression). Each instance needs its own directory, container, or key prefix, except processes that share a database.
 
 | External body storage | Use when | Configuration |
 | --- | --- | --- |

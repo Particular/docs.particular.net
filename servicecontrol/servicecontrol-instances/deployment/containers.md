@@ -38,6 +38,8 @@ include: platform-container-examples
 
 include: servicecontrol-container-setup-explanation
 
+Do not use `--setup` or `--setup-and-run` with an [ingestion-only worker](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md). Only the Error instance runs setup.
+
 ### Skipping queue creation
 
 include: servicecontrol-container-skip-queue-creation

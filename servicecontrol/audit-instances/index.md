@@ -38,7 +38,7 @@ Data about audit messages is exposed via an HTTP API from a ServiceControl Error
 
 ServiceControl Audit instances store their data in RavenDB, SQL Server, or PostgreSQL. Each instance must select one with the required [`ServiceControl.Audit/StorageType`](/servicecontrol/audit-instances/configuration.md#storage-servicecontrol-auditstoragetype) setting; there is no default. See the [storage overview](/servicecontrol/storage/) to choose a storage type. SQL Server and PostgreSQL storage are available from ServiceControl 7; earlier versions store data in RavenDB.
 
-SQL storage requires external storage for message bodies. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details.
+SQL storage requires external storage for message bodies. See [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for configuration details. To share the ingestion load, see [scaling out audit ingestion](/servicecontrol/audit-instances/scaling-out-ingestion.md).
 
 When using RavenDB, each ServiceControl Audit instance stores message data in a RavenDB database. For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/storage/ravendb/containers.md).
 
