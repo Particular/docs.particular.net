@@ -2,19 +2,19 @@
 title: Debugging NServiceBus in Visual Studio Code
 summary: How to configure Visual Studio Code to build and debug multiple NServiceBus endpoints simultaneously
 component: Core
-reviewed: 2025-05-09
+reviewed: 2026-11-17
 ---
 
 This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VS Code") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
 
-NServiceBus versions 7 and above are designed to run on .NET Core, which means instead of using the full Visual Studio IDE, users can also use the cross-platform (and free) VS Code application to build systems with NServiceBus.
+NServiceBus runs on cross-platform .NET, which means instead of using the full Visual Studio IDE, users can also use the cross-platform (and free) VS Code application to build systems with NServiceBus.
 
 While Visual Studio contains specific support for .NET projects, VS Code is a more lightweight editor for any language, so some configuration is necessary for VS Code to know how to build and debug .NET projects. Because NServiceBus projects typically involve running multiple startup projects to test multiple endpoints simultaneously, a little extra configuration is needed.
 
-## Prerequisities
+## Prerequisites
 
 * This article assumes knowledge of NServiceBus solutions.
-* VS Code must have the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) installed.
+* VS Code must have the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) installed.
 
 ## Configuration files
 
@@ -37,7 +37,7 @@ To create the initial file:
 
  1. After opening a folder with the project in Visual Studio Code, you may receive a notification saying `Required assets to build and debug are missing. Add them?`. If you decide to add them, then Visual Studio Code will create predefined configurations like `.NET Core Launch`.
  1. Alternatively, you can click the button `Generate C# Assets for Build and Debug` in the `Run and Debug` pane.
- 1. Alternatively, you can run the command **Tasks: Configure Task**, then **Create tasks.json from template**, and then select **.NET Core**.
+ 1. Alternatively, you can run the command **Tasks: Configure Task**, then **Create tasks.json file from template**, and then select **.NET Core**.
 
 The file created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
@@ -61,9 +61,9 @@ The following **tasks.json** describes how to build the solution using `dotnet b
 }
 ```
 
-For an NServiceBus solution, use the content above, and adjust the path of the `sln` file.
+For an NServiceBus solution, use the content above, and adjust the path to the solution file.
 
-For more information on **tasks.json**, see [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks).
+For more information on **tasks.json**, see [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/debugtest/tasks).
 
 ## launch.json
 
@@ -96,7 +96,7 @@ Here is an example configuration for an NServiceBus endpoint hosted as a console
     "type": "coreclr",
     "request": "launch",
     "preLaunchTask": "build",
-    "program": "${workspaceFolder}/path/to/Sales/bin/Debug/net9.0/Sales.dll",
+    "program": "${workspaceFolder}/path/to/Sales/bin/Debug/net10.0/Sales.dll",
     "args": [],
     "cwd": "${workspaceFolder}/path/to/Sales",
     "stopAtEntry": false,
@@ -122,28 +122,18 @@ For web application projects that need to launch a browser window, the configura
 
 ```json
 {
-    "name": "EShop.UI",
+    "name": "Website",
     "type": "coreclr",
     "request": "launch",
     "preLaunchTask": "build",
-    "program": "${workspaceFolder}/path/to/Website/bin/Debug/net5.0/Website.dll",
+    "program": "${workspaceFolder}/path/to/Website/bin/Debug/net10.0/Website.dll",
     "args": [],
     "cwd": "${workspaceFolder}/path/to/Website",
     "stopAtEntry": false,
     "internalConsoleOptions": "openOnSessionStart",
-    "launchBrowser": {
-        "enabled": true,
-        "args": "${auto-detect-url}",
-        "windows": {
-            "command": "cmd.exe",
-            "args": "/C start ${auto-detect-url}"
-        },
-        "osx": {
-            "command": "open"
-        },
-        "linux": {
-            "command": "xdg-open"
-        }
+    "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
     },
     "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -157,7 +147,7 @@ For web application projects that need to launch a browser window, the configura
 Like the console example, most of the values are boilerplate, except for the `program`, `cwd`, and `sourceFileMap` values, which should be adjusted for each project:
 
 * `internalConsoleOptions`: Most solutions will only contain a single website project. If so, VS Code's integrated console can be used, as in this example. The `internalConsoleOptions` values then control whether the drawer for the internal console will become visible when debugging begins. The values `neverOpen` or `openOnFirstSessionStart` can also be used. In addition, it's possible to use the `console` property to launch an external console.
-* `launchBrowser`: Contains instructions for launching a browser window on a platform-specific basis.
+* `serverReadyAction`: Opens the default browser at the URL that ASP.NET Core writes to the console when the web application has started.
 * `env`: Additional environment variables to pass to the application, including the common `ASPNETCORE_ENVIRONMENT` variable that affects how an ASP.NET Core web application will read configuration values.
 * `sourceFileMap`: Additional source file mappings passed to the debugger, useful in this case to let the debugger know the path to MVC views.
 
@@ -204,7 +194,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Billing/bin/Debug/net9.0/Billing.dll",
+            "program": "${workspaceFolder}/src/Billing/bin/Debug/net10.0/Billing.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Billing",
             "stopAtEntry": true,
@@ -215,7 +205,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Sales/bin/Debug/net9.0/Sales.dll",
+            "program": "${workspaceFolder}/src/Sales/bin/Debug/net10.0/Sales.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Sales",
             "stopAtEntry": false,
@@ -226,24 +216,14 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Website/bin/Debug/net9.0/Website.dll",
+            "program": "${workspaceFolder}/src/Website/bin/Debug/net10.0/Website.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Website",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
-            "launchBrowser": {
-                "enabled": true,
-                "args": "${auto-detect-url}",
-                "windows": {
-                    "command": "cmd.exe",
-                    "args": "/C start ${auto-detect-url}"
-                },
-                "osx": {
-                    "command": "open"
-                },
-                "linux": {
-                    "command": "xdg-open"
-                }
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
@@ -265,7 +245,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "configurations": [
                 "Billing",
                 "Sales",
-                "Website",
+                "Website"
             ]
         }
     ]
@@ -277,4 +257,4 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
 See the following articles for more information on debugging with VS Code:
 
 * [Configuring C# debugging](https://code.visualstudio.com/docs/csharp/debugger-settings)
-* [Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks)
+* [Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/debugtest/tasks)

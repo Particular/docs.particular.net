@@ -4,10 +4,6 @@
       "PackageId": "NServiceBus",
       "Versions": [
         {
-          "Minor": "7.8",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "8.2",
           "SupportLevel": "Extended"
         },
@@ -29,10 +25,6 @@
       "PackageId": "NServiceBus.AmazonSQS",
       "Versions": [
         {
-          "Minor": "5.7",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "6.2",
           "SupportLevel": "Extended"
         },
@@ -50,10 +42,6 @@
       "PackageId": "NServiceBus.Autofac",
       "Versions": [
         {
-          "Minor": "7.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "8.0",
           "SupportLevel": "Extended"
         }
@@ -62,10 +50,6 @@
     {
       "PackageId": "NServiceBus.AwsLambda.Sqs",
       "Versions": [
-        {
-          "Minor": "0.6",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "1.1",
           "SupportLevel": "Extended"
@@ -101,10 +85,6 @@
       "PackageId": "NServiceBus.AzureFunctions.InProcess.ServiceBus",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.4",
           "SupportLevel": "Extended"
         },
@@ -117,10 +97,6 @@
     {
       "PackageId": "NServiceBus.AzureFunctions.Worker.ServiceBus",
       "Versions": [
-        {
-          "Minor": "3.1",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "4.2",
           "SupportLevel": "Extended"
@@ -143,10 +119,6 @@
       "PackageId": "NServiceBus.Callbacks",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -164,10 +136,6 @@
       "PackageId": "NServiceBus.Callbacks.Testing",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -184,10 +152,6 @@
     {
       "PackageId": "NServiceBus.CastleWindsor",
       "Versions": [
-        {
-          "Minor": "7.2",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "8.0",
           "SupportLevel": "Extended"
@@ -211,10 +175,6 @@
       "PackageId": "NServiceBus.CommonLogging",
       "Versions": [
         {
-          "Minor": "5.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "6.0",
           "SupportLevel": "Extended"
         }
@@ -223,10 +183,6 @@
     {
       "PackageId": "NServiceBus.CustomChecks",
       "Versions": [
-        {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "4.0",
           "SupportLevel": "Extended"
@@ -244,10 +200,6 @@
     {
       "PackageId": "NServiceBus.DataBus.AzureBlobStorage",
       "Versions": [
-        {
-          "Minor": "4.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "5.0",
           "SupportLevel": "Extended"
@@ -279,10 +231,6 @@
       "PackageId": "NServiceBus.Encryption.MessageProperty",
       "Versions": [
         {
-          "Minor": "2.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -309,10 +257,6 @@
       "PackageId": "NServiceBus.Extensions.DependencyInjection",
       "Versions": [
         {
-          "Minor": "1.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         }
@@ -321,10 +265,6 @@
     {
       "PackageId": "NServiceBus.Extensions.Hosting",
       "Versions": [
-        {
-          "Minor": "1.1",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "2.0",
           "SupportLevel": "Extended"
@@ -343,10 +283,6 @@
       "PackageId": "NServiceBus.Extensions.Logging",
       "Versions": [
         {
-          "Minor": "1.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         },
@@ -363,10 +299,6 @@
     {
       "PackageId": "NServiceBus.Gateway",
       "Versions": [
-        {
-          "Minor": "3.3",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "4.0",
           "SupportLevel": "Extended"
@@ -385,10 +317,6 @@
       "PackageId": "NServiceBus.Gateway.RavenDB",
       "Versions": [
         {
-          "Minor": "2.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "3.0",
           "SupportLevel": "Extended"
         },
@@ -405,10 +333,6 @@
     {
       "PackageId": "NServiceBus.Gateway.Sql",
       "Versions": [
-        {
-          "Minor": "1.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "2.0",
           "SupportLevel": "Extended"
@@ -427,10 +351,6 @@
       "PackageId": "NServiceBus.Heartbeat",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -448,10 +368,6 @@
       "PackageId": "NServiceBus.Host",
       "Versions": [
         {
-          "Minor": "8.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "9.0",
           "SupportLevel": "Extended"
         }
@@ -461,10 +377,6 @@
       "PackageId": "NServiceBus.Host",
       "Versions": [
         {
-          "Minor": "8.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "9.0",
           "SupportLevel": "Extended"
         }
@@ -473,10 +385,6 @@
     {
       "PackageId": "NServiceBus.Log4Net",
       "Versions": [
-        {
-          "Minor": "3.1",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "4.0",
           "SupportLevel": "Extended"
@@ -513,10 +421,6 @@
       "PackageId": "NServiceBus.Metrics",
       "Versions": [
         {
-          "Minor": "3.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -533,10 +437,6 @@
     {
       "PackageId": "NServiceBus.Metrics.PerformanceCounters",
       "Versions": [
-        {
-          "Minor": "4.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "5.0",
           "SupportLevel": "Extended"
@@ -555,10 +455,6 @@
       "PackageId": "NServiceBus.Metrics.ServiceControl",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -576,10 +472,6 @@
       "PackageId": "NServiceBus.Metrics.ServiceControl.Msmq",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         }
@@ -588,10 +480,6 @@
     {
       "PackageId": "NServiceBus.Newtonsoft.Json",
       "Versions": [
-        {
-          "Minor": "2.4",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
@@ -610,10 +498,6 @@
       "PackageId": "NServiceBus.NHibernate",
       "Versions": [
         {
-          "Minor": "8.6",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "9.0",
           "SupportLevel": "Extended"
         },
@@ -630,10 +514,6 @@
     {
       "PackageId": "NServiceBus.NHibernate.TransactionalSession",
       "Versions": [
-        {
-          "Minor": "8.6",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "9.0",
           "SupportLevel": "Extended"
@@ -652,10 +532,6 @@
       "PackageId": "NServiceBus.Ninject",
       "Versions": [
         {
-          "Minor": "7.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "8.0",
           "SupportLevel": "Extended"
         }
@@ -664,10 +540,6 @@
     {
       "PackageId": "NServiceBus.NLog",
       "Versions": [
-        {
-          "Minor": "3.1",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "4.0",
           "SupportLevel": "Extended"
@@ -681,10 +553,6 @@
     {
       "PackageId": "NServiceBus.Persistence.AzureTable",
       "Versions": [
-        {
-          "Minor": "3.2",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "5.0",
           "SupportLevel": "Extended"
@@ -703,10 +571,6 @@
       "PackageId": "NServiceBus.Persistence.AzureTable.TransactionalSession",
       "Versions": [
         {
-          "Minor": "3.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "5.0",
           "SupportLevel": "Extended"
         },
@@ -724,19 +588,11 @@
       "PackageId": "NServiceBus.Persistence.CosmosDB",
       "Versions": [
         {
-          "Minor": "1.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         },
         {
           "Minor": "3.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -749,19 +605,11 @@
       "PackageId": "NServiceBus.Persistence.CosmosDB.TransactionalSession",
       "Versions": [
         {
-          "Minor": "1.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         },
         {
           "Minor": "3.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -825,10 +673,6 @@
       "PackageId": "NServiceBus.Persistence.ServiceFabric",
       "Versions": [
         {
-          "Minor": "2.7",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "3.0",
           "SupportLevel": "Extended"
         }
@@ -837,10 +681,6 @@
     {
       "PackageId": "NServiceBus.Persistence.Sql",
       "Versions": [
-        {
-          "Minor": "6.6",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "7.0",
           "SupportLevel": "Extended"
@@ -859,10 +699,6 @@
       "PackageId": "NServiceBus.Persistence.Sql.TransactionalSession",
       "Versions": [
         {
-          "Minor": "6.6",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "7.0",
           "SupportLevel": "Extended"
         },
@@ -879,10 +715,6 @@
     {
       "PackageId": "NServiceBus.RabbitMQ",
       "Versions": [
-        {
-          "Minor": "7.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "8.0",
           "SupportLevel": "Extended"
@@ -901,10 +733,6 @@
       "PackageId": "NServiceBus.RavenDB",
       "Versions": [
         {
-          "Minor": "7.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "8.2",
           "SupportLevel": "Extended"
         },
@@ -921,10 +749,6 @@
     {
       "PackageId": "NServiceBus.RavenDB.TransactionalSession",
       "Versions": [
-        {
-          "Minor": "7.2",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "8.2",
           "SupportLevel": "Extended"
@@ -943,10 +767,6 @@
       "PackageId": "NServiceBus.SagaAudit",
       "Versions": [
         {
-          "Minor": "3.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "4.0",
           "SupportLevel": "Extended"
         },
@@ -963,10 +783,6 @@
     {
       "PackageId": "NServiceBus.ServicePlatform.Connector",
       "Versions": [
-        {
-          "Minor": "1.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "2.0",
           "SupportLevel": "Extended"
@@ -985,10 +801,6 @@
       "PackageId": "NServiceBus.Spring",
       "Versions": [
         {
-          "Minor": "8.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "9.0",
           "SupportLevel": "Extended"
         }
@@ -998,10 +810,6 @@
       "PackageId": "NServiceBus.SqlServer",
       "Versions": [
         {
-          "Minor": "6.3",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "7.0",
           "SupportLevel": "Extended"
         }
@@ -1010,10 +818,6 @@
     {
       "PackageId": "NServiceBus.Storage.MongoDB",
       "Versions": [
-        {
-          "Minor": "2.3",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
@@ -1032,10 +836,6 @@
       "PackageId": "NServiceBus.Storage.MongoDB.TransactionalSession",
       "Versions": [
         {
-          "Minor": "2.3",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "3.0",
           "SupportLevel": "Extended"
         },
@@ -1053,10 +853,6 @@
       "PackageId": "NServiceBus.StructureMap",
       "Versions": [
         {
-          "Minor": "7.1",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "8.0",
           "SupportLevel": "Extended"
         }
@@ -1065,10 +861,6 @@
     {
       "PackageId": "NServiceBus.Testing",
       "Versions": [
-        {
-          "Minor": "7.4",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "8.1",
           "SupportLevel": "Extended"
@@ -1091,10 +883,6 @@
       "PackageId": "NServiceBus.TransactionalSession",
       "Versions": [
         {
-          "Minor": "1.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         },
@@ -1112,19 +900,11 @@
       "PackageId": "NServiceBus.Transport.AzureServiceBus",
       "Versions": [
         {
-          "Minor": "2.0",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "3.2",
           "SupportLevel": "Extended"
         },
         {
           "Minor": "5.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.4",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1136,10 +916,6 @@
     {
       "PackageId": "NServiceBus.Transport.AzureStorageQueues",
       "Versions": [
-        {
-          "Minor": "10.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "12.0",
           "SupportLevel": "Extended"
@@ -1171,10 +947,6 @@
       "PackageId": "NServiceBus.Transport.Msmq",
       "Versions": [
         {
-          "Minor": "1.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         }
@@ -1184,10 +956,6 @@
       "PackageId": "NServiceBus.Transport.Msmq",
       "Versions": [
         {
-          "Minor": "1.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "2.0",
           "SupportLevel": "Extended"
         }
@@ -1196,10 +964,6 @@
     {
       "PackageId": "NServiceBus.Transport.NonDurable",
       "Versions": [
-        {
-          "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "1.1",
           "SupportLevel": "Mainstream"
@@ -1227,10 +991,6 @@
       "PackageId": "NServiceBus.Transport.SqlServer",
       "Versions": [
         {
-          "Minor": "6.3",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "7.0",
           "SupportLevel": "Extended"
         },
@@ -1247,10 +1007,6 @@
     {
       "PackageId": "NServiceBus.UniformSession",
       "Versions": [
-        {
-          "Minor": "2.2",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
@@ -1269,10 +1025,6 @@
       "PackageId": "NServiceBus.UniformSession.Testing",
       "Versions": [
         {
-          "Minor": "2.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "3.0",
           "SupportLevel": "Extended"
         },
@@ -1290,10 +1042,6 @@
       "PackageId": "NServiceBus.Unity",
       "Versions": [
         {
-          "Minor": "10.2",
-          "SupportLevel": "Extended"
-        },
-        {
           "Minor": "11.0",
           "SupportLevel": "Extended"
         }
@@ -1302,10 +1050,6 @@
     {
       "PackageId": "NServiceBus.Wcf",
       "Versions": [
-        {
-          "Minor": "2.0",
-          "SupportLevel": "Extended"
-        },
         {
           "Minor": "3.0",
           "SupportLevel": "Extended"
@@ -1332,12 +1076,7 @@
     },
     {
       "PackageId": "ServiceControl.TransportAdapter",
-      "Versions": [
-        {
-          "Minor": "2.0",
-          "SupportLevel": "Extended"
-        }
-      ]
+      "Versions": []
     },
     {
       "PackageId": "Particular.PlatformSample.ServiceControl",

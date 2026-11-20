@@ -1,7 +1,7 @@
 ---
 title: Transport configuration
 summary: ServiceControl can be configured to use one of the supported message transports, which are configured for each instance type
-reviewed: 2026-10-09
+reviewed: 2026-11-17
 component: ServiceControl
 ---
 
@@ -191,6 +191,10 @@ These options are available in version 6.5 and above:
 ```text
 host=<HOSTNAME>;username=<USERNAME>;password=<PASSWORD>;DisableRemoteCertificateValidation=<true|false(default)>;UseExternalAuthMechanism=<true|false(default)>;ValidateDeliveryLimits=<true(default)|false>;ManagementApiUrl=<SCHEME://HOST:PORT>;ManagementApiUserName=<USERNAME>;ManagementApiPassword=<PASSWORD>
 ```
+
+### Exchange and queue durability
+
+ServiceControl requires durable exchanges and queues and does not support endpoints that use [non-durable exchanges and queues](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability). RabbitMQ cannot change the durability of an existing exchange or queue, so switching endpoints to durable ones means deleting and recreating them.
 
 ## SQL
 

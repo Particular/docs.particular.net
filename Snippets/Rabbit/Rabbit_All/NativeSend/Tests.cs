@@ -50,8 +50,10 @@ namespace Rabbit_All.NativeSend
                 {
                     setting.NumberOfRetries(0);
                 });
-            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.ConnectionString("host=localhost");
+            var transport = new RabbitMQTransport(
+                routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+                connectionString: "host=localhost");
+            endpointConfiguration.UseTransport(transport);
             var rabbitTypes = typeof(RabbitMQTransport).Assembly.GetTypes();
             var typesToScan = TypeScanner.NestedTypes<Tests>(rabbitTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);

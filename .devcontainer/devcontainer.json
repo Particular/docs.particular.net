@@ -11,12 +11,9 @@
 	"forwardPorts": [
 		55666
 	],
-	"postCreateCommand": "dotnet tool install -g Particular.DocsTool",
-	"postStartCommand": "docstool update",
-	"postAttachCommand": "docstool serve --port 55666",
-	"remoteEnv": {
-		"PATH": "${containerEnv:PATH}:/home/vscode/.dotnet/tools"
-	},
+	"postCreateCommand": "dotnet tool restore",
+	"postStartCommand": "dotnet tool restore",
+	"postAttachCommand": "dotnet docstool serve --port 55666",
 	"customizations": {
 		"vscode": {
 			"extensions": [

@@ -4,10 +4,13 @@ Console.Title = "SimpleReceiver";
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleReceiver");
-var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
+var transport = new RabbitMQTransport(
+    routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+    connectionString: "host=localhost");
+
+endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-transport.UseConventionalRoutingTopology(QueueType.Quorum);
-transport.ConnectionString("host=localhost");
 endpointConfiguration.EnableInstallers();
 
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);

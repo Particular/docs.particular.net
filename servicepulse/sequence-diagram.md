@@ -1,7 +1,7 @@
 ---
 title: Sequence Diagram
 summary: The ServicePulse Sequence Diagram view
-reviewed: 2025-04-15
+reviewed: 2026-11-05
 component: ServicePulse
 ---
 
@@ -29,7 +29,7 @@ Additional headers are used to determine endpoint names, message intent, and oth
 
 ![Endpoint](images/sequence-diagram/endpoint.png)
 
-Each endpoint involved in the conversation is represented by a gray box along the top of the diagram. Hover on the endpoint to get additional information, such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a lifeline that shows time flowing from top to bottom.
+Each endpoint involved in the conversation is represented by a grey box along the top of the diagram. Hover on the endpoint to get additional information, such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a lifeline that shows time flowing from top to bottom.
 
 ### Start of conversation
 
@@ -57,7 +57,7 @@ A message arrow shown leaving a processing box represents an outgoing message th
 
 ![Failed processing](images/sequence-diagram/failing-handler.png)
 
-If the processing of a message failed, the processing box is displayed in red with an exclamation mark. If the message has not already been (automatically) retried, it can be retried manually via the retry button.
+If the processing of a message failed, the processing box is displayed in red with an exclamation mark. Selecting it opens the failed message, where it can be retried if it has not already been retried automatically.
 
 ### Events
 
@@ -85,7 +85,7 @@ A timeout message is a special type of loopback message where handling is deferr
 
 ### Differences from UML sequence diagrams
 
-The language used in the sequence diagram is largely modeled after the standard defined by UML sequence diagrams. However, due to technical limitations and specifics related to messaging systems, the sequence diagram in ServicePulse has some notable differences:
+The language used in the sequence diagram is largely modelled after the standard defined by UML sequence diagrams. However, due to technical limitations and specifics related to messaging systems, the sequence diagram in ServicePulse has some notable differences:
 
 | Item | ServicePulse | UML |
 | :--- | :---: | :---: |

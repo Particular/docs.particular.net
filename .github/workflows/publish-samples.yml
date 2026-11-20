@@ -20,26 +20,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v6.0.0
+        uses: actions/setup-dotnet@v6.1.0
         with:
           global-json-file: global.json
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
-      - name: Check docstool version for cache
-        run: |
-           curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
       - name: Cache docstool
-        id: cache-docstool
         uses: actions/cache@v6.1.0
         with:
-          path: |
-             ~/.dotnet/tools/docstool
-             ~/.dotnet/tools/.store/particular.docstool
-          key: docstool-${{ hashFiles('docstool-versions.json') }}
-      - name: Install docstool
-        if: steps.cache-docstool.outputs.cache-hit != 'true'
-        run: dotnet tool install Particular.DocsTool --global
+          path: ~/.nuget/packages/particular.docstool
+          key: docstool-${{ hashFiles('.config/dotnet-tools.json') }}
+      - name: Restore docstool
+        run: dotnet tool restore
       - name: Run docstool
-        run: docstool test --no-version-check --zipfiles --out ~/build-output
+        run: dotnet docstool test --no-version-check --zipfiles --out ~/build-output
       - name: Azure Login
         uses: azure/login@v3
         with:

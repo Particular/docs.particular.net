@@ -48,11 +48,43 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 #### Topic creation
 
+#if-version [5,6.5)
 In this topology, topics are created exclusively by subscribers.
 
 When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled and a subscription to that topic exists. If no endpoint subscribes to a given event, the topic for that event will *not* be created, even if another endpoint publishes it.
 
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
+#end-if
+#if-version [6.5,)
+With installers enabled, subscribers create topics when they subscribe to events. Publishers also create missing topics when they first publish, unless `ThrowOnMissingTopicWhenPublishing` is enabled. Topics use the configured [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings).
+
+Creating topics requires [`Manage` rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights). If the transport cannot check for or create a topic, publishing fails.
+
+If installers are disabled or `ThrowOnMissingTopicWhenPublishing` is enabled, [provision topics before publishing](#topic-creation-publishing-to-a-missing-topic). Running installers as a separate deployment step doesn't create topics for events the endpoint only publishes.
+
+> [!WARNING]
+> Creating a topic does not create subscriptions. Azure Service Bus discards events published before a subscription exists.
+#end-if
+
+##### Publishing to a missing topic
+
+Publishing to a missing topic can delay each publish by up to about five seconds and slow other operations on the same connection.
+
+To avoid the delay, create the topics for events that can be published before any subscriber exists. Provision them together with the rest of the infrastructure, using infrastructure-as-code tooling such as Bicep or Terraform. Each topic is named after the most concrete event type, which is its full type name unless the topology [maps it to a different topic](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping). For example, in Bicep:
+
+```bicep
+resource topic 'Microsoft.ServiceBus/namespaces/topics@2024-01-01' = {
+  parent: serviceBusNamespace
+  name: 'MyNamespace.OrderAccepted'
+  properties: {
+    enableBatchedOperations: true
+    enablePartitioning: false
+    maxSizeInMegabytes: 5120
+  }
+}
+```
+
+The `serviceBusNamespace` resource represents the existing namespace. Set `enablePartitioning` and `maxSizeInMegabytes` to match the transport's [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings), so that the topic matches the ones the installers create. When a subscriber later starts with installers enabled, it adds its subscription to the existing topic. Until then, Azure Service Bus accepts the published events and discards them, because the topic has no subscriptions. See the [topic resource reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.servicebus/2024-01-01/namespaces/topics).
 
 #### Subscription rule matching
 

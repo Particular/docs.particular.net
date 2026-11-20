@@ -1,7 +1,7 @@
 ---
 title: Installers
 summary: Installers ensure endpoint-specific artifacts are installed and configured during endpoint startup.
-reviewed: 2025-05-09
+reviewed: 2026-11-12
 component: core
 related:
  - nservicebus/operations

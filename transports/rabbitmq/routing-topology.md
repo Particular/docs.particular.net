@@ -1,7 +1,7 @@
 ---
 title: Routing topology
 summary: Learn about the routing topology options in RabbitMQ and how they impact NServiceBus systems
-reviewed: 2025-08-14
+reviewed: 2026-11-19
 component: Rabbit
 versions: '[2,]'
 related:
@@ -10,7 +10,7 @@ redirects:
  - nservicebus/rabbitmq/routing-topology
 ---
 
-The RabbitMQ transport uses a *routing topology* to control how exchanges, queues, and bindings are created in the broker. The routing topology also defines how these exchanges are used for sending and publishing messages.  
+The RabbitMQ transport uses a *routing topology* to control how exchanges, queues, and bindings are created in the broker. The routing topology also defines how these exchanges are used for sending and publishing messages.
 
 All endpoints in a system must use the same routing topology to communicate. For new systems, use the [conventional routing topology](routing-topology.md#conventional-routing-topology). The [direct routing topology](routing-topology.md#direct-routing-topology) should only be used when adding endpoints to an existing system that already relies on it. A custom routing topology may be useful when integrating with legacy systems.
 
@@ -20,22 +20,22 @@ All endpoints in a system must use the same routing topology to communicate. For
 
 The conventional routing topology uses [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages.
 
-> [!NOTE]  
+> [!NOTE]
 > This is the recommended routing topology. It was the default prior to NServiceBus.RabbitMQ version 5.
 
 ### Sending
 
-Each endpoint creates a *fanout* exchange and a queue with the same name as the endpoint. A binding connects them.  
+Each endpoint creates a *fanout* exchange and a queue with the same name as the endpoint. A binding connects them.
 Messages are sent by publishing them to the endpoint’s exchange, which then routes them to the queue.
 
 ### Publishing
 
-For each event type, a set of *fanout* exchanges is created to represent its inheritance hierarchy.  
-- Each type has an exchange named `Namespace:TypeName`.  
-- Bindings connect child types to their parents, modeling the full hierarchy.  
-- Exchanges are also created for each implemented interface.  
+For each event type, a set of *fanout* exchanges is created to represent its inheritance hierarchy.
+- Each type has an exchange named `Namespace:TypeName`.
+- Bindings connect child types to their parents, modeling the full hierarchy.
+- Exchanges are also created for each implemented interface.
 
-When subscribing, an endpoint ensures the infrastructure exists and then adds a binding from the subscribed type’s exchange to its own exchange.  
+When subscribing, an endpoint ensures the infrastructure exists and then adds a binding from the subscribed type’s exchange to its own exchange.
 
 When publishing, the endpoint ensures the infrastructure exists and then publishes to the exchange of the event type.
 
@@ -85,6 +85,14 @@ The routing topologies provided by the transport create durable exchanges and qu
 
 snippet: rabbitmq-disable-durable-exchanges
 
+Quorum queues are always durable. With quorum queues, the transport declares the queues as durable regardless of this setting and logs a warning. Exchanges still follow the setting:
+
+```text
+Quorum queues are always durable, so the non-durable setting is being ignored for queue declaration.
+```
+
+ServiceControl requires durable exchanges and queues. See [ServiceControl transport configuration](/servicecontrol/transports.md#rabbitmq-exchange-and-queue-durability).
+
 
 ## Custom routing topology
 
@@ -95,4 +103,4 @@ If the built-in routing topologies do not satisfy the requirements of the system
 
 snippet: rabbitmq-config-useroutingtopologyDelegate
 
-The boolean argument supplied to the factory delegate indicates whether the custom routing topology should create durable exchanges and queues on the broker. Read more about durable exchanges and queues in the [AMQP Concepts Guide](https://www.rabbitmq.com/tutorials/amqp-concepts.html).
+The boolean argument passed to the custom routing topology's constructor indicates whether it should create durable exchanges and queues on the broker. Read more about durable exchanges and queues in the [AMQP Concepts Guide](https://www.rabbitmq.com/tutorials/amqp-concepts.html).

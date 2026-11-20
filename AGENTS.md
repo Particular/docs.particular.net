@@ -3,7 +3,7 @@
 When reviewing or editing documentation in this repository, use the `particular-docs-review` skill.
 
 Skill definition:
-- `.github/skills/particular-docs-review/SKILL.MD`
+- `.github/skills/particular-docs-review/SKILL.md`
 
 Primary guidance for that skill includes:
 - en-US language and style consistency

@@ -1,13 +1,12 @@
 ---
-title: "GHSA-mr8r-92fq-pj8p"
-summary: "OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling"
+title: "Security Advisory ID: GHSA-q834-8qmm-v933"
+summary: "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies"
 reviewed: "2026-05-14"
 ---
 
-## Security Advisory Id GHSA-mr8r-92fq-pj8p
+This advisory discloses a security vulnerability.
 
-This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-mr8r-92fq-pj8p](https://github.com/advisories/ghsa-mr8r-92fq-pj8p) security advisory: OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling.
+Patches have been released for impacted components. The patches update dependencies to address references to "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies" security advisory ([GHSA-q834-8qmm-v933](https://github.com/advisories/ghsa-q834-8qmm-v933)).
 
 ### Patch releases
 

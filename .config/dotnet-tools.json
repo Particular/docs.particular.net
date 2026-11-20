@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "particular.docstool": {
+      "version": "7.14.1",
+      "commands": [
+        "docstool"
+      ],
+      "rollForward": false
+    }
+  }
+}
