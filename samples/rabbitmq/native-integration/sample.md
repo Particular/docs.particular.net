@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ transport native integration sample
 summary: Consuming messages published by non-NServiceBus endpoints
-reviewed: 2026-10-22
+reviewed: 2026-11-19
 component: Rabbit
 isLearningPath: true
 related:

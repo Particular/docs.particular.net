@@ -19,9 +19,11 @@ namespace NServiceBusSubscriber
             var endpointConfiguration = new EndpointConfiguration("NServiceBusSubscriber");
 
             #region Transport
-            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.ConnectionString("host=localhost;username=guest;password=guest");
-            transport.UseConventionalRoutingTopology(QueueType.Quorum);
+            var transport = new RabbitMQTransport(
+                routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+                connectionString: "host=localhost;username=guest;password=guest");
+
+            endpointConfiguration.UseTransport(transport);
             #endregion
 
             #region Serializer
