@@ -26,12 +26,12 @@ Invoke-ServiceControlInstanceUpgrade -Name InstanceToUpgrade
 Get-ServiceControlInstances | Select Name, Version
 # endcode
 
-# startcode ps-enable-error-maintenance-mode
-Enable-ServiceControlMaintenanceMode -Name Particular.ServiceControl
+# startcode ps-start-error-maintenance-mode
+Start-ServiceControlMaintenanceMode -Name Particular.ServiceControl
 # endcode
 
-# startcode ps-disable-error-maintenance-mode
-Disable-ServiceControlMaintenanceMode -Name Particular.ServiceControl
+# startcode ps-stop-error-maintenance-mode
+Stop-ServiceControlMaintenanceMode -Name Particular.ServiceControl
 # endcode
 
 # startcode ps-list-audit-remotes
