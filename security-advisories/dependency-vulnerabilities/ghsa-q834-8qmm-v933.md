@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-q834-8qmm-v933"
 summary: "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies"
 reviewed: "2026-05-14"
+redirects:
+ - security-advisories/ghsa-q834-8qmm-v933
 ---
 
 This advisory discloses a security vulnerability.

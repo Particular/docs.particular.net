@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-2fmv-rv2c-59x7"
 summary: "Microsoft Security Advisory CVE-2026-70162 - .NET Denial of Service Vulnerability"
 reviewed: "2026-10-28"
+redirects:
+ - security-advisories/ghsa-2fmv-rv2c-59x7
 ---
 
 This advisory discloses a security vulnerability.

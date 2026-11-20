@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-mr8r-92fq-pj8p"
 summary: "OpenTelemetry dotnet: Unbounded `grpc-status-details-bin` parsing in OTLP/gRPC retry handling"
 reviewed: "2026-05-14"
+redirects:
+ - security-advisories/ghsa-mr8r-92fq-pj8p
 ---
 
 This advisory discloses a security vulnerability.
