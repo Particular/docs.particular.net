@@ -2,7 +2,7 @@
 title: Configuration
 summary: Explains the configuration options
 component: ASBS
-reviewed: 2026-10-21
+reviewed: 2026-11-12
 related:
  - transports/azure-service-bus/operational-scripting
  - samples/azure-service-bus-netstandard/options
@@ -54,14 +54,14 @@ snippet: custom-prefetch-count
 To disable prefetching, prefetch count should be set to zero.
 
 > [!NOTE]
-> The lock duration for all prefetched messages starts as soon as they are fetched. To avoid `LockLostException`, ensure the lock-renewal duration is longer than the total time it takes to process all prefetched messages (i.e., message handler execution time multiplied by the prefetch count).
+> The lock duration for all prefetched messages starts as soon as they are fetched. To avoid losing the message lock, ensure the lock-renewal duration is longer than the total time it takes to process all prefetched messages (i.e., message handler execution time multiplied by the prefetch count).
 > In addition, it's important to consider how endpoints are scaled. If the prefetch count is high, the lock may deprive other endpoint instances of messages, making those instances redundant.
 
 ## Lock-renewal
 
 For all supported transport transaction modes (except `TransportTransactionMode.None`), the transport utilizes a peek-lock mechanism to ensure that only one instance of an endpoint can process a message. The default lock duration is set during entity creation. By default, the transport uses the SDK's default maximum auto lock renewal duration of 5 minutes.
 
-To ensure smooth processing, it is recommended to configuring the `MaxAutoLockRenewalDuration` property to be greater than the longest running handler for the endpoint. This helps avoid `LockLostException` and ensures the message is properly handled by [the recoverability process](/nservicebus/recoverability/).
+To ensure smooth processing, it is recommended to configure the `MaxAutoLockRenewalDuration` property to be greater than the longest running handler for the endpoint. This helps avoid losing the message lock and ensures the message is properly handled by [the recoverability process](/nservicebus/recoverability/).
 
 partial: lockrenewal
 

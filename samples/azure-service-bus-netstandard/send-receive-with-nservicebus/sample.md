@@ -9,6 +9,10 @@ related:
 
 The companion code for [this article](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus) on using NServiceBus with Azure Service Bus. Refer to the linked article for a full walkthrough of the code.
 
+## Download the sample
+
+downloadbutton
+
 ## Running the sample
 
 Both endpoints read the Azure Service Bus connection string from the `ConnectionStrings:AzureServiceBusConnectionString` setting. Set it in each project's `appsettings.json`, or set the `ConnectionStrings__AzureServiceBusConnectionString` environment variable to keep the connection string out of source files.

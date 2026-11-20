@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport
 summary: Integrate NServiceBus with RabbitMQ transport for scalable messaging and reliable distributed communication
-reviewed: 2026-09-18
+reviewed: 2026-11-19
 component: Rabbit
 related:
  - samples/rabbitmq/simple
@@ -87,3 +87,7 @@ In AMQP, [the `delivery_mode`](https://www.rabbitmq.com/amqp-0-9-1-reference.htm
 > Any failure in transmission or issues in the broker will result in the message being lost.
 
 partial: nonpersistent
+
+## Non-durable queues
+
+[Transient aka non-durable queues](https://www.rabbitmq.com/docs/queues#durability) are supported partially. See [routing details](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability) for details.

@@ -4,13 +4,15 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.DurableTask;
 using Microsoft.Extensions.Logging;
 
-public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logger)
+public class DataBusCleanupOrchestrator
 {
     #region DataBusCleanupOrchestratorFunction
 
     [Function(nameof(DataBusCleanupOrchestrator))]
     public async Task RunOrchestrator([OrchestrationTrigger] TaskOrchestrationContext context)
     {
+        var logger = context.CreateReplaySafeLogger<DataBusCleanupOrchestrator>();
+
         var blobData = context.GetInput<DataBusBlobData>();
 
         logger.LogInformation("Orchestrating deletion for blob at {name} with ValidUntilUtc of {validUntilUtc}", blobData.Name, blobData.ValidUntilUtc);

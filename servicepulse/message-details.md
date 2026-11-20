@@ -1,13 +1,13 @@
 ---
 title: Message Details
-summary: Describes how ServicePulse displays details about messages. Also describes retrying, or deleting of failed messages
+summary: Describes how ServicePulse displays message details, and how to retry, delete, or export failed messages.
 component: ServicePulse
-reviewed: 2025-04-15
+reviewed: 2026-11-04
 related:
 - servicepulse/intro-pending-retries
 ---
 
-Each message can be browsed to see in-depth details about a given message. Individual messages can be accessed by clicking the respective entry in any of the message list views. If it's a failed message, it can be deleted or retried.
+Each message can be browsed to see in-depth details about a given message. Individual messages can be accessed by clicking the respective entry in any of the message list views. If it's a failed message, it can be deleted, retried, or exported.
 
 ![Failed Messages Page](images/failed-message-page.png 'width=500')
 
@@ -42,9 +42,9 @@ Supported content types:
 
 ## Failed Messages
 
-### StackTrace
+### Stack trace
 
-The full .NET exception stacktrace. Can be copied to clipboard.
+The full .NET exception stack trace. Can be copied to clipboard.
 ![Message Details StackTrace](images/message-details-stacktrace.png 'width=500')
 
 ## Messages with Audited Conversation Data
@@ -55,7 +55,7 @@ Displays a flow diagram of the conversation that contains the message. This illu
 
 Each message is represented by a box (node) indicating the message type and displaying details including time information and, optionally, the sending and receiving endpoints. Published events and sent commands have different icons and illustrations.
 
-Read more about the [flow Diagram](flow-diagram.md).
+Read more about the [Flow Diagram](flow-diagram.md).
 ![Flow Diagram](images/flow-diagram.png 'width=800')
 
 ### Saga diagram

@@ -1,7 +1,7 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2025-04-08
+reviewed: 2026-11-19
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
@@ -13,7 +13,7 @@ The RabbitMQ transport requires a connection string to connect to the RabbitMQ b
 
 ### Specifying the connection string via code
 
-To specify the connection string in code:
+The connection string is always provided in code, as an argument to the `RabbitMQTransport` constructor. To avoid hardcoding it, read it from configuration or an environment variable at startup:
 
 snippet: rabbitmq-config-connectionstring-in-code
 
@@ -147,7 +147,7 @@ Default: `00:00:10` (10 seconds)
 
 snippet: change-network-recovery-interval
 
-### TimeToWaitBeforeTriggering
+### TimeToWaitBeforeTriggeringCircuitBreaker
 
 Controls the amount of time the transport waits after a failure is detected before triggering the critical error action.
 

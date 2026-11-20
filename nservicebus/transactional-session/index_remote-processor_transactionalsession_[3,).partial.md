@@ -5,10 +5,10 @@ When used together with the [outbox](/nservicebus/outbox/) in a [send-only](/nse
 snippet: configure-remote-processor
 
 > [!WARNING]
-> Both the send-only endpoint and the processor endpoint must be connected to the same database. See [documentation for the individual persisters](/persistence/) for more details.
+> The send-only endpoint stores outbox records in the processor endpoint's outbox storage, and the processor reads them from there when it handles the dispatch message. Each persistence locates that storage from the `ProcessorEndpoint` value and the send-only endpoint's own persistence settings, so both endpoints must use the same database and the same outbox storage settings. See the [persistence-specific transactional session documentation](/nservicebus/transactional-session/persistences) for details.
 
 > [!NOTE]
-The processor endpoint [must have both the outbox and the transactional session enabled](/nservicebus/transactional-session/#failure-scenarios-commit-takes-too-long).
+> The processor endpoint [must have both the outbox and the transactional session enabled](/nservicebus/transactional-session/#failure-scenarios-commit-takes-too-long).
 
 > [!NOTE]
 > If migrating to this mode from an endpoint couldn't be made send-only due to the previous limitations of the transactional session, see the migration guidance below.

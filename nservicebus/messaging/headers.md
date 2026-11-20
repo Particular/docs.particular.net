@@ -314,6 +314,22 @@ These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemet
 * [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
 * [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
 
+#if-version [9,)
+
+### NServiceBus.OpenTelemetry.StartNewTrace
+
+In NServiceBus version 9.1 and above, this header tells the receiving endpoint whether to start a new trace instead of continuing the sender's trace. When the value is `True` and the message has a `traceparent` header, the receiving endpoint starts a new trace and links it to the sender's span. See [span relationships](/nservicebus/operations/opentelemetry.md#traces-span-relationships).
+
+The value is `True` for:
+
+* Published events, unless the publisher calls `PublishOptions.ContinueExistingTraceOnReceive()`
+* Messages sent with `SendOptions.StartNewTraceOnReceive()`
+* Delayed messages and delayed retries that have a `traceparent` header
+
+Other sends have the value `False`.
+
+#end-if
+
 ## Audit headers
 
 Headers added when a message is [audited](/nservicebus/operations/auditing.md).

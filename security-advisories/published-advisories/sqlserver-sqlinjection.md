@@ -6,7 +6,7 @@ reviewed: 2025-08-25
 
 This advisory discloses a security vulnerability that has been found in the [SQL Server Transport](/transports/sql/) and fixed in a recently released version.
 
- * If using the NServiceBus SQL Server Transport then all endpoints should upgraded to the latest version of the package to fix this vulnerability.
+ * If using the NServiceBus SQL Server Transport then all endpoints should be upgraded to the latest version of the package to fix this vulnerability.
  * No other transports or persisters are affected.
 
 This advisory affects all versions of the SQL Server Transport up to and including 3.0.0-beta0002.

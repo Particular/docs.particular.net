@@ -1,13 +1,12 @@
 ---
-title: "GHSA-q834-8qmm-v933"
-summary: "OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies"
+title: "Security Advisory ID: GHSA-g94r-2vxg-569j"
+summary: "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers"
 reviewed: "2026-05-14"
 ---
 
-## Security Advisory Id GHSA-q834-8qmm-v933
+This advisory discloses a security vulnerability.
 
-This advisory discloses a security vulnerability 
-Patches for components to update their dependencies to avoid references that have the [GHSA-q834-8qmm-v933](https://github.com/advisories/ghsa-q834-8qmm-v933) security advisory: OpenTelemetry dotnet: OTLP exporter reads unbounded HTTP response bodies.
+Patches have been released for impacted components. The patches update dependencies to address references to "OpenTelemetry dotnet: Excessive memory allocation when parsing OpenTelemetry propagation headers" security advisory ([GHSA-g94r-2vxg-569j](https://github.com/advisories/ghsa-g94r-2vxg-569j)).
 
 ### Patch releases
 

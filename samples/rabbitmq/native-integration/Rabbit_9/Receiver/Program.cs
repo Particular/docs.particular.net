@@ -5,9 +5,12 @@ var builder = Host.CreateApplicationBuilder(args);
 
 #region ConfigureRabbitQueueName
 var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
-var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-transport.UseConventionalRoutingTopology(QueueType.Quorum);
-transport.ConnectionString("host=localhost");
+
+var transport = new RabbitMQTransport(
+    routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+    connectionString: "host=localhost");
+
+endpointConfiguration.UseTransport(transport);
 #endregion
 
 endpointConfiguration.UseSerialization<XmlSerializer>();
