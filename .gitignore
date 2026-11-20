@@ -111,3 +111,5 @@ src/scaffolding.config
 PromotedSqlScripts/
 /samples/servicecontrol/adapter-mixed-transports/SCTransportAdapter_2/.audit-db
 *.audit-db/
+
+.vscode/
