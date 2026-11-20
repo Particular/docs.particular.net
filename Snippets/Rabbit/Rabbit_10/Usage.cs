@@ -22,9 +22,11 @@ class Usage
     {
         #region rabbitmq-config-connectionstring-in-code
 
+        var connectionString = Environment.GetEnvironmentVariable("RabbitMQConnectionString");
+
         var transport = new RabbitMQTransport(
             routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
-            connectionString: "My custom connection string");
+            connectionString: connectionString);
 
         endpointConfiguration.UseTransport(transport);
 
