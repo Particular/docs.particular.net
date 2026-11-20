@@ -1,7 +1,7 @@
 ---
 title: Accessing the ServiceControl database
 summary: How to get direct access to the database used by ServiceControl Error and Audit instances
-reviewed: 2026-04-20
+reviewed: 2026-11-20
 component: ServiceControl
 redirects:
   - servicecontrol/ravendb/accessing-database
@@ -54,6 +54,34 @@ To enable maintenance mode:
 5. Click **Stop Maintenance Mode** to resume normal operation.
 
 ![Running in Maintenance Mode](/servicecontrol/maintenance-mode.gif)
+
+#### Scripted maintenance mode
+
+To enter maintenance mode from a script, for example to automate backups, compaction, or operations across multiple instances, set the maintenance mode setting in the instance's app config file and restart the Windows service. ServiceControl Management uses the same mechanism.
+
+| Instance type | App config key | Configuration file |
+| --- | --- | --- |
+| Error instance | [`ServiceControl/MaintenanceMode`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolmaintenancemode) | `ServiceControl.exe.config` |
+| Audit instance | [`ServiceControl.Audit/MaintenanceMode`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditmaintenancemode) | `ServiceControl.Audit.exe.config` |
+
+The configuration file is in the instance installation folder, next to the executable.
+
+> [!NOTE]
+> Use the app config key for instances running as a Windows service. An environment variable set in a PowerShell session applies only to processes started from that session, not to a service started by the Windows Service Control Manager.
+
+The following PowerShell function stops the service, adds or removes the setting, and starts the service again. Run it from an elevated PowerShell session, because it modifies files in the installation folder and controls Windows services.
+
+snippet: ps-maintenance-mode-function
+
+Enter and exit maintenance mode for an error instance:
+
+snippet: ps-maintenance-mode-error
+
+Enter and exit maintenance mode for an audit instance:
+
+snippet: ps-maintenance-mode-audit
+
+The service name is the instance name, which is listed by `Get-Service -Name 'Particular.*'`. While in maintenance mode, the instance API is unavailable and no messages are ingested, but the database remains accessible on the database maintenance port. Always exit maintenance mode when the maintenance is complete; otherwise, the instance does not resume message ingestion, even after a restart.
 
 ## Container deployment
 
