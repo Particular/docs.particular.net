@@ -1,0 +1,19 @@
+name: Redirects
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+defaults:
+  run:
+    shell: bash
+jobs:
+  moved-pages:
+    name: Moved pages have redirects
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'no-redirect-needed') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Validate redirects
+        run: tools/validate-redirects.sh "origin/${{ github.base_ref }}" HEAD
