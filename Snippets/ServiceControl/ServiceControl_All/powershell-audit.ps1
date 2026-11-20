@@ -12,7 +12,7 @@ Remove-ServiceControlRemote `
 
 # startcode ps-remove-audit-instance
 Remove-AuditInstance `
-  -Name Test.ServiceControl.Audit
+  -Name Test.ServiceControl.Audit `
   -RemoveDB -RemoveLogs
 # endcode
 
