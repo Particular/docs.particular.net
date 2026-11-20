@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using PowerShell
 summary: A guide to setting up and deploying ServiceControl Error instances using PowerShell. Prerequisites, installation and deployment
-reviewed: 2026-10-07
+reviewed: 2026-06-01
 component: ServiceControl
 redirects:
 - servicecontrol/powershell
@@ -48,7 +48,7 @@ snippet: ps-get-error-instances
 
 ### Removing an instance
 
-Use the `Remove-ServiceControlInstance` cmdlet to remove the instance and delete the database and logs:
+Use the `Remove-ServiceControlInstance` cmdlet to remove the instance. Use `-RemoveDB` to also delete the local RavenDB database files or local file-system message body files, and `-RemoveLogs` to delete the logs directory. A SQL Server or PostgreSQL database, Azure Blob Storage, and Amazon S3 data are not removed and must be cleaned up manually if no longer needed.
 
 snippet: ps-remove-error-instance
 

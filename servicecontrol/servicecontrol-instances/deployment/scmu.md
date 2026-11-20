@@ -1,7 +1,7 @@
 ---
 title: Deploying Error instances using ServiceControl Management
 summary: A guide to using ServiceControl Management Utility to set up ServiceControl instances. Information about installing and upgrading ServiceControl instances.
-reviewed: 2026-09-02
+reviewed: 2026-06-01
 component: ServiceControl
 related:
  - servicecontrol/servicecontrol-instances/hardware
@@ -107,7 +107,7 @@ See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [I
 
 ### Remove ServiceControl instances
 
-To remove a ServiceControl instance, click the Advanced Options button and select Remove. If applicable, select the option to remove the database and logs directories. This will stop the running instance (if it is running) and remove all files related to the instance from the local file system.
+To remove a ServiceControl instance, click the Advanced Options button and select Remove. This stops the running instance (if it is running) and removes the instance files from the local file system. Optionally select the data removal option, which is _Remove database files and data_ for RavenDB or _Remove message body files_ for SQL Server and PostgreSQL, and the option to remove the logs. The data removal option deletes only data stored locally. It does not delete a SQL Server or PostgreSQL database, Azure Blob Storage, or Amazon S3 data.
 
 #### Remaining artifacts
 
@@ -121,7 +121,7 @@ Even after a ServiceControl instance has been removed, there are artifacts left 
 * _audit log queue name_ if audit log forwarding was configured - messages that have been ingested from the audit queue, processed by this ServiceControl instance, and then forwarded to the audit log queue.
 * _error log queue name_ if error log forwarding was configured - messages that have been ingested from the error queue, processed by this ServiceControl instance, and then forwarded to the error log queue.
 
-If the option to delete the database/log folders was not selected when removing the instance, then these folders and their contents are left on disk.
+Local database and message body files are left on disk unless the data removal option is selected. Log folders are left on disk unless the logs removal option is selected. SQL Server and PostgreSQL databases and cloud storage objects are never removed by the instance removal and must be cleaned up manually if no longer needed. Do not drop a database that other instances or applications share.
 
 > [!NOTE]
 > If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.

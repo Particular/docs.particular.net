@@ -68,7 +68,7 @@ See the [Error instance settings reference](/servicecontrol/servicecontrol-insta
 
 ## Audit instance configuration
 
-Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module do not configure it for Audit instances; add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module both configure it for Audit instances. For manual or container deployments, add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
 
 include: sc-audit-storagetype
 
