@@ -16,8 +16,8 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | audit-add              | New-ServiceControlAuditInstance               |
 | audit-delete           | Remove-ServiceControlAuditInstance            |
 | audit-instances        | Get-ServiceControlAuditInstances              |
-| audit-maintenance-start | Start-ServiceControlAuditMaintenanceMode     |
-| audit-maintenance-stop | Stop-ServiceControlAuditMaintenanceMode       |
+| audit-startmaintenance | Start-ServiceControlAuditMaintenance          |
+| audit-stopmaintenance  | Stop-ServiceControlAuditMaintenance           |
 | audit-upgrade          | Invoke-ServiceControlAuditInstanceUpgrade     |
 
 include: powershell-remote-cmdlets-and-aliases
@@ -61,11 +61,11 @@ snippet: ps-remove-audit-instance
 
 ### Maintenance mode
 
-Use the `Start-ServiceControlAuditMaintenanceMode` cmdlet to stop ingestion while keeping the database available. The cmdlet stops the Windows service, enables [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) in the configuration file, and starts the service again:
+Use the `Start-ServiceControlAuditMaintenance` cmdlet to stop ingestion while keeping the database available. The cmdlet stops the Windows service, enables [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) in the configuration file, and starts the service again:
 
 snippet: ps-start-audit-maintenance-mode
 
-Use the `Stop-ServiceControlAuditMaintenanceMode` cmdlet to stop the service and clear maintenance mode. The service stays stopped until it is started normally, for example with `Start-Service`. Maintenance mode stays enabled until this cmdlet runs:
+Use the `Stop-ServiceControlAuditMaintenance` cmdlet to stop the service and clear maintenance mode. The service stays stopped until it is started normally, for example with `Start-Service`. Maintenance mode stays enabled until this cmdlet runs:
 
 snippet: ps-stop-audit-maintenance-mode
 

@@ -69,7 +69,7 @@ snippet: ps-stop-error-maintenance-mode
 
 snippet: ps-stop-audit-maintenance-mode
 
-The `-Name` value is the Windows service name of the instance. The commands have the aliases `sc-maintenance-start`, `sc-maintenance-stop`, `audit-maintenance-start`, and `audit-maintenance-stop`.
+The `-Name` value is the Windows service name of the instance. The commands have the aliases `sc-startmaintenance`, `sc-stopmaintenance`, `audit-startmaintenance`, and `audit-stopmaintenance`.
 
 ## Container deployment
 

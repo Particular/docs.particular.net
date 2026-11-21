@@ -40,9 +40,9 @@ Get-ServiceControlAuditInstances | Select Name, Version
 # endcode
 
 # startcode ps-start-audit-maintenance-mode
-Start-ServiceControlAuditMaintenanceMode -Name Test.ServiceControl.Audit
+Start-ServiceControlAuditMaintenance -Name Test.ServiceControl.Audit
 # endcode
 
 # startcode ps-stop-audit-maintenance-mode
-Stop-ServiceControlAuditMaintenanceMode -Name Test.ServiceControl.Audit
+Stop-ServiceControlAuditMaintenance -Name Test.ServiceControl.Audit
 # endcode
