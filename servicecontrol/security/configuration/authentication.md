@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Authentication Configuration
 summary: How to enable and configure authentication for ServiceControl
-reviewed: 2026-05-27
+reviewed: 2026-10-27
 component: ServiceControl
 related:
 - servicecontrol/security/hosting-guide
@@ -20,7 +20,7 @@ Authentication verifies the identity of the caller. To additionally restrict wha
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Forward Header](forward-headers.md) and [TLS](tls.md) configuration settings in a scenario based format.
 
-- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#authentication)
+- [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#authentication)
 - [Audit Instance](/servicecontrol/audit-instances/configuration.md#authentication)
 - [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#authentication)
 
@@ -48,7 +48,7 @@ Step-by-step instructions on configuring some specific identity providers are pr
 
 ### Configuration examples
 
-The following examples show complete authentication configurations for some common identity providers using the primary ServiceControl instance.
+The following examples show complete authentication configurations for some common identity providers using the ServiceControl Error instance.
 
 #### Microsoft Entra ID
 
@@ -163,7 +163,7 @@ JWT tokens are time-sensitive. If server clocks are not synchronized:
 
 When using scatter-gather with authentication enabled:
 
-- All instances (Primary, Audit, Monitoring) must use the **same** Authority and Audience
+- All instances (Error, Audit, and Monitoring) must use the **same** Authority and Audience
 - Client tokens must be valid for all instances
 - There is no service-to-service authentication mechanism; client tokens are forwarded directly
 
@@ -173,12 +173,13 @@ The following endpoints remain accessible without authentication to support API 
 
 | Endpoint | Method | Instance | Purpose |
 |---|---|---|---|
-| `/api` | GET | Primary, Audit | API root/discovery - returns available endpoints |
-| `/api/instance-info` | GET | Primary, Audit | Returns instance configuration information |
-| `/api/configuration` | GET | Primary, Audit | Returns instance configuration information (alias) |
-| `/api/configuration/remotes` | GET | Primary | Returns remote instance configurations |
-| `/api/authentication/configuration` | GET | Primary | Returns authentication configuration for clients like ServicePulse |
+| `/api` | GET | Error, Audit | API root/discovery - returns available endpoints |
+| `/api/instance-info` | GET | Error, Audit | Returns instance configuration information |
+| `/api/configuration` | GET | Error, Audit | Returns instance configuration information (alias) |
+| `/api/configuration/remotes` | GET | Error | Returns remote instance configurations |
+| `/api/authentication/configuration` | GET | Error | Returns authentication configuration for clients like ServicePulse |
 | `/` | GET | Monitoring | API root/discovery - returns instance information |
 | `/` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints/{endpoint}/audit-count` | GET | Audit | Service-to-service request |
+| `/api/environment` | GET | Audit | Service-to-service request, from ServiceControl 7 only |

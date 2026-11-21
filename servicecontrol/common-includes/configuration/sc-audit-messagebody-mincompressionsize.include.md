@@ -1,0 +1,15 @@
+### ServiceControl.Audit/MessageBody/MinCompressionSize
+
+_Added in version 7.0.0_
+
+The minimum message body size, in bytes, at which external message bodies are compressed.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_MESSAGEBODY_MINCOMPRESSIONSIZE` |
+| **App config key** | `ServiceControl.Audit/MessageBody/MinCompressionSize` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `4096` (4 KB) |

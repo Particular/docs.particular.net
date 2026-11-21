@@ -39,10 +39,10 @@ The roles are cumulative: `admin` is the highest level and can do everything `wr
 1. Upgrade to ServiceControl 6.18.0 or later and ServicePulse 2.9.0 or later.
 2. Enable [authentication](authentication.md) if it is not already enabled. An instance configured with authorization enabled and authentication disabled refuses to start.
 3. In the identity provider, create roles named `reader`, `admin`, and `writer`, and assign them to users. Ensure the roles are included in the access token. See [reading roles from the token](#reading-roles-from-the-token) for where different providers place them.
-4. On **every** ServiceControl instance (Primary, Audit, and Monitoring), set the following configuration keys. Each instance type uses its own configuration prefix:
+4. On **every** ServiceControl instance (Error, Audit, and Monitoring), set the following configuration keys. Each instance type uses its own configuration prefix:
 
     ```xml
-    <!-- Primary instance -->
+    <!-- Error instance -->
     <add key="ServiceControl/Authentication.RoleBasedAuthorizationEnabled" value="true" />
     <add key="ServiceControl/Authentication.RolesClaim" value="roles" />
 
@@ -60,12 +60,12 @@ The roles are cumulative: `admin` is the highest level and can do everything `wr
 5. If the identity provider does not emit the `sub` and `preferred_username` claims, set [`Authentication.SubjectIdClaim`](/servicecontrol/servicecontrol-instances/configuration.md#authentication-servicecontrolauthentication-subjectidclaim) and [`Authentication.SubjectNameClaim`](/servicecontrol/servicecontrol-instances/configuration.md#authentication-servicecontrolauthentication-subjectnameclaim) to claims it does emit. Once authorization is enabled, requests missing either claim are rejected, because both are needed to identify the caller in the [authorization audit log](#authorization-audit-log-audit-identity-claims).
 6. Restart all ServiceControl instances.
 
-Each instance authorizes its own requests, so all instances must have authorization enabled. For the app config keys and environment variables of every instance type, see [Primary](/servicecontrol/servicecontrol-instances/configuration.md#authentication), [Audit](/servicecontrol/audit-instances/configuration.md#authentication), and [Monitoring](/servicecontrol/monitoring-instances/configuration.md#authentication) configuration. 
+Each instance authorizes its own requests, so all instances must have authorization enabled. For the app config keys and environment variables of every instance type, see [Error](/servicecontrol/servicecontrol-instances/configuration.md#authentication), [Audit](/servicecontrol/audit-instances/configuration.md#authentication), and [Monitoring](/servicecontrol/monitoring-instances/configuration.md#authentication) configuration. 
 
 For a container deployment that enables authentication and authorization together against Keycloak, see the [audit-log-over-OTLP sample](/samples/servicecontrol/audit-log-otlp/).
 
 > [!WARNING]
-> Enable authorization consistently across all instances. If one instance is left with `RoleBasedAuthorizationEnabled` set to `false` while the others have it enabled, that instance grants every authenticated user full access to its endpoints, and ServicePulse will show those actions as available. Apply the same setting to Primary, Audit, and Monitoring.
+> Enable authorization consistently across all instances. If one instance is left with `RoleBasedAuthorizationEnabled` set to `false` while the others have it enabled, that instance grants every authenticated user full access to its endpoints, and ServicePulse will show those actions as available. Apply the same setting to Error, Audit, and Monitoring instances.
 
 ## Reading roles from the token
 

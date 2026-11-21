@@ -3,9 +3,6 @@ title: ServiceControl Audit instances deployment options
 reviewed: 2026-03-30
 component: ServiceControl
 ---
-partial: prereqs
-
-## Deployment options
 
 ServiceControl Audit instances can be deployed in multiple ways.
 

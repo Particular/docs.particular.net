@@ -1,7 +1,7 @@
 ---
 title: Deploying Error instances using ServiceControl Management
 summary: A guide to using ServiceControl Management Utility to set up ServiceControl instances. Information about installing and upgrading ServiceControl instances.
-reviewed: 2026-09-02
+reviewed: 2026-06-01
 component: ServiceControl
 related:
  - servicecontrol/servicecontrol-instances/hardware
@@ -13,10 +13,6 @@ redirects:
 include: portable-application-note
 
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
-
-#if-version [,5)
-After installation, there is no ServiceControl instance running yet. Instances can be installed, upgraded, and removed using the ServiceControl Management Utility. This utility is launched as the final step in the installation process and is also available via the Windows start menu.
-#end-if
 
 ## Planning
 
@@ -55,6 +51,8 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
    8. [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) can be confirmed as on or off.
+
+From ServiceControl 7, error and audit instances also have a required **STORAGE TYPE** setting, which has no default. `RavenDB` stores data in an embedded database on the server. `SQL Server` and `PostgreSQL` need a **DATABASE CONNECTION STRING** to an existing database, and ServiceControl Management configures these instances to store message bodies on the file system, in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, Azure Blob Storage, or Amazon S3, change the message body settings in the instance's configuration file; see the [error instance](/servicecontrol/servicecontrol-instances/configuration.md#storage) and [audit instance](/servicecontrol/audit-instances/configuration.md#storage) storage settings. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
 
 A monitoring instance differs from error and audit instances in its configuration:
 
@@ -109,7 +107,7 @@ See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [I
 
 ### Remove ServiceControl instances
 
-To remove a ServiceControl instance, click the Advanced Options button and select Remove. If applicable, select the option to remove the database and logs directories. This will stop the running instance (if it is running) and remove all files related to the instance from the local file system.
+To remove a ServiceControl instance, click the Advanced Options button and select Remove. This stops the running instance (if it is running) and removes the instance files from the local file system. Optionally select the data removal option, which is _Remove database files and data_ for RavenDB or _Remove message body files_ for SQL Server and PostgreSQL, and the option to remove the logs. The data removal option deletes only data stored locally. It does not delete a SQL Server or PostgreSQL database, Azure Blob Storage, or Amazon S3 data.
 
 #### Remaining artifacts
 
@@ -123,18 +121,7 @@ Even after a ServiceControl instance has been removed, there are artifacts left 
 * _audit log queue name_ if audit log forwarding was configured - messages that have been ingested from the audit queue, processed by this ServiceControl instance, and then forwarded to the audit log queue.
 * _error log queue name_ if error log forwarding was configured - messages that have been ingested from the error queue, processed by this ServiceControl instance, and then forwarded to the error log queue.
 
-If the option to delete the database/log folders was not selected when removing the instance, then these folders and their contents are left on disk.
+Local database and message body files are left on disk unless the data removal option is selected. Log folders are left on disk unless the logs removal option is selected. SQL Server and PostgreSQL databases and cloud storage objects are never removed by the instance removal and must be cleaned up manually if no longer needed. Do not drop a database that other instances or applications share.
 
 > [!NOTE]
 > If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
-
-#if-version [,5)
-
-### Uninstall the ServiceControl Management Utility
-
-To uninstall the ServiceControl Management Utility, use the `Apps & features` settings in Windows.
-
-> [!NOTE]
-> Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
-
-#end-if

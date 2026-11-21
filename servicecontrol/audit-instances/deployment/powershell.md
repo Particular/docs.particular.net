@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Audit instances using PowerShell
-reviewed: 2026-10-07
+reviewed: 2026-06-01
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/installation-powershell
@@ -28,7 +28,13 @@ include: powershell-help
 
 Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet:
 
-snippet: ps-new-audit-instance
+The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required; leave it out for earlier versions.
+
+snippet: ps-new-audit-instance-ravendb
+
+From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. The instance stores message bodies on the file system, in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, Azure Blob Storage, or Amazon S3, change the [message body settings](/servicecontrol/audit-instances/configuration.md#storage) in the instance's configuration file. See [external message body storage](/servicecontrol/storage/external-body/). The following example uses the same database as the Error instance; the Audit instance's tables go in the `sc_audit` schema by default.
+
+snippet: ps-new-audit-instance-sqlserver
 
 include: powershell-new-configuration
 
@@ -53,7 +59,7 @@ Before removing a ServiceControl Audit instance, it should be removed from the S
 
 snippet: ps-remove-audit-remote
 
-Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance and delete the database and logs:
+Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance. Use `-RemoveDB` to also delete the local RavenDB database files or local file-system message body files, and `-RemoveLogs` to delete the logs directory. A SQL Server or PostgreSQL database, Azure Blob Storage, and Amazon S3 data are not removed and must be cleaned up manually if no longer needed.
 
 snippet: ps-remove-audit-instance
 

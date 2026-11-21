@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using PowerShell
 summary: A guide to setting up and deploying ServiceControl Error instances using PowerShell. Prerequisites, installation and deployment
-reviewed: 2026-10-07
+reviewed: 2026-06-01
 component: ServiceControl
 redirects:
 - servicecontrol/powershell
@@ -28,7 +28,13 @@ include: powershell-help
 
 Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance:
 
-snippet: ps-new-error-instance
+The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required; leave it out for earlier versions.
+
+snippet: ps-new-error-instance-ravendb
+
+From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. The instance stores message bodies on the file system, in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, Azure Blob Storage, or Amazon S3, change the [message body settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) in the instance's configuration file. See [external message body storage](/servicecontrol/storage/external-body/).
+
+snippet: ps-new-error-instance-sqlserver
 
 include: powershell-new-configuration
 
@@ -42,7 +48,7 @@ snippet: ps-get-error-instances
 
 ### Removing an instance
 
-Use the `Remove-ServiceControlInstance` cmdlet to remove the instance and delete the database and logs:
+Use the `Remove-ServiceControlInstance` cmdlet to remove the instance. Use `-RemoveDB` to also delete the local RavenDB database files or local file-system message body files, and `-RemoveLogs` to delete the logs directory. A SQL Server or PostgreSQL database, Azure Blob Storage, and Amazon S3 data are not removed and must be cleaned up manually if no longer needed.
 
 snippet: ps-remove-error-instance
 

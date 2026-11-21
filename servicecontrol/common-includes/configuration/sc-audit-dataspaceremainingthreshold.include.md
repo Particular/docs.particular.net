@@ -5,3 +5,5 @@ The percentage threshold for the [Message database storage space](/servicecontro
 | Type | Default value |
 | --- | --- |
 | int | `20` |
+
+This setting applies only to RavenDB storage.

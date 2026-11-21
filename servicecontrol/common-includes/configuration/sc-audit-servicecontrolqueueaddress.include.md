@@ -1,6 +1,6 @@
 ### ServiceControl.Audit/ServiceControlQueueAddress
 
-The ServiceControl primary instance queue name to use to send plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc ).
+The ServiceControl Error instance queue name to use to send plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc ).
 
 | Context | Name |
 | --- | --- |

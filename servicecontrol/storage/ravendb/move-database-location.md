@@ -7,7 +7,7 @@ redirects:
 ---
 
 
-Move the database to another disk if the disk that isn't following the [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations-storage-recommendations).
+Move the database to another disk if the disk that isn't following the [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#embedded-ravendb-storage-recommendations).
 
 To move the database to another location:
 

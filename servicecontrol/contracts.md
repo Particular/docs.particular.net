@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2026-06-19
+reviewed: 2026-10-27
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -30,7 +30,22 @@ Once a message arrives in the error queue, ServiceControl will publish a `Messag
  * The endpoint that received the message
  * The cause of the failure (i.e. the exception type and message)
  * The original message headers
- * The original message body (only if it is non-binary, smaller than 85 KB and full-text body indexing is enabled)
+ * The original message body, in some cases (see below)
+
+Whether the event includes the body depends on the storage the Error instance uses and on the body itself:
+
+| Storage | Message body | Included in the event |
+| --- | --- | --- |
+| RavenDB | Text, smaller than 85 KB, with full-text body indexing enabled | The full body |
+| RavenDB | Any other body | No body |
+| SQL Server or PostgreSQL | Text, up to [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmaxbodysizetostore) bytes | The full body |
+| SQL Server or PostgreSQL | Text, larger than `MaxBodySizeToStore` bytes | The start of the body, truncated to at most `MaxBodySizeToStore` bytes |
+| SQL Server or PostgreSQL | Not text, such as binary or compressed bodies | No body |
+
+See [which bodies count as text](/servicecontrol/storage/external-body/#inline-storage-and-compression) for SQL Server and PostgreSQL storage.
+
+> [!NOTE]
+> Handlers must allow for a missing or truncated body. The event does not indicate whether the body was truncated, and a truncated JSON or XML body is not valid and cannot be deserialized.
 
 ### Subscribe
 
@@ -72,9 +87,6 @@ See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.m
 
 ## Other events
 
-> [!NOTE]
-> Events described in this section are published by ServiceControl starting with version 4.17.
-
 ServiceControl will also publish events related to archiving and retrying messages:
 - `FailedMessagesArchived`: Event emitted for failed messages that were archived, indicating they won’t be retried
 - `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived (restored from the archive), making them eligible for retry or further action
@@ -98,6 +110,6 @@ An event will also be published and displayed in the ServicePulse dashboard with
 
 To avoid this situation, it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this, [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe from all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
 
-## Disabling integration 
+## Enabling publishing
 
-In systems that have significant load and don't have any subscribers for ServiceControl events, it can be beneficial to disable publishing the events to prevent unneeded traffic to the broker. This can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing) on the ServiceControl configuration.
+In ServiceControl version 7 and later, publishing is disabled by default. To publish events, set [`EnableExternalIntegrationsPublishing` to `true`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableexternalintegrationspublishing). Leave publishing disabled in systems that have no subscribers for ServiceControl events, to avoid unneeded traffic to the broker.

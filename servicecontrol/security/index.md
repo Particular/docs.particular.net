@@ -44,7 +44,7 @@ Securing the platform requires changes in three places: the identity provider, S
 
 **Identity provider**: Both ServiceControl and ServicePulse need an app registration. The ServiceControl registration represents the API being protected. The ServicePulse registration is what users sign into, and it needs permission to call the ServiceControl API on their behalf.
 
-**ServiceControl**: HTTPS must be enabled so tokens are never sent over a plain HTTP connection. Authentication settings tell ServiceControl which identity provider to trust, what audience to expect in tokens, and how ServicePulse should initiate the sign-in flow. All instances (Primary, Audit, and Monitoring) need authentication configured with the same values.
+**ServiceControl**: HTTPS must be enabled so tokens are never sent over a plain HTTP connection. Authentication settings tell ServiceControl which identity provider to trust, what audience to expect in tokens, and how ServicePulse should initiate the sign-in flow. All instances (Error, Audit, and Monitoring) need authentication configured with the same values.
 
 **ServicePulse**: HTTPS must be enabled here too, since ServicePulse is where users interact and where tokens are held in the browser session. ServicePulse does not have its own authentication configuration; it reads those settings from ServiceControl automatically.
 
@@ -65,7 +65,7 @@ See [TLS configuration](configuration/tls.md) for certificate options and config
 
 ## Step 3: Configure authentication settings on ServiceControl
 
-Add authentication settings to all ServiceControl instances (Primary, Audit, and Monitoring). All instances must use the same authority and audience.
+Add authentication settings to all ServiceControl instances (Error, Audit, and Monitoring). All instances must use the same authority and audience.
 
 The ServicePulse-specific settings (`ServicePulse.ClientId`, `ServicePulse.Authority`, `ServicePulse.ApiScopes`) are only required on the **primary** instance.
 

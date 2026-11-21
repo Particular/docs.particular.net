@@ -101,7 +101,7 @@ The following table summarizes how Entra ID values map to ServiceControl setting
 See [Authentication Configuration](configuration/authentication.md) for all settings and configuration examples, including App.config and environment variable formats.
 
 > [!NOTE]
-> All ServiceControl instances (Primary, Audit, and Monitoring) must be configured with the same authority and audience values. ServicePulse settings are only required on the Primary instance.
+> All ServiceControl instances (Error, Audit, and Monitoring) must be configured with the same authority and audience values. ServicePulse settings are only required on the primary Error instance that ServicePulse connects to.
 
 ## Verify the configuration
 

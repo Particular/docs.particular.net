@@ -1,6 +1,6 @@
 ### ServiceControl/MinimumStorageLeftRequiredForIngestion
 
-This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
+The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold, the check fails and message ingestion stops to prevent data loss. Message ingestion resumes when more disk space is available.
 
 | Context | Name |
 | --- | --- |
@@ -10,4 +10,4 @@ This setting was introduced in version 4.28. The percentage threshold for the [C
 
 | Type | Default value |
 | --- | --- |
-| int | 5 (percent) |
+| int | `5` (percent) |

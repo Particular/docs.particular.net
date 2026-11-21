@@ -7,6 +7,7 @@ services:
     ports:
       - "33333:33333"
     environment:
+      STORAGETYPE: RavenDB
       RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
       REMOTEINSTANCES: '[{"api_uri":"http://servicecontrol-audit:44444/api"}]'
       ALLOWMESSAGEEDITING: true
@@ -31,6 +32,7 @@ services:
     ports:
       - "44444:44444"
     environment:
+      STORAGETYPE: RavenDB
       RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
       SERVICEBUS_AUDITQUEUE: audit
     command: --setup-and-run

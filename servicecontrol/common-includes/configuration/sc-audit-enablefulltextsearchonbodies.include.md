@@ -4,6 +4,8 @@ _Added in 4.17.0_
 
 Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
 
+SQL Server and PostgreSQL storage always index message bodies for full-text search, regardless of this setting.
+
 | Context | Name |
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_ENABLEFULLTEXTSEARCHONBODIES` |

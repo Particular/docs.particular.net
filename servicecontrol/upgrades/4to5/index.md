@@ -20,7 +20,7 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
   * See [Migrating Azure Service Bus](#migrating-azure-service-bus)
 * `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 * The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
-* The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/configuration.md#embedded-database-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
+* The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/configuration.md#embedded-database-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
 * Starting with version 5, the embedded RavenDB database is accessible only via `localhost`. In version 4.33.0 and earlier, the embedded RavenDB instance could be accessed using the configured `ServiceControl/HostName` or `ServiceControl.Audit/HostName` settings. Custom hostname access is no longer supported in version 5 and later.
 
 ## New data format
@@ -29,7 +29,7 @@ Version 4.26 of ServiceControl introduced a [new persistence format](/servicecon
 
 As a result, not all ServiceControl instances can be automatically upgraded from Version 4 to Version 5, including the data. An automatic upgrade process is available for:
 
-* Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](#upgrading-to-version-5) describes how to migrate the data.
+* Error instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](#upgrading-to-version-5) describes how to migrate the data.
 * Audit instances that use `RavenDB 5` storage engine (instances created with version 4.26 or later).
 * All Monitoring instances.
 
@@ -99,7 +99,7 @@ Follow this procedure to upgrade using the ServiceControl Management Utility:
     * Under **Force Upgrade to Version 5**, click the **Upgrade Instance** button and follow the prompts.
     * _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
 3. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
-4. Restart the primary instance for the configuration change to take effect.
+4. Restart the Error instance for the configuration change to take effect.
 5. Upgrade any Audit instances that do not use RavenDB 3.5 persistence to ServiceControl 5.
 6. Upgrade any Monitoring instances to ServiceControl 5.
 7. Remove the old database for the Error instance:
@@ -125,13 +125,13 @@ After completing the , follow this procedure to upgrade using PowerShell 7.2 or 
     ```
 3. Perform a **Forced upgrade** for the version 4 ServiceControl instance. _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
     ```ps1
-    # List existing error/primary instances
+    # List existing Error instances
     Get-ServiceControlInstances | Select Name, Version
     # For each instance
     Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
     ```
 4. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
-5. Restart the primary instance for the configuration change to take effect.
+5. Restart the Error instance for the configuration change to take effect.
 6. Upgrade any Audit instances that do not use RavenDB 3.5 persistence to ServiceControl 5.
     ```ps1
     # List existing audit instances:

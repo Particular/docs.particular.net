@@ -47,9 +47,6 @@ Configure the old audit instance so that it will no longer ingest new messages f
 4. In the `appSettings` section, add a setting key for `ServiceControl/IngestAuditMessages` with a value of `false`.
 5. In ServiceControl Management, stop and restart the Audit instance for the changes to take effect.
 
-> [!NOTE]
-> For versions 4.32.0 of ServiceControl and older, use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
-
 ## Decommission the old audit instance
 
 When the audit retention period has expired, and there are no remaining processed messages in the database, you can decommission the old audit instance.
