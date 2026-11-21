@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-cvvh-rhrc-wg4q"
 summary: "Microsoft Security Advisory CVE-2026-47302 – .NET Denial of Service Vulnerability."
 reviewed: "2026-07-29"
+redirects:
+ - security-advisories/ghsa-cvvh-rhrc-wg4q
 ---
 
 This advisory discloses a security vulnerability.

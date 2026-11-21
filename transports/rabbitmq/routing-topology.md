@@ -1,7 +1,7 @@
 ---
 title: Routing topology
 summary: Learn about the routing topology options in RabbitMQ and how they impact NServiceBus systems
-reviewed: 2026-11-17
+reviewed: 2026-11-19
 component: Rabbit
 versions: '[2,]'
 related:
@@ -103,4 +103,4 @@ If the built-in routing topologies do not satisfy the requirements of the system
 
 snippet: rabbitmq-config-useroutingtopologyDelegate
 
-The boolean argument supplied to the factory delegate indicates whether the custom routing topology should create durable exchanges and queues on the broker. Read more about durable exchanges and queues in the [AMQP Concepts Guide](https://www.rabbitmq.com/tutorials/amqp-concepts.html).
+The boolean argument passed to the custom routing topology's constructor indicates whether it should create durable exchanges and queues on the broker. Read more about durable exchanges and queues in the [AMQP Concepts Guide](https://www.rabbitmq.com/tutorials/amqp-concepts.html).

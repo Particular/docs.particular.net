@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-g8r8-53c2-pm3f"
 summary: "Microsoft Security Advisory CVE-2026-47304 – .NET Security Feature Bypass Vulnerability."
 reviewed: "2026-07-29"
+redirects:
+ - security-advisories/ghsa-g8r8-53c2-pm3f
 ---
 
 This advisory discloses a security vulnerability.

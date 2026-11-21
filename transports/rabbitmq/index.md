@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport
 summary: Integrate NServiceBus with RabbitMQ transport for scalable messaging and reliable distributed communication
-reviewed: 2026-09-18
+reviewed: 2026-11-19
 component: Rabbit
 related:
  - samples/rabbitmq/simple

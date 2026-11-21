@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-8q5v-6pqq-x66h"
 summary: "Microsoft Security Advisory CVE-2026-50525 - .NET Denial of Service Vulnerability"
 reviewed: "2026-07-29"
+redirects:
+ - security-advisories/ghsa-8q5v-6pqq-x66h
 ---
 
 This advisory discloses a security vulnerability.

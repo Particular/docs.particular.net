@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Security.Cryptography.X509Certificates;
 using NServiceBus;
 
@@ -8,7 +8,11 @@ class Usage
     {
         #region rabbitmq-config-basic
 
-        endpointConfiguration.UseTransport<RabbitMQTransport>();
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -17,8 +21,13 @@ class Usage
     {
         #region rabbitmq-config-connectionstring-in-code
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionString("My custom connection string");
+        var connectionString = Environment.GetEnvironmentVariable("RabbitMQConnectionString");
+
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: connectionString);
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -27,13 +36,17 @@ class Usage
     {
         #region rabbitmq-config-custom-id-strategy
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.CustomMessageIdStrategy(
-            customIdStrategy: deliveryArgs =>
-            {
-                var headers = deliveryArgs.BasicProperties.Headers;
-                return headers["MyCustomId"].ToString();
-            });
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.MessageIdStrategy = deliveryArgs =>
+        {
+            var headers = deliveryArgs.BasicProperties.Headers;
+            return headers["MyCustomId"].ToString();
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -42,8 +55,11 @@ class Usage
     {
         #region rabbitmq-config-useconventionalroutingtopology
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology(QueueType.Quorum);
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -52,8 +68,11 @@ class Usage
     {
         #region rabbitmq-config-usedirectroutingtopology
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(QueueType.Quorum);
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Direct(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -62,11 +81,14 @@ class Usage
     {
         #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(
-            QueueType.Quorum,
-            routingKeyConvention: MyRoutingKeyConvention,
-            exchangeNameConvention: () => "MyTopic");
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Direct(
+                QueueType.Quorum,
+                routingKeyConvention: MyRoutingKeyConvention,
+                exchangeNameConvention: () => "MyTopic"),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -80,12 +102,11 @@ class Usage
     {
         #region rabbitmq-config-useroutingtopologyDelegate
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseCustomRoutingTopology(
-            topologyFactory: createDurableExchangesAndQueues =>
-            {
-                return new MyRoutingTopology(createDurableExchangesAndQueues);
-            });
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Custom(new MyRoutingTopology(createDurableExchangesAndQueues: true)),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -94,8 +115,13 @@ class Usage
     {
         #region rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker = TimeSpan.FromMinutes(2);
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -104,8 +130,13 @@ class Usage
     {
         #region rabbitmq-config-prefetch-multiplier
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.PrefetchMultiplier(4);
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.PrefetchCountCalculation = maximumConcurrency => maximumConcurrency * 4;
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -114,8 +145,13 @@ class Usage
     {
         #region rabbitmq-config-prefetch-count
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.PrefetchCount(100);
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.PrefetchCountCalculation = _ => 100;
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -124,8 +160,13 @@ class Usage
     {
         #region rabbitmq-client-certificate-file
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate("path", "password");
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.ClientCertificate = new X509Certificate2("path", "password");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -134,8 +175,13 @@ class Usage
     {
         #region rabbitmq-client-certificate
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate(new X509Certificate2());
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.ClientCertificate = new X509Certificate2();
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -144,8 +190,13 @@ class Usage
     {
         #region rabbitmq-disable-remote-certificate-validation
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DisableRemoteCertificateValidation();
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.ValidateRemoteCertificate = false;
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -154,8 +205,13 @@ class Usage
     {
         #region rabbitmq-external-auth-mechanism
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseExternalAuthMechanism();
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.UseExternalAuthMechanism = true;
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -164,8 +220,13 @@ class Usage
     {
         #region rabbitmq-debug-api
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetHeartbeatInterval(TimeSpan.FromMinutes(10));
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.HeartbeatInterval = TimeSpan.FromMinutes(10);
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -174,8 +235,13 @@ class Usage
     {
         #region change-heartbeat-interval
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetHeartbeatInterval(TimeSpan.FromSeconds(30));
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.HeartbeatInterval = TimeSpan.FromSeconds(30);
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -184,8 +250,13 @@ class Usage
     {
         #region change-network-recovery-interval
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetNetworkRecoveryInterval(TimeSpan.FromSeconds(30));
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        transport.NetworkRecoveryInterval = TimeSpan.FromSeconds(30);
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -194,8 +265,11 @@ class Usage
     {
         #region rabbitmq-disable-durable-exchanges
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DisableDurableExchangesAndQueues();
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum, useDurableEntities: false),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -204,7 +278,12 @@ class Usage
     {
         #region rabbitmq-add-cluster-node
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        var transport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Quorum),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq");
+
+        endpointConfiguration.UseTransport(transport);
+
         transport.AddClusterNode("node2", useTls: false);
 
         #endregion
