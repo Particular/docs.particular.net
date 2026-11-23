@@ -31,9 +31,3 @@ snippet: SystemJsonOptions
 ## Trimming and Native AOT
 
 Registering message types with a source-generated `JsonSerializerContext` as the `TypeInfoResolver` of the [serializer options](#usage-customizing-serialization-options) avoids reflection-based metadata and makes the serializer trimming and Native AOT friendly. See [reflection vs source generation](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/reflection-vs-source-generation) for how source generation works in System.Text.Json.
-
-## Compatibility with Newtonsoft.Json
-
-When migrating from Newtonsoft.Json, consult [Migrate from Newtonsoft.Json to System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for the differences in default behavior and supported features.
-
-If needed, both serializers can be used side-by-side during a transition period by using [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers). For this to work, a custom content type needs to be specified as shown above.
