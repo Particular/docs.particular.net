@@ -30,7 +30,7 @@ snippet: SystemJsonOptions
 
 ## Compatibility with Newtonsoft.Json
 
-The System.Text.Json serializer is more limited than Newtonsoft.Json. See [Migrate from Newtonsoft.Json to System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for more details.
+When migrating from Newtonsoft.Json, consult [Migrate from Newtonsoft.Json to System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for the differences in default behavior and supported features.
 
 If needed, both serializers can be used side-by-side during a transition period by using [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers). For this to work, a custom content type needs to be specified as shown above.
 
