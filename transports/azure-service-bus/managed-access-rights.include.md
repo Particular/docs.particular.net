@@ -51,7 +51,7 @@ With this setting, subscribing asserts that the topology exists instead of creat
 - Adds the filter rules of [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), which doesn't require `Manage` rights.
 - Never creates topics or subscriptions.
 
-If a subscription doesn't exist, the endpoint fails to start, also with automatic subscriptions, and the error lists the topics that are missing the subscription. An explicit subscribe call throws instead. Create the missing subscriptions using [operational scripting](/transports/azure-service-bus/operational-scripting.md) before starting the endpoint, because events published before a subscription exists are never delivered to the endpoint.
+If a subscription doesn't exist or its session setting doesn't match the endpoint, the endpoint fails to start, also with automatic subscriptions, and the error names the affected topics. An explicit subscribe call throws instead. Create the missing subscriptions using [operational scripting](/transports/azure-service-bus/operational-scripting.md) before starting the endpoint, because events published before a subscription exists are never delivered to the endpoint.
 
 Without `AssertTopologyExists`, subscribing tries to create each subscription and uses the existing subscription when creating it fails due to missing `Manage` rights. If the subscription doesn't exist, the subscribe operation fails and the transport logs an error. With automatic subscriptions, the endpoint still starts without receiving the events that depend on the missing subscription.
 #end-if
