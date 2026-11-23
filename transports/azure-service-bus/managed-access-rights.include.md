@@ -45,13 +45,13 @@ To subscribe without `Manage` rights, provision the subscription on each topic t
 transport.AssertTopologyExists = true;
 ```
 
-With this setting, subscribing asserts that the topology exists instead of creating it, so [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) stay enabled. The setting applies to endpoints with and without sessions enabled. When subscribing, the transport:
+With this setting, subscribing asserts that the topology exists instead of creating it, so [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) stay enabled. The setting applies to endpoints with and without sessions enabled, and to both the default and the migration topology. When subscribing, the transport:
 
 - Checks that the endpoint's subscription exists on each topic the event is mapped to, and that the subscription requires sessions only when the endpoint has sessions enabled.
 - Adds the filter rules of [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), which doesn't require `Manage` rights.
 - Never creates topics or subscriptions.
 
-If a subscription doesn't exist or its session setting doesn't match the endpoint, the endpoint fails to start, also with automatic subscriptions, and the error names the affected topics. An explicit subscribe call throws instead. Create the missing subscriptions using [operational scripting](/transports/azure-service-bus/operational-scripting.md) before starting the endpoint, because events published before a subscription exists are never delivered to the endpoint.
+If a subscription doesn't exist, its session setting doesn't match the endpoint, or the transport can't check it, the endpoint fails to start, also with automatic subscriptions, and the error names the affected topics. An explicit subscribe call throws instead. Create the missing subscriptions using [operational scripting](/transports/azure-service-bus/operational-scripting.md) before starting the endpoint, because events published before a subscription exists are never delivered to the endpoint.
 
 Without `AssertTopologyExists`, subscribing tries to create each subscription and uses the existing subscription when creating it fails due to missing `Manage` rights. If the subscription doesn't exist, the subscribe operation fails and the transport logs an error. With automatic subscriptions, the endpoint still starts without receiving the events that depend on the missing subscription.
 #end-if
@@ -70,7 +70,7 @@ To stop the events, remove the subscription using [operational scripting](/trans
 #end-if
 #if-version [6.6,)
 
-With `AssertTopologyExists` enabled, unsubscribing never deletes subscriptions, even when the endpoint has `Manage` rights. Unsubscribing deletes only filter rules, and subscriptions stay in place until they're removed using operational scripting.
+With `AssertTopologyExists` enabled, unsubscribing throws an `InvalidOperationException`, because the endpoint doesn't manage the topology. Remove the subscription or its filter rule using operational scripting instead.
 #end-if
 #if-version [6.5,)
 
