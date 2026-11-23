@@ -164,16 +164,16 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.7)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.5)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.8)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.6)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.8)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 
 #### [NServiceBus.Persistence.Sql.TransactionalSession](/nuget/NServiceBus.Persistence.Sql.TransactionalSession)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.7)| **Current** | 2026-01-30     | Active            | Active |
-| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.5)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.8)| **Current** | 2026-01-30     | Active            | Active |
+| [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.6)| Mainstream Support | 2025-12-05     | 2028-01-29        | 2030-01-29 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.8)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
