@@ -1,4 +1,4 @@
-### Native message attributes promotion
+## Native message attributes promotion
 
 When ingesting native messages, e.g., messages sent by a non-NServiceBus sender, the SQS transport will promote all native message SQS attributes to an NServiceBus header.
 

@@ -5,7 +5,7 @@ component: mongodb
 versions: '[2,)'
 related:
  - persistence/mongodb
-reviewed: 2025-05-06
+reviewed: 2026-11-12
 ---
 
 MongoDB provides no out-of-the-box concurrency control. A common pattern for supporting concurrency is using a document version number (`int`) that is used as a filter for update statements:

@@ -12,7 +12,7 @@ The NServiceBus Messaging Bridge supports several key scenarios, including:
 
 ## Migrate to a different transport
 
-Migrating from one transport to another can be a complex task. In-flight messages (i.e. ones that have been sent but not yet processed) must be accounted for at all times. Some common examples of in-flight messages:
+Migrating from one transport (messaging infrastucture) to another can be a complex task. In-flight messages (i.e. ones that have been sent but not yet processed) must be accounted for at all times. Some common examples of in-flight messages:
 
 - Messages in a queue, waiting to be processed by an instance of the logical endpoint
 - Messages in the error queue, waiting to be retried (or picked up by ServiceControl)

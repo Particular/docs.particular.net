@@ -33,11 +33,41 @@ public class RecoverabilityTests
 
         var recoverabilityAction = policy(errorContext);
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(recoverabilityAction, Is.InstanceOf<MoveToError>(), "Should ignore policies and move directly to custom error queue.");
             Assert.That(((MoveToError)recoverabilityAction).ErrorQueue, Is.EqualTo(CustomErrorQueue));
-        });
+        }
+    }
+
+    [Test]
+    public void ShouldDelayRetryWithFixedBackoffForCustomException()
+    {
+        var policy = CreatePolicy(maxDelayedRetries: 3);
+        var errorContext = CreateErrorContext(retryNumber: 1, exception: new MyOtherBusinessException());
+
+        var recoverabilityAction = policy(errorContext);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(recoverabilityAction, Is.InstanceOf<DelayedRetry>(), "Should be delayed retried.");
+            Assert.That(((DelayedRetry)recoverabilityAction).Delay, Is.EqualTo(TimeSpan.FromSeconds(5)));
+        }
+    }
+
+    [Test]
+    public void ShouldMoveToDefaultErrorQueueWhenDelayedRetriesAreExhaustedForCustomException()
+    {
+        var policy = CreatePolicy(maxDelayedRetries: 3, delayedRetryDelay: TimeSpan.FromSeconds(1));
+        var errorContext = CreateErrorContext(retryNumber: 3, exception: new MyOtherBusinessException());
+
+        var recoverabilityAction = policy(errorContext);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(recoverabilityAction, Is.InstanceOf<MoveToError>(), "Should be moved to error queue.");
+            Assert.That(((MoveToError)recoverabilityAction).ErrorQueue, Is.EqualTo(DefaultErrorQueue), "Should be moved to default error queue.");
+        }
     }
 
     [Test]
@@ -48,11 +78,11 @@ public class RecoverabilityTests
 
         var recoverabilityAction = policy(errorContext);
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(recoverabilityAction, Is.InstanceOf<MoveToError>(), "Should be moved to error queue.");
             Assert.That(((MoveToError)recoverabilityAction).ErrorQueue, Is.EqualTo(DefaultErrorQueue), "Should be moved to default error queue.");
-        });
+        }
     }
 
     private const string DefaultErrorQueue = "errorQueue";

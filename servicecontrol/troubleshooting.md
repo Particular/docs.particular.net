@@ -79,7 +79,7 @@ Some transports have access controls built into them. Ensure the instance has su
 
 _ServiceControl 4.x and below only._
 
-If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
+If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](storage/ravendb/configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
 
 ## Service fails to start: EsentDatabaseDirtyShutdownException
 
@@ -87,7 +87,7 @@ _ServiceControl 4.x and below only._
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
- 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
+ 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](storage/ravendb/configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
  1. Run `esentutl /r RVN /l "logs"` to run Recovery (bringing all databases to a clean-shutdown state) and wait for it to finish
  1. Run `esentutl /p Data` to run Repair (Repairs a corrupted or damaged database) and wait for it to finish
  1. Restart ServiceControl
@@ -127,7 +127,7 @@ The internal *FailedMessageRetries* collection must be purged in order to restor
 
 1. Upgrade to the [latest ServiceControl version](https://particular.net/downloads)
 1. Ensure that currently there are no retry operations active
-1. [Access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md)
+1. [Access the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md)
 1. Select the "FailedMessageRetries" collection in the left tree
 2. Delete all documents in the collection
 
@@ -157,7 +157,7 @@ A warning message is seen in the logs when the Indexing lag exceeds the default 
 
 This can be resolved by temporarily stopping message ingestion to let the indexes catch up:
 
-* For Windows instances, launch the ServiceControl instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode), which runs the database but does not ingest new messages.
+* For Windows instances, launch the ServiceControl instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode), which runs the database but does not ingest new messages.
 * For container instances, stop the ServiceControl container temporarily, but keep the connected database container running.
 
 While message ingestion is disabled, the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
@@ -174,7 +174,7 @@ Index issues are usually automatically corrected at start-up time but sometimes 
 
 > Detected RavenDB index errors, please start maintenance mode and resolve the following issues:
 
-Sometimes [indexes get corrupted](#corrupted-indexes). Resolve these errors by [accessing the ServiceControl database](/servicecontrol/ravendb/accessing-database.md) and inspecting the errors directly.
+Sometimes [indexes get corrupted](#corrupted-indexes). Resolve these errors by [accessing the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md) and inspecting the errors directly.
 
 Contact [Particular support](https://particular.net/support) for assistance.
 
@@ -203,7 +203,7 @@ This risk of these error occurring is mitigated by:
 
 To resolve these errors, the affected indexes must be rebuilt:
 
-- [Access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md)
+- [Access the ServiceControl database](/servicecontrol/storage/ravendb/accessing-database.md)
 - In RavenDB Management Studio, navigate to the Indexes view
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/5.4/csharp/indexes/index-administration)
 
@@ -237,7 +237,7 @@ Resolution:
 
 ## Logs contain EsentOutOfLongValueIDsException
 
-If ServiceControl logs contain a `Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)` error similar to the following snippet, its [database must be compacted](db-compaction.md).
+If ServiceControl logs contain a `Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)` error similar to the following snippet, its [database must be compacted](storage/ravendb/compaction.md).
 
 ```txt
 2022-03-25 18:46:50.6564|287|Warn|ServiceControl.Audit.Auditing.AuditIngestionComponent|OnCriticalError. 'Failed to execute recoverability policy for message with native ID: `4f6d43c9-5a78-4232-8daa-6065201edeac`'
@@ -358,7 +358,7 @@ ServiceControl will halt ingestion when low on storage. [Capacity planning](/ser
 
 To mitigate growth or not having enough storage:
 
-1. Mount a new disk that is larger, stop the ServiceControl instance, [move the database](/servicecontrol/configure-ravendb-location.md) to the new disk, adjust the drive letter or update the location in the ServiceControl configuration, and re-start instance
+1. Mount a new disk that is larger, stop the ServiceControl instance, [move the database](/servicecontrol/storage/ravendb/configure-ravendb-location.md) to the new disk, adjust the drive letter or update the location in the ServiceControl configuration, and re-start instance
 
 2. Enlarge the storage partition if the environment supports it:
 
@@ -370,7 +370,7 @@ To mitigate growth or not having enough storage:
    - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod)
    - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontroleventretentionperiod)
    - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod)
-   - [ServiceControl - How to compact database](/servicecontrol/db-compaction.md)
+   - [ServiceControl - How to compact database](/servicecontrol/storage/ravendb/compaction.md)
    - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 
 4. Disable auditing on endpoints that don't require it:
@@ -405,7 +405,7 @@ There is a higher probability that the database engine cannot shut down graceful
 > [!NOTE]
 > Although no data will be lost, an ungraceful shutdown will delay a restart. The database engine will be required to run a lengthy recovery operation, resulting in a lot of storage I/O.
 
-To mitigate this situation, migrate the full-text search indexes from Corax to the Lucene indexing engine. See [RavenDB search engine](/servicecontrol/ravendb/search-engine.md) for the migration procedure.
+To mitigate this situation, migrate the full-text search indexes from Corax to the Lucene indexing engine. See [RavenDB search engine](/servicecontrol/storage/ravendb/search-engine.md) for the migration procedure.
 
 It might be sufficient to migrate only the `MessagesViewIndex` (even though full-text search is enabled), which has the highest load.
 
@@ -423,9 +423,9 @@ Error and audit instances report indexes that still use the Corax search engine 
 > [!NOTE]
 > The same message is logged with a warning severity in the ServiceControl instance logs at every start-up.
 
-Migrating the reported indexes to Lucene is recommended. Corax has shown performance and stability issues on large ServiceControl databases, which get worse as the database grows. Lucene indexes are smaller, use less memory, and perform better for the [ServiceControl workload](/servicecontrol/ravendb/search-engine.md) of continuous message ingestion and deletion combined with occasional queries. Typical symptoms are frequent [stale indexes](#stale-indexes), [high CPU utilization](#high-cpu-utilization), high RAM utilization or [RavenDB dirty memory](#ravendb-dirty-memory) warnings, and [corrupted indexes after a service shutdown](#audit-instances-corrupted-indexes-or-corrupted-database-after-a-service-shutdown). Instances that show these symptoms should be migrated as soon as possible; other instances in the next planned maintenance window.
+Migrating the reported indexes to Lucene is recommended. Corax has shown performance and stability issues on large ServiceControl databases, which get worse as the database grows. Lucene indexes are smaller, use less memory, and perform better for the [ServiceControl workload](/servicecontrol/storage/ravendb/search-engine.md) of continuous message ingestion and deletion combined with occasional queries. Typical symptoms are frequent [stale indexes](#stale-indexes), [high CPU utilization](#high-cpu-utilization), high RAM utilization or [RavenDB dirty memory](#ravendb-dirty-memory) warnings, and [corrupted indexes after a service shutdown](#audit-instances-corrupted-indexes-or-corrupted-database-after-a-service-shutdown). Instances that show these symptoms should be migrated as soon as possible; other instances in the next planned maintenance window.
 
-The migration requires a full index rebuild and should be planned separately for each environment. See [RavenDB search engine](/servicecontrol/ravendb/search-engine.md) for guidance on planning the migration and for the migration procedure.
+The migration requires a full index rebuild and should be planned separately for each environment. See [RavenDB search engine](/servicecontrol/storage/ravendb/search-engine.md) for guidance on planning the migration and for the migration procedure.
 
 ## RavenDB dirty memory
 

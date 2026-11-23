@@ -17,7 +17,7 @@ For a list of supported ServiceControl versions, refer to [supported versions](s
 
 ## End of life
 
-A version that is not supported is end of life. The [supported versions](supported-versions.md) table shows these versions as "Unsupported".
+A version that is not supported has reached end of life. The [supported versions](supported-versions.md) table shows these versions as "Unsupported".
 
 - An end-of-life version gets no patch releases. This includes fixes for bugs and for security vulnerabilities.
 - Fixes are released for supported versions only.

@@ -3,7 +3,7 @@ title: Business Continuity / Disaster Recovery
 summary: Use multiple ServiceControl instances with error and audit log forwarding for business continuity and disaster recovery.
 reviewed: 2026-06-22
 related:
-- servicecontrol/backup-sc-database
+- servicecontrol/storage/ravendb/backup-sc-database
 - servicecontrol/deploying-servicecontrol-in-a-cluster
 ---
 

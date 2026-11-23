@@ -2,7 +2,7 @@
 title: Flow Diagram
 summary: Describes how ServicePulse illustrates the flow of a message and its related messages within the same conversation.
 component: ServicePulse
-reviewed: 2025-05-08
+reviewed: 2026-11-12
 related:
 - servicepulse/message-details
 ---

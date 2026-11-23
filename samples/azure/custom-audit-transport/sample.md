@@ -95,5 +95,5 @@ Once composed, [ServicePulse](/servicepulse/) can be accessed at [http://localho
   - `44444`: Audit API
   - `8080`: Database backend
   - `9090` ServicePulse UI
-- One instance of the [`servicecontrol-ravendb` container](/servicecontrol/ravendb/containers.md) is used for both the [`servicecontrol`](/servicecontrol/servicecontrol-instances/deployment/containers.md) and [`servicecontrol-audit`](/servicecontrol/audit-instances/deployment/containers.md) containers.
+- One instance of the [`servicecontrol-ravendb` container](/servicecontrol/storage/ravendb/containers.md) is used for both the [`servicecontrol`](/servicecontrol/servicecontrol-instances/deployment/containers.md) and [`servicecontrol-audit`](/servicecontrol/audit-instances/deployment/containers.md) containers.
   - _A single database container should not be shared between multiple ServiceControl instances in production scenarios._

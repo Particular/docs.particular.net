@@ -1,6 +1,6 @@
 ---
 title: Running ServicePulse in containers
-reviewed: 2026-06-08
+reviewed: 2026-08-07
 component: ServicePulse
 ---
 
@@ -14,6 +14,8 @@ docker run -d --name servicepulse -p 9090:9090 \
     -e MONITORING_URL="http://servicecontrol-monitoring:33633" \
     particular/servicepulse:latest
 ```
+
+include: platform-container-examples
 
 ## Reverse proxy
 

@@ -2,7 +2,7 @@
 title: Non-Durable Transport
 summary: A transport for exchanging NServiceBus messages in memory in a non-durable fashion
 component: NonDurableTransport
-reviewed: 2026-08-04
+reviewed: 2026-10-19
 related:
  - persistence/non-durable
  - samples/non-durable-transport
@@ -68,6 +68,21 @@ The transport supports the following [Transport Transaction Modes](/transports/t
 - Sends atomic with Receive (Default)
 - Receive Only
 - Unreliable (Transactions Disabled)
+
+### Transaction timeout
+
+Available in version 1.2 and later.
+
+In `SendsAtomicWithReceive` mode, message processing runs within a transaction. Configure `NonDurableTransportOptions.TransactionTimeout` when handlers need longer than the default timeout:
+
+snippet: NonDurableTransport-TransactionTimeout
+
+The default is `null`, which uses `System.Transactions.TransactionManager.DefaultTimeout` when each transaction is created, normally 60 seconds. The configured timeout also applies to the fresh transaction used to commit the [recoverability](/nservicebus/recoverability/) outcome after a processing failure. It has no effect in `ReceiveOnly` or `None` mode.
+
+Set the option before constructing the transport. The value must be greater than `TimeSpan.Zero`; zero, negative values, and `Timeout.InfiniteTimeSpan` are rejected. The timeout is not capped by `TransactionManager.MaximumTimeout`.
+
+> [!WARNING]
+> A transaction timeout aborts the transaction but does not cancel the running handler or its cancellation token. If the handler continues past the timeout, its eventual commit fails. Enlisted outgoing messages and synchronized storage changes are rolled back, and the message follows recoverability. Choose a timeout longer than the longest expected handler duration.
 
 ## Transaction sharing with non-durable persistence
 

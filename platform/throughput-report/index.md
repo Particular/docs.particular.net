@@ -50,7 +50,7 @@ When installing ServiceControl directly, through one of the [Windows installatio
 
 The containers required for generating a usage report are:
 
-- [RavenDB](/servicecontrol/ravendb/containers.md)
+- [RavenDB](/servicecontrol/storage/ravendb/containers.md)
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
 - [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse))

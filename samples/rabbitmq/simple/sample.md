@@ -1,6 +1,6 @@
 ---
 title: Simple RabbitMQ Transport Usage
-reviewed: 2025-03-25
+reviewed: 2026-11-19
 component: Rabbit
 related:
 - transports/rabbitmq
@@ -11,6 +11,8 @@ related:
 ## Prerequisites
 
 Ensure an instance of RabbitMQ is running and accessible.
+
+For local development, consider running the [Docker container](https://hub.docker.com/_/rabbitmq#how-to-use-this-image)
 
 
 ## Code walk-through

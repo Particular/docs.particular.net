@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queues Transport
-reviewed: 2025-05-09
+reviewed: 2026-11-17
 component: ASQ
 related:
 - nservicebus/azure
@@ -19,15 +19,15 @@ This sample uses the [Azure Storage Queues Transport](/transports/azure-storage-
 
 ## Code walk-through
 
-This sample shows a simple two endpoint scenario.
+This sample shows a simple two-endpoint scenario.
 
- * `Endpoint1` sends a `MyRequest` message to `Endpoint2`
- * `Endpoint2` replies to `Endpoint1` with a `MyResponse`.
+- `Endpoint1` sends a `MyRequest` message to `Endpoint2`.
+- `Endpoint2` replies to `Endpoint1` with a `MyResponse`.
 
 
-### Azure Table configuration
+### Transport configuration
 
-The `Server` endpoint is configured to use the Azure Table persistence in two locations.
+Both endpoints use the Azure Storage Queues transport with the Azurite development storage connection string (`UseDevelopmentStorage=true`) and the learning persistence.
 
 
 #### The endpoint configuration
@@ -40,7 +40,7 @@ One of the endpoints is using a long name which needs to be sanitized.
 
 snippet: endpointname
 
-To remain backwards compatible with the older versions of the transport, `MD5` based sanitization is registered. The sample also includes `SHA1` based sanitization. This sanitizer is suitable for endpoints with the transport version 7.x used to shorten queue names with `SHA1` hashing algorithm.
+The sample registers a sanitizer that converts the name to lowercase, replaces invalid characters with a dash (`-`), and shortens names longer than 63 characters by appending an `MD5` hash. See [Azure Storage Queues name sanitization](/transports/azure-storage-queues/sanitization.md) for the queue naming rules.
 
 snippet: sanitization
 
@@ -49,14 +49,14 @@ The full contents of the sanitization code is shown at the [end of this document
 
 ## The data in Azure Storage
 
-The queues for the two endpoints can be seen in the [Server Explorer](https://msdn.microsoft.com/en-us/library/x603htbk.aspx) of Visual Studio.
+The queues for the two endpoints can be seen in the [Server Explorer](https://learn.microsoft.com/en-us/visualstudio/azure/vs-azure-tools-storage-resources-server-explorer-browse-manage) of Visual Studio.
 
 ![](images/sanitized-queues.png)
 
 
 ### Reading the data using code
 
-There are several helper methods in `AzureHelper.cs` in the `StorageReader` projects. These helpers are used to output the data seen below.
+There are several helper methods in `AzureHelper.cs` in the `StorageReader` project. These helpers are used to output the data seen below.
 
 
 #### Writing Queue Messages
@@ -76,7 +76,7 @@ snippet: UsingHelpers
 Run only `Endpoint1` and send a message. Notice the contents of the message in the `samples-azure-storagequeues-endpoint2` queue.
 
 
-### CloudQueueMessage contents
+### Queue message contents
 
 ```json
 {
@@ -108,7 +108,7 @@ Run only `Endpoint1` and send a message. Notice the contents of the message in t
 
 #### Decoded Body
 
-Note that above there is a encoded `Body` property. Decoding this message will produce the following.
+Note that above there is an encoded `Body` property. Decoding this message will produce the following.
 
 ```json
 {"Property":"Hello from Endpoint1"}

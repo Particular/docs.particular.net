@@ -1,6 +1,6 @@
 ### Hierarchy namespace
 
- Azure Service Bus [allows entities to be organized in hierarchies on the same namespace](https://learn.microsoft.com/en-us/rest/api/servicebus/addressing-and-protocol). In a multi-tenant environment, this can be used to group tenant related queues and topics. It can also be used to separate work done by different developers (in non-production environments), separate production and lower environments, or to create a temporary infrastructure for troubleshooting a bug.
+Azure Service Bus [allows entities to be organized in hierarchies on the same namespace](https://learn.microsoft.com/en-us/rest/api/servicebus/addressing-and-protocol). In a multi-tenant environment, this can be used to group tenant related queues and topics. It can also be used to separate work done by different developers (in non-production environments), separate production and lower environments, or to create a temporary infrastructure for troubleshooting a bug.
 
 From version 6.1 onward, the Azure Service Bus transport supports configuring hierarchical entities by setting the `HierarchyNamespaceOptions` property with a valid `HierarchyNamespace`:
 
@@ -13,7 +13,7 @@ Doing so will prefix all entities with the `{HierarchyNamespace}/{original-entit
 
 #### Escaping the hierarchy
 
-In scenarios when a message must be sent outside of the hierarchy, designated message types or interfaces can defined and excluded from the hierarchy using the `HierarchyNamespaceOptions.ExcludeMessageType<TMessageType>()` method.
+In scenarios when a message must be sent outside of the hierarchy, designated message types or interfaces can be defined and excluded from the hierarchy using the `HierarchyNamespaceOptions.ExcludeMessageType<TMessageType>()` method.
 
 Considering the following message types for exclusion:
 

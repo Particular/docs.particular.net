@@ -4,8 +4,8 @@ summary: How security is addressed in ServiceControl and how to limit access to 
 reviewed: 2026-06-01
 related:
 - servicecontrol/servicecontrol-instances/configuration
-- servicecontrol/configure-ravendb-location
-- servicecontrol/backup-sc-database
+- servicecontrol/storage/ravendb/configure-ravendb-location
+- servicecontrol/storage/ravendb/backup-sc-database
 ---
 
 ServiceControl serves as the back-end service for ServicePulse, supplying these client applications with the information required for their functionality. It does so by exposing an HTTP API that can be accessed by these and other third-party tools.

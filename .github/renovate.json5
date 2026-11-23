@@ -1,5 +1,14 @@
 {
     enabledManagers: [ "nuget", "github-actions" ],
     // Don't want NuGet updates on samples for older versions
-    ignorePaths: ["**/samples/**", "**/Snippets/**", "**/tutorials/**"]
+    ignorePaths: ["**/samples/**", "**/Snippets/**", "**/tutorials/**"],
+    packageRules: [
+        {
+            matchDatasources: ["nuget"],
+            matchPackageNames: ["Particular.DocsTool"],
+            automerge: true,
+            addLabels: ["Build Dependency"],
+            automergeStrategy: "squash"
+        }
+    ]
 }

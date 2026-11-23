@@ -229,14 +229,14 @@ The tool will not delete any timeouts or storage artifacts in order to prevent d
 
 ### RavenDB persistence
 
-- Ensure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
+- Ensure that [RabbitMQ compatibility mode](/transports/upgrades/rabbitmq-4to5.md#delayed-delivery) is turned off
 - Delete all documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`
 
 ### SQL persistence
 
 Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. For all the successful ones do the following:
 
-- Make sure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
+- Make sure that [RabbitMQ compatibility mode](/transports/upgrades/rabbitmq-4to5.md#delayed-delivery) is turned off
 - Delete the empty `{EndpointName}_TimeoutData` table
 - Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query (this will free up the disk space used by the timeouts)
 

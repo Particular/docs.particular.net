@@ -6,14 +6,14 @@ redirects:
  - nservicebus/more-on-profiles
  - nservicebus/nservicebus/hosting/nservicebus-host/more-on-profiles
 component: Host
-reviewed: 2025-05-06
+reviewed: 2026-11-17
 ---
 
 include: host-deprecated-warning
 
 There are many configuration options for endpoints using the [NServiceBus host](/nservicebus/hosting/nservicebus-host/). The endpoint configuration specifies levels of logging, subscription, saga storage, and more.
 
-Profiles enable tailoring endpoints configuration for different environments without recompiling code.
+Profiles enable tailoring endpoint configuration for different environments without recompiling code.
 
 There are two categories of profile:
 
@@ -69,7 +69,7 @@ For example, to run the endpoint with the `Integration` and `PerformanceCounters
 .\NServiceBus.Host.exe nservicebus.integration nservicebus.performancecounters
 ```
 
-When installing the host as a Windows Service, the profiles used during installation are saved, and they are used every time the host starts. In order to install the host with the `Production` and `PerformanceCounters` profiles:
+When installing the host as a Windows Service, the profiles used during installation are saved, and they are used every time the host starts. To install the host with the `Production` and `PerformanceCounters` profiles:
 
 ```shell
 .\NServiceBus.Host.exe /install nservicebus.production nservicebus.performancecounters
@@ -78,11 +78,7 @@ When installing the host as a Windows Service, the profiles used during installa
 
 ## Logging
 
-The built-in profiles, by default use the console, and rolling file appends, logging information at the `Info` threshold.
-
-
-
-The rolling file logs are written to the `logfile` in the same directory as the executable. The file grows to a maximum size of 1MB; then a new file is created. A maximum of ten files is kept, then the oldest file is erased. If not otherwise specified, the logging threshold is set to the `Warn` level. To configure the logging threshold, see [changing logging levels](/nservicebus/logging/#built-in-logging-changing-the-defaults-changing-the-logging-level).
+The built-in profiles use the default NServiceBus logging, which writes `Info` and above messages to the console and a rolling file. For the log file location, file names, and maximum file size, and to configure the logging threshold, see [built-in logging](/nservicebus/logging/#built-in-logging).
 
 > [!WARNING]
 > For changes to the configuration to have an effect, the process must be restarted.
@@ -100,6 +96,5 @@ The built-in profiles use the following default persistence settings:
 |  Subscription  |In-Memory |As configured |As configured |
 |  Saga          |In-Memory |As configured |As configured |
 |  Gateway       |In-Memory |As configured |As configured |
-|  Distributor   |-         |-             |-             |
 
-In the Lite profile, NServiceBus Host will always use the in-memory persistence. In the Integration and Production profiles, the host verifies if a specific persistence mechanism is provided, e.g., in the endpoint configuration. If not specified otherwise, then RavenDB persistence will be used by default.
+In the Lite profile, NServiceBus Host always uses the in-memory persistence. In the Integration and Production profiles, the host uses the persistence mechanism provided in the endpoint configuration.

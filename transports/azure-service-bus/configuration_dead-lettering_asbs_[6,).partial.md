@@ -32,7 +32,7 @@ snippet: explicit-dlq
 Dead-letter with custom reason, description, and modified application properties:
 
 > [!NOTE]
-> Using this option does note automatically add the NServiceBus faults metadata to the application properties.
+> Using this option does not automatically add the NServiceBus fault metadata to the application properties.
 
 snippet: explicit-dlq-full-control
 

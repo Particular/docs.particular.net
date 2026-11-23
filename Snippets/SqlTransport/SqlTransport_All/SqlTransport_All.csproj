@@ -11,11 +11,15 @@
     <PackageReference Include="NUnit.Analyzers" Version="4.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
-    <PackageReference Include="System.Management.Automation" Version="7.*" />
+    <PackageReference Include="System.Management.Automation" Version="7.6.*" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Operations\**\*.ps1" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.*" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ---
 title: HTTPS Certificate Validation
-reviewed: 2025-03-31
+reviewed: 2026-10-28
 summary: ServiceInsight refuses to connect to a ServiceControl instance running over HTTPS with a self-signed certificate.
 component: ServiceInsight
 ---
@@ -11,13 +11,13 @@ ServiceControl can be configured to run over a secured connection, but if a self
 
 ![ServiceInsight refuses to connect](./images/ssl-validation.png)
 
-Open `ServiceInsight.exe.config` from the installation directory and change the value for the following entry to `True` (the default value is False):
+Open `ServiceInsight.exe.config` from the installation directory and change the value for the following entry to `True` (the default value is `False`):
 
 ```XML
 <appSettings>
-    <add key="SkipCertificateValidation" value="False" />
+    <add key="SkipCertificateValidation" value="True" />
 </appSettings>
 ```
 
 > [!NOTE]
-> Since the application by default installs in the `Program Files` folder, admninistrative privilege might be required to edit the config file above.
+> Since the application is installed by default in the `Program Files` folder, administrative privileges might be required to edit the config file above.

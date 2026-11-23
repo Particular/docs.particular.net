@@ -30,7 +30,7 @@ Upgrades that include the separate Audit embedded database will increase disk us
 > [!NOTE]
 > After the upgrade is complete, the Audit information contained in the original ServiceControl instance will become read-only, but will continue to be deleted as it passes the time specified by the [retention policy](/servicecontrol/audit-instances/configuration.md#data-retention). However, since the internal database does not release storage space back to the OS, the database will continue to be the same size.
 >
-> After one retention period after the upgrade has been completed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/servicecontrol/db-compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
+> After one retention period after the upgrade has been completed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/servicecontrol/storage/ravendb/compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
 
 ## ServiceControl Audit
 

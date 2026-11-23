@@ -25,6 +25,20 @@ class Usage
         #endregion
     }
 
+    void TransactionTimeout(EndpointConfiguration endpointConfiguration)
+    {
+        #region NonDurableTransport-TransactionTimeout [1.2,)
+
+        var transport = new NonDurableTransport(new NonDurableTransportOptions
+        {
+            TransactionTimeout = TimeSpan.FromMinutes(5)
+        });
+
+        endpointConfiguration.UseTransport(transport);
+
+        #endregion
+    }
+
     void InlineExecution(EndpointConfiguration endpointConfiguration)
     {
         #region NonDurableTransport-InlineExecution

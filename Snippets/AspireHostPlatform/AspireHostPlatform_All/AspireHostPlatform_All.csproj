@@ -8,4 +8,9 @@
   <ItemGroup>
     <PackageReference Include="Particular.Aspire.Hosting.ServicePlatform" Version="1.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="MessagePack" Version="2.*" />
+  </ItemGroup>
+
 </Project>
