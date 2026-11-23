@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Delayed Delivery
+title: Azure Queue Storage Delayed Delivery
 component: ASQ
 versions: '[7,)'
 related:
@@ -10,7 +10,7 @@ reviewed: 2026-07-27
 ---
 
 
-In versions 7.4 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to provide [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport uses the same storage account to provide delayed delivery without needing an external persister.
+In versions 7.4 and above, the Azure Queue Storage transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to provide [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport uses the same storage account to provide delayed delivery without needing an external persister.
 
 
 ## How it works
@@ -20,7 +20,7 @@ When an endpoint is started, the transport creates a storage table to store the 
 By default, the storage table and blob container names are constructed using a naming scheme that starts with the word `delays` followed by SHA-1 hash of the endpoint's name. For example, `delays2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` where `2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` is a SHA-1 hash of an endpoint name.
 
 > [!WARNING]
-> A delayed message whose dispatched form exceeds the Azure Storage Queue size limit can fail repeatedly when it is forwarded to the destination queue. If this affects the workload, [add a thumbs-up or share the use case on issue #993](https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/993).
+> A delayed message whose dispatched form exceeds the Azure Queue Storage size limit can fail repeatedly when it is forwarded to the destination queue. If this affects the workload, [add a thumbs-up or share the use case on issue #993](https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/993).
 
 ### Overriding table/container name
 

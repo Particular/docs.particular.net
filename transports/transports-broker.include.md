@@ -1,1 +1,1 @@
-[SQL Server](/transports/sql/), [RabbitMQ](/transports/rabbitmq/), [Azure Service Bus](/transports/azure-service-bus/), [Azure Storage Queues](/transports/azure-storage-queues/)
+[SQL Server](/transports/sql/), [RabbitMQ](/transports/rabbitmq/), [Azure Service Bus](/transports/azure-service-bus/), [Azure Queue Storage](/transports/azure-storage-queues/)

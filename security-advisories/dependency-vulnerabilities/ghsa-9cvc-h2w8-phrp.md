@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-9cvc-h2w8-phrp"
 summary: "AWS SDK for .NET V4 adopted defense in depth enhancement for region parameter value"
 reviewed: "2026-01-14"
+redirects:
+ - security-advisories/ghsa-9cvc-h2w8-phrp
 ---
 
 This advisory discloses a security vulnerability.

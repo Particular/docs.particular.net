@@ -2,6 +2,8 @@
 title: Security Advisory 2020-03-11
 summary: ServicePulse directory traversal vulnerability
 reviewed: 2026-10-12
+redirects:
+ - security-advisories/servicepulse-directorytraversal
 ---
 
 This advisory discloses a security vulnerability that has been found in [ServicePulse](/servicepulse/) and fixed.

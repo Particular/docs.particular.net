@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues Native Integration
-summary: How to consume messages from and send messages to non-NServiceBus endpoints using Azure Storage Queues.
+title: Azure Queue Storage Native Integration
+summary: How to consume messages from and send messages to non-NServiceBus endpoints using Azure Queue Storage.
 reviewed: 2026-05-05
 component: ASQ
 related:
@@ -8,7 +8,7 @@ related:
 ---
 
 
-This document describes how to consume messages from and send messages to non-NServiceBus endpoints via Azure Storage Queues in integration scenarios.
+This document describes how to consume messages from and send messages to non-NServiceBus endpoints via Azure Queue Storage in integration scenarios.
 
 partial: sending
 

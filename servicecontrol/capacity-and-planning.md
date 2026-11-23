@@ -72,6 +72,6 @@ Different transport types have different throughput capabilities.
 
 The transports supported by ServiceControl provide varying levels of throughput. MSMQ and SQL Server typically provide the highest.
 
-The throughput provided by Azure Storage Queues and Azure Service Bus varies significantly depending on which deployment options are chosen and various other factors inherent to cloud deployment scenarios.
+The throughput provided by Azure Queue Storage and Azure Service Bus varies significantly depending on which deployment options are chosen and various other factors inherent to cloud deployment scenarios.
 
 It is recommended to perform realistic throughput tests on ServiceControl using the chosen transport, and using deployment options that are as close as possible to those planned for production.

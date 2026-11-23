@@ -705,7 +705,7 @@
       Title: Creating queues
   - Title: Upgrade Guides
     Articles:
-    - Title: Azure Storage Queues
+    - Title: Azure Queue Storage
       Articles:
       - Url: transports/upgrades/asq-14to15
         Title: Version 14 to 15
@@ -858,10 +858,10 @@
       Title: Queue-scoped permissions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
-  - Title: Azure Storage Queues
+  - Title: Azure Queue Storage
     Articles:
     - Url: transports/azure-storage-queues
-      Title: Azure Storage Queues transport
+      Title: Azure Queue Storage transport
     - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
       Articles:

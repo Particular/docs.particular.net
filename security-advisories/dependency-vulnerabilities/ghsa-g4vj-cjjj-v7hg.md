@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-g4vj-cjjj-v7hg"
 summary: "Defense in Depth update for NuGet Client"
 reviewed: "2026-05-13"
+redirects:
+ - security-advisories/ghsa-g4vj-cjjj-v7hg
 ---
 
 This advisory discloses a security vulnerability.

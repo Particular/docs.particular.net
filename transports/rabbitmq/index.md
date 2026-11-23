@@ -90,4 +90,4 @@ partial: nonpersistent
 
 ## Non-durable queues
 
-[Transient aka non-durable queues](https://www.rabbitmq.com/docs/queues#durability) are supported partially. See [routing details](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability) for details.
+[Transient (non-durable) queues](https://www.rabbitmq.com/docs/queues#durability) are partially supported. See [routing details](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability) for more information.

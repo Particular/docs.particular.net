@@ -40,7 +40,7 @@ NServiceBus further enables this communication by providing native integrations 
 - [RabbitMQ](/transports/rabbitmq/native-integration.md)
 - [SQL Server](/transports/sql/native-integration.md)
 - [PostgreSQL](/transports/postgresql/)
-- [Azure Storage Queues](/transports/azure-storage-queues/native-integration.md)
+- [Azure Queue Storage](/transports/azure-storage-queues/native-integration.md)
 - [Amazon SQS](/transports/sqs/native-integration.md)
 - [Azure Service Bus](/transports/azure-service-bus/native-integration.md)
 - [IBM MQ](/transports/ibmmq/native-integration.md)

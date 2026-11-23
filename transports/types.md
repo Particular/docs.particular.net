@@ -30,7 +30,7 @@ Broker transports are inherently centralized. Even if there are multiple servers
 Broker transports include:
 
 - [Azure Service Bus](/transports/azure-service-bus/)
-- [Azure Storage Queues](/transports/azure-storage-queues/)
+- [Azure Queue Storage](/transports/azure-storage-queues/)
 - [SQL Server](/transports/sql/)
 - [PostgreSQL](/transports/postgresql/)
 - [RabbitMQ](/transports/rabbitmq/)
@@ -45,7 +45,7 @@ Unicast-only transports include:
 - [MSMQ](/transports/msmq/)
 - [SQL Server version 4 and below](/transports/sql/)
 - [Amazon SQS version 4 and below](/transports/sqs/)
-- [Azure Storage Queues version 9 and below](/transports/azure-storage-queues/)
+- [Azure Queue Storage version 9 and below](/transports/azure-storage-queues/)
 
 ## Multicast-enabled transports
 
@@ -59,5 +59,5 @@ Multicast-enabled transports include:
 - [SQL Server version 5 and above](/transports/sql/)
 - [PostgreSQL](/transports/postgresql/)
 - [Amazon SQS version 5 and above](/transports/sqs/)
-- [Azure Storage Queues version 10 and above](/transports/azure-storage-queues/)
+- [Azure Queue Storage version 10 and above](/transports/azure-storage-queues/)
 - [IBM MQ](/transports/ibmmq/)

@@ -2,6 +2,8 @@
 title: "Security Advisory ID: GHSA-37gx-xxp4-5rgx"
 summary: "Microsoft Security Advisory CVE-2026-33116 - .NET, .NET Framework, and Visual Studio Denial of Service Vulnerability"
 reviewed: "2026-05-13"
+redirects:
+ - security-advisories/ghsa-37gx-xxp4-5rgx
 ---
 
 This advisory discloses a security vulnerability.

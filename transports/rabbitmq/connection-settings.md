@@ -68,13 +68,6 @@ Secure connections to the broker using [Transport Layer Security (TLS)](https://
 
 snippet: rabbitmq-connection-tls
 
-#if-version [, 8)
-
-> [!WARNING]
-> TLS 1.2 must be enabled on the broker to establish a secure connection.
-
-#end-if
-
 ### Peer verification
 
 If the broker has been configured to verify peer certificates, then a client certificate must be provided:

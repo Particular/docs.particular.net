@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues transport native integration sample
-summary: Consuming messages sent by non-NServiceBus endpoints with the Azure Storage Queues transport
+title: Azure Queue Storage transport native integration sample
+summary: Consuming messages sent by non-NServiceBus endpoints with the Azure Queue Storage transport
 reviewed: 2026-01-05
 component: ASQ
 related:
@@ -13,9 +13,9 @@ related:
 Ensure an instance of the [Azurite Storage Emulator](https://github.com/Azure/Azurite) is running.
 
 
-## Azure Storage Queues transport
+## Azure Queue Storage transport
 
-This sample uses the [Azure Storage Queues transport](/transports/azure-storage-queues).
+This sample uses the [Azure Queue Storage transport](/transports/azure-storage-queues).
 
 
 ## Code walk-through

@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues Transport Upgrade Version 8 to 9
-summary: Migration instructions on how to upgrade Azure Storage Queues Transport from Version 8 to 9.
+title: Azure Queue Storage Transport Upgrade Version 8 to 9
+summary: Migration instructions on how to upgrade Azure Queue Storage Transport from Version 8 to 9.
 reviewed: 2020-11-13
 component: ASQ
 related:

@@ -31,7 +31,7 @@ ServiceControl can be installed in the following ways, each running ServicePulse
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
 >
 > - [Azure Service Bus](/transports/azure-service-bus/configuration.md)
-> - [Azure Storage Queues](/transports/azure-storage-queues/configuration.md)
+> - [Azure Queue Storage](/transports/azure-storage-queues/configuration.md)
 > - [Amazon SQS](/transports/sqs/configuration-options.md)
 > - [RabbitMQ](/transports/rabbitmq/connection-settings.md)
 > - [SQL Server](/transports/sql/connection-settings.md)
@@ -46,7 +46,7 @@ Run a [ServiceControl container](/servicecontrol/servicecontrol-instances/deploy
 From ServiceControl 7, the ServiceControl container must select its storage with the [`STORAGETYPE`](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-storage-selection) environment variable; there is no default. Versions before 7 support only RavenDB.
 
 - **SQL Server or PostgreSQL:** Set `STORAGETYPE` to `SQLServer` or `PostgreSQL` and point ServiceControl at an existing database, such as a managed SQL Server or PostgreSQL service from the cloud provider. These options also need an [external message body store](/servicecontrol/storage/external-body/), such as [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md) or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md). See [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/).
-- **RavenDB:** Set `STORAGETYPE` to `RavenDB` and run a [RavenDB container](/servicecontrol/storage/ravendb/containers.md), or supply the [connection string](/servicecontrol/storage/ravendb/containers.md#basic-usage-ravendb-connection-string) of another RavenDB server. Examples are available in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples), including [Kubernetes manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for AKS or EKS. Where RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
+- **RavenDB:** Set `STORAGETYPE` to `RavenDB` and run a [RavenDB container](/servicecontrol/storage/ravendb/containers.md), or supply the [connection string](/servicecontrol/storage/ravendb/containers.md#basic-usage-ravendb-connection-string) of an [independently hosted](/servicecontrol/storage/ravendb/containers.md#licensing) RavenDB server, which requires a separate RavenDB license. Examples are available in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples), including [Kubernetes manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for AKS or EKS. Where RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, use [RavenDB Cloud](https://ravendb.net/cloud), which is licensed separately, to host the database.
 
 ## Windows Installation
 

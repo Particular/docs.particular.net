@@ -1,8 +1,8 @@
 ---
 title: Replying to a Message
-summary: Answer a message using the Reply method on IMessageHandlerContext/IBus.
+summary: Reply to a message from a handler using the Reply method on IMessageHandlerContext, and control where replies to that reply are routed.
 component: Core
-reviewed: 2025-05-19
+reviewed: 2026-11-23
 redirects:
 - nservicebus/how-do-i-reply-to-a-message
 ---
@@ -19,20 +19,22 @@ The reply address is controlled by the sender of the message being replied to. S
 
 ## Influencing the reply behavior
 
-A sender of a reply can influence how the requester will behave when continuing the conversation (replying to a reply). It can request a reply to go to itself (not any other instance of the same endpoint)
+A sender of a reply can influence how the requester behaves when continuing the conversation (replying to a reply).
+
+To request that replies to the reply go to this specific instance (not any other instance of the same endpoint):
 
 snippet: BasicReplyReplyToThisInstance
 
-or explicitly to any instance of the endpoint (which overrides the *public reply address* setting)
+To request that replies to the reply go to any instance of the endpoint (which overrides the *public reply address* setting):
 
 snippet: BasicReplyReplyToAnyInstance
 
-It can also request the reply to be routed to a specified transport address.
+To request that replies to the reply are routed to a specific transport address:
 
 snippet: BasicReplyReplyToDestination
 
 > [!NOTE]
-> Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response, whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to rollback any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
+> Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response, whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to roll back any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Transport
+title: Azure Queue Storage Transport
 reviewed: 2026-11-17
 component: ASQ
 related:
@@ -12,9 +12,9 @@ related:
 Ensure an instance of the [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio) is running.
 
 
-## Azure Storage Queues Transport
+## Azure Queue Storage Transport
 
-This sample uses the [Azure Storage Queues Transport](/transports/azure-storage-queues/).
+This sample uses the [Azure Queue Storage Transport](/transports/azure-storage-queues/).
 
 
 ## Code walk-through
@@ -27,7 +27,7 @@ This sample shows a simple two-endpoint scenario.
 
 ### Transport configuration
 
-Both endpoints use the Azure Storage Queues transport with the Azurite development storage connection string (`UseDevelopmentStorage=true`) and the learning persistence.
+Both endpoints use the Azure Queue Storage transport with the Azurite development storage connection string (`UseDevelopmentStorage=true`) and the learning persistence.
 
 
 #### The endpoint configuration
@@ -40,7 +40,7 @@ One of the endpoints is using a long name which needs to be sanitized.
 
 snippet: endpointname
 
-The sample registers a sanitizer that converts the name to lowercase, replaces invalid characters with a dash (`-`), and shortens names longer than 63 characters by appending an `MD5` hash. See [Azure Storage Queues name sanitization](/transports/azure-storage-queues/sanitization.md) for the queue naming rules.
+The sample registers a sanitizer that converts the name to lowercase, replaces invalid characters with a dash (`-`), and shortens names longer than 63 characters by appending an `MD5` hash. See [Azure Queue Storage name sanitization](/transports/azure-storage-queues/sanitization.md) for the queue naming rules.
 
 snippet: sanitization
 

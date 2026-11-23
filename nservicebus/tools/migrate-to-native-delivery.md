@@ -54,7 +54,7 @@ The tool supports the following transports:
 
 - [RabbitMQ transport](/transports/rabbitmq/)
 - [SQL transport](/transports/sql)
-- [Azure Storage Queues transport](/transports/azure-storage-queues/)
+- [Azure Queue Storage transport](/transports/azure-storage-queues/)
 - [MSMQ](/transports/msmq/)
 
 ## Before using the tool
@@ -178,7 +178,7 @@ For SQL Server (`sqlt`) transport:
 - `--target`: The SQL Server connection string, including the catalog
 - `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
 
-For Azure Storage Queues (`asq`) transport:
+For Azure Queue Storage (`asq`) transport:
 
 - `--target`: The Azure Storage connection string to be used
 - `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option.
@@ -272,7 +272,7 @@ Scanning timeouts without a well-known prefix is currently not supported.
 
 Due to restrictions of Azure Storage Tables it is not possible to list all endpoints or migrate multiple endpoints. Therefore the `--endpoint` option must be specified for all commands.
 
-### Azure Storage Queues transport
+### Azure Queue Storage transport
 
 When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool. However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md). If this option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages. Therefore, the tool will guard against this scenario and require that the `--endpoint` option be used when the `--delayedtablename` option is specified.
 

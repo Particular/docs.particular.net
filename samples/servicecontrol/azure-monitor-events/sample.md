@@ -94,4 +94,4 @@ This sample uses the [learning transport](/transports/learning/) in order to be 
 
 When adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation).
 
-The same applies to the [Azure Storage Queues](/transports/azure-storage-queues) name [sanitization strategy](/transports/azure-storage-queues/sanitization.md#backward-compatibility-with-versions-7-and-below)
+The same applies to the [Azure Queue Storage](/transports/azure-storage-queues) name [sanitization strategy](/transports/azure-storage-queues/sanitization.md#backward-compatibility-with-versions-7-and-below)

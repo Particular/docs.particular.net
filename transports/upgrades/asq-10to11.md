@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues Transport Upgrade Version 10 to 11
-summary: Instructions on how to upgrade the Azure Storage Queues transport from version 10 to 11.
+title: Azure Queue Storage Transport Upgrade Version 10 to 11
+summary: Instructions on how to upgrade the Azure Queue Storage transport from version 10 to 11.
 reviewed: 2022-03-25
 component: ASQ
 related:
@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 
 ## Configuring the transport
 
-To use the Azure Storage Queues transport for NServiceBus, create a new instance of `AzureStorageQueueTransport` and pass it to `EndpointConfiguration.UseTransport`.
+To use the Azure Queue Storage transport for NServiceBus, create a new instance of `AzureStorageQueueTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
 Instead of:
 
@@ -46,7 +46,7 @@ Configuring clients for queue, blob or table is done via the constructor overloa
 
 ## Configuration options
 
-The Azure Storage Queues transport configuration options have been moved to the `AzureStorageQueueTransport` class properties and constructors. See the following table for further information:
+The Azure Queue Storage transport configuration options have been moved to the `AzureStorageQueueTransport` class properties and constructors. See the following table for further information:
 
 | Version 9 configuration option                        | Version 10 configuration option          |
 | ----------------------------------------------------- | -----------------------------------------|

@@ -2,6 +2,8 @@
 title: Security Advisory 2026-10-09
 summary: ServiceControl API accepts requests without a valid token, and returns the stored SMTP password
 reviewed: 2026-10-14
+redirects:
+ - security-advisories/servicecontrol-api-authentication
 ---
 
 

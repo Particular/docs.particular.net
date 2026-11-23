@@ -24,7 +24,7 @@ The Particular Service Platform source code, current and previous releases, and 
 |**SQL Server**|[Releases](https://github.com/Particular/NServiceBus.SqlServer/tags)| [Release Notes](https://github.com/Particular/NServiceBus.SqlServer/releases)
 |**Azure Service Bus** | [Releases](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/releases)
 |**Azure Service Bus (Legacy)** | [Releases](https://github.com/Particular/NServiceBus.AzureServiceBus/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureServiceBus/releases)
-|**Azure Storage Queues** | [Releases](https://github.com/Particular/NServiceBus.AzureStorageQueues/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureStorageQueues/releases)
+|**Azure Queue Storage** | [Releases](https://github.com/Particular/NServiceBus.AzureStorageQueues/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AzureStorageQueues/releases)
 |**MSMQ**|[Releases](https://github.com/Particular/NServiceBus.Transport.Msmq/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Transport.Msmq/releases)
 |**Amazon SQS**| [Releases](https://github.com/Particular/NServiceBus.AmazonSQS/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AmazonSQS/releases)
 

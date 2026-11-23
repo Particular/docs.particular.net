@@ -16,7 +16,7 @@ The value for the `TransportType` settings can be any of the following:
 | Message Transport | `TransportType` values |
 |-|-|
 | [Azure Service Bus](#azure-service-bus) | `NetStandardAzureServiceBus` |
-| [Azure Storage Queues](#azure-storage-queues) | `AzureStorageQueue` |
+| [Azure Queue Storage](#azure-queue-storage) | `AzureStorageQueue` |
 | [Amazon Simple Queue Service (SQS)](#amazon-sqs) | `AmazonSQS` |
 | [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
 | [SQL Server](#sql) | `SQLServer` |
@@ -153,7 +153,7 @@ The Monitoring instance periodically queries the Azure Service Bus namespace to 
 Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>;HierarchyNamespace=<hierarchyNamespacePrefix>
 ```
 
-## Azure Storage Queues
+## Azure Queue Storage
 
 ServiceControl does not add any connection settings beyond the Azure Storage connection string.
 
