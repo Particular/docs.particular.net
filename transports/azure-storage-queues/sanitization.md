@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Name Sanitization
+title: Azure Queue Storage Name Sanitization
 component: ASQ
 versions: '[8,)'
 related:
@@ -10,7 +10,7 @@ reviewed: 2025-10-28
 
 Queue name sanitization is not done by default for NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8.0 or NServiceBus.Azure.Transports.AzureStorageQueues versions 9 and up.
 
-## Azure Storage Queues naming rules
+## Azure Queue Storage naming rules
 
 Sanitization is necessary if queue names do not adhere to the following rules:
 

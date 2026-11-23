@@ -35,7 +35,7 @@ Some of these tasks apply to every endpoint. The rest are best reviewed from the
 * [Scripting](/transports/azure-service-bus/operational-scripting.md)
 * [Queue-scoped permissions](/transports/azure-service-bus/queue-scoped-permissions.md)
 
-### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
+### [Azure Queue Storage Transport](/transports/azure-storage-queues/)
 
 * [Performance Tuning](/transports/azure-storage-queues/performance-tuning.md)
 * [Use multiple accounts for scale out](/transports/azure-storage-queues/multi-storageaccount-support.md)

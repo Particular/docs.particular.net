@@ -20,7 +20,7 @@ Initially, it can be challenging to decide which queuing technology is best for 
 ## Supported transports
 
 - [Azure Service Bus](/transports/azure-service-bus/)
-- [Azure Storage Queues](/transports/azure-storage-queues/)
+- [Azure Queue Storage](/transports/azure-storage-queues/)
 - [Amazon SQS](/transports/sqs/)
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Server](/transports/sql/)

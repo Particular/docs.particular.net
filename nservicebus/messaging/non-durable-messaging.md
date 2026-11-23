@@ -46,9 +46,9 @@ The SQL Server transport has no support for this setting and it is ignored.
 
 The Azure Service Bus transport has no support for this setting and it is ignored.
 
-### Azure Storage Queues
+### Azure Queue Storage
 
-The Azure Storage Queues transport has no support for this setting and it is ignored.
+The Azure Queue Storage transport has no support for this setting and it is ignored.
 
 ### Amazon SQS
 

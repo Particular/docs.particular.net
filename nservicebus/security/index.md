@@ -19,7 +19,7 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ## Transports
 
 
-### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
+### [Azure Queue Storage Transport](/transports/azure-storage-queues/)
 
  * [Security Guide](https://learn.microsoft.com/en-us/azure/storage/storage-security-guide)
  * [Azure Storage Service Encryption for Data at Rest](https://learn.microsoft.com/en-us/azure/storage/storage-service-encryption)

@@ -17,7 +17,7 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 ## Transports
 
 * [Azure Service Bus Transport](/transports/azure-service-bus/)
-* [Azure Storage Queues](/transports/azure-storage-queues/)
+* [Azure Queue Storage](/transports/azure-storage-queues/)
 
 ## Persistence
 

@@ -45,7 +45,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | [RabbitMQ](/transports/rabbitmq/)                         | Supported                    |
 | [Amazon SQS](/transports/sqs/)                            | Supported                    |
 | [Microsoft SQL Server](/transports/sql/)                  | Supported                    |
-| [Azure Storage Queues](/transports/azure-storage-queues/) | Not yet supported            |
+| [Azure Queue Storage](/transports/azure-storage-queues/) | Not yet supported            |
 | [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
 | [IBM MQ](/transports/ibmmq/)                              | Not yet supported            |
 

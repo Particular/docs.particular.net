@@ -28,7 +28,7 @@ NServiceBus version 5 introduced an undocumented way to get the list of subscrib
 
 ## Automatic subscription
 
-The configuration option `DoNotRequireExplicitRouting()` is obsolete since transports with support for centralized pub/sub will always auto subscribe all events without requiring explicit routing. Transports with message-driven pub/sub (like [MSMQ](/transports/msmq/), [SQL Server](/transports/sql/), and [Azure Storage Queues](/transports/azure-storage-queues/)) will not subscribe properly if there is no routing specified. Any code that uses this option can now be safely removed.
+The configuration option `DoNotRequireExplicitRouting()` is obsolete since transports with support for centralized pub/sub will always auto subscribe all events without requiring explicit routing. Transports with message-driven pub/sub (like [MSMQ](/transports/msmq/), [SQL Server](/transports/sql/), and [Azure Queue Storage](/transports/azure-storage-queues/)) will not subscribe properly if there is no routing specified. Any code that uses this option can now be safely removed.
 
 Automatic subscription happens during the startup phase of the bus. Previous versions of NServiceBus tried to subscribe multiple times on a background thread until the subscription either succeeded or failed. When the subscription failed, an error entry was written to the log file. NServiceBus version 6 changes that behavior for transports with message-driven pub/sub. Subscription is tried asynchronously on the startup thread. In the case when a subscriber starts and the publisher has never created its queues, the subscriber endpoint will not start and the caller will receive a `QueueNotFoundException` indicating what went wrong.
 

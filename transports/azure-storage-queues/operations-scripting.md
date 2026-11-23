@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues Transport Scripting
-summary: Azure CLI scripts to create and delete queues, manage subscriptions, and create delayed delivery storage for the Azure Storage Queues transport.
+title: Azure Queue Storage Transport Scripting
+summary: Azure CLI scripts to create and delete queues, manage subscriptions, and create delayed delivery storage for the Azure Queue Storage transport.
 component: ASQ
 reviewed: 2026-11-23
 related:
@@ -9,13 +9,13 @@ redirects:
  - nservicebus/azure-storage-queues/operations-scripting
 ---
 
-The following are example scripts to facilitate operations against the Azure Storage Queues transport.
+The following are example scripts to facilitate operations against the Azure Queue Storage transport.
 
 ## Requirements
 
 These scripts require the Azure command line (Azure CLI) to be installed. For more information, refer to the [Azure CLI installation guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-To run the scripts against the Azure Storage Queues transport, a valid connection string to the Azure Storage account must be present. For additional information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal).
+To run the scripts against the Azure Queue Storage transport, a valid connection string to the Azure Storage account must be present. For additional information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal).
 
 For easier access, the connection string can be stored as an environment variable. The scripts on this page use PowerShell syntax.
 
@@ -35,7 +35,7 @@ $env:AZURE_STORAGE_CONNECTION_STRING = $connectionString
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
 > [!NOTE]
-> The Azure Storage Queues transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](/transports/azure-storage-queues/sanitization.md) for more details.
+> The Azure Queue Storage transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](/transports/azure-storage-queues/sanitization.md) for more details.
 
 ```ps
 # check if a queue exists
@@ -56,7 +56,7 @@ az storage queue delete -n "endpointname"
 
 ## Publish/Subscribe
 
-The Azure Storage Queues transport implements [native publish/subscribe](/transports/azure-storage-queues/native-publish-subscribe.md) (pub/sub).
+The Azure Queue Storage transport implements [native publish/subscribe](/transports/azure-storage-queues/native-publish-subscribe.md) (pub/sub).
 
 
 ### Create the subscription routing table
@@ -103,5 +103,5 @@ The blob container name uses the same naming scheme as the storage table.
 az storage container create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671" --public-access off
 ```
 
-Delayed messages storage table and container names can be overridden with a custom name. For more information, see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md#how-it-works-overriding-tablecontainer-name).
+Delayed messages storage table and container names can be overridden with a custom name. For more information, see [Azure Queue Storage Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md#how-it-works-overriding-tablecontainer-name).
 

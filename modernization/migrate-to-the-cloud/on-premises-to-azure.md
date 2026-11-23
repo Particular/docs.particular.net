@@ -19,7 +19,7 @@ related:
 
 It provides a centralized hub to assess and migrate on-premises systems to the Azure cloud. It supports a range of migration scenarios, including virtual machines, databases, and applications.
 
-Azure Service Bus and Azure Storage Queues are fully managed messaging services supported by NServiceBus. For systems using SQL Server transport, Azure SQL Database or SQL Server on Azure Virtual Machines offer cloud-hosted alternatives that maintain compatibility with NServiceBus transports.
+Azure Service Bus and Azure Queue Storage are fully managed messaging services supported by NServiceBus. For systems using SQL Server transport, Azure SQL Database or SQL Server on Azure Virtual Machines offer cloud-hosted alternatives that maintain compatibility with NServiceBus transports.
 
 The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector between on-premises endpoints and those using Azure-native transports. It enables a phased migration approach to minimize risk by allowing incremental migration, service-by-service, while ensuring the system remains fully functional throughout the transition.
 
@@ -31,7 +31,7 @@ on-prem["MSMQ
   SQL Server
   PostgreSQL"]
 cloud["Azure Service Bus
-  Azure Storage Queues"]
+  Azure Queue Storage"]
 bridge[[Messaging Bridge]]
 on-prem <--> bridge <--> cloud
 
@@ -46,7 +46,7 @@ end
 ## Azure supported transports
 
 - [Azure Service Bus](/transports/azure-service-bus/)
-- [Azure Storage Queues](/transports/azure-storage-queues/)
+- [Azure Queue Storage](/transports/azure-storage-queues/)
 - [SQL Server](/transports/sql/)  using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) or [SQL Server on Azure VM](https://azure.microsoft.com/en-us/products/virtual-machines/sql-server/)
 - [PostgreSQL](/transports/postgresql/) using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
 
