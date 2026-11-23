@@ -1,6 +1,6 @@
 ---
 title: dotnet new Templates
-reviewed: 2025-05-19
+reviewed: 2026-06-01
 component: Templates
 related:
  - servicecontrol/transport-adapter

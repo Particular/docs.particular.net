@@ -8,7 +8,7 @@ The `nsbendpoint` template creates a C# project for an NServiceBus endpoint. By 
 *  [Hosting model](/nservicebus/hosting/), which can be one of:
    * Console Application
    * [Windows service hosting](/nservicebus/hosting/windows-service.md)
-   * [Docker container hosing](/nservicebus/hosting/docker-host)
+   * [Docker container hosting](/nservicebus/hosting/docker-host)
 
 Once the package is installed, the template can be found in the Visual Studio **New Project** dialog:
 
@@ -16,11 +16,11 @@ Once the package is installed, the template can be found in the Visual Studio **
 
 After naming the project and selecting a location for it on disk, the **Additional information** screen will allow customizing the template:
 
-![Customing endpoint properties in the additional information dialog](endpoint-additional-info.png)
+![Customizing endpoint properties in the additional information dialog](endpoint-additional-info.png)
 
 ### Command-line usage
 
-The default usage will create a Console Application using [Learning Transport](/transports/learning), [Learning Persistence](/persistence/learning):
+The default usage will create a Console Application using [Learning Transport](/transports/learning) and [Learning Persistence](/persistence/learning):
 
 snippet: endpointdefault
 
@@ -31,7 +31,7 @@ Parameters allow the selection of message transport, persistence, and hosting mo
 | Option | Description |
 |-|-|
 | `-n`,<br/>`--name` | The name of the endpoint to create. |
-| `-f`,<br/>`--framework` | The target framework for the project.<br/>One of: `net9.0` (default), `net8.0` |
+| `-f`,<br/>`--framework` | The target framework for the project. Run the help command below to see the available values and default. |
 | `-t`,<br/>`--transport` | The message queue (transport) to use.<br/>One of `LearningTransport` (default), `AzureServiceBus`, `AzureStorageQueues`, `SQS`, `RabbitMQ`, `SQL`. |
 | `-p`,<br/>`--persistence` | Where to store data. This should be the same place business data is stored.<br/>One of `LearningPersistence` (default), `MSSQL`, `MySQL`, `PostgreSQL`, `Oracle`, `CosmosDB`, `AzureTable`, `RavenDB`, `MongoDB`, `DynamoDB` |
 | `-hm`,<br/>`--hosting` | The hosting model to use.<br/>One of: `ConsoleApp` (default), `WindowsService`, `Docker`|
