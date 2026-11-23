@@ -28,13 +28,15 @@ include: powershell-help
 
 Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet:
 
-The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required; leave it out for earlier versions.
+The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is optional and defaults to `RavenDB`. Earlier versions do not have the parameter, so leave it out.
 
 snippet: ps-new-audit-instance-ravendb
 
-From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. The instance stores message bodies on the file system, in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, Azure Blob Storage, or Amazon S3, change the [message body settings](/servicecontrol/audit-instances/configuration.md#storage) in the instance's configuration file. See [external message body storage](/servicecontrol/storage/external-body/). The following example uses the same database as the Error instance; the Audit instance's tables go in the `sc_audit` schema by default.
+From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. `-EnableFullTextSearchOnBodies` also applies only to RavenDB. The following example uses the same database as the Error instance; the Audit instance's tables go in the `sc_audit` schema by default. It stores message bodies on the file system, in the directory given by `-MessageBodyPath`.
 
 snippet: ps-new-audit-instance-sqlserver
+
+include: powershell-message-body-storage
 
 include: powershell-new-configuration
 

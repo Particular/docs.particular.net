@@ -8,7 +8,8 @@ $serviceControlInstance = New-ServiceControlInstance `
   -ErrorQueue error1 `
   -ErrorRetentionPeriod 10:00:00:00 `
   -StorageType SQLServer `
-  -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True"
+  -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True" `
+  -MessageBodyPath C:\ServiceControl\Bodies
 # endcode
 
 # startcode ps-new-audit-instance-sqlserver
@@ -23,5 +24,6 @@ $auditInstance = New-ServiceControlAuditInstance `
   -ForwardAuditMessages:$false `
   -ServiceControlQueueAddress Test.ServiceControl `
   -StorageType SQLServer `
-  -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True"
+  -DatabaseConnectionString "Server=sqlserver;Database=ServiceControl;Integrated Security=True" `
+  -MessageBodyPath C:\ServiceControl.Audit\Bodies
 # endcode
