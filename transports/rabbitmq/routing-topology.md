@@ -21,7 +21,7 @@ All endpoints in a system must use the same routing topology to communicate. For
 The conventional routing topology uses [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages.
 
 > [!NOTE]
-> This is the recommended routing topology. It was the default prior to NServiceBus.RabbitMQ version 5.
+> This is the recommended routing topology.
 
 ### Sending
 

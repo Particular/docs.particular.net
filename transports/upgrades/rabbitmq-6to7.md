@@ -30,7 +30,15 @@ Version 7 introduces a new v2 delay infrastructure that uses quorum queues inste
 
 To control what type of queue the endpoint will use, a `QueueType` parameter has been added to `UseConventionalRoutingTopology`:
 
-snippet: 6to7conventional
+```csharp
+// For RabbitMQ Transport version 7.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseConventionalRoutingTopology(QueueType.Quorum);
+
+// For RabbitMQ Transport version 6.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseConventionalRoutingTopology();
+```
 
 The parameter controls what type of queues the endpoint will create if installers are enabled.
 
@@ -38,7 +46,15 @@ The parameter controls what type of queues the endpoint will create if installer
 
 To control what type of queue the endpoint will use, a `QueueType` parameter has been added to `UseDirectRoutingTopology`:
 
-snippet: 6to7direct
+```csharp
+// For RabbitMQ Transport version 7.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseDirectRoutingTopology(QueueType.Quorum);
+
+// For RabbitMQ Transport version 6.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseDirectRoutingTopology();
+```
 
 The parameter controls what type of queues the endpoint will create if installers are enabled.
 
