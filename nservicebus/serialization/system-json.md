@@ -33,10 +33,3 @@ snippet: SystemJsonOptions
 When migrating from Newtonsoft.Json, consult [Migrate from Newtonsoft.Json to System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for the differences in default behavior and supported features.
 
 If needed, both serializers can be used side-by-side during a transition period by using [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers). For this to work, a custom content type needs to be specified as shown above.
-
-## Migration from the community version
-
-> [!NOTE]
-> Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/simoncropparchived/NServiceBus.Json) and donated it to Particular Software.
-
-The serializer is mostly compatible with the community version. See the [upgrade guide](/nservicebus/upgrades/community-system-json.md) for more details.
