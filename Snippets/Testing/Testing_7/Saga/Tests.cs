@@ -9,7 +9,6 @@
     [TestFixture]
     public class Tests
     {
-        #region TestingSaga
 
         [Test]
         public async Task TestSagaAsync()
@@ -35,6 +34,5 @@
                 .WhenSagaTimesOutAsync();
         }
 
-        #endregion
     }
 }

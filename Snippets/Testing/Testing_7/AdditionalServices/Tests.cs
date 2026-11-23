@@ -6,7 +6,6 @@
     using NUnit.Framework;
 
     [Explicit]
-    #region TestingAdditionalDependencies
     [TestFixture]
     public class Tests
     {
@@ -37,7 +36,6 @@
         }
     }
 
-    #endregion
 
     class MyService
     {

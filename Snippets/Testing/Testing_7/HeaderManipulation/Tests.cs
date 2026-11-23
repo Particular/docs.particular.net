@@ -7,7 +7,6 @@
 
     [Explicit]
 
-    #region TestingHeaderManipulation
 
     [TestFixture]
     public class Tests
@@ -46,5 +45,4 @@
         }
     }
 
-    #endregion
 }

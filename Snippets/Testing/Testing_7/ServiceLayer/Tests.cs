@@ -7,7 +7,6 @@
 
     [Explicit]
 
-    #region TestingServiceLayer
 
     [TestFixture]
     public class Tests
@@ -42,5 +41,4 @@
         }
     }
 
-    #endregion
 }

@@ -1,5 +1,5 @@
 ## Fluent-style API is not supported
 
-Starting with NServiceBus version 8, the fluent-style testing API is not supported. Tests should be written in an [Arrange-Act-Assert (AAA) style](https://learn.microsoft.com/en-us/visualstudio/test/unit-test-basics#write-your-tests). Tests written this way will create the handler or saga to be tested, and call methods on them directly, passing in a testable message handler context that will capture outgoing operations that can be asserted on afterwards.
+The fluent-style testing API is not supported. Write tests using the [Arrange-Act-Assert (AAA) style](https://learn.microsoft.com/en-us/visualstudio/test/unit-test-basics#write-your-tests). Create the handler or saga and call its methods directly, passing in a testable message handler context. The context captures outgoing operations for assertions.
 
-See the [upgrade guide](/nservicebus/upgrades/testing-7to8.md) for details on converting existing tests.
+See the [unit testing sample](/samples/unit-testing/) for examples and the [upgrade guide](/nservicebus/upgrades/testing-7to8.md) for help converting existing tests.
