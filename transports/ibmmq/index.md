@@ -51,7 +51,11 @@ See [connection settings](connection-settings.md) for all available connection a
 
 ## Message persistence
 
-By default, all messages are sent as persistent, meaning they are  written to disk and survive queue manager restarts. Messages marked as [non-durable](/nservicebus/messaging/non-durable-messaging.md) are sent as non-persistent messages that stay in memory and offer higher throughput, but risk message loss if the queue manager stops unexpectedly.
+By default, all messages are sent as persistent, meaning they are written to disk and survive queue manager restarts. Non-persistent messages stay in memory and offer higher throughput, but risk message loss if the queue manager stops unexpectedly.
+
+To send a message as non-persistent, set the `NServiceBus.NonDurableMessage` header on the `{Send|Publish|Reply}Options`:
+
+snippet: ibmmq-non-persistent-delivery-mode
 
 > [!CAUTION]
 > Non-persistent messages are lost if the queue manager restarts before they are consumed.
