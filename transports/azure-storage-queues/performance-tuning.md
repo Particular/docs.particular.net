@@ -1,6 +1,6 @@
 ---
 title: Performance Tuning
-summary: How the Azure Storage Queues transport receives messages in parallel by default, and how to tune it for throughput and storage costs.
+summary: How the Azure Queue Storage transport receives messages in parallel by default, and how to tune it for throughput and storage costs.
 component: ASQ
 isLearningPath: true
 versions: '[7,]'

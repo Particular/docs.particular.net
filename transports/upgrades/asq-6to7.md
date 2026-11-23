@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues transport upgrade version 6 to 7
-summary: Instructions on how to upgrade the Azure Storage Queues transport from version 6 to version 7
+title: Azure Queue Storage transport upgrade version 6 to 7
+summary: Instructions on how to upgrade the Azure Queue Storage transport from version 6 to version 7
 reviewed: 2022-06-01
 component: ASQ
 related:
@@ -16,9 +16,9 @@ upgradeGuideCoreVersions:
 
 ## New Configuration API
 
-In versions 6 and below, the Azure Storage Queues transport was configured using an XML configuration section called `AzureStorageQueueTransportConfiguration`. This section has been removed in favor of a more granular, code-based configuration API.
+In versions 6 and below, the Azure Queue Storage transport was configured using an XML configuration section called `AzureStorageQueueTransportConfiguration`. This section has been removed in favor of a more granular, code-based configuration API.
 
-The new configuration API is accessible through extension methods on the `UseTransport<AzureStorageQueueTransport>()` extension point in the endpoint configuration. See also: [Azure Storage Queues Configuration](/transports/azure-storage-queues/configuration.md).
+The new configuration API is accessible through extension methods on the `UseTransport<AzureStorageQueueTransport>()` extension point in the endpoint configuration. See also: [Azure Queue Storage Configuration](/transports/azure-storage-queues/configuration.md).
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
@@ -61,7 +61,7 @@ Setting the configuration values can now be done through the API as follows:
 These values can be set using corresponding extension methods:
 
 ```csharp
-// For Azure Storage Queues Transport version 11.x
+// For Azure Queue Storage Transport version 11.x
 var transport = new AzureStorageQueueTransport(queueServiceClient, blobServiceClient, cloudTableClient)
 {
     ReceiverBatchSize = 20,
@@ -73,7 +73,7 @@ var transport = new AzureStorageQueueTransport(queueServiceClient, blobServiceCl
 
 endpointConfiguration.UseTransport(transport);
 
-// For Azure Storage Queues Transport version 10.x
+// For Azure Queue Storage Transport version 10.x
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
 transport.BatchSize(20);
@@ -85,7 +85,7 @@ transport.UseQueueServiceClient(queueServiceClient);
 transport.UseBlobServiceClient(blobServiceClient);
 transport.UseCloudTableClient(cloudTableClient);
 
-// For Azure Storage Queues Transport version 9.x
+// For Azure Queue Storage Transport version 9.x
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
 transport.BatchSize(20);
@@ -97,7 +97,7 @@ transport.UseQueueServiceClient(queueServiceClient);
 transport.UseBlobServiceClient(blobServiceClient);
 transport.UseCloudTableClient(cloudTableClient);
 
-// For Azure Storage Queues Transport version 8.x
+// For Azure Queue Storage Transport version 8.x
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
 transport.BatchSize(20);
@@ -106,7 +106,7 @@ transport.DegreeOfReceiveParallelism(16);
 transport.PeekInterval(TimeSpan.FromMilliseconds(100));
 transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
 
-// For Azure Storage Queues Transport version 7.x
+// For Azure Queue Storage Transport version 7.x
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
 transport.BatchSize(20);
@@ -137,7 +137,7 @@ The default values of the following settings have been changed:
 
 ## Serialization
 
-In previous versions of the Azure Storage Queues transport, change the default `SerializationDefinition` to `JsonSerializer`.
+In previous versions of the Azure Queue Storage transport, change the default `SerializationDefinition` to `JsonSerializer`.
 
 In version 6 of NServiceBus, transports don't have the ability to manipulate serialization. To preserve backward compatibility and ensure that message payloads are small, setting JSON serialization should now be done on the endpoint configuration level.
 
@@ -148,7 +148,7 @@ endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 
 ## API Changes
 
-In version 7 of the Azure Storage Queues transport, the public API has been reduced. As a result, multiple classes that used to be public in version 6 and below were marked as obsolete with a comment:
+In version 7 of the Azure Queue Storage transport, the public API has been reduced. As a result, multiple classes that used to be public in version 6 and below were marked as obsolete with a comment:
 
 > This class served only internal purposes without providing any extensibility point and as such was removed from the public API. For more information, refer to the documentation.
 

@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues Troubleshooting
-summary: Tips for troubleshooting the Azure Storage Queues transport
+title: Azure Queue Storage Troubleshooting
+summary: Tips for troubleshooting the Azure Queue Storage transport
 component: ASQ
 reviewed: 2026-08-28
 ---

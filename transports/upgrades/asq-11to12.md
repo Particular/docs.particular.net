@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Queues Transport Upgrade Version 11 to 12
-summary: Instructions on how to upgrade the Azure Storage Queues transport from version 11 to 12.
+title: Azure Queue Storage Transport Upgrade Version 11 to 12
+summary: Instructions on how to upgrade the Azure Queue Storage transport from version 11 to 12.
 reviewed: 2022-11-11
 component: ASQ
 related:

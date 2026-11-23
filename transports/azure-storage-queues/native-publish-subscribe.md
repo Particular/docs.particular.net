@@ -1,12 +1,12 @@
 ---
-title: Azure Storage Queues Native Publish Subscribe
-summary: Describes the native publish/subscribe implementation in the Azure Storage Queues transport
+title: Azure Queue Storage Native Publish Subscribe
+summary: Describes the native publish/subscribe implementation in the Azure Queue Storage transport
 reviewed: 2026-01-20
 component: ASQ
 versions: '[10,)'
 ---
 
-Azure Storage Queues implements the [publish/subscribe (pub/sub) pattern](/nservicebus/messaging/publish-subscribe/). In version 9 and below, Azure Storage Queues relied on message-driven pub/sub, which requires a separate persistence for storage of subscription information. In version 10 and above, the transport can store subscription information natively and a separate persistence is no longer required.
+Azure Queue Storage implements the [publish/subscribe (pub/sub) pattern](/nservicebus/messaging/publish-subscribe/). In version 9 and below, Azure Queue Storage relied on message-driven pub/sub, which requires a separate persistence for storage of subscription information. In version 10 and above, the transport can store subscription information natively and a separate persistence is no longer required.
 
 The transport creates a dedicated subscription routing table that holds subscription information for each event type. The subscription data stored in this table is available to all endpoints. When an endpoint subscribes to an event, an entry is created in the subscription routing table.
 

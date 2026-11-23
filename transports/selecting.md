@@ -21,7 +21,7 @@ Other queueing technologies are "federated" and deployed on every machine that s
 Each of the following sections describes the advantages and disadvantages of each supported transport and some reasons for choosing that transport.
 
 * [Azure Service Bus](#azure-service-bus)
-* [Azure Storage Queues](#azure-storage-queues)
+* [Azure Queue Storage](#azure-queue-storage)
 * [Amazon SQS](#amazon-sqs)
 * [RabbitMQ](#rabbitmq)
 * [IBM MQ](#ibm-mq)
@@ -40,7 +40,7 @@ graph TD
 S((Start))-->Q{<center>Targeting<br/>the cloud?</center>}
 Q-->|Yes|Y{<center>Preferred<br/>cloud provider?</center>}
 Q-->|No|N{<center>Is interop<br/>with existing<br/>systems needed?</center>}
-Y-->|Azure/no preferences|Y1[<center>Azure Service Bus/<br/>Azure Storage Queues</center>]
+Y-->|Azure/no preferences|Y1[<center>Azure Service Bus/<br/>Azure Queue Storage</center>]
 Y-->|Amazon|Y2[Amazon SQS]
 N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
 N-->|No|P{<center>Is this only a PoC,<br/>spike, or learning<br/>exercise?</center>}
@@ -114,12 +114,12 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 
 - When the application is running on Microsoft Azure
 - For enterprise messaging features, such as [additional reliability](https://learn.microsoft.com/en-us/azure/reliability/reliability-service-bus)
-- When messages are too large for Azure Storage Queues
+- When messages are too large for Azure Queue Storage
 - When elastic scaling is required
 
-## Azure Storage Queues
+## Azure Queue Storage
 
-Azure Storage Queues has fewer features than Azure Service Bus, but can be more cost-effective.
+Azure Queue Storage has fewer features than Azure Service Bus, but can be more cost-effective.
 
 ### Advantages
 
