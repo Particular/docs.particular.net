@@ -51,6 +51,8 @@ Dashboards, recording rules, and alerts that filter on the instrumentation scope
 
 ### Emitted meters
 
+Where a metric carries an `error.type` tag, the value is the full name of the exception type, for example `System.InvalidOperationException`.
+
 #if-version [10,11)
 Meter source `NServiceBus.Core.Pipeline.Incoming`, version `0.4.0`, or `NServiceBus.Core`, version `1.0.0`, when the version 11 behavior is enabled. With the version 11 behavior, the instruments change as described in [meter name and version](#meters-meter-name-and-version-version-11-behavior).
 
