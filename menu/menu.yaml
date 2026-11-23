@@ -840,7 +840,7 @@
     - Url: transports/azure-service-bus/native-message-access
       Title: Native message access
     - Url: transports/azure-service-bus/ordered-delivery-with-sessions
-      Title: Support for Azure Service Bus Sessions
+      Title: Ordered delivery with sessions
     - Url: transports/azure-service-bus/compatibility
       Title: Backwards compatibility
     - Url: transports/azure-service-bus/native-integration

@@ -29,7 +29,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Scripted Deployment        |Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine`
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
-|Message sessions           |[Yes](ordered-delivery-with-sessions.md)
+|Message sessions           |[Supported](ordered-delivery-with-sessions.md) in version 6.6 and above
 |Case Sensitive             |No
 |Aspire integration         |[Yes](/platform/aspire/#configuring-the-transport-azure-service-bus)
 
