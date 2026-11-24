@@ -13,9 +13,18 @@ class DelayedDelivery
 
         #endregion
 
-        #region DelayedDeliveryBatchSize
+        #region DelayedDeliveryBatchSizeCustom
 
-        transport.DelayedDelivery.BatchSize = 100;
+        transport.DelayedDelivery.BatchSize = 50;
+
+        #endregion
+    }
+
+    void UseIndependentMovers()
+    {
+        #region UseIndependentMoversSwitch
+
+        AppContext.SetSwitch("NServiceBus.Transport.SqlServer.DelayedDelivery.UseIndependentMovers", true);
 
         #endregion
     }
