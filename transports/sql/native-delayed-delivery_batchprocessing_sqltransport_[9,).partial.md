@@ -24,4 +24,4 @@ or in the project file:
 
 snippet: UseIndependentMoversMsBuild
 
-When the switch is enabled, the endpoint logs a warning at startup. The switch will be removed in the next major version.
+When the switch is enabled, the endpoint logs a warning at startup. The switch will be removed in the next major version. If a system depends on it, describe the scenario in [issue #1831](https://github.com/Particular/NServiceBus.SqlServer/issues/1831).
