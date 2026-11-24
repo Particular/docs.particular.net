@@ -1,7 +1,7 @@
 ---
 title: Scaling out audit ingestion
 summary: Run additional ServiceControl Audit instances on the same or separate audit queues to share the ingestion load, with separate or shared storage.
-reviewed: 2026-11-03
+reviewed: 2026-11-24
 component: ServiceControl
 ---
 
@@ -60,7 +60,9 @@ graph TD
     Error -. queries .-> Audit1
 ```
 
-Every instance that shares the database must use the same:
+Keep configuration changes consistent across all Audit instances that share a database and schema. The audit queue is the exception: instances can use different `ServiceBus/AuditQueue` values to ingest from separate audit queues.
+
+In particular, every instance that shares the database must use the same:
 
 - `ServiceControl.Audit/StorageType`, `Database/ConnectionString`, and `Database/Schema` settings.
 - `ServiceControl.Audit/MessageBody/*` settings. The instance that answers queries reads bodies that any instance has written, so all instances need permission to read, write, and delete bodies in one shared store. Azure Blob Storage and Amazon S3 are shared by design. File system storage works only when the path is a [shared mount](/servicecontrol/storage/external-body/file.md#setup-and-runtime).

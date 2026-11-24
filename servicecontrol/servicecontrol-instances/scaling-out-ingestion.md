@@ -1,7 +1,7 @@
 ---
 title: Scaling out error ingestion
 summary: Run additional ingestion-only processes next to a SQL Server or PostgreSQL ServiceControl Error instance to share the load of ingesting failed messages.
-reviewed: 2026-10-29
+reviewed: 2026-11-24
 component: ServiceControl
 ---
 
@@ -48,9 +48,11 @@ The transport must allow several consumers on the same queue. Verify this for th
 
 Start the same ServiceControl Error executable or container image with the `--error-ingestion-only` argument. The mode is selected only by this argument; there is no configuration or environment setting for it.
 
+Use the Error instance's configuration as the configuration for every ingestion-only worker. Keep configuration changes consistent across all processes. Process-specific settings, such as ingestion concurrency, can differ, and workers do not need settings for services they do not run.
+
 A worker:
 
-- Must use the same transport, `Database/ConnectionString`, `Database/Schema`, and `MessageBody/*` settings as the Error instance.
+- Must use the same error queue (`ServiceBus/ErrorQueue`), transport, `Database/ConnectionString`, `Database/Schema`, and `MessageBody/*` settings as the Error instance.
 - Ingests failed messages regardless of the `IngestErrorMessages` setting.
 - Does not run setup. Combining `--error-ingestion-only` with `--setup` or `--setup-and-run` is refused.
 - Hosts no ServiceControl API; it only serves the [health endpoints](#health-and-monitoring).
