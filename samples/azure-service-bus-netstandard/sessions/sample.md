@@ -8,7 +8,7 @@ related:
 - transports/azure-service-bus/ordered-delivery-with-sessions
 ---
 
-This sample demonstrates [ordered delivery with sessions](/transports/azure-service-bus/ordered-delivery-with-sessions.md) in the Azure Service Bus transport.
+This sample demonstrates [ordered delivery with sessions](/transports/azure-service-bus/ordered-delivery-with-sessions.md) in the Azure Service Bus transport. Ordered delivery with sessions requires version 6.6 or later of the transport.
 
 ## Prerequisites
 

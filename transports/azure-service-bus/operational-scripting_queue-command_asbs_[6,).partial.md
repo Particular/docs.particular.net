@@ -25,6 +25,10 @@ asb-transport queue create name
 
 `-f` | `--forward-dlq-to`: Queue name to auto-forward dead-lettered messages to. The queue will be created if it does not exist. The resolved queue name cannot be the same as the source queue.
 
+#if-version [6.6,)
+`-se` | `--sessions`: Creates the queue with sessions required, for endpoints that [enable sessions](/transports/azure-service-bus/ordered-delivery-with-sessions.md)
+#end-if
+
 See also the Azure CLI option [`--forward-dead-lettered-messages-to`](https://learn.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-create).
 
 
