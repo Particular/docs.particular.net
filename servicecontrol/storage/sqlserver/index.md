@@ -44,7 +44,7 @@ Choose an authentication method suitable for an unattended service. Ensure the s
 
 ## Error instance configuration
 
-Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module configure it when they create the instance. For manual or container deployments, add the `ServiceControl/MessageBody` settings to the instance's configuration file or environment.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module configure it when they create the instance. For manual or container deployments, add the `ServiceControl/MessageBody/*` settings to the instance's configuration file or environment.
 
 include: sc-error-storagetype
 
@@ -70,7 +70,7 @@ To share the ingestion load across several processes, see [Scaling out error ing
 
 ## Audit instance configuration
 
-Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module configure it when they create the instance. For manual or container deployments, add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module configure it when they create the instance. For manual or container deployments, add the `ServiceControl.Audit/MessageBody/*` settings to the instance's configuration file or environment.
 
 include: sc-audit-storagetype
 
