@@ -19,6 +19,8 @@ snippet: enable-sessions
 
 Sessions apply to the whole endpoint. When installers are enabled, the transport creates the endpoint's input queue, satellite queues, and subscriptions with sessions required.
 
+Azure Service Bus can't enable sessions on an existing queue or subscription, and installers don't update entities that already exist. If sessions are enabled on an endpoint whose queue doesn't require sessions, the endpoint can't receive its messages and logs an error that the entity isn't session-enabled.
+
 > [!NOTE]:
 > Sessions are not supported on [send-only endpoint](/nservicebus/endpoints/#send-only), but it can send messages to a session-enabled endpoint through SendOptions.
 > Sessions are not supported when using the [migration topology](/transports/upgrades/asbs-4to5.md). A send-only endpoint doesn't need sessions enabled to send messages with a session ID.
