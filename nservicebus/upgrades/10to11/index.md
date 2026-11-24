@@ -322,13 +322,26 @@ The three sources report version `1.0.0` in version 11, instead of `0.1.0` in ve
 
 ### Process span parent with instrumented transport SDKs
 
-When a transport SDK, such as the Azure Service Bus, RabbitMQ, or Amazon SQS client, emits its own receive span and the endpoint subscribes to that ActivitySource, version 11 creates the NServiceBus process span as a child of the SDK receive span and links it to the NServiceBus send span. In version 10, the process span is a child of the NServiceBus send span regardless of the SDK span.
+When a transport SDK, such as the Azure Service Bus or RabbitMQ client, emits its own receive span and the endpoint subscribes to that ActivitySource, version 11 creates the NServiceBus process span as a child of the SDK receive span and links it to the NServiceBus send span. In version 10, the process span is a child of the NServiceBus send span regardless of the SDK span.
 
-NServiceBus does not change how the SDK relates its own send and receive spans. The SDK decides that relation, and the NServiceBus spans follow it. The Azure Service Bus, RabbitMQ, and Amazon SQS SDKs make the receive span a child of the send span, so the send and the process span stay in one trace. If an SDK uses a link instead, the process span is in a new trace.
+NServiceBus does not change how the SDK relates its own send and receive spans. The SDK decides that relation, and the NServiceBus spans follow it. If the SDK makes the receive span a child of the send span, the send and the process span stay in one trace. If the SDK uses a link instead, the process span is in a new trace.
+
+| Transport SDK | ActivitySource to subscribe | SDK receive span relation to the send span | NServiceBus process span in version 11 |
+|---|---|---|---|
+| RabbitMQ.Client 7 | `RabbitMQ.Client.Subscriber` | Child of the publish span, plus a link. With `UsePublisherAsParent = false` in the client tracing options: link only, new trace. | Child of the SDK deliver span |
+| Azure.Messaging.ServiceBus | `Azure.Messaging.ServiceBus.*`, with the `Azure.Experimental.EnableActivitySource` AppContext switch enabled | The process span (`ServiceBusProcessor.ProcessMessage`) is a child of the message trace context, plus a link | Child of the SDK process span |
+| AWS SDK for .NET (Amazon SQS) | Not applicable | The SDK creates no receive span that carries the sender context | Child of the NServiceBus send span, as in version 10 |
+
+The relation is set by the SDK version in use and can change in a later SDK version.
+
+The parent of the process span depends on the configuration of the tracer, not only on the transport. On the same transport, the process span has a different parent when the endpoint subscribes to the SDK's ActivitySource and when it does not.
+
+> [!WARNING]
+> NServiceBus cannot identify an SDK span. It uses the span that is current (`Activity.Current`) when the receive pipeline starts. If a different span is current at that time, for example a span from custom transport code or a hosting span that was not stopped, the process span becomes its child and the NServiceBus send span is only a link. The process span is then not in the trace of the sender. Make sure that no span other than the SDK receive span is current when the transport invokes the receive pipeline.
 
 Dashboards or queries that assume the parent of the process span is the NServiceBus send span need updating for endpoints that subscribe to a transport SDK's ActivitySource. The send span remains reachable through the span link.
 
-This also changes sampling. A parent-based sampler, such as the OpenTelemetry `ParentBasedSampler`, now decides whether to sample the process span based on the SDK receive span instead of the NServiceBus send span. When the SDK receive span is a child of the SDK send span, it inherits the sampling decision of the sender, so the result does not change. The result changes when the SDK source is sampled differently from the NServiceBus sources, or when the SDK links the receive span instead. If the SDK receive span is not sampled, the NServiceBus spans for that message are dropped with it. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for details.
+This also changes sampling. A parent-based sampler, such as the OpenTelemetry `ParentBasedSampler`, now decides whether to sample the process span based on the SDK receive span instead of the NServiceBus send span. When the SDK receive span is a child of the SDK send span, as with the default RabbitMQ and Azure Service Bus configuration, it inherits the sampling decision of the sender, so the result does not change. The result changes in two cases: the SDK source is sampled differently from the NServiceBus sources, or the SDK makes the receive span the root of a new trace (for example RabbitMQ with `UsePublisherAsParent = false`). Then the sampler decides again for the new trace. If the SDK receive span is not sampled, the NServiceBus spans for that message are dropped with it, while the sender span can still be recorded. See [OpenTelemetry](/nservicebus/operations/opentelemetry.md) for details.
 
 Endpoints that do not subscribe to a transport SDK's ActivitySource are not affected. Without a listener there is no SDK span, and the process span stays a child of the NServiceBus send span.
 
