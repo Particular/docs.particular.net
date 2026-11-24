@@ -44,7 +44,7 @@ Choose an authentication method suitable for an unattended service. Ensure the s
 
 ## Error instance configuration
 
-Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module configure it when they create the instance. For manual or container deployments, add the `ServiceControl/MessageBody/*` settings to the instance's configuration file or environment.
 
 include: sc-error-storagetype
 
@@ -70,7 +70,7 @@ To share the ingestion load across several processes, see [Scaling out error ing
 
 ## Audit instance configuration
 
-Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module both configure it for Audit instances. For manual or container deployments, add the `ServiceControl.Audit/MessageBody` settings to the instance's configuration file or environment.
+Set the storage type to `SQLServer`, provide the database connection string, and configure the retention period. Also configure an [external message body store](/servicecontrol/storage/external-body/), which is required even if most bodies fit inline in the database. The ServiceControl Management Utility and the PowerShell module configure it when they create the instance. For manual or container deployments, add the `ServiceControl.Audit/MessageBody/*` settings to the instance's configuration file or environment.
 
 include: sc-audit-storagetype
 
@@ -106,10 +106,10 @@ Setup applies database migrations for both Error and Audit instances. Setup also
 
 The ServiceControl Management Utility (SCMU) and the PowerShell module run setup when they create or upgrade an instance, and can create SQL Server-backed Error and Audit instances:
 
-- **SCMU:** choose `SQL Server` as the **STORAGE TYPE** and enter the **DATABASE CONNECTION STRING**.
-- **PowerShell:** pass `-StorageType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
+- **SCMU:** choose `SQL Server` as the **STORAGE TYPE**, enter the **DATABASE CONNECTION STRING**, and check the **MESSAGE BODY PATH**, which defaults to `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. SCMU stores message bodies only on the file system.
+- **PowerShell:** pass `-StorageType SQLServer` and `-DatabaseConnectionString` to `New-ServiceControlInstance` or `New-ServiceControlAuditInstance`, and leave out `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. Also pass `-MessageBodyPath`, or choose [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md) or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) with `-MessageBodyStorageType`. See the [Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) PowerShell guides.
 
-Both tools configure file system message body storage in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md), or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md), change the message body settings in the instance's configuration file. Bodies already stored are not moved, so make the change before the instance ingests messages.
+To change the message body store after the instance is created, change the message body settings in the instance's configuration file. Bodies already stored are not moved, so make the change before the instance ingests messages.
 
 Neither tool sets `Database/Schema`, so instances they create use the default schema.
 

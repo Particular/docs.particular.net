@@ -28,13 +28,15 @@ include: powershell-help
 
 Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance:
 
-The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required; leave it out for earlier versions.
+The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required. Earlier versions do not have the parameter, so leave it out.
 
 snippet: ps-new-error-instance-ravendb
 
-From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. The instance stores message bodies on the file system, in `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. To use a different folder, Azure Blob Storage, or Amazon S3, change the [message body settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) in the instance's configuration file. See [external message body storage](/servicecontrol/storage/external-body/).
+From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. `-EnableFullTextSearchOnBodies` also applies only to RavenDB. The following example stores message bodies on the file system, in the directory given by `-MessageBodyPath`.
 
 snippet: ps-new-error-instance-sqlserver
+
+include: powershell-message-body-storage
 
 include: powershell-new-configuration
 

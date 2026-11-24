@@ -14,4 +14,4 @@ The external storage provider used for message bodies.
 | --- | --- |
 | string | None (required for SQL Server and PostgreSQL storage) |
 
-Valid values are `FileSystem`, `AzureBlob`, and `S3`. The ServiceControl Management Utility and the PowerShell module set this to `FileSystem`; to use another provider, change it in the instance's configuration file or environment.
+Valid values are `FileSystem`, `AzureBlob`, and `S3`. The ServiceControl Management Utility sets this to `FileSystem`. The PowerShell module sets it from `-MessageBodyStorageType`, which defaults to `FileSystem`.
