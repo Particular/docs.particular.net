@@ -5,7 +5,7 @@ summary: How the Azure Service Bus transport supports ordered delivery through t
 related:
  - transports/azure-service-bus/configuration
  - samples/azure-service-bus-netstandard/sessions
-reviewed: 2026-11-23
+reviewed: 2026-11-24
 versions: '[6.6,)'
 ---
 
@@ -22,8 +22,8 @@ Sessions apply to the whole endpoint. When installers are enabled, the transport
 Azure Service Bus can't enable sessions on an existing queue or subscription, and installers don't update entities that already exist. If sessions are enabled on an endpoint whose queue doesn't require sessions, the endpoint can't receive its messages and logs an error that the entity isn't session-enabled.
 
 > [!NOTE]
-> Sessions are not supported on [send-only endpoint](/nservicebus/endpoints/#send-only), but they can send messages to a session-enabled endpoint through SendOptions.
-> Sessions are not supported when using the [migration topology](/transports/upgrades/asbs-4to5.md). A send-only endpoint doesn't need sessions enabled to send messages with a session ID.
+> Sessions are not supported on [send-only endpoint](/nservicebus/endpoints/#send-only), but send-only endpoints can send messages to a session-enabled endpoint through `SendOptions`.
+> Sessions are not supported when using the [migration topology](/transports/upgrades/asbs-4to5.md).
 
 ### Setting the session ID
 
