@@ -76,6 +76,8 @@ Get the session state from the handler context using `GetSessionState()`, read i
 
 snippet: session-state-usage
 
+In `SendsAtomicWithReceive` mode, session state changes are committed together with the incoming message. In `ReceiveOnly` mode, which the [outbox](/nservicebus/outbox/) requires, they are written immediately and aren't rolled back when processing fails. The outbox doesn't cover session state, so make session state changes idempotent when the message can be processed more than once.
+
 Session state stays on the broker after all messages in the session have been processed, and it counts toward the queue's storage quota. Remove it with `Clear()` when the session is complete:
 
 snippet: session-state-clear
