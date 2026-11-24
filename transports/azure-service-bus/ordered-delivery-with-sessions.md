@@ -55,6 +55,8 @@ Immediate retries are supported and don't break the processing order.
 
 [Delayed retries](/nservicebus/recoverability/#delayed-retries) would break the processing order, so session-enabled endpoints don't support them. The endpoint fails to start unless delayed retries are [disabled](/nservicebus/recoverability/configure-delayed-retries.md#disabling-through-code).
 
+This applies only to delayed retries. Session-enabled endpoints support [delayed delivery](/nservicebus/messaging/delayed-delivery.md), including [saga timeouts](/nservicebus/sagas/timeouts.md).
+
 When immediate retries are exhausted, the message is moved to the error queue, and the next message in the session is processed. This breaks the processing order. Retrying a message from the error queue or the dead-letter queue doesn't restore its original position in the session.
 
 > [!NOTE]
