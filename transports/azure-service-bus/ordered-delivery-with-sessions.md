@@ -18,11 +18,12 @@ To process messages in order, enable sessions on the transport:
 snippet: enable-sessions
 
 Sessions apply to the whole endpoint. When installers are enabled, the transport creates the endpoint's input queue, satellite queues, and subscriptions with sessions required.
+If installers are not enabled, use the [CLI tooling](/transports/azure-service-bus/operational-scripting.md#available-commands) with the `--sessions` option to create the endpoint's input queue, topics, and subscriptions with sessions required.
 
 Azure Service Bus can't enable sessions on an existing queue or subscription, and installers don't update entities that already exist. If sessions are enabled on an endpoint whose queue doesn't require sessions, the endpoint can't receive its messages and logs an error that the entity isn't session-enabled.
 
 > [!NOTE]
-> Sessions are not supported on [send-only endpoint](/nservicebus/endpoints/#send-only), but send-only endpoints can send messages to a session-enabled endpoint through `SendOptions`.
+> Sessions are not supported on [send-only endpoints](/nservicebus/endpoints/#send-only), but send-only endpoints can send messages to a session-enabled by setting the `SessionId`.
 > Sessions are not supported when using the [migration topology](/transports/upgrades/asbs-4to5.md).
 
 ### Setting the session ID
