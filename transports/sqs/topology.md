@@ -27,7 +27,7 @@ partial: pub-sub-hybrid
 
 [SQS supports a maximum message size of 1 MiB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) and [SNS a maximum size of 256 KiB](https://docs.aws.amazon.com/general/latest/gr/sns.html). The transport works around these size limits by using [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) to store message payloads for messages that are larger than the limits. This allows the transport to send and receive messages of practically any size. Note that messages that fit within the size limit use only SQS/SNS; S3 does not come into play.
 
-#if-version (,8.1)
+#if-version [,9)
 > [!NOTE]
 > The 1 MiB message size support is implemented only in versions 8.1 and above. Older versions support a maximum message size of 256 KiB.
 #end-if
