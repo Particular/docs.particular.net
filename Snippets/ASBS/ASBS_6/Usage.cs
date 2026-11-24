@@ -222,6 +222,16 @@ class Usage
         #endregion
     }
 
+    async Task SessionStateClearHandler(IMessageHandlerContext context)
+    {
+        #region session-state-clear
+
+        var sessionState = context.GetSessionState();
+        await sessionState.Clear(context.CancellationToken);
+
+        #endregion
+    }
+
 
     public class OrderState
     {
