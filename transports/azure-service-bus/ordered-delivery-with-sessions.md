@@ -39,6 +39,8 @@ snippet: publishing-set-session-id
 
 The session ID is set for each message, including messages sent or published from a handler. Only [saga timeouts](/nservicebus/sagas/timeouts.md) automatically get the session ID of the message that requested them.
 
+Messages with a session ID that a handler sends or publishes are dispatched in the order in which the handler sent or published them.
+
 ### Processing
 
 The transport processes one message per session at a time on each endpoint instance. Messages from different sessions are processed concurrently, up to the endpoint's [concurrency limit](/nservicebus/operations/tuning.md).

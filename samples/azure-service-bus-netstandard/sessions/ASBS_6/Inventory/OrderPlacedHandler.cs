@@ -12,14 +12,12 @@ public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) : IHandleMes
 
         var beginSendOptions = new SendOptions();
         beginSendOptions.SetSessionId(inventoryTransactionId);
-        beginSendOptions.RequireImmediateDispatch();
         await context.Send(new BeginTransaction(), beginSendOptions);
 
         for (var i = 0; i < message.NumberOfItems; i++)
         {
             var reserveSendOptions = new SendOptions();
             reserveSendOptions.SetSessionId(inventoryTransactionId);
-            reserveSendOptions.RequireImmediateDispatch();
             await context.Send(new Reserve
             {
                 OrderId = message.OrderId
@@ -28,7 +26,6 @@ public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) : IHandleMes
 
         var completeSendOptions = new SendOptions();
         completeSendOptions.SetSessionId(inventoryTransactionId);
-        completeSendOptions.RequireImmediateDispatch();
         await context.Send(new CompleteTransaction(), completeSendOptions);
 
         logger.LogInformation("Processing OrderPlaced, inventory reserved for {order}", message.OrderId);
