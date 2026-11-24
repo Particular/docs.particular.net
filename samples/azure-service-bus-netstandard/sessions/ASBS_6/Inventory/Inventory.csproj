@@ -21,9 +21,4 @@
     <ItemGroup>
       <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <None Include="Properties\launchSettings.json" />
-      <None Remove="Properties\launchSettings.json" />
-    </ItemGroup>
 </Project>
