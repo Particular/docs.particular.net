@@ -40,8 +40,9 @@ To enable maintenance mode with embedded RavenDB:
 1. Launch ServiceControl Management.
 2. Click the wrench <kbd> :wrench: </kbd> icon to open Advanced Options.
 3. Click **Start Maintenance Mode**.
-4. Click the **Launch RavenDB Studio** link to access the RavenDB interface.
-5. Click **Stop Maintenance Mode** to resume normal operation.
+4. Click the **RavenDB Management Studio** link to access the RavenDB interface.
+5. Click **Stop Maintenance Mode**. This stops the instance.
+6. Start the instance to resume normal operation.
 
 ![Running in Maintenance Mode](/servicecontrol/maintenance-mode.gif)
 
