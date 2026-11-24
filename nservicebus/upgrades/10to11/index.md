@@ -258,9 +258,9 @@ If an endpoint must keep a specific host identifier beyond version 11, configure
 
 Version 11 changes what the OpenTelemetry instrumentation of NServiceBus emits. Span names, the parent of the process span, the span status, some span attributes, the baggage wire format, the meter name, several metric instruments and tags, and the exception recording mode all change. These changes break dashboards, alerts and queries that match on the old output.
 
-Version 10 keeps the version 10 output. Every change below is available on version 10 behind a single opt-in switch, so the new output can be adopted and verified before the upgrade to version 11. The default trace mode for published events is the one exception: it has its own option, described in [Published events continue the trace](#opentelemetry-published-events-continue-the-trace).
+All the changes below are available on version 10 behind a single opt-in switch, so the new output can be adopted and verified before the upgrade to version 11. The default trace mode for published events is the one exception: it has its own option, described in [Published events continue the trace](#opentelemetry-published-events-continue-the-trace).
 
-### Adopting the version 11 behavior on version 10
+### Adopting the new behavior on version 10
 
 Set the following AppContext switch before endpoint startup:
 
@@ -288,10 +288,10 @@ Or via MSBuild in the project file:
 | 10.x with the switch | version 10 + version 11 | version 10 | Can opt in |
 | >= 11.0 | version 11 only | version 11 | - |
 
-The switch enables every change in this section at once. It cannot enable them one at a time, because version 11 does not offer them one at a time either. The switch is read once, before the endpoint starts, and applies to the whole process, so two endpoints in one process cannot use different modes.
+The switch enables/disables all the changes at once. The switch is read once, before the endpoint starts, and applies to the whole process, so two endpoints in one process cannot use different modes.
 
 > [!NOTE]
-> Version 11 has no switch to restore the version 10 output. Verify the changes on version 10 with the switch enabled before upgrading.
+> NServiceBus version 11 does not support the old behavior. Verify the changes on version 10 with the switch enabled before upgrading.
 
 ### ActivitySources
 
@@ -326,18 +326,18 @@ When a transport SDK, such as the Azure Service Bus or RabbitMQ client, emits it
 
 NServiceBus does not change how the SDK relates its own send and receive spans. The SDK decides that relation, and the NServiceBus spans follow it. If the SDK makes the receive span a child of the send span, the send and the process span stay in one trace. If the SDK uses a link instead, the process span is in a new trace.
 
+The relation is set by the SDK version in use and can change in a later SDK version. The behavior as of 2026-11-24 is documented below:
+
 | Transport SDK | ActivitySource to subscribe | SDK receive span relation to the send span | NServiceBus process span in version 11 |
 |---|---|---|---|
 | RabbitMQ.Client 7 | `RabbitMQ.Client.Subscriber` | Child of the publish span, plus a link. With `UsePublisherAsParent = false` in the client tracing options: link only, new trace. | Child of the SDK deliver span |
 | Azure.Messaging.ServiceBus | `Azure.Messaging.ServiceBus.*`, with the `Azure.Experimental.EnableActivitySource` AppContext switch enabled | The process span (`ServiceBusProcessor.ProcessMessage`) is a child of the message trace context, plus a link | Child of the SDK process span |
-| AWS SDK for .NET (Amazon SQS) | Not applicable | The SDK creates no receive span that carries the sender context | Child of the NServiceBus send span, as in version 10 |
-
-The relation is set by the SDK version in use and can change in a later SDK version.
+| AWS SDK for .NET (Amazon SQS) with OpenTelemetry.Instrumentation.AWS | `AWSSDK.*`, added by `AddAWSInstrumentation()` | No SDK receive span. The SDK send spans, such as `RPC SQS/SendMessageBatch`, add the trace context to the SQS message attributes, but no SDK span reads it on receive. The SDK spans are client spans for each API call only. | Child of the NServiceBus send span, as in version 10. The send and process spans are in one trace, as parent and child, and the SDK send span is a sibling of the process span. SQS calls made during processing are children of the NServiceBus spans that make them. |
 
 The parent of the process span depends on the configuration of the tracer, not only on the transport. On the same transport, the process span has a different parent when the endpoint subscribes to the SDK's ActivitySource and when it does not.
 
 > [!WARNING]
-> NServiceBus cannot identify an SDK span. It uses the span that is current (`Activity.Current`) when the receive pipeline starts. If a different span is current at that time, for example a span from custom transport code or a hosting span that was not stopped, the process span becomes its child and the NServiceBus send span is only a link. The process span is then not in the trace of the sender. Make sure that no span other than the SDK receive span is current when the transport invokes the receive pipeline.
+> NServiceBus assumes that a non-null `Activity.Current` is an SDK span. If a different span is current when the receive pipeline starts, for example a span from custom transport code or a hosting span that was not stopped, the process span becomes its child and the NServiceBus send span is only a link. The process span is then not in the trace of the sender. Make sure that no span other than the SDK receive span is current when the transport invokes the receive pipeline.
 
 Dashboards or queries that assume the parent of the process span is the NServiceBus send span need updating for endpoints that subscribe to a transport SDK's ActivitySource. The send span remains reachable through the span link.
 
@@ -364,7 +364,7 @@ In version 10, span names are generic, such as `process message` and `publish ev
 
 Message type names in span names are short names, not full type names. A subscribe span for several event types lists the type names separated by spaces.
 
-Alerts, dashboards and trace searches that match on a span name must be updated. A name match fails silently: the query returns no results instead of an error.
+Alerts, dashboards and trace searches that match on a span name must be updated.
 
 ### Renamed span attributes
 
@@ -410,7 +410,7 @@ NServiceBus adds two span events to the incoming message pipeline span whenever 
 - `"Start dispatching"` - emitted before the outgoing messages are handed to the transport, with a `message-count` event tag indicating how many messages are being dispatched.
 - `"Finished dispatching"` - emitted after the dispatch completes.
 
-In version 10, these events are always emitted when OpenTelemetry instrumentation is enabled. In version 11, they are removed. There is no option to keep them. Consumers that read the events lose them; the dispatch itself is still visible through the outgoing message spans.
+In version 10, these events are always emitted when OpenTelemetry instrumentation is enabled. In version 11, they are removed.
 
 ### Context propagation
 
@@ -436,7 +436,7 @@ Both versions decode percent-encoding when reading, so a baggage value written b
 
 This only matters when both of the following are true:
 
-- The application adds baggage to activities. Baggage is opt-in; endpoints that do not use it are unaffected, and `traceparent`/`tracestate` correlation works regardless.
+- The application adds baggage to activities.
 - Version 10 and version 11 endpoints exchange messages during a rolling upgrade.
 
 To avoid the problem, upgrade message **receivers before senders** so that no version 10 endpoint receives baggage produced by a version 11 endpoint.
@@ -546,5 +546,3 @@ tracing.PublishTraceMode = TraceMode.ContinueExisting;
 ```
 
 To keep the version 10 behavior in version 11, set `PublishTraceMode` to `TraceMode.StartNew`. A single publish can override the default with `publishOptions.StartNewTraceOnReceive()` or `publishOptions.ContinueExistingTraceOnReceive()`.
-
-With the version 11 default, an event and all the work it causes are in the trace of the publisher. A long flow of events can make one very large trace.
