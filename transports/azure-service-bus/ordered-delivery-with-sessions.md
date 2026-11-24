@@ -19,6 +19,10 @@ snippet: enable-sessions
 
 Sessions apply to the whole endpoint. When installers are enabled, the transport creates the endpoint's input queue, satellite queues, and subscriptions with sessions required.
 
+> [!NOTE]:
+> Sessions are not supported on [send-only endpoint](/nservicebus/endpoints/#send-only), but it can send messages to a session-enabled endpoint through SendOptions.
+> Sessions are not supported when using the [migration topology](/transports/upgrades/asbs-4to5.md). A send-only endpoint doesn't need sessions enabled to send messages with a session ID.
+
 ### Setting the session ID
 
 Every message sent to a session-enabled queue or published to a session-enabled subscription must have a session ID. Sending a message without a session ID to a session-enabled queue throws an exception. A session-enabled queue or subscription can therefore only process messages that have a session ID.
