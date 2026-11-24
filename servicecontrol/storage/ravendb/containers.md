@@ -87,13 +87,12 @@ In any of the above cases, the certificate can be password-protected, in which c
 
 > [!NOTE]
 > To host ServiceControl and ServicePulse in Azure Container Apps, use ServiceControl v6 with [RavenDB Cloud](https://ravendb.net/cloud) for hosting the database. RavenDB Cloud is [independently hosted](#licensing) and licensed separately.
-#if-version [6, )
 
 ## Troubleshooting
 
 ### The database container reports an AGPL license
 
-A new database container reports `AGPL - Open Source` from its `/license/status` endpoint until the first database is created. RavenDB applies the bundled license at that point, so this status is expected before an Error or Audit instance has connected for the first time.
+From ServiceControl version 6, a new database container reports `AGPL - Open Source` from its `/license/status` endpoint until the first database is created. RavenDB applies the bundled license at that point, so this status is expected before an Error or Audit instance has connected for the first time.
 
 If the data volume was first used by a RavenDB server that did not have the ServiceControl license, for example a container based on the official `ravendb/ravendb` image, the database container keeps the unlicensed state stored in the volume. It doesn't apply the bundled license, and it doesn't log anything about licensing. In ServiceControl version 6.9 and later, the Error and Audit instances then stop at startup with the message `Cannot validate the current RavenDB license`.
 
@@ -104,4 +103,3 @@ docker exec servicecontrol-db sh -c 'curl -s -X POST http://localhost:8080/admin
 ```
 
 Then restart the Error and Audit instances. RavenDB stores the license with the data in the volume, so the license remains in place when the database container is restarted or replaced by a new container that uses the same volume.
-#end-if
