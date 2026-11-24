@@ -55,7 +55,7 @@ The `Billing` endpoint handles the `OrderPlaced` event to bill the customer. The
 
 ## Session state
 
-The `Sales` endpoint also demonstrates how to use [session state](/transports/azure-service-bus/ordered-delivery-with-sessions.md#ordered-delivery-session-state) to implement a lightweight workflow.
+The `Sales` endpoint also demonstrates how to use [session state](/transports/azure-service-bus/ordered-delivery-with-sessions.md#ordered-delivery-session-state) to implement ordered processing across a series of related messages.
 
 Each time the `AddItemHandler` handles an `AddItem` message, it creates or updates an `OrderState` object in session state, incrementing its `ItemCount` property by one.
 
