@@ -9,6 +9,9 @@ related:
 redirects:
  - nservicebus/rabbitmq/configuration-api
  - nservicebus/rabbitmq
+ - nservicebus/messaging/non-durable-messaging
+ - nservicebus/messaging/express-messages
+ - samples/non-durable-messaging
 ---
 
 The RabbitMQ Transport provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/) using the [RabbitMQ .NET Client](https://www.nuget.org/packages/RabbitMQ.Client/).
