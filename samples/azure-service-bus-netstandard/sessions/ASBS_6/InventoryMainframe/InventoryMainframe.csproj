@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>14.0</LangVersion>
-    <RootNamespace>Inventory</RootNamespace>
+    <RootNamespace>InventoryMainframe</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

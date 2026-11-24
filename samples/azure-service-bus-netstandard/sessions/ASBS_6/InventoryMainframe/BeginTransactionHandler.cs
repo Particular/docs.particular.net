@@ -1,6 +1,6 @@
 using Shared;
 
-namespace Inventory;
+namespace InventoryMainframe;
 
 public class BeginTransactionHandler(ILogger<BeginTransactionHandler> logger) : IHandleMessages<BeginTransaction>
 {

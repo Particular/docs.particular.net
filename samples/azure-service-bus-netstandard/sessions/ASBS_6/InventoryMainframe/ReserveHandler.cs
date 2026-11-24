@@ -1,6 +1,6 @@
 using Shared;
 
-namespace Inventory;
+namespace InventoryMainframe;
 
 public class ReserveHandler(ILogger<ReserveHandler> logger) : IHandleMessages<Reserve>
 {
