@@ -59,4 +59,4 @@ The `Sales` endpoint also demonstrates how to use [session state](/transports/az
 
 Each time the `AddItemHandler` handles an `AddItem` message, it creates or updates an `OrderState` object in session state, incrementing its `ItemCount` property by one.
 
-When the `PlaceOrderHandler` handles a `PlaceOrder` message, it reads the `OrderState` from session state and includes the item count in the `OrderPlaced` event.
+When the `PlaceOrderHandler` handles a `PlaceOrder` message, it reads the `OrderState` from session state and includes the item count in the `OrderPlaced` event. Because the order is complete, the handler then clears the session state.

@@ -19,5 +19,7 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessa
         publishOptions.SetSessionId(message.OrderId.ToString());
 
         await context.Publish(new OrderPlaced { OrderId = message.OrderId , NumberOfItems = numberOfItems}, publishOptions);
+
+        await sessionState.Clear(context.CancellationToken);
     }
 }

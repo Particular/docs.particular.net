@@ -76,6 +76,8 @@ Get the session state from the handler context using `GetSessionState()`, read i
 
 snippet: session-state-usage
 
+Session state stays on the broker after all messages in the session have been processed, and it counts toward the queue's storage quota. Remove it with `Clear()` when the session is complete.
+
 ### Sagas
 
 When a [saga](/nservicebus/sagas/) handles messages from a session-enabled queue, correlate it on the same value that's used as the session ID. All messages for a saga instance are then processed in order.
