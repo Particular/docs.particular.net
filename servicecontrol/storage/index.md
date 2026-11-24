@@ -23,7 +23,7 @@ Before choosing SQL Server or PostgreSQL, check how they differ from RavenDB:
 - Error and Audit instances also need an [external message body store](#external-message-body-storage).
 - SQL Server must have Full-Text Search installed.
 
-Existing RavenDB instances can be [migrated to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
+To move existing RavenDB instances to SQL storage, see [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
 
 | Provider | `StorageType` value | Requirements | Configuration |
 | --- | --- | --- | --- |
@@ -65,7 +65,7 @@ Back up and monitor each instance's database and, for SQL-backed instances, its 
 
 ## Changing the storage provider
 
-To move an existing RavenDB instance to SQL Server or PostgreSQL, including its data, see [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
+To move an existing RavenDB instance to SQL Server or PostgreSQL, see [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
 
 > [!WARNING]
 > Do not switch providers by changing `StorageType` on an existing instance. The data is not moved, and the instance starts with empty storage.
