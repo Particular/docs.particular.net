@@ -48,6 +48,10 @@ This metric measures the total number of messages that the endpoint has successf
 
 This metric measures the total number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
 
+### Processing attempts
+
+This metric measures the total number of message processing attempts by the endpoint. An attempt is counted once, when the receive pipeline completes or fails. A failed attempt carries the `error.type` tag. A message that the outbox detects as a duplicate counts as an attempt without `error.type`. An attempt that is canceled, typically at shutdown, counts with `error.type` set to `System.OperationCanceledException`. In NServiceBus version 11, this metric replaces the number of messages pulled from the queue, successfully processed, and failed.
+
 ### Critical time
 
 Critical time is the amount of time between when a message is sent and when it is fully processed. It is a sum of the amounts of time it takes to perform all of the following :
