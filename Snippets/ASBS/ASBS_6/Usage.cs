@@ -223,12 +223,12 @@ class Usage
     }
 
 
-    #region azure-service-bus-hierarchynamespace-excluded-message-types
-
     public class OrderState
     {
         public int ItemCount { get; set; }
     }
+
+    #region azure-service-bus-hierarchynamespace-excluded-message-types
 
     public class MyExcludedMessage
     {
