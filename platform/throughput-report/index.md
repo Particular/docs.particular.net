@@ -75,4 +75,4 @@ When upgrading an existing instance from an older version of ServiceControl, cli
 - Ensure you meet the [prerequisites](/servicecontrol/servicecontrol-instances/deployment/powershell.md#prerequisites)
 - Install and import the [Particular.ServiceControl.Management module](/servicecontrol/servicecontrol-instances/deployment/powershell.md#installing-and-using-the-powershell-module)
 - Run the [New-ServiceControlInstance cmdlet](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance)
-  - Most parameters can remain as shown in the example, which includes `-EnableIntegratedServicePulse`, with the `-Transport` and `-ConnectionString` values set according to your environment.
+  - Most parameters can remain as shown in the example, which includes `-EnableIntegratedServicePulse`, with the `-Transport` and `-ConnectionString` values set according to your environment. From ServiceControl 7, `-StorageType` is also required.

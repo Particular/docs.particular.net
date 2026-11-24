@@ -28,7 +28,7 @@ include: powershell-help
 
 Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance:
 
-The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is optional and defaults to `RavenDB`. Earlier versions do not have the parameter, so leave it out.
+The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required. Earlier versions do not have the parameter, so leave it out.
 
 snippet: ps-new-error-instance-ravendb
 
