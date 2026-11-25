@@ -28,9 +28,7 @@ docker run -d --name error -p 33333:33333 \
 
 The example contains no AWS keys or database password. SQS, S3, and the [IAM database login](/servicecontrol/storage/postgresql/#authentication-token-authentication) use the AWS SDK default credential chain, such as an IAM role attached to the host or task, and the region set in `AWS_REGION`.
 
-The `STORAGETYPE` environment variable is required. SQL Server and PostgreSQL storage also require an [external message body store](/servicecontrol/storage/external-body/), selected with `MESSAGEBODY_STORAGETYPE`: [file system](/servicecontrol/storage/external-body/file.md), [Azure Blob Storage](/servicecontrol/storage/external-body/azure-blob.md), or [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md). For SQL Server, set `STORAGETYPE` to `SQLServer` and use a [SQL Server connection string](/servicecontrol/storage/sqlserver/). For RavenDB, set `STORAGETYPE` to `RavenDB` and replace the database and message body variables with `RAVENDB_CONNECTIONSTRING`, as described in [RavenDB container setup](/servicecontrol/storage/ravendb/containers.md). See [Storage selection](#required-settings-storage-selection).
-
-SQL Server and PostgreSQL storage, and the `STORAGETYPE` setting, are available from ServiceControl 7. Earlier versions support only RavenDB storage: leave out `STORAGETYPE` and the database and message body variables, and set `RAVENDB_CONNECTIONSTRING` instead.
+This example shows one combination of transport, storage, and message body store. [Required settings](#required-settings) lists the variables for each storage type.
 
 include: platform-container-examples
 
@@ -86,10 +84,11 @@ Both endpoints are available from version 6.20.
 
 ## Volumes
 
-The Error instance container keeps no data of its own. With RavenDB storage, the data is in the RavenDB database. With SQL Server or PostgreSQL storage, the data is in the database and in the message body store. A mounted volume is needed only in these cases:
+The Error instance container keeps no data of its own. Whether it needs a mounted volume depends on the storage type:
 
-- **File system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md). Azure Blob Storage and Amazon S3 need no volume.
-- **RavenDB client certificate file:** to connect to RavenDB with a client certificate stored in a file, mount the file and point `RAVENDB_CLIENTCERTIFICATEPATH` to it. A certificate supplied as a Base64-encoded environment variable needs no volume. See [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
+- **SQL Server or PostgreSQL storage with file system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. The exception is [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md), which mount the same volume as their Error instance. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md).
+- **SQL Server or PostgreSQL storage with Azure Blob Storage or Amazon S3:** no volume is needed. The data is in the database and in the message body store.
+- **RavenDB storage:** no volume is needed for the data, which is in the RavenDB database. To connect to RavenDB with a client certificate stored in a file, mount the file and point `RAVENDB_CLIENTCERTIFICATEPATH` to it. A certificate supplied as a Base64-encoded environment variable needs no volume. See [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
 
 > [!WARNING]
 > The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and the instance then fails to start up. Give the volume suitable ownership or permissions before starting the instance.
