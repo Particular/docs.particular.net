@@ -113,3 +113,5 @@ To avoid this situation, it is important to properly decommission an endpoint th
 ## Enabling publishing
 
 In ServiceControl version 7 and later, publishing is disabled by default. To publish events, set [`EnableExternalIntegrationsPublishing` to `true`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableexternalintegrationspublishing). Leave publishing disabled in systems that have no subscribers for ServiceControl events, to avoid unneeded traffic to the broker.
+
+- **Ingestion-only workers:** set the same value on every [ingestion-only worker](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md). Each worker stores the `MessageFailed` events for the messages it ingests, and the Error instance publishes them. A worker without the setting stores none, so failures it ingests publish no `MessageFailed` event, without any error.
