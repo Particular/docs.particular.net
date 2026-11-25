@@ -4,9 +4,9 @@ Delayed messages are stored in a dedicated table. When they are due, the transpo
 
 snippet: DelayedDeliveryBatchSizeCustom
 
-For messages with large bodies, lower the batch size to keep each move short.
+The optimal batch size depends on the workload and message body size. For messages with large bodies, consider lowering the batch size to keep individual move transactions short.
 
-In version 9.2 and later, only one instance of a scaled-out endpoint moves due delayed messages at a time. Before moving a batch, an instance tries to take a transaction-level advisory lock on the delayed messages table using `pg_try_advisory_xact_lock`. An instance that doesn't get the lock skips the batch and tries again after a random delay between 0.5 and 1 second. This delay isn't configurable. Because instances don't compete for the same rows, they don't deadlock while moving due messages.
+In version 9.2 and later, only one instance of a scaled-out endpoint moves due delayed messages at a time. Before moving a batch, an instance tries to take a transaction-level advisory lock on the delayed messages table using `pg_try_advisory_xact_lock`. An instance that doesn't get the lock skips the batch and tries again after a random delay between 0.5 and 1 second. This delay isn't configurable. By eliminating competition between instances for the same rows, the single mover reduces database resource consumption and prevents deadlocks between instances moving due delayed messages. Receiving and dispatching messages are unaffected.
 
 The `DelayedDelivery` section of the [startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) shows `SingleMover` set to `true` when the lock is used.
 

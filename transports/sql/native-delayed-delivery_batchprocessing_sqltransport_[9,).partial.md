@@ -4,13 +4,13 @@ The SQL Server transport moves due delayed messages in batches. Each time the tr
 
 snippet: DelayedDeliveryBatchSizeCustom
 
-For messages with large bodies, lower the batch size to keep each move transaction short.
+The optimal batch size depends on the workload and message body size. Increasing the batch size can improve the rate at which a backlog of due delayed messages drains and reduce database CPU consumption. For messages with large bodies, consider lowering the batch size to keep individual move transactions short.
 
 ### Single mover
 
 In version 9.2 and later, only one instance of a scaled-out endpoint moves due delayed messages at a time. Before moving a batch, an instance requests an exclusive application lock on the delayed messages table using `sp_getapplock` with a timeout of zero. An instance that doesn't get the lock skips the batch and tries again after a random delay between 0.5 and 1 second. This delay isn't configurable.
 
-Because instances don't compete for the same rows, moving delayed messages uses less database CPU. When many instances share a large backlog of due messages, the backlog drains more slowly than it would with every instance moving messages. Receiving and dispatching messages isn't affected.
+By eliminating competition between instances for the same rows, the single mover significantly reduces database resource consumption. When many instances share a large backlog of due delayed messages, this may come at the cost of a longer drain time. This can be mitigated by tuning the [batch size](#configuration-batch-size) based on the workload and message body size. Receiving and dispatching messages are unaffected.
 
 The `DelayedDelivery` section of the [startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) shows `SingleMover` set to `true` when the lock is used.
 
