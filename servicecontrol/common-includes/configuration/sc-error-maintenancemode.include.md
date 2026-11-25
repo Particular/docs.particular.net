@@ -1,5 +1,7 @@
 ### ServiceControl/MaintenanceMode
 
+_Applies only to RavenDB storage_
+
 Run a RavenDB-backed [ServiceControl Error instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) to perform database maintenance.
 
 | Context | Name |

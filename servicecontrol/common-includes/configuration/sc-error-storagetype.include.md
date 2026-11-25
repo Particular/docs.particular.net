@@ -14,4 +14,4 @@ The storage implementation used by the instance. This setting is required; an in
 | --- | --- |
 | string | None (required) |
 
-Valid values are `RavenDB`, `SQLServer`, and `PostgreSQL`. To choose where message bodies are stored with SQL Server or PostgreSQL storage, use [`ServiceControl/MessageBody/StorageType`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmessagebodystoragetype).
+Valid values are `RavenDB`, `SQLServer`, and `PostgreSQL`. To choose where message bodies are stored with SQL Server or PostgreSQL storage, use [`ServiceControl/MessageBody/StorageType`](/servicecontrol/servicecontrol-instances/configuration.md#message-body-storage-servicecontrolmessagebodystoragetype).

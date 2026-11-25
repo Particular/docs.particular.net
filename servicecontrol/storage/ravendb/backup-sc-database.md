@@ -22,8 +22,8 @@ The RavenDB Studio URL depends on where the database runs.
 
 Instances installed with ServiceControl Management or PowerShell run an embedded database. Open RavenDB Studio on the server where the instance is installed:
 
-* Error instance: `http://localhost:33334`, or the configured [database maintenance port](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldatabasemaintenanceport)
-* Audit instance: `http://localhost:44445`, or the configured [database maintenance port](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditdatabasemaintenanceport)
+* Error instance: `http://localhost:33334`, or the configured [database maintenance port](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontroldatabasemaintenanceport)
+* Audit instance: `http://localhost:44445`, or the configured [database maintenance port](/servicecontrol/audit-instances/configuration.md#ravendb-storage-servicecontrol-auditdatabasemaintenanceport)
 
 The database accepts connections from the local server only. It runs only while the instance runs, either normally or in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode). ServiceControl Management shows a link to RavenDB Studio in Advanced Options while the instance is in maintenance mode. The instance also writes the URL to its log at startup, as `Database Url`.
 
@@ -59,7 +59,7 @@ The RavenDB server reads the backup files from its own file system, and the rest
 1. Click **Stop Maintenance Mode**. This stops the instance.
 1. Start the instance.
 
-Without ServiceControl Management, set the `MaintenanceMode` setting of the [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmaintenancemode) or [Audit instance](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditmaintenancemode) to `true` and restart the Windows service. When the restore completes, remove the setting or set it to `false`, then restart the Windows service.
+Without ServiceControl Management, set the `MaintenanceMode` setting of the [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontrolmaintenancemode) or [Audit instance](/servicecontrol/audit-instances/configuration.md#ravendb-storage-servicecontrol-auditmaintenancemode) to `true` and restart the Windows service. When the restore completes, remove the setting or set it to `false`, then restart the Windows service.
 
 After a restore, RavenDB rebuilds the indexes. Until indexing completes, ServicePulse might show incomplete data.
 

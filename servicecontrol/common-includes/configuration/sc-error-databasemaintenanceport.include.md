@@ -1,5 +1,7 @@
 ### ServiceControl/DatabaseMaintenancePort
 
+_Applies only to RavenDB storage_
+
 The port to expose the RavenDB database.
 
 | Context | Name |

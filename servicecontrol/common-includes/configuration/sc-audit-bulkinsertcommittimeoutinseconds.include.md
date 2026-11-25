@@ -1,5 +1,7 @@
 ### ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds
 
+_Applies only to RavenDB storage_
+
 Configures the maximum duration, in seconds, for processing a batch of audited messages.
 
 | Context | Name |
@@ -11,4 +13,5 @@ Configures the maximum duration, in seconds, for processing a batch of audited m
 | Type | Default value |
 | --- | --- |
 | int | `60` (1 minute) |
-This setting applies only to RavenDB storage. For SQL Server and PostgreSQL storage, see [`Database/CommandTimeout`](/servicecontrol/audit-instances/configuration.md#storage-servicecontrol-auditdatabasecommandtimeout).
+
+For SQL Server and PostgreSQL storage, see [`Database/CommandTimeout`](/servicecontrol/audit-instances/configuration.md#sql-server-and-postgresql-storage-servicecontrol-auditdatabasecommandtimeout).

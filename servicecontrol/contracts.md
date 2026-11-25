@@ -38,7 +38,7 @@ Whether the event includes the body depends on the storage the Error instance us
 | --- | --- | --- |
 | RavenDB | Text, smaller than 85 KB, with full-text body indexing enabled | The full body |
 | RavenDB | Any other body | No body |
-| SQL Server or PostgreSQL | Text, up to [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolmaxbodysizetostore) bytes | The full body |
+| SQL Server or PostgreSQL | Text, up to [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/servicecontrol-instances/configuration.md#message-body-storage-servicecontrolmaxbodysizetostore) bytes | The full body |
 | SQL Server or PostgreSQL | Text, larger than `MaxBodySizeToStore` bytes | The start of the body, truncated to at most `MaxBodySizeToStore` bytes |
 | SQL Server or PostgreSQL | Not text, such as binary or compressed bodies | No body |
 
