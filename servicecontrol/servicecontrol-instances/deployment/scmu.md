@@ -64,7 +64,7 @@ As an example, after configuring an error, audit and monitoring instance for the
 
 ### Storage type
 
-From ServiceControl 7, error and audit instances have a required **STORAGE TYPE** setting, which has no default. When both instances are added together, they use the same storage type. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
+From ServiceControl 7, error and audit instances have a required **STORAGE TYPE** setting. When both instances are added together, they use the same storage type. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
 
 | **STORAGE TYPE** | Where the data is stored | Fields |
 | --- | --- | --- |
