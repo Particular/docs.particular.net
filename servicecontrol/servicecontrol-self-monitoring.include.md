@@ -20,11 +20,17 @@ When ServiceControl has difficulty connecting to the configured transport, the e
 
 #### Message database storage space
 
-When using RavenDB storage with an embedded database, ServiceControl stores messages in that database. If the drive containing the database runs out of storage space, message ingestion fails and the ServiceControl instance stops. This may cause instability in the database, even after storage space is increased. The remaining storage space on the drive is monitored. The check reports a failure if the drive has less than 20% remaining of its total capacity. This check applies only to RavenDB storage. This threshold is controlled by the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldataspaceremainingthreshold) setting.
+> [!NOTE]
+> This check applies only to RavenDB storage.
+
+When using RavenDB storage with an embedded database, ServiceControl stores messages in that database. If the drive containing the database runs out of storage space, message ingestion fails and the ServiceControl instance stops. This may cause instability in the database, even after storage space is increased. The remaining storage space on the drive is monitored. The check reports a failure if the drive has less than 20% remaining of its total capacity. This threshold is controlled by the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontroldataspaceremainingthreshold) setting.
 
 #### Critical message database storage space
 
-This check applies only to RavenDB storage. It is similar to the [Message database storage space check](#notifications-health-monitoring-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
+> [!NOTE]
+> This check applies only to RavenDB storage.
+
+This check is similar to the [Message database storage space check](#notifications-health-monitoring-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#ravendb-storage-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
 
 #### SQL storage retention
 

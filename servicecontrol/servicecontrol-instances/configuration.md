@@ -156,13 +156,14 @@ include: sc-error-corsallowedorigins
 
 ## Storage
 
-Each Error instance must select its storage type with `ServiceControl/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default. SQL Server and PostgreSQL storage, and the `StorageType` setting, are available from ServiceControl 7. Earlier versions store data in RavenDB.
-
-
-include: sc-error-storage-sql-intro
+Each Error instance stores its data in RavenDB, SQL Server, or PostgreSQL. See the [storage overview](/servicecontrol/storage/) to choose a storage type. The settings for SQL Server and PostgreSQL are in [SQL Server and PostgreSQL storage](#sql-server-and-postgresql-storage) and [Message body storage](#message-body-storage). The settings for RavenDB are in [RavenDB storage](#ravendb-storage).
 
 
 include: sc-error-storagetype
+
+## SQL Server and PostgreSQL storage
+
+SQL Server and PostgreSQL storage are available from ServiceControl 7. These settings apply when [`ServiceControl/StorageType`](#storage-servicecontrolstoragetype) is `SQLServer` or `PostgreSQL`. Prepare the database first; see [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/). SQL Server must have Full-Text Search installed. These storage types also need the [message body storage](#message-body-storage) settings.
 
 
 include: sc-error-database-connectionstring
@@ -173,8 +174,11 @@ include: sc-error-database-schema
 
 include: sc-error-database-commandtimeout
 
+## Message body storage
 
-include: sc-error-storage-sql-interstitial
+SQL Server and PostgreSQL storage keep message bodies that are binary, or larger than [`ServiceControl/MaxBodySizeToStore`](#message-body-storage-servicecontrolmaxbodysizetostore), in an [external message body store](/servicecontrol/storage/external-body/): the file system, Azure Blob Storage, or Amazon S3. RavenDB storage does not use these settings.
+
+The ServiceControl Management Utility configures file system storage, in the **MESSAGE BODY PATH**. The PowerShell module also supports Azure Blob Storage and Amazon S3. To change the store later, change these settings in the instance's configuration file, starting with [`ServiceControl/MessageBody/StorageType`](#message-body-storage-servicecontrolmessagebodystoragetype). Changing the store does not move existing message bodies.
 
 
 include: sc-error-messagebody-storagetype
@@ -224,8 +228,12 @@ include: sc-error-messagebody-s3-secretaccesskey
 
 include: sc-error-messagebody-mincompressionsize
 
+## RavenDB storage
 
-The following settings apply only when using RavenDB storage.
+These settings apply only when [`ServiceControl/StorageType`](#storage-servicecontrolstoragetype) is `RavenDB`, and to versions before 7, which always use RavenDB. `DbPath` and `RavenDBLogLevel` configure the embedded database and are not valid for instances hosted in a container.
+
+
+include: sc-error-dbpath
 
 
 include: sc-error-databasemaintenanceport
@@ -234,19 +242,19 @@ include: sc-error-databasemaintenanceport
 include: sc-error-maintenancemode
 
 
+include: sc-error-ravendbloglevel
+
+
+include: sc-error-expirationprocesstimerinseconds
+
+
+include: sc-error-enablefulltextsearchonbodies
+
+
 include: sc-error-dataspaceremainingthreshold
 
 
 include: sc-error-minimumstorageleftrequiredforingestion
-
-The following embedded RavenDB settings are not valid for ServiceControl instances hosted in a container.
-
-
-include: sc-error-dbpath
-
-
-include: sc-error-ravendbloglevel
-
 
 ## Logging
 
@@ -270,9 +278,6 @@ include: sc-error-allowmessageediting
 ## Data retention
 
 
-include: sc-error-expirationprocesstimerinseconds
-
-
 include: sc-error-errorretentionperiod
 
 
@@ -294,9 +299,6 @@ include: sc-error-erroringestionmaxparallelwriters
 
 
 include: sc-error-erroringestionbatchtimeout
-
-
-include: sc-error-enablefulltextsearchonbodies
 
 
 include: sc-error-querytimeoutinseconds

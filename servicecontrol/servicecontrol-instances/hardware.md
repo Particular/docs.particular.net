@@ -53,7 +53,7 @@ These recommendations apply to Error and Audit instances that run embedded Raven
 * Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures applications are not competing for storage IOPS.
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
-* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
+* [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontroldbpath) should be located on disks suitable for low-latency write operations (e.g., fiber, solid-state drives, RAID 10), with a recommended IOPS of at least 7500.
 * Use fixed-size (not dynamically expanding virtual) disks
 * Use solid-state drives (SSDs) to significantly reduce seek times and increase throughput
 * Database compaction requires an amount of free disk space equal to the database to compact; account for the compaction operation when determining storage disk sizes
@@ -83,7 +83,7 @@ The embedded RavenDB will use additional RAM to improve indexing performance. Du
 > [!NOTE]
 > This suggestion applies to ServiceControl Error instances. Audit instances have three indexes, and only one is performance-critical; in this case, the performance gain from using multiple disks is not worth the cost. 
 
-Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#storage-servicecontroldbpath), it's possible to store the embedded RavenDB index files on a separate disk.
+Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontroldbpath), it's possible to store the embedded RavenDB index files on a separate disk.
 
 Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
@@ -121,7 +121,7 @@ For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servi
 Updating the full-text index requires a considerable amount of CPU and disk space. If the full-text search on message bodies is not required, consider turning it off by doing either one of the following:
 
 - Turn off the 'FULL TEXT SEARCH ON MESSAGE BODIES' in the settings configuration of ServiceControl Management Utility
-- Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file
+- Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/configuration.md#ravendb-storage-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file
 
 ### Tune ingestion concurrency and writers
 

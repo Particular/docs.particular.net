@@ -38,16 +38,11 @@ include: sc-audit-hostname
 include: sc-audit-port
 
 
-include: sc-audit-databasemaintenanceport
-
-
 include: sc-audit-virtualdirectory
 
 
 include: sc-audit-shutdowntimeout
 
-
-include: sc-audit-maintenancemode
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
@@ -146,13 +141,14 @@ include: sc-audit-corsallowedorigins
 
 ## Storage
 
-Each Audit instance must select its storage type with `ServiceControl.Audit/StorageType`: RavenDB, SQL Server, or PostgreSQL. There is no default. SQL Server and PostgreSQL storage, and the `StorageType` setting, are available from ServiceControl 7. Earlier versions store data in RavenDB.
-
-
-include: sc-audit-storage-sql-intro
+Each Audit instance stores its data in RavenDB, SQL Server, or PostgreSQL. See the [storage overview](/servicecontrol/storage/) to choose a storage type. The settings for SQL Server and PostgreSQL are in [SQL Server and PostgreSQL storage](#sql-server-and-postgresql-storage) and [Message body storage](#message-body-storage). The settings for RavenDB are in [RavenDB storage](#ravendb-storage).
 
 
 include: sc-audit-storagetype
+
+## SQL Server and PostgreSQL storage
+
+SQL Server and PostgreSQL storage are available from ServiceControl 7. These settings apply when [`ServiceControl.Audit/StorageType`](#storage-servicecontrol-auditstoragetype) is `SQLServer` or `PostgreSQL`. Prepare the database first; see [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/). SQL Server must have Full-Text Search installed. These storage types also need the [message body storage](#message-body-storage) settings.
 
 
 include: sc-audit-database-connectionstring
@@ -163,7 +159,11 @@ include: sc-audit-database-schema
 
 include: sc-audit-database-commandtimeout
 
-When using SQL Server or PostgreSQL storage, message bodies that are not text or are larger than [`ServiceControl.Audit/MaxBodySizeToStore`](#performance-tuning-servicecontrol-auditmaxbodysizetostore) are stored in the file system, Azure Blob Storage, or Amazon S3. See [external message body storage](/servicecontrol/storage/external-body/).
+## Message body storage
+
+SQL Server and PostgreSQL storage keep message bodies that are not text, or larger than [`ServiceControl.Audit/MaxBodySizeToStore`](#performance-tuning-servicecontrol-auditmaxbodysizetostore), in an [external message body store](/servicecontrol/storage/external-body/): the file system, Azure Blob Storage, or Amazon S3. RavenDB storage does not use these settings.
+
+The ServiceControl Management Utility configures file system storage, in the **MESSAGE BODY PATH**. The PowerShell module also supports Azure Blob Storage and Amazon S3. To change the store later, change these settings in the instance's configuration file, starting with [`ServiceControl.Audit/MessageBody/StorageType`](#message-body-storage-servicecontrol-auditmessagebodystoragetype). Changing the store does not move existing message bodies.
 
 
 include: sc-audit-messagebody-storagetype
@@ -210,20 +210,36 @@ include: sc-audit-messagebody-s3-secretaccesskey
 
 include: sc-audit-messagebody-mincompressionsize
 
+## RavenDB storage
 
-include: sc-audit-storage-sql-outro
-
-
-## Embedded database
-
-These settings apply only to RavenDB storage and are not valid for ServiceControl instances hosted in a container.
+These settings apply only when [`ServiceControl.Audit/StorageType`](#storage-servicecontrol-auditstoragetype) is `RavenDB`, and to versions before 7, which always use RavenDB. `DbPath` and `RavenDBLogLevel` configure the embedded database and are not valid for instances hosted in a container.
 
 
 include: sc-audit-dbpath
 
 
+include: sc-audit-databasemaintenanceport
+
+
+include: sc-audit-maintenancemode
+
+
 include: sc-audit-ravendbloglevel
 
+
+include: sc-audit-expirationprocesstimerinseconds
+
+
+include: sc-audit-enablefulltextsearchonbodies
+
+
+include: sc-audit-bulkinsertcommittimeoutinseconds
+
+
+include: sc-audit-dataspaceremainingthreshold
+
+
+include: sc-audit-minimumstorageleftrequiredforingestion
 
 ## Logging
 
@@ -247,13 +263,10 @@ include: sc-audit-servicecontrol-ingestauditmessages
 ## Data retention
 
 
-include: sc-audit-expirationprocesstimerinseconds
-
-
 include: sc-audit-auditretentionperiod
 
 > [!NOTE]
-> Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
+> How a changed retention period affects messages that are already stored depends on the storage type. See [automatic expiration of data](/servicecontrol/how-purge-expired-data.md).
 
 ## Performance tuning
 
@@ -271,12 +284,6 @@ include: sc-audit-auditingestionmaxparallelwriters
 
 
 include: sc-audit-auditingestionbatchtimeout
-
-
-include: sc-audit-enablefulltextsearchonbodies
-
-
-include: sc-audit-bulkinsertcommittimeoutinseconds
 
 
 include: sc-audit-querytimeoutinseconds
@@ -300,11 +307,3 @@ include: sc-audit-auditlogqueue
 
 
 include: sc-audit-servicecontrolqueueaddress
-
-## Troubleshooting
-
-
-include: sc-audit-dataspaceremainingthreshold
-
-
-include: sc-audit-minimumstorageleftrequiredforingestion

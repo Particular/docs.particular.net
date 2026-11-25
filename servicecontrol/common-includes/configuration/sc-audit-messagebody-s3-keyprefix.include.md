@@ -2,7 +2,7 @@
 
 _Added in version 7.0.0_
 
-The prefix applied to message body object keys in Amazon S3. Every Audit instance has the same default, so set a different key prefix for each Audit instance that uses the same bucket.
+The prefix applied to message body object keys in Amazon S3. Every Audit instance has the same default, so set a different key prefix for each Audit instance that uses the same bucket. The exception is Audit instances that [share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database), which must all use the same bucket and key prefix.
 
 | Context | Name |
 | --- | --- |

@@ -26,21 +26,31 @@ include: powershell-help
 
 ### Deploying an Error instance
 
-Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance:
-
-The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required. Earlier versions do not have the parameter, so leave it out.
-
-snippet: ps-new-error-instance-ravendb
-
-From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. `-EnableFullTextSearchOnBodies` also applies only to RavenDB. The following example stores message bodies on the file system, in the directory given by `-MessageBodyPath`.
-
-snippet: ps-new-error-instance-sqlserver
-
-include: powershell-message-body-storage
+Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance. The storage parameters depend on the storage type, and each storage type has its own example below.
 
 include: powershell-new-configuration
 
 include: powershell-skip-queue-creation
+
+#### RavenDB storage
+
+RavenDB storage requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType RavenDB` is also required. Earlier versions do not have the `-StorageType` parameter, so leave it out.
+
+snippet: ps-new-error-instance-ravendb
+
+#### SQL Server or PostgreSQL storage
+
+_Added in version 7.0.0_
+
+Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString`. See [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/) to prepare the database. The cmdlet does not accept `-DBPath`, `-DatabaseMaintenancePort`, or `-EnableFullTextSearchOnBodies` with these storage types.
+
+The following example stores message bodies on the file system, in the directory given by `-MessageBodyPath`.
+
+snippet: ps-new-error-instance-sqlserver
+
+#### Message body storage
+
+include: powershell-message-body-storage
 
 ### Listing deployed instances
 
@@ -50,7 +60,9 @@ snippet: ps-get-error-instances
 
 ### Removing an instance
 
-Use the `Remove-ServiceControlInstance` cmdlet to remove the instance. Use `-RemoveDB` to also delete the local RavenDB database files or local file-system message body files, and `-RemoveLogs` to delete the logs directory. A SQL Server or PostgreSQL database, Azure Blob Storage, and Amazon S3 data are not removed and must be cleaned up manually if no longer needed.
+Use the `Remove-ServiceControlInstance` cmdlet to remove the instance. `-RemoveLogs` also deletes the logs directory. `-RemoveDB` also deletes the data that is stored on the machine, which depends on the storage type:
+
+include: instance-data-removal
 
 snippet: ps-remove-error-instance
 

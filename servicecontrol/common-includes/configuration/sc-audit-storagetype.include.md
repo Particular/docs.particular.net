@@ -14,4 +14,4 @@ The storage implementation used by the Audit instance. This setting is required;
 | --- | --- |
 | string | None (required) |
 
-Valid values are `RavenDB`, `SQLServer`, and `PostgreSQL`. To choose where message bodies are stored with SQL Server or PostgreSQL storage, use [`ServiceControl.Audit/MessageBody/StorageType`](/servicecontrol/audit-instances/configuration.md#storage-servicecontrol-auditmessagebodystoragetype).
+Valid values are `RavenDB`, `SQLServer`, and `PostgreSQL`. To choose where message bodies are stored with SQL Server or PostgreSQL storage, use [`ServiceControl.Audit/MessageBody/StorageType`](/servicecontrol/audit-instances/configuration.md#message-body-storage-servicecontrol-auditmessagebodystoragetype).

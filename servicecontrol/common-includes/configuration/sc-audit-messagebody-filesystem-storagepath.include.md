@@ -2,7 +2,7 @@
 
 _Added in version 7.0.0_
 
-The directory where message bodies are stored when `MessageBody/StorageType` is `FileSystem`. Use a separate directory for each instance; do not share it with another Audit instance or an Error instance.
+The directory where message bodies are stored when `MessageBody/StorageType` is `FileSystem`. Use a separate directory for each instance. The exception is Audit instances that [share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database), which must all use the same directory.
 
 | Context | Name |
 | --- | --- |

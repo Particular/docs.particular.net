@@ -1,5 +1,7 @@
 ### ServiceControl/RavenDBLogLevel
 
+_Applies only to RavenDB storage_
+
 Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
 
 | Context | Name |

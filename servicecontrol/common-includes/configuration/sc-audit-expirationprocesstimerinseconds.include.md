@@ -1,5 +1,7 @@
 ### ServiceControl.Audit/ExpirationProcessTimerInSeconds
 
+_Applies only to RavenDB storage_
+
 The number of seconds to wait between checking for expired messages.
 
 | Context | Name |
@@ -16,4 +18,4 @@ Valid range is `0` to `10800` (3 Hours).
 
 Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding.
 
-This setting applies only to RavenDB storage. SQL Server and PostgreSQL storage check for expired messages once an hour, and the interval cannot be changed.
+SQL Server and PostgreSQL storage check for expired messages once an hour, and the interval cannot be changed.

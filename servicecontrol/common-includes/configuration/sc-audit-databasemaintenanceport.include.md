@@ -1,5 +1,7 @@
 ### ServiceControl.Audit/DatabaseMaintenancePort
 
+_Applies only to RavenDB storage_
+
 The port to expose the RavenDB database.
 
 | Context | Name |
@@ -14,5 +16,3 @@ The port to expose the RavenDB database.
 
 > [!NOTE]
 > This setting is not relevant when running an audit instance in a container.
-
-This setting applies only to RavenDB storage.

@@ -7,7 +7,7 @@ component: ServiceControl
 
 SQL Server and PostgreSQL storage separate large message bodies from the instance's database. The database stores message metadata and small text bodies; an external store holds larger bodies and every binary body. Configure an external store even if most messages have small bodies.
 
-This configuration is required for SQL-backed Error and Audit instances. RavenDB manages message body storage itself.
+SQL-backed Error instances require an external store and do not start without one. SQL-backed Audit instances start without one, but then [do not store large or binary bodies](#storage-providers-servicecontrol-auditmessagebodystoragetype). RavenDB manages message body storage itself.
 
 ## Storage providers
 
@@ -21,12 +21,18 @@ Choose one provider per instance and follow its configuration guide.
 
 Configure the body store alongside [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage. Use the same settings during setup and normal operation. Error instance settings use the `ServiceControl/` prefix, and Audit instance settings use the `ServiceControl.Audit/` prefix. The ServiceControl Management Utility configures file system body storage for Error and Audit instances, in the **MESSAGE BODY PATH** of each instance. The PowerShell module configures any of these stores; see [deploying an Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [deploying an Audit instance](/servicecontrol/audit-instances/deployment/powershell.md) with PowerShell.
 
-> [!WARNING]
-> Give each instance its own directory, container, or key prefix, and do not share one between an Error instance and an Audit instance. Audit instances delete the bodies of expired messages by hour or by day across the whole location, so an instance with a shorter retention period can delete bodies that another instance still needs, and those messages stay visible without their bodies. The Audit defaults (`audit-bodies` and `audit-bodies/`) differ from the Error defaults, but they are the same for every Audit instance, so set a different [container](/servicecontrol/storage/external-body/azure-blob.md) or [key prefix](/servicecontrol/storage/external-body/amazon-s3.md) for each Audit instance. The exception is processes that share a database: [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) use their Error instance's body store, and [Audit instances that share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) must also share one body store.
-
 include: sc-error-messagebody-storagetype
 
 include: sc-audit-messagebody-storagetype
+
+## Sharing a message body store
+
+> [!WARNING]
+> Give each instance its own directory, container, or key prefix, and do not share one between an Error instance and an Audit instance.
+
+Audit instances delete the bodies of expired messages by hour or by day across the whole location, so an instance with a shorter retention period can delete bodies that another instance still needs, and those messages stay visible without their bodies. The Audit defaults (`audit-bodies` and `audit-bodies/`) differ from the Error defaults, but they are the same for every Audit instance, so set a different [container](/servicecontrol/storage/external-body/azure-blob.md) or [key prefix](/servicecontrol/storage/external-body/amazon-s3.md) for each Audit instance.
+
+The exception is processes that share a database: [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) use their Error instance's body store, and [Audit instances that share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) must also share one body store.
 
 ## Inline storage and compression
 
@@ -48,7 +54,7 @@ include: sc-error-messagebody-mincompressionsize
 
 include: sc-audit-messagebody-mincompressionsize
 
-See the [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#storage) and [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#storage) for the complete reference.
+See the [Error instance storage settings](/servicecontrol/servicecontrol-instances/configuration.md#message-body-storage) and [Audit instance storage settings](/servicecontrol/audit-instances/configuration.md#message-body-storage) for the complete reference.
 
 ## Operations
 

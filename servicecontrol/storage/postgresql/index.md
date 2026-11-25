@@ -8,7 +8,7 @@ component: ServiceControl
 From ServiceControl 7, Error and Audit instances can use PostgreSQL instead of [RavenDB storage](/servicecontrol/storage/ravendb/). Select PostgreSQL when an instance should use an existing PostgreSQL deployment. Storage is configured separately for each instance.
 
 > [!IMPORTANT]
-> When using PostgreSQL, Error and Audit instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline.
+> When using PostgreSQL, Error instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline. Audit instances start without it, but then [do not store large or binary bodies](/servicecontrol/storage/external-body/#storage-providers-servicecontrol-auditmessagebodystoragetype).
 
 ## Supported PostgreSQL versions
 
@@ -20,7 +20,7 @@ PostgreSQL 18 or later is recommended. In testing by Particular Software, Postgr
 
 Create a database before configuring the instance as ServiceControl does not create the database. Setup creates the instance's schema if it does not exist. If the identity that runs setup cannot create schemas, create the schema in advance and grant that identity rights on it. Error and Audit instances can use the same database but not the same schema; see [sharing a database](/servicecontrol/storage/#sharing-a-database).
 
-PostgreSQL full-text search uses a built-in `tsvector` GIN index and message body search is always enabled for PostgreSQL storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#performance-tuning-servicecontrolenablefulltextsearchonbodies) setting.
+PostgreSQL full-text search uses a built-in `tsvector` GIN index and message body search is always enabled for PostgreSQL storage, regardless of the [`EnableFullTextSearchOnBodies`](/servicecontrol/servicecontrol-instances/configuration.md#ravendb-storage-servicecontrolenablefulltextsearchonbodies) setting.
 
 ## Database permissions
 
@@ -117,7 +117,7 @@ SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/bodies
 SERVICECONTROL_ERRORRETENTIONPERIOD=15
 ```
 
-See the [Error instance settings reference](/servicecontrol/servicecontrol-instances/configuration.md#storage) for the complete reference.
+See the [Error instance settings reference](/servicecontrol/servicecontrol-instances/configuration.md#sql-server-and-postgresql-storage) for the complete reference.
 
 To share the ingestion load across several processes, see [Scaling out error ingestion](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md). Workers use this instance's database, schema, and message body store, and only this instance runs setup.
 
@@ -153,7 +153,7 @@ SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/audi
 SERVICECONTROL_AUDIT_AUDITRETENTIONPERIOD=30
 ```
 
-See the [Audit instance settings reference](/servicecontrol/audit-instances/configuration.md#storage) for the complete reference.
+See the [Audit instance settings reference](/servicecontrol/audit-instances/configuration.md#sql-server-and-postgresql-storage) for the complete reference.
 
 ## Run setup
 
@@ -169,7 +169,7 @@ The ServiceControl Management Utility (SCMU) and the PowerShell module run setup
 
 To change the message body store after the instance is created, change the message body settings in the instance's configuration file. Bodies already stored are not moved, so make the change before the instance ingests messages.
 
-Neither tool sets `Database/Schema`, so instances they create use the default schema.
+Neither tool sets `Database/Schema`, so instances they create use the default schema. Two Audit instances in one database both use the `sc_audit` schema, and two Error instances both use the current schema from `search_path`, usually `public`, so they share tables. Create independent instances of the same type in separate databases. To share a database between Audit instances on purpose, see [Scaling out audit ingestion](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database); those instances must also share a message body store. An Error instance and an Audit instance can use one database, because their default schemas differ.
 
 ## Verify the setup
 

@@ -1,5 +1,7 @@
 ### ServiceControl.Audit/RavenDBLogLevel
 
+_Applies only to RavenDB storage_
+
 Controls the LogLevel of the RavenDB logs.
 
 | Context | Name |
