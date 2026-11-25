@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Transport Design
 summary: The design and implementation details of PostgreSQL Transport
-reviewed: 2026-06-29
+reviewed: 2026-11-24
 component: PostgreSqlTransport
 ---
 
@@ -71,3 +71,5 @@ Use the following code:
 snippet: postgresql-queue-peeker-config-delay
 
 Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md).
+
+partial: delayeddelivery
