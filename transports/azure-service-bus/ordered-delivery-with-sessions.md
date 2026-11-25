@@ -40,6 +40,10 @@ To publish a message to a session-enabled topic:
 
 snippet: publishing-set-session-id
 
+To reply to a message to a session-enabled queue:
+
+snippet: replying-set-session-id
+
 The session ID is set for each message, including messages sent or published from a handler. Only [saga timeouts](/nservicebus/sagas/timeouts.md) automatically get the session ID of the message that requested them.
 
 Messages with a session ID that a handler sends or publishes are dispatched in the order in which the handler sent or published them.
