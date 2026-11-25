@@ -74,7 +74,7 @@ SERVICECONTROL_MESSAGEBODY_S3_BUCKETNAME=servicecontrol-bodies
 SERVICECONTROL_MESSAGEBODY_S3_REGION=us-east-1
 ```
 
-Audit instances use the same settings with the `SERVICECONTROL_AUDIT_` prefix. Set a key prefix for each Audit instance that uses the same bucket:
+Audit instances use the same settings with the `SERVICECONTROL_AUDIT_` prefix. Set a key prefix for each Audit instance that uses the same bucket, except Audit instances that [share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database):
 
 ```text
 SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=S3

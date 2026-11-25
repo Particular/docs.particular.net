@@ -64,7 +64,7 @@ SERVICECONTROL_MESSAGEBODY_STORAGETYPE=AzureBlob
 SERVICECONTROL_MESSAGEBODY_AZURE_SERVICEURI=https://storageaccount.blob.core.windows.net
 ```
 
-Audit instances use the same settings with the `SERVICECONTROL_AUDIT_` prefix. Set a container name for each Audit instance that uses the same storage account:
+Audit instances use the same settings with the `SERVICECONTROL_AUDIT_` prefix. Set a container name for each Audit instance that uses the same storage account, except Audit instances that [share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database):
 
 ```text
 SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=AzureBlob
