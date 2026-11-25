@@ -169,7 +169,7 @@ The ServiceControl Management Utility (SCMU) and the PowerShell module run setup
 
 To change the message body store after the instance is created, change the message body settings in the instance's configuration file. Bodies already stored are not moved, so make the change before the instance ingests messages.
 
-Neither tool sets `Database/Schema`, so instances they create use the default schema.
+Neither tool sets `Database/Schema`, so instances they create use the default schema. Two Audit instances in one database both use the `sc_audit` schema, and two Error instances both use the current schema from `search_path`, usually `public`, so they share tables. Create independent instances of the same type in separate databases. To share a database between Audit instances on purpose, see [Scaling out audit ingestion](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database); those instances must also share a message body store. An Error instance and an Audit instance can use one database, because their default schemas differ.
 
 ## Verify the setup
 
