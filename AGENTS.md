@@ -41,6 +41,15 @@ Product documentation, such as ServiceControl and ServicePulse, does not use the
 - Do not add `#if-version` blocks, version-range partials, or `versions:` frontmatter to product pages. Put product snippets in the `<Component>_All` directory; a `<Component>_N` snippet directory adds an entry to the version selector.
 - Remove content that applies only to versions that are no longer supported, instead of keeping it behind a version range. `servicecontrol/upgrades/supported-versions.md` lists the supported ServiceControl versions.
 
+## Content that differs by option
+
+When content differs by an option the reader chooses, such as the storage type, the transport, or the deployment method, keep the options apart. See the "Required settings" section of `servicecontrol/audit-instances/deployment/containers.md` for an example.
+
+- Give each option its own heading, table row, or list item. Do not describe more than one option in a paragraph.
+- Make each option complete where it stands, with its own example. Do not describe one option as changes to the example of another option.
+- When a setting applies to one option only, say so in a line directly under the setting heading, for example `_Applies only to RavenDB storage_`.
+- State a rule or a version difference once per page, and explain it on one page. Other pages link to that page and do not repeat the explanation. Check the rendered page for repeats, because an include can restate what the page already says.
+
 ## Upgrade guides
 
 Write upgrade guides for a reader who wants to know quickly whether they need to do anything. Most readers are affected by few of the changes. See `servicecontrol/upgrades/6to7.md` for an example.
