@@ -26,17 +26,7 @@ include: powershell-help
 
 ### Deploying an Audit instance
 
-Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet:
-
-The following example uses RavenDB storage, which requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType` is also required. Earlier versions do not have the parameter, so leave it out.
-
-snippet: ps-new-audit-instance-ravendb
-
-From ServiceControl 7, instances can use [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage instead. Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString` instead of `-DBPath` and `-DatabaseMaintenancePort`, which apply only to RavenDB. `-EnableFullTextSearchOnBodies` also applies only to RavenDB. The following example uses the same database as the Error instance; the Audit instance's tables go in the `sc_audit` schema by default. It stores message bodies on the file system, in the directory given by `-MessageBodyPath`.
-
-snippet: ps-new-audit-instance-sqlserver
-
-include: powershell-message-body-storage
+Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet. The storage parameters depend on the storage type, and each storage type has its own example below.
 
 include: powershell-new-configuration
 
@@ -44,6 +34,28 @@ include: powershell-skip-queue-creation
 
 > [!NOTE]
 > The address of a ServiceControl Error instance must be provided to send notifications to.
+
+#### RavenDB storage
+
+RavenDB storage requires `-DBPath` and `-DatabaseMaintenancePort`. From ServiceControl 7, `-StorageType RavenDB` is also required. Earlier versions do not have the `-StorageType` parameter, so leave it out.
+
+snippet: ps-new-audit-instance-ravendb
+
+#### SQL Server or PostgreSQL storage
+
+_Added in version 7.0.0_
+
+Set `-StorageType` to `SQLServer` or `PostgreSQL` and pass `-DatabaseConnectionString`. See [SQL Server storage](/servicecontrol/storage/sqlserver/) or [PostgreSQL storage](/servicecontrol/storage/postgresql/) to prepare the database. The cmdlet does not accept `-DBPath`, `-DatabaseMaintenancePort`, or `-EnableFullTextSearchOnBodies` with these storage types.
+
+The following example uses the same database as the Error instance; the Audit instance's tables go in the `sc_audit` schema by default. It stores message bodies on the file system, in the directory given by `-MessageBodyPath`.
+
+snippet: ps-new-audit-instance-sqlserver
+
+#### Message body storage
+
+include: powershell-message-body-storage
+
+#### Adding the Audit instance as a remote
 
 Once a ServiceControl Audit instance is created, it must be added to the ServiceControl Error instance as a [remote](/servicecontrol/servicecontrol-instances/remotes.md) to be included in results returned to [ServicePulse](/servicepulse/). Use the `Add-ServiceControlRemote` cmdlet to add a remote to the Error instance:
 
@@ -61,7 +73,9 @@ Before removing a ServiceControl Audit instance, it should be removed from the S
 
 snippet: ps-remove-audit-remote
 
-Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance. Use `-RemoveDB` to also delete the local RavenDB database files or local file-system message body files, and `-RemoveLogs` to delete the logs directory. A SQL Server or PostgreSQL database, Azure Blob Storage, and Amazon S3 data are not removed and must be cleaned up manually if no longer needed.
+Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance. `-RemoveLogs` also deletes the logs directory. `-RemoveDB` also deletes the data that is stored on the machine, which depends on the storage type:
+
+include: instance-data-removal
 
 > [!WARNING]
 > `-RemoveDB` deletes the whole message body directory. Do not use it while another Audit instance that [shares the database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) still uses that directory, because the messages in the shared database lose their bodies.

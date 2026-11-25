@@ -8,4 +8,4 @@ SQL Server and PostgreSQL instances also need an [external message body store](/
 
 `-MessageBodyPath` must be a directory on a local drive. The cmdlet rejects UNC paths and mapped network drives, and `-Force` does not change that. If the directory already contains files, the cmdlet fails unless `-Force` is passed. Reuse a directory that contains files only when they belong to this deployment.
 
-The cmdlet rejects parameters that the chosen storage type or message body store does not use. Give each instance its own directory, container, or key prefix; see [external message body storage](/servicecontrol/storage/external-body/) for why.
+The cmdlet rejects parameters that the chosen storage type or message body store does not use. Give each instance its own directory, container, or key prefix, unless the instances share a database; see [sharing a message body store](/servicecontrol/storage/external-body/#sharing-a-message-body-store).

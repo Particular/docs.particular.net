@@ -49,14 +49,8 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    5. Configure the name of the queue that messages should arrive in.
       This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
-   7. With RavenDB storage, full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed. SQL Server and PostgreSQL instances do not show this option.
+   7. Select the **STORAGE TYPE** and fill in its fields; see [Storage type](#installing-servicecontrol-instances-storage-type).
    8. [Integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) can be confirmed as on or off.
-
-From ServiceControl 7, error and audit instances also have a required **STORAGE TYPE** setting, which has no default. When both instances are added together, they use the same storage type. `RavenDB` stores data in an embedded database on the server. `SQL Server` and `PostgreSQL` need a **DATABASE CONNECTION STRING** to an existing database. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
-
-When the error and audit instances are added together with SQL Server or PostgreSQL storage, the audit instance's **DATABASE CONNECTION** is **SAME AS SERVICECONTROL** by default. Both instances then use one database, and the audit instance's tables go in the `sc_audit` schema. Select **SPECIFY A DIFFERENT CONNECTION STRING** to use a different database for the audit instance.
-
-SQL Server and PostgreSQL instances store message bodies on the file system, in the **MESSAGE BODY PATH** of each instance. The default is `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. Each instance needs its own path, and the path must be on a local drive: UNC paths and mapped network drives are not accepted. To use Azure Blob Storage or Amazon S3, create the instance with [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md), or change the message body settings in the instance's configuration file; see the [error instance](/servicecontrol/servicecontrol-instances/configuration.md#storage) and [audit instance](/servicecontrol/audit-instances/configuration.md#storage) storage settings.
 
 A monitoring instance differs from error and audit instances in its configuration:
 
@@ -67,6 +61,22 @@ A monitoring instance differs from error and audit instances in its configuratio
 As an example, after configuring an error, audit and monitoring instance for the SQL Server transport, the ServiceControl Management Utility will look similar to this:
 
 ![ServiceControl Management interface that shows the link for upgrading](/servicecontrol/managementutil.png 'width=500')
+
+### Storage type
+
+From ServiceControl 7, error and audit instances have a required **STORAGE TYPE** setting, which has no default. When both instances are added together, they use the same storage type. See [ServiceControl storage](/servicecontrol/storage/) to choose a storage type and prepare the database.
+
+| **STORAGE TYPE** | Where the data is stored | Fields |
+| --- | --- | --- |
+| `RavenDB` | An embedded database on the server | **DATABASE PATH**, **DATABASE MAINTENANCE PORT NUMBER**, and **FULL TEXT SEARCH ON MESSAGE BODIES**, which can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed |
+| `SQL Server` | An existing SQL Server database, with message bodies on the file system | **DATABASE CONNECTION STRING** and **MESSAGE BODY PATH** |
+| `PostgreSQL` | An existing PostgreSQL database, with message bodies on the file system | **DATABASE CONNECTION STRING** and **MESSAGE BODY PATH** |
+
+The rest of this section applies to `SQL Server` and `PostgreSQL`.
+
+When the error and audit instances are added together, the audit instance's **DATABASE CONNECTION** is **SAME AS SERVICECONTROL** by default. Both instances then use one database, and the audit instance's tables go in the `sc_audit` schema. Select **SPECIFY A DIFFERENT CONNECTION STRING** to use a different database for the audit instance.
+
+Message bodies are stored on the file system, in the **MESSAGE BODY PATH** of each instance. The default is `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. Each instance needs its own path, and the path must be on a local drive: UNC paths and mapped network drives are not accepted. To use Azure Blob Storage or Amazon S3, create the instance with [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md), or change the message body settings in the instance's configuration file; see the [error instance](/servicecontrol/servicecontrol-instances/configuration.md#message-body-storage) and [audit instance](/servicecontrol/audit-instances/configuration.md#message-body-storage) message body settings.
 
 ## Upgrading ServiceControl instances
 
@@ -111,7 +121,9 @@ See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [I
 
 ### Remove ServiceControl instances
 
-To remove a ServiceControl instance, click the Advanced Options button and select Remove. This stops the running instance (if it is running) and removes the instance files from the local file system. Optionally select the data removal option, which is _Remove database files and data_ for RavenDB or _Remove message body files_ for SQL Server and PostgreSQL, and the option to remove the logs. The data removal option deletes only data stored locally. It does not delete a SQL Server or PostgreSQL database, Azure Blob Storage, or Amazon S3 data.
+To remove a ServiceControl instance, click the Advanced Options button and select Remove. This stops the running instance (if it is running) and removes the instance files from the local file system. Optionally select the option to remove the logs, and the data removal option. The data removal option is _Remove database files and data_ with RavenDB storage, and _Remove message body files_ with SQL Server or PostgreSQL storage. It deletes only data that is stored on the machine, which depends on the storage type:
+
+include: instance-data-removal
 
 > [!WARNING]
 > _Remove message body files_ deletes the whole message body directory. Do not select it while another Audit instance that [shares the database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) still uses that directory, because the messages in the shared database lose their bodies.
@@ -128,7 +140,7 @@ Even after a ServiceControl instance has been removed, there are artifacts left 
 * _audit log queue name_ if audit log forwarding was configured - messages that have been ingested from the audit queue, processed by this ServiceControl instance, and then forwarded to the audit log queue.
 * _error log queue name_ if error log forwarding was configured - messages that have been ingested from the error queue, processed by this ServiceControl instance, and then forwarded to the error log queue.
 
-Local database and message body files are left on disk unless the data removal option is selected. Log folders are left on disk unless the logs removal option is selected. SQL Server and PostgreSQL databases and cloud storage objects are never removed by the instance removal and must be cleaned up manually if no longer needed. Do not drop a database that other instances or applications share.
+Local database and message body files are left on disk unless the data removal option is selected. Log folders are left on disk unless the logs removal option is selected.
 
 > [!NOTE]
 > If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
