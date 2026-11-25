@@ -26,6 +26,8 @@ Setup creates the configured directory if it does not exist. The setup identity 
 > [!WARNING]
 > When several processes write to the same database, the path must be a shared mount. This applies to [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) that run alongside an Error instance, and to [Audit instances that share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database). Every one of these processes needs permission to read, write, and delete message body files there. Otherwise, use Azure Blob Storage or Amazon S3.
 
+The ServiceControl Management Utility and the PowerShell module accept only a directory on a local drive as the message body path. They reject UNC paths and mapped network drives, and they ask for confirmation (`-Force` in PowerShell) before using a directory that already contains files. These checks apply only when one of those tools creates the instance. A container deployment can use a shared mount.
+
 > [!WARNING]
 > Use a durable directory or volume. Message bodies stored on a temporary or ephemeral file system are lost when it is reset, for example when a container restarts.
 
