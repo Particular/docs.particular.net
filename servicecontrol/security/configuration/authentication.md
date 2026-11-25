@@ -182,4 +182,6 @@ The following endpoints remain accessible without authentication to support API 
 | `/` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints` | OPTIONS | Monitoring | CORS support - returns supported operations |
 | `/endpoints/{endpoint}/audit-count` | GET | Audit | Service-to-service request |
+| `/health` | GET | Error, ingestion-only workers | Liveness probe for containers and load balancers |
+| `/health/ready` | GET | Error, ingestion-only workers | Readiness probe; also reports whether error ingestion is running |
 | `/api/environment` | GET | Audit | Service-to-service request, from ServiceControl 7 only |

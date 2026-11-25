@@ -57,7 +57,7 @@ _Added in version 7.0.0_
 
 _Environment variable:_ `MESSAGEBODY_STORAGETYPE`
 
-SQL Server and PostgreSQL storage keep large and binary message bodies in an [external message body store](/servicecontrol/storage/external-body/). This setting is required with those storage types and selects the store:
+SQL Server and PostgreSQL storage keep large and binary message bodies in an [external message body store](/servicecontrol/storage/external-body/). An Error instance using those storage types does not start without this setting, and an Audit instance starts but [does not store large or binary bodies](/servicecontrol/storage/external-body/#storage-providers-servicecontrol-auditmessagebodystoragetype). The setting selects the store:
 
 | Store | `MESSAGEBODY_STORAGETYPE` value | Required variables | Configuration |
 | --- | --- | --- | --- |

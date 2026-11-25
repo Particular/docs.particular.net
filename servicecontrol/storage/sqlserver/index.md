@@ -8,7 +8,7 @@ component: ServiceControl
 From ServiceControl 7, Error and Audit instances can use SQL Server instead of [RavenDB storage](/servicecontrol/storage/ravendb/). Select SQL Server when an instance should use an existing SQL Server deployment. Storage is configured separately for each instance.
 
 > [!IMPORTANT]
-> When using SQL Server, Error and Audit instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline.
+> When using SQL Server, Error instances require [external message body storage](/servicecontrol/storage/external-body/) in addition to the database, even when message bodies fit inline. Audit instances start without it, but then [do not store large or binary bodies](/servicecontrol/storage/external-body/#storage-providers-servicecontrol-auditmessagebodystoragetype).
 
 ## Supported SQL Server versions
 

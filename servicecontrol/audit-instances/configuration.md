@@ -266,7 +266,7 @@ include: sc-audit-servicecontrol-ingestauditmessages
 include: sc-audit-auditretentionperiod
 
 > [!NOTE]
-> Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
+> How a changed retention period affects messages that are already stored depends on the storage type. See [automatic expiration of data](/servicecontrol/how-purge-expired-data.md).
 
 ## Performance tuning
 

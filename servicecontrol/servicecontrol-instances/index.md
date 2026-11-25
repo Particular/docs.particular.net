@@ -24,7 +24,7 @@ SQL storage requires external storage for message bodies. See [Error instance st
 
 When using RavenDB, instances deployed using the [ServiceControl Management Utility](/servicecontrol/servicecontrol-instances/deployment/scmu.md) or [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) use an embedded database. Instances deployed using [containers](/servicecontrol/servicecontrol-instances/deployment/containers.md) use a [separate RavenDB container](/servicecontrol/storage/ravendb/containers.md).
 
-Failed message data is retained until seven days after successful retry is detected or the failed message is [manually archived](/servicepulse/intro-archived-messages.md). [This retention period can be customized](/servicecontrol/servicecontrol-instances/configuration.md#data-retention).
+Failed message data is retained for the error retention period after successful retry is detected or the failed message is [manually archived](/servicepulse/intro-archived-messages.md). The ServiceControl Management Utility and the container image default this period to 15 days. [This retention period can be customized](/servicecontrol/servicecontrol-instances/configuration.md#data-retention).
 
 include: ravendb-exclusive-use-warning
 

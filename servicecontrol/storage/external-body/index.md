@@ -7,7 +7,7 @@ component: ServiceControl
 
 SQL Server and PostgreSQL storage separate large message bodies from the instance's database. The database stores message metadata and small text bodies; an external store holds larger bodies and every binary body. Configure an external store even if most messages have small bodies.
 
-This configuration is required for SQL-backed Error and Audit instances. RavenDB manages message body storage itself.
+SQL-backed Error instances require an external store and do not start without one. SQL-backed Audit instances start without one, but then [do not store large or binary bodies](#storage-providers-servicecontrol-auditmessagebodystoragetype). RavenDB manages message body storage itself.
 
 ## Storage providers
 

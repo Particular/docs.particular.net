@@ -22,7 +22,7 @@ SQL Server and PostgreSQL storage, and the `StorageType` setting, are available 
 
 Before choosing SQL Server or PostgreSQL, check how they differ from RavenDB:
 
-- Error and Audit instances also need an [external message body store](#external-message-body-storage).
+- Error instances also require an [external message body store](#external-message-body-storage). Audit instances use one for large and binary bodies.
 - SQL Server must have Full-Text Search installed.
 
 To move existing RavenDB instances to SQL storage, see [Migrating from RavenDB to SQL storage](/servicecontrol/migrations/ravendb-to-sql/).
@@ -30,8 +30,8 @@ To move existing RavenDB instances to SQL storage, see [Migrating from RavenDB t
 | Provider | `StorageType` value | Requirements | Configuration |
 | --- | --- | --- | --- |
 | RavenDB | `RavenDB` | None for embedded deployments; a RavenDB container for container deployments | [Configure RavenDB storage](/servicecontrol/storage/ravendb/) |
-| SQL Server | `SQLServer` | An existing database on a server with Full-Text Search; an external message body store | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
-| PostgreSQL | `PostgreSQL` | An existing database; an external message body store | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
+| SQL Server | `SQLServer` | An existing database on a server with Full-Text Search; an external message body store (required for Error instances) | [Configure SQL Server storage](/servicecontrol/storage/sqlserver/) |
+| PostgreSQL | `PostgreSQL` | An existing database; an external message body store (required for Error instances) | [Configure PostgreSQL storage](/servicecontrol/storage/postgresql/) |
 
 Configure SQL storage separately for each [Error instance](/servicecontrol/servicecontrol-instances/configuration.md#sql-server-and-postgresql-storage) and [Audit instance](/servicecontrol/audit-instances/configuration.md#sql-server-and-postgresql-storage).
 
@@ -48,7 +48,7 @@ The schema rule applies to independent instances. Ingestion-only [workers for an
 
 ## External message body storage
 
-SQL-backed Error and Audit instances also require an external message body store. Small text bodies are stored in the database; larger bodies and all binary bodies use the selected external store. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression). Each instance needs its own directory, container, or key prefix, except processes that share a database; see [sharing a message body store](/servicecontrol/storage/external-body/#sharing-a-message-body-store).
+SQL-backed Error instances also require an external message body store and do not start without one. SQL-backed Audit instances start without one, but then [do not store large or binary bodies](/servicecontrol/storage/external-body/#storage-providers-servicecontrol-auditmessagebodystoragetype). Small text bodies are stored in the database; larger bodies and all binary bodies use the selected external store. See [what is stored where](/servicecontrol/storage/external-body/#inline-storage-and-compression). Each instance needs its own directory, container, or key prefix, except processes that share a database; see [sharing a message body store](/servicecontrol/storage/external-body/#sharing-a-message-body-store).
 
 | External body storage | Use when | Configuration |
 | --- | --- | --- |
