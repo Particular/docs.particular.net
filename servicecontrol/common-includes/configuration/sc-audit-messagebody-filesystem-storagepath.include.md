@@ -15,3 +15,5 @@ The directory where message bodies are stored when `MessageBody/StorageType` is 
 | string | None (required for file system storage) |
 
 The ServiceControl Management Utility suggests `%ProgramData%\Particular\ServiceControl\<instance name>\MessageBodies`. The PowerShell module sets this from `-MessageBodyPath`.
+
+Exclude this directory from antivirus scans. See [anti-virus checks](/servicecontrol/servicecontrol-in-practice.md#anti-virus-checks-message-body-directories).
