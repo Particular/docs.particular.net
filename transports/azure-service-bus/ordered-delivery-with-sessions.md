@@ -23,20 +23,20 @@ If installers are not enabled, use the [CLI tooling](/transports/azure-service-b
 Azure Service Bus can't enable sessions on an existing queue or subscription, and installers don't update entities that already exist. If sessions are enabled on an endpoint whose queue doesn't require sessions, the endpoint can't receive its messages and logs an error that the entity isn't session-enabled.
 
 > [!NOTE]
-> Sessions are not supported on [send-only endpoints](/nservicebus/endpoints/#send-only), but send-only endpoints can send messages to a session-enabled by setting the `SessionId`.
+> Sessions are not supported on [send-only endpoints](/nservicebus/endpoints/#send-only), but send-only endpoints can send messages to a session-enabled endpoint by setting the `SessionId`.
 > Sessions are not supported when using the [migration topology](/transports/upgrades/asbs-4to5.md).
 
 ### Setting the session ID
 
 Every message sent to a session-enabled queue or published to a session-enabled subscription must have a session ID. Sending a message without a session ID to a session-enabled queue throws an exception. A session-enabled queue or subscription can therefore only process messages that have a session ID.
 
-Choose a session ID that identifies the context in which order matters, for example an order ID. Messages that should be processed in order must share the same session ID.
+Messages that should be processed in order must share the same session ID. Choose a session ID that identifies the context where order matters, such as an order ID. 
 
 To send a message to a session-enabled queue:
 
 snippet: sending-set-session-id
 
-To publish a message to a session-enabled topic:
+To publish a message to a topic with session-enabled subscriptions:
 
 snippet: publishing-set-session-id
 
@@ -65,7 +65,7 @@ This applies only to delayed retries. Session-enabled endpoints support [delayed
 When immediate retries are exhausted, the message is moved to the error queue, and the next message in the session is processed. This breaks the processing order. Retrying a message from the error queue or the dead-letter queue doesn't restore its original position in the session.
 
 > [!NOTE]
-> ServiceControl 7.0 or higher is required to replay error messages from ServicePulse for session-enabled endpoints.
+> ServiceControl <X.Y> or higher is required to replay error messages from ServicePulse for session-enabled endpoints.
 
 ### Publish/subscribe
 
