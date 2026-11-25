@@ -113,6 +113,9 @@ See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [I
 
 To remove a ServiceControl instance, click the Advanced Options button and select Remove. This stops the running instance (if it is running) and removes the instance files from the local file system. Optionally select the data removal option, which is _Remove database files and data_ for RavenDB or _Remove message body files_ for SQL Server and PostgreSQL, and the option to remove the logs. The data removal option deletes only data stored locally. It does not delete a SQL Server or PostgreSQL database, Azure Blob Storage, or Amazon S3 data.
 
+> [!WARNING]
+> _Remove message body files_ deletes the whole message body directory. Do not select it while another Audit instance that [shares the database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) still uses that directory, because the messages in the shared database lose their bodies.
+
 #### Remaining artifacts
 
 Even after a ServiceControl instance has been removed, there are artifacts left behind. Each ServiceControl instance leaves queues in the configured transport. The queue names will depend on the configuration of the ServiceControl instance.

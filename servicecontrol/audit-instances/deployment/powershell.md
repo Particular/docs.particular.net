@@ -63,6 +63,9 @@ snippet: ps-remove-audit-remote
 
 Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance. Use `-RemoveDB` to also delete the local RavenDB database files or local file-system message body files, and `-RemoveLogs` to delete the logs directory. A SQL Server or PostgreSQL database, Azure Blob Storage, and Amazon S3 data are not removed and must be cleaned up manually if no longer needed.
 
+> [!WARNING]
+> `-RemoveDB` deletes the whole message body directory. Do not use it while another Audit instance that [shares the database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database) still uses that directory, because the messages in the shared database lose their bodies.
+
 snippet: ps-remove-audit-instance
 
 ### Upgrading an instance
