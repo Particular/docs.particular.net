@@ -208,6 +208,13 @@ class Usage
         publishOptions.SetSessionId("my-session-id");
 
         #endregion
+
+        #region replying-set-session-id
+
+        var replyOptions = new ReplyOptions();
+        replyOptions.SetSessionId("my-session-id");
+
+        #endregion
     }
 
     async Task SessionStateUsageHandler(IMessageHandlerContext context)
