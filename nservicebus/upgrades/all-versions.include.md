@@ -259,7 +259,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
+| [9.2.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.2.0)| **Current** | 2026-11-25     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.1.1)| Mainstream Support | 2026-06-16     | 2027-02-25        | Ineligible |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/9.0.2)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-09-16~~    | ~~Ineligible~~ |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 
@@ -267,7 +268,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.1)| **Current** | 2026-06-16     | Active            | Active |
+| [9.2.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.2.0)| **Current** | 2026-11-25     | Active            | Active |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.1.1)| Mainstream Support | 2026-06-16     | 2027-02-25        | Ineligible |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/9.0.2)| ~~Unsupported~~ | ~~2026-01-30~~ | ~~2026-09-16~~    | ~~Ineligible~~ |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.13)| Mainstream Support | 2024-06-25     | 2028-01-29        | 2030-01-29 |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Ineligible~~ |
