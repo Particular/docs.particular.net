@@ -364,7 +364,7 @@ In version 10, span names are generic, such as `process message` and `publish ev
 
 Message type names in span names are short names, not full type names. A subscribe span for several event types lists the type names separated by spaces.
 
-NServiceBus adds `to {destination}` to send and reply span names after it routes the message. Samplers and `ActivityListener.ActivityStarted` callbacks see the name without the destination. Exporters and backends see the full name.
+NServiceBus adds `to {destination}` to send and reply span names after it routes the message to exactly one destination. If a custom behavior routes the message to several destinations, the span name does not include a destination. Samplers and `ActivityListener.ActivityStarted` callbacks see the name without the destination. Exporters and backends see the full name.
 
 Alerts, dashboards and trace searches that match on a span name must be updated.
 
