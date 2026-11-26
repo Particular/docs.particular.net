@@ -14,7 +14,7 @@ The following shows the minimum permissions needed for various endpoint features
   - [Delayed retries](/nservicebus/recoverability/#delayed-retries)
   - [Saga Timeouts](/nservicebus/sagas/timeouts.md)
   - [Transactional Session](/nservicebus/transactional-session/)
-  - [`.SendLocal()`](/nservicebus/messaging/send-a-message.md#sending-to-self)
+  - [`.SendLocal()`](/nservicebus/messaging/send-a-message.md#sending-to-self)  
 - `Azure Service Bus Data Sender` is required for the [error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code).
 - `Azure Service Bus Data Sender` is required for every [queue the endpoint sends a command to](/nservicebus/messaging/routing.md#command-routing).
 - `Azure Service Bus Data Sender` is required for every [queue the endpoint replies to](/nservicebus/messaging/reply-to-a-message.md).
@@ -34,5 +34,8 @@ The following shows the minimum permissions needed for various endpoint features
 - `Azure Service Bus Data Sender` is required for the ServiceControl queue when [heartbeats](/monitoring/heartbeats/install-plugin.md) or [custom checks](/monitoring/custom-checks/install-plugin.md) are being used.
 - `Azure Service Bus Data Sender` is required for any queue the endpoint [forwards to](/nservicebus/messaging/forwarding.md).
 - `Azure Service Bus Data Receiver` is required for every [satellite queue](/nservicebus/satellites/) created.
-
+#if-version [6.6,)
+- `Azure Service Bus Data Sender` to the endpoint's queue is required for [subscription forwarding for ordered delivery](/transports/azure-service-bus/ordered-delivery-with-sessions#ordered-delivery-publishsubscribe).
+- `Azure Service Bus Data Receiver` is required for every subscription that the endpoint subscribes to for [subscription forwarding for ordered delivery](/transports/azure-service-bus/ordered-delivery-with-sessions#ordered-delivery-publishsubscribe).
+#end-if
 include: managed-access-rights
