@@ -187,7 +187,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/MongoDB.Driver" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/3.14.1/license" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.50.11/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/SharpCompress" target="_blank">SharpCompress</a> | <a href="https://www.nuget.org/packages/SharpCompress/0.50.12/license" target="_blank">MIT</a> | <a href="https://github.com/adamhathcock/sharpcompress" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Snappier" target="_blank">Snappier</a> | <a href="https://www.nuget.org/packages/Snappier/1.3.3/license" target="_blank">BSD-3-Clause</a> | <a href="https://brantburnett.github.io/Snappier/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Testing
@@ -240,14 +240,15 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 | <a href="https://www.nuget.org/packages/Npgsql" target="_blank">Npgsql</a> | <a href="https://www.nuget.org/packages/Npgsql/11.0.0/license" target="_blank">PostgreSQL</a> | <a href="https://github.com/npgsql/npgsql" target="_blank">Project Site</a> |
 
 ### NServiceBus.Transport.SqlServer
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.6.1/license" target="_blank">View License</a> | <i>None provided</i> |
 | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/7.1.2/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Security.Cryptography.Pkcs" target="_blank">System.Security.Cryptography.Pkcs</a> | <a href="https://www.nuget.org/packages/System.Security.Cryptography.Pkcs/11.0.0/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### Particular.Aspire.Hosting.ServicePlatform
 
