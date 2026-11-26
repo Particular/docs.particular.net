@@ -355,8 +355,8 @@ In version 10, span names are generic, such as `process message` and `publish ev
 | Send | `send message` | `send {MessageType} to {destination}` |
 | Publish | `publish event` | `publish {EventType}` |
 | Reply | `reply` | `reply {MessageType} to {destination}` |
-| Subscribe | `subscribe event` | `subscribe event {EventType}` |
-| Unsubscribe | `unsubscribe event` | `unsubscribe event {EventType}` |
+| Subscribe | `subscribe event` | `subscribe {EventType}` |
+| Unsubscribe | `unsubscribe event` | `unsubscribe {EventType}` |
 | Immediate retry | `immediate retry` | `immediate retry {receiveAddress}` |
 | Delayed retry | `delayed retry` | `delayed retry {receiveAddress}` |
 | Move to error | `move to error` | `move to {errorQueue}` |
