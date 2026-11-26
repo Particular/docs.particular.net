@@ -11,7 +11,7 @@ SQL Server and PostgreSQL storage are available from ServiceControl 7. Upgrading
 | Instance | How to move to SQL storage |
 | --- | --- |
 | [Audit instance](#audit-instances) | Replace it with a new Audit instance that uses SQL storage. No data migration is needed. |
-| [Error instance](#error-instances) | Coming soon. Keep using RavenDB until then. |
+| [Error instance](#error-instances) | [Coming soon](https://github.com/Particular/ServiceControl/issues/6191), Keep using RavenDB until then. |
 
 > [!WARNING]
 > Do not change `StorageType` on an existing instance to switch to SQL storage. The data is not moved, and the instance starts with empty storage.
