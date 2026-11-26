@@ -62,10 +62,12 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 When using an embedded RavenDB database, exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Embedded RavenDB databases produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
 
+When using SQL Server or PostgreSQL storage with file system message body storage, exclude the [message body directories](#anti-virus-checks-message-body-directories) instead. These instances have no local database directory.
+
 ### Database directories
 
 > [!NOTE]
-> This section applies to instances using an embedded RavenDB database. SQL Server and PostgreSQL storage have no local database directory; for SQL-backed Error and Audit instances using file system message body storage, apply the same antivirus considerations to the body storage path.
+> This section applies to instances using an embedded RavenDB database. For instances using SQL Server or PostgreSQL storage, see [Message body directories](#anti-virus-checks-message-body-directories).
 
 > [!NOTE]
 > For container deployments, the database location differs. See [ServiceControl container deployment](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [ServiceControl Audit container deployment](/servicecontrol/audit-instances/deployment/containers.md) for details.
@@ -79,6 +81,20 @@ The database paths can be customized. To find the configured paths:
 
 - **Error instance**: See [ServiceControl DBPath configuration](/servicecontrol/servicecontrol-instances/configuration.md)
 - **Audit instance**: See [ServiceControl Audit DBPath configuration](/servicecontrol/audit-instances/configuration.md)
+
+### Message body directories
+
+> [!NOTE]
+> This section applies to Error and Audit instances that use SQL Server or PostgreSQL storage with file system message body storage. It does not apply when message bodies are stored in Azure Blob Storage or Amazon S3.
+
+With file system message body storage, an instance writes each message body to a separate file. An Audit instance that ingests many messages creates a large number of small files. Antivirus real-time scanning inspects each new file. This increases the CPU usage of the machine and decreases the ingestion throughput.
+
+Exclude the message body directory of each instance from antivirus real-time and scheduled scans.
+
+The ServiceControl Management Utility suggests `%PROGRAMDATA%\Particular\ServiceControl\<instance_name>\MessageBodies`. To find the configured path:
+
+- **Error instance**: See [ServiceControl/MessageBody/FileSystem/StoragePath](/servicecontrol/servicecontrol-instances/configuration.md#message-body-storage-servicecontrolmessagebodyfilesystemstoragepath)
+- **Audit instance**: See [ServiceControl.Audit/MessageBody/FileSystem/StoragePath](/servicecontrol/audit-instances/configuration.md#message-body-storage-servicecontrol-auditmessagebodyfilesystemstoragepath)
 
 ### Executable exclusions (optional)
 
