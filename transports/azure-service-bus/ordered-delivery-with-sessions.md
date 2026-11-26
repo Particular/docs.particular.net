@@ -65,7 +65,7 @@ This applies only to delayed retries. Session-enabled endpoints support [delayed
 When immediate retries are exhausted, the message is moved to the error queue, and the next message in the session is processed. This breaks the processing order. Retrying a message from the error queue or the dead-letter queue doesn't restore its original position in the session.
 
 > [!NOTE]
-> ServiceControl <X.Y> or higher is required to replay error messages from ServicePulse for session-enabled endpoints.
+> ServiceControl 7.0 or higher is required to replay error messages from ServicePulse for session-enabled endpoints.
 
 ### Publish/subscribe
 
