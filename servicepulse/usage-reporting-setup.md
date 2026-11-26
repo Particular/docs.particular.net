@@ -136,6 +136,7 @@ To restrict permissions to the minimal required set, create a custom role with t
                     "Microsoft.ServiceBus/namespaces/read",
                     "Microsoft.ServiceBus/namespaces/providers/Microsoft.Insights/metricDefinitions/read",
                     "Microsoft.ServiceBus/namespaces/queues/read",
+                    "Microsoft.ServiceBus/namespaces/disasterRecoveryConfigs/read",
                     "Microsoft.Resources/subscriptions/read",
                     "Microsoft.Resources/subscriptions/resources/read",
                     "Microsoft.Insights/Metrics/Read"
@@ -150,6 +151,8 @@ To restrict permissions to the minimal required set, create a custom role with t
 ```
 
 The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription. The `Microsoft.Insights/Metrics/Read` permissions are required to find the available metrics.
+
+When the transport connection string uses a [Geo-Recovery alias](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-geo-dr), ServiceControl reads the disaster recovery configuration of each namespace in the subscription to find the namespace that the alias points to. This requires the `Microsoft.ServiceBus/namespaces/disasterRecoveryConfigs/read` permission.
 
 ### Amazon SQS
 
