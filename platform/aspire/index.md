@@ -45,7 +45,7 @@ If you are using the Particular Service Platform with Aspire today and would lik
 | [RabbitMQ](/transports/rabbitmq/)                         | Supported                    |
 | [Amazon SQS](/transports/sqs/)                            | Supported                    |
 | [Microsoft SQL Server](/transports/sql/)                  | Supported                    |
-| [Azure Storage Queues](/transports/azure-storage-queues/) | Not yet supported            |
+| [Azure Queue Storage](/transports/azure-storage-queues/) | Not yet supported            |
 | [PostgreSQL](/transports/postgresql/)                     | Not yet supported            |
 | [IBM MQ](/transports/ibmmq/)                              | Not yet supported            |
 
@@ -210,7 +210,7 @@ Use `WithPersistenceRavenDb(existing)` to attach a RavenDB resource declared els
 
 snippet: aspire-persistence-ravendb-external
 
-External RavenDB instances are not nested under the platform in the dashboard, since the platform does not own their lifecycle.
+External RavenDB instances are not nested under the platform in the dashboard, since the platform does not own their lifecycle. An external RavenDB instance that doesn't use the `particular/servicecontrol-ravendb` image is [independently hosted](/servicecontrol/storage/ravendb/containers.md#licensing) and requires a separate RavenDB license.
 
 #### Options
 

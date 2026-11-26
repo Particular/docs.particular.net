@@ -161,7 +161,7 @@ include: sc-audit-bulkinsertcommittimeoutinseconds
 
 #end-if
 
-#if-version [6.20,)
+#if-version [6,)
 include: sc-audit-querytimeoutinseconds
 
 #end-if

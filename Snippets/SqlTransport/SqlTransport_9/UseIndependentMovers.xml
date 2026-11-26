@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+  <!--startcode UseIndependentMoversMsBuild-->
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="NServiceBus.Transport.SqlServer.DelayedDelivery.UseIndependentMovers" Value="true" />
+  </ItemGroup>
+  <!--endcode-->
+</Project>

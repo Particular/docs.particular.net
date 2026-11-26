@@ -25,6 +25,10 @@ asb-transport endpoint create name
 
 `-f` | `--forward-dlq-to`: Queue name to auto-forward dead-lettered messages to. The queue will be created if it does not exist. The resolved queue name cannot be the same as the endpoint queue.
 
+#if-version [6.6,)
+`-se` | `--sessions`: Creates the input queue with sessions required, for endpoints that [enable sessions](/transports/azure-service-bus/ordered-delivery-with-sessions.md)
+#end-if
+
 ### endpoint subscribe
 
 Creates a new subscription for an endpoint.
@@ -43,6 +47,10 @@ asb-transport endpoint subscribe name topic
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
 `-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
+
+#if-version [6.6,)
+`-se` | `--sessions`: Creates a session-enabled subscription, for endpoints that [enable sessions](/transports/azure-service-bus/ordered-delivery-with-sessions.md). The subscription doesn't auto-forward to the input queue; the endpoint forwards events itself. If the topic doesn't exist, it's created with message ordering enforced.
+#end-if
 
 ### endpoint unsubscribe
 

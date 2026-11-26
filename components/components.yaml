@@ -91,7 +91,7 @@
     - NServiceBus.Persistence.AzureStorage
 
 - Key: ASQ
-  Name: Azure Storage Queues Transport
+  Name: Azure Queue Storage Transport
   DocsUrl: /transports/azure-storage-queues
   GitHubOwner: Particular
   Category: Transport

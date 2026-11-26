@@ -121,7 +121,7 @@ If an endpoint is scaled out, the number of processing attempts increases if ins
 
 Affected transports:
 
-- Azure Storage Queues
+- Azure Queue Storage
 - SQL Server
 - RabbitMQ
 - Amazon SQS

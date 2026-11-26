@@ -1,6 +1,6 @@
 ---
 title: Custom audit transport
-summary: Azure Service Bus endpoint with audit via Azure Storage Queue
+summary: Azure Service Bus endpoint with audit via Azure Queue Storage
 reviewed: 2025-05-28
 component: Core
 related:
@@ -11,10 +11,10 @@ related:
 ---
 
 This sample demonstrates how an endpoint can audit to a different transport than its main transport.
-In this instance, Azure Service Bus is the main transport used by the endpoint, and Azure Storage Queues is used as the transport for audit messages.
+In this instance, Azure Service Bus is the main transport used by the endpoint, and Azure Queue Storage is used as the transport for audit messages.
 
 > [!WARNING]
-> Two different transports are being used, which means the Azure Storage Queue transport dispatcher does not participate in the handler transaction. This could result in a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. The result of this would be two conflicting instances of the same message being visible in the ServicePulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other (erroneously) as successfully processed.
+> Two different transports are being used, which means the Azure Queue Storage transport dispatcher does not participate in the handler transaction. This could result in a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. The result of this would be two conflicting instances of the same message being visible in the ServicePulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other (erroneously) as successfully processed.
 >
 > Additionally, the audit instance cannot directly communicate with the error instance, hence plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc.) will fail to send. There will be [No destination specified for message](/servicecontrol/troubleshooting.md#no-destination-specified-for-message) errors in the audit instance log file if these features are used.
 
@@ -24,14 +24,14 @@ Ensure that:
 
 - an instance of the latest [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio%2Cblob-storage) is running
 - the Azure Service Bus connection is stored in an environment variable called `AzureServiceBus_ConnectionString`
-- the `audit` queue exists in Azure Storage Queues
+- the `audit` queue exists in Azure Queue Storage
 
 ### Optional
 
 To see how the auditing messages appear in ServicePulse, two ServiceControl instances will need to be setup.
 
 - [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/) with an Azure Service Bus transport and the same connection string as used in the sample.
-- [ServiceControl Audit instance](/servicecontrol/audit-instances/) with an Azure Storage Queue transport and the same connection string as used in the sample (the default local emulator `UseDevelopmentStorage=true`).
+- [ServiceControl Audit instance](/servicecontrol/audit-instances/) with an Azure Queue Storage transport and the same connection string as used in the sample (the default local emulator `UseDevelopmentStorage=true`).
 
 A `docker-compose.yml` file is provided which will [setup the instances in a local container environment](#running-the-sample-servicecontrol-and-servicepulse).
 
@@ -41,11 +41,11 @@ A `docker-compose.yml` file is provided which will [setup the instances in a loc
 
 The main endpoint that is running on Azure Service Bus. It enables the `audit` feature.
 
-The configured audit queue name, specified in `AuditProcessedMessagesTo`, will be used as the queue name on the Azure Storage Queue transport.
+The configured audit queue name, specified in `AuditProcessedMessagesTo`, will be used as the queue name on the Azure Queue Storage transport.
 
 ### AuditViaASQ
 
-A [feature](/nservicebus/pipeline/features.md) that uses Azure Storage Queues for audit messages instead of the transport used by the endpoint being audited.
+A [feature](/nservicebus/pipeline/features.md) that uses Azure Queue Storage for audit messages instead of the transport used by the endpoint being audited.
 
 The feature is turned on by default if Auditing is enabled and an audit queue has been defined.
 

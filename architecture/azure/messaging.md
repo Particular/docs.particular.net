@@ -5,7 +5,7 @@ reviewed: 2025-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted). Additionally the Particular Platform supports using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database) tables as message queues.
+Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Queue Storage](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted). Additionally the Particular Platform supports using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database) tables as message queues.
 
 ## Azure Service Bus
 
@@ -51,11 +51,11 @@ Azure Service Bus should be considered the default messaging choice for Azure. A
 - No cross-entity transactions
 - The maximum number of requests (e.g. message delivery) per storage account is 20,000 per second (2,000 per second for single queues)
 
-[**Try the Azure Storage Queues sample →**](/samples/azure/storage-queues/)
+[**Try the Azure Queue Storage sample →**](/samples/azure/storage-queues/)
 
-### When to use Azure Storage Queues
+### When to use Azure Queue Storage
 
-Azure Service Bus is recommended as the default messaging choice for Azure. Consider Azure Storage Queues when a managed message queuing technology is required for simple messaging needs or when Azure Service Bus doesn't meet critical requirements.
+Azure Service Bus is recommended as the default messaging choice for Azure. Consider Azure Queue Storage when a managed message queuing technology is required for simple messaging needs or when Azure Service Bus doesn't meet critical requirements.
 
 ## SQL transport
 

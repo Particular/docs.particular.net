@@ -48,15 +48,15 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 #### Topic creation
 
-#if-version [5,6.5)
+#if-version [5,6)
 In this topology, topics are created exclusively by subscribers.
 
 When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled and a subscription to that topic exists. If no endpoint subscribes to a given event, the topic for that event will *not* be created, even if another endpoint publishes it.
 
 Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
 #end-if
-#if-version [6.5,)
-With installers enabled, subscribers create topics when they subscribe to events. Publishers also create missing topics when they first publish, unless `ThrowOnMissingTopicWhenPublishing` is enabled. Topics use the configured [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings).
+#if-version [6,)
+In version 6.5 and later, with installers enabled, subscribers create topics when they subscribe to events. Publishers also create missing topics when they first publish, unless `ThrowOnMissingTopicWhenPublishing` is enabled. Topics use the configured [entity settings](/transports/azure-service-bus/configuration.md#entity-creation-settings).
 
 Creating topics requires [`Manage` rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights). If the transport cannot check for or create a topic, publishing fails.
 
@@ -64,6 +64,8 @@ If installers are disabled or `ThrowOnMissingTopicWhenPublishing` is enabled, [p
 
 > [!WARNING]
 > Creating a topic does not create subscriptions. Azure Service Bus discards events published before a subscription exists.
+
+In versions 6.0 to 6.4, only subscribers create topics. Publishing an event that no endpoint has subscribed to yet fails with `404 Not Found` from Azure Service Bus.
 #end-if
 
 ##### Publishing to a missing topic

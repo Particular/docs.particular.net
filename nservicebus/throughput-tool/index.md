@@ -68,11 +68,11 @@ The tool can collect data using various methods depending on the system's config
 - [SQL Transport](#running-the-tool-sql-transport)
 - [PostgreSQL Transport](#running-the-tool-postgresql-transport)
 - Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
-- Azure Storage Queues – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
+- Azure Queue Storage – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
 - [Not sure what message transport is used? See determining message transport](#determining-message-transport)
 
 > [!TIP]
-> If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput.
+> If the system uses MSMQ or Azure Queue Storage but does not use ServiceControl, this tool cannot be used to measure throughput.
 >
 > If this or any other problem is encountered while attempting to generate a throughput report, [open a support case](https://customers.particular.net/request-support/licensing).
 
@@ -376,7 +376,7 @@ select last_value from "TABLE_NAME.SEQUENCE_NAME";
 The tool should be used with a [supported version of ServiceControl](/servicecontrol/upgrades/supported-versions.md).
 
 > [!NOTE]
-> Do not attempt to install ServiceControl just to run the throughput tool on an MSMQ or Azure Storage Queues system. In order to successfully collect any data, every system endpoint must be modified to send data to the new ServiceControl installation or there will be no data to collect. Instead, reach out to a licensing specialist to suggest alternate ways to estimate the system throughput needed for licensing.
+> Do not attempt to install ServiceControl just to run the throughput tool on an MSMQ or Azure Queue Storage system. In order to successfully collect any data, every system endpoint must be modified to send data to the new ServiceControl installation or there will be no data to collect. Instead, reach out to a licensing specialist to suggest alternate ways to estimate the system throughput needed for licensing.
 
 #### Running the tool
 
@@ -503,9 +503,9 @@ Examine the executable directory of the NServiceBus services. The presence of an
 | `NServiceBus.Transport.SQLServer.dll` | SQL Server Transport | [SQL Server Transport](#running-the-tool-sql-transport) |
 | `NServiceBus.Transports.SQLServer.dll` | SQL Server Transport | [SQL Server Transport](#running-the-tool-sql-transport) |
 | `NServiceBus.Transport.PostgreSQL.dll` | PostgreSQL Transport | [PostgreSQL Transport](#running-the-tool-postgresql-transport) |
-| `NServiceBus.Transport.Msmq.dll` | MSMQ | See [For MSMQ or Azure Storage Queues](#determining-message-transport-for-msmq-or-azure-storage-queues) below |
-| `NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#determining-message-transport-for-msmq-or-azure-storage-queues) below |
-| `NServiceBus.Transport.AzureStorageQueues.dll` | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#determining-message-transport-for-msmq-or-azure-storage-queues) below |
+| `NServiceBus.Transport.Msmq.dll` | MSMQ | See [For MSMQ or Azure Queue Storage](#determining-message-transport-for-msmq-or-azure-queue-storage) below |
+| `NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` | Azure Queue Storage | See [For MSMQ or Azure Queue Storage](#determining-message-transport-for-msmq-or-azure-queue-storage) below |
+| `NServiceBus.Transport.AzureStorageQueues.dll` | Azure Queue Storage | See [For MSMQ or Azure Queue Storage](#determining-message-transport-for-msmq-or-azure-queue-storage) below |
 
 If one of the DLLs in the first column exists, follow the link in the third column to use that data collection mechanism.
 
@@ -522,9 +522,9 @@ It is possible to validate that MSMQ is the message transport by checking the st
 
 If these steps aren't possible, such as if the Message Queuing service doesn't exist, email contact@particular.net for help identifying the message transport.
 
-### For MSMQ or Azure Storage Queues
+### For MSMQ or Azure Queue Storage
 
-When using the MSMQ or Azure Storage Queues transport, the only way to collect throughput data using the throughput tool is if the system also has an instance of [ServiceControl](/servicecontrol/) installed.
+When using the MSMQ or Azure Queue Storage transport, the only way to collect throughput data using the throughput tool is if the system also has an instance of [ServiceControl](/servicecontrol/) installed.
 
 Note that ServiceControl is a form of a database, and is commonly installed on its own virtual machine.
 

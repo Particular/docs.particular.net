@@ -1,5 +1,5 @@
 ---
-title: Azure Storage Queues Transport Configuration
+title: Azure Queue Storage Transport Configuration
 component: ASQ
 related:
 - persistence/azure-table/performance-tuning
@@ -11,7 +11,7 @@ redirects:
 
 ## Configuration parameters
 
-The Azure Storage Queues Transport can be configured using the following parameters:
+The Azure Queue Storage Transport can be configured using the following parameters:
 
 
 #### ConnectionString
@@ -45,7 +45,7 @@ Defaults: `false`, i.e. messages are not removed when endpoint starts.
 
 #### MessageInvisibleTime
 
-The [visibilitytimeout mechanism](https://learn.microsoft.com/en-us/rest/api/storageservices/get-messages), supported by Azure Storage Queues, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message.
+The [visibilitytimeout mechanism](https://learn.microsoft.com/en-us/rest/api/storageservices/get-messages), supported by Azure Queue Storage, causes the message to become *invisible* after read for a specified period of time. If the processing unit fails to delete the message in the specified time, the message will reappear on the queue. Then another process can retry the message.
 
 Defaults: 30,000 ms (i.e. 30 seconds)
 
@@ -80,4 +80,4 @@ partial: sanitization
 
 ## Serialization
 
-Azure Storage Queues Transport changes the default serializer to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
+Azure Queue Storage Transport changes the default serializer to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).

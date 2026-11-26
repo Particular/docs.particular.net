@@ -170,7 +170,7 @@ include: sc-error-maximumconcurrencylevel
 
 include: sc-error-enablefulltextsearchonbodies
 
-#if-version [6.20,)
+#if-version [6,)
 include: sc-error-querytimeoutinseconds
 
 #end-if

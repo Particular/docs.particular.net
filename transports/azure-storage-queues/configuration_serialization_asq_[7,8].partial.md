@@ -1,6 +1,6 @@
 #### SerializeMessageWrapperWith
 
-Messages are wrapped in a transport specific structure containing message metadata. By default, Azure Storage Queues Transport uses the same serializer for the message wrapper as configured for the contained message. It is possible to configure a different serializer for the wrapper using the `SerializeMessageWrapperWith` option
+Messages are wrapped in a transport specific structure containing message metadata. By default, Azure Queue Storage Transport uses the same serializer for the message wrapper as configured for the contained message. It is possible to configure a different serializer for the wrapper using the `SerializeMessageWrapperWith` option
 
 snippet: SerializerAndMessageWrapperSerializer
 

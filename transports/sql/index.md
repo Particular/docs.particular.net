@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport
 summary: An overview of the NServiceBus SQL Server transport.
-reviewed: 2026-09-03
+reviewed: 2026-11-24
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/usage
@@ -92,6 +92,8 @@ partial: alwaysencrypted
 ### Retries
 
 When an exception occurs during message handling, the transaction is already in doubt and must be rolled back. Failure info is stored in memory, and can't influence the next step for that message (immediate retry, delayed retry, or forward to the error queue) until the next time it is processed on that node.
+
+partial: failureinfocache
 
 When an endpoint is scaled out to multiple endpoint instances, this means that more retries may be observed than configured, as each instance accumulates failures until a single node has observed enough retries to escalate to delayed retries. It's also possible for immediate retries to be observed on a different instance even when [Recoverability](/nservicebus/recoverability/) is configured for zero immediate retries.
 

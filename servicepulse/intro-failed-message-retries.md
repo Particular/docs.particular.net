@@ -33,7 +33,7 @@ The messages can be retried in different ways:
 
 #### 1. Individually
 
-![Individual message retry](./images/retry/failed-mesage-groups-annotated.png)
+![Individual message retry](./images/retry/request-the-retry-of-a-singlemessage.png)
 
 You will see a notification that a retry has been requested and is in progress.
 

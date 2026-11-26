@@ -36,7 +36,7 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 
 In event-driven architecture, components are decoupled, allowing choice of the most suitable [compute](compute.md) and [data store](data-stores.md) options for a specific component or set of components.
 
-An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [Azure Service Bus and Azure Storage Queues](messaging.md), independent of the underlying service capabilities.
+An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [Azure Service Bus and Azure Queue Storage](messaging.md), independent of the underlying service capabilities.
 
 ## Additional resources
 

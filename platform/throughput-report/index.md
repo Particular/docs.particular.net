@@ -38,7 +38,7 @@ The following methods can be used to install these requirements:
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
 >
 > - [Azure Service Bus](/transports/azure-service-bus/configuration.md)
-> - [Azure Storage Queues](/transports/azure-storage-queues/configuration.md)
+> - [Azure Queue Storage](/transports/azure-storage-queues/configuration.md)
 > - [Amazon SQS](/transports/sqs/configuration-options.md)
 > - [RabbitMQ](/transports/rabbitmq/connection-settings.md)
 > - [SQL Server](/transports/sql/connection-settings.md)
@@ -46,19 +46,19 @@ The following methods can be used to install these requirements:
 
 ## Container Installation
 
-When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+When installing ServiceControl directly, through one of the [Windows installation options below](#windows-installation), it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers, the database runs in a separate [RavenDB container](/servicecontrol/storage/ravendb/containers.md). An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
 
 The containers required for generating a usage report are:
 
 - [RavenDB](/servicecontrol/storage/ravendb/containers.md)
-  - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
+  - Alternatively, an [independently hosted](/servicecontrol/storage/ravendb/containers.md#licensing) RavenDB server, which requires a separate RavenDB license, can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
 - [ServicePulse](/servicepulse/containerization/) (if **not** running in [integrated mode](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolenableintegratedservicepulse))
 
 ### Cloud environments
 
 When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS.
-In hosting environments where the RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is recommended to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
+In hosting environments where the RavenDB's [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is recommended to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database. RavenDB Cloud is [licensed separately](/servicecontrol/storage/ravendb/containers.md#licensing) from the Particular Software license.
 
 ## Windows Installation
 

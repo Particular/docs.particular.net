@@ -170,6 +170,8 @@ redirects:
 
 When renaming an existing article to a new name, add the `redirects:` section in the article header and specify the previous name for the article. If the old URL is linked anywhere, the new renamed article will automatically be served when the user clicks on it.
 
+The `Redirects` pull request check fails when a page is moved or renamed without a redirect for its old URL. A deleted page without a redirect gives a warning. If a redirect is not wanted, add the `no-redirect-needed` label to the pull request.
+
 * Values specified in the `redirects` section must be lower case.
 * Multiple values can be specified for the redirects, same as `tags`.
 * Values are fully qualified

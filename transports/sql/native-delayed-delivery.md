@@ -1,7 +1,7 @@
 ---
 title: SQL Server Native Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQL Server transport
-reviewed: 2026-05-23
+reviewed: 2026-11-24
 component: SqlTransport
 versions: '[3,)'
 ---
@@ -14,7 +14,7 @@ This means that the exact delivery time for a delayed message can be a bit later
 
 ## Configuration
 
-The settings described in this section have default values as shown in the snippets. The settings can be fine-tuned to fit a particular system's needs, e.g., messages are checked for expiration more frequently, resulting in more accurate delivery times.
+The settings described in this section can be fine-tuned to fit a particular system's needs, e.g., messages are checked for expiration more frequently, resulting in more accurate delivery times.
 
 > [!NOTE]
 > Native delayed delivery mechanism has been introduced in version 3 of the transport. Older endpoints that use [Timeout Manager](/nservicebus/messaging/timeout-manager.md) can be migrated to the new mechanism by following the [upgrade guide](/transports/upgrades/sqlserver-3to31.md).

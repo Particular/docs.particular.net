@@ -9,6 +9,9 @@ related:
 redirects:
  - nservicebus/rabbitmq/configuration-api
  - nservicebus/rabbitmq
+ - nservicebus/messaging/non-durable-messaging
+ - nservicebus/messaging/express-messages
+ - samples/non-durable-messaging
 ---
 
 The RabbitMQ Transport provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/) using the [RabbitMQ .NET Client](https://www.nuget.org/packages/RabbitMQ.Client/).
@@ -90,4 +93,4 @@ partial: nonpersistent
 
 ## Non-durable queues
 
-[Transient aka non-durable queues](https://www.rabbitmq.com/docs/queues#durability) are supported partially. See [routing details](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability) for more information.
+[Transient (non-durable) queues](https://www.rabbitmq.com/docs/queues#durability) are partially supported. See [routing details](/transports/rabbitmq/routing-topology.md#controlling-exchange-and-queue-durability) for more information.

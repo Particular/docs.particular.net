@@ -219,9 +219,9 @@ MSMQ does not support native querying of metrics. Use [audit and monitoring data
 
 IBM MQ does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
 
-### Azure Storage Queues
+### Azure Queue Storage
 
-Azure Storage Queues does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
+Azure Queue Storage does not support native querying of metrics. Use [audit and monitoring data](#audit-and-monitoring-data) instead.
 
 ## Audit and monitoring data
 
