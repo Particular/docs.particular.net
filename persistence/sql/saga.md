@@ -122,6 +122,9 @@ snippet: SqlPersistenceCustomReader
 
 Customize the creation of the [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
+> [!NOTE]
+> The default JSON settings indent the saga data and override the `Formatting` of the writer. To change the formatting, set `Formatting` in [custom settings](#json-net-settings-custom-settings).
+
 partial: custom-writer
 
 snippet: SqlPersistenceCustomWriter

@@ -35,7 +35,8 @@ sagaSettings.WriterCreator(
         var writer = new StringWriter(builder);
         return new JsonTextWriter(writer)
         {
-            Formatting = Formatting.None
+            IndentChar = '\t',
+            Indentation = 1
         };
     });
 ```
@@ -49,7 +50,8 @@ sagaSettings.WriterCreator(
     {
         return new JsonTextWriter(textWriter)
         {
-            Formatting = Formatting.None
+            IndentChar = '\t',
+            Indentation = 1
         };
     });
 ```
