@@ -44,7 +44,7 @@ Heartbeat messages tend to be frequent, and a large backlog can occur if Service
 
 ### Saga audit
 
-The [Saga Audit](/nservicebus/sagas/saga-audit.md) can add significant load on ServiceControl due to volume of messages it sends but is invaluable when diagnosing issues with Saga behavior. In order to use it in the production environment make sure to use ServiceControl 4.13.0 or later and configure the Saga Audit plugin to send messages to the `audit` queue. If necessary consider [scaling out the audit processing](/servicecontrol/servicecontrol-instances/remotes.md).
+The [Saga Audit](/nservicebus/sagas/saga-audit.md) can add significant load on ServiceControl due to volume of messages it sends but is invaluable when diagnosing issues with Saga behavior. In order to use it in the production environment configure the Saga Audit plugin to send messages to the `audit` queue. If necessary consider [scaling out the audit processing](/servicecontrol/servicecontrol-instances/remotes.md).
 
 ## Performance considerations
 
@@ -60,9 +60,14 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 ## Anti-virus checks
 
-Exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Both ServiceControl Error and ServiceControl Audit instances use an embedded RavenDB database and produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+When using an embedded RavenDB database, exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Embedded RavenDB databases produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+
+When using SQL Server or PostgreSQL storage with file system message body storage, exclude the [message body directories](#anti-virus-checks-message-body-directories) instead. These instances have no local database directory.
 
 ### Database directories
+
+> [!NOTE]
+> This section applies to instances using an embedded RavenDB database. For instances using SQL Server or PostgreSQL storage, see [Message body directories](#anti-virus-checks-message-body-directories).
 
 > [!NOTE]
 > For container deployments, the database location differs. See [ServiceControl container deployment](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [ServiceControl Audit container deployment](/servicecontrol/audit-instances/deployment/containers.md) for details.
@@ -76,6 +81,20 @@ The database paths can be customized. To find the configured paths:
 
 - **Error instance**: See [ServiceControl DBPath configuration](/servicecontrol/servicecontrol-instances/configuration.md)
 - **Audit instance**: See [ServiceControl Audit DBPath configuration](/servicecontrol/audit-instances/configuration.md)
+
+### Message body directories
+
+> [!NOTE]
+> This section applies to Error and Audit instances that use SQL Server or PostgreSQL storage with file system message body storage. It does not apply when message bodies are stored in Azure Blob Storage or Amazon S3.
+
+With file system message body storage, an instance writes each message body to a separate file. An Audit instance that ingests many messages creates a large number of small files. Antivirus real-time scanning inspects each new file. This increases the CPU usage of the machine and decreases the ingestion throughput.
+
+Exclude the message body directory of each instance from antivirus real-time and scheduled scans.
+
+The ServiceControl Management Utility suggests `%PROGRAMDATA%\Particular\ServiceControl\<instance_name>\MessageBodies`. To find the configured path:
+
+- **Error instance**: See [ServiceControl/MessageBody/FileSystem/StoragePath](/servicecontrol/servicecontrol-instances/configuration.md#message-body-storage-servicecontrolmessagebodyfilesystemstoragepath)
+- **Audit instance**: See [ServiceControl.Audit/MessageBody/FileSystem/StoragePath](/servicecontrol/audit-instances/configuration.md#message-body-storage-servicecontrol-auditmessagebodyfilesystemstoragepath)
 
 ### Executable exclusions (optional)
 
@@ -112,7 +131,7 @@ For more information, see the [RavenDB embedded deployment guidance](https://rav
 
 ## Version downgrades
 
-Do not downgrade releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
+Do not downgrade releases of ServiceControl without the supervision of Particular Software support, as described in the [downgrading guidance](/servicecontrol/upgrades/#downgrading-servicecontrol). Changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
 
 ## Server monitoring
 

@@ -1,5 +1,7 @@
 ### ServiceControl.Audit/DbPath
 
+_Applies only to RavenDB storage_
+
 The path where the internal RavenDB is located.
 
 | Context | Name |
@@ -9,7 +11,7 @@ The path where the internal RavenDB is located.
 | **SCMU field** | `DATABASE PATH` |
 
 | Type | Default value |
-| --- | --- | --- | --- |
+| --- | --- |
 | string | `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB` |
 
 > [!NOTE]

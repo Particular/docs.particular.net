@@ -1,0 +1,50 @@
+---
+title: File System Message Body Storage
+summary: Configure file system storage for message bodies in SQL-backed ServiceControl Error and Audit instances.
+reviewed: 2026-11-02
+component: ServiceControl
+---
+
+File system storage saves message bodies to a local directory. Set `ServiceControl/MessageBody/StorageType` on an Error instance, or `ServiceControl.Audit/MessageBody/StorageType` on an Audit instance, to `FileSystem` when the instance uses [SQL Server](/servicecontrol/storage/sqlserver/) or [PostgreSQL](/servicecontrol/storage/postgresql/) storage.
+
+## Required settings
+
+include: sc-error-messagebody-filesystem-storagepath
+
+include: sc-audit-messagebody-filesystem-storagepath
+
+## Optional settings
+
+include: sc-error-messagebody-filesystem-dataspaceremainingthreshold
+
+include: sc-audit-messagebody-filesystem-dataspaceremainingthreshold
+
+## Setup and runtime
+
+Setup creates the configured directory if it does not exist. The setup identity must be able to create the directory. The runtime identity needs read, write, and delete permissions on it. The retention sweeper deletes body files before removing the corresponding database records.
+
+> [!WARNING]
+> When several processes write to the same database, the path must be a shared mount. This applies to [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md) that run alongside an Error instance, and to [Audit instances that share a database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database). Every one of these processes needs permission to read, write, and delete message body files there. Otherwise, use Azure Blob Storage or Amazon S3.
+
+The ServiceControl Management Utility and the PowerShell module accept only a directory on a local drive as the message body path. They reject UNC paths and mapped network drives, and they ask for confirmation (`-Force` in PowerShell) before using a directory that already contains files. These checks apply only when one of those tools creates the instance. A container deployment can use a shared mount.
+
+> [!WARNING]
+> Use a durable directory or volume. Message bodies stored on a temporary or ephemeral file system are lost when it is reset, for example when a container restarts.
+
+Setup does not check that the directory is writable: if the directory already exists but the runtime identity cannot write to it, setup succeeds and the instance fails to start up. In a container, the instance runs as a non-root user; see the container volume requirements for [Error instances](/servicecontrol/servicecontrol-instances/deployment/containers.md#volumes) and [Audit instances](/servicecontrol/audit-instances/deployment/containers.md#volumes).
+
+Set these variables in an Error instance's environment:
+
+```text
+SERVICECONTROL_MESSAGEBODY_STORAGETYPE=FileSystem
+SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/bodies
+```
+
+Set these variables in an Audit instance's environment, using a different directory from any other instance, except other Audit instances that [share its database](/servicecontrol/audit-instances/scaling-out-ingestion.md#sql-storage-shared-database):
+
+```text
+SERVICECONTROL_AUDIT_MESSAGEBODY_STORAGETYPE=FileSystem
+SERVICECONTROL_AUDIT_MESSAGEBODY_FILESYSTEM_STORAGEPATH=/var/servicecontrol/audit-bodies
+```
+
+See the [external message body storage overview](/servicecontrol/storage/external-body/) for shared configuration, retention, and backup guidance.

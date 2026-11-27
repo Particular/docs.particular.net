@@ -1,31 +1,42 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
 summary: A guide to setting up and deploying ServiceControl Error instances using Containers
-reviewed: 2026-10-07
+reviewed: 2026-11-02
 component: ServiceControl
-versions: '[5.3, )'
 redirects:
   - servicecontrol/containerization
   - samples/platformtools-docker-compose
 ---
 
-ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
+ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol).
+
+The following minimal example uses `docker run` to host an Error instance on AWS, with [Amazon SQS](/servicecontrol/transports.md#amazon-sqs) as the transport, Amazon Aurora PostgreSQL for [PostgreSQL storage](/servicecontrol/storage/postgresql/), and [Amazon S3](/servicecontrol/storage/external-body/amazon-s3.md) for message bodies:
 
 ```shell
 docker run -d --name error -p 33333:33333 \
-    -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=rabbitmq" \
-    -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
+    -e AWS_REGION=us-east-1 \
+    -e TRANSPORTTYPE=AmazonSQS \
+    -e CONNECTIONSTRING="Region=us-east-1" \
+    -e STORAGETYPE=PostgreSQL \
+    -e DATABASE_CONNECTIONSTRING="Host=my-cluster.cluster-xxxxxxxxxxxx.us-east-1.rds.amazonaws.com;Database=ServiceControl;Username=servicecontrol;Token Authentication=AwsRdsIam;SSL Mode=Require" \
+    -e MESSAGEBODY_STORAGETYPE=S3 \
+    -e MESSAGEBODY_S3_BUCKETNAME=my-servicecontrol-bodies \
     -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
     -e ENABLEINTEGRATEDSERVICEPULSE="true" \
     particular/servicecontrol:latest
 ```
+
+The example contains no AWS keys or database password. SQS, S3, and the [IAM database login](/servicecontrol/storage/postgresql/#authentication-token-authentication) use the AWS SDK default credential chain, such as an IAM role attached to the host or task, and the region set in `AWS_REGION`.
+
+This example shows one combination of transport, storage, and message body store. [Required settings](#required-settings) lists the variables for each storage type.
 
 include: platform-container-examples
 
 ## Initial setup
 
 include: servicecontrol-container-setup-explanation
+
+Do not use `--setup` or `--setup-and-run` with an [ingestion-only worker](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md). Only the Error instance runs setup.
 
 ### Skipping queue creation
 
@@ -41,7 +52,7 @@ docker run --rm {OPTIONS} particular/servicecontrol --setup --skip-queue-creatio
 The following environment settings are required to run a ServiceControl error instance.
 
 include: servicecontrol-container-transport
-include: servicecontrol-container-ravenconnectionstring
+include: servicecontrol-container-storage
 
 ### Remote instances
 
@@ -73,7 +84,14 @@ Both endpoints are available from version 6.20.
 
 ## Volumes
 
-The Error instance is stateless and does not require any mounted volumes.
+The Error instance container keeps no data of its own. Whether it needs a mounted volume depends on the storage type:
+
+- **SQL Server or PostgreSQL storage with file system message body storage:** mount a durable volume at the path set by `SERVICECONTROL_MESSAGEBODY_FILESYSTEM_STORAGEPATH`. Do not share the volume path with another instance. The exception is [ingestion-only workers](/servicecontrol/servicecontrol-instances/scaling-out-ingestion.md), which mount the same volume as their Error instance. See the [file system message body storage guide](/servicecontrol/storage/external-body/file.md).
+- **SQL Server or PostgreSQL storage with Azure Blob Storage or Amazon S3:** no volume is needed. The data is in the database and in the message body store.
+- **RavenDB storage:** no volume is needed for the data, which is in the RavenDB database. To connect to RavenDB with a client certificate stored in a file, mount the file and point `RAVENDB_CLIENTCERTIFICATEPATH` to it. A certificate supplied as a Base64-encoded environment variable needs no volume. See [RavenDB client certificate](/servicecontrol/storage/ravendb/containers.md#additional-settings-ravendb-client-certificate).
+
+> [!WARNING]
+> The container runs as a non-root user with UID `1654`, which must be able to write to the body storage volume. Setup succeeds even when the directory is not writable, and the instance then fails to start up. Give the volume suitable ownership or permissions before starting the instance.
 
 ## Additional settings
 

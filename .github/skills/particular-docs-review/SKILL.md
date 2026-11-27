@@ -63,8 +63,9 @@ Review from the reader's perspective for that version, not the transition that c
 - Present the recommended API/pattern as the way to use it for that version
 - Avoid framing the recommended path as one more choice unless there are supported alternatives for new work
 - Move migration details, obsolete APIs, and compatibility notes to upgrade guides when they help existing users move forward
-- Use versioned partials or callout boxes for older-supported-version notes
-- Each major has one view. Describe the latest minor of that major and name the version in the text for minor features ("In version 9.2 and later, ..."), including the earlier default when a minor changes one
+- Use versioned partials or callout boxes for older-supported-version notes in library docs; product docs (ServiceControl, ServicePulse) state version differences inline, see `AGENTS.md`
+- Upgrade guides follow the pattern in `AGENTS.md`: what changed, who must act, and before/after examples
+- In library docs, each major has one view. Describe the latest minor of that major and name the version in the text for minor features ("In version 9.2 and later, ..."), including the earlier default when a minor changes one
 - Content useful only while old minor is supported should not dominate newer major version pages
 - Include history only when it helps current decisions
 - For multi-version pages, scope guidance per version without forcing new users through legacy options

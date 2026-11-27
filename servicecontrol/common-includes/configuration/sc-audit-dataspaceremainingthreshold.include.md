@@ -1,5 +1,7 @@
 ### ServiceControl.Audit/DataSpaceRemainingThreshold
 
+_Applies only to RavenDB storage_
+
 The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
 
 | Type | Default value |

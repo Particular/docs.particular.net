@@ -1,6 +1,8 @@
 ### ServiceControl/MaintenanceMode
 
-Run [ServiceControl error instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) in order to do database maintenance.
+_Applies only to RavenDB storage_
+
+Run a RavenDB-backed [ServiceControl Error instance in maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md) to perform database maintenance.
 
 | Context | Name |
 | --- | --- |
@@ -11,3 +13,5 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/storage/
 | Type | Default value |
 | --- | --- |
 | boolean | `False` |
+
+From version 7, maintenance mode is supported only with embedded RavenDB. An instance using external RavenDB, SQL Server, or PostgreSQL with this setting set to `true` does not start. To perform database maintenance, stop the ServiceControl instance and access the external database directly.

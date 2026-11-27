@@ -37,7 +37,7 @@ Perform a **Forced upgrade** for the old Error instance.
 > This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover.
 
 ```ps1
-# List existing error/primary instances
+# List existing Error instances
 Get-ServiceControlInstances | Select Name, Version
 # For each instance
 Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
@@ -63,6 +63,8 @@ $serviceControlInstance = New-ServiceControlInstance `
   -ErrorQueue error `
   -ErrorRetentionPeriod 10:00:00:00
 ```
+
+From ServiceControl 7, `-StorageType` is required. Add `-StorageType RavenDB` to use RavenDB storage as in this example. For SQL Server or PostgreSQL storage, see [deploying an Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance).
 
 Now that the instance is created, the configuration must be modified so that the Error instance can communicate with the same Audit instances as the previous Error instance. In this example, the Audit instance at `http://localhost:4444` is added.
 

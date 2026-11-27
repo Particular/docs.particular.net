@@ -1,6 +1,8 @@
 ### ServiceControl/ExpirationProcessTimerInSeconds
 
-The number of seconds to wait between checking for expired messages.
+_Applies only to RavenDB storage_
+
+The number of seconds RavenDB waits between runs of its document expiration process, which deletes documents whose retention period has passed.
 
 | Context | Name |
 | --- | --- |

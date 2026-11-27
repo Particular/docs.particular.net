@@ -1,0 +1,15 @@
+### ServiceControl/Database/ConnectionString
+
+_Added in version 7.0.0_
+
+The connection string for the SQL Server or PostgreSQL database. The database must already exist.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATABASE_CONNECTIONSTRING` |
+| **App config key** | `ServiceControl/Database/ConnectionString` |
+| **SCMU field** | `DATABASE CONNECTION STRING` |
+
+| Type | Default value |
+| --- | --- |
+| string | None (required for SQL Server and PostgreSQL storage) |

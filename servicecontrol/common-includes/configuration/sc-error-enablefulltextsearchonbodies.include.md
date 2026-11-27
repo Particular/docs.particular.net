@@ -1,6 +1,10 @@
 ### ServiceControl/EnableFullTextSearchOnBodies
 
+_Applies only to RavenDB storage_
+
 Use this setting to configure whether the bodies of processed error messages should be full-text indexed for searching.
+
+SQL Server and PostgreSQL storage always index message bodies for full-text search, regardless of this setting.
 
 | Context | Name |
 | --- | --- |

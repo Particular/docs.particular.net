@@ -3,12 +3,12 @@ title: RavenDB search engine
 summary: Selecting Corax or Lucene as the search engine for ServiceControl and how to migrate existing indexes between them
 reviewed: 2026-11-10
 component: ServiceControl
+redirects:
+  - servicecontrol/ravendb/search-engine
 related:
 - servicecontrol/storage/ravendb/accessing-database
 - servicecontrol/troubleshooting
 - servicecontrol/upgrades/6.19to6.20
-redirects:
-  - servicecontrol/ravendb/search-engine
 ---
 
 RavenDB supports two search engines for indexes: [Corax](https://docs.ravendb.net/indexes/search-engine/corax) and [Lucene](https://lucene.apache.org/). The selected engine determines how RavenDB builds and queries an index. The choice of engine is made when creating a database or index, and while it can be changed later, doing so triggers a full index rebuild.
@@ -31,7 +31,7 @@ Meanwhile, Corax demonstrated more performance and stability issues on large Ser
 
 As the table above illustrates, upgrading ServiceControl does not impact the search engine of existing databases. This is because changing the engine triggers a full rebuild of every index which, depending on the available computing power, can take days on very large databases. In addition, while the rebuild runs, the ingestion and indexing rates are degraded. Thus, migration should be planned and scheduled for each environment. See [Should existing indexes be migrated?](#should-existing-indexes-be-migrated) and [Migrating existing indexes to Lucene](#migrating-existing-indexes-to-lucene) for more details.
 
-From version 6.21.1, indexes that ServiceControl creates in an existing database also use Lucene. For example, this applies to an index that a new version adds, or to the audit message index that is created when [full-text search on message bodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) is turned on or off. Indexes that exist already keep their search engine.
+From version 6.21.1, indexes that ServiceControl creates in an existing database also use Lucene. For example, this applies to an index that a new version adds, or to the audit message index that is created when [full-text search on message bodies](/servicecontrol/audit-instances/configuration.md#ravendb-storage-servicecontrol-auditenablefulltextsearchonbodies) is turned on or off. Indexes that exist already keep their search engine.
 
 Since version 6.22.2, RavenDB switches to Lucene indexes it rebuilds because their definitions changed. This includes an index that uses Corax.
 
@@ -91,13 +91,13 @@ The indexes with the highest load, and therefore the ones that benefit most, are
 | Instance | Index |
 |---|---|
 | Error | `FailedMessageViewIndex`, `MessagesViewIndex` |
-| Audit | `MessagesViewIndex` or `MessagesViewIndexWithFullTextSearch` (depending on whether [full-text search on message bodies](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) is enabled) |
+| Audit | `MessagesViewIndex` or `MessagesViewIndexWithFullTextSearch` (depending on whether [full-text search on message bodies](/servicecontrol/audit-instances/configuration.md#ravendb-storage-servicecontrol-auditenablefulltextsearchonbodies) is enabled) |
 
 Other indexes can be migrated using the same procedure. Migrate one index at a time and wait for it to become non-stale before migrating the next one to limit the impact on ingestion.
 
 ### 1. Access the RavenDB Studio
 
-- **Windows deployment**: Start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
+- **Windows deployment**: start the instance in [maintenance mode](/servicecontrol/storage/ravendb/accessing-database.md#windows-deployment-maintenance-mode) and click **Launch RavenDB Studio**.
 - **Container deployment**: Stop the ServiceControl container and open RavenDB Studio on port `8080` of the [database container](/servicecontrol/storage/ravendb/containers.md).
 - **External RavenDB server**: Open RavenDB Studio for the server that hosts the ServiceControl database.
 

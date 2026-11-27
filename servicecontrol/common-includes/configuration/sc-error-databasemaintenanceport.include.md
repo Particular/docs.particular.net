@@ -1,12 +1,14 @@
 ### ServiceControl/DatabaseMaintenancePort
 
+_Applies only to RavenDB storage_
+
 The port to expose the RavenDB database.
 
 | Context | Name |
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_DATABASEMAINTENANCEPORT` |
 | **App config key** | `ServiceControl/DatabaseMaintenancePort` |
-| **SCMU field** | N/A |
+| **SCMU field** | `DATABASE MAINTENANCE PORT NUMBER (1 - 49151)` |
 
 | Type | Default value |
 | --- | --- |

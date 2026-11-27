@@ -23,8 +23,6 @@ Prior to modifying these configuration settings, review [Setting a Custom Hostna
 
 ### Monitoring/InstanceName
 
-_Added in version 5.5.0_
-
 The name to be used by the monitoring instance and the name of the monitoring queue.
 
 | Context | Name |
@@ -655,8 +653,6 @@ The time after which the endpoint is considered stale if it stops sending messag
 ## Usage Reporting
 
 ### Monitoring/ServiceControlThroughputDataQueue
-
-_Added in version 5.4.0_
 
 The queue on which throughput data is received by the ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
 
