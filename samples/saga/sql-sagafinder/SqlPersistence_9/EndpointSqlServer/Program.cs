@@ -14,8 +14,6 @@ endpointConfiguration.EnableInstallers();
 
 #region sqlServerConfig
 
-//for local instance or SqlExpress
-//var connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlSagaFinder;Trusted_Connection=True;MultipleActiveResultSets=true";
 var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();

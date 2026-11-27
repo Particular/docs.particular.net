@@ -125,24 +125,19 @@ end if;
 
 /* PurgeObsoleteProperties */
 
-select count(*) into n
-from all_tab_columns
-where table_name = 'ORDERSAGA' and column_name like 'CORR_%' and
-        column_name <> 'CORR_ORDERNUMBER' and
-        column_name <> 'CORR_ORDERID' and owner = currentSchema;
-
-if(n > 0)
-then
-
-  select 'alter table "ORDERSAGA" drop column ' || column_name into sqlStatement
+for columnToDelete in
+(
+  select column_name
   from all_tab_columns
   where table_name = 'ORDERSAGA' and column_name like 'CORR_%' and
         column_name <> 'CORR_ORDERNUMBER' and
-        column_name <> 'CORR_ORDERID' and owner = currentSchema;
+        column_name <> 'CORR_ORDERID' and owner = currentSchema
+)
+loop
+  sqlStatement := 'alter table "ORDERSAGA" drop column ' || columnToDelete.column_name;
 
   execute immediate sqlStatement;
-
-end if;
+end loop;
 
 /* CompleteSagaScript */
 end;

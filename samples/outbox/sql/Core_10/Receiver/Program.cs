@@ -10,8 +10,6 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) => {
         Console.Title = "Receiver";
 
-        //for local instance or SqlExpress
-        //string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
         const string connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");

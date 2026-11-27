@@ -1,7 +1,7 @@
 ---
 title: Multi-tenant support
 summary: SQL Persistence support for multi-tenant systems using database per customer
-reviewed: 2025-12-24
+reviewed: 2026-11-27
 component: SqlPersistence
 versions: '[4.5,)'
 related:
@@ -12,12 +12,7 @@ related:
 
 When working in a multi-tenant system, the data for each customer/client (tenant) is stored in an independent database identified by one or more message headers passed along with each message flowing through the system. With SQL Persistence running in multi-tenant mode, [saga data](saga.md) and [outbox data](outbox.md) are both stored in the same database as the tenant data, requiring only one database connection and transaction for the duration of the message handler.
 
-#if-version [, 7)
-[Timeout data](timeouts.md) and [subscription data](subscriptions.md) do not belong to any specific tenant and are stored in a shared database in cases where the message transport does not provide native timeouts or native publish/subscribe capabilities.
-#end-if
-#if-version [7,]
 [Subscription data](subscriptions.md) does not belong to any specific tenant and is stored in a shared database in cases where the message transport does not provide native publish/subscribe capabilities.
-#end-if
 
 ## Specifying connections per tenant
 

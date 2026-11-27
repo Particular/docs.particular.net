@@ -266,7 +266,8 @@ class Usage
                 var writer = new StringWriter(builder);
                 return new JsonTextWriter(writer)
                 {
-                    Formatting = Formatting.None
+                    IndentChar = '\t',
+                    Indentation = 1
                 };
             });
 

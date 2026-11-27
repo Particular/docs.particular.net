@@ -15,9 +15,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesInjectedServices;Integrated Security=True;Encrypt=false
-//var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesInjectedServices;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
-// for LocalDB (default choice for development):
-var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NsbSamplesInjectedServices;Integrated Security=True;Connect Timeout=30;Max Pool Size=100;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesInjectedServices;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
 
 // Configure SQL Server transport
 endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)

@@ -141,34 +141,28 @@ end
 
 /* PurgeObsoleteIndex */
 
-declare @dropIndexQuery nvarchar(max);
-select @dropIndexQuery =
-(
-    select 'drop index ' + name + ' on ' + @tableName + ';'
-    from sysindexes
-    where
-        Id = object_id(@tableName) and
-        Name is not null and
-        Name like 'Index_Correlation_%' and
+declare @dropIndexQuery nvarchar(max) = '';
+select @dropIndexQuery += 'drop index ' + name + ' on ' + @tableName + ';'
+from sysindexes
+where
+    Id = object_id(@tableName) and
+    Name is not null and
+    Name like 'Index_Correlation_%' and
         Name <> N'Index_Correlation_OrderNumber' and
-        Name <> N'Index_Correlation_OrderId'
-);
+        Name <> N'Index_Correlation_OrderId';
 exec sp_executesql @dropIndexQuery
 
 /* PurgeObsoleteProperties */
 
-declare @dropPropertiesQuery nvarchar(max);
-select @dropPropertiesQuery =
-(
-    select 'alter table ' + @tableName + ' drop column ' + column_name + ';'
-    from INFORMATION_SCHEMA.COLUMNS
-    where
-        table_name = @tableNameWithoutSchema and
-        table_schema = @schema and
-        column_name like 'Correlation_%' and
+declare @dropPropertiesQuery nvarchar(max) = '';
+select @dropPropertiesQuery += 'alter table ' + @tableName + ' drop column ' + column_name + ';'
+from INFORMATION_SCHEMA.COLUMNS
+where
+    table_name = @tableNameWithoutSchema and
+    table_schema = @schema and
+    column_name like 'Correlation_%' and
         column_name <> N'Correlation_OrderNumber' and
-        column_name <> N'Correlation_OrderId'
-);
+        column_name <> N'Correlation_OrderId';
 exec sp_executesql @dropPropertiesQuery
 
 /* CompleteSagaScript */
