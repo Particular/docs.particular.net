@@ -212,7 +212,7 @@ Use `WithPersistenceRavenDb(existing)` to attach a RavenDB resource declared els
 
 snippet: aspire-persistence-ravendb-external
 
-External RavenDB instances are not nested under the platform in the dashboard, since the platform does not own their lifecycle. An external RavenDB instance that doesn't use the `particular/servicecontrol-ravendb` image is [independently hosted](/servicecontrol/storage/ravendb/containers.md#licensing) and requires a separate RavenDB license.
+External RavenDB instances are not nested under the platform in the dashboard, since the platform does not own their lifecycle. See [RavenDB licensing for ServiceControl](/servicecontrol/storage/ravendb/containers.md#licensing).
 
 #### Options
 

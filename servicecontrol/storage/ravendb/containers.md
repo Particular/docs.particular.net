@@ -1,6 +1,6 @@
 ---
 title: Managing ServiceControl RavenDB instances via Containers
-reviewed: 2026-11-19
+reviewed: 2026-11-27
 component: ServiceControl
 redirects:
   - servicecontrol/ravendb/containers
@@ -13,11 +13,12 @@ The database container extends the [official RavenDB container](https://hub.dock
 
 ## Licensing
 
-Whether a separate RavenDB license is required depends on who provides and manages the RavenDB server, not on whether it runs in its own container:
+The RavenDB license bundled with ServiceControl covers storage of NServiceBus data, including the error and audit data stored by ServiceControl. It does not cover unrelated application data. If the same RavenDB deployment also stores unrelated application data, a separate RavenDB license is required.
 
-- **Embedded RavenDB**: ServiceControl instances installed on Windows using the ServiceControl Management Utility or PowerShell include an embedded RavenDB server. The Particular Software license covers it.
-- **The `particular/servicecontrol-ravendb` container**: The Particular Software license also covers this container when it is used as the database for ServiceControl. Running it as a separate container, including on Kubernetes, doesn't make it an independently licensed RavenDB deployment, and a separate RavenDB license isn't required.
-- **Independently hosted RavenDB**: A RavenDB server or cluster that is deployed and managed separately, for example from the official RavenDB packages or images (including on Kubernetes), or [RavenDB Cloud](https://ravendb.net/cloud), requires a separate RavenDB license. It must also run the RavenDB version that ServiceControl expects, as shown in the [version map](#additional-settings).
+- **Embedded RavenDB**: ServiceControl instances installed on Windows using the ServiceControl Management Utility or PowerShell include RavenDB and its license.
+- **The `particular/servicecontrol-ravendb` container**: This image includes the RavenDB license. The same terms apply on Kubernetes.
+- **Self-managed RavenDB**: The bundled license also covers self-managed RavenDB servers and high-availability clusters used exclusively for NServiceBus data, within the limits shown in RavenDB Studio. Use the RavenDB version that ServiceControl expects, as shown in the [version map](#additional-settings).
+- **RavenDB Cloud**: [RavenDB Cloud](https://ravendb.net/cloud) is licensed separately.
 
 ## Production deployment
 
@@ -26,7 +27,7 @@ Whether a separate RavenDB license is required depends on who provides and manag
 
 This is a deployment recommendation. Each database container must run the same version as its ServiceControl instance, and a dedicated container allows each instance to be upgraded, backed up, and sized independently.
 
-The database container runs a single RavenDB server and doesn't provide database high availability by default. Achieving database high availability with an independently hosted RavenDB cluster requires appropriate RavenDB licensing and configuration.
+The database container runs a single RavenDB server and doesn't provide database high availability by default. For database high availability, configure a RavenDB cluster separately. See [Licensing](#licensing) for coverage.
 
 ## Basic usage
 
@@ -58,7 +59,7 @@ A volume must be mounted to `/var/lib/ravendb/data` to provide persistent storag
 > [!NOTE]
 > RavenDB has specific requirements about the types of storage it supports. See the [RavenDB deployment storage considerations documentation](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) for more information.
 > 
-> If providing these storage requirements is not possible, an [independently hosted](#licensing) RavenDB server, which requires a separate RavenDB license, can also be used starting with ServiceControl version 6.0. The external server must be using the same Major and Minor version noted in the version map below.
+> If these storage requirements can't be met, an external RavenDB server can be used starting with ServiceControl version 6.0.
 
 ## Additional settings
 
@@ -86,7 +87,7 @@ In any of the above cases, the certificate can be password-protected, in which c
 > The [RavenDB container overview on Docker Hub](https://hub.docker.com/r/ravendb/ravendb) is specific to the most recent version of RavenDB which may not match the version used by ServiceControl.
 
 > [!NOTE]
-> To host ServiceControl and ServicePulse in Azure Container Apps, use ServiceControl v6 with [RavenDB Cloud](https://ravendb.net/cloud) for hosting the database. RavenDB Cloud is [independently hosted](#licensing) and licensed separately.
+> To host ServiceControl and ServicePulse in Azure Container Apps, use ServiceControl v6 with [RavenDB Cloud](https://ravendb.net/cloud) for hosting the database. See [Licensing](#licensing).
 
 ## Troubleshooting
 
