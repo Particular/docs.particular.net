@@ -43,8 +43,8 @@ Supported isolation levels:
 - `Serializable` (Not supported by Oracle)
 - `Read Committed`
 - `Repeatable Read` (Not supported by Oracle)
-#if-version [8.2,)
-- `Snapshot` (Only supported by SqlServer and Postgres)
+#if-version [8,)
+- `Snapshot` (Only supported by SqlServer and Postgres, in version 8.2 and later)
 #end-if
 
 ### Transaction Scope
@@ -75,6 +75,6 @@ Supported isolation levels:
 - `Serializable`
 - `Read Committed`
 - `Repeatable Read` (Not supported by Oracle)
-#if-version [8.2,)
-- `Snapshot` (Only supported by SqlServer and Postgres)
+#if-version [8,)
+- `Snapshot` (Only supported by SqlServer and Postgres, in version 8.2 and later)
 #end-if

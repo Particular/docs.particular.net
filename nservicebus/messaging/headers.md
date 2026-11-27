@@ -46,7 +46,7 @@ When doing native intergration and there is a need to parse the timestamp the `.
 
 ### NServiceBus.NonDurableMessage
 
-The `NonDurableMessage` header controls [non-durable messaging](non-durable-messaging.md) persistence behavior of in-flight messages. The behavior is transport-specific, but the intent is to not store the message durably on disk and only keep it in memory.
+The `NonDurableMessage` header controls the persistence behavior of in-flight messages. The behavior is transport-specific, but the intent is to not store the message durably on disk and only keep it in memory. It is supported by the [RabbitMQ](/transports/rabbitmq/#controlling-delivery-mode) and [IBM MQ](/transports/ibmmq/#message-persistence) transports.
 
 ### NServiceBus.TimeToBeReceived
 

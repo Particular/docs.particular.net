@@ -10,13 +10,13 @@ To avoid running with elevated privileges:
 #if-version [,3)
 - [Turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription)
 #end-if
-#if-version [5,6.5)
+#if-version [5,6)
 - [Turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription)
 #end-if
-#if-version [6.5,)
-- Follow the requirements for [subscribing without Manage rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights-subscribing-without-manage-rights).
+#if-version [6,)
+- Follow the requirements for [subscribing without Manage rights](/transports/azure-service-bus/configuration.md#entity-creation-access-rights-subscribing-without-manage-rights). In versions 6.0 to 6.4, [turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) instead.
 #end-if
-#if-version [5,6.5)
+#if-version [5,6)
 #### Subscribing without Manage rights
 
 Subscribing to an event creates a subscription on each topic the event is mapped to. Creating a subscription requires `Manage` rights, even when the subscription already exists. Without them, the subscribe operation fails and the transport logs an error. With automatic subscriptions, the endpoint still starts; an explicit subscribe call throws instead. What the endpoint receives depends on what was provisioned:
@@ -25,15 +25,27 @@ Subscribing to an event creates a subscription on each topic the event is mapped
 - With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic) in version 6.4 and later, the filter rule for each event must also exist. The transport doesn't add rules when creating the subscription fails.
 - If the subscription or rule is missing, the endpoint doesn't receive the events that depend on it. Events published before it's created are never delivered to the endpoint.
 #end-if
-#if-version [6.5,)
+#if-version [6,)
 
 #### Subscribing without Manage rights
 
-To subscribe without `Manage` rights, provision the subscription on each topic the event is mapped to and grant `Listen` rights. This also supports [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
+In version 6.6 and later, to subscribe without `Manage` rights, provision the subscription on each topic the event is mapped to, grant `Listen` rights, and enable `AssertTopologyExists`:
 
-With [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), the transport can add filter rules to existing subscriptions without `Manage` rights.
+```csharp
+transport.AssertTopologyExists = true;
+```
 
-If the subscription doesn't exist, the subscribe operation fails and the transport logs an error. With automatic subscriptions, the endpoint still starts; an explicit subscribe call throws instead. The endpoint doesn't receive the events that depend on the missing subscription, and events published before it's created are never delivered to the endpoint.
+With this setting, subscribing asserts that the topology exists instead of creating it, so [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) stay enabled. The setting applies to endpoints with and without sessions enabled, and to both the default and the migration topology. When subscribing, the transport:
+
+- Checks that the endpoint's subscription exists on each topic the event is mapped to, and that the subscription requires sessions only when the endpoint has sessions enabled.
+- Adds the filter rules of [filtered routing](/transports/azure-service-bus/topology.md#subscription-rule-matching-advanced-multiplexing-strategies-filtering-within-a-multiplexed-topic), which doesn't require `Manage` rights.
+- Never creates topics or subscriptions.
+
+With auto-subscribe, if a subscription doesn't exist, its session setting doesn't match the endpoint, or the transport can't check it, the endpoint fails to start and reports the affected topics in the error. An explicit subscribe call throws instead. Create the missing subscriptions using [operational scripting](/transports/azure-service-bus/operational-scripting.md) before starting the endpoint, because events published before a subscription exists are never delivered to the endpoint.
+
+In version 6.5, and in later versions without `AssertTopologyExists`, subscribing tries to create each subscription and uses the existing subscription when creating it fails due to missing `Manage` rights. Provision the subscriptions and grant `Listen` rights; this also supports automatic subscriptions. With filtered routing, the transport can add filter rules to existing subscriptions without `Manage` rights. If the subscription doesn't exist, the subscribe operation fails and the transport logs an error. With automatic subscriptions, the endpoint still starts; an explicit subscribe call throws instead. The endpoint doesn't receive the events that depend on the missing subscription, and events published before it's created are never delivered to the endpoint.
+
+In versions 6.0 to 6.4, creating a subscription requires `Manage` rights even when the subscription already exists. Without them, the subscribe operation fails and the transport logs an error, but events continue to arrive through subscriptions that were provisioned in advance.
 #end-if
 #if-version [5,)
 
@@ -48,9 +60,13 @@ Otherwise, unsubscribing deletes the subscription. Without `Manage` rights, the 
 
 To stop the events, remove the subscription using [operational scripting](/transports/azure-service-bus/operational-scripting.md).
 #end-if
-#if-version [6.5,)
+#if-version [6,)
+
+In version 6.6 and later, with `AssertTopologyExists` enabled, unsubscribing throws an `InvalidOperationException`, because the endpoint doesn't manage the topology. Remove the subscription or its filter rule using operational scripting instead.
+#end-if
+#if-version [6,)
 
 #### Publishing with installers enabled
 
-Publishers running with installers enabled require `Manage` rights to [create topics](/transports/azure-service-bus/topology.md#topic-creation). To publish with only `Send` rights, or the Azure Service Bus Data Sender role, disable installers and provision topics in advance.
+In version 6.5 and later, publishers running with installers enabled require `Manage` rights to [create topics](/transports/azure-service-bus/topology.md#topic-creation). To publish with only `Send` rights, or the Azure Service Bus Data Sender role, disable installers and provision topics in advance.
 #end-if

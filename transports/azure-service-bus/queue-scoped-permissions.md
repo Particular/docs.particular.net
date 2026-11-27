@@ -14,7 +14,7 @@ The following shows the minimum permissions needed for various endpoint features
   - [Delayed retries](/nservicebus/recoverability/#delayed-retries)
   - [Saga Timeouts](/nservicebus/sagas/timeouts.md)
   - [Transactional Session](/nservicebus/transactional-session/)
-  - [`.SendLocal()`](/nservicebus/messaging/send-a-message.md#sending-to-self)
+  - [`.SendLocal()`](/nservicebus/messaging/send-a-message.md#sending-to-self)  
 - `Azure Service Bus Data Sender` is required for the [error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code).
 - `Azure Service Bus Data Sender` is required for every [queue the endpoint sends a command to](/nservicebus/messaging/routing.md#command-routing).
 - `Azure Service Bus Data Sender` is required for every [queue the endpoint replies to](/nservicebus/messaging/reply-to-a-message.md).
@@ -22,11 +22,11 @@ The following shows the minimum permissions needed for various endpoint features
 #if-version [,3)
 - `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 #end-if
-#if-version [5,6.5)
+#if-version [5,6)
 - `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
 #end-if
-#if-version [6.5,)
-- `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required when [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) must create subscriptions. Pre-provisioned subscriptions don't require this permission; see [subscribing without Manage rights](#access-rights-subscribing-without-manage-rights) for the required access.
+#if-version [6,)
+- `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required when [automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) must create subscriptions. Pre-provisioned subscriptions don't require this permission; see [subscribing without Manage rights](#access-rights-subscribing-without-manage-rights) for the required access. In versions 6.0 to 6.4, it's required for every topic the endpoint handles events from when using automatic subscriptions.
 #end-if
 - `Azure Service Bus Data Sender` is required for the audit queue when [auditing](/nservicebus/operations/auditing.md#configuring-auditing) is enabled.
 - `Azure Service Bus Data Sender` is required for the [transactional session remote processor](/nservicebus/transactional-session/#remote-processor) queue, when configured.
@@ -34,5 +34,8 @@ The following shows the minimum permissions needed for various endpoint features
 - `Azure Service Bus Data Sender` is required for the ServiceControl queue when [heartbeats](/monitoring/heartbeats/install-plugin.md) or [custom checks](/monitoring/custom-checks/install-plugin.md) are being used.
 - `Azure Service Bus Data Sender` is required for any queue the endpoint [forwards to](/nservicebus/messaging/forwarding.md).
 - `Azure Service Bus Data Receiver` is required for every [satellite queue](/nservicebus/satellites/) created.
-
+#if-version [6.6,)
+- `Azure Service Bus Data Sender` to the endpoint's queue is required for [subscription forwarding for ordered delivery](/transports/azure-service-bus/ordered-delivery-with-sessions#ordered-delivery-publishsubscribe).
+- `Azure Service Bus Data Receiver` is required for every subscription that the endpoint subscribes to for [subscription forwarding for ordered delivery](/transports/azure-service-bus/ordered-delivery-with-sessions#ordered-delivery-publishsubscribe).
+#end-if
 include: managed-access-rights

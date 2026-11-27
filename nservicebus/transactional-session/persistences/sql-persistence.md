@@ -41,10 +41,10 @@ See the [SQL shared session documentation](/persistence/sql/accessing-data.md) f
 
 include: ts-outbox-warning
 
-#if-version [8.2,)
+#if-version [8,)
 ## Remote processor
 
-When the transactional session is configured with a [remote processor](/nservicebus/transactional-session/#remote-processor), the send-only endpoint writes outbox records to the processor endpoint's outbox table, `[schema].[{tablePrefix}OutboxData]`. The send-only endpoint doesn't create or clean up an outbox table of its own.
+In version 8.2 and later, when the transactional session is configured with a [remote processor](/nservicebus/transactional-session/#remote-processor), the send-only endpoint writes outbox records to the processor endpoint's outbox table, `[schema].[{tablePrefix}OutboxData]`. The send-only endpoint doesn't create or clean up an outbox table of its own.
 
 The send-only endpoint works out the table name from its own configuration. The [table prefix](/persistence/sql/install.md#table-prefix) defaults to the processor endpoint name, with periods replaced by underscores, rather than the send-only endpoint name. To make sure the send-only endpoint writes to the table that the processor reads:
 
