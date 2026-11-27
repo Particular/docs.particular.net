@@ -332,22 +332,24 @@ Endpoints that do not subscribe to a transport SDK's ActivitySource are not affe
 
 ### Span names
 
-In version 10, span names are generic, such as `process message` and `publish event`. In version 11 they follow the OpenTelemetry messaging semantic convention format `{operation} {target}`. The target is the queue for receive and recoverability spans, and the message type name for outgoing spans.
+In version 10, span names are generic, such as `process message` and `publish event`. In version 11 they follow the OpenTelemetry messaging semantic convention format `{operation} {target}`. The target is the queue for receive and recoverability spans, and the message type name for outgoing spans. Send and reply spans also name the destination queue.
 
 | Operation | Version 10 | Version 11 |
 |---|---|---|
 | Process | `process message` | `process {receiveAddress}` |
-| Send | `send message` | `send message {MessageType}` |
+| Send | `send message` | `send {MessageType} to {destination}` |
 | Publish | `publish event` | `publish {EventType}` |
-| Reply | `reply` | `reply {MessageType}` |
-| Subscribe | `subscribe event` | `subscribe event {EventType}` |
-| Unsubscribe | `unsubscribe event` | `unsubscribe event {EventType}` |
+| Reply | `reply` | `reply {MessageType} to {destination}` |
+| Subscribe | `subscribe event` | `subscribe {EventType}` |
+| Unsubscribe | `unsubscribe event` | `unsubscribe {EventType}` |
 | Immediate retry | `immediate retry` | `immediate retry {receiveAddress}` |
 | Delayed retry | `delayed retry` | `delayed retry {receiveAddress}` |
 | Move to error | `move to error` | `move to {errorQueue}` |
 | Discard | `discard` | `discard` |
 
 Message type names are short names, not full type names. A subscribe span for several event types lists the type names separated by spaces.
+
+NServiceBus adds `to {destination}` to send and reply span names after it routes the message to exactly one destination. If a custom behavior routes the message to several destinations, the span name does not include a destination. Samplers and `ActivityListener.ActivityStarted` callbacks see the name without the destination. Exporters and backends see the full name.
 
 Alerts, dashboards and trace searches that match on a span name must be updated. A name match fails silently: the query returns no results instead of an error.
 
