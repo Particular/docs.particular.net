@@ -11,7 +11,9 @@ redirects:
 
 ## Overview
 
-One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServicePulse is configured to connect to the primary instance.
+One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. ServicePulse is configured to connect to the primary instance.
+
+The HTTP API of the primary instance combines message data from the primary instance and from all the remote instances. This covers the [message list and search](/servicepulse/all-messages.md), conversations, and saga history. Failed messages, retries, archiving, heartbeats, and custom checks work only with the data that the primary instance ingests itself.
 
 > [!NOTE]
 > The term _remote_ refers to the fact that remote instances run in separate processes. The primary instance and one or more remote instances can run on the same machine.
@@ -110,7 +112,9 @@ class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 
 ### Multi-transport deployments
 
-When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by a single instance of ServicePulse.
+When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by a single instance of ServicePulse. The bridge forwards failed messages from each transport to the error queue of the primary instance, so that one ServicePulse instance can retry them.
+
+Without the bridge, each transport needs its own ServiceControl Error instance and its own ServicePulse instance, as shown in [multi-region deployments](#overview-multi-region-deployments).
 
 ```mermaid
 graph TD
@@ -197,7 +201,7 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse instance.
 
-A new cross-region primary instance is added to allow another ServicePulse instance to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting the [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow another ServicePulse instance to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting the [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`. Failed messages, heartbeats, and custom checks are managed in the ServicePulse instance of each region.
 
 ### Zero downtime upgrades
 
