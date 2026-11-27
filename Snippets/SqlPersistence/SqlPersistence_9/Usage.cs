@@ -254,6 +254,25 @@ class Usage
         #endregion
     }
 
+    void CustomTextWriter(EndpointConfiguration endpointConfiguration)
+    {
+        #region SqlPersistenceCustomTextWriter
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var sagaSettings = persistence.SagaSettings();
+        sagaSettings.WriterCreator(
+            writerCreator: textWriter =>
+            {
+                return new JsonTextWriter(textWriter)
+                {
+                    Formatting = Formatting.None
+                };
+            });
+
+        #endregion
+    }
+
+#pragma warning disable CS0618 // The StringBuilder overload is obsolete in 9.1 and still documented for 9.0
     void CustomWriter(EndpointConfiguration endpointConfiguration)
     {
         #region SqlPersistenceCustomWriter
@@ -272,6 +291,7 @@ class Usage
 
         #endregion
     }
+#pragma warning restore CS0618
 
     void TablePrefix(EndpointConfiguration endpointConfiguration)
     {

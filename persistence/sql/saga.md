@@ -10,7 +10,7 @@ related:
  - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
-reviewed: 2025-12-05
+reviewed: 2026-11-27
 ---
 
 SQL persistence supports sagas using the core [NServiceBus.Saga](/nservicebus/sagas/) API.
@@ -121,5 +121,7 @@ snippet: SqlPersistenceCustomReader
 ### Custom writer
 
 Customize the creation of the [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
+
+partial: custom-writer
 
 snippet: SqlPersistenceCustomWriter

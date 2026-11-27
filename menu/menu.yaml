@@ -1118,6 +1118,8 @@
         Title: Version 1 to 2
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-9to10
+        Title: Version 9 to 10
       - Url: persistence/upgrades/sql-8to9
         Title: Version 8 to 9
       - Url: persistence/upgrades/sql-6to7

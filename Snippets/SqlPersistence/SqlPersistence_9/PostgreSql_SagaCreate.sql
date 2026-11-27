@@ -84,13 +84,14 @@ for columnToDelete in
     select column_name
     from information_schema.columns
     where
+        table_schema = schema and
         table_name = tableNameNonQuoted and
         column_name LIKE 'Correlation_%' and
         column_name <> 'Correlation_OrderNumber' and
         column_name <> 'Correlation_OrderId'
 )
 loop
-	script = '
+    script = '
 alter table "' || schema || '"."' || tableNameNonQuoted || '"
 drop column "' || columnToDelete || '"';
     execute script;

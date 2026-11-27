@@ -147,7 +147,7 @@ deallocate prepare script;
 
 /* PurgeObsoleteIndex */
 
-select concat('drop index ', index_name, ' on ', @tableNameQuoted, ';')
+select concat('alter table ', @tableNameQuoted, ' ', group_concat(concat('drop index ', index_name) separator ', '), ';')
 from information_schema.statistics
 where
     table_schema = database() and
@@ -169,7 +169,7 @@ deallocate prepare script;
 
 /* PurgeObsoleteProperties */
 
-select concat('alter table ', table_name, ' drop column ', column_name, ';')
+select concat('alter table ', @tableNameQuoted, ' ', group_concat(concat('drop column ', column_name) separator ', '), ';')
 from information_schema.columns
 where
     table_schema = database() and
