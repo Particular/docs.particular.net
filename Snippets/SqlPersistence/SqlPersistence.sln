@@ -1,10 +1,9 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34227.203
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_All", "SqlPersistence_All\SqlPersistence_All.csproj", "{904ADAD7-0E74-4183-95DE-FABF76F591D4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_6", "SqlPersistence_6\SqlPersistence_6.csproj", "{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_7", "SqlPersistence_7\SqlPersistence_7.csproj", "{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}"
 EndProject
@@ -22,10 +21,6 @@ Global
 		{904ADAD7-0E74-4183-95DE-FABF76F591D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904ADAD7-0E74-4183-95DE-FABF76F591D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904ADAD7-0E74-4183-95DE-FABF76F591D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}.Release|Any CPU.ActiveCfg = Release|Any CPU
