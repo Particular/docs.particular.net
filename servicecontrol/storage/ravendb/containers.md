@@ -94,9 +94,9 @@ In any of the above cases, the certificate can be password-protected, in which c
 
 From ServiceControl version 6, a new database container reports `AGPL - Open Source` from its `/license/status` endpoint until the first database is created. RavenDB applies the bundled license at that point, so this status is expected before an Error or Audit instance has connected for the first time.
 
-If the data volume was first used by a RavenDB server that did not have the ServiceControl license, for example a container based on the official `ravendb/ravendb` image, the database container keeps the unlicensed state stored in the volume. It doesn't apply the bundled license, and it doesn't log anything about licensing. In ServiceControl version 6.9 and later, the Error and Audit instances then stop at startup with the message `Cannot validate the current RavenDB license`.
+If the data volume was first used by a RavenDB server that did not have the ServiceControl license, for example a container based on the official `ravendb/ravendb` image, ServiceControl versions 6.9 to 6.22 keep the unlicensed state stored in the volume. The database container doesn't apply the bundled license or log anything about licensing, and the Error and Audit instances stop at startup with the message `Cannot validate the current RavenDB license`. From version 7.0.1, the database container applies the bundled license to such a volume when it starts.
 
-To apply the bundled license to the existing data, run the following command, replacing `servicecontrol-db` with the name of the database container:
+On versions 6.9 to 6.22, apply the bundled license to the existing data by running the following command, replacing `servicecontrol-db` with the name of the database container:
 
 ```shell
 docker exec servicecontrol-db sh -c 'curl -s -X POST http://localhost:8080/admin/license/activate -H "Content-Type: application/json" --data-binary @/usr/lib/ravendb/servicecontrol-license.json'
