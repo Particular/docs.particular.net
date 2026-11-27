@@ -19,13 +19,11 @@ Version 10 turns APIs that are obsolete in version 9 into errors. Endpoints that
 
 The `SagaSettings.WriterCreator` overload that accepts a `Func<StringBuilder, JsonWriter>` is obsolete with a warning starting in version 9.1 and generates an error in version 10. It will be removed in version 11.
 
-The `WriterCreator` overload that accepts a `Func<TextWriter, JsonWriter>`, added in version 9.1, passes in the `TextWriter` the persister serializes the saga data into, so the custom `JsonWriter` writes directly into the persister's buffer instead of into a separate `StringBuilder`.
-
 Endpoints that do not call `WriterCreator` are not affected. No action is required.
 
-Endpoints that [customize the saga JSON writer](/persistence/sql/saga.md#json-net-settings-custom-writer) with the `StringBuilder` overload must pass the `TextWriter` to the `JsonWriter` instead.
+Endpoints that [customize the saga JSON writer](/persistence/sql/saga.md#json-net-settings-custom-writer) with the `StringBuilder` overload must use the overload that accepts a `Func<TextWriter, JsonWriter>`, added in version 9.1, and pass the `TextWriter` to the `JsonWriter`. Affected code shows the obsolete warning `CS0618` when compiled against version 9.1 or later.
 
-Before (version 9.0):
+Before (version 9):
 
 ```csharp
 var sagaSettings = persistence.SagaSettings();
@@ -41,7 +39,7 @@ sagaSettings.WriterCreator(
     });
 ```
 
-After (version 9.1 and later):
+After (version 10):
 
 ```csharp
 var sagaSettings = persistence.SagaSettings();
@@ -55,5 +53,3 @@ sagaSettings.WriterCreator(
         };
     });
 ```
-
-The `TextWriter` belongs to the persister and is valid only while the saga data is serialized. Do not keep a reference to it, and do not close it before serialization completes.
