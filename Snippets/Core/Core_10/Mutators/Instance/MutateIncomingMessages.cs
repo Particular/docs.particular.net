@@ -13,7 +13,7 @@ public class MutateIncomingMessages :
         var headers = context.Headers;
 
         // the incoming message
-        // optionally replace the message instance by setting context.Message
+        // optionally replace the message instance with context.UpdateMessageInstance<T>(...)
         var message = context.Message;
 
         return Task.CompletedTask;

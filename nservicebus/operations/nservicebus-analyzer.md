@@ -64,3 +64,5 @@ Add `NSB0001` to the `NoWarn` property in the project file, for example `<NoWarn
 ### Treat warnings as errors
 
 The C# compiler already contains a set of inspections which can warn about incorrect usage of `async` and `Task`-based APIs. It is recommended to treat these warnings as errors to ensure they are not missed accidentally. This feature can be enabled by the project settings or by adding `<TreatWarningsAsErrors>true</TreatWarningsAsErrors>` to the `csproj` file directly.
+
+partial: migration-analyzer
